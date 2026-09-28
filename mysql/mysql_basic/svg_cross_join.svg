@@ -1,0 +1,7 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+    <rect width="600" height="300" fill="#1e1e2e" rx="15"/>
+    <defs>
+        <linearGradient id="left" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00ffcc" stop-opacity="0.8"/><stop offset="100%" stop-color="#0066ff" stop-opacity="0.8"/></linearGradient>
+        <linearGradient id="right" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff00cc" stop-opacity="0.8"/><stop offset="100%" stop-color="#ff6600" stop-opacity="0.8"/></linearGradient>
+        <linearGradient id="inter" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffff00" stop-opacity="0.9"/><stop offset="100%" stop-color="#ff9900" stop-opacity="0.9"/></linearGradient>
+    </defs><text x='300' y='40' font-family='Arial' font-size='24' font-weight='bold' fill='#00ffcc' text-anchor='middle'>CROSS JOIN Concept</text><g transform='translate(0, 50)'><rect x='150' y='50' width='50' height='100' fill='none' stroke='#00ffcc'/><rect x='400' y='50' width='50' height='100' fill='none' stroke='#ff00cc'/><line x1='200' y1='75' x2='400' y2='75' stroke='#ffff00' opacity='0.5'/><line x1='200' y1='75' x2='400' y2='125' stroke='#ffff00' opacity='0.5'/><line x1='200' y1='125' x2='400' y2='75' stroke='#ffff00' opacity='0.5'/><line x1='200' y1='125' x2='400' y2='125' stroke='#ffff00' opacity='0.5'/><text x='300' y='200' fill='#fff' text-anchor='middle'>Cartesian Product (Every Row * Every Row)</text></g></svg>

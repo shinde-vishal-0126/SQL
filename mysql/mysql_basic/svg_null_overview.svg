@@ -1,0 +1,36 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250">
+    <rect width="600" height="250" fill="#1E1E1E" rx="10"/>
+    <text x="300" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#DCDCAA" text-anchor="middle">NULL Functions Overview</text>
+    
+    <!-- Replace Values -->
+    <text x="100" y="80" font-family="Arial" font-size="16" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Replace Values</text>
+    
+    <rect x="180" y="55" width="60" height="30" fill="#2D2D30" stroke="#F44747" stroke-width="2"/>
+    <text x="210" y="75" font-family="Courier New" font-size="14" fill="#F44747" text-anchor="middle">NULL</text>
+    <path d="M 250 70 L 350 70" fill="none" stroke="#4FC1FF" stroke-width="2" marker-end="url(#arrow_blue)"/>
+    <text x="300" y="65" font-family="Arial" font-size="10" fill="#4FC1FF" text-anchor="middle">ISNULL / COALESCE</text>
+    <rect x="360" y="55" width="60" height="30" fill="#2D2D30" stroke="#3E3E42" stroke-width="2"/>
+    <text x="390" y="75" font-family="Courier New" font-size="14" fill="#E0E0E0" text-anchor="middle">40</text>
+
+    <!-- Check for Nulls -->
+    <text x="100" y="160" font-family="Arial" font-size="16" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Check for Nulls</text>
+    
+    <rect x="180" y="145" width="60" height="30" fill="#2D2D30" stroke="#F44747" stroke-width="2"/>
+    <text x="210" y="165" font-family="Courier New" font-size="14" fill="#F44747" text-anchor="middle">NULL</text>
+    
+    <path d="M 250 160 L 350 130" fill="none" stroke="#4FC1FF" stroke-width="2" marker-end="url(#arrow_blue)"/>
+    <text x="300" y="140" font-family="Arial" font-size="12" fill="#4FC1FF" text-anchor="middle">IS NULL</text>
+    <rect x="360" y="115" width="60" height="30" fill="#2D2D30" stroke="#4EC9B0" stroke-width="2"/>
+    <text x="390" y="135" font-family="Courier New" font-size="14" font-weight="bold" fill="#4EC9B0" text-anchor="middle">TRUE</text>
+    
+    <path d="M 250 160 L 350 190" fill="none" stroke="#4FC1FF" stroke-width="2" marker-end="url(#arrow_blue)"/>
+    <text x="300" y="195" font-family="Arial" font-size="12" fill="#4FC1FF" text-anchor="middle">IS NOT NULL</text>
+    <rect x="360" y="175" width="60" height="30" fill="#2D2D30" stroke="#F44747" stroke-width="2"/>
+    <text x="390" y="195" font-family="Courier New" font-size="14" font-weight="bold" fill="#F44747" text-anchor="middle">FALSE</text>
+
+    <defs>
+        <marker id="arrow_blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#4FC1FF" />
+        </marker>
+    </defs>
+</svg>

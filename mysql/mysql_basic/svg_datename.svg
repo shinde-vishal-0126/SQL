@@ -1,0 +1,26 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250">
+    <rect width="600" height="250" fill="#1E1E1E" rx="10"/>
+    <text x="300" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#C586C0" text-anchor="middle">DATENAME() / DAYNAME()</text>
+    
+    <rect x="220" y="70" width="160" height="40" rx="5" fill="#2D2D30" stroke="#3E3E42" stroke-width="2"/>
+    <text x="300" y="95" font-family="Courier New" font-size="20" font-weight="bold" fill="#E0E0E0" text-anchor="middle">2025-08-20</text>
+    
+    <!-- WEEKDAY -->
+    <path d="M 300 70 L 300 130" fill="none" stroke="#3E3E42" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="250" y="130" width="100" height="30" rx="5" fill="#4FC1FF" opacity="0.2" stroke="#4FC1FF" stroke-width="2"/>
+    <text x="300" y="150" font-family="Arial" font-size="12" font-weight="bold" fill="#4FC1FF" text-anchor="middle">DAYNAME()</text>
+    <text x="300" y="185" font-family="Courier New" font-size="16" fill="#E0E0E0" text-anchor="middle">"Wednesday"</text>
+    
+    <!-- MONTHNAME -->
+    <path d="M 380 90 L 450 130" fill="none" stroke="#3E3E42" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="400" y="130" width="100" height="30" rx="5" fill="#4EC9B0" opacity="0.2" stroke="#4EC9B0" stroke-width="2"/>
+    <text x="450" y="150" font-family="Arial" font-size="12" font-weight="bold" fill="#4EC9B0" text-anchor="middle">MONTHNAME()</text>
+    <text x="450" y="185" font-family="Courier New" font-size="16" fill="#E0E0E0" text-anchor="middle">"August"</text>
+
+    <!-- Def -->
+    <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#3E3E42" />
+        </marker>
+    </defs>
+</svg>

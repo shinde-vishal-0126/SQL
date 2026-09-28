@@ -1,0 +1,40 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300">
+    <rect width="700" height="300" fill="#1E1E1E" rx="10"/>
+    <text x="350" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#4FC1FF" text-anchor="middle">Single-Row vs Multi-Row Functions</text>
+    
+    <!-- Single Row -->
+    <text x="150" y="90" font-family="Arial" font-size="18" font-weight="bold" fill="#C586C0" text-anchor="middle">1. Single-Row Functions</text>
+    <text x="150" y="110" font-family="Arial" font-size="12" fill="#A0A0A0" text-anchor="middle">1 Input Row = 1 Output Row</text>
+    
+    <text x="70" y="150" font-family="Courier New" font-size="16" fill="#E0E0E0">'MARIA'</text>
+    <path d="M 140 145 L 180 145" fill="none" stroke="#3E3E42" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="190" y="125" width="80" height="40" rx="5" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2"/>
+    <text x="230" y="150" font-family="Arial" font-size="14" font-weight="bold" fill="#4FC1FF" text-anchor="middle">LOWER()</text>
+    <path d="M 280 145 L 320 145" fill="none" stroke="#3E3E42" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="330" y="150" font-family="Courier New" font-size="16" fill="#4EC9B0">'maria'</text>
+    
+    <!-- Multi Row -->
+    <text x="150" y="210" font-family="Arial" font-size="18" font-weight="bold" fill="#DCDCAA" text-anchor="middle">2. Multi-Row Functions (Aggregates)</text>
+    <text x="150" y="230" font-family="Arial" font-size="12" fill="#A0A0A0" text-anchor="middle">Multiple Input Rows = 1 Summarized Output</text>
+    
+    <text x="90" y="250" font-family="Courier New" font-size="14" fill="#E0E0E0">30</text>
+    <text x="90" y="265" font-family="Courier New" font-size="14" fill="#E0E0E0">10</text>
+    <text x="90" y="280" font-family="Courier New" font-size="14" fill="#E0E0E0">20</text>
+    
+    <path d="M 120 250 L 180 260" fill="none" stroke="#3E3E42" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 120 265 L 180 265" fill="none" stroke="#3E3E42" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 120 280 L 180 270" fill="none" stroke="#3E3E42" stroke-width="2" marker-end="url(#arrow)"/>
+    
+    <rect x="190" y="245" width="80" height="40" rx="5" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2"/>
+    <text x="230" y="270" font-family="Arial" font-size="14" font-weight="bold" fill="#4FC1FF" text-anchor="middle">SUM()</text>
+    
+    <path d="M 280 265 L 320 265" fill="none" stroke="#3E3E42" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="330" y="270" font-family="Courier New" font-size="16" font-weight="bold" fill="#4EC9B0">60</text>
+
+    <!-- Def -->
+    <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#3E3E42" />
+        </marker>
+    </defs>
+</svg>

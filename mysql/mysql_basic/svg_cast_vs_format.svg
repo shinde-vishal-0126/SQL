@@ -1,0 +1,20 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200">
+    <rect width="600" height="200" fill="#1E1E1E" rx="10"/>
+    <text x="300" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#E0E0E0" text-anchor="middle">CAST &amp; CONVERT vs FORMAT</text>
+    
+    <text x="200" y="70" font-family="Arial" font-size="14" font-weight="bold" fill="#DCDCAA" text-anchor="middle">CASTING</text>
+    <text x="400" y="70" font-family="Arial" font-size="14" font-weight="bold" fill="#4EC9B0" text-anchor="middle">FORMATTING</text>
+
+    <text x="80" y="110" font-family="Courier New" font-size="16" font-weight="bold" fill="#4FC1FF" text-anchor="middle">CAST</text>
+    <text x="200" y="110" font-family="Arial" font-size="14" fill="#E0E0E0" text-anchor="middle">Any Type $\rightarrow$ Any Type</text>
+    <text x="400" y="110" font-family="Arial" font-size="14" fill="#F44747" text-anchor="middle">X No Formatting</text>
+
+    <text x="80" y="150" font-family="Courier New" font-size="16" font-weight="bold" fill="#4FC1FF" text-anchor="middle">FORMAT</text>
+    <text x="200" y="150" font-family="Arial" font-size="14" fill="#E0E0E0" text-anchor="middle">Any Type $\rightarrow$ Only String</text>
+    <text x="400" y="150" font-family="Arial" font-size="14" fill="#4EC9B0" text-anchor="middle">Formats Date, Time, Numbers</text>
+
+    <!-- Grid lines -->
+    <path d="M 140 50 L 140 180" fill="none" stroke="#3E3E42" stroke-width="1"/>
+    <path d="M 300 50 L 300 180" fill="none" stroke="#3E3E42" stroke-width="1"/>
+    <path d="M 50 130 L 550 130" fill="none" stroke="#3E3E42" stroke-width="1"/>
+</svg>

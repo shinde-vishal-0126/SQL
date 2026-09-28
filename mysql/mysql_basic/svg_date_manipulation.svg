@@ -1,0 +1,31 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 220">
+    <rect width="700" height="220" fill="#1E1E1E" rx="10"/>
+    <text x="350" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#DCDCAA" text-anchor="middle">Date Manipulation (Adding &amp; Subtracting)</text>
+    
+    <rect x="270" y="80" width="160" height="40" rx="5" fill="#2D2D30" stroke="#3E3E42" stroke-width="2"/>
+    <text x="350" y="105" font-family="Courier New" font-size="20" font-weight="bold" fill="#E0E0E0" text-anchor="middle">2025-08-20</text>
+    
+    <!-- SUBTRACT 3 MONTHS -->
+    <path d="M 270 100 Q 150 50 150 120" fill="none" stroke="#F44747" stroke-width="2" marker-end="url(#arrow_red)"/>
+    <text x="150" y="80" font-family="Arial" font-size="12" font-weight="bold" fill="#F44747" text-anchor="middle">- 3 Months</text>
+    <rect x="90" y="120" width="120" height="30" rx="5" fill="#1E1E1E" stroke="#3E3E42" stroke-width="1"/>
+    <text x="150" y="140" font-family="Courier New" font-size="14" fill="#E0E0E0" text-anchor="middle">2025-05-20</text>
+    <text x="150" y="170" font-family="Arial" font-size="10" fill="#A0A0A0" text-anchor="middle">DATE_SUB(.., INTERVAL 3 MONTH)</text>
+    
+    <!-- ADD 5 DAYS -->
+    <path d="M 430 100 Q 550 50 550 120" fill="none" stroke="#4EC9B0" stroke-width="2" marker-end="url(#arrow_green)"/>
+    <text x="550" y="80" font-family="Arial" font-size="12" font-weight="bold" fill="#4EC9B0" text-anchor="middle">+ 5 Days</text>
+    <rect x="490" y="120" width="120" height="30" rx="5" fill="#1E1E1E" stroke="#3E3E42" stroke-width="1"/>
+    <text x="550" y="140" font-family="Courier New" font-size="14" fill="#E0E0E0" text-anchor="middle">2025-08-25</text>
+    <text x="550" y="170" font-family="Arial" font-size="10" fill="#A0A0A0" text-anchor="middle">DATE_ADD(.., INTERVAL 5 DAY)</text>
+
+    <!-- Defs -->
+    <defs>
+        <marker id="arrow_red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#F44747" />
+        </marker>
+        <marker id="arrow_green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#4EC9B0" />
+        </marker>
+    </defs>
+</svg>

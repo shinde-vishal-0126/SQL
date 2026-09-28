@@ -1,0 +1,7 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+    <rect width="600" height="300" fill="#1e1e2e" rx="15"/>
+    <defs>
+        <linearGradient id="left" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00ffcc" stop-opacity="0.8"/><stop offset="100%" stop-color="#0066ff" stop-opacity="0.8"/></linearGradient>
+        <linearGradient id="right" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff00cc" stop-opacity="0.8"/><stop offset="100%" stop-color="#ff6600" stop-opacity="0.8"/></linearGradient>
+        <linearGradient id="inter" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffff00" stop-opacity="0.9"/><stop offset="100%" stop-color="#ff9900" stop-opacity="0.9"/></linearGradient>
+    </defs><text x='300' y='40' font-family='Arial' font-size='24' font-weight='bold' fill='#00ffcc' text-anchor='middle'>Decision Tree (How to Choose)</text><g transform='translate(0, 50)'><text x='300' y='60' fill='#00ffcc' font-size='18' text-anchor='middle'>Matching Only = INNER</text><text x='300' y='100' fill='#ff9900' font-size='18' text-anchor='middle'>Everything = FULL</text><text x='300' y='140' fill='#ff00cc' font-size='18' text-anchor='middle'>All Left = LEFT</text><text x='300' y='180' fill='#fff' font-size='18' text-anchor='middle'>Unmatched Left = LEFT ANTI</text></g></svg>

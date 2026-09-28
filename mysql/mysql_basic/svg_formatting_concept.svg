@@ -1,0 +1,34 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250">
+    <rect width="600" height="250" fill="#1E1E1E" rx="10"/>
+    <text x="300" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#DCDCAA" text-anchor="middle">Formatting Concept (Value to String)</text>
+    
+    <!-- Date Format -->
+    <text x="150" y="90" font-family="Arial" font-size="14" fill="#A0A0A0" text-anchor="middle">Internal Date</text>
+    <text x="150" y="115" font-family="Courier New" font-size="18" font-weight="bold" fill="#E0E0E0" text-anchor="middle">2025-08-20</text>
+    
+    <path d="M 230 105 L 280 105" fill="none" stroke="#DCDCAA" stroke-width="2" marker-end="url(#arrow_yellow)"/>
+    <rect x="290" y="90" width="80" height="30" rx="5" fill="#2D2D30" stroke="#DCDCAA" stroke-width="2"/>
+    <text x="330" y="110" font-family="Arial" font-size="12" font-weight="bold" fill="#DCDCAA" text-anchor="middle">FORMAT()</text>
+    <path d="M 380 105 L 430 105" fill="none" stroke="#DCDCAA" stroke-width="2" marker-end="url(#arrow_yellow)"/>
+    
+    <text x="500" y="90" font-family="Arial" font-size="14" fill="#A0A0A0" text-anchor="middle">String Output</text>
+    <text x="500" y="115" font-family="Courier New" font-size="16" fill="#4EC9B0" text-anchor="middle">"August 20, 2025"</text>
+
+    <!-- Number Format -->
+    <text x="150" y="170" font-family="Arial" font-size="14" fill="#A0A0A0" text-anchor="middle">Internal Number</text>
+    <text x="150" y="195" font-family="Courier New" font-size="18" font-weight="bold" fill="#E0E0E0" text-anchor="middle">1234567.89</text>
+    
+    <path d="M 230 185 L 280 185" fill="none" stroke="#DCDCAA" stroke-width="2" marker-end="url(#arrow_yellow)"/>
+    <rect x="290" y="170" width="80" height="30" rx="5" fill="#2D2D30" stroke="#DCDCAA" stroke-width="2"/>
+    <text x="330" y="190" font-family="Arial" font-size="12" font-weight="bold" fill="#DCDCAA" text-anchor="middle">FORMAT()</text>
+    <path d="M 380 185 L 430 185" fill="none" stroke="#DCDCAA" stroke-width="2" marker-end="url(#arrow_yellow)"/>
+    
+    <text x="500" y="170" font-family="Arial" font-size="14" fill="#A0A0A0" text-anchor="middle">String Output</text>
+    <text x="500" y="195" font-family="Courier New" font-size="16" fill="#4EC9B0" text-anchor="middle">",234,567.89"</text>
+
+    <defs>
+        <marker id="arrow_yellow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#DCDCAA" />
+        </marker>
+    </defs>
+</svg>

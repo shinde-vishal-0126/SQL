@@ -1,0 +1,47 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+    <rect width="800" height="350" fill="#1E1E1E" rx="10"/>
+    <text x="400" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#DCDCAA" text-anchor="middle">String Functions Mastery</text>
+    
+    <!-- Manipulation -->
+    <rect x="50" y="80" width="200" height="40" rx="5" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2"/>
+    <text x="150" y="105" font-family="Arial" font-size="16" font-weight="bold" fill="#4FC1FF" text-anchor="middle">Manipulation</text>
+    
+    <text x="60" y="140" font-family="Courier New" font-size="14" fill="#E0E0E0">CONCAT()</text>
+    <text x="150" y="140" font-family="Arial" font-size="12" fill="#A0A0A0">Combines strings</text>
+    
+    <text x="60" y="170" font-family="Courier New" font-size="14" fill="#E0E0E0">UPPER()</text>
+    <text x="150" y="170" font-family="Arial" font-size="12" fill="#A0A0A0">To UPPERCASE</text>
+    
+    <text x="60" y="200" font-family="Courier New" font-size="14" fill="#E0E0E0">LOWER()</text>
+    <text x="150" y="200" font-family="Arial" font-size="12" fill="#A0A0A0">To lowercase</text>
+    
+    <text x="60" y="230" font-family="Courier New" font-size="14" fill="#E0E0E0">TRIM()</text>
+    <text x="150" y="230" font-family="Arial" font-size="12" fill="#A0A0A0">Removes spaces</text>
+    
+    <text x="60" y="260" font-family="Courier New" font-size="14" fill="#E0E0E0">REPLACE()</text>
+    <text x="150" y="260" font-family="Arial" font-size="12" fill="#A0A0A0">Swaps characters</text>
+    
+    <!-- Calculation -->
+    <rect x="300" y="80" width="200" height="40" rx="5" fill="#2D2D30" stroke="#4EC9B0" stroke-width="2"/>
+    <text x="400" y="105" font-family="Arial" font-size="16" font-weight="bold" fill="#4EC9B0" text-anchor="middle">Calculation</text>
+    
+    <text x="310" y="140" font-family="Courier New" font-size="14" fill="#E0E0E0">LENGTH()</text>
+    <text x="400" y="140" font-family="Arial" font-size="12" fill="#A0A0A0">Counts characters</text>
+    <text x="310" y="170" font-family="Courier New" font-size="14" fill="#E0E0E0">LEN()</text>
+    <text x="400" y="170" font-family="Arial" font-size="12" fill="#A0A0A0">(SQL Server)</text>
+    
+    <!-- Extraction -->
+    <rect x="550" y="80" width="200" height="40" rx="5" fill="#2D2D30" stroke="#C586C0" stroke-width="2"/>
+    <text x="650" y="105" font-family="Arial" font-size="16" font-weight="bold" fill="#C586C0" text-anchor="middle">Extraction</text>
+    
+    <text x="560" y="140" font-family="Courier New" font-size="14" fill="#E0E0E0">LEFT(str, N)</text>
+    <text x="660" y="140" font-family="Arial" font-size="12" fill="#A0A0A0">First N chars</text>
+    
+    <text x="560" y="170" font-family="Courier New" font-size="14" fill="#E0E0E0">RIGHT(str, N)</text>
+    <text x="660" y="170" font-family="Arial" font-size="12" fill="#A0A0A0">Last N chars</text>
+    
+    <text x="560" y="200" font-family="Courier New" font-size="14" fill="#E0E0E0">SUBSTRING()</text>
+    <text x="660" y="200" font-family="Arial" font-size="12" fill="#A0A0A0">Extract from middle</text>
+    
+    <text x="560" y="220" font-family="Courier New" font-size="12" fill="#E0E0E0">(str, start, length)</text>
+</svg>

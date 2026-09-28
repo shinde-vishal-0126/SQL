@@ -1,0 +1,7 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+    <rect width="600" height="300" fill="#1e1e2e" rx="15"/>
+    <defs>
+        <linearGradient id="left" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00ffcc" stop-opacity="0.8"/><stop offset="100%" stop-color="#0066ff" stop-opacity="0.8"/></linearGradient>
+        <linearGradient id="right" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff00cc" stop-opacity="0.8"/><stop offset="100%" stop-color="#ff6600" stop-opacity="0.8"/></linearGradient>
+        <linearGradient id="inter" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffff00" stop-opacity="0.9"/><stop offset="100%" stop-color="#ff9900" stop-opacity="0.9"/></linearGradient>
+    </defs><text x='300' y='40' font-family='Arial' font-size='24' font-weight='bold' fill='#00ffcc' text-anchor='middle'>Types of Joins Overview</text><g transform='translate(0, 50)'><circle cx='150' cy='100' r='40' fill='url(#left)'/><circle cx='210' cy='100' r='40' fill='url(#right)'/><circle cx='270' cy='100' r='40' fill='url(#inter)'/><circle cx='390' cy='100' r='40' fill='url(#left)'/><circle cx='450' cy='100' r='40' fill='url(#right)'/><text x='300' y='180' fill='#a6accd' text-anchor='middle'>Inner | Left | Right | Full | Anti | Cross</text></g></svg>

@@ -1,0 +1,33 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 250">
+    <rect width="700" height="250" fill="#1E1E1E" rx="10"/>
+    <text x="350" y="30" font-family="Arial" font-size="20" font-weight="bold" fill="#DCDCAA" text-anchor="middle">OVER() Clause Structure</text>
+    
+    <text x="350" y="60" font-family="Courier New" font-size="18" fill="#E0E0E0" text-anchor="middle">
+        Function_Name() OVER ( <tspan fill="#4FC1FF">PARTITION BY</tspan> ... <tspan fill="#4EC9B0">ORDER BY</tspan> ... <tspan fill="#C586C0">FRAME</tspan> )
+    </text>
+
+    <!-- Partition By -->
+    <rect x="50" y="100" width="180" height="110" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2"/>
+    <rect x="50" y="100" width="180" height="30" fill="#4FC1FF"/>
+    <text x="140" y="120" font-family="Arial" font-size="14" font-weight="bold" fill="#000000" text-anchor="middle">PARTITION BY</text>
+    <text x="140" y="155" font-family="Arial" font-size="13" fill="#E0E0E0" text-anchor="middle">Divides the dataset</text>
+    <text x="140" y="175" font-family="Arial" font-size="13" fill="#E0E0E0" text-anchor="middle">into windows/groups</text>
+    <text x="140" y="195" font-family="Arial" font-size="12" font-style="italic" fill="#A0A0A0" text-anchor="middle">(Optional for all)</text>
+
+    <!-- Order By -->
+    <rect x="260" y="100" width="180" height="110" fill="#2D2D30" stroke="#4EC9B0" stroke-width="2"/>
+    <rect x="260" y="100" width="180" height="30" fill="#4EC9B0"/>
+    <text x="350" y="120" font-family="Arial" font-size="14" font-weight="bold" fill="#000000" text-anchor="middle">ORDER BY</text>
+    <text x="350" y="155" font-family="Arial" font-size="13" fill="#E0E0E0" text-anchor="middle">Sorts the data</text>
+    <text x="350" y="175" font-family="Arial" font-size="13" fill="#E0E0E0" text-anchor="middle">within a window</text>
+    <text x="350" y="195" font-family="Arial" font-size="12" font-style="italic" fill="#A0A0A0" text-anchor="middle">(Required for Rank/Value)</text>
+
+    <!-- Frame -->
+    <rect x="470" y="100" width="180" height="110" fill="#2D2D30" stroke="#C586C0" stroke-width="2"/>
+    <rect x="470" y="100" width="180" height="30" fill="#C586C0"/>
+    <text x="560" y="120" font-family="Arial" font-size="14" font-weight="bold" fill="#000000" text-anchor="middle">FRAME CLAUSE</text>
+    <text x="560" y="155" font-family="Arial" font-size="13" fill="#E0E0E0" text-anchor="middle">Defines a subset of</text>
+    <text x="560" y="175" font-family="Arial" font-size="13" fill="#E0E0E0" text-anchor="middle">rows inside a window</text>
+    <text x="560" y="195" font-family="Arial" font-size="12" font-style="italic" fill="#A0A0A0" text-anchor="middle">(e.g. ROWS BETWEEN...)</text>
+
+</svg>

@@ -1,0 +1,29 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+    <rect width="600" height="300" fill="#1E1E1E" rx="10"/>
+    <text x="300" y="30" font-family="Arial" font-size="20" font-weight="bold" fill="#DCDCAA" text-anchor="middle">RUNNING TOTAL vs ROLLING TOTAL</text>
+    <text x="300" y="50" font-family="Arial" font-size="14" fill="#E0E0E0" text-anchor="middle">ANALYSIS OVER TIME (Tracking sequences)</text>
+    
+    <!-- Running Total -->
+    <rect x="20" y="80" width="270" height="180" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2"/>
+    <rect x="20" y="80" width="270" height="30" fill="#4FC1FF"/>
+    <text x="155" y="100" font-family="Arial" font-size="16" font-weight="bold" fill="#000000" text-anchor="middle">RUNNING TOTAL</text>
+    
+    <text x="30" y="130" font-family="Arial" font-size="13" fill="#E0E0E0">â€¢ From beginning to current point</text>
+    <text x="30" y="150" font-family="Arial" font-size="13" fill="#E0E0E0">â€¢ Without dropping older data</text>
+    
+    <rect x="30" y="170" width="250" height="40" fill="#1E1E1E" stroke="#3E3E42"/>
+    <text x="155" y="185" font-family="Courier New" font-size="12" fill="#4FC1FF" text-anchor="middle">ORDER BY Month</text>
+    <text x="155" y="200" font-family="Courier New" font-size="10" fill="#A0A0A0" text-anchor="middle">(UNBOUNDED PRECEDING TO CURRENT)</text>
+
+    <!-- Rolling Total -->
+    <rect x="310" y="80" width="270" height="180" fill="#2D2D30" stroke="#4EC9B0" stroke-width="2"/>
+    <rect x="310" y="80" width="270" height="30" fill="#4EC9B0"/>
+    <text x="445" y="100" font-family="Arial" font-size="16" font-weight="bold" fill="#000000" text-anchor="middle">ROLLING TOTAL</text>
+    
+    <text x="320" y="130" font-family="Arial" font-size="13" fill="#E0E0E0">â€¢ Within a fixed time window</text>
+    <text x="320" y="150" font-family="Arial" font-size="13" fill="#E0E0E0">â€¢ Oldest data point is dropped</text>
+    
+    <rect x="320" y="170" width="250" height="40" fill="#1E1E1E" stroke="#3E3E42"/>
+    <text x="445" y="185" font-family="Courier New" font-size="12" fill="#4EC9B0" text-anchor="middle">ORDER BY Month</text>
+    <text x="445" y="200" font-family="Courier New" font-size="11" fill="#A0A0A0" text-anchor="middle">ROWS 2 PRECEDING</text>
+</svg>

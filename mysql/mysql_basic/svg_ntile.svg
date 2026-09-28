@@ -1,0 +1,22 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+    <rect width="600" height="300" fill="#1E1E1E" rx="10"/>
+    <text x="300" y="30" font-family="Courier New" font-size="22" font-weight="bold" fill="#4FC1FF" text-anchor="middle">NTILE(n)</text>
+    <text x="300" y="60" font-family="Arial" font-size="16" fill="#E0E0E0" text-anchor="middle">Divides rows into a specified number of approximately equal groups</text>
+    
+    <text x="150" y="110" font-family="Courier New" font-size="16" fill="#DCDCAA" text-anchor="middle">Bucket Size =</text>
+    <text x="350" y="100" font-family="Arial" font-size="14" fill="#E0E0E0" text-anchor="middle">Number of Rows</text>
+    <path d="M 280 110 L 420 110" stroke="#3E3E42" stroke-width="2"/>
+    <text x="350" y="130" font-family="Arial" font-size="14" fill="#E0E0E0" text-anchor="middle">Number of Buckets (n)</text>
+
+    <!-- Example -->
+    <text x="150" y="180" font-family="Courier New" font-size="16" fill="#A0A0A0" text-anchor="middle">Example:</text>
+    <text x="250" y="180" font-family="Courier New" font-size="16" fill="#4FC1FF" text-anchor="middle">NTILE(2) -> 5 rows</text>
+    
+    <text x="400" y="170" font-family="Arial" font-size="14" fill="#E0E0E0" text-anchor="middle">5</text>
+    <path d="M 380 180 L 420 180" stroke="#3E3E42" stroke-width="2"/>
+    <text x="400" y="200" font-family="Arial" font-size="14" fill="#E0E0E0" text-anchor="middle">2</text>
+    <text x="450" y="185" font-family="Arial" font-size="14" fill="#DCDCAA" text-anchor="middle">= 2.5</text>
+
+    <text x="300" y="250" font-family="Arial" font-size="16" font-weight="bold" fill="#F44747" text-anchor="middle">SQL RULE: Larger groups come first</text>
+    <text x="300" y="270" font-family="Arial" font-size="14" fill="#A0A0A0" text-anchor="middle">(Group 1 gets 3 rows, Group 2 gets 2 rows)</text>
+</svg>

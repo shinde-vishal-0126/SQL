@@ -136,9 +136,50 @@
       - [13.7.4 Internal Filtering Process (Row-by-Row Predicate Evaluation)](#1374-internal-filtering-process-row-by-row-predicate-evaluation)
       - [13.7.5 Practical Practice Questions (Hands-on Comparison Queries)](#1375-practical-practice-questions-hands-on-comparison-queries)
       - [13.7.6 Logical Operators In-Depth (AND, OR, NOT)](#1376-logical-operators-in-depth-and-or-not)
-      - [13.7.7 Range Operator In-Depth: BETWEEN … AND …](#1377-range-operator-in-depth-between--and-)
-    - [13.8 Visual Diagrams & Architectural Reference](#138-visual-diagrams--architectural-reference)
-    - [13.9 Topic 13 Summary (मराठी सारांश)](#139-topic-13-summary-मराठी-सारांश)
+      - [13.7.7 Range Operator In-Depth: BETWEEN ... AND ...](#1377-range-operator-in-depth-between-and)
+      - [13.7.8 Membership Operator In-Depth: IN and NOT IN](#1378-membership-operator-in-depth-in-and-not-in)
+      - [13.7.9 Search Operator In-Depth: LIKE and NOT LIKE (Pattern Matching)](#1379-search-operator-in-depth-like-and-not-like-pattern-matching)
+      - [13.7.10 NULL Check Operator In-Depth: IS NULL and IS NOT NULL](#13710-null-check-operator-in-depth-is-null-and-is-not-null)
+      - [13.7.11 Advanced Filtering: Aggregates with HAVING and Subqueries](#13711-advanced-filtering-aggregates-with-having-and-subqueries)
+    - [13.8 Sorting Data & The ORDER BY Clause In-Depth](#138-sorting-data--the-order-by-clause-in-depth)
+    - [13.9 Grouping Data & The GROUP BY Clause In-Depth (Data Aggregation)](#139-grouping-data--the-group-by-clause-in-depth-data-aggregation)
+    - [13.10 Visual Diagrams & Architectural Reference](#1310-visual-diagrams--architectural-reference)
+    - [13.11 Topic 13 Summary (मराठी सारांश)](#1311-topic-13-summary-मराठी-सारांश)
+    - [13.12 Pro-Tips / Interview Insights (Missing Points)](#12-pro-tips--interview-insights-missing-points)
+    - [13.13 Key Constraints & Types of Keys in SQL](#1313-key-constraints--types-of-keys-in-sql)
+    - [13.14 SQL Joins (Combining Data from Tables)](#1314-sql-joins-combining-data-from-tables)
+    - [13.15 SET Operators (Combining Rows)](#1315-set-operators-combining-rows)
+      - [13.15.1 UNION & UNION ALL](#1-union--union-all)
+      - [13.15.2 INTERSECT & EXCEPT](#3-except--minus)
+      - [13.15.3 In-Depth Comparison: JOINs vs SET Operators](#5-in-depth-comparison-joins-vs-set-operators)
+    - [13.16 SQL Built-in Functions (Row-Level, String & Numeric)](#1316-sql-built-in-functions-row-level--numeric)
+      - [13.16.1 String Functions (CONCAT, TRIM, SUBSTRING, LOCATE)](#4-string-functions-manipulation--extraction)
+      - [13.16.2 Numeric Functions (ROUND, ABS, CEILING, MOD)](#5-numeric-functions)
+    - [13.17 Date and Time Functions](#1317-date-and-time-functions)
+      - [13.17.1 Anatomy & Sources of Dates](#1-anatomy-of-date--time)
+      - [13.17.2 Current Date & Time Functions (NOW, CURDATE)](#a-current-date--time-functions)
+      - [13.17.3 Extracting Parts of Dates (YEAR, MONTH, DATENAME)](#b-extracting-parts-of-dates)
+      - [13.17.4 Date Manipulation (ADDDATE, DATEDIFF, TIMESTAMPDIFF)](#c-date--time-manipulation--differences)
+      - [13.17.5 Formatting & Parsing (DATE_FORMAT, STR_TO_DATE)](#d-formatting--parsing-dates)
+    - [13.18 NULL Functions & Conditional Logic (CASE)](#1318-null-functions--conditional-logic-case)
+      - [13.18.1 What is NULL? IS NULL vs IS NOT NULL](#1-what-is-null--is-null-vs-is-not-null)
+      - [13.18.2 IFNULL, COALESCE & NULLIF](#2-coalesceexpr1-expr2-)
+      - [13.18.3 Data Policies (NULL vs Empty vs Space)](#5-data-policies-regarding-null-space-and-empty)
+      - [13.18.4 Conditional Logic: CASE Statement](#6-conditional-logic-case-statement)
+      - [13.18.5 MySQL IF() Function](#7-if-function-mysql-shorthand)
+    - [13.19 Aggregation & Window Functions (Analytics)](#1319-aggregation--window-functions-analytics)
+      - [13.19.1 Aggregation Functions (COUNT, SUM, AVG)](#1-aggregation-functions-in-sql)
+      - [13.19.2 Window Functions Basics & OVER() Clause](#2-window-functions-analytical-functions)
+      - [13.19.3 GROUP BY vs WINDOW FUNCTION](#group-by-vs-window-function)
+      - [13.19.4 Ranking Functions (ROW_NUMBER, RANK, DENSE_RANK)](#3-ranking-window-functions)
+      - [13.19.5 Percentage-Based Ranking (PERCENT_RANK, CUME_DIST)](#4-percentage-based-ranking-functions)
+      - [13.19.6 Aggregate Window Functions (SUM, AVG, MIN, MAX, COUNT)](#5-aggregate-window-functions-sum-avg-min-max)
+      - [13.19.7 Running Total vs Rolling Total & Moving Average](#running-total-vs-rolling-total-analysis-over-time)
+      - [13.19.8 Value Window Functions (LEAD, LAG, FIRST_VALUE, LAST_VALUE, NTH_VALUE)](#6-value-window-functions-analytics-functions)
+      - [13.19.9 Window Function Syntax Deep Dive (OVER Clause & FRAME)](#7-window-function-syntax-deep-dive-over-clause)
+      - [13.19.10 Window Function Limitations & Rules](#8-window-function-limitations--rules)
+      - [13.19.11 Why Window Functions? & GROUP BY vs Window Functions](#9-why-window-functions-advantages)
+14. [Topic 14: Summary / निष्कर्ष](#14-summary--निष्कर्ष)
 
 ---
 
@@ -4976,7 +5017,7 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-#### 13.7.7 Range Operator In-Depth: `BETWEEN … AND …`
+#### 13.7.7 Range Operator In-Depth: `BETWEEN ... AND ...`
 
 * **What is the `BETWEEN` Operator?**
   * *Definition:* The `BETWEEN … AND …` operator checks if a value is **within a range or not**.
@@ -5033,7 +5074,667 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-### 13.8 Visual Diagrams & Architectural Reference
+#### 13.7.8 Membership Operator In-Depth: IN and NOT IN
+
+* **What is the Membership Operator?**
+  * *Definition:* The Membership Operator (`IN` / `NOT IN`) tests whether a specific operand or column value exists within a specified list, set of discrete values, or subquery result set.
+  * It is also widely known as a **set filter operator**.
+  * It checks if a value exists in a list, or in a simple way, whether a value is an active **member of a list**.
+
+* **1. List: The `IN (...)` Operator**
+  * *Definition:* The `IN` operator is used to filter records where a column’s value matches **any value** from a given list.
+  * It is like writing multiple `OR` conditions in a much shorter, cleaner, and optimized way.
+  * *Standard Syntax:*
+    ```sql
+    column_name IN (value1, value2, value3, ...)
+    ```
+  * *Hands-on Query Example:*
+    ```sql
+    SELECT * FROM customers 
+    WHERE country IN ('Germany', 'USA');
+    ```
+  * *Crucial Best Practice Note:*
+    * **Use `IN` instead of `OR` for multiple values in the same column to simplify SQL!**
+    * Verbose query using multiple `OR` conditions:
+      ```sql
+      SELECT * FROM customers 
+      WHERE country = 'Germany' OR country = 'USA';
+      ```
+    * Instead of writing multiple verbose `OR` statements, use the standardized `IN` operator:
+      ```sql
+      SELECT * FROM customers 
+      WHERE country IN ('Germany', 'USA');
+      ```
+    * Both queries produce identical results and query execution plans in the database engine, but `IN` is far cleaner, easier to read, and simpler to maintain when filtering across many items.
+
+* **2. List: The `NOT IN (...)` Operator**
+  * *Definition:* The `NOT IN` operator is used to filter records where a column’s value is **not present** in a given list (or subquery).
+  * It checks that values do **not exist** in the list.
+  * In a simple way: it returns those records whose column value is **not in the member list**.
+  * It is simply the exact boolean opposite of `IN`.
+  * *Standard Syntax:*
+    ```sql
+    column_name NOT IN (value1, value2, value3, ...)
+    ```
+  * *Hands-on Query Example:*
+    ```sql
+    SELECT * FROM customers 
+    WHERE country NOT IN ('Germany', 'USA');
+    ```
+
+![Membership Operators: IN & NOT IN Evaluation](./sql_membership_operators_in_evaluation.svg)
+
+* **3. Step-by-Step Row Evaluation (`IN` vs. `NOT IN`)**
+  * Target Filter List: `('Germany', 'USA')`
+  * Evaluating each record from our `customers` table:
+    1. **Maria** (`Germany`): `'Germany'` exists in `('Germany', 'USA')` $\rightarrow$ `IN` = **`TRUE` ✔️ (Kept)** | `NOT IN` = `FALSE` ❌ (Discarded)
+    2. **John** (`USA`): `'USA'` exists in `('Germany', 'USA')` $\rightarrow$ `IN` = **`TRUE` ✔️ (Kept)** | `NOT IN` = `FALSE` ❌ (Discarded)
+    3. **Georg** (`UK`): `'UK'` does NOT exist in `('Germany', 'USA')` $\rightarrow$ `IN` = `FALSE` ❌ (Discarded) | `NOT IN` = **`TRUE` ✔️ (Kept)**
+    4. **Martin** (`Germany`): `'Germany'` exists in `('Germany', 'USA')` $\rightarrow$ `IN` = **`TRUE` ✔️ (Kept)** | `NOT IN` = `FALSE` ❌ (Discarded)
+    5. **Peter** (`USA`): `'USA'` exists in `('Germany', 'USA')` $\rightarrow$ `IN` = **`TRUE` ✔️ (Kept)** | `NOT IN` = `FALSE` ❌ (Discarded)
+
+* **Output Result Set Comparison:**
+  * **Result of `WHERE country IN ('Germany', 'USA')`:**
+    | name | country | score |
+    | :--- | :--- | :--- |
+    | **Maria** | Germany | 350 |
+    | **John** | USA | 900 |
+    | **Martin** | Germany | 500 |
+    | **Peter** | USA | 0 |
+
+  * **Result of `WHERE country NOT IN ('Germany', 'USA')`:**
+    | name | country | score |
+    | :--- | :--- | :--- |
+    | **Georg** | UK | 750 |
+
+* **4. Critical Interview Trap: The `NOT IN` with `NULL` Trap (Three-Valued Logic Danger)**
+  * **The Classic Interview Question:**
+    ```sql
+    -- Suppose you have customer IDs 1, 2, 3, 4, 5. What does this return?
+    SELECT * FROM customers 
+    WHERE id NOT IN (1, 2, NULL);
+    ```
+  * **Common Mistake:** Most candidates guess it returns customers with IDs 3, 4, and 5.
+  * **The True Answer:** **It returns ZERO rows (Empty Result Set)!**
+  * **Internal Boolean Mechanics (Why it fails):**
+    * The SQL engine expands `id NOT IN (1, 2, NULL)` using boolean algebra into chained `AND` comparisons:
+      $$\text{id} \ne 1 \quad\mathbf{AND}\quad \text{id} \ne 2 \quad\mathbf{AND}\quad \text{id} \ne \mathbf{NULL}$$
+    * Under SQL **Three-Valued Logic (3VL)**, comparing anything to `NULL` via `!=` produces **`UNKNOWN`** (neither `TRUE` nor `FALSE`).
+    * In boolean `AND` logic:
+      $$\text{TRUE} \quad\mathbf{AND}\quad \text{TRUE} \quad\mathbf{AND}\quad \mathbf{UNKNOWN} \quad\Longrightarrow\quad \mathbf{UNKNOWN}$$
+    * The `WHERE` clause **only emits rows where the predicate evaluates to strictly `TRUE`**. Because `UNKNOWN` is never `TRUE`, **every single row in the table is discarded**!
+  * **Production Best Practice / Safe Solution:**
+    1. Filter out `NULL`s explicitly when using subqueries or lists:
+       ```sql
+       SELECT * FROM customers 
+       WHERE id NOT IN (SELECT customer_id FROM orders WHERE customer_id IS NOT NULL);
+       ```
+    2. Or use the safer **`NOT EXISTS`** clause, which is immune to `NULL` pitfalls.
+
+---
+
+#### 13.7.9 Search Operator In-Depth: LIKE and NOT LIKE (Pattern Matching)
+
+* **What is the Search Operator (`LIKE`)?**
+  * *Definition:* The `LIKE` operator is used in SQL to search for a pattern in text (instead of requiring an exact equality match with `=`).
+  * The `LIKE` keyword is used to get our data in some specific pattern or filter data on some specific pattern.
+  * It is often combined with **wildcards** to provide flexible string matching.
+
+* **Understanding SQL Wildcards:**
+  * A wildcard character is a special placeholder symbol used in search strings.
+  * The two core SQL wildcards are:
+    1. **Percent (`%`) Wildcard:** Matches **zero, one, or multiple characters** (represents zero or more characters).
+    2. **Underscore (`_`) Wildcard:** Matches **exactly one character** (represents a single character at a specific position).
+
+![Search Operator: LIKE & SQL Wildcards](./sql_search_operator_like_wildcards.svg)
+
+* **1. Detailed Point-Wise Explanation of `%` (Zero or More Characters):**
+  * `SELECT * FROM Customer WHERE name LIKE 'A%';`
+    * **Action:** Starts with "A".
+    * **Point-wise Explanation:** Matches any name starting with the letter 'A', followed by zero, one, or multiple characters (e.g., *Alice*, *Albert*, *An*, or just *A*).
+  * `SELECT * FROM Customer WHERE name LIKE '%a';`
+    * **Action:** Name ends with "a".
+    * **Point-wise Explanation:** Matches any name that terminates with the letter 'a', regardless of how many characters precede it (e.g., *Maria*, *Anna*, *Emma*).
+  * `SELECT * FROM Customer WHERE name LIKE '%it%';`
+    * **Action:** Find name containing "it" anywhere.
+    * **Point-wise Explanation:** Matches any name containing the substring "it" in any position — beginning, middle, or end (e.g., *Rohit*, *Mohit*, *Martin*).
+
+* **2. Detailed Point-Wise Explanation of `_` (Exactly One Character):**
+  * `SELECT * FROM Customer WHERE name LIKE '_ohit';`
+    * **Action:** Finds names where the second to fifth characters are "ohit".
+    * **Point-wise Explanation:** The leading underscore represents exactly one single character, so it matches 5-letter names like *Rohit* or *Mohit*.
+  * `SELECT * FROM Customer WHERE name LIKE 'A_i_';`
+    * **Action:** Exact match for 4-letter names starting with "A" and having "i" as the third letter.
+    * **Point-wise Explanation:** The total length must be exactly 4 characters: 1st is 'A', 2nd is any character, 3rd is 'i', and 4th is any character (e.g., *Amir*, *Abid*).
+  * `SELECT * FROM Customer WHERE name LIKE 'S_ne%';`
+    * **Action:** Matches names starting with "S", followed by any one character, then "ne", and anything after.
+    * **Point-wise Explanation:** 1st letter 'S', 2nd letter is any 1 char (`_`), 3rd & 4th are 'ne', followed by zero or more characters (`%`) (e.g., *Sanel*, *Soney*, *Sinead*).
+
+* **3. Master Pattern Reference Table:**
+  | Pattern Expression | Description & Rule | Matching Examples | Non-Matching Examples |
+  | :--- | :--- | :--- | :--- |
+  | `LIKE 'a%'` | Start with "a" | `adam`, `alice`, `amber` | `maria`, `john` |
+  | `LIKE '%a'` | End with "a" | `maria`, `emma`, `anna` | `martin`, `peter` |
+  | `LIKE '%am%'` | Have "am" in any position | `sam`, `adam`, `pamela` | `georg`, `john` |
+  | `LIKE 'a%m'` | Start with "a" and Ends with "m" | `adam`, `abraham`, `am` | `alice`, `martin` |
+  | `LIKE '_a%'` | "a" in the **second position** | `maria`, `james`, `david` | `alice`, `georg` |
+  | `LIKE '__a%'` | "a" in the **third position** | `clara`, `charlie`, `brandon` | `maria`, `john` |
+  | `LIKE '_oy'` | "o" in the second and "y" in third position (exact 3 chars) | `roy`, `joy`, `boy` | `troy` (4 chars), `ray` |
+
+* **4. Detailed 4-Column Visual Pattern Breakdown:**
+  * **Column 1: `LIKE 'M%'` (1st Character is 'M', followed by Any characters):**
+    * ✔️ **Maria** (Starts with M, followed by 'aria')
+    * ✔️ **Ma** (Starts with M, followed by 'a')
+    * ✔️ **M** (Starts with M, followed by 0 characters — valid because `%` allows 0 characters!)
+    * ❌ **Emma** (Starts with 'E', discarded)
+  * **Column 2: `LIKE '%in'` (Any characters, ending with "in"):**
+    * ✔️ **Martin** (Ends with 'in')
+    * ✔️ **Vin** (Ends with 'in')
+    * ✔️ **in** (Matches exact 'in' with 0 preceding characters)
+    * ❌ **Jasmine** (Ends with 'e', not 'in', discarded)
+  * **Column 3: `LIKE '%r%'` (Any characters, contains "r", followed by Any characters):**
+    * ✔️ **Maria** (Contains 'r' in middle)
+    * ✔️ **Peter** (Contains 'r' at end)
+    * ✔️ **Rayn** (Contains 'R' at start)
+    * ✔️ **R** (Matches single 'R')
+    * ❌ **Alice** (Contains no 'r', discarded)
+  * **Column 4: `LIKE '__b%'` (1st: any, 2nd: any, 3rd: must be "b", followed by Any):**
+    * ✔️ **Albert** (1: A, 2: l, **3: b**, followed by 'ert')
+    * ✔️ **Rob** (1: R, 2: o, **3: b**, followed by 0 chars)
+    * ❌ **Abel** ('b' is in 2nd position, not 3rd, discarded)
+    * ❌ **An** (Length is only 2 characters, discarded)
+
+* **5. Using the `NOT LIKE` Operator:**
+  * *Definition:* The `NOT LIKE` operator is used to return rows that do **not match** the pattern in the given text.
+  * It excludes patterns, i.e., returns those records that do **not** match the pattern.
+  * *Syntax Example:*
+    ```sql
+    SELECT * FROM Customer WHERE name NOT LIKE 'A%';
+    ```
+    * **Action:** Returns names that do not start with 'A' (e.g., *Maria*, *John*, *Georg*, *Martin*, *Peter*).
+
+* **6. Pattern Matching Quick Recap:**
+  * `%` $\rightarrow$ **Many characters** (including zero or one character).
+  * `_` $\rightarrow$ **Exactly one character**.
+  * `LIKE` $\rightarrow$ **Flexible matching**.
+  * `NOT LIKE` $\rightarrow$ **Exclude patterns**.
+
+---
+
+#### 13.7.10 NULL Check Operator In-Depth: IS NULL and IS NOT NULL
+
+* **What is `NULL` in SQL?**
+  * *Definition:* `NULL` means **no value / missing value** (not 0, not an empty string, but literally "unknown").
+  * It is also known as a specialized **filter operator**.
+  * You **cannot** check `NULL` with `=` or `!=` (because in SQL, `NULL = NULL` is never true!).
+  * Instead, you **must use `IS NULL` or `IS NOT NULL`**.
+
+* **Why `=` and `!=` Fail with NULL (Three-Valued Logic - 3VL):**
+  * In relational database theory, boolean logic has three distinct states:
+    $$\textbf{TRUE}, \quad \textbf{FALSE}, \quad \textbf{UNKNOWN}$$
+  * Any comparison against `NULL` (including `column = NULL` or `NULL = NULL`) evaluates to **`UNKNOWN`**.
+  * The `WHERE` clause strictly filters and passes rows only when the predicate evaluates to **`TRUE`**.
+  * Because `UNKNOWN` is not `TRUE`, queries using `= NULL` silently return **0 rows**!
+
+![NULL Check Operators: IS NULL & IS NOT NULL](./sql_null_check_operators_evaluation.svg)
+
+* **1. The `IS NULL` Operator:**
+  * *Definition:* Finds rows where the column value is missing or `NULL`.
+  * *Syntax & Query Example:*
+    ```sql
+    SELECT * FROM Customer 
+    WHERE phone_number IS NULL;
+    ```
+  * *Action:* Retrieves all customers who do not have a recorded phone number in the database.
+
+* **2. The `IS NOT NULL` Operator:**
+  * *Definition:* Finds rows where the column value is not `NULL` (i.e., a valid value is present).
+  * *Syntax & Query Example:*
+    ```sql
+    SELECT * FROM Customer 
+    WHERE email IS NOT NULL;
+    ```
+  * *Action:* Retrieves all customers whose email address is present and recorded in the database.
+
+* **3. Key Points to Remember:**
+  * **`NULL ≠ 0`** (0 is a defined number; NULL is the absence of data).
+  * **`NULL ≠ ''` (empty string)** (An empty string is a valid text string of length 0; NULL is unknown/absent).
+  * **Must use `IS NULL` / `IS NOT NULL` for checking.**
+
+---
+
+#### 13.7.11 Advanced Filtering: Aggregates with HAVING and Subqueries
+
+* Beyond basic row-level filters in `WHERE`, real-world SQL relies on two advanced filtering mechanisms:
+
+* **1. Aggregate Functions with `HAVING` (Filtering After Grouping):**
+  * The `WHERE` clause filters individual rows **before** any grouping or aggregation takes place.
+  * The `HAVING` clause filters summarized groups **after** `GROUP BY` has aggregated the rows.
+  * *Example comparing Row Filtering vs. Group Filtering:*
+    ```sql
+    -- 1. Row-level filter using WHERE:
+    SELECT * FROM Customer 
+    WHERE city = 'Mumbai';
+
+    -- 2. Aggregate-level filter using HAVING:
+    SELECT city, COUNT(*) AS total_customers 
+    FROM Customer 
+    GROUP BY city 
+    HAVING COUNT(*) > 5;
+    ```
+  * **Crucial Rule:** You cannot use aggregate functions like `COUNT()`, `SUM()`, `AVG()` inside a `WHERE` clause (e.g., `WHERE COUNT(*) > 5` will throw a syntax error). You must use `HAVING`.
+
+* **2. Subqueries (Filtering Results Based on Another Query):**
+  * A subquery is an inner `SELECT` query nested inside the `WHERE` clause of an outer query.
+  * *Example: Filtering with Subquery and IN Operator:*
+    ```sql
+    -- Filter customers whose country exists in our active priority sales regions:
+    SELECT * FROM Customer 
+    WHERE country IN (
+        SELECT country 
+        FROM high_growth_regions 
+        WHERE annual_target_met = 1
+    );
+    ```
+  * *Example: Filtering with Scalar Comparison Subquery:*
+    ```sql
+    -- Find all customers whose score is strictly higher than the overall average score:
+    SELECT name, country, score 
+    FROM Customer 
+    WHERE score > (SELECT AVG(score) FROM Customer);
+    ```
+
+---
+
+### 13.8 Sorting Data & The ORDER BY Clause In-Depth
+
+* **What is Sorting in SQL?**
+  * *Definition:* Sorting in SQL is performed using the `ORDER BY` clause. It allows us to systematically arrange the output rows of a query in ascending (`ASC`) or descending (`DESC`) order based on one or more specified columns, expressions, or aliases.
+  * Without an `ORDER BY` clause, relational database engines return rows in an arbitrary, non-deterministic order (dependent purely on disk storage layout, buffer pools, and query optimization paths).
+
+* **How ORDER BY Works (The 2 Core Directions):**
+  1. **Ascending (`ASC`):**
+     * Sorts from **lowest to highest** (numbers: `0 ➔ 9`, alphabetical text: `A ➔ Z`, chronological dates: oldest to newest).
+     * **By default, SQL sorts in ascending order!**
+     * *Best Practice:* Always explicitly specify `ASC` in your queries for code readability and team clarity.
+  2. **Descending (`DESC`):**
+     * Sorts from **highest to lowest** (numbers: `9 ➔ 0`, reverse alphabetical text: `Z ➔ A`, chronological dates: newest to oldest).
+
+* **Single Column Sorting Practice Questions:**
+  * **Q1. Retrieve all customers and sort the result by the highest score first:**
+    ```sql
+    SELECT * FROM customers 
+    ORDER BY score DESC;
+    ```
+  * **Q2. Retrieve all customers and sort the result by the LOWEST score first:**
+    ```sql
+    SELECT * FROM customers 
+    ORDER BY score ASC;
+    ```
+    *(Note: Writing `ORDER BY score;` also sorts ascending by default, but writing `ORDER BY score ASC;` is preferred).*
+
+![Sorting in SQL: ORDER BY Clause Architecture](./sql_order_by_sorting_execution.svg)
+
+* **Step-by-Step Row Reordering Lifecycle (`ORDER BY score DESC`):**
+  * Let us trace how the database engine evaluates and sorts our sample `customers` table:
+    * **Step ① (`FROM customers`):** Retrieves the 5 raw records from disk/memory buffers.
+    * **Step ② (`ORDER BY score DESC`):** Evaluates the numerical magnitude of `score` for each row and constructs an ordered sorting buffer.
+    * **Step ③ (`SELECT *`):** Projects all columns and returns the sorted virtual table to the client.
+  * **Reordered Result Set:**
+    | id | name | country | score | Sort Position & Action |
+    | :---: | :--- | :--- | :---: | :--- |
+    | **2** | **John** | USA | **900** | Row 1 (Highest score in table) |
+    | **3** | **Georg** | UK | **750** | Row 2 |
+    | **4** | **Martin** | Germany | **500** | Row 3 |
+    | **1** | **Maria** | Germany | **350** | Row 4 |
+    | **5** | **Peter** | USA | **0** | Row 5 (Lowest score in table) |
+
+* **Nested ORDER BY: Multiple Columns Sorting (TO SORT YOUR DATA)**
+  * You can sort your data using **multiple columns**, which is referred to as **nested sorting**.
+  * **The order of columns in the `ORDER BY` clause is crucial because sorting is strictly sequential!**
+  * **Sequential Sorting Mechanics:**
+    1. The database engine first sorts the entire dataset by the **first specified column**.
+    2. If two or more rows have the **exact same value** in the first column (a tie), the engine uses the **second column as a tie-breaker** to sort only those tied rows.
+    3. If ties persist, subsequent columns (3rd, 4th, etc.) are evaluated in sequence.
+
+* **Nested Sorting Practice Question:**
+  * **Q1. Retrieve all customers and sort the result by country (alphabetically) and then by highest score:**
+    ```sql
+    SELECT id, name, country, score 
+    FROM customers 
+    ORDER BY country ASC, score DESC;
+    ```
+  * *Additional Example on Customer / City Table:*
+    ```sql
+    SELECT name, city, score 
+    FROM Customer 
+    ORDER BY city ASC, score DESC;
+    ```
+  * **Detailed Execution Breakdown:**
+    * **Primary Sort (`country ASC`):** First sorts by country alphabetically: `Germany ➔ UK ➔ USA`.
+    * **Secondary Tie-Breaker (`score DESC`):**
+      * Within **Germany** (Maria with score 350, Martin with score 500): Since Martin has the higher score, **Martin (500)** appears before **Maria (350)**!
+      * Within **UK** (Georg with score 750): Only one record exists.
+      * Within **USA** (John with score 900, Peter with score 0): Since John has the higher score, **John (900)** appears before **Peter (0)**!
+  * **Output Table for Nested Sort (`country ASC, score DESC`):**
+    | id | name | country (ASC) | score (DESC) | Tie-Breaker Observation |
+    | :---: | :--- | :--- | :---: | :--- |
+    | **4** | **Martin** | Germany | **500** | ▲ Higher score in Germany |
+    | **1** | **Maria** | Germany | **350** | ▼ Lower score in Germany |
+    | **3** | **Georg** | UK | **750** | Single UK record |
+    | **2** | **John** | USA | **900** | ▲ Higher score in USA |
+    | **5** | **Peter** | USA | **0** | ▼ Lower score in USA |
+
+* **Operators and Keywords Used in Sorting:**
+  * **`ORDER BY`** $\rightarrow$ Main clause used to trigger sorting.
+  * **`ASC`** $\rightarrow$ Sorts ascending (`A ➔ Z`, `0 ➔ 9`). Default order.
+    ```sql
+    SELECT name, city FROM Customer ORDER BY name ASC;
+    ```
+  * **`DESC`** $\rightarrow$ Sorts descending (`Z ➔ A`, `9 ➔ 0`).
+    ```sql
+    SELECT name, balance FROM Account ORDER BY balance DESC;
+    ```
+
+* **Sorting with Dates:**
+  * Dates in SQL can be sorted chronologically using `ASC` (oldest date first) or `DESC` (most recent / newest date first):
+    ```sql
+    SELECT transaction_id, amount, transaction_date 
+    FROM Transaction 
+    ORDER BY transaction_date DESC;
+    ```
+    * *Action:* Places the most recent financial transactions at the top of the report.
+
+* **Sorting with Expressions & Computed Columns:**
+  * You can sort by calculated arithmetic expressions or column aliases defined in `SELECT`:
+    ```sql
+    SELECT name, (salary * 12) AS annual_salary 
+    FROM Employee 
+    ORDER BY annual_salary DESC;
+    ```
+    * *Engine Execution Note:* Because `SELECT` executes before `ORDER BY`, column aliases like `annual_salary` are fully recognized and valid in `ORDER BY`!
+
+* **Sorting with NULL Values:**
+  * In relational databases, `NULL` represents an unknown/missing state. SQL handles `NULL` values deterministically in sorting:
+    * **In `ASC` order (Default):** `NULL` values appear **first** (treated as smaller than any real value in MySQL).
+    * **In `DESC` order:** `NULL` values appear **last**.
+  * *Pro Tip for Custom NULL Placement:*
+    * If you want `ASC` sorting but want `NULL` records placed at the very end, use an `IS NULL` boolean condition:
+      ```sql
+      SELECT name, score 
+      FROM customers 
+      ORDER BY score IS NULL ASC, score ASC;
+      ```
+
+* **Crucial Interview Concepts in ORDER BY:**
+  * **1. Positional Sorting (Ordering by Column Ordinal / Index):**
+    * SQL allows sorting using 1-based numerical column position indices corresponding to the `SELECT` list:
+      ```sql
+      SELECT country, name, score 
+      FROM customers 
+      ORDER BY 1 ASC, 3 DESC;
+      ```
+      *(Here, `1` corresponds to `country`, and `3` corresponds to `score`).*
+    * **Production Warning (Antipattern):** While valid SQL, positional sorting is strongly discouraged in production code! If a teammate reorders or adds columns in `SELECT` (e.g., adding `id` at position 1), the `ORDER BY 1` silently sorts on the wrong attribute and produces critical reporting bugs.
+  * **2. Deterministic vs. Non-Deterministic Sorting (The Tie-Breaker Rule):**
+    * If multiple rows have the exact same values across all sorted columns (e.g., Martin and Maria both having identical scores), relational database engines do **not** guarantee a consistent order between queries. The order of tied rows can shift arbitrarily based on table scans, storage pages, or parallel execution threads!
+    * **Interview Rule:** To achieve **deterministic, reproducible sorting**, always append a **unique column or Primary Key (`id`)** as the final tie-breaker:
+      ```sql
+      SELECT id, name, score 
+      FROM customers 
+      ORDER BY score DESC, id ASC;
+      ```
+
+---
+
+### 13.9 Grouping Data & The GROUP BY Clause In-Depth (Data Aggregation)
+
+* **What is Grouping in SQL? (GROUP BY Clause: AGGREGATE YOUR DATA)**
+  * *Definition:* Grouping in SQL means **combining multiple rows that have the same values in one or more columns into summary rows**.
+  * Using `GROUP BY`, you **aggregate your data based on a column**.
+  * Instead of calculating scalar operations row-by-row across every single individual record, `GROUP BY` arranges rows into discrete categorical groups and computes aggregate functions across each group.
+  * **Each distinct group produces exactly ONE summary row in the final result set.**
+
+* **Works with Aggregate Functions:**
+  * `GROUP BY` works in tandem with SQL aggregate functions:
+    * **`SUM(column)`**: Calculates the sum total of numeric values in each group.
+    * **`COUNT(column / *)`**: Counts the number of rows or non-null values in each group.
+    * **`AVG(column)`**: Computes the arithmetic mean of values in each group.
+    * **`MIN(column)`**: Identifies the minimum value within each group.
+    * **`MAX(column)`**: Identifies the maximum value within each group.
+
+* **Crucial Interview Rules & Traps for Aggregate Functions:**
+  * **1. Master Rules of `SUM()`:**
+    * **Rule ① (`NULL` Handling):** `SUM(column)` completely **ignores `NULL` values** during calculation.
+    * **Rule ② (The Empty Table / All-NULL Trap):** If all rows in a group contain `NULL`, or if the table is completely empty, `SUM()` returns **`NULL` (NOT `0`)**!
+      * *Production Best Practice:* To guarantee a numeric `0` for executive dashboards, wrap with `COALESCE()` or `IFNULL()`:
+        ```sql
+        SELECT country, COALESCE(SUM(score), 0) AS total_score 
+        FROM customers 
+        GROUP BY country;
+        ```
+    * **Rule ③ (`SUM(DISTINCT col)` vs. `SUM(col)`):**
+      * `SUM(score)` sums all values including duplicates (e.g., scores `500, 500, 200` $\rightarrow$ `1200`).
+      * `SUM(DISTINCT score)` removes duplicate numbers before calculating (e.g., `500 + 200` $\rightarrow$ `700`).
+    * **Rule ④ (Conditional Aggregation with `SUM`):**
+      * In MySQL, boolean expressions return `1` (`TRUE`) or `0` (`FALSE`). You can count specific conditions using `SUM()` without a `WHERE` clause:
+        ```sql
+        -- Counts customers with score > 500 in MySQL:
+        SELECT SUM(score > 500) AS high_scorers FROM customers;
+        
+        -- ANSI SQL Standard equivalent using CASE:
+        SELECT SUM(CASE WHEN score > 500 THEN 1 ELSE 0 END) AS high_scorers FROM customers;
+        ```
+
+  * **2. The 4 Variants of `COUNT` (Top Interview Comparison):**
+    | Function | What it Counts | Counts `NULL`s? | Performance |
+    | :--- | :--- | :---: | :--- |
+    | **`COUNT(*)`** | Total rows in the table/group | **YES** | Highly optimized by query optimizer |
+    | **`COUNT(1)`** | Rows where constant expression `1` is generated | **YES** | Identical execution plan to `COUNT(*)` |
+    | **`COUNT(column)`** | Total rows where designated `column` is **NOT NULL** | **NO** (Ignores `NULL`) | Slightly slower (must check column nullability) |
+    | **`COUNT(DISTINCT col)`**| Total **unique non-null** values in column | **NO** (Ignores `NULL`) | Requires sorting/hashing in temp buffer |
+
+  * **3. The `AVG()` NULL Trap:**
+    * `AVG(column)` calculates mathematically as:
+      $$\text{AVG}(\text{column}) = \frac{\text{SUM}(\text{column})}{\mathbf{COUNT}(\mathbf{column})}$$
+    * **The Trap:** It divides by the count of **non-null rows**, NOT total rows!
+    * *Example:* If 4 employee salaries are `10000`, `20000`, `NULL`, `NULL`:
+      * `AVG(salary)` = $\frac{10000 + 20000}{2} =$ **`15000`** (NOT $\frac{30000}{4} = 7500$).
+    * *Fix:* If business requirements demand calculating average across the entire workforce (treating non-salaried as 0):
+      ```sql
+      SELECT AVG(COALESCE(salary, 0)) AS company_wide_avg FROM employees;
+      ```
+
+* **Standard GROUP BY Query Syntax:**
+  ```sql
+  SELECT column1, column2, AGGREGATE_FUNCTION(column3)
+  FROM table_name
+  [WHERE condition]
+  GROUP BY column1, column2
+  [HAVING condition]
+  [ORDER BY column];
+  ```
+
+* **Practice Questions:**
+  * **Q1. Find the total score for each country:**
+    ```sql
+    SELECT country, SUM(score) AS total_score 
+    FROM customers 
+    GROUP BY country;
+    ```
+    * **Step-by-Step Row Calculation:**
+      * **Germany:** Maria (`350`) + Martin (`500`) = **`850`**
+      * **USA:** John (`900`) + Peter (`0`) = **`900`**
+      * **UK:** Georg (`750`) = **`750`**
+  * **Q2. Find the total score and total number of customers for each country:**
+    ```sql
+    SELECT country, SUM(score) AS total_score, COUNT(id) AS customer_count 
+    FROM customers 
+    GROUP BY country;
+    ```
+    * **Result Set:**
+      | country | total_score | customer_count |
+      | :--- | :---: | :---: |
+      | **Germany** | 850 | 2 |
+      | **USA** | 900 | 2 |
+      | **UK** | 750 | 1 |
+
+* **Note on Alias (`AS`):**
+  * **`AS` (alias):** A shorthand label or user-friendly column title assigned to an expression or table in a query (e.g., `SUM(score) AS total_score`). Improves readability in result headers.
+
+![Grouping in SQL: GROUP BY Clause & Data Aggregation](./sql_group_by_aggregation_execution.svg)
+
+* **Key Rules of GROUP BY in MySQL:**
+  * **Rule 1: The Golden Rule of Projection:**
+    * **All columns in the `SELECT` list (except aggregate functions) must appear in the `GROUP BY` clause.**
+    * I.e., every selected column must be either aggregated or included in `GROUP BY`!
+  * **Rule 2: Aggregate functions can be used on non-grouped columns:**
+    ```sql
+    SELECT department, AVG(salary) 
+    FROM employees 
+    GROUP BY department;
+    ```
+    * Here, `department` is the grouping column, and `salary` is aggregated via `AVG()`. This is 100% valid.
+  * **Rule 3: Understanding the Non-Aggregated Column Error (`ONLY_FULL_GROUP_BY`):**
+    * Suppose you execute the following query:
+      ```sql
+      -- ❌ INCORRECT QUERY (Throws MySQL Error 1055):
+      SELECT first_name, country, SUM(score) 
+      FROM customers 
+      GROUP BY country;
+      ```
+      * **Why this produces an error:** In the `SELECT` statement, you defined `first_name`, `country`, and `SUM(score)`. But in `GROUP BY`, you only grouped by `country`. Since Germany has two customers (*Maria* and *Martin*), MySQL does not know which `first_name` should be printed on the single summary row for Germany!
+    * **The Correct Resolution:**
+      ```sql
+      -- ✔️ CORRECT: Include all non-aggregated columns in GROUP BY:
+      SELECT first_name, country, SUM(score) 
+      FROM customers 
+      GROUP BY country, first_name;
+      ```
+      * Every column in `SELECT` is now either in `GROUP BY` or aggregated.
+    * **Another Classic Wrong vs. Right Comparison:**
+      ```sql
+      -- ❌ WRONG (name is not in GROUP BY):
+      SELECT name, department, AVG(salary) 
+      FROM employees 
+      GROUP BY department;
+
+      -- ✔️ RIGHT (Only department and aggregate function projected):
+      SELECT department, AVG(salary) 
+      FROM employees 
+      GROUP BY department;
+      ```
+
+* **Grouping on Multiple Columns:**
+  * You can create multi-dimensional summary groups by grouping on two or more columns:
+    ```sql
+    SELECT department, job_title, COUNT(*) AS total_employees 
+    FROM employees 
+    GROUP BY department, job_title;
+    ```
+    * *Explanation:* Creates a unique group for every distinct combination of department and job title (e.g., IT-Developer, IT-Manager, HR-Recruiter).
+
+* **WHERE vs. HAVING: Crucial Distinction:**
+  * **`WHERE`** is applied **before** grouping $\rightarrow$ `WHERE` filters individual rows.
+  * **`HAVING`** is applied **after** grouping $\rightarrow$ `HAVING` filters aggregated summary groups.
+  * *Example using `HAVING` to filter groups (Find departments with more than 1 employee):*
+    ```sql
+    SELECT department, COUNT(*) AS total_employees
+    FROM employees
+    GROUP BY department
+    HAVING COUNT(*) > 1;
+    ```
+  * **Critical Interview Question ①: Can we use `HAVING` without a `GROUP BY` clause?**
+    * **Answer:** **YES!**
+    * If `GROUP BY` is omitted, the query optimizer treats the **entire table as a single implicit aggregate group**.
+    * *Valid Query Example:*
+      ```sql
+      -- Returns result only if the company-wide average score exceeds 500:
+      SELECT AVG(score) AS overall_avg 
+      FROM customers 
+      HAVING AVG(score) > 500;
+      ```
+  * **Critical Interview Question ②: Performance Distinction (`WHERE` vs. `HAVING`):**
+    * *Question:* "If you want to report average salary for the 'IT' department only, should you filter by `WHERE department = 'IT'` or `HAVING department = 'IT'`?"
+    * *Answer:* **Always filter using `WHERE`!**
+    * *Why:*
+      * **`WHERE department = 'IT'`**: Evaluates at disk/index scan time. Non-IT records are discarded immediately before entering CPU-intensive grouping memory buffers.
+      * **`HAVING department = 'IT'`**: Forces the database engine to group *all* departments across millions of rows, compute unnecessary aggregate calculations, and then throw them away in the final step. Filtering late with `HAVING` causes extreme query degradation.
+
+* **Using ORDER BY with GROUP BY:**
+  * `ORDER BY` is executed **after** grouping and can sort the final aggregated result set:
+    ```sql
+    SELECT department, COUNT(*) AS total 
+    FROM employees 
+    GROUP BY department 
+    ORDER BY total DESC;
+    ```
+
+* **Complete Clause Execution Order Example:**
+  * Observe how clauses are sequenced:
+    ```sql
+    -- Only IT employees considered first, then grouped, then filtered by average salary:
+    SELECT department, AVG(salary) AS avg_salary
+    FROM employees
+    WHERE department = 'IT'
+    GROUP BY department
+    HAVING AVG(salary) > 75000
+    ORDER BY avg_salary DESC;
+    ```
+    * **Step-by-Step Processing:**
+      1. `FROM employees`: Locates table.
+      2. `WHERE department = 'IT'`: Filters out non-IT rows before grouping.
+      3. `GROUP BY department`: Groups surviving IT employees.
+      4. `HAVING AVG(salary) > 75000`: Evaluates aggregate filter on the group.
+      5. `SELECT department, AVG(salary)`: Projects columns.
+      6. `ORDER BY avg_salary DESC`: Sorts the final groups.
+
+![GROUP BY Rules, WITH ROLLUP & GROUP_CONCAT()](./sql_group_by_rules_and_rollup.svg)
+
+* **GROUP BY with ROLLUP (Subtotals and Grand Totals):**
+  * When you add `WITH ROLLUP`, MySQL generates additional hierarchical summary rows for **subtotals and the grand total**, where the grouped column becomes `NULL`.
+  * To make the report professional and readable, replace that `NULL` with a clean label like `'TOTAL'` using `IFNULL()`:
+    ```sql
+    SELECT IFNULL(country, 'TOTAL') AS COUNTRY, SUM(score) AS GROUPsCORE 
+    FROM customers 
+    GROUP BY country WITH ROLLUP;
+    ```
+  * **Output Table with ROLLUP:**
+    | COUNTRY | GROUPsCORE | Note |
+    | :--- | :---: | :--- |
+    | **Germany** | 850 | Subtotal for Germany |
+    | **UK** | 750 | Subtotal for UK |
+    | **USA** | 900 | Subtotal for USA |
+    | **TOTAL** | **2500** | ★ Grand Total across all customers ★ |
+
+* **The `GROUP_CONCAT()` Aggregate Function:**
+  * When you want to retain details while still grouping rows, MySQL provides the specialized `GROUP_CONCAT()` function to concatenate string values from multiple rows into a single comma-separated string:
+    ```sql
+    SELECT department, GROUP_CONCAT(name) AS employees
+    FROM employees
+    GROUP BY department;
+    ```
+    * *Example Output:*
+      | department | employees |
+      | :--- | :--- |
+      | **IT** | Alice,Bob,Charlie |
+      | **HR** | David,Emma |
+
+* **Best Practice Rules for GROUP BY:**
+  1. **Always ensure non-aggregated columns in `SELECT` are in `GROUP BY`.**
+  2. **Use `HAVING` for aggregated filters, and `WHERE` for row-level filters.**
+  3. **Use aliases (`AS`) for readability** in all aggregate expressions.
+  4. **Use `WITH ROLLUP`** whenever executive reports require subtotals and grand totals.
+  5. **Be careful with SQL modes:** MySQL sometimes allows non-standard `GROUP BY` when `ONLY_FULL_GROUP_BY` is disabled. This is strongly discouraged because it produces non-deterministic, unpredictable results in production.
+
+* **Fundamental Limitation of the GROUP BY Clause:**
+  * **Using the `GROUP BY` clause, you cannot perform aggregation and preserve granular row-level details at the same time in standard queries.**
+  * Once rows are grouped by a column, individual row identity is collapsed into the group summary.
+  * To overcome this limitation and perform aggregations while preserving every individual row, modern SQL uses **Window Functions** (e.g., `SUM(score) OVER (PARTITION BY country)`).
+
+---
+
+### 13.10 Visual Diagrams & Architectural Reference
 
 #### 1. ASK Your Data: The SQL Query Mental Model
 * **Definition:** The cognitive model that frames relational databases as an interactive repository where human business questions are systematically translated into structured SQL queries to retrieve accurate tabular answers.
@@ -5042,6 +5743,7 @@ SQL allows flexible comparisons across different types of operands:
   2. **The SQL Query:** Formal declarative query formulation (`SELECT name, country FROM customers WHERE country = 'Germany';`).
   3. **Database Processing:** The DBMS engine reads physical disk blocks into memory, evaluates filtering predicates, and discards non-matching rows.
   4. **The Tabular Result Set:** Clean virtual table returned to the application screen or API.
+* **मराठी विवरण (Marathi Summary):** ही आकृती दर्शवते की व्यवसायातील साधा प्रश्न (उदा. *"जर्मनीतील ग्राहक कोण आहेत?"*) SQL क्वेरीमध्ये कसा बदलला जातो, डेटाबेस इंजिन डिस्कमधून डेटा मेमरीमध्ये आणून कसा फिल्टर करतो आणि शेवटी ॲप्लिकेशनला टेबलच्या स्वरूपात अचूक उत्तर कसे देतो.
 
 ![ASK Your Data: The SQL Query Mental Model](./sql_query_mental_model_ask_your_data.svg)
 
@@ -5059,6 +5761,7 @@ SQL allows flexible comparisons across different types of operands:
   * **`GROUP BY`**: Summarizes rows into aggregated groups.
   * **`HAVING`**: Filters summarized groups using aggregate functions.
   * **`ORDER BY`**: Sorts final result rows in ascending (`ASC`) or descending (`DESC`) order.
+* **मराठी विवरण (Marathi Summary):** SQL मधील मुख्य ९ क्लॉजेसचे वर्गीकरण: कॉलम्स निवडणे (`SELECT`, `DISTINCT`, `LIMIT`), डेटा स्रोत व जोडणी (`FROM`, `JOIN`, `WHERE`), आणि डेटाचे गट करून क्रम लावणे (`GROUP BY`, `HAVING`, `ORDER BY`).
 
 ![The 9 Essential SQL Query Clauses](./sql_query_clauses_taxonomy.svg)
 
@@ -5070,6 +5773,7 @@ SQL allows flexible comparisons across different types of operands:
   * **Step ① (`FROM Table`):** Identifies and locates the table on disk storage.
   * **Method A (`SELECT *`):** Keeps all columns (100% table width), resulting in high disk I/O, heavy memory allocation, and large network payloads.
   * **Method B (`SELECT col1, col2`):** Extracts only the designated attributes, minimizing network byte transfer and allowing MySQL to utilize fast **Covering Indexes**.
+* **मराठी विवरण (Marathi Summary):** `SELECT *` वापरल्यास टेबलचे सर्व कॉलम्स वाचले जातात ज्यामुळे डिस्क व मेमरीवर लोड वाढतो. याउलट फक्त आवश्यक कॉलम्स (`SELECT col1, col2`) निवडल्यास क्वेरी वेगवान होते आणि नेटवर्क बँडविड्थची मोठी बचत होते.
 
 ![HOW SQL WORKS: SELECT * vs. Specific Columns](./sql_select_all_vs_few_columns_execution.svg)
 
@@ -5081,6 +5785,7 @@ SQL allows flexible comparisons across different types of operands:
   * **Step ① `FROM customers`:** Reads the raw table from storage into the buffer cache.
   * **Step ② `WHERE score > 500`:** Funnels every row through the boolean predicate filter, discarding non-matching rows (`FALSE` / `UNKNOWN`) and keeping matching rows (`TRUE`).
   * **Step ③ `SELECT name, country`:** Projects and outputs only the specified columns of the surviving records.
+* **मराठी विवरण (Marathi Summary):** क्वेरी लिहिण्याचा क्रम डावीकडून उजवीकडे असला तरी इंजिन आधी **`FROM`** (टेबल शोधतो), मग **`WHERE`** (शर्तीनुसार नको असलेल्या रो गाळतो), आणि शेवटी **`SELECT`** (उरलेल्या रोमधून आवश्यक कॉलम्स दाखवतो) या क्रमाने काम करतो.
 
 ![WHERE Clause: Data Filtering & Internal Query Execution Order](./sql_where_filtering_execution_order.svg)
 
@@ -5094,6 +5799,7 @@ SQL allows flexible comparisons across different types of operands:
   3. **Range Operator:** `BETWEEN ... AND ...` (inclusive boundary filtering).
   4. **Membership Operator:** `IN`, `NOT IN` (matches against a discrete list or subquery set).
   5. **Search Operator:** `LIKE` (wildcard string pattern matching with `%` and `_`).
+* **मराठी विवरण (Marathi Summary):** `WHERE` क्लॉजमधील ५ प्रमुख ऑपरेटर्सचे कुटुंब: Comparison (`=`, `<>`), Logical (`AND`, `OR`, `NOT`), Range (`BETWEEN`), Membership (`IN`, `NOT IN`), आणि Search (`LIKE`).
 
 ![SQL WHERE Clause: Operator Taxonomy & Classification](./sql_where_operators_taxonomy.svg)
 
@@ -5102,6 +5808,7 @@ SQL allows flexible comparisons across different types of operands:
 #### 6. Comparison Operators: Condition Anatomy & Master Reference
 * **Definition:** Relational operators used to compare two operands (expressions, attributes, literals, functions, or subqueries) and return a boolean truth state (`TRUE`, `FALSE`, or `UNKNOWN`).
 * **Description:** Details the tripartite anatomy of a condition (`Expression [Operator] Expression`), illustrates the 5 practical ways to compare two things in SQL (`Column=Column`, `Column=Value`, `Function=Value`, `Expression=Value`, `Subquery=Value`), and presents the master reference matrix of all 6 comparison operators with their definitions, syntax, and boolean outcomes.
+* **मराठी विवरण (Marathi Summary):** दोन मूल्यांची तुलना करून `TRUE` किंवा `FALSE` ठरवणे. यात अटीची त्रिमितीय रचना (`कॉलम = व्हॅल्यू`), तुलना करण्याचे ५ व्यावहारिक मार्ग आणि सर्व ६ तुलनात्मक चिन्हांचा मास्टर संदर्भ समाविष्ट आहे.
 
 ![Comparison Operators: Anatomy & Master Reference](./sql_comparison_operators_guide.svg)
 
@@ -5113,6 +5820,7 @@ SQL allows flexible comparisons across different types of operands:
   * Rows for Maria (`Germany`), Georg (`UK`), and Martin (`Germany`) evaluate to **`FALSE`** and are **discarded ❌**.
   * Rows for John (`USA`) and Peter (`USA`) evaluate to **`TRUE`** and are **kept ✔️**.
   * The resulting output virtual table contains only the surviving records (John and Peter).
+* **मराठी विवरण (Marathi Summary):** प्रत्येक रोवर `Country = 'USA'` ही अट कशी तपासली जाते ते दाखवले आहे. अमेरिका असलेले ग्राहक (जॉन, पीटर) टिकतात (`TRUE ✔️`), तर जर्मनी व युकेचे ग्राहक वगळले जातात (`FALSE ❌`).
 
 ![Row-by-Row Predicate Filtering: WHERE Country = 'USA'](./sql_where_country_filter_evaluation.svg)
 
@@ -5121,6 +5829,7 @@ SQL allows flexible comparisons across different types of operands:
 #### 8. Whole Table vs. Specific Column Projection Architecture
 * **Definition:** Architectural analysis of network payload, memory consumption, and disk I/O between full-table queries and column projection.
 * **Description:** Illustrates the internal pipeline differences between `SELECT *` (reading all column blocks into the buffer pool and sending maximum bytes over the network wire) and targeted column selection (reading only required columns, enabling covering index lookups without touching table data pages, and dramatically shrinking network bandwidth).
+* **मराठी विवरण (Marathi Summary):** संपूर्ण टेबल वाचणे (`SELECT *`) विरुद्ध आवश्यक कॉलम्स वाचणे (`SELECT col1, col2`) यातील मेमरी, इंडेक्स आणि नेटवर्क ट्रान्सफर स्पीडचा अंतर्गत तांत्रिक फरक.
 
 ![Whole Table vs Specific Column Projection Architecture](./dql_select_whole_vs_specific_columns_diagram.svg)
 
@@ -5129,6 +5838,7 @@ SQL allows flexible comparisons across different types of operands:
 #### 9. Logical Operators Master Reference Table (AND, OR, NOT)
 * **Definition:** A visual summary card classifying the 3 core boolean operators in SQL, their formal evaluation rules, and logical truth results.
 * **Description:** Details `AND` (all conditions must be TRUE), `OR` (at least one condition must be TRUE), and `NOT` (reverses the condition / excludes matching rows) with side-by-side boolean formula pills and quick-recap reference.
+* **मराठी विवरण (Marathi Summary):** तार्किक ऑपरेटर्सचा नियम तक्ता: `AND` मध्ये सर्व अटी सत्य लागतात, `OR` मध्ये कोणतीही एक अट सत्य चालते, आणि `NOT` मूळ अट उलट करतो.
 
 ![Logical Operators Master Reference Table](./sql_logical_operators_table.svg)
 
@@ -5137,6 +5847,7 @@ SQL allows flexible comparisons across different types of operands:
 #### 10. Logical Operator: AND (All Conditions Must Be TRUE)
 * **Definition:** A logical conjunction operator that links two or more conditions and evaluates to `TRUE` if and only if every condition predicate is satisfied.
 * **Description:** Demonstrates the row-by-row filtering evaluation for `WHERE Country = 'USA' AND Score > 500`. Only John satisfies both condition 1 (`Country = 'USA'`) and condition 2 (`Score > 500`), while Peter and Georg fail one condition and are discarded.
+* **मराठी विवरण (Marathi Summary):** `Country = 'USA' AND Score > 500` चे प्रात्यक्षिक: देश अमेरिका आणि स्कोअर ५०० पेक्षा जास्त या दोन्ही अटी फक्त जॉन पूर्ण करतो, म्हणून केवळ तोच रिझल्टमध्ये निवडला जातो.
 
 ![Logical Operator: AND Evaluation](./sql_logical_operators_and_evaluation.svg)
 
@@ -5145,6 +5856,7 @@ SQL allows flexible comparisons across different types of operands:
 #### 11. Logical Operator: OR (At Least One Condition Must Be TRUE)
 * **Definition:** A logical disjunction operator that evaluates to `TRUE` if any of the specified conditions is met, discarding records only when all conditions fail.
 * **Description:** Illustrates evaluation for `WHERE Country = 'USA' OR Score > 500`. Records for John (meets both), Georg (meets score > 500), and Peter (meets Country = 'USA') all survive to form the final result set.
+* **मराठी विवरण (Marathi Summary):** `Country = 'USA' OR Score > 500` चे प्रात्यक्षिक: दोन्हीपैकी किमान एक अट पूर्ण करणारे रेकॉर्ड्स (जॉन, जॉर्ज, पीटर) रिझल्टमध्ये निवडले जातात; सर्व अटी चुकल्या तरच रेकॉर्ड वगळले जाते.
 
 ![Logical Operator: OR Evaluation](./sql_logical_operators_or_evaluation.svg)
 
@@ -5153,6 +5865,7 @@ SQL allows flexible comparisons across different types of operands:
 #### 12. Logical Operator: NOT (Reverses Condition / Excludes Matches)
 * **Definition:** A logical negation operator that inverts the truth value of a condition predicate, converting matching rows into non-matches.
 * **Description:** Demonstrates the evaluation of `WHERE NOT (Country = 'USA')`. Rows matching 'USA' (John, Peter) evaluate to `FALSE` and are excluded, while non-USA customers (Maria, Georg, Martin) evaluate to `TRUE` and survive.
+* **मराठी विवरण (Marathi Summary):** `NOT (Country = 'USA')` चे प्रात्यक्षिक: अट उलट केली जाते; अमेरिकेचे ग्राहक वगळले जातात आणि अमेरिकेबाहेरील (जर्मनी, युके) सर्व ग्राहक रिझल्टमध्ये राहतात.
 
 ![Logical Operator: NOT Evaluation](./sql_logical_operator_not_evaluation.svg)
 
@@ -5161,12 +5874,67 @@ SQL allows flexible comparisons across different types of operands:
 #### 13. Range Operator: BETWEEN … AND … (Inclusive Boundaries)
 * **Definition:** A range evaluation operator that tests whether an attribute's value falls within a specified interval, including both boundary endpoints.
 * **Description:** Displays a number line with lower bound (100) and upper bound (500), showing that values within the interval (Maria: 350) and exactly on the boundary (Martin: 500) are kept, while out-of-bound records (Peter: 0, Georg: 750, John: 900) are discarded. Also highlights functional equivalence to `>= 100 AND <= 500`.
+* **मराठी विवरण (Marathi Summary):** संख्या रेषेवरील मर्यादेची तपासणी: १०० ते ५०० या मर्यादेत असणारे (मारिया: ३५०) आणि नेमके सीमेवर असणारे (मार्टिन: ५००) समाविष्ट होतात; मर्यादेबाहेरील घटक वगळले जातात.
 
 ![Range Operator: BETWEEN Evaluation](./sql_range_operator_between_evaluation.svg)
 
 ---
 
-### 13.9 Topic 13 Summary (मराठी सारांश)
+#### 14. Membership Operators: IN & NOT IN (Discrete Set Evaluation)
+* **Definition:** A set-based membership evaluation operator testing whether an attribute's value exists within a finite list of literal target values or subquery results.
+* **Description:** Features a top clipboard listing allowed target countries (`'Germany'`, `'USA'`), contrasting `IN` (kept if in list) against `NOT IN` (kept if absent from list) across our 5 customer records. Highlights the recommended syntax shortcut over verbose chained `OR` statements.
+* **मराठी विवरण (Marathi Summary):** यादीतील मूल्ये तपासणे: क्लिपबोर्डवर दिलेल्या देशांच्या यादीत ('Germany', 'USA') असणारे ग्राहक `IN` द्वारे निवडले जातात, तर यादीबाहेर असणारे (युके) `NOT IN` द्वारे निवडले जातात. अनेक `OR` लिहिण्याऐवजी हा उत्तम शॉर्टकट आहे.
+
+![Membership Operators: IN & NOT IN Evaluation](./sql_membership_operators_in_evaluation.svg)
+
+---
+
+#### 15. Search Operator: LIKE & SQL Wildcards (Pattern Matching)
+* **Definition:** A string pattern matching operator using wildcards (`%` for zero/multiple characters, `_` for exact single character) to filter text columns flexibly.
+* **Description:** Breaks down wildcard mechanics with a central pattern search bar branching into `%` (Anything: 0, 1, Many) and `_` (Exact 1 char), supported by 4 dedicated comparison columns evaluating `LIKE 'M%'`, `LIKE '%in'`, `LIKE '%r%'`, and `LIKE '__b%'`.
+* **मराठी विवरण (Marathi Summary):** वाइल्डकार्ड्स द्वारे मजकूर शोधणे: `%` (शून्य किंवा अनेक अक्षरे) आणि `_` (नेमके एक अक्षर) वापरून ४ स्वतंत्र स्तंभांमध्ये सुरू होणारे, संपणारे, समाविष्ट असणारे आणि ३ऱ्या क्रमांकावर 'b' असणारे पॅटर्न स्पष्ट केले आहेत.
+
+![Search Operator: LIKE & SQL Wildcards](./sql_search_operator_like_wildcards.svg)
+
+---
+
+#### 16. NULL Check Operators: IS NULL & IS NOT NULL (Three-Valued Logic)
+* **Definition:** A specialized filter testing for missing, unassigned, or unknown database fields adhering to SQL Three-Valued Logic (3VL).
+* **Description:** Clarifies the core difference between `NULL` (missing/unknown), `0` (numeric value), and `''` (empty string). Illustrates why standard equality (`= NULL`) evaluates to `UNKNOWN` and silently returns 0 rows, demonstrating proper evaluation using `IS NULL` and `IS NOT NULL`.
+* **मराठी विवरण (Marathi Summary):** `NULL` (अज्ञात), `0` (संख्या), आणि `''` (रिकामी स्ट्रिंग) यातील फरक. `= NULL` ने ० रो का येतात आणि `IS NULL` / `IS NOT NULL` द्वारे डेटा कसा अचूक शोधला जातो याचे विश्लेषण.
+
+![NULL Check Operators: IS NULL & IS NOT NULL](./sql_null_check_operators_evaluation.svg)
+
+---
+
+#### 17. Sorting in SQL: ORDER BY Clause Architecture
+* **Definition:** A structural ordering operator that arranges rows deterministically in ascending (`ASC`) or descending (`DESC`) order across single or multiple attributes.
+* **Description:** Visualizes query execution order (`FROM` ➔ `ORDER BY` ➔ `SELECT`), contrasting single column sorting (highest score first) with nested sequential sorting (`country ASC, score DESC`) where ties within Germany and the USA are resolved by score magnitude.
+* **मराठी विवरण (Marathi Summary):** डेटाचा क्रम लावणे: चढता क्रम (`ASC`) विरुद्ध उतरता क्रम (`DESC`), आणि मल्टिपल कॉलम्स सॉर्टिंग (`country ASC, score DESC`) मध्ये देशानुसार गट करून देशांतर्गत जास्त स्कोअर आधी कसा दाखवला जातो ते स्पष्ट केले आहे.
+
+![Sorting in SQL: ORDER BY Clause Architecture](./sql_order_by_sorting_execution.svg)
+
+---
+
+#### 18. Grouping in SQL: GROUP BY Clause & Data Aggregation
+* **Definition:** A categorical grouping operator that combines rows sharing identical values into distinct summary rows and applies mathematical aggregate functions.
+* **Description:** Breaks down the 3-step physical aggregation lifecycle: reading the 5 raw customer records, bucketing into distinct countries (Germany: 350+500=850, USA: 900+0=900, UK: 750), and projecting the final 3-row summary table.
+* **मराठी विवरण (Marathi Summary):** डेटाचे एकत्रीकरण: ५ मूळ ग्राहकांच्या रेकॉर्ड्सचे देशानुसार गट करून (जर्मनी: ८५०, अमेरिका: ९००, युके: ७५०) ३ सारांश रो कशा तयार केल्या जातात याची पायरी-दर-पायरी प्रक्रिया.
+
+![Grouping in SQL: GROUP BY Clause & Data Aggregation](./sql_group_by_aggregation_execution.svg)
+
+---
+
+#### 19. GROUP BY Rules, WITH ROLLUP & GROUP_CONCAT()
+* **Definition:** Advanced grouping mechanics covering projection validation under `ONLY_FULL_GROUP_BY`, hierarchical subtotal rollups, and string aggregation.
+* **Description:** Illustrates why non-aggregated columns like `first_name` fail when omitted from `GROUP BY`, demonstrates `WITH ROLLUP` grand totals paired with `IFNULL()`, and shows `GROUP_CONCAT()` merging group members into comma-separated text lists.
+* **मराठी विवरण (Marathi Summary):** `ONLY_FULL_GROUP_BY` चा नियम (नॉन-ॲग्रीगेट कॉलम का चालत नाही), `WITH ROLLUP` द्वारे महाबेरीज (Grand Total) तयार करणे, आणि `GROUP_CONCAT()` द्वारे एकाच रकान्यात नावे स्वल्पविरामाने एकत्र जोडणे.
+
+![GROUP BY Rules, WITH ROLLUP & GROUP_CONCAT()](./sql_group_by_rules_and_rollup.svg)
+
+---
+
+### 13.11 Topic 13 Summary (मराठी सारांश)
 
 * **DQL (Data Query Language) आणि डेटा क्वेरी करण्याचे स्वरूप:**
   * DQL चा उपयोग डेटाबेसमधून अचूक माहिती शोधण्यासाठी (Fetch / Retrieve) केला जातो.
@@ -5232,8 +6000,2041 @@ SQL allows flexible comparisons across different types of operands:
   * संख्या, तारखा (Dates), किंवा अक्षरांसाठी (Alphabetical Text) वापरता येतो.
 * **Row-by-Row Predicate Evaluation:**
   * प्रत्येक रोवर अट तपासली जाते; ज्या रोसाठी उत्तर **`TRUE`** येते तीच रो रिझल्टमध्ये राहते, तर **`FALSE`** किंवा **`UNKNOWN`** येणारी रो वगळली (Discard) जाते.
-* **NULL व्हॅल्यूजचा नियम:**
+* **NULL व्हॅल्यूजचा मूलभूत नियम:**
   * `NULL` शी तुलना करण्यासाठी कधीही `=` किंवा `!=` वापरू नये; त्याऐवजी नेहमी **`IS NULL`** किंवा **`IS NOT NULL`** वापरावे.
+* **Membership Operators (`IN` आणि `NOT IN`):**
+  * **`IN (...)` ऑपरेटर:**
+    * कॉलमचे मूल्य दिलेल्या यादीतील (List) कोणत्याही एका मूल्याशी जुळते का ते तपासतो.
+    * अनेक `OR` अटी एकत्र लिहिण्याचा हा अत्यंत सोपा, स्वच्छ आणि शॉर्टकट मार्ग आहे (`WHERE country IN ('Germany', 'USA')`).
+    * *महत्त्वाचा नियम:* एकाच कॉलमवर वारंवार `OR` लिहिण्याऐवजी नेहमी `IN` वापरावे (उदा. `WHERE country = 'Germany' OR country = 'USA'` ऐवजी `WHERE country IN ('Germany', 'USA')`).
+  * **`NOT IN (...)` ऑपरेटर:**
+    * कॉलमचे मूल्य दिलेल्या यादीत **नाही** (Not Member) ते तपासतो. हा `IN` च्या बरोबर उलट कार्य करतो.
+    * यादीतील मूल्ये वगळून उर्वरित सर्व रेकॉर्ड्स रिझल्टमध्ये आणतो (`WHERE country NOT IN ('Germany', 'USA')`).
+* **Search Operator (`LIKE` आणि `NOT LIKE` - पॅटर्न मॅचिंग):**
+  * मजकुरामध्ये (Text Columns) विशिष्ट नमुना किंवा पॅटर्न शोधण्यासाठी `LIKE` ऑपरेटर वापरला जातो (इथे अचूक समानता `=` ऐवजी नमुन्याशी जुळवणी केली जाते).
+  * **२ प्रमुख वाइल्डकार्ड्स (Wildcards):**
+    1. **`%` (Percent Wildcard):** शून्य, एक किंवा अनेक अक्षरांशी (Zero or More Characters) जुळतो.
+       * `LIKE 'A%'`: नाव 'A' ने सुरू होणारे (उदा. *Alice*, *Albert*, *An*, *A*).
+       * `LIKE '%a'`: नाव 'a' ने संपणारे (उदा. *Maria*, *Anna*, *Emma*).
+       * `LIKE '%it%'`: नावात कुठेही "it" असणारे (उदा. *Rohit*, *Mohit*, *Martin*).
+    2. **`_` (Underscore Wildcard):** बरोबर **एकच अक्षर (Exactly One Single Character)** दर्शवतो.
+       * `LIKE '_ohit'`: ५ अक्षरी नाव ज्यामध्ये दुसरे ते पाचवे अक्षर "ohit" आहे (उदा. *Rohit*, *Mohit*).
+       * `LIKE 'A_i_'`: नेमके ४ अक्षरी नाव, पहिले 'A' आणि तिसरे 'i' असणारे (उदा. *Amir*, *Abid*).
+       * `LIKE 'S_ne%'`: 'S' ने सुरू, नंतर कोणतेही १ अक्षर, मग 'ne', आणि शेवटी काहीही (उदा. *Sanel*, *Soney*).
+  * **`NOT LIKE`:** दिलेल्या पॅटर्नशी न जुळणारे रेकॉर्ड्स शोधून काढतो (`WHERE name NOT LIKE 'A%'` ➔ 'A' ने सुरू न होणारी सर्व नावे).
+* **NULL Check Operators (`IS NULL` आणि `IS NOT NULL` - त्रिमूल्य तर्कशास्त्र):**
+  * **`NULL` म्हणजे काय?:** डेटाबेसमध्ये `NULL` म्हणजे **अज्ञात (Unknown) किंवा डेटा नसणे (Missing Value)**.
+  * **महत्त्वाचा फरक:**
+    * `NULL ≠ 0` (0 ही एक निश्चित संख्या आहे; NULL म्हणजे डेटाच नाही).
+    * `NULL ≠ ''` (रिकामी स्ट्रिंग ही ० लांबीचा मजकूर आहे; NULL ला कोणतीही लांबी नसते).
+  * **Three-Valued Logic (3VL):** SQL मध्ये `NULL = NULL` किंवा `col = NULL` हे कधीही `TRUE` येत नाही, तर त्याचे उत्तर **`UNKNOWN`** येते. `WHERE` क्लॉज फक्त `TRUE` रेकॉर्ड्स दाखवतो, म्हणून `= NULL` वापरल्यास क्वेरी शून्य रो रिझल्ट देते!
+  * **योग्य पद्धत:** `NULL` तपासण्यासाठी नेहमी **`IS NULL`** (डेटा नसलेले शोधणे) किंवा **`IS NOT NULL`** (डेटा असलेले शोधणे) वापरावे.
+* **Advanced Filtering (प्रगत फिल्टरिंग - HAVING आणि Subqueries):**
+  * **`HAVING` क्लॉज:** गट तयार झाल्यानंतर (After `GROUP BY`) ॲग्रीगेट निकालांवर अट लावण्यासाठी `HAVING` वापरला जातो (`HAVING COUNT(*) > 5`).
+  * `WHERE` क्लॉज रो-पातळीवर काम करत असल्याने त्यात `COUNT()`, `SUM()` वापरता येत नाही; तिथे `HAVING` अनिवार्य आहे.
+  * **Subqueries (पोट-क्वेरी):** एका क्वेरीच्या `WHERE` अटीमध्ये दुसरी अंतर्गत `SELECT` क्वेरी वापरून गतिमान पद्धतीने डेटा फिल्टर करणे (`WHERE country IN (SELECT country FROM top_sales)`).
+* **Sorting Data & The `ORDER BY` Clause (डेटाचा क्रम लावणे):**
+  * `ORDER BY` क्लॉजचा वापर क्वेरीच्या निकालातील रो चढत्या किंवा उतरत्या क्रमाने लावण्यासाठी केला जातो.
+  * **२ मुख्य दिशा (Sort Directions):**
+    * **`ASC` (Ascending - चढता क्रम):** लहानापासून मोठे (`0 ➔ 9`, `A ➔ Z`). हा **डिफॉल्ट (Default)** क्रम असतो; तरीही स्पष्टतेसाठी क्वेरीमध्ये `ASC` लिहिणे योग्य मानले जाते.
+    * **`DESC` (Descending - उतरता क्रम):** मोठ्यापासून लहान (`9 ➔ 0`, `Z ➔ A`). सर्वोच्च स्कोअर आधी आणण्यासाठी `ORDER BY score DESC;` वापरतात.
+  * **Nested / Multiple Columns Sorting (अनेक कॉलम्सनुसार क्रम):**
+    * एकापेक्षा जास्त कॉलम्सवर क्रम लावताना क्रमवारी अत्यंत महत्त्वाची असते (`ORDER BY country ASC, score DESC;`).
+    * इंजिन आधी पहिल्या कॉलमने (`country`) क्रम लावतो; जेव्हा दोन ग्राहकांचा देश सारखा असतो (Tie), तेव्हाच दुसऱ्या कॉलमने (`score`) निर्णय घेऊन जास्त स्कोअर आधी दाखवतो (उदा. जर्मनीमध्ये मार्टिनचा स्कोअर ५०० असल्याने तो मारियाच्या ३५० आधी येतो).
+  * **तारीख, गणित आणि NULL चे सॉर्टिंग:**
+    * तारखांवर `ORDER BY transaction_date DESC` वापरल्यास सर्वात नवीन व्यवहार आधी दिसतात.
+    * `ORDER BY (salary * 12) DESC` किंवा कॉलम अलियासने थेट क्रम लावता येतो.
+    * `ASC` मध्ये `NULL` सर्वात आधी येतो, तर `DESC` मध्ये `NULL` सर्वात शेवटी येतो.
+* **Grouping Data & The `GROUP BY` Clause (डेटाचे गट करणे व एकत्रीकरण):**
+  * **गट करण्याची संकल्पना (Concept):** एका कॉलममधील समान मूल्ये असलेल्या अनेक रो एकत्र करून त्यांचा **एक सारांश रो (Single Summary Row)** तयार करणे.
+  * **ॲग्रीगेट फंक्शन्स सोबत कार्य:** `SUM()` (बेरीज), `COUNT()` (संख्या), `AVG()` (सरासरी), `MIN()` (किमान), `MAX()` (कमाल).
+  * **MySQL मधील सुवर्ण नियम (`ONLY_FULL_GROUP_BY`):**
+    * `SELECT` मध्ये लिहिलेला प्रत्येक कॉलम हा एकतर **`GROUP BY` मध्ये असावा लागतो किंवा ॲग्रीगेट फंक्शनमध्ये असावा लागतो!**
+    * जर `SELECT first_name, country, SUM(score) FROM customers GROUP BY country;` लिहिले तर एरर (Error 1055) येतो, कारण एका देशात अनेक नावे असतात आणि इंजिनला एका रोवर कोणते नाव दाखवायचे हे समजत नाही. उपाय: `first_name` सुद्धा `GROUP BY` मध्ये टाका किंवा `SELECT` मधून काढा.
+  * **`WHERE` vs. `HAVING` मधील मुख्य फरक:**
+    * `WHERE` ➔ गट बनवण्यापूर्वी (Before Grouping) मूळ रो फिल्टर करतो.
+    * `HAVING` ➔ गट बनवल्यानंतर (After Grouping) ॲग्रीगेट मूल्यांवर फिल्टर लावतो.
+  * **`WITH ROLLUP` (पदानुक्रम उपबेरीज आणि महाबेरीज):**
+    * `GROUP BY country WITH ROLLUP` वापरल्यास प्रत्येक देशाच्या बेरजेसोबतच शेवटी सर्व देशांची मिळून **Grand Total** रो आपोआप तयार होते (जिथे देश `NULL` येतो). त्याला वाचनीय करण्यासाठी `IFNULL(country, 'TOTAL')` वापरतात.
+  * **`GROUP_CONCAT()` फंक्शन:**
+    * गटातील सर्व ग्राहकांची किंवा कर्मचाऱ्यांची नावे स्वल्पविरामाने (Comma-separated) एकाच रकान्यात एकत्र आणण्यासाठी वापरले जाते (`GROUP_CONCAT(name)`).
+  * **`GROUP BY` ची मुख्य मर्यादा (Limitation):**
+    * `GROUP BY` वापरल्यास मूळ रोचे स्वतंत्र अस्तित्व संपुष्टात येते आणि फक्त सारांश उरतो. जर मूळ रो देखील जशाच्या तशा ठेवायच्या असतील आणि सोबतच एकूण बेरीजही दाखवायची असेल, तर SQL मधील **Window Functions (`OVER (PARTITION BY ...)`)** वापरावी लागतात.
+* **इंटरव्ह्यूच्या दृष्टीने अत्यंत महत्त्वाचे सुवर्ण नियम आणि सापळे (Critical Interview Rules & Traps):**
+  1. **`NOT IN` सह `NULL` चा महा-सापळा (Three-Valued Logic Trap):**
+     * `WHERE id NOT IN (1, 2, NULL)` चे उत्तर **शून्य रो (0 Rows)** येते!
+     * कारण `id != NULL` चे उत्तर `UNKNOWN` येते, आणि `AND` अटीमध्ये एकही `UNKNOWN` आल्यास संपूर्ण अट कधीही `TRUE` होऊ शकत नाही. (उपाय: `IS NOT NULL` फिल्टर करा किंवा `NOT EXISTS` वापरा).
+  2. **`SUM()` आणि `NULL` चा व्यवहार:**
+     * `SUM()` कॅल्क्युलेशन करताना कॉलममधील सर्व `NULL` दुर्लक्ष (Ignore) करतो.
+     * परंतु जर **टेबल रिकामे असेल किंवा सर्व व्हॅल्यूज `NULL` असतील**, तर `SUM()` चे उत्तर `0` येत नाही तर **`NULL`** येते! म्हणूनच डॅशबोर्डमध्ये `0` आणण्यासाठी नेहमी **`COALESCE(SUM(col), 0)`** किंवा **`IFNULL(SUM(col), 0)`** वापरावे.
+  3. **`SUM(DISTINCT)` विरुद्ध `SUM()`:**
+     * `SUM(score)` सर्व मूल्यांची बेरीज करतो (उदा. ५०० + ५०० + २०० = १२००).
+     * `SUM(DISTINCT score)` डुप्लिकेट्स वगळून फक्त युनिक मूल्यांची एकदाच बेरीज करतो (उदा. ५०० + २०० = ७००).
+  4. **`SUM()` द्वारे Conditional Counting:**
+     * MySQL मध्ये `WHERE` न वापरता थेट विशिष्ट अटी मोजण्यासाठी `SUM(score > 500)` किंवा `SUM(CASE WHEN score > 500 THEN 1 ELSE 0 END)` वापरता येते.
+  5. **`COUNT(*)` विरुद्ध `COUNT(col)` मधील फरक:**
+     * `COUNT(*)` आणि `COUNT(1)` टेबलमधील सर्व रो मोजतात (ज्यात रो पूर्ण NULL असली तरी मोजली जाते).
+     * `COUNT(column)` फक्त त्या कॉलममधील **Non-NULL** मूल्ये मोजतो.
+  6. **`AVG()` मधील `NULL` चा ट्रॅप:**
+     * `AVG(salary)` हे एकूण रोने न भागता फक्त ज्यांचा पगार **Non-NULL** आहे त्याच रोने भागते (उदा. १००००, २००००, NULL, NULL ची सरासरी १५००० येते, ७५०० नाही). जर सर्वांची सरासरी हवी असेल तर `AVG(COALESCE(salary, 0))` वापरावे.
+  7. **`GROUP BY` विना `HAVING` चा वापर:**
+     * `GROUP BY` नसतानाही `HAVING` वापरता येतो (उदा. `SELECT AVG(score) FROM customers HAVING AVG(score) > 500;`). अशा वेळी संपूर्ण टेबल हा एकच ग्रुप मानला जातो.
+  8. **`WHERE` vs. `HAVING` परफॉर्मन्स नियम:**
+     * ग्रुपिंग होण्यापूर्वीच अनावश्यक रो गाळण्यासाठी नेहमी **`WHERE`** वापरावे (`WHERE dept = 'IT'`), कारण `HAVING` मध्ये फिल्टर केल्यास इंजिन आधी विनाकारण सर्व डेटा ग्रुप करतो आणि मग गाळतो, ज्यामुळे क्वेरी स्लो होते.
+  9. **`ORDER BY` मधील Positional Sorting आणि Deterministic Sort:**
+     * `ORDER BY 1, 2` (कॉलम नंबरने क्रम लावणे) तांत्रिकदृष्ट्या चालते, पण प्रॉडक्शनमध्ये हा **Antipattern** आहे कारण भविष्यात `SELECT` चे कॉलम्स बदलल्यास निकाल चुकू शकतो.
+     * दोन रोचे मूल्य समान असल्यास (Tie) क्रम अनपेक्षित बदलू नये म्हणून शेवटी नेहमी युनिक कॉलम किंवा Primary Key (`id`) टाई-ब्रेकर म्हणून जोडावा (`ORDER BY score DESC, id ASC`).
+
+---
+
+### 13.12 SQL Clauses Deep Dive & Execution Order (Detailed Guide)
+
+#### 1. HAVING Clause (हॅविंग क्लॉज / हैवींग क्लॉज)
+* **What is it?** The `HAVING` clause in SQL is used to filter groups of rows created by the `GROUP BY` clause.
+* **Purpose:** It is used to filter the aggregated data. 
+  * `WHERE` filters individual rows (before grouping).
+  * `HAVING` filters grouped/aggregated results (after grouping).
+* `HAVING` क्लॉज़ का उपयोग `GROUP BY` से बने हुए ग्रुप्स (groups) को फ़िल्टर करने के लिए किया जाता है। `WHERE` क्लॉज़ सिर्फ अकेले rows को फ़िल्टर करता है, जबकि `HAVING` पूरे ग्रुप के aggregated डेटा को फ़िल्टर करता है।
+
+* **Standard Syntax:**
+  ```sql
+  SELECT column1, AGGREGATE_FUNCTION(column2)
+  FROM table_name
+  WHERE condition
+  GROUP BY column1
+  HAVING aggregate_condition
+  ORDER BY column1;
+  ```
+* **Key Rules for HAVING Clause:**
+  1. `HAVING` always comes **after** `GROUP BY`. It works on grouped results.
+  2. You **can use aggregate functions** inside `HAVING` (e.g., `HAVING COUNT(*) > 5;` or `HAVING AVG(salary) > 60000;`).
+  3. If there is no `GROUP BY`, `HAVING` still works. $\rightarrow$ It will treat the entire result as a single group.
+  4. `WHERE` filters rows, `HAVING` filters groups. $\rightarrow$ Often, you’ll use both together.
+
+* **Examples:**
+  * **Simple HAVING with COUNT:**
+    ```sql
+    SELECT department, COUNT(*) AS total_employees 
+    FROM employees 
+    GROUP BY department 
+    HAVING COUNT(*) > 1;
+    ```
+  * **HAVING with AVG:**
+    ```sql
+    SELECT department, AVG(salary) AS avg_salary 
+    FROM employees 
+    GROUP BY department 
+    HAVING AVG(salary) > 70000;
+    ```
+
+![Grouping and Aggregation Diagram](./sql_group_by_aggregation_execution.svg)
+
+#### 2. WHERE + HAVING Together
+* **Concept:** They are most commonly used together. `WHERE` filters rows before grouping, and `HAVING` filters groups after aggregation.
+* `WHERE` और `HAVING` का एक साथ इस्तेमाल किया जा सकता है। पहले `WHERE` कच्ची rows को फ़िल्टर करता है, फिर बचे हुए डेटा पर `GROUP BY` काम करता है, और अंत में `HAVING` बने हुए ग्रुप्स को फ़िल्टर करता है।
+* **Example Query:**
+  ```sql
+  SELECT country, sum(score)
+  FROM customers 
+  WHERE score > 400
+  GROUP BY country
+  HAVING sum(score) > 800;
+  ```
+* **Practice Question 1:** Find the average score for each country considering only customers with a score not equal to zero, and return only those countries with an average score greater than 430.
+  ```sql
+  SELECT country, avg(score) as 'avg_score' 
+  FROM customers 
+  WHERE score != 0 
+  GROUP BY country 
+  HAVING avg(score) > 430 
+  ORDER BY country;
+  ```
+
+![WHERE Filtering Execution Diagram](./sql_where_filtering_execution_order.svg)
+
+#### 3. HAVING without GROUP BY / HAVING with Multiple Conditions
+* **HAVING without GROUP BY:** MySQL allows this. The entire table is treated as one single group.
+  ```sql
+  SELECT SUM(salary) AS total_salary
+  FROM employees
+  HAVING SUM(salary) > 300000;
+  ```
+* **HAVING with Multiple Conditions:** You can combine conditions using `AND` / `OR`.
+  ```sql
+  SELECT department, COUNT(*) AS total, AVG(salary) AS avg_salary
+  FROM employees
+  GROUP BY department
+  HAVING COUNT(*) > 1 AND AVG(salary) > 60000;
+  ```
+
+#### 4. Differences Between WHERE and HAVING (WHERE vs HAVING)
+| Feature | WHERE Clause | HAVING Clause |
+| :--- | :--- | :--- |
+| **When it works** | Works on rows **before grouping**. Filters the rows. | Works on groups **after grouping**. Filters the grouped/aggregated result. |
+| **Purpose** | Used to fetch data/values from the table according to the given condition. | Used to fetch data/values from the groups according to the given condition. |
+| **Without GROUP BY** | Can be executed without `GROUP BY`. | Always executed with `GROUP BY` (though MySQL supports it without). |
+| **Aggregate Functions**| Aggregation functions are **NOT allowed** (`WHERE SUM(val)` is invalid). | Aggregation functions are **allowed** (`HAVING AVG(salary) > 60000`). |
+| **Execution Order** | Executed **before** `GROUP BY`. | Executed **after** `GROUP BY`. |
+| **Usage** | Used with `SELECT`, `UPDATE`, `DELETE`. | Used **only** with `SELECT`. |
+| **Filter Type** | Pre-filter (e.g., `WHERE salary > 1000`). | Post-filter (e.g., `HAVING AVG(salary) > 60000`). |
+
+* **Best Practices:**
+  * Always use `WHERE` when filtering raw rows $\rightarrow$ it is much faster.
+  * Use `HAVING` only when filtering aggregated results.
+  * You can use both together (`WHERE` for the row and `HAVING` for the group).
+* `WHERE` टेबल की rows पर काम करता है और बिना `GROUP BY` के चल सकता है। इसमें aggregate functions नहीं लगते। यह pre-filter है। वहीं `HAVING` ग्रुप्स पर काम करता है, aggregate functions को सपोर्ट करता है और post-filter है।
+
+#### 5. Order of Execution vs Coding Order in SQL
+* **Order of Coding (How we write):**
+  `SELECT` $\rightarrow$ `FROM` $\rightarrow$ `WHERE` $\rightarrow$ `GROUP BY` $\rightarrow$ `HAVING` $\rightarrow$ `ORDER BY` $\rightarrow$ `LIMIT / TOP`
+* **Order of Execution (How Engine executes):**
+  1. **FROM:** Locate the table.
+  2. **WHERE:** Filter rows.
+  3. **GROUP BY:** Make groups.
+  4. **HAVING:** Filter groups.
+  5. **SELECT:** Project columns.
+  6. **ORDER BY:** Sort the final result.
+  7. **TOP / LIMIT:** Restrict the result size.
+* हम SQL लिखते समय `SELECT` पहले लिखते हैं, लेकिन डेटाबेस इंजिन उसे सबसे पहले `FROM` (टेबल ढूँढने) से शुरू करता है, फिर `WHERE` से डेटा फ़िल्टर करता है, फिर ग्रुप बनाता है, और अंत में `SELECT` और `ORDER BY` को चलाता है।
+
+![Query Execution Lifecycle Diagram](./query_execution_lifecycle.svg)
+
+#### 6. ORDER BY and GROUP BY Rules
+* **Can we define ORDER BY Before the GROUP BY?**
+  * **No.** You cannot define `ORDER BY` before `GROUP BY` in SQL.
+  * `ORDER BY` always works after grouping (and after `HAVING` if used).
+  * You cannot sort the data before `GROUP BY` because SQL first creates groups, then sorts the final grouped result.
+  * *Important Note:* In some databases (like MySQL), you can technically write `ORDER BY` on individual rows before aggregation if you use a subquery, but directly `ORDER BY` is always logically after `GROUP BY`.
+* **Can we use GROUP BY without WHERE?**
+  * **Yes.** The `WHERE` clause is optional.
+  * `GROUP BY` simply groups all rows in the table.
+  * Grouping without WHERE:
+    ```sql
+    SELECT loan_type, SUM(amount) AS total_amount FROM Loan GROUP BY loan_type;
+    ```
+  * Grouping with WHERE (Optional):
+    ```sql
+    SELECT loan_type, SUM(amount) AS total_amount FROM Loan WHERE branch_id = 1 GROUP BY loan_type;
+    ```
+
+#### 7. ORDER BY with or without WHERE
+* **Yes**, you can use `ORDER BY` both with or without a `WHERE` clause.
+* **ORDER BY without WHERE:**
+  * When you just want to sort all rows in a table, no filtering is needed.
+  * `SELECT * FROM Customer ORDER BY name ASC;` (Sorts all alphabetically).
+* **ORDER BY with WHERE:**
+  * When you want to filter rows first, then sort only the filtered results.
+  * ```sql
+    SELECT * FROM Customer
+    WHERE city = 'Mumbai'
+    ORDER BY balance DESC;
+    ```
+* **Notes:**
+  * `ORDER BY` is always applied after filtering (`WHERE`) and grouping (`GROUP BY`).
+  * You can sort by Single column, Multiple columns, or Calculated expression.
+
+#### 8. DISTINCT Keyword
+* **Purpose:** Used to remove duplicate values from your data.
+* Each value will appear only once in data.
+* **Example Q1:** Return unique list of all the countries.
+  ```sql
+  SELECT DISTINCT country FROM customers;
+  ```
+* **Bad habit with DISTINCT:** Do not use `DISTINCT` unless it is necessary, as it requires sorting/hashing and can slow down your query.
+* `DISTINCT` का उपयोग डुप्लीकेट (duplicate) डेटा को हटाने के लिए होता है। इसे तभी इस्तेमाल करें जब बहुत ज़रूरी हो, वर्ना यह आपकी क्वेरी को धीमा (slow) कर सकता है।
+
+#### 9. TOP / LIMIT in SQL
+* **Purpose:** Used to limit your data. It restricts the number of rows returned in the result (i.e., how many rows you want to see).
+* **Sorting with LIMIT and TOP:**
+  * In MySQL, `TOP` is **NOT supported**. Instead, MySQL uses the `LIMIT` clause.
+* **Example:** Show Top 5 richest accounts.
+  ```sql
+  SELECT * FROM Account ORDER BY balance DESC LIMIT 5; 
+  ```
+* **LIMIT with Offset:** `LIMIT` also allows you to skip some rows using `LIMIT offset, count`.
+  ```sql
+  SELECT * FROM Customer ORDER BY balance DESC LIMIT 5, 5; 
+  ```
+  *(Skips the first 5 rows, then shows the next 5 rows).*
+* `TOP` (SQL Server) या `LIMIT` (MySQL) का उपयोग आउटपुट में दिखने वाली rows की गिनती को सीमित करने के लिए किया जाता है। आप चाहें तो कुछ rows को skip करके अगली rows भी दिखा सकते हैं।
+
+#### 10. Multi Queries in SQL
+* You can execute multiple queries together by separating them with semicolons `;`.
+  ```sql
+  SELECT * FROM customer; 
+  SELECT * FROM order;
+  ```
+* Both queries return results simultaneously (in their respective result sets).
+
+#### 11. Static Fix (Static Value in SQL)
+* You have to define the value as static without necessarily selecting from any table.
+  ```sql
+  SELECT 123 AS static_number;
+  SELECT 'VISHAL';
+  ```
+* **Adding a static column:** You can add a static column or fixed value to a real table result.
+  ```sql
+  SELECT id, first_name, 'new_customers' AS customer_type FROM customers;
+  ```
+  *(Each row will now have the new column with the static value 'new_customers').*
+* **Example:**
+  ```sql
+  SELECT id, name, 'UNKNOWN' AS record_status FROM orders;
+  ```
+* अगर आप किसी क्वेरी के आउटपुट में खुद से कोई फिक्स (fixed) या स्टेटिक वैल्यू डालना चाहते हैं, तो आप उसे सीधा `SELECT` में लिख सकते हैं। यह हर row के साथ जुड़कर आएगा।
+
+#### 12. Pro-Tips / Interview Insights (Missing Points)
+
+* **1. Column Alias in WHERE Clause (Order of Execution Rule)**
+  * **English:** In SQL, you cannot use a column alias (created in the `SELECT` clause) inside the `WHERE` clause. This is because the database engine executes the `WHERE` clause *before* the `SELECT` clause, so it doesn't know the alias exists yet! However, you can use the alias in the `ORDER BY` clause because `ORDER BY` executes *after* `SELECT`.
+  * **Example Error:** 
+    ```sql
+    -- ERROR! 'annual_salary' is an alias, WHERE doesn't know it yet
+    SELECT (salary * 12) AS annual_salary FROM employees WHERE annual_salary > 50000; 
+    ```
+  * **Correct Way:**
+    ```sql
+    SELECT (salary * 12) AS annual_salary FROM employees WHERE (salary * 12) > 50000;
+    ```
+  * इंटरव्यू का सबसे मशहूर सवाल: "क्या हम SELECT में बनाए गए Alias को WHERE में इस्तेमाल कर सकते हैं?" जवाब है **नहीं!** क्योंकि SQL इंजिन पहले `WHERE` को चलाता है और बाद में `SELECT` को। जब `WHERE` चल रहा होता है, तब तक इंजिन को पता ही नहीं होता कि आपने कोई नया नाम (Alias) बनाया है। लेकिन आप Alias को `ORDER BY` में इस्तेमाल कर सकते हैं क्योंकि वह `SELECT` के बाद चलता है।
+
+* **2. Real-world Pagination using LIMIT and OFFSET**
+  * **English:** In real-world applications (like e-commerce sites showing 10 products per page), SQL uses `LIMIT` with `OFFSET` to manage pages. 
+    * **Page 1** (Shows first 10 products):
+      ```sql
+      SELECT * FROM products LIMIT 10 OFFSET 0;
+      ```
+    * **Page 2** (Skips first 10, shows next 10):
+      ```sql
+      SELECT * FROM products LIMIT 10 OFFSET 10;
+      ```
+    * **Page 3** (Skips first 20, shows next 10):
+      ```sql
+      SELECT * FROM products LIMIT 10 OFFSET 20;
+      ```
+  * असली वेबसाइट्स (जैसे Amazon) पर जब आप "Page 2" या "Page 3" पर क्लिक करते हैं, तो पीछे SQL क्वेरी में `LIMIT` और `OFFSET` बदल रहा होता है। `OFFSET` बताता है कि कितनी rows छोड़नी (skip करनी) हैं और `LIMIT` बताता है कि कितनी नई rows दिखानी हैं।
+
+* **3. Single Quotes vs Double Quotes (String Quote Rule)**
+  * **English:** Always use single quotes (`'...'`) for strings and dates in SQL, never double quotes (`"..."`). While MySQL might forgivingly accept double quotes depending on its SQL mode, standard SQL (like PostgreSQL, Oracle, SQL Server) strictly treats double quotes as identifiers (like table or column names), not strings.
+  * **Correct Syntax:**
+    ```sql
+    SELECT * FROM customers WHERE country = 'India';
+    ```
+  * SQL स्टैंडर्ड में हमेशा टेक्स्ट (String) और तारीख (Date) के लिए **Single Quotes (`'...'`)** का ही इस्तेमाल करना चाहिए। अगर आप Double Quotes इस्तेमाल करते हैं, तो वह MySQL में तो कभी-कभी चल जाता है, लेकिन अन्य प्रोफेशनल डेटाबेस (PostgreSQL/SQL Server) में एरर दे देता है!
+
+* **4. The Trailing Comma Error (Syntax Rule)**
+  * **English:** Be very careful not to leave a trailing comma at the end of your `SELECT` list right before the `FROM` keyword. This is one of the most common beginner syntax errors.
+  * **Incorrect (Syntax Error):**
+    ```sql
+    SELECT name, city, FROM customers; 
+    ```
+  * **Correct:**
+    ```sql
+    SELECT name, city FROM customers;
+    ```
+  * अक्सर लोग क्वेरी लिखते समय आखिरी कॉलम के बाद गलती से `,` (कॉमा) लगा देते हैं (जैसे `city, FROM`). ध्यान दें कि आखिरी कॉलम के बाद कभी भी कॉमा नहीं लगाना चाहिए, वरना पूरी क्वेरी क्रैश हो जाएगी।
+
+### 13.13 Key Constraints & Types of Keys in SQL
+
+#### 1. What are Key Constraints?
+* **English:** Key constraints are rules applied to columns in a table to ensure data correctness, integrity, uniqueness, and proper identification of rows.
+* की कंस्ट्रेंट्स (Key Constraints) वो नियम हैं जो किसी टेबल के कॉलम पर लगाए जाते हैं ताकि डेटा सही रहे, कोई डुप्लीकेट न बने और दोनों टेबल्स के बीच सही रिश्ता (relationship) बना रहे।
+
+#### 2. SQL Constraints (Point-wise Detail)
+
+* **1. PRIMARY KEY**
+  * **Properties:** Uniquely identifies each record. Unique for each row, CANNOT be NULL. A table can have only ONE primary key. Can be single or multiple columns (composite).
+  * प्राइमरी की (Primary Key) टेबल के हर रिकॉर्ड की एक अनोखी (Unique) पहचान होती है। यह कभी खाली (NULL) नहीं हो सकती और एक टेबल में सिर्फ़ एक ही प्राइमरी की बन सकती है।
+  * **Code Example:**
+    ```sql
+    CREATE TABLE Students (
+        StudentID INT PRIMARY KEY,
+        Name VARCHAR(50),
+        Age INT
+    );
+    ```
+
+* **2. FOREIGN KEY**
+  * **Properties:** Ensures referential integrity. References the primary key of another table. Can contain duplicate values and can be NULL.
+  * **ON DELETE CASCADE / ON UPDATE CASCADE:** Deletes or updates child rows automatically when the parent row is modified.
+  * फॉरेन की (Foreign Key) का काम दो टेबल्स को जोड़ना है। यह दूसरी (Parent) टेबल की Primary Key को रेफर करती है। अगर Parent टेबल का डेटा डिलीट होता है, तो CASCADE नियम से Child टेबल का जुड़ा हुआ डेटा भी अपने-आप डिलीट हो जाता है।
+  * **Code Example:**
+    ```sql
+    CREATE TABLE Orders (
+        OrderID INT PRIMARY KEY,
+        CustomerID INT,
+        FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID) ON DELETE CASCADE
+    );
+    ```
+
+* **3. UNIQUE KEY**
+  * **Properties:** Prevents duplicate values. Ensures all values in a column are unique. Unlike primary key, a table can have MULTIPLE unique keys. Can allow NULL values.
+  * यूनिक की (Unique Key) डुप्लीकेट डेटा को रोकती है। प्राइमरी की और इसमें बस ये अंतर है कि एक टेबल में कई यूनिक की हो सकती हैं, और इसमें NULL वैल्यू (खाली डेटा) डाली जा सकती है।
+  * **Code Example:**
+    ```sql
+    CREATE TABLE Employees (
+        EmployeeID INT PRIMARY KEY,
+        Email VARCHAR(100) UNIQUE
+    );
+    ```
+
+* **4. NOT NULL**
+  * **Properties:** Ensures that a column cannot have a NULL value. Often used alongside Primary Key.
+  * यह सुनिश्चित करता है कि कॉलम में कोई भी खाली जगह (NULL) न छूटे, डेटा भरना अनिवार्य (Mandatory) हो जाता है।
+  * **Code Example:** `ProductName VARCHAR(50) NOT NULL`
+
+* **5. CHECK Constraint**
+  * **Properties:** Ensures that values in a column meet a specific logical condition (e.g., Age >= 18).
+  * चेक (CHECK) का इस्तेमाल किसी कॉलम पर शर्त लगाने के लिए होता है (जैसे: उम्र 18 से कम नहीं होनी चाहिए)। गलत डेटा टेबल में सेव नहीं होगा।
+  * **Code Example:**
+    ```sql
+    CREATE TABLE Employees (
+        EmployeeID INT PRIMARY KEY,
+        Age INT CHECK (Age >= 18)
+    );
+    ```
+
+* **6. DEFAULT Constraint**
+  * **Properties:** Fills a column with a default fixed value if no value is specified during insertion.
+  * अगर डेटा डालते समय आपने किसी कॉलम को खाली छोड़ दिया, तो DEFAULT नियम खुद से वहाँ एक पहले से सेट की गई वैल्यू डाल देगा।
+  * **Code Example:** `OrderDate DATE DEFAULT CURRENT_DATE`
+
+* **7. AUTO_INCREMENT (or IDENTITY)**
+  * **Properties:** Automatically generates unique numbers for a column (mostly for primary keys).
+  * यह खुद-ब-खुद बढ़ता हुआ नंबर (1, 2, 3...) जनरेट करता है। इसे प्राइमरी की के लिए इस्तेमाल किया जाता है ताकि हर बार नया ID खुद बन जाए।
+
+* **8. INDEX**
+  * **Properties:** Technically not a constraint, but used to enforce uniqueness (Unique Index) and massively improve query performance.
+  * इंडेक्स (Index) क्वेरी को तेज़ (Fast) बनाने के काम आता है, बिल्कुल किसी किताब के इंडेक्स (पन्नों की सूची) की तरह, जिससे डेटा जल्दी खोजा जा सके।
+
+#### 3. Types of Keys (Database Architecture)
+Here is the detailed taxonomy of keys in a relational database:
+
+* **1. SUPER KEY:** Any set of columns that uniquely identifies a row in a table. It may include extra unnecessary columns. (e.g., `{StudentID, Name, Email}`).
+* **2. CANDIDATE KEY:** A *minimal* super key. It uniquely identifies a row without any extra columns. (e.g., `{StudentID}` or `{Email}`). Both can identify a row, but we must choose one.
+* **3. PRIMARY KEY:** The one Candidate Key chosen by the database designer to uniquely identify records. (e.g., `{StudentID}`).
+* **4. ALTERNATE KEY:** A candidate key that was *not* chosen as the primary key. Usually enforced with a UNIQUE constraint. (e.g., `{Email}`).
+* **5. COMPOSITE KEY:** A primary key made of two or more columns together. (e.g., `PRIMARY KEY (StudentID, CourseID)`). Individually they might not be unique, but the combination is unique. Used for Many-to-Many relationships.
+* **6. SURROGATE KEY:** An artificial key created ONLY to uniquely identify a row. It has no business meaning (like an `AUTO_INCREMENT` ID).
+
+#### 4. The Hierarchy of Keys (Visual Diagram)
+Below is a clear representation of how these keys relate to each other:
+
+![Hierarchy of Keys Diagram](./keys_hierarchy.svg)
+
+* **Hindi Summary of Keys:**
+  * **Super Key:** कोई भी कॉलम्स का ग्रुप जो row को पहचान सके (भले ही फालतू कॉलम्स हों)।
+  * **Candidate Key:** Super key में से फालतू कॉलम्स हटा दो, तो वो Candidate Key बन जाती है।
+  * **Primary Key:** Candidate Keys में से जो सबसे बेस्ट हो, उसे हम Primary Key बनाते हैं।
+  * **Alternate Key:** जो Candidate Keys, Primary Key नहीं बन पाईं, उन्हें Alternate Key कहते हैं।
+  * **Composite Key:** जब एक कॉलम से काम न चले और दो-तीन कॉलम्स को मिलाकर Primary Key बनाई जाए।
+  * **Surrogate Key:** जो ऑटोमैटिक जनरेटेड नंबर (`AUTO_INCREMENT`) होता है, जिसका रियल दुनिया से कोई मतलब नहीं होता।
+
+### 13.14 SQL Joins (Combining Data from Tables)
+
+#### 1. What are Joins & Why Do We Need Them?
+* JOINs are used in SQL to combine data (columns) from two or more tables based on a related column between them (usually Primary Key $\leftrightarrow$ Foreign Key). They append columns side-by-side to give a wider table result.
+* **Rows vs Columns (SET Operators vs JOINs):**
+  * If you want to combine **Rows** (putting rows below each other to make the table longer) $\rightarrow$ Use **SET Operators** (like `UNION`).
+  * If you want to combine **Columns** (putting columns side-by-side to make the table wider) $\rightarrow$ Use **JOINs**.
+* **Important Note:** JOINs always work with the `SELECT` statement.
+* **Why do we need JOINs?**
+  1. **Recombine Data:** Get related data that was split into multiple tables (e.g., Customer Name + Order Details).
+  2. **Avoid Duplication:** We keep data normalized in separate tables and connect them only when needed using JOINs.
+  3. **Query Across Entities:** (e.g., `Employees` $\rightarrow$ `Departments` $\rightarrow$ `Salaries`).
+  4. **Performance:** Small, well-structured tables are faster than one giant denormalized table.
+  5. **Data Enrichment:** "Getting the extra data" (e.g., joining a Zip Code reference table to enhance Customer data).
+  6. **Check for Existence (Filtering):** Checking if data exists in another table (Anti Joins).
+* **Best Practice:** Always add the **Table Name or Alias** before the column name (e.g., `customers.id`) to avoid **Column Ambiguity** (confusion when both tables have a column with the same name).
+* **The 3 Core Scenarios for JOINs:**
+  1. Matching data
+  2. All data
+  3. Unmatched data
+* JOIN का इस्तेमाल दो या दो से ज़्यादा टेबल्स के डेटा (कॉलम्स) को एक साथ जोड़ने के लिए होता है। अगर आपको डेटा को नीचे-नीचे जोड़ना है (Rows) तो `SET Operators` (जैसे UNION) यूज़ करें, लेकिन अगर डेटा को अगल-बगल जोड़ना है (Columns), तो `JOIN` का इस्तेमाल होता है। यह डेटाबेस में फैले हुए अलग-अलग टुकड़ों (Normalized Tables) को एक साथ देखने (Recombine) और डेटा को एन्हांस (Enrich) करने के काम आता है।
+* Visual comparison showing how SET Operators (UNION) make a table LONGER by appending rows, while JOINs make a table WIDER by appending columns.
+
+![Rows vs Columns](./svg_rows_vs_cols.svg)
+
+
+#### 2. Types of Joins (Basic to Advanced)
+* A complete mindmap showing all 6 major types of SQL Joins and their logical connections.
+* इस डायग्राम में SQL Joins के सारे मुख्य प्रकार (Inner, Left, Right, Full, Anti, Cross) दिखाए गए हैं।
+
+![Types of Joins](./svg_joins_types.svg)
+
+
+* **1. Basic Join (No Condition)**
+  * **English Definition/Properties:** Returns data from tables without combining them logically (just two separate result sets).
+  * **हिंदी सारांश:** यह सबसे बेसिक तरीका है जो सिर्फ़ दो टेबल्स का डेटा लाकर रख देता है, उन्हें आपस में जोड़ता नहीं है। इसका इस्तेमाल तब होता है जब हमें बिना किसी शर्त (Condition) के बस दो अलग-अलग रिजल्ट चाहिए।
+  * **Q1. Retrieve all data from customers and orders in two different results:**
+    ```sql
+    SELECT * FROM customers; 
+    SELECT * FROM orders;
+    ```
+
+* **2. INNER JOIN (The Default Join)**
+  * **English Definition/Properties:** Returns ONLY the matching rows from both tables. It gives you the "common part" or intersection. If you simply write `JOIN`, it defaults to `INNER JOIN`. The order of tables in the query does **not** matter.
+  * **हिंदी सारांश:** **क्या है?** यह सिर्फ़ वो डेटा लाता है जो दोनों टेबल्स में कॉमन (मैच) होता है। **क्यों यूज़ करें?** जब आपको सिर्फ़ वही रिकॉर्ड चाहिए जो दोनों जगह मौजूद हों (जैसे सिर्फ़ वो कस्टमर जिन्होंने सच में आर्डर किया है)। **Imp Point:** SQL में अगर आप सिर्फ़ `JOIN` लिखते हैं तो वो बाई डिफ़ॉल्ट `INNER JOIN` ही माना जाता है।
+  * **Q1. Get all customers along with their orders but only for customers who have placed an order:**
+    ```sql
+    SELECT c.id, c.first_name, o.order_id
+    FROM customers AS c
+    INNER JOIN orders AS o ON c.id = o.customer_id;
+    ```
+  * यह सिर्फ़ वो डेटा दिखाता है जो दोनों टेबल्स में कॉमन (मैचिंग) है। इसमें टेबल्स को आगे-पीछे लिखने से कोई फर्क नहीं पड़ता।
+  * Inner Join returns ONLY the matching rows that exist in both tables.
+  * ![Inner Join Concept](./svg_inner_join.svg)
+
+* **3. LEFT JOIN (or LEFT OUTER JOIN)**
+  * **English Definition/Properties:** Returns ALL rows from the Left table + only matching rows from the Right table. If there is no match on the right, it returns `NULL` for those columns. The **order of tables is highly important**.
+  * **हिंदी सारांश:** **क्या है?** यह लेफ्ट (प्राइमरी) टेबल का सारा डेटा लाता है और राइट टेबल का सिर्फ़ मैच होने वाला डेटा। **क्यों यूज़ करें?** जब हमें अपना प्राइमरी डेटा पूरा चाहिए, चाहे सामने वाली टेबल में उसकी जानकारी हो या न हो (जैसे सारे कस्टमर दिखाओ, चाहे उन्होंने आर्डर किया हो या नहीं)। **Imp Point:** इसमें टेबल्स को लिखने का क्रम (Order) बहुत ज़रूरी होता है।
+  * **Q1. Get all customers along with their orders, including those without an order:**
+    ```sql
+    SELECT c.id, c.first_name, o.order_id
+    FROM customers AS c
+    LEFT JOIN orders AS o ON c.id = o.customer_id;
+    ```
+  * यह Left टेबल का सारा डेटा दिखाता है, और Right टेबल का सिर्फ़ मैच होने वाला डेटा। जो मैच नहीं होता, वहाँ `NULL` आ जाता है।
+  * Left Join returns **All Rows** from the Primary (Left) table, and **Only Matching Data** from the Secondary (Right) table. The order of tables is highly important.
+  * Execution flow showing how non-matching right table rows automatically get assigned `NULL` values.
+  * ![Left Join Concept](./svg_left_join.svg)
+
+* **4. RIGHT JOIN (or RIGHT OUTER JOIN)**
+  * **English Definition/Properties:** Returns ALL rows from the Right table + only matching rows from the Left table. If no match, it returns `NULL` for left table columns.
+  * **हिंदी सारांश:** **क्या है?** यह बिल्कुल Left Join का उल्टा है (राइट का सारा डेटा + लेफ्ट का मैचिंग डेटा)। **क्यों यूज़ करें?** जब राइट वाली टेबल हमारा मुख्य फोकस (Primary Focus) हो। **Imp Point:** इंडस्ट्री में लोग Right Join का इस्तेमाल कम करते हैं, वो बस टेबल्स को पलट कर Left Join ही लगा देते हैं।
+  * **Q1. Get all customers along with their orders, including orders without matching customers:**
+    ```sql
+    SELECT c.id, c.first_name, o.order_id
+    FROM customers AS c
+    RIGHT JOIN orders AS o ON c.id = o.customer_id;
+    ```
+  * *Pro-Tip:* You can achieve the EXACT same result using `LEFT JOIN` just by swapping the tables (`FROM orders LEFT JOIN customers`).
+  * यह Left Join का बिल्कुल उल्टा है। इसमें Right टेबल का सारा डेटा आता है। इंडस्ट्री में लोग Right Join की जगह टेबल्स को पलटकर Left Join का ही इस्तेमाल करना ज़्यादा पसंद करते हैं।
+  * Right Join returns **All Rows** from the Secondary (Right) table and only matching rows from the Left table.
+  * Industry Best Practice: You can achieve the exact same results by simply swapping the tables and using a `LEFT JOIN` instead of a `RIGHT JOIN`.
+  * ![Right Join Concept](./svg_right_join.svg)
+  * ![Alternative to Right Join](./svg_right_alt.svg)
+
+* **5. FULL JOIN (or FULL OUTER JOIN)**
+  * **English Definition/Properties:** Returns ALL rows from both the Left and Right tables (everything: matching and unmatching). Unmatched sides get `NULL`. Order of tables does not matter.
+  * **हिंदी सारांश:** **क्या है?** यह दोनों टेबल्स का सारा का सारा डेटा उठा कर ले आता है (मैचिंग और बिना मैचिंग, दोनों)। **क्यों यूज़ करें?** जब हमें कुछ भी मिस नहीं करना हो और पूरा ओवरऑल डेटा चाहिए हो। **Imp Point:** MySQL में यह डायरेक्ट काम नहीं करता, इसे `UNION` के ज़रिये बनाना पड़ता है।
+  * *Note:* **MySQL DOES NOT support FULL JOIN directly!** You have to simulate it using a `UNION` of `LEFT JOIN` and `RIGHT JOIN`.
+  * **Q1. Get all the customers and all orders even if there is no match:**
+  * **MySQL Code Simulation:**
+    ```sql
+    SELECT c.id, o.order_id FROM customers AS c LEFT JOIN orders AS o ON c.id = o.customer_id
+    UNION
+    SELECT c.id, o.order_id FROM customers AS c RIGHT JOIN orders AS o ON c.id = o.customer_id;
+    ```
+  * यह दोनों टेबल्स का सारा (कचरा और काम का, दोनों) डेटा निकाल कर ले आता है। MySQL में यह डायरेक्ट काम नहीं करता, इसलिए हमें Left और Right Join के बीच UNION लगाना पड़ता है।
+  * Full Join returns **Everything** (All Rows) from both tables. Unmatched rows are padded with `NULL`s. The order of the tables does not matter.
+  * ![Full Join Concept](./svg_full_join.svg)
+  * ![Data Enrichment Visualization](./svg_data_enrich.svg)
+
+
+#### 3. Advanced Joins (Filtering & Special Cases)
+
+* **1. LEFT ANTI JOIN**
+  * **Properties:** Returns rows from the Left table that have NO match in the Right table. It uses the Right table strictly for filtering (checking for existence).
+  * **Q1. Get all customers who have not placed any order:**
+    ```sql
+    SELECT c.id, c.first_name, o.order_id
+    FROM customers AS c
+    LEFT JOIN orders AS o ON c.id = o.customer_id
+    WHERE o.customer_id IS NULL; -- The Anti-Join Filter
+    ```
+  * यह सिर्फ़ वो डेटा लाता है जो Left में है लेकिन Right में बिल्कुल नहीं है। इसे निकालने के लिए Left Join लगाकर WHERE क्लॉज़ में Right की चाबी को `IS NULL` सेट कर देते हैं।
+  * Left Anti Join returns ONLY the unmatching rows from the primary (Left) table.
+  * The secondary (Right) table is used strictly for filtering data, not for combining. Achieved by adding `WHERE B.key IS NULL`.
+  * ![Left Anti Join Concept](./svg_left_anti.svg)
+  * ![Left Anti Join Execution](./svg_left_anti_exec.svg)
+
+* **2. RIGHT ANTI JOIN**
+  * **Properties:** The opposite of Left Anti Join. Returns rows from the Right table that have NO match in the Left table.
+  * **Q1. Get all records without matching customers:**
+    ```sql
+    SELECT c.id, c.first_name, o.order_id
+    FROM customers AS c
+    RIGHT JOIN orders AS o ON c.id = o.customer_id
+    WHERE c.id IS NULL; 
+    ```
+  * *Pro-Tip (Alternative Approach):* Just like Right Join, you can achieve a Right Anti Join by simply swapping the tables and using a `LEFT JOIN` (Left Anti Join structure).
+    * **Syntax:**
+      ```sql
+      SELECT c.id, c.first_name, o.order_id
+      FROM orders AS o
+      LEFT JOIN customers AS c ON o.customer_id = c.id
+      WHERE c.id IS NULL; 
+      ```
+  * यह Left Anti Join का उल्टा है। यह सिर्फ़ Right टेबल का वो डेटा लाता है जो Left में मैच नहीं होता। (फिल्टर के लिए `c.id IS NULL` का इस्तेमाल होता है)।
+  * Right Anti Join returns ONLY the unmatching rows from the secondary (Right) table.
+  * The primary (Left) table acts as a filter (Lookup). Achieved by adding `WHERE A.key IS NULL`.
+  * ![Right Anti Join Concept](./svg_right_anti.svg)
+
+* **3. FULL ANTI JOIN**
+  * **Properties:** Returns rows that do NOT match in either table (exclusive data from both sides).
+  * **Q1. Find the customers without orders and orders without customers:**
+    ```sql
+    SELECT * FROM (
+        SELECT c.id AS customer_id, c.first_name, o.customer_id AS order_customer_id, o.order_id 
+        FROM customers c LEFT JOIN orders o ON c.id = o.customer_id
+        UNION
+        SELECT c.id AS customer_id, c.first_name, o.customer_id AS order_customer_id, o.order_id
+        FROM customers c RIGHT JOIN orders o ON c.id = o.customer_id
+    ) AS full_join
+    WHERE full_join.customer_id IS NULL OR full_join.order_customer_id IS NULL;
+    ```
+  * यह दोनों टेबल्स से वो सारा डेटा निकाल कर लाता है जो आपस में बिल्कुल मैच नहीं करता (सिर्फ़ Unmatching Data)।
+  * Full Anti Join returns ONLY rows that don't match in either tables. Achieved by checking if either `A.key IS NULL` OR `B.key IS NULL`.
+  * ![Full Anti Join Concept](./svg_full_anti.svg)
+
+* **4. SELF JOIN**
+  * **Properties:** When a table is joined with ITSELF. It's used for hierarchical data (like Employees and their Managers) or comparing rows within the same table. You MUST use table aliases to treat it as two separate tables.
+  * **Code Example (Employee and their Manager Name):**
+    ```sql
+    SELECT e.name AS EmployeeName, m.name AS ManagerName
+    FROM employees AS e
+    JOIN employees AS m ON e.manager_id = m.id;
+    ```
+  * **Table Setup (Real-World Hierarchy):**
+    ```sql
+    CREATE TABLE employees (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(50) NOT NULL,
+        manager_id INT,
+        FOREIGN KEY (manager_id) REFERENCES employees(id)
+    );
+    INSERT INTO employees (name, manager_id) VALUES
+    ('Alice', NULL), -- Top-level Boss (No manager)
+    ('Bob', 1),      -- Bob's manager is Alice
+    ('Carol', 1);    -- Carol's manager is Alice
+    ```
+  * जब एक टेबल खुद से ही जोड़ी जाती है। जैसे एक ही एम्प्लोयी टेबल में काम करने वाले लोग भी हैं और उनके मैनेजर भी हैं।
+
+* **5. CROSS JOIN (Cartesian Product)**
+  * **Properties:** Combines EVERY row from the Left table with EVERY row from the Right table. There is NO `ON` condition. If Table A has 3 rows and Table B has 4 rows, the result has 12 rows.
+  * **Q1. Generate all possible combinations of customers and orders:**
+    ```sql
+    SELECT * FROM customers CROSS JOIN orders;
+    ```
+  * यह टेबल्स के हर रिकॉर्ड को आपस में गुणा (Multiply) कर देता है। इसे बिना `ON` कंडीशन के लिखा जाता है।
+  * Cross Join returns the Cartesian Product. It combines every row from table A with every row from table B.
+  * If Table A has 2 rows and Table B has 3 rows, the total output will be exactly $2 \times 3 = 6$ Total Rows. No `ON` condition is needed.
+  * ⚠️ **Interview Warning (The Cross Join Danger):** If you accidentally forget the `ON` condition while writing an `INNER JOIN`, SQL automatically converts it into a `CROSS JOIN`. If you have two tables with 1 Million rows each, the result will have $1,000,000 \times 1,000,000$ (1 Trillion) rows, which will instantly crash the database server!
+  * ⚠️ **चेतावनी (Warning):** इंटरव्यू में अक्सर पूछा जाता है कि अगर INNER JOIN में `ON` लगाना भूल जाएं तो क्या होगा? जवाब है: वो क्रॉस जॉइन बन जाएगा। और अगर टेबल्स में लाखों का डेटा हुआ, तो सर्वर हैंग या क्रैश हो जाएगा।
+  * Cross Join returns the Cartesian Product. It combines every row from table A with every row from table B without any `ON` condition.
+  * ![Cross Join Concept](./svg_cross_join.svg)
+
+
+#### 4. Summary: How to Choose the Right Join?
+1. Want **Matching** Data only? $\rightarrow$ `INNER JOIN`
+2. Want **All Data** (Focus on primary table)? $\rightarrow$ `LEFT JOIN`
+3. Want **Everything** from both tables? $\rightarrow$ `FULL OUTER JOIN`
+4. Want **Unmatched** Data from primary table? $\rightarrow$ `LEFT ANTI JOIN`
+5. Want **Unmatched** Data from both tables? $\rightarrow$ `FULL ANTI JOIN`
+
+Master decision tree for selecting the correct SQL Join based on whether you want Matching, All, or Unmatching rows.
+
+![How to Choose Right Join](./svg_decision_tree.svg)
+
+#### 5. Multi-Table Joins (Interview Perspective)
+In real-world applications, you often join more than 2 tables. The pattern is sequential: Table A joins to Table B, Table B joins to Table C.
+* **Q1. Using SalesDB, retrieve a list of all orders along with related customers, product, and employee details:**
+  ```sql
+  SELECT o.order_id, c.first_name, p.product_name, e.first_name AS Salesperson
+  FROM orders AS o
+  LEFT JOIN customers AS c ON o.customer_id = c.id
+  LEFT JOIN products AS p ON o.product_id = p.id
+  LEFT JOIN employees AS e ON o.salesperson_id = e.id;
+  ```
+* Concept showing one Starting Master Table iteratively joining to multiple secondary tables (B, C, D) using `LEFT JOIN` to keep all primary data.
+* Example using a real Entity Relationship diagram (SalesDB). You start from `Orders` and join `Products`, `Customers`, and `Employees` to get a complete flat view.
+* इंडस्ट्री में हमेशा एक मास्टर टेबल (जैसे Orders) को बाकी रेफरेंस टेबल्स (Products, Customers) से लेफ्ट जॉइन (Left Join) करके एक पूरा फ्लैट डेटा सेट तैयार किया जाता है।
+* ![Multi-Table Concept](./svg_multi_table.svg)
+* ![Multi-Table Schema](./svg_schema.svg)
+
+#### 6. Pro-Tip: Interview Trick (Inner Join without INNER JOIN)
+* **Question:** How do you get matching data from two tables *without* using the `INNER JOIN` keyword?
+* **Answer:** You can use a `LEFT JOIN` and then filter out the unmatching data using the `WHERE` clause.
+* **Code Example:**
+  ```sql
+  SELECT c.id, c.first_name, o.order_id
+  FROM customers AS c
+  LEFT JOIN orders AS o ON c.id = o.customer_id
+  WHERE o.customer_id IS NOT NULL;
+  ```
+* **इंटरव्यू ट्रिक:** अगर कोई पूछे कि बिना "Inner Join" लिखे कॉमन डेटा कैसे निकालेंगे? तो आप Left Join लगाइये और फिर `WHERE` क्लॉज़ में `RightTable.key IS NOT NULL` लिख दीजिये। इससे सारा कचरा (Unmatched) डेटा हट जाएगा और सिर्फ़ कॉमन डेटा ही बचेगा।
+
+### 13.15 SET Operators (Combining Rows)
+
+#### 1. What are SET Operators & Why Do We Need Them?
+* **English Definition/Properties:** In SQL, SET operations are used to combine the results of two or more `SELECT` queries into a single result set. While `JOIN` combines columns side-by-side, SET operators combine rows top-to-bottom.
+* **हिंदी सारांश:** **क्या है?** सेट ऑपरेटर्स का इस्तेमाल दो या उससे ज़्यादा `SELECT` क्वेरीज के रिजल्ट को एक साथ नीचे-नीचे (Rows में) जोड़ने के लिए होता है। **क्यों यूज़ करें?** जब आपको अलग-अलग टेबल्स या क्वेरीज का डेटा एक ही टेबल जैसी लिस्ट में दिखाना हो।
+
+![Types of SET Operators](./svg_set_types.svg)
+![Execution Flow](./svg_set_execution.svg)
+
+#### 2. The 6 Golden Rules of SET Operators
+* **English Definition/Properties:** To successfully use a SET operator, your queries must strictly follow these rules:
+  1. **SQL Clauses:** You can use `WHERE`, `JOIN`, `GROUP BY`, and `HAVING` in individual queries. However, `ORDER BY` is allowed **only once** at the very end of the entire combined query.
+  2. **Number of Columns:** The number of columns in each `SELECT` query must be exactly the same.
+  3. **Compatible Data Types:** Columns being combined don’t have to be exactly the same data type, but they must be convertible to a common type (e.g., `INT` with `BIGINT`, or `INT` with `VARCHAR`). You cannot logically mix `INT` with `DATE`.
+  4. **Order of Columns:** The order of the columns in each query must be the same.
+  5. **Column Aliases (Names):** The column names in the final result set are determined entirely by the names specified in the **first query** (the base query).
+  6. **Mapping Correct Columns:** Even if there is no SQL error, incorrectly mapping "Age" to "Name" will lead to inaccurate results. Always make sure similar information is mapped properly.
+* **हिंदी सारांश:** सेट ऑपरेटर लगाने के लिए 6 नियम पक्के हैं: दोनों क्वेरी में कॉलम्स की गिनती बराबर होनी चाहिए, डेटा टाइप मैच (Compatible) होना चाहिए, और कॉलम्स का क्रम (Order) सेम होना चाहिए। रिजल्ट टेबल के कॉलम का नाम हमेशा पहली क्वेरी तय करती है, और `ORDER BY` सिर्फ आख़िर में एक बार लग सकता है।
+
+![Rules of SET Operators](./svg_set_rules.svg)
+
+#### 3. Types of SET Operators
+
+* **1. UNION**
+  * **English Definition/Properties:** Combines the results of both queries but **removes duplicate rows** from the final output. It is generally slower than `UNION ALL` because it performs extra steps to filter out duplicates. The order of queries does not affect the result.
+  * **हिंदी सारांश:** **क्या है?** यह दो टेबल्स का डेटा जोड़ता है लेकिन डुप्लीकेट (Duplicate) डेटा को हटा देता है, सिर्फ़ यूनिक (Unique) डेटा दिखाता है। डुप्लीकेट हटाने के कारण यह थोड़ा स्लो (Slow) काम करता है।
+  * **Q1. Combine the data from employees and customers into one table:**
+    ```sql
+    SELECT employeeid, firstname, lastname FROM employees
+    UNION
+    SELECT customerid, firstname, lastname FROM customers;
+    ```
+  * ![UNION Concept](./svg_union.svg)
+
+* **2. UNION ALL**
+  * **English Definition/Properties:** Returns **all rows** from both queries, including duplicates. It is faster than `UNION` because it doesn't spend time removing duplicates. Use this if you are confident there are no duplicates or if you want to find duplicates/quality issues.
+  * **हिंदी सारांश:** **क्या है?** यह बिना कोई छटाई (Filtering) किये दोनों टेबल्स का सारा का सारा डेटा जोड़ देता है, चाहे वो डुप्लीकेट ही क्यों न हो। यह `UNION` से ज़्यादा फ़ास्ट (Fast) है।
+  * **Q1. Combine the data from employees and customers into one table including duplicates:**
+    ```sql
+    SELECT employeeid, firstname, lastname FROM employees
+    UNION ALL
+    SELECT customerid, firstname, lastname FROM customers;
+    ```
+  * ![UNION ALL Concept](./svg_union_all.svg)
+
+* **3. EXCEPT (or MINUS in Oracle)**
+  * **English Definition/Properties:** Returns only the distinct rows from the **first query** that are NOT found in the second query. In this operator, the **order of queries affects the final result**.
+  * **हिंदी सारांश:** **क्या है?** यह सिर्फ़ वो डेटा दिखाता है जो पहली क्वेरी में तो है, लेकिन दूसरी में नहीं है। (इसे Delta Detection या डेटा का अंतर निकालने के लिए यूज़ करते हैं)। इसमें क्वेरी आगे-पीछे करने से आंसर बदल जाता है।
+  * **Q1. Find employees who are not customers at the same time:**
+    ```sql
+    SELECT employeeid, firstname, lastname FROM employees
+    EXCEPT
+    SELECT customerid, firstname, lastname FROM customers;
+    ```
+  * **MySQL Alternative (MySQL doesn't support EXCEPT directly):**
+    ```sql
+    SELECT e.employeeid, e.firstname, e.lastname
+    FROM employees e
+    LEFT JOIN customers c ON e.employeeid = c.customerid AND e.firstname = c.firstname AND e.lastname = c.lastname
+    WHERE c.customerid IS NULL;
+    ```
+  * ![EXCEPT Concept](./svg_except.svg)
+
+* **4. INTERSECT**
+  * **English Definition/Properties:** Returns ONLY the rows that are **common** (exist) in both queries. It removes duplicates from the output. It is similar to an `INNER JOIN` but combines data row-wise.
+  * **हिंदी सारांश:** **क्या है?** यह सिर्फ़ वो कॉमन (Common) डेटा दिखाता है जो दोनों क्वेरीज में मौजूद हो। (यह INNER JOIN जैसा है लेकिन Rows पर काम करता है)।
+  * **Q1. Find employees who are also customers:**
+    ```sql
+    SELECT employeeid, firstname, lastname FROM employees
+    INTERSECT
+    SELECT customerid, firstname, lastname FROM customers;
+    ```
+  * **MySQL Alternative (MySQL doesn't support INTERSECT directly):**
+    ```sql
+    SELECT e.employeeid, e.firstname, e.lastname
+    FROM employees e
+    INNER JOIN customers c ON e.employeeid = c.customerid AND e.firstname = c.firstname AND e.lastname = c.lastname;
+    ```
+  * ![INTERSECT Concept](./svg_intersect.svg)
+
+#### 4. Advanced Scenarios & Best Practices
+* **English Definition/Properties:** 
+  1. **Source Flag:** Include an additional column in your `SELECT` statements to indicate the source of each row.
+  2. **Never use an asterisk (*):** Always list the needed columns instead of `*` to prevent mapping errors.
+  3. **Multiple Tables:** You can chain `UNION`, `INTERSECT`, and `EXCEPT` across 3 or more tables sequentially.
+  4. **Use Case (Delta Detection & Data Completeness):** Used to compare tables to detect discrepancies between databases or daily data batches.
+* **हिंदी सारांश:** जब भी सेट ऑपरेटर यूज़ करें, तो कभी भी `*` (Asterisk) यूज़ न करें, हमेशा कॉलम का नाम लिखें ताकि गलत डेटा मैप न हो। इसके अलावा एक एक्स्ट्रा "Source" कॉलम ज़रूर बनाएं ताकि रिजल्ट में पता चले कि डेटा किस टेबल से आया है।
+* **Q1. Orders are stored in separate tables (orders and orders_archive). Combine all orders into one report without duplication:**
+  ```sql
+  SELECT orderid, order_date, 'orders' AS source_table FROM orders
+  UNION
+  SELECT orderid, order_date, 'orders_archive' AS destination_table FROM orders_archive
+  ORDER BY orderid;
+  ```
+* ![Combine Similar Info](./svg_combine_similar.svg)
+* **Q1. Using UNION Across Three Tables with Multiple Columns:**
+  ```sql
+  SELECT id, name, city FROM customers
+  UNION
+  SELECT id, name, city FROM suppliers
+  UNION
+  SELECT id, name, city FROM employees;
+  ```
+* **Q1. Using INTERSECT with Multiple Tables:**
+  ```sql
+  SELECT id, name FROM customers
+  INTERSECT
+  SELECT id, name FROM suppliers
+  INTERSECT
+  SELECT id, name FROM employees;
+  ```
+* **Q1. Using EXCEPT / MINUS with Multiple Tables:**
+  ```sql
+  SELECT id, name FROM customers
+  EXCEPT
+  SELECT id, name FROM blacklist
+  EXCEPT
+  SELECT id, name FROM inactive_customers;
+  ```
+
+* **Q1. Give real-time examples of where you use SET operators in your project:**
+  * **1. EXCEPT Use Case - Delta Detection:**
+    * Delta detection means identifying the differences or changes (delta) between two batches of data (e.g., Day 1 vs Day 2).
+    * ![Delta Detection Concept](./svg_delta_detection.svg)
+  * **2. EXCEPT Use Case - Data Completeness Check:**
+    * EXCEPT operators can be used to compare tables to detect discrepancies between databases and verify that data migrated correctly (100% in sync).
+    * ![Data Completeness Concept](./svg_data_completeness.svg)
+
+#### 5. In-Depth Comparison: JOINs vs SET Operators
+
+* **English Definition/Properties:** While both JOINs and SET operators combine data, they do it in completely different ways. JOINs combine columns (horizontal), and SET operators combine rows (vertical).
+* **हिंदी सारांश:** **क्या है?** JOIN और SET दोनों डेटा को जोड़ते हैं, लेकिन अलग तरीके से। JOIN कॉलम्स को अगल-बगल जोड़कर टेबल को चौड़ा (Wider) बनाता है, जबकि SET ऑपरेटर रोज़ (Rows) को ऊपर-नीचे जोड़कर टेबल को लम्बा (Longer) बनाता है।
+
+![JOIN vs SET Comparison](./svg_join_vs_set.svg)
+
+| Feature | JOIN (Horizontal Merging) | SET Operator (Vertical Stacking) |
+| :--- | :--- | :--- |
+| **Purpose** | Combine data from multiple tables based on related columns. | Combine the results of two or more independent `SELECT` queries. |
+| **Combination Type** | **Horizontal** (Column-wise merging). The table becomes wider. | **Vertical** (Row-wise stacking). The table becomes longer. |
+| **Output Structure** | A combined table containing columns from all joined tables. | A single result set with the *same number of columns* as the input queries. |
+| **Column Requirement** | Corresponding columns can be completely different. | Queries MUST return the exact same number of columns with compatible datatypes. |
+| **Duplicates** | Duplicates are NOT removed automatically. | Controls duplicates: `UNION`/`INTERSECT`/`EXCEPT` removes them, `UNION ALL` keeps them. |
+| **Conditions Needed** | Requires a `JOIN` condition (like the `ON` clause) except for `CROSS JOIN`. | **No join condition required.** Combines result sets directly. |
+| **Works On** | Columns based on relationships (Primary Key / Foreign Key). | Complete rows of result sets (independent queries). |
+| **Types** | `INNER`, `LEFT`, `RIGHT`, `FULL`, `CROSS` | `UNION`, `UNION ALL`, `INTERSECT`, `EXCEPT / MINUS` |
+| **Use Case** | Retrieve related data (e.g. Customer info with their Orders). | Append rows from similar queries (e.g. Combine Customers and Suppliers lists). |
+
+* **Why were Set Operators introduced in SQL?**
+  * SQL is based on relational algebra and mathematics (Set Theory).
+  * **1. Combine independent query results:** Sometimes tables aren't related (e.g. customers and suppliers). SET lets you merge them without needing joins.
+  * **2. Simpler and cleaner syntax:** Without them, merging queries requires messy joins and `DISTINCT` logic.
+  * **3. Control over duplicates:** Easy, direct control over duplicate filtering.
+  * **4. Performance advantages:** Operating on pre-selected results directly is often faster and easier for the database to optimize than complex joins.
+
+* **What problems do SET operators solve that JOINs cannot easily handle?**
+  * **Combining unrelated tables:**
+    * **Join limitation:** Joins require a relationship between tables (like `customer_id`). Without a relationship, a join produces a Cartesian product or meaningless results.
+    * **Set operator solution:** `UNION` or `UNION ALL` can merge results vertically without any matching column.
+  * **Finding common or distinct results:**
+    * **Join limitation:** To find common rows (like `INTERSECT`) or differences (`EXCEPT`), you need complex joins, subqueries, or `DISTINCT` clauses.
+    * **Set operator solution:** `INTERSECT` returns only common rows; `EXCEPT` returns rows in one query but not in another, with simple syntax.
+  * **Simpler syntax for multi-query merging:**
+    * **Join limitation:** Without set operators, combining multiple queries often requires nested queries or `DISTINCT` logic, which is messy.
+    * **Set operator solution:** One command (`UNION`, `INTERSECT`, `EXCEPT`) handles multiple queries cleanly.
+  * **Control over duplicates:**
+    * **Join limitation:** Joins often produce duplicate rows automatically, requiring extra work with `DISTINCT`.
+    * **Set operator solution:** `UNION` removes duplicates automatically, while `UNION ALL` keeps them when needed.
+  * **Vertical combination of result sets:**
+    * **Join limitation:** Joins merge horizontally (side by side) and cannot "stack" results easily.
+    * **Set operator solution:** Set operators stack query results vertically, perfect for combining independent query outputs.
+
+* **Set operators are ideal for merging independent query results, finding common or distinct rows, and controlling duplicates—tasks that are cumbersome or impossible with regular joins.**
+
+* **Set operators overcome the limitations of joins when:**
+  1. Combine the data from tables which are unrelated.
+  2. You want common or exclusive results easily.
+  3. You want a clean, simple syntax to merge multiple queries.
+  4. You want automatic duplicate handling.
+  5. You need vertical stacking of results rather than horizontal merging.
+
+#### 6. Advanced Interview Insights (Pro-Tips)
+* **Q1. Interview Trick: How do SET operators handle NULL values?**
+  * **English:** In SQL, `NULL = NULL` evaluates to `UNKNOWN` or `False`. However, when using `UNION`, the database treats two `NULL` values as **equal**. Therefore, if both queries return a row containing a `NULL`, `UNION` will consider them duplicates and filter one out.
+  * **हिंदी सारांश:** नार्मल SQL में `NULL` और `NULL` बराबर नहीं होते। लेकिन `UNION` करते वक़्त डेटाबेस दो `NULL` को सेम (Equal) मानता है और डुप्लीकेट समझकर हटा देता है! 
+
+* **Q2. Performance Trap: The "UNION" vs "UNION ALL" dilemma**
+  * **English:** Always default to `UNION ALL` in production unless you explicitly need to remove duplicates. Using `UNION` forces the database to perform a massive sorting and deduplication operation across all combined rows, which severely degrades performance on large datasets.
+  * **हिंदी सारांश:** इंडस्ट्री में हमेशा `UNION ALL` यूज़ करने की आदत डालें। जब तक पक्का न हो कि डुप्लीकेट हटाना ही है, तब तक `UNION` यूज़ न करें, क्योंकि यह डेटाबेस पर फालतू का लोड (Sorting & Filtering) बढ़ा देता है।
+
+* **Q3. Real-World Use Case: Unpivoting Data**
+  * **English:** While JOINs are used to pivot data (make it wider), `UNION ALL` is frequently used in data warehousing to **Unpivot** data (convert columns into rows) before analytical functions are applied.
+  * **हिंदी सारांश:** डेटा वेयरहाउसिंग में चौड़े डेटा (Columns) को लम्बा (Rows) बनाने के लिए यानी **Unpivot** करने के लिए `UNION ALL` का बहुत इस्तेमाल किया जाता है।
+
+### 13.16 SQL Built-in Functions (Row-Level & Numeric)
+
+#### 1. What are SQL Functions?
+* **English Definition/Properties:** A built-in SQL code that accepts an input value, processes it, and returns an output value. 
+* **हिंदी सारांश:** **क्या है?** फंक्शन एक बना-बनाया SQL कोड होता है जिसे हम कोई इनपुट (Input) देते हैं, वो उसे प्रोसेस (Process) करता है, और हमें एक आउटपुट (Output) दे देता है (जैसे मशीन में गन्ना डालो और जूस निकालो)।
+* ![Functions Intro](./svg_functions_intro.svg)
+
+#### 2. Categories of Functions
+* **English Definition/Properties:** We group functions into two main categories based on how many rows they process at a time:
+  1. **Single-Row Functions:** You give only one value as input, and it returns a single value as output. (e.g., converting a single name to lowercase).
+  2. **Multi-Row Functions (Aggregate):** Accepts multiple rows/values as input, summarizes them, and returns a single summarized output. (e.g., `SUM()` of 10 rows returns 1 total).
+* **हिंदी सारांश:** फंक्शन 2 तरह के होते हैं: **Single-Row** (एक row दो और बदले में एक ही रिजल्ट लो) और **Multi-Row** (बहुत सारी rows दो और बदले में सबको जोड़-घटाकर एक सिंगल रिजल्ट लो)।
+* ![Single vs Multi Row](./svg_single_vs_multi.svg)
+
+#### 3. Nested Functions
+* **English Definition/Properties:** A function used inside another function. Multiple functions are nested together in order to manipulate a single value in stages.
+* **हिंदी सारांश:** **क्या है?** जब हम एक फंक्शन के अंदर दूसरा फंक्शन यूज़ करते हैं, तो उसे Nested Function कहते हैं। (जैसे प्याज के छिलके - अंदर से बाहर की तरफ काम होता है)।
+* **Example / Order of Execution:** `LENGTH( LOWER( LEFT('Maria', 2) ) )`
+* ![Nested Functions](./svg_nested_functions.svg)
+
+#### 4. String Functions (Manipulation & Extraction)
+![String Functions Mastery](./svg_string_functions.svg)
+
+##### Manipulation Functions
+* **1. CONCAT()**
+  * **English Definition:** Combines multiple strings into one single value.
+  * **हिंदी सारांश:** अलग-अलग टेक्स्ट (Strings) को जोड़कर एक सिंगल टेक्स्ट बनाता है। 
+  * **Q1. Concatenate first name and country into one column with a space:**
+    ```sql
+    SELECT FIRSTNAME, COUNTRY, CONCAT(FIRSTNAME, ' ', COUNTRY) AS NAME_COUNTRY FROM CUSTOMERS;
+    ```
+
+* **2. UPPER() & LOWER()**
+  * **English Definition:** `UPPER` converts all characters to uppercase. `LOWER` converts all characters to lowercase.
+  * **हिंदी सारांश:** टेक्स्ट को कैपिटल (Uppercase) या स्माल लेटर्स (Lowercase) में बदलने के काम आते हैं।
+  * **Q2. Transfer the customer's first name to lowercase and last name to uppercase:**
+    ```sql
+    SELECT FIRSTNAME, COUNTRY, LOWER(FIRSTNAME), UPPER(LASTNAME) FROM CUSTOMERS;
+    ```
+
+* **3. TRIM()**
+  * **English Definition:** Removes leading and trailing spaces (empty spaces at the start or end) from the given string.
+  * **हिंदी सारांश:** टेक्स्ट के आगे और पीछे जो फालतू खाली जगह (Spaces) होती है, उसे काट कर हटा देता है।
+  * **Q1. Find customers whose name contains leading or trailing spaces (Create a boolean flag 0/1):**
+    ```sql
+    SELECT FIRSTNAME, LENGTH(FIRSTNAME), LENGTH(TRIM(FIRSTNAME)) - LENGTH(FIRSTNAME) AS FLAG FROM CUSTOMERS;
+    ```
+
+* **4. REPLACE()**
+  * **English Definition:** Replaces a specific character or substring with a new character.
+  * **हिंदी सारांश:** किसी टेक्स्ट में से एक खास हिस्से को ढूँढकर उसकी जगह कुछ नया डाल देना (या खाली कर देना)।
+  * **Q1. Remove the '-' from the phone number:**
+    ```sql
+    SELECT '123-456-789', REPLACE('123-456-789', '-', ''); -- Output: '123456789'
+    ```
+  * **Q2. Change file extension:**
+    ```sql
+    SELECT 'REPORT.TXT', REPLACE('REPORT.TXT', '.TXT', '.CSV'); -- Output: 'REPORT.CSV'
+    ```
+
+##### Calculation & Extraction Functions
+* **5. LENGTH() / LEN()**
+  * **English Definition:** Counts how many characters are in the string. (SQL Server uses `LEN()`, MySQL/pgAdmin use `LENGTH()`).
+  * **हिंदी सारांश:** टेक्स्ट में कितने अक्षर (Characters) हैं, उनकी गिनती करके बताता है।
+  * **Q1. Calculate the length of each customer's first name:**
+    ```sql
+    SELECT LENGTH(FIRSTNAME) FROM CUSTOMERS;
+    ```
+
+* **6. LEFT() & RIGHT()**
+  * **English Definition:** `LEFT` extracts a specific number of characters from the start. `RIGHT` extracts from the end.
+  * **हिंदी सारांश:** `LEFT` शुरुआत से और `RIGHT` आख़िर से आपके बताये हुए कुछ अक्षर निकाल कर देता है।
+  * **Q1. Retrieve the first two characters of first name and last two of last name:**
+    ```sql
+    SELECT LEFT(FIRSTNAME, 2), RIGHT(LASTNAME, 2) FROM CUSTOMERS;
+    ```
+
+* **7. SUBSTRING()**
+  * **English Definition:** `SUBSTRING(value, starting_position, length)` extracts a part of the string starting at a specified position. To get all remaining characters to the end, use `LENGTH()` as the third argument.
+  * **हिंदी सारांश:** टेक्स्ट के बीच में से किसी खास जगह (Position) से हिस्से को निकालने के काम आता है।
+  * **Q1. Retrieve a list of customer's first names after removing the first character:**
+    ```sql
+    SELECT FIRSTNAME, SUBSTRING(FIRSTNAME, 2, LENGTH(FIRSTNAME)) FROM CUSTOMERS;
+    ```
+
+* **8. LOCATE() / CHARINDEX()**
+  * ![LOCATE Concept](./svg_locate.svg)
+  * **English Definition:** Finds the starting position (index) of a substring within a string. `LOCATE()` is for MySQL, while SQL Server uses `CHARINDEX()`.
+  * **हिंदी सारांश:** किसी टेक्स्ट के अंदर कोई ख़ास अक्षर (character) या वर्ड कहाँ पर है, उसकी पोज़िशन (Index) ढूँढने के काम आता है।
+  * **Interview Use Case:** Often used with `SUBSTRING()` to dynamically split strings (e.g., splitting a full name into first and last name using the space index).
+  * **Q1. Find the position of '@' in an email address:**
+    ```sql
+    SELECT LOCATE('@', 'vishal@gmail.com') AS position; -- Output: 7
+    ```
+
+#### 5. Numeric Functions
+* **English Definition/Properties:** Functions that operate on numeric values for mathematical operations.
+* **हिंदी सारांश:** नंबर और गणित (Math) वाले ऑपरेशन्स के लिए यूज़ होने वाले फंक्शन्स।
+* ![Numeric Functions](./svg_numeric_functions.svg)
+
+* **1. ROUND()**
+  * **English Definition:** `ROUND(value, decimals)` rounds up the value to the specified number of decimal places. If the next decimal is >= 5, it rounds up.
+  * **हिंदी सारांश:** नंबर को राउंड ऑफ (Round off) करने के काम आता है। अगर 2nd डेसीमल तक राउंड करना है और 3rd डेसीमल 5 या उससे बड़ा है, तो वो 2nd को एक बढ़ा देता है।
+  * **Example:**
+    ```sql
+    SELECT 3.516, ROUND(3.516, 2) AS ROUND2, ROUND(3.516, 1) AS ROUND1, ROUND(3.516, 0) AS ROUND0;
+    -- Result: 3.516 -> ROUND2: 3.52, ROUND1: 3.5, ROUND0: 4
+    ```
+
+* **2. ABS()**
+  * **English Definition:** Returns the absolute (positive) value of a number, removing any negative sign.
+  * **हिंदी सारांश:** यह किसी भी नेगेटिव (-) नंबर को पॉजिटिव (+) में बदल देता है।
+  * **Example:**
+    ```sql
+    SELECT ABS(-10), ABS(10);
+    -- Result: 10, 10
+    ```
+
+* **3. CEILING() / CEIL()**
+  * **English Definition:** Always rounds a number *up* to the nearest integer.
+  * **हिंदी सारांश:** नंबर को हमेशा अगले बड़े नंबर पर राउंड करता है।
+  * **Example:**
+    ```sql
+    SELECT CEILING(4.1), CEILING(4.9);
+    -- Result: 5, 5
+    ```
+
+* **4. MOD(x, y) / % Operator**
+  * ![MOD Concept](./svg_mod_even_odd.svg)
+  * **English Definition:** Returns the remainder of a division operation.
+  * **हिंदी सारांश:** भाग देने पर जो शेषफल (Remainder) बचता है, यह वो निकालता है।
+  * **Interview Use Case (Even/Odd Numbers):** Very frequently asked in interviews to find even or odd rows.
+  * **Q1. Find all even ID numbers and odd ID numbers:**
+    ```sql
+    -- Even IDs
+    SELECT * FROM employees WHERE MOD(id, 2) = 0;
+    -- Odd IDs
+    SELECT * FROM employees WHERE MOD(id, 2) = 1;
+    ```
+
+### 13.17 Date and Time Functions
+
+#### 1. Anatomy of Date & Time
+* **English Definition/Properties:** A Date typically contains Year, Month, and Day. A Time contains Hours, Minutes, and Seconds. A Timestamp (or Datetime) combines both.
+* **हिंदी सारांश:** Date में साल, महीना और दिन होता है। Time में घंटे, मिनट और सेकंड होते हैं। Timestamp (Datetime) इन दोनों को मिलाकर बनता है।
+* ![Anatomy of Date & Time](./svg_datetime_anatomy.svg)
+
+#### 2. Sources of Dates (How to Query Dates)
+* **English Definition/Properties:** We have three main sources to get dates in SQL:
+  1. **From a Table Column:** Fetching stored dates. (e.g., `SELECT HIRE_DATE FROM CUSTOMERS;`)
+  2. **Hardcoded Constant String:** Providing a static date directly in the query. (e.g., `SELECT '2025-08-20' AS NEWDATE;`)
+  3. **System Current Date/Time Functions:** Using built-in functions like `GETDATE()` (SQL Server) or `NOW()` / `CURRENT_TIMESTAMP()` (MySQL).
+* **हिंदी सारांश:** SQL में हम 3 तरीकों से डेट ला सकते हैं: (1) टेबल के कॉलम से, (2) खुद से हार्डकोड (स्टैटिक) लिखकर, (3) सिस्टम की करंट डेट निकालने वाले फंक्शन्स का यूज़ करके।
+
+#### 3. Overview of Built-in Date/Time Functions (MySQL focus)
+![Date & Time Overview](./svg_datetime_overview.svg)
+![Function Return Types](./svg_func_comparison_datatype.svg)
+
+##### A. Current Date & Time Functions
+* **1. NOW() & CURRENT_TIMESTAMP()**
+  * **English:** Returns the current system date and time. `NOW()` is mostly used in `SELECT` queries, while `CURRENT_TIMESTAMP` is preferred as a default value in table definitions.
+  * **हिंदी सारांश:** ये दोनों सिस्टम की आज की डेट और अभी का टाइम बताते हैं।
+  * **Example:** `SELECT NOW();` $\rightarrow$ `2025-09-03 13:30:20`
+* **2. CURDATE() / UTC_DATE()**
+  * **English:** `CURDATE()` returns only the current Date (no time). `UTC_DATE()` returns the current UTC date.
+  * **हिंदी सारांश:** अगर सिर्फ आज की डेट चाहिए (बिना टाइम के), तो `CURDATE()` यूज़ करते हैं।
+  * **Example:** `SELECT CURDATE();` $\rightarrow$ `2025-09-03`
+* **3. CURTIME() / UTC_TIME()**
+  * **English:** Returns only the current Time (no date).
+  * **हिंदी सारांश:** सिर्फ अभी का टाइम चाहिए तो `CURTIME()`।
+
+##### B. Extracting Parts of a Date
+* ![Date Extraction](./svg_date_extraction.svg)
+* **English Definition/Properties:** You can extract specific parts like year, month, or day from a full datetime. In SQL Server, `DATEPART(part, date)` is commonly used. In MySQL, direct functions are used.
+* **हिंदी सारांश:** पूरी डेट में से सिर्फ साल, महीना या दिन अलग से निकालने के लिए इन फंक्शन्स का इस्तेमाल होता है। 
+
+* **Examples:**
+  * **YEAR(date):** `SELECT YEAR('2025-09-03');` $\rightarrow$ `2025`
+  * **MONTH(date):** `SELECT MONTH('2025-09-03');` $\rightarrow$ `9`
+  * **DAY(date) / DAYOFMONTH(date):** `SELECT DAY('2025-09-03');` $\rightarrow$ `3`
+  * **HOUR(time):** `SELECT HOUR('13:45:59');` $\rightarrow$ `13`
+  * **MINUTE(time):** `SELECT MINUTE('13:45:59');` $\rightarrow$ `45`
+  * **SECOND(time):** `SELECT SECOND('13:45:59');` $\rightarrow$ `59`
+  * **MICROSECOND(time):** `SELECT MICROSECOND('2025-09-03 13:45:59.123456');` $\rightarrow$ `123456`
+  * **DAYOFWEEK(date):** `SELECT DAYOFWEEK('2025-09-03');` $\rightarrow$ `4` (1=Sunday, 7=Saturday)
+  * **DAYOFYEAR(date):** `SELECT DAYOFYEAR('2025-09-03');` $\rightarrow$ `246` (1 to 366)
+  * **WEEK(date):** `SELECT WEEK('2025-09-03');` $\rightarrow$ `35` (Week of the year)
+  * **QUARTER(date):** `SELECT QUARTER('2025-09-03');` $\rightarrow$ `3` (Quarter of the year, 1-4)
+  
+  * **DATENAME() / DAYNAME() / MONTHNAME()**
+    * ![DATENAME Concept](./svg_datename.svg)
+    * **English:** In SQL Server, `DATENAME(part, date)` returns the name of a specific part as a string. (e.g., `DATENAME(WEEKDAY, date)` $\rightarrow$ `'Monday'`). MySQL doesn't support `DATENAME`, so you use `DAYNAME(date)` and `MONTHNAME(date)`.
+    * **हिंदी सारांश:** अगर दिन या महीने का नाम चाहिए (जैसे Monday या September), तो SQL Server में `DATENAME` और MySQL में `DAYNAME` / `MONTHNAME` यूज़ करते हैं।
+
+  * **EOMONTH() / LAST_DAY()**
+    * ![EOMONTH Concept](./svg_eomonth.svg)
+    * **English:** Returns the last day of the month for the given date. Used in SQL Server as `EOMONTH(date)`. In MySQL, use `LAST_DAY(date)`. To get the *first* date of the month in MySQL, use `DATE_FORMAT(date, '%Y-%m-01')`.
+    * **हिंदी सारांश:** किसी भी महीने की आख़िरी तारीख (30/31/28) निकालने के लिए SQL Server में `EOMONTH` और MySQL में `LAST_DAY` यूज़ होता है।
+
+* **Q1. Extract multiple parts from a table:**
+  ```sql
+  SELECT CREATIONTIME, YEAR(CREATIONTIME) AS YEAR, MONTH(CREATIONTIME) AS MONTH, DAY(CREATIONTIME) AS DAY, DAYNAME(CREATIONTIME) AS DAYNAME FROM ORDERS;
+  ```
+
+##### C. Date/Time Manipulation (Adding & Subtracting)
+* ![Date Manipulation](./svg_date_manipulation.svg)
+* **English Definition:** You can add or subtract time intervals (days, months, hours) to/from a specific date.
+* **हिंदी सारांश:** किसी डेट में कुछ दिन, महीने या साल जोड़ने (Add) या घटाने (Subtract) के लिए हम इनका यूज़ करते हैं।
+* **1. DATE_ADD() / ADDDATE()**
+  * `SELECT DATE_ADD('2025-09-03', INTERVAL 10 DAY);` $\rightarrow$ `2025-09-13`
+* **2. DATE_SUB() / SUBDATE()**
+  * `SELECT DATE_SUB('2025-09-03', INTERVAL 2 MONTH);` $\rightarrow$ `2025-07-03`
+* **3. ADDTIME() & SUBTIME()**
+  * `SELECT ADDTIME('10:00:00', '02:30:00');` $\rightarrow$ `12:30:00`
+
+##### D. Differences & Conversion
+* **1. DATEDIFF() & TIMESTAMPDIFF()**
+  * ![DATEDIFF Concept](./svg_datediff_concept.svg)
+  * **English:** Used to find the difference between two dates. 
+    * **In SQL Server:** `DATEDIFF(interval, start_date, end_date)` allows you to specify the interval (YEAR, MONTH, DAY). (e.g., `SELECT DATEDIFF(MONTH, '2025-08-20', '2026-02-01');` $\rightarrow$ `5`)
+    * **In MySQL:** `DATEDIFF(end_date, start_date)` returns the difference in **Days only**. For differences in Years, Months, or Hours, use `TIMESTAMPDIFF(unit, start_date, end_date)`.
+  * **हिंदी सारांश:** दो डेट्स के बीच का अंतर निकालने के लिए। SQL Server में हम `YEAR`, `MONTH`, `DAY` बता सकते हैं, लेकिन MySQL में `DATEDIFF` सिर्फ दिन बताता है, बाकी के लिए `TIMESTAMPDIFF` यूज़ करते हैं।
+  * **Q1. Calculate the Age of the Employee (Difference in Years) (MySQL):**
+    ```sql
+    SELECT FIRSTNAME, LASTNAME, TIMESTAMPDIFF(YEAR, BIRTHDATE, NOW()) AS AGE FROM EMPLOYEES;
+    ```
+  * **Difference in Hours/Minutes (MySQL):**
+    ```sql
+    SELECT TIMESTAMPDIFF(HOUR, '2025-09-27 10:00:00', '2025-09-28 12:30:00') AS hours_diff;
+    ```
+* **2. Conversions (Seconds / UNIX Epoch)**
+  * **TIME_TO_SEC(time):** `SELECT TIME_TO_SEC('01:30:00');` $\rightarrow$ `5400` seconds.
+  * **SEC_TO_TIME(seconds):** `SELECT SEC_TO_TIME(5400);` $\rightarrow$ `01:30:00`.
+  * **UNIX_TIMESTAMP(date):** Converts a date into Unix epoch seconds.
+  * **FROM_UNIXTIME(epoch):** Converts Unix seconds back to Date.
+
+##### E. Formatting Functions
+* ![Formatting Concept](./svg_formatting_concept.svg)
+* **English Definition/Properties:** Changing the format of a value from one presentation to another (changing how data looks) without changing the actual data value. We do this for data standardization or aggregation.
+* **हिंदी सारांश:** वैल्यू के दिखने का तरीका (Format) बदलना (जैसे Date या Number को String में बदलना)।
+
+* **1. DATETRUNC() / DATE_TRUNC()**
+  * ![DATETRUNC Concept](./svg_datetrunc_concept.svg)
+  * **English:** Truncates a date to a specific part (like Year or Month), resetting the rest to the lowest value (01 for days/months, 00 for time). 
+    * `DATE_TRUNC()` is available in PostgreSQL and SQL Server. (e.g., `DATE_TRUNC('month', date)` $\rightarrow$ Keeps Year-Month, resets Day to 01).
+    * In **MySQL**, you achieve this using `DATE_FORMAT(date, '%Y-%m-01')`.
+  * **हिंदी सारांश:** डेट के किसी एक हिस्से को रखना और बाकी हिस्से को 01 या 00 कर देना (Reset करना)।
+
+* **2. FORMAT() (SQL Server)**
+  * **English:** In SQL Server, `FORMAT(value, format)` is a powerful function to convert Dates or Numbers to formatted strings.
+  * **Date Specifiers:** `d` (Short date), `D` (Full date), `MMMM` (Full month name), `yyyy` (4-digit year).
+  * **Number Specifiers:** `N` (Number with commas), `P` (Percentage), `C` (Currency).
+    * `SELECT FORMAT(1234567.89, 'C');` $\rightarrow$ `$1,234,567.89`
+
+* **3. DATE_FORMAT() (MySQL)**
+  * **English:** MySQL uses `DATE_FORMAT` to format dates.
+  * **Key Format Codes:**
+    * `%Y`: 4-digit year (2025)
+    * `%M`: Full month name (September)
+    * `%d`: Day of month with zero (07)
+    * `%W`: Full weekday name (Sunday)
+  * `SELECT DATE_FORMAT('2025-09-03', '%W %M %Y');` $\rightarrow$ `Wednesday September 2025`
+
+* **4. STR_TO_DATE() (MySQL)**
+  * **English:** Parses a string into a date. Used to check if a date string is valid and convert it to SQL Date format.
+  * `SELECT STR_TO_DATE('03-09-2025', '%d-%m-%Y');` $\rightarrow$ `2025-09-03`
+
+  * `SELECT STR_TO_DATE('03-09-2025', '%d-%m-%Y');` $\rightarrow$ `2025-09-03`
+
+##### F. Data Type Conversion (CAST & CONVERT)
+* ![CAST CONVERT Concept](./svg_cast_convert.svg)
+* ![CAST vs FORMAT Concept](./svg_cast_vs_format.svg)
+* **1. CAST(expression AS data_type)**
+  * **English:** Used to convert a value from one data type to another (e.g., String to Number, Datetime to Date). Helps ensure correct formatting and comparison in SQL.
+  * **हिंदी सारांश:** एक डेटा टाइप को दूसरे में बदलने के लिए (जैसे टेक्स्ट को नंबर में)। 
+  * **Examples (MySQL):**
+    * `SELECT CAST('456' AS SIGNED);` (String to Integer)
+    * `SELECT CAST(NOW() AS DATE);` (Datetime to Date)
+* **2. CONVERT()**
+  * **English:** In SQL Server, `CONVERT` is used like `CAST` but supports specific format styles. In MySQL, `CONVERT` is primarily used to change the Character Set Encoding (e.g., `SELECT CONVERT('hello' USING utf8mb4);` for Emoji support).
+
+##### G. Date Validation & Real-World Use Cases
+* **Date Validation (ISDATE)**
+  * ![ISDATE Concept](./svg_isdate.svg)
+  * **English:** Used to check if a date string is valid. SQL Server uses `ISDATE()`. MySQL doesn't have it, so you use `STR_TO_DATE` with a `CASE` statement (if it returns NULL, it's invalid).
+* **Date Extraction Use Cases (Aggregation & Filtering)**
+  * **Q1. Find average shipping duration in days for each month:**
+    ```sql
+    SELECT MONTHNAME(orderdate) AS OrderMonth, ROUND(AVG(DATEDIFF(shipdate, orderdate))) AS ShippingDurationInDays
+    FROM orders 
+    GROUP BY MONTH(orderdate), MONTHNAME(orderdate)
+    ORDER BY MONTH(orderdate);
+    ```
+    *(Note: `ROUND()` rounds to nearest integer, `FLOOR()` always rounds down).*
+  * **Q2. Find the number of days between each order and the previous order (Using LAG):**
+    ```sql
+    -- LAG() is a window function in MySQL 8.0 that gets data from a previous row.
+    SELECT orderid, orderdate AS CurrentOrderDate, LAG(orderdate) OVER (ORDER BY orderdate) AS PreviousOrderDate,
+    DATEDIFF(orderdate, LAG(orderdate) OVER (ORDER BY orderdate)) AS NoOfDays FROM orders;
+    ```
+
+### 13.18 NULL Functions & Conditional Logic (CASE)
+![NULL Functions Overview](./svg_null_overview.svg)
+
+#### 1. What is NULL?
+* **English Definition/Properties:** NULL means nothing or unknown. 
+  * NULL is **not equal to anything** (not even another NULL).
+  * NULL is **not zero** (0).
+  * NULL is **not an empty string** (`''`).
+  * NULL is **not a blank space** (`' '`).
+* **हिंदी सारांश:** NULL का मतलब है "कुछ नहीं" (Unknown)। यह 0 नहीं है, और न ही खाली जगह (Space) है।
+
+#### 2. Checking for NULL
+* ![IS NOT NULL Logic](./svg_is_not_null.svg)
+* **English:** To check if a value is NULL, you must use `IS NULL` or `IS NOT NULL`. Normal operators like `=` do not work with NULL.
+  * *MySQL vs SQL Server:* In SQL Server, `ISNULL()` is used to check if a value is NULL. In MySQL, `IS NULL` is the condition, and `IFNULL()` is used for replacing NULL values.
+* **हिंदी सारांश:** हम `WHERE column = NULL` नहीं लिख सकते। हमें हमेशा `IS NULL` या `IS NOT NULL` लिखना पड़ता है।
+
+**Anti-Joins Recap (Using IS NULL)**
+* ![Joins & Anti-Joins Recap](./svg_anti_join_recap.svg)
+* **English:** You can use `IS NULL` with a `LEFT JOIN` or `RIGHT JOIN` to find unmatching rows between two tables (this is known as an Anti-Join).
+* **Q1. List all details for customers who have not placed any order:**
+  ```sql
+  SELECT c.*, o.orderid 
+  FROM customers c 
+  LEFT JOIN orders o ON c.customerid = o.customerid 
+  WHERE o.customerid IS NULL;
+  ```
+
+#### 3. Handling & Replacing NULL values
+* **1. IFNULL() (MySQL)**
+  * **English:** Replaces NULL with a specified default value. Works for a single expression.
+  * **Syntax:** `IFNULL(value, replace_value)`
+  * **Q1. Sort customers with null scores appearing last:**
+    ```sql
+    SELECT customerId, score, CASE WHEN score IS NULL THEN 1 ELSE 0 END AS flag 
+    FROM customers 
+    ORDER BY IFNULL(score, 999999) DESC;
+    ```
+* **2. COALESCE(expr1, expr2, ...)**
+  * ![ISNULL vs COALESCE](./svg_isnull_vs_coalesce.svg)
+  * **English:** Returns the **first non-null value** from a list of expressions. If the first value is NULL, it moves to the next (like a fallback system).
+  * **Why use COALESCE instead of IFNULL?** `IFNULL()` only checks one expression. `COALESCE()` checks multiple fields in order.
+  * **हिंदी सारांश:** `COALESCE` एक लिस्ट में से पहला वो वैल्यू ढूंढता है जो NULL नहीं है। (जैसे अगर ईमेल नहीं है तो फोन नंबर ले लो, फोन नहीं है तो एड्रेस ले लो)।
+  * **Use Cases for COALESCE:**
+    1. **In Aggregations:** Handle NULL before mathematical operations (e.g., `SUM(COALESCE(score, 0))`).
+    2. **In Joins:** Handle NULLs before joining tables.
+       * ![COALESCE in JOIN](./svg_coalesce_join.svg)
+    3. **In Sorting:** Handle NULLs before sorting data.
+  * **Q1. Sort the customers from lowest to highest score with null appearing last:**
+    ```sql
+    SELECT customerId, score, CASE WHEN score IS NULL THEN 1 ELSE 0 END AS flag 
+    FROM customers 
+    ORDER BY COALESCE(score, 999999) DESC;
+    ```
+  * **Q2. Find the average score of the customers:**
+    ```sql
+    SELECT customerid, score, COALESCE(score, 0) AS score_2, AVG(score) OVER() AS avgScore2 
+    FROM customers;
+    ```
+  * **Q3. Display the full name of customers in a single field by merging their first and last name and add 10 bonus points to each customer's score:**
+    ```sql
+    SELECT CONCAT(firstname, ' ', lastname) AS fullname, (COALESCE(score, 0) + 10) AS adjusted_score 
+    FROM customers;
+    ```
+
+#### 4. NULLIF()
+* ![NULLIF Flowchart](./svg_nullif_flowchart.svg)
+* **English Definition/Properties:** `NULLIF(expr1, expr2)` compares two expressions. If they are equal, it returns NULL. If they are not equal, it returns the first expression.
+* **हिंदी सारांश:** अगर दोनों वैल्यूज़ सेम हैं, तो यह NULL दे देता है, वरना पहली वैल्यू ही वापस कर देता है।
+* **Use Case (Avoiding Divide by Zero Error):**
+  * **Q1. Find the sales price for each order dividing by its quantity:**
+    ```sql
+    -- If quantity is 0, NULLIF makes it NULL, preventing a crash.
+    SELECT orderid, sales, sales / NULLIF(quantity, 0) AS price_per_unit FROM orders;
+    
+    -- Another example avoiding divide by zero error:
+    SELECT 100 / NULLIF(column_value, 0) AS result FROM your_table;
+    ```
+
+#### 5. Data Policies regarding NULL, Space, and Empty
+* ![NULL vs Empty String vs Blank Space](./svg_null_vs_empty.svg)
+* **Example showing the difference between NULL, Empty String, and Space:**
+  ```sql
+  WITH orders AS (
+      SELECT 1 AS id, 'A' AS categories
+      UNION
+      SELECT 2, NULL
+      UNION
+      SELECT 3, ''
+      UNION
+      SELECT 4, ' '
+  )
+  SELECT *, LENGTH(categories) AS categoriesLength FROM orders;
+  ```
+* **English:** Data policies are sets of rules that define how data should be handled:
+  1. Use only NULL and empty strings, but avoid blank spaces (use `TRIM()`).
+  2. Use only NULL and avoid empty strings and blank spaces.
+  3. Use a default value like `'unknown'` and avoid NULL, empty strings, and blank spaces entirely.
+
+#### 6. Conditional Logic: CASE Statement
+* ![CASE Summary](./svg_case_summary.svg)
+* **English Definition/Properties:** The `CASE` statement is SQL's way of handling "If-Then-Else" logic. It evaluates a list of conditions from top to bottom and returns a value when the first condition is met. Used heavily for data transformation.
+* **हिंदी सारांश:** यह प्रोग्रामिंग के `If-Else` की तरह काम करता है। हम इसे यूज़ करके डेटा की कैटेगरी बदल सकते हैं या कंडीशंस लगा सकते हैं।
+
+##### How does it work?
+* ![CASE Execution Flow](./svg_case_execution.svg)
+* **English:** How does SQL execute the CASE statement behind the scenes? In a CASE statement, SQL stops execution once the first condition is met for the current row. Then it does not check with another condition.
+* **हिंदी सारांश:** SQL टॉप से बॉटम की तरफ चेक करता है। जैसे ही उसे पहली सही (TRUE) कंडीशन मिल जाती है, वो वहीं रुक जाता है और आगे की कंडीशंस चेक नहीं करता।
+
+##### CASE Statement Rules
+1. **The data type of the result must be matching:** The result of each condition must have a compatible data type (e.g., all strings like 'HIGH', 'LOW', 'MEDIUM').
+2. **Can be used anywhere in the query:** A CASE statement can be used in `SELECT`, `WHERE`, `ORDER BY`, `GROUP BY`, etc.
+
+##### Quick Form vs Full Form
+* ![CASE Quick vs Full](./svg_case_full_vs_quick.svg)
+* **Another way to write case statement:**
+  * **Full Form (Searched CASE):** `CASE WHEN Country = 'Germany' THEN 'DE'` (Allows complex conditions like `>`, `<`, `BETWEEN`).
+  * **Quick Form (Simple CASE):** `CASE Country WHEN 'Germany' THEN 'DE'` (Evaluates a single column against static values).
+
+##### Syntax Breakdown
+* `CASE` $\rightarrow$ Starts the logical block.
+* `WHEN condition1 THEN result1` $\rightarrow$ Condition to evaluate, and what to return if True.
+* `ELSE default_result` $\rightarrow$ (Optional) Returned if all WHEN conditions are False.
+* `END` $\rightarrow$ Ends the CASE block.
+
+##### Use Cases of CASE Statement
+
+**Use Case 1: Categorizing Data**
+* **English:** Group the data into different categories based on certain conditions. Classifying and grouping the data makes it easy to understand and helps in aggregating data based on categories.
+* **Q1. Generate a report showing the total sales for each category (HIGH > 50, MEDIUM 20-50, LOW <= 20) and sort from lowest to highest:**
+  ```sql
+  SELECT Category, SUM(SALES) AS totalsales FROM (
+      SELECT ORDERID, CUSTOMERID, sales,
+      CASE
+          WHEN sales > 50 THEN 'HIGH'
+          WHEN sales BETWEEN 20 AND 50 THEN 'MEDIUM'
+          WHEN sales <= 20 THEN 'LOW'
+          ELSE 'NO DATA'
+      END AS Category
+      FROM orders 
+  ) AS derived_table
+  GROUP BY Category
+  ORDER BY totalsales ASC;
+  ```
+  *(Make sure to always give the name of the derived table. In the above example, we used `derived_table`).*
+
+**Use Case 2: Data Transformation**
+* **English:** Main purpose is data transformation - deriving new information (creating new columns based on existing data).
+
+**Use Case 3: Mapping Values**
+* **English:** Transform the value from one form to another to make it more readable for analysis.
+* **Q1. Retrieve employee details where gender displays as full text:**
+  ```sql
+  SELECT firstname, lastname, gender,
+  CASE
+      WHEN gender = 'f' THEN 'Female'
+      WHEN gender = 'm' THEN 'Male'
+      ELSE 'NO MATCH'
+  END AS GENDERTABLE
+  FROM EMPLOYEES;
+  ```
+* **Q2. Retrieve customer details with abbreviated country code:**
+  ```sql
+  SELECT firstname, lastname, country,
+  CASE
+      WHEN country = 'Germany' THEN 'GE'
+      WHEN country = 'USA' THEN 'US'
+      ELSE 'NOT MATCH'
+  END AS abbreviatedName
+  FROM customers;
+  ```
+
+**Use Case 4: Handling NULLs**
+* **English:** Handling NULL means replacing NULL with a specific value. Sometimes NULLs can lead to inaccurate results which can lead to wrong decision making.
+* **Q1. Find the average score of customers and treat NULL as zero:**
+  ```sql
+  SELECT CUSTOMERID, FIRSTNAME, LASTNAME, SCORE, AVG(SCORE) OVER() AS AVG_SCORE,
+  AVG(CASE
+      WHEN SCORE IS NULL THEN 0
+      ELSE SCORE
+  END) OVER() AS AVGSCORE
+  FROM CUSTOMERS;
+  ```
+
+**Use Case 5: Conditional Aggregation**
+* **English:** Apply aggregation functions only on a subset of data that fulfills certain conditions. (Using a binary indicator 1/0 to summarize how many times the condition is true).
+* **Q1. Count how many times each customer has made an order with sales greater than 30:**
+  ```sql
+  SELECT customerid,
+  SUM(CASE
+      WHEN SALES > 30 THEN 1
+      ELSE 0
+  END) AS SALES_FLAG,
+  COUNT(*) AS TOTALORDERS
+  FROM orders  
+  GROUP BY customerid;
+  ```
+
+
+#### 7. IF() Function (MySQL Shorthand)
+* ![IF Function](./svg_if_function.svg)
+* **English Definition:** In MySQL, the `IF(condition, true_value, false_value)` function is a shorter, inline alternative to simple `CASE` statements.
+* **हिंदी सारांश:** अगर कंडीशन छोटी है (जैसे एक्सेल में IF होता है), तो MySQL में पूरा CASE लिखने की जगह सीधा `IF()` फंक्शन यूज़ कर सकते हैं। यह बहुत फ़ास्ट और क्लीन होता है।
+* **Q1. Mark students as Pass or Fail based on score:**
+  ```sql
+  SELECT 
+    studentid, 
+    score, 
+    IF(score >= 50, 'Pass', 'Fail') AS result 
+  FROM students;
+  ```
+
+### 13.19 Aggregation & Window Functions (Analytics)
+
+#### 1. Aggregation Functions in SQL
+* ![Aggregation Overview](./svg_aggregation_overview.svg)
+* **English Definition/Properties:** Aggregation functions accept multiple rows as input and perform calculations on a set of values to return a **single summarized value** as output. They are often used with the `GROUP BY` clause.
+* **हिंदी सारांश:** एग्रीगेशन फंक्शन्स बहुत सारे रोज़ (Rows) का डेटा लेते हैं, उन पर कैलकुलेशन करते हैं, और आख़िर में एक सिंगल वैल्यू/रिज़ल्ट देते हैं (जैसे सबका टोटल, एवरेज)।
+
+* **1. COUNT()**
+  * `COUNT(*)`: Counts **all** rows inside the table (including NULLs).
+  * `COUNT(column)`: Counts only non-NULL values in the specified column.
+  * **Q1. Find the total number of orders:** `SELECT COUNT(*) FROM orders;`
+
+* **2. SUM()**
+  * **Definition:** Adds up all numeric values in a column.
+  * **Q1. Find the total sales of all orders:** `SELECT SUM(sales) AS totalSales FROM orders;`
+
+* **3. AVG()**
+  * **Definition:** Returns the mathematical average of numeric values.
+  * **Q1. Find the average sales of all orders:** `SELECT AVG(sales) AS avgSales FROM orders;`
+
+* **4. MIN() & MAX()**
+  * **Definition:** `MIN()` starts searching and returns the lowest value. `MAX()` searches and returns the highest value in the column.
+  * **Q1. Find the lowest and highest sales:** 
+    `SELECT MIN(sales) AS minSales, MAX(sales) AS maxSales FROM orders;`
+
+* **5. GROUP_CONCAT() (MySQL Specific)**
+  * **Definition:** Concatenates (joins) values from a group into a single string.
+  * **Example:** `SELECT department, GROUP_CONCAT(name) AS employee_names FROM employees GROUP BY department;`
+  * **Result:** Returns data like `'Frank,Kevin,Mary'` (all first names as a single comma-separated string).
+
+* **6. STD() / STDDEV() & VARIANCE()**
+  * **Definition:** Returns the standard deviation and variance of numeric values (statistical functions).
+  * **Example:** `SELECT STD(salary), VARIANCE(salary) FROM employees;`
+
+---
+
+#### 2. Window Functions (Analytical Functions)
+* **English Definition/Properties:** Window Functions are one of the most powerful features in SQL. They allow you to perform calculations (e.g. aggregations) on a specific subset of data, **without losing the level of detail of the rows.**
+* **हिंदी सारांश:** यह SQL का बहुत ही पावरफुल टूल है। यह `GROUP BY` की तरह डेटा को जोड़ता या कैलकुलेट तो करता है, लेकिन टेबल की लाइनों (Rows) को सिकोड़ता या कम (Squash) नहीं करता। आपकी ओरिजिनल रोज़ वैसी ही रहती हैं, बस आगे एक नया कैलकुलेटेड कॉलम जुड़ जाता है।
+
+##### The OVER() Clause
+* **English:** Tells SQL that the function used is a window function. It defines a "window" or subset of data (the scope of rows the function operates on).
+* `OVER()` is basically the "GROUP BY" of window functions. Without it, functions like `ROW_NUMBER()` cannot work because they need to know how to group and order the rows.
+* *Note: Window functions cannot be used in the `WHERE` clause, but they can be used in `SELECT` or `ORDER BY`.*
+
+##### GROUP BY vs WINDOW FUNCTION
+* ![Window vs GroupBy](./svg_window_vs_groupby.svg)
+* **GROUP BY (Simple Data Analysis - Aggregations):** Squashes/collapses the result. If you have 4 rows of sales for 2 products, it smashes them into 2 rows. **You lose the row-level details** (granularity changes). Returns a single row for each group.
+* **WINDOW FUNCTION (Advanced Data Analysis - Aggregations + Details):** Evaluates each row individually. It starts with the first row, adds a total sales column, moves to the next, and keeps the original 4 rows intact. **The granularity stays the same.** Returns a result for each row.
+* **Q1. Find total sales across all orders (Simple Aggregation):** 
+  `SELECT SUM(sales) FROM orders;`
+* **Q2. Find total sales for each product (GROUP BY):** 
+  `SELECT productid, SUM(sales) FROM orders GROUP BY productid;`
+* **Q3. Find total sales for each product, BUT ALSO provide orderID and orderDate (WINDOW FUNCTION):**
+  ```sql
+  SELECT productid, orderid, orderdate,
+         SUM(sales) OVER(PARTITION BY productid) AS totalSales, 
+         AVG(sales) OVER() AS averageSales 
+  FROM orders;
+  ```
+
+---
+
+#### 3. Ranking Window Functions
+* **English Definition/Properties:** Used to rank data. SQL always sorts the data as a first step before ranking your data.
+* **हिंदी सारांश:** डेटा को रैंक (Rank 1, 2, 3...) करने के लिए। 
+* ![Rank vs Dense Rank](./svg_rank_vs_dense_rank.svg)
+
+##### Window Rank Functions Syntax
+* ![Window Rank Syntax](./svg_window_syntax.svg)
+* **1st Rule (About RANK function syntax):**
+  * **Expression:** In syntax, start with a function like `RANK()`, but we don't use any argument inside it. It must be **empty**. (It doesn't allow you to use any argument inside it).
+  * **Partition By:** The `PARTITION BY` clause is **optional**.
+  * **Order By:** The `ORDER BY` clause is **required**. You cannot leave it empty because the ranking function needs to know how to sort data before ranking.
+
+* **1. ROW_NUMBER()**
+  * **Definition:** Assigns a unique, sequential number to each row in the result set (1, 2, 3, 4...).
+  * **Handling Ties:** It does **NOT** handle ties. If two rows share the same value, they will **not** share the same rank. It always gives a distinct, unique rank for each row. (e.g. Top 1 order per customer).
+  * **Q1. Rank the orders based on their sales from highest to lowest:**
+    ```sql
+    SELECT 
+      OrderID,
+      ProductID,
+      Sales,
+      ROW_NUMBER() OVER(ORDER BY Sales DESC) AS SalesRank_Row
+    FROM Sales.Orders;
+    ```
+
+* **2. RANK()**
+  * **Definition:** Assigns a rank to rows in a window, with gaps.
+  * **Handling Ties:** It **handles ties**. If two rows have the same value, they share the same rank (e.g., 1, 1). 
+  * **The Gap:** The next rank is **skipped** (Leaves a gap). After 1, 1, the next rank will be 3.
+
+* **3. DENSE_RANK()**
+  * **Definition:** Assigns a rank to each row in a window, without gaps.
+  * **Handling Ties:** It handles ties just like `RANK()` (e.g., 1, 1), but does **NOT** skip the next rank. The next rank will be 2. (Leaves NO gaps).
+
+* **4. NTILE(n)**
+  * **Definition:** Divides the rows into a specified number of approximately equal groups (Buckets).
+  * **Argument:** The `NTILE` function always gets its argument as a number (`n`), representing the number of buckets.
+  * **Bucket Size Calculation:** `Bucket size = Total number of rows / number of buckets (n)`.
+  * **SQL Rule for Buckets:** If the division is not perfectly equal, the **larger groups come first**, then smaller.
+  * ![NTILE function details](./svg_ntile.svg)
+
+##### Integer-based vs Percentage-based Ranking
+* ![Percentage vs Integer](./svg_percentage_vs_integer.svg)
+* **Integer-Based Ranking (`ROW_NUMBER`, `RANK`, `DENSE_RANK`, `NTILE`):**
+  * Assigns discrete values (1, 2, 3, 4, 5).
+  * Primarily used for **Top / Bottom N Analysis**.
+* **Percentage-Based Ranking (`CUME_DIST`, `PERCENT_RANK`):**
+  * Assigns continuous values (0, 0.25, 0.5, 0.75, 1).
+  * Primarily used for **Distribution Analysis**.
+
+##### Use Cases for Ranking Functions
+1. **Use Case 1 | Top-N Analysis:** 
+   * **English:** Help analyze the top performers to do targeted marketing. Find the top highest sales for each product.
+   * *(Note: In window function we cannot use WHERE clause, so we use a subquery to filter the highest sales).*
+   ```sql
+   -- Find the top highest sales for each product
+   SELECT *
+   FROM (
+     SELECT
+       OrderID, 
+       ProductID, 
+       Sales,
+       ROW_NUMBER() OVER(PARTITION BY ProductID ORDER BY Sales DESC) AS RankByProduct
+     FROM Sales.Orders
+   ) t 
+   WHERE RankByProduct = 1;
+   ```
+
+2. **Use Case 2 | Bottom-N Analysis:** 
+   * **English:** Help analyze underperformance to manage risks and to do optimizations. Find out the lowest performance sales.
+   ```sql
+   -- Find the lowest 2 customers based on their total sales
+   SELECT *
+   FROM (
+     SELECT
+       CustomerID,
+       SUM(Sales) AS TotalSales,
+       ROW_NUMBER() OVER (ORDER BY SUM(Sales)) AS RankCustomers
+     FROM Sales.Orders
+     GROUP BY CustomerID
+   ) t 
+   WHERE RankCustomers <= 2;
+   ```
+
+3. **Use Case 3 | Assigning Unique IDs (Pagination):** 
+   * **English:** Help to assign a unique identifier for each row to help pagination. The process of breaking down large data into smaller, and more manageable chunks.
+
+4. **Use Case 4 | Identify the Duplicates (Quality Checks):** 
+   * **English:** Used for data cleansing. Identify and remove duplicate rows to improve data quality. If you want to remove duplicate rows, use `PARTITION BY` with the primary_key column inside the `OVER()` window function.
+   ```sql
+   -- Identify duplicate rows in the table 'OrdersArchive'
+   -- and return a clean result without any duplicates
+   SELECT * FROM (
+     SELECT
+       *,
+       ROW_NUMBER() OVER(PARTITION BY OrderID ORDER BY CreationTime DESC) AS rn
+     FROM Sales.OrdersArchive
+   ) t 
+   WHERE rn = 1;
+   ```
+
+5. **Use Case 5 | Data Segmentation (NTILE):** 
+   * **English (Data Analyst):** Data segmentation means dividing the dataset into distinct subsets based on certain criteria. For example, segmenting customers into different groups based on behaviors like total sales into 'High', 'Medium', and 'Low' buckets.
+   * *(Note: We cannot use the CASE statement directly inside the window function, so we must use a subquery).*
+   ```sql
+   -- Segment all orders into 3 categories: High, Medium, and Low sales.
+   SELECT 
+     OrderID, Sales, Buckets,
+     CASE 
+       WHEN Buckets = 1 THEN 'High'
+       WHEN Buckets = 2 THEN 'Medium'
+       WHEN Buckets = 3 THEN 'Low'
+     END AS SalesSegmentations
+   FROM (
+     SELECT
+       OrderID,
+       Sales,
+       NTILE(3) OVER (ORDER BY Sales DESC) AS Buckets
+     FROM Sales.Orders
+   ) t;
+   ```
+
+6. **Use Case 6 | Equalizing Load Processing (NTILE):** 
+   * **English (Data Engineer):** Used for load balancing. If you want to distribute data evenly across multiple databases (e.g., divide orders into 4 equal groups to export them to 4 different databases).
+   ```sql
+   -- In order to export the data, divide the orders into 4 groups.
+   SELECT
+     OrderID, ProductID, CustomerID, Sales, OrderDate,
+     NTILE(4) OVER (ORDER BY OrderID) AS Buckets
+   FROM Sales.Orders;
+   ```
+
+##### Window Rank Functions Summary
+* ![Window Rank Summary](./svg_window_rank_summary.svg)
+* **Summary Points:**
+  * **Types:** Integer-based (`ROW_NUMBER`, `RANK`, `DENSE_RANK`, `NTILE`) vs Percentage-based (`PERCENT_RANK`, `CUME_DIST`).
+  * **Rules:** Expression is Empty (except NTILE which takes `n`), `ORDER BY` is Required, `FRAME` clause is Not Allowed.
+  * **Use Cases:** Top N Analysis, Bottom N Analysis, Identify/Remove Duplicates, Assign Unique IDs (Pagination), Data Segmentation, Data Distribution Analysis, Equalizing Load Processing.
+
+---
+
+#### 4. Percentage-Based Ranking Functions
+* **English Definition/Properties:** In order for SQL to generate and calculate percentages, we have 2 different formulas or functions. Instead of integer ranking, SQL computes the relative position of the row compared to others and assigns a percentage to each row. 
+* **हिंदी सारांश:** यह 1, 2, 3 रैंक देने के बजाय परसेंटेज (0.1, 0.5, 1.0) में रैंक देता है, ताकि पता चले कि वह डेटा पूरे डिस्ट्रीब्यूशन में कहाँ खड़ा है।
+
+* ![Percentage Formulas](./svg_percent_formulas.svg)
+* ![CUME_DIST vs PERCENT_RANK Comparison](./svg_cumedist_vs_percentrank_table.svg)
+
+* **Key Difference (Inclusive vs Exclusive):**
+  * `CUME_DIST` is **Inclusive** (The current row is included).
+  * `PERCENT_RANK` is **Exclusive** (The current row is excluded).
+
+* **1. PERCENT_RANK()**
+  * **Use Case:** If you want to focus on the relative position of each row, then go with `PERCENT_RANK`. It calculates the relative rank of a row as a percentage of the result set.
+  * Computes the relative rank of a row on a continuous 0 to 1 scale (e.g., 0 as 0, 10% as 0.1, 30% as 0.3, etc.).
+  * `PERCENT_RANK` goes and calculates the relative position as a percentage and assigns it to each row. The output can be a continuous normalized scale from 0 to 1.
+  * Basically used for distribution analyzation. Calculate the relative position of each row overall.
+
+* **2. CUME_DIST() (Cumulative Distribution)**
+  * **Use Case:** If you want to focus on cumulative distribution calculation of data points, use cumulative distribution. This is the Cumulative Distribution Function (CDF) in action. It calculates a percentage (between 0 and 1) that shows how far up the distribution a given value is.
+  * It stands for cumulative distribution. Calculates the distribution of data points within the window.
+  * Formula: `Position_Number / Number_of_Rows`.
+  * **Tie Rule:** If two values are the same (Tie), `CUME_DIST` takes the position of the *last* occurrence of the same value. It means it calculates the percentage for the first value and assigns the exact same percentage for the second same value.
+
+* **Comparison Example:**
+  * For Sales (100, 80, 80, 50, 30): Both functions generate output based on percentage ranking.
+  * Both of them are handling the ties perfectly, so they **share the same percentage rank** (e.g. both 80s get DIST 0.6 and PER 0.25).
+  * Based on the formulas, we have to find out the percentage value of the relative position of each row overall. So it is very important to measure the contribution of each value to the overall distribution.
+
+
+#### 5. Aggregate Window Functions (SUM, AVG, MIN, MAX)
+* **English Definition:** In window aggregation, functions like `SUM`, `AVG`, `MIN`, `MAX` calculate their values for each window separately (or the entire dataset if no partition is given), but unlike `GROUP BY`, they do not collapse the rows.
+* **हिंदी सारांश:** यहाँ एग्रीगेशन फंक्शन्स हर विंडो (ग्रुप) के लिए अलग से कैलकुलेट होते हैं, लेकिन `GROUP BY` की तरह रोज़ (rows) सिकुड़ती नहीं हैं, बल्कि हर ओरिजिनल रो के साथ एग्रीगेटेड वैल्यू जुड़ जाती है।
+
+##### Use Cases for Aggregate Window Functions
+* ![Aggregate Window Use Cases](./svg_window_agg_usecases.svg)
+
+1. **Use Case 1 | OVERALL ANALYSIS (Quick Summary)**
+   * **English:** Quick summary or snapshot of the entire dataset. (e.g. Find the total sales across all orders).
+   ```sql
+   -- Find the total sales across all orders
+   -- And the total sales for each product
+   -- Additionally provide details such order Id, order date
+   SELECT
+     OrderID, OrderDate, Sales,
+     SUM(Sales) OVER () AS TotalSales,
+     SUM(Sales) OVER (PARTITION BY ProductID) AS SalesByProducts
+   FROM Sales.Orders;
+   ```
+   * **Rule 1:** `SUM()` accepts only numbers.
+
+2. **Use Case 2 | TOTAL PER GROUPS (Group-wise Analysis)**
+   * **English:** Group-wise analysis, to understand patterns within different categories.
+   ```sql
+   -- Find the highest and lowest sales of all orders
+   -- Find the highest and lowest sales for each product
+   -- Additionally provide details such order Id, order date
+   SELECT
+     OrderID, OrderDate, ProductID, Sales,
+     MAX(Sales) OVER() AS HighestSales,
+     MIN(Sales) OVER() AS LowestSales,
+     MAX(Sales) OVER(PARTITION BY ProductID) AS HighestSalesByProduct,
+     MIN(Sales) OVER(PARTITION BY ProductID) AS LowestSalesByProduct
+   FROM Sales.Orders;
+   ```
+   * **Note on filtering with Window Functions:**
+     * You cannot use the `WHERE` clause directly on the window function in the same query level. You must use a subquery.
+     ```sql
+     -- Find all orders where sales are higher than the average sales across all orders
+     SELECT * FROM (
+       SELECT
+         OrderID, ProductID, Sales,
+         AVG(Sales) OVER() AS AvgSales
+       FROM Sales.Orders
+     ) t 
+     WHERE Sales > AvgSales;
+     ```
+
+3. **Use Case 3 | COMPARISON (Compare Current vs Aggregated)**
+   * **English:** Compare the current value and aggregated value of window functions (e.g. Help to evaluate whether a value is above or below the average, or find percentage contribution).
+   ```sql
+   -- Find the percentage contribution of each product's sales to the total sales
+   SELECT
+     OrderID, ProductID, Sales,
+     SUM(Sales) OVER () AS TotalSales,
+     ROUND(CAST(Sales AS Float) / SUM(Sales) OVER () * 100, 2) AS PercentageOfTotal
+   FROM Sales.Orders;
+   ```
+   ```sql
+   -- Find the deviation of each sales from the minimum and maximum sales amounts
+   SELECT
+     OrderID, OrderDate, ProductID, Sales,
+     MAX(Sales) OVER() AS HighestSales,
+     MIN(Sales) OVER() AS LowestSales,
+     Sales - MIN(Sales) OVER() AS DeviationFromMin,
+     MAX(Sales) OVER() - Sales AS DeviationFromMax
+   FROM Sales.Orders;
+   ```
+
+##### COUNT() Window Function
+* **English:** The `COUNT()` function returns the number of rows in each window (i.e. how many rows are in a subset of data). It counts the number of values in a column regardless of their data type (it is the only aggregate function that takes any data type).
+* **हिंदी सारांश:** यह फंक्शन विंडो (ग्रुप) के अंदर रो (rows) की गिनती करता है।
+* **Types of COUNT:**
+  * `COUNT(*)`: Counts **all** rows in the table/window, regardless of whether any value is NULL.
+  * `COUNT(1)`: Exactly equal to `COUNT(*)`, because 1 is a constant and never NULL.
+  * `COUNT(column)`: Counts the number of **non-NULL** values in that specific column.
+  * *Note:* Count function counts the total number of rows including duplicates, not just the unique values.
+
+**Use Cases for COUNT():**
+1. **#1 Overall Analysis:** Quick summary or snapshot of the entire dataset.
+   ```sql
+   -- Find the total number of orders for each product
+   SELECT 
+     Product, Sales,
+     COUNT(*) OVER(PARTITION BY Product) AS Count_Orders
+   FROM SalesData;
+   ```
+2. **#2 Category Analysis (Total per Group):** Group-wise analysis to understand patterns with different categories.
+   ```sql
+   -- Find the total number of Orders for each customer
+   -- Additionally provide details such as OrderID, OrderDate
+   SELECT
+     OrderID, OrderDate, CustomerID,
+     COUNT(*) OVER() AS TotalOrders,
+     COUNT(*) OVER(PARTITION BY CustomerID) AS OrdersByCustomers
+   FROM Sales.Orders;
+   ```
+3. **#3 Quality Checks: Identify NULLs:** Detecting number of NULLs by comparing `COUNT(column)` to `COUNT(*)`.
+   ```sql
+   -- Find the total number of Customers and total number of Scores
+   -- Difference between these counts reveals how many NULL scores exist
+   SELECT
+     CustomerID, FirstName, LastName, Country, Score,
+     COUNT(*) OVER() AS TotalCustomers,
+     COUNT(Score) OVER() AS TotalScores
+   FROM Sales.Customers;
+   ```
+4. **#4 Quality Checks: Identify Duplicates:** Duplicate rows lead to inaccuracies. `COUNT()` can be used to identify them.
+   ```sql
+   -- Check whether the table 'orders' contains any duplicate rows
+   SELECT * FROM (
+     SELECT
+       OrderID,
+       COUNT(*) OVER(PARTITION BY OrderID) AS CheckPK
+     FROM Sales.OrdersArchive
+   ) t
+   WHERE CheckPK > 1;
+   ```
+
+##### Handling NULLs in Aggregate Window Functions
+* **English:** Functions like `AVG()` ignore `NULL` values. If a `NULL` implies zero (e.g., no sales), ignoring it will skew the average. We use `COALESCE()` to handle nullish values.
+* **हिंदी सारांश:** `AVG` फंक्शन `NULL` को गिनता ही नहीं है। अगर किसी कस्टमर का स्कोर `NULL` है और हमें उसे `0` मानकर एवरेज निकालना है, तो हम `COALESCE()` का इस्तेमाल करते हैं।
+   ```sql
+   -- Find the average scores of customers
+   -- Additionally provide details such CustomerID and LastName
+   SELECT
+     CustomerID, LastName, Score,
+     COALESCE(Score, 0) AS CustomerScore,
+     AVG(Score) OVER () AS AvgScore,
+     AVG(COALESCE(Score, 0)) OVER () AS AvgScoreWithoutNull
+   FROM Sales.Customers;
+   ```
+
+
+##### Running Total vs Rolling Total (Analysis Over Time)
+* **English:** Used for tracking sequence of members, and the aggregation is updated each time a new member is added (e.g. tracking current sales with target sales over time).
+* **हिंदी सारांश:** इसका इस्तेमाल टाइम के साथ डेटा ट्रैक करने के लिए होता है (जैसे हर महीने कितनी सेल बढ़ रही है)। जब भी नया डेटा आता है, एग्रीगेशन अपडेट हो जाता है। 
+* ![Running vs Rolling](./svg_running_vs_rolling.svg)
+
+1. **Running Total:**
+   * **English:** Aggregates all values from the beginning up to the current point without dropping off older data.
+   * **हिंदी सारांश:** यह शुरुआत से लेकर करंट रो तक सब कुछ जोड़ता चलता है (बिना पुराना डेटा छोड़े)।
+   ```sql
+   -- Default frame: ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+   SELECT Month, Sales, SUM(Sales) OVER (ORDER BY Month) AS RunningTotal 
+   FROM SalesData;
+   ```
+
+2. **Rolling Total (Shifting Window):**
+   * **English:** Aggregates all values within a fixed time window (e.g., 30 days or last 2 rows). As new data is added, the oldest data point will be dropped.
+   * **हिंदी सारांश:** यह एक फिक्स विंडो (जैसे पिछले 2 महीने) का टोटल करता है। जब नया डेटा जुड़ता है, तो सबसे पुराना डेटा लिस्ट से हट जाता है।
+   ```sql
+   -- Rolling Total for current and 2 preceding rows
+   SELECT Month, Sales, 
+     SUM(Sales) OVER (ORDER BY Month ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS RollingTotal 
+   FROM SalesData;
+   ```
+
+##### Moving Average
+* **English:** Moving average is very similar to running/rolling total, but here we do average instead of sum.
+* **हिंदी सारांश:** यह बिल्कुल रनिंग/रोलिंग टोटल जैसा है, बस यहाँ टोटल (SUM) की जगह एवरेज (AVG) निकलता है।
+   ```sql
+   -- Calculate running average of sales for each product over time
+   SELECT
+     OrderID, ProductID, OrderDate, Sales,
+     AVG(Sales) OVER (PARTITION BY ProductID) AS AvgByProduct,
+     AVG(Sales) OVER (PARTITION BY ProductID ORDER BY OrderDate) AS RunningAvg
+   FROM Sales.Orders;
+   ```
+   ```sql
+   -- Calculate rolling average of sales for each product over time (Including only the next order)
+   SELECT
+     OrderID, ProductID, OrderDate, Sales,
+     AVG(Sales) OVER (PARTITION BY ProductID) AS AvgByProduct,
+     AVG(Sales) OVER (PARTITION BY ProductID ORDER BY OrderDate) AS RunningAvg,
+     AVG(Sales) OVER (PARTITION BY ProductID ORDER BY OrderDate ROWS BETWEEN CURRENT ROW AND 1 FOLLOWING) AS RollingAvg
+   FROM Sales.Orders;
+   ```
+
+---
+
+#### 6. Value Window Functions (Analytics Functions)
+* **English Definition:** These are used to access data from other rows (in the result set) without using `JOIN`s or subqueries. They help compare current row values with previous, next, first, or last values in the window.
+* **हिंदी सारांश:** इन फंक्शन्स का इस्तेमाल बिना JOIN या Subquery लगाए, किसी दूसरी रो (row) के डेटा को एक्सेस करने के लिए किया जाता है (जैसे पिछली रो की वैल्यू या अगली रो की वैल्यू देखना)।
+
+* ![Value Functions Concepts](./svg_value_functions.svg)
+
+##### Syntax Rules for Value Functions
+* **Expression:** Can be any data type.
+* **ORDER BY Clause:** **Required** (You must order the window so SQL knows what 'next' or 'previous' means).
+* **PARTITION BY Clause:** Optional.
+* **FRAME Clause:**
+  * `LEAD()` & `LAG()` $\rightarrow$ **Not Allowed**.
+  * `FIRST_VALUE()` $\rightarrow$ **Optional**.
+  * `LAST_VALUE()` $\rightarrow$ **Should be used** (Because default frame stops at CURRENT ROW, which defeats the purpose of LAST_VALUE).
+
+
+* **1. LEAD(expr, offset, default)**
+  * **English:** Access data from the **next row** (subsequent row) within a window.
+  * **हिंदी सारांश:** यह फंक्शन उसी विंडो में अगली (Next) रो (row) का डेटा निकाल कर लाता है।
+
+* **2. LAG(expr, offset, default)**
+  * **English:** Access data from the **previous row** within a window.
+  * **हिंदी सारांश:** यह फंक्शन उसी विंडो में पिछली (Previous) रो का डेटा निकाल कर लाता है।
+  
+  * **Arguments Details (For LEAD & LAG):**
+    * `Expression` (Required): The column or value to access.
+    * `Offset` (Optional): Number of rows forward/backward from the current row (Default = 1).
+    * `Default` (Optional): Returns this value if the next/previous row is not available (Default = `NULL`).
+
+##### Use Cases for LEAD & LAG (Comparison Analysis)
+1. **Time Series Analysis (MOM - Month-over-Month):**
+   * **English:** Analyze short-term trends and discover patterns in seasonality by comparing current month to previous month.
+   ```sql
+   -- Analyze the month-over-month performance by finding the percentage change
+   -- in sales between the current and previous months
+   SELECT 
+     OrderMonth, 
+     CurrentMonthSales, 
+     PreviousMonthSales,
+     CurrentMonthSales - PreviousMonthSales AS MoM_Change,
+     ROUND((CurrentMonthSales - PreviousMonthSales) / PreviousMonthSales * 100, 1) AS MoM_Perc
+   FROM (
+     SELECT
+       MONTH(OrderDate) AS OrderMonth,
+       SUM(Sales) AS CurrentMonthSales,
+       LAG(SUM(Sales)) OVER(ORDER BY MONTH(OrderDate)) AS PreviousMonthSales
+     FROM Sales.Orders
+     GROUP BY MONTH(OrderDate)
+   ) t;
+   ```
+
+2. **Customer Loyalty Analysis:**
+   * **English:** Compare current order date with the next order date using `LEAD` to find the average days between orders.
+   * *(Note: Adapted `DATEDIFF` to MySQL syntax: `DATEDIFF(date1, date2)` where date1 is later than date2).*
+   ```sql
+   -- In order to analyze customer loyalty,
+   -- rank customers based on the average days between their orders
+   SELECT
+     CustomerID,
+     AVG(DaysUntilNextOrder) AS AvgDays,
+     RANK() OVER(ORDER BY COALESCE(AVG(DaysUntilNextOrder), 9999999)) AS RankAvg
+   FROM (
+     SELECT
+       OrderID,
+       CustomerID,
+       OrderDate AS CurrentOrder,
+       LEAD(OrderDate) OVER(PARTITION BY CustomerID ORDER BY OrderDate) AS NextOrder,
+       DATEDIFF(
+         LEAD(OrderDate) OVER(PARTITION BY CustomerID ORDER BY OrderDate), 
+         OrderDate
+       ) AS DaysUntilNextOrder
+     FROM Sales.Orders
+   ) t
+   GROUP BY CustomerID;
+   ```
+
+* **3. FIRST_VALUE(expr)**
+  * **English:** Access a value from the **first row** within a window.
+  * **हिंदी सारांश:** यह विंडो की सबसे पहली (First) रो का डेटा लाकर देता है।
+
+* **4. LAST_VALUE(expr)**
+  * **English:** Access a value from the **last row** within a window.
+  * **हिंदी सारांश:** यह विंडो की सबसे आख़िरी (Last) रो का डेटा लाकर देता है।
+  * **Critical Rule for LAST_VALUE Frame:**
+    * By default, the window frame is `RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`. This means the "last" value it sees is just the current row.
+    * To truly get the last value of the entire partition/window, you **MUST** change the frame to: `ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING` (or `UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING`).
+    ```sql
+    -- Correct way to use LAST_VALUE
+    SELECT 
+      Month, Sales,
+      LAST_VALUE(Sales) OVER (
+        ORDER BY Month 
+        ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING
+      ) AS LastSalesValue
+    FROM SalesData;
+    ```
+
+
+##### Use Case for FIRST_VALUE & LAST_VALUE (Compare to Extremes)
+1. **Compare to Extremes:**
+   * **English:** Find how well a value is performing relative to extremes (highest and lowest).
+   ```sql
+   -- Find the lowest and highest sales for each product
+   SELECT
+     OrderID, ProductID, Sales,
+     FIRST_VALUE(Sales) OVER (PARTITION BY ProductID ORDER BY Sales) AS LowestSales,
+     LAST_VALUE(Sales) OVER (PARTITION BY ProductID ORDER BY Sales
+       ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING) AS HighestSales
+   FROM Sales.Orders;
+   ```
+
+* **5. NTH_VALUE(expr, n)**
+  * **English:** The `NTH_VALUE()` function is a window function used to fetch the n-th value (e.g., 1st, 2nd, 3rd) within a window frame.
+  * **हिंदी सारांश:** यह फंक्शन विंडो की n-th रो (जैसे दूसरी, तीसरी रो) का डेटा लाकर देता है।
+  * **Key Points:**
+    * `n`: which value to fetch (e.g. 2 for the second).
+    * `ORDER BY` is mandatory to define what "n-th" means.
+    * **Frame Default:** By default, it's `RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`, which won't work for `n > 1` if the current row hasn't reached it. Always explicitly define frame as `ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING`.
+    * Returns `NULL` if there aren't enough rows in the partition.
+  * **Example:**
+    ```sql
+    -- Fetch the second highest salary for each department
+    SELECT
+      employee_id, department, salary,
+      NTH_VALUE(salary, 2) OVER (
+        PARTITION BY department
+        ORDER BY salary DESC
+        ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+      ) AS second_highest_salary
+    FROM employees;
+    ```
+
+---
+
+#### 7. Window Function Syntax Deep Dive (OVER Clause)
+* **English Definition:** A Window function query mainly has two parts: The **Function** (performs calculation on top of window) and the **OVER()** clause (defines the window/subset of data). The `OVER` clause has three sub-clauses: `PARTITION BY`, `ORDER BY`, and `FRAME`.
+* **हिंदी सारांश:** Window function के 2 मेन हिस्से होते हैं: 1. फंक्शन (जैसे AVG, SUM), 2. `OVER()` क्लॉज़ (जो तय करता है कि किस डेटा पर कैलकुलेशन होगा)।
+
+* ![OVER Clause Syntax](./svg_over_clause.svg)
+
+1. **PARTITION BY Clause:**
+   * **English:** Divides the rows into groups based on column(s). If empty (no partition), calculation is done on the entire dataset. It is optional for all window functions (aggregation, ranking, value).
+   * **हिंदी सारांश:** यह डेटा को अलग-अलग ग्रुप्स (विंडो) में बांटता है। अगर नहीं लिखा, तो पूरा डेटा एक ही ग्रुप मान लिया जाएगा।
+   * Example: `SUM(Sales) OVER()` (entire dataset), `SUM(Sales) OVER(PARTITION BY ProductID)` (group by product).
+
+2. **ORDER BY Clause:**
+   * **English:** Sorts data within a window. Default is ascending `ASC`. It is **Required** for Ranking functions and Value functions. Optional for Aggregation functions.
+   * **हिंदी सारांश:** यह विंडो के अंदर डेटा को आर्डर (sort) करता है। Ranking और Value फंक्शन्स के लिए इसे लगाना ज़रूरी (required) है।
+   ```sql
+   -- Order By is required for RANK()
+   SELECT
+     OrderID, OrderDate, Sales,
+     RANK() OVER (ORDER BY Sales DESC) AS RankSales
+   FROM Sales.Orders;
+   ```
+
+
+3. **FRAME Clause:**
+   * **English:** Defines a specific subset of rows within each window that is relevant for the calculation. It is used when you don't want to consider all rows in the partition.
+   * **हिंदी सारांश:** यह विंडो के अंदर भी एक छोटा सबसेट (subset) बनाता है (जैसे सिर्फ़ पिछली 2 रो और करंट रो को जोड़ना)।
+   * **Syntax:** `ROWS BETWEEN <Lower_Bound> AND <Upper_Bound>`
+   * **Boundary Values:**
+     * `CURRENT ROW`: The current row being evaluated.
+     * `UNBOUNDED PRECEDING`: The first possible row within a window.
+     * `UNBOUNDED FOLLOWING`: The last possible row within a window.
+     * `N PRECEDING`: N rows before the current row.
+     * `N FOLLOWING`: N rows after the current row.
+   * **Important Frame Rules:**
+     1. Frame clause can **only** be used together with the `ORDER BY` clause.
+     2. Lower Value must be **BEFORE** the higher value logically (e.g. `2 PRECEDING` to `1 FOLLOWING` is valid, but `1 FOLLOWING` to `2 PRECEDING` is invalid).
+   * **Default Frame vs Compact Frame:**
+     * **Default:** If `ORDER BY` is used but `FRAME` is not specified, SQL uses the default frame: `RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`.
+     * **Compact:** If you only need `PRECEDING` or `FOLLOWING` from the current row, you can write short form. For example, `ROWS 2 FOLLOWING` is short for `ROWS BETWEEN CURRENT ROW AND 2 FOLLOWING`.
+
+---
+
+#### 8. Window Function Limitations & Rules
+* **Rule 1: Allowed Clauses Only**
+  * **English:** Window functions can only be used in the `SELECT` and `ORDER BY` clauses. You **cannot** use them directly in `WHERE`, `GROUP BY`, or `HAVING` clauses.
+  * **हिंदी सारांश:** आप Window Function को सिर्फ़ `SELECT` या `ORDER BY` में लिख सकते हैं। `WHERE` में इसे डायरेक्ट यूज़ नहीं कर सकते (उसके लिए Subquery बनानी पड़ेगी)।
+* **Rule 2: No Nesting**
+  * **English:** Nesting window functions inside another window function is **not allowed** (e.g., `SUM(SUM(Sales) OVER(...)) OVER(...)` will throw an error).
+  * **हिंदी सारांश:** एक Window Function के अंदर दूसरा Window Function (Nesting) नहीं लिख सकते।
+* **Rule 3: Execution Order**
+  * **English:** SQL executes window functions **after** the `WHERE` clause. It first filters the data, and then aggregates/ranks it.
+  * **हिंदी सारांश:** SQL पहले `WHERE` से डेटा फ़िल्टर करता है, और उसके बाद बचे हुए डेटा पर Window Function चलाता है।
+* **Rule 4: With GROUP BY**
+  * **English:** Window functions can be used together with `GROUP BY` in the same query, **only if** the window function uses the exact same columns/aggregations.
+  * **हिंदी सारांश:** आप एक ही क्वेरी में `GROUP BY` और Window Function दोनों लगा सकते हैं, लेकिन Window Function के अंदर वही कॉलम होने चाहिए जो `GROUP BY` या एग्रीगेट होकर आ रहे हैं।
+   ```sql
+   -- First build the query using group by function, then next step you define the window function
+   -- Rank Customers based on their total sales
+   SELECT 
+     CustomerID,
+     SUM(Sales) AS TotalSales,
+     RANK() OVER(ORDER BY SUM(Sales) DESC) AS RankCustomers
+   FROM Sales.Orders
+   GROUP BY CustomerID;
+   ```
+
+---
+
+#### 9. Why Window Functions? (Advantages)
+1. **Advance Analytics Without Aggregation:** Unlike `GROUP BY`, window functions do not reduce/collapse rows. You can calculate running totals, rankings, and moving averages while still keeping each row intact.
+2. **Simplify Complex Queries:** Allows you to avoid complex self-joins or subqueries when doing cumulative and comparative analysis.
+3. **Performance:** They are often much more efficient than writing equivalent subqueries or self-joins.
+4. **Better Readability:** Clear and declarative syntax for ranking, partitioning, and ordering operations.
+
+#### 10. GROUP BY + HAVING vs Window Functions
+Window Functions are often confused with `GROUP BY` and `HAVING`, but they are fundamentally different:
+
+1. **GROUP BY + HAVING**
+   * **Purpose:** `GROUP BY` collapses rows into groups. `HAVING` filters those groups (like `WHERE`, but for grouped results).
+   * **Rows Returned:** One row per group (collapses data).
+   * **When to use:** When you only care about the summarized totals and don't need the individual row details.
+   * **Example:**
+     ```sql
+     SELECT dept_id, AVG(salary) AS avg_salary
+     FROM employees
+     GROUP BY dept_id
+     HAVING AVG(salary) > 60000;
+     ```
+     *(Output: One row per department).*
+
+2. **Window Functions**
+   * **Purpose:** They calculate aggregates but keep every row. (Use `OVER()` with optional `PARTITION BY` and `ORDER BY`).
+   * **Rows Returned:** All original rows are returned (no collapsing).
+   * **When to use:** Used for running totals, ranking, moving averages, and comparisons where you want to see both the detail and the summary.
+   * **Example:**
+     ```sql
+     SELECT emp_id, emp_name, dept_id, salary,
+            AVG(salary) OVER (PARTITION BY dept_id) AS avg_salary_in_dept
+     FROM employees;
+     ```
+     *(Output: Every employee stays visible, but you also see department averages next to each row).*
+
+
+#### 14. Summary / निष्कर्ष
+* **English Summary:**
+  * **HAVING vs WHERE:** `WHERE` filters individual rows before grouping, while `HAVING` filters aggregated data after `GROUP BY`.
+  * **Order of Execution:** The database engine processes SQL in this order: `FROM` $\rightarrow$ `WHERE` $\rightarrow$ `GROUP BY` $\rightarrow$ `HAVING` $\rightarrow$ `SELECT` $\rightarrow$ `ORDER BY` $\rightarrow$ `LIMIT`.
+  * **Sorting:** `ORDER BY` sorts the final result and must come after `GROUP BY`. It works with or without `WHERE`.
+  * **Other Clauses:** `DISTINCT` removes duplicates (use carefully to avoid slow queries). `LIMIT` restricts the number of rows output. Static values (like `123` or `'new_customers'`) can be added directly to the `SELECT` statement.
+
+* **हिंदी सारांश (Hindi Summary):**
+  * **HAVING और WHERE:** `WHERE` का काम ग्रुप बनने से पहले कच्ची rows को छांटना (filter) है, जबकि `HAVING` का काम `GROUP BY` के बाद बने हुए ग्रुप्स के डेटा को छांटना है।
+  * **क्वेरी चलने का क्रम (Execution Order):** डेटाबेस इस क्रम में काम करता है: पहले `FROM` (टेबल), फिर `WHERE` (फिल्टर), फिर `GROUP BY` (ग्रुप), फिर `HAVING`, उसके बाद `SELECT` (कॉलम चुनना), फिर `ORDER BY` (क्रम), और अंत में `LIMIT`।
+  * **सॉर्टिंग (Sorting):** `ORDER BY` हमेशा रिजल्ट को आख़िर में सॉर्ट करता है, इसलिए यह `GROUP BY` के बाद ही चलता है।
+  * **अन्य कीवर्ड्स:** `DISTINCT` डुप्लीकेट डेटा हटाता है। `LIMIT` आउटपुट की गिनती तय करता है (जैसे टॉप 5)। हम `SELECT` में सीधे कोई भी फिक्स वैल्यू (जैसे `123`) भी जोड़ सकते हैं जो आउटपुट में हर row के साथ दिखेगी।
+
 
 
 

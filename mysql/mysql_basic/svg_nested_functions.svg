@@ -1,0 +1,18 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200">
+    <rect width="600" height="200" fill="#1E1E1E" rx="10"/>
+    <text x="300" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#C586C0" text-anchor="middle">Nested Functions</text>
+    
+    <text x="300" y="80" font-family="Courier New" font-size="24" font-weight="bold" fill="#E0E0E0" text-anchor="middle">
+        <tspan fill="#4FC1FF">LENGTH</tspan>( <tspan fill="#4EC9B0">LOWER</tspan>( <tspan fill="#DCDCAA">LEFT</tspan>('Maria', 2) ) )
+    </text>
+    
+    <!-- Explanation brackets -->
+    <path d="M 400 100 L 400 120 L 490 120 L 490 100" fill="none" stroke="#DCDCAA" stroke-width="2"/>
+    <text x="445" y="140" font-family="Arial" font-size="12" fill="#E0E0E0" text-anchor="middle">1. Extracts 'Ma'</text>
+    
+    <path d="M 280 150 L 280 160 L 510 160 L 510 150" fill="none" stroke="#4EC9B0" stroke-width="2"/>
+    <text x="395" y="175" font-family="Arial" font-size="12" fill="#E0E0E0" text-anchor="middle">2. Converts to 'ma'</text>
+    
+    <path d="M 140 180 L 140 190 L 530 190 L 530 180" fill="none" stroke="#4FC1FF" stroke-width="2"/>
+    <text x="335" y="205" font-family="Arial" font-size="12" fill="#E0E0E0" text-anchor="middle">3. Returns Length: 2</text>
+</svg>

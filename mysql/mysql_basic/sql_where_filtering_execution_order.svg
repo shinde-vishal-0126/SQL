@@ -27,7 +27,7 @@
 
   <!-- Top Title & Execution Pipeline -->
   <g transform="translate(600, 42)" text-anchor="middle">
-    <text font-family="'Segoe UI', Roboto, sans-serif" font-size="26" font-weight="bold" fill="#f8fafc">WHERE Clause: Data Filtering & Internal Query Execution Order</text>
+    <text font-family="'Segoe UI', Roboto, sans-serif" font-size="26" font-weight="bold" fill="#f8fafc">WHERE Clause: Data Filtering &amp; Internal Query Execution Order</text>
     <text y="24" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" fill="#94a3b8">Written Syntax: SELECT ... FROM ... WHERE | Physical Engine Order: (1) FROM → (2) WHERE → (3) SELECT</text>
   </g>
 
