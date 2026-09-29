@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+    <rect width="900" height="600" fill="#1E1E1E" rx="10"/>
+
+    <rect width="900" height="600" fill="url(#grid)" rx="10"/>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#333" stroke-width="1"/>
+    </pattern>
+
+    <!-- Section 1: CREATE / INSERT -->
+    <rect x="350" y="30" width="200" height="40" fill="#FFCC00" stroke="#000" stroke-width="3" rx="5"/>
+    <text x="450" y="57" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#000" text-anchor="middle">CREATE / INSERT</text>
+    <text x="450" y="85" font-family="Arial, sans-serif" font-size="14" fill="#CCC" text-anchor="middle">syntax</text>
+
+    <!-- DDL Box -->
+    <text x="200" y="140" font-family="Arial, sans-serif" font-size="20" fill="#FFF" text-anchor="middle">DDL</text>
+    <text x="200" y="160" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">Statement</text>
+    <path d="M 250 145 L 340 145" stroke="#F44747" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrow_red)"/>
+
+    <rect x="350" y="110" width="350" height="90" fill="#F0F0F0" stroke="#CCC" stroke-width="2" rx="5"/>
+    <text x="370" y="140" font-family="Consolas, monospace" font-size="18" font-weight="bold" fill="#0000FF">CREATE TABLE <tspan fill="#000">Table-Name</tspan></text>
+    <text x="370" y="160" font-family="Consolas, monospace" font-size="18" font-weight="bold" fill="#0000FF">(</text>
+    <text x="400" y="180" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#000">ID INT,</text>
+    <text x="400" y="200" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#000">Name VARCHAR(50)</text>
+    <text x="370" y="220" font-family="Consolas, monospace" font-size="18" font-weight="bold" fill="#0000FF">)</text>
+
+    <!-- Insert Box -->
+    <text x="200" y="270" font-family="Arial, sans-serif" font-size="20" fill="#FFF" text-anchor="middle">Insert</text>
+    <text x="200" y="290" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">Statement</text>
+    <path d="M 250 275 L 340 275" stroke="#F44747" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrow_red)"/>
+
+    <rect x="350" y="250" width="350" height="60" fill="#F0F0F0" stroke="#CCC" stroke-width="2" rx="5"/>
+    <text x="370" y="275" font-family="Consolas, monospace" font-size="18" font-weight="bold" fill="#0000FF">INSERT INTO <tspan fill="#000">Table-Name</tspan></text>
+    <text x="370" y="295" font-family="Consolas, monospace" font-size="18" font-weight="bold" fill="#0000FF">VALUES <tspan fill="#000">(1, 'Frank')</tspan></text>
+
+    <line x1="50" y1="350" x2="850" y2="350" stroke="#888" stroke-width="2" stroke-dasharray="10,10"/>
+
+
+    <!-- Section 2: CTAS -->
+    <rect x="350" y="380" width="200" height="40" fill="#FFCC00" stroke="#000" stroke-width="3" rx="5"/>
+    <text x="450" y="407" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#000" text-anchor="middle">CTAS</text>
+    <text x="450" y="435" font-family="Arial, sans-serif" font-size="14" fill="#CCC" text-anchor="middle">syntax</text>
+
+    <!-- CTAS Box -->
+    <text x="200" y="470" font-family="Arial, sans-serif" font-size="20" fill="#FFF" text-anchor="middle">DDL</text>
+    <text x="200" y="490" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">Statement</text>
+    <path d="M 250 475 L 340 475" stroke="#F44747" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrow_red)"/>
+
+    <text x="200" y="540" font-family="Arial, sans-serif" font-size="20" fill="#FFF" text-anchor="middle">Query</text>
+    <path d="M 250 535 L 340 535" stroke="#F44747" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrow_red)"/>
+
+    <rect x="350" y="450" width="350" height="140" fill="#F0F0F0" stroke="#CCC" stroke-width="2" rx="5"/>
+    <text x="370" y="480" font-family="Consolas, monospace" font-size="18" font-weight="bold" fill="#0000FF">CREATE TABLE <tspan fill="#000">NAME</tspan> AS</text>
+    <text x="370" y="500" font-family="Consolas, monospace" font-size="18" font-weight="bold" fill="#0000FF">(</text>
+    
+    <!-- Inner Select Box -->
+    <rect x="400" y="505" width="200" height="60" fill="#FFF" stroke="#CCC" stroke-width="1" rx="3"/>
+    <text x="410" y="525" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#0000FF">SELECT <tspan fill="#000">...</tspan></text>
+    <text x="410" y="540" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#0000FF">FROM <tspan fill="#000">...</tspan></text>
+    <text x="410" y="555" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#0000FF">WHERE <tspan fill="#000">...</tspan></text>
+
+    <text x="370" y="580" font-family="Consolas, monospace" font-size="18" font-weight="bold" fill="#0000FF">)</text>
+
+    <defs>
+        <marker id="arrow_red" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#F44747" /></marker>
+    </defs>
+</svg>

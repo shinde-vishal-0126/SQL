@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 250">
+    <rect width="800" height="250" fill="#1E1E1E" rx="10"/>
+    <text x="400" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#DCDCAA" text-anchor="middle">Table Duplication Techniques</text>
+    
+    <g transform="translate(100, 70)">
+        <rect width="250" height="130" fill="#2D2D30" stroke="#F44747" stroke-width="2" rx="5"/>
+        <text x="125" y="25" font-family="Arial" font-size="14" font-weight="bold" fill="#F44747" text-anchor="middle">CREATE TABLE AS SELECT</text>
+        <text x="125" y="55" font-family="Arial" font-size="12" fill="#E0E0E0" text-anchor="middle">Copies Structure + Data</text>
+        <text x="125" y="75" font-family="Arial" font-size="12" fill="#F44747" font-weight="bold" text-anchor="middle">NO Constraints Copied!</text>
+        <text x="125" y="105" font-family="Arial" font-size="11" fill="#A0A0A0" text-anchor="middle">(No Indexes, No Primary Keys)</text>
+    </g>
+    
+    <g transform="translate(450, 70)">
+        <rect width="250" height="130" fill="#2D2D30" stroke="#4EC9B0" stroke-width="2" rx="5"/>
+        <text x="125" y="25" font-family="Arial" font-size="14" font-weight="bold" fill="#4EC9B0" text-anchor="middle">CREATE TABLE LIKE</text>
+        <text x="125" y="55" font-family="Arial" font-size="12" fill="#E0E0E0" text-anchor="middle">Copies Exact Structure</text>
+        <text x="125" y="75" font-family="Arial" font-size="12" fill="#4EC9B0" font-weight="bold" text-anchor="middle">ALL Constraints Copied!</text>
+        <text x="125" y="105" font-family="Arial" font-size="11" fill="#A0A0A0" text-anchor="middle">Use INSERT SELECT for data.</text>
+    </g>
+</svg>

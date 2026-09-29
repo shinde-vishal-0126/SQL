@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+    <rect width="800" height="500" fill="#1E1E1E" rx="10"/>
+    
+    <rect x="300" y="20" width="200" height="30" fill="#DCDCAA" rx="5"/>
+    <text x="400" y="40" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000000" text-anchor="middle">Filtered Index Syntax</text>
+    
+    <rect x="50" y="70" width="700" height="80" fill="#2D2D30" stroke="#3E3E42" stroke-width="2" rx="5"/>
+    <text x="70" y="100" font-family="Courier New, monospace" font-size="14" fill="#4FC1FF" font-weight="bold">CREATE [UNIQUE] [NONCLUSTERED] INDEX <tspan fill="#E0E0E0">index_name</tspan></text>
+    <text x="70" y="120" font-family="Courier New, monospace" font-size="14" fill="#4FC1FF" font-weight="bold">ON <tspan fill="#E0E0E0">table_name (column1, column2, ...)</tspan></text>
+    <text x="70" y="140" font-family="Courier New, monospace" font-size="14" fill="#4FC1FF" font-weight="bold">WHERE <tspan fill="#E0E0E0">[Condition]</tspan></text>
+    
+    <!-- Rules Box -->
+    <rect x="250" y="170" width="400" height="60" fill="#2D2D30" stroke="#3E3E42" stroke-width="1" rx="5"/>
+    <rect x="260" y="185" width="50" height="25" fill="#E8E8E8" rx="3"/>
+    <text x="285" y="202" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#F44747" text-anchor="middle">Rules</text>
+    <text x="325" y="195" font-family="Arial, sans-serif" font-size="12" fill="#E0E0E0">You <tspan fill="#F44747" font-weight="bold">cannot</tspan> create a filtered index on a <tspan fill="#F44747" font-weight="bold">clustered index.</tspan></text>
+    <text x="325" y="215" font-family="Arial, sans-serif" font-size="12" fill="#E0E0E0">You <tspan fill="#F44747" font-weight="bold">cannot</tspan> create a filtered index on a <tspan fill="#F44747" font-weight="bold">columnstore index.</tspan></text>
+    
+    <!-- Flowchart -->
+    <rect x="330" y="260" width="140" height="30" fill="#DCDCAA" rx="5"/>
+    <text x="400" y="280" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000000" text-anchor="middle">When To Use</text>
+    
+    <path d="M 400 290 L 400 320" fill="none" stroke="#E0E0E0" stroke-width="2"/>
+    <path d="M 180 320 L 620 320" fill="none" stroke="#E0E0E0" stroke-width="2"/>
+    <path d="M 180 320 L 180 340" fill="none" stroke="#E0E0E0" stroke-width="2"/>
+    <path d="M 400 320 L 400 340" fill="none" stroke="#E0E0E0" stroke-width="2"/>
+    <path d="M 620 320 L 620 340" fill="none" stroke="#E0E0E0" stroke-width="2"/>
+    
+    <!-- Heap -->
+    <rect x="100" y="340" width="160" height="50" fill="#2D2D30" stroke="#DCDCAA" stroke-width="3" rx="5"/>
+    <rect x="100" y="340" width="160" height="20" fill="#DCDCAA" rx="5" stroke="#DCDCAA"/>
+    <text x="180" y="355" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="middle">HEAP</text>
+    <text x="180" y="375" font-family="Arial, sans-serif" font-size="12" fill="#E0E0E0" text-anchor="middle">Fast Inserts</text>
+    
+    <!-- Clustered -->
+    <rect x="320" y="340" width="160" height="50" fill="#2D2D30" stroke="#DCDCAA" stroke-width="3" rx="5"/>
+    <rect x="320" y="340" width="160" height="20" fill="#DCDCAA" rx="5" stroke="#DCDCAA"/>
+    <text x="400" y="355" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="middle">Clustered Index</text>
+    <text x="400" y="375" font-family="Arial, sans-serif" font-size="12" fill="#E0E0E0" text-anchor="middle">For Primary Keys (OLTP)</text>
+    
+    <!-- Columnstore -->
+    <rect x="540" y="340" width="160" height="50" fill="#2D2D30" stroke="#DCDCAA" stroke-width="3" rx="5"/>
+    <rect x="540" y="340" width="160" height="20" fill="#DCDCAA" rx="5" stroke="#DCDCAA"/>
+    <text x="620" y="355" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="middle">Columnstore Index</text>
+    <text x="620" y="375" font-family="Arial, sans-serif" font-size="12" fill="#E0E0E0" text-anchor="middle">For Analytics (OLAP)</text>
+    
+    <!-- Non-Clustered -->
+    <path d="M 400 390 L 400 410" fill="none" stroke="#E0E0E0" stroke-width="2"/>
+    <rect x="320" y="410" width="160" height="50" fill="#2D2D30" stroke="#DCDCAA" stroke-width="3" rx="5"/>
+    <rect x="320" y="410" width="160" height="20" fill="#DCDCAA" rx="5" stroke="#DCDCAA"/>
+    <text x="400" y="425" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="middle">Non-Clustered Index</text>
+    <text x="400" y="445" font-family="Arial, sans-serif" font-size="12" fill="#E0E0E0" text-anchor="middle">FKs, Joins, Filters</text>
+</svg>

@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+    <rect width="900" height="600" fill="#1E1E1E" rx="10"/>
+    
+    <!-- Title -->
+    <text x="450" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFD700" text-anchor="middle">View Use Case: Data Security (Column &amp; Row Level)</text>
+
+    <!-- LEFT: Physical Table (ORDERS) -->
+    <text x="150" y="150" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFF" text-anchor="middle">ORDERS TABLE</text>
+    <rect x="110" y="80" width="80" height="40" fill="#FFF" stroke="#000" stroke-width="2" rx="5"/>
+    <circle cx="150" cy="115" r="5" fill="#000"/>
+    <path d="M 140 100 A 10 10 0 0 1 160 100" fill="none" stroke="#000" stroke-width="3"/>
+    
+    <rect x="70" y="180" width="160" height="120" fill="#FFF" stroke="#000" stroke-width="3"/>
+    
+    <!-- Table Headers -->
+    <rect x="70" y="180" width="40" height="30" fill="#4FC1FF" stroke="#000" stroke-width="2"/>
+    <rect x="110" y="180" width="40" height="30" fill="#4FC1FF" stroke="#000" stroke-width="2"/>
+    <rect x="150" y="180" width="40" height="30" fill="#4FC1FF" stroke="#000" stroke-width="2"/>
+    <rect x="190" y="180" width="40" height="30" fill="#F44747" stroke="#000" stroke-width="2"/> <!-- Sensitive Column D -->
+    
+    <text x="90" y="202" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">A</text>
+    <text x="130" y="202" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">B</text>
+    <text x="170" y="202" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">C</text>
+    <text x="210" y="202" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFF" text-anchor="middle">D</text>
+    
+    <!-- Table Rows -->
+    <path d="M 70 210 L 230 210 M 70 240 L 230 240 M 70 270 L 230 270 M 110 210 L 110 300 M 150 210 L 150 300 M 190 210 L 190 300" stroke="#000" stroke-width="1"/>
+    <text x="90" y="230" font-family="Arial, sans-serif" font-size="14" fill="#000" text-anchor="middle">1</text>
+    <text x="90" y="260" font-family="Arial, sans-serif" font-size="14" fill="#000" text-anchor="middle">2</text>
+    <text x="90" y="290" font-family="Arial, sans-serif" font-size="14" fill="#000" text-anchor="middle">3</text> <!-- Sensitive Row 3 -->
+    <rect x="190" y="180" width="40" height="120" fill="none" stroke="#F44747" stroke-width="4"/> <!-- Outline Sensitive Col -->
+    <rect x="70" y="270" width="160" height="30" fill="none" stroke="#F44747" stroke-width="4"/> <!-- Outline Sensitive Row -->
+    
+
+    <!-- Arrows to Views -->
+    <path d="M 240 200 L 360 120" stroke="#4FC1FF" stroke-width="3" marker-end="url(#arrow_blue)"/>
+    <path d="M 240 240 L 360 270" stroke="#4FC1FF" stroke-width="3" marker-end="url(#arrow_blue)"/>
+    <path d="M 240 280 L 360 420" stroke="#4FC1FF" stroke-width="3" marker-end="url(#arrow_blue)"/>
+
+    <!-- RIGHT 1: MANAGER (All Data) -->
+    <text x="440" y="90" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFF" text-anchor="middle">ORDERS_MANAGERS VIEW</text>
+    <text x="650" y="125" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#4EC9B0" text-anchor="middle">MANAGER</text>
+    <rect x="380" y="100" width="120" height="80" fill="#FFF" stroke="#000" stroke-width="3"/>
+    <rect x="380" y="100" width="30" height="20" fill="#4FC1FF"/>
+    <rect x="410" y="100" width="30" height="20" fill="#4FC1FF"/>
+    <rect x="440" y="100" width="30" height="20" fill="#4FC1FF"/>
+    <rect x="470" y="100" width="30" height="20" fill="#4FC1FF"/>
+    <text x="395" y="115" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">A</text>
+    <text x="425" y="115" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">B</text>
+    <text x="455" y="115" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">C</text>
+    <text x="485" y="115" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">D</text>
+    <path d="M 380 120 L 500 120 M 380 140 L 500 140 M 380 160 L 500 160 M 410 120 L 410 180 M 440 120 L 440 180 M 470 120 L 470 180" stroke="#000" stroke-width="1"/>
+    <text x="395" y="135" font-family="Arial, sans-serif" font-size="12" fill="#000" text-anchor="middle">1</text>
+    <text x="395" y="155" font-family="Arial, sans-serif" font-size="12" fill="#000" text-anchor="middle">2</text>
+    <text x="395" y="175" font-family="Arial, sans-serif" font-size="12" fill="#000" text-anchor="middle">3</text>
+    
+    <path d="M 520 140 L 580 140" stroke="#4FC1FF" stroke-width="3" marker-start="url(#arrow_blue_rev)" marker-end="url(#arrow_blue)"/>
+    <text x="550" y="130" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#4EC9B0" text-anchor="middle">All Data</text>
+    
+
+    <!-- RIGHT 2: DATA ANALYST (Column Security) -->
+    <text x="440" y="240" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFF" text-anchor="middle">ORDERS_ANALYSTS VIEW</text>
+    <text x="650" y="275" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFD700" text-anchor="middle">DATA ANALYST</text>
+    <rect x="380" y="250" width="120" height="80" fill="#FFF" stroke="#000" stroke-width="3"/>
+    <rect x="380" y="250" width="30" height="20" fill="#4FC1FF"/>
+    <rect x="410" y="250" width="30" height="20" fill="#4FC1FF"/>
+    <rect x="440" y="250" width="30" height="20" fill="#4FC1FF"/>
+    <rect x="470" y="250" width="30" height="80" fill="#555"/> <!-- Blocked Column -->
+    <path d="M 470 250 L 500 330 M 500 250 L 470 330" stroke="#F44747" stroke-width="2"/> <!-- Cross over blocked -->
+    <text x="395" y="265" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">A</text>
+    <text x="425" y="265" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">B</text>
+    <text x="455" y="265" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">C</text>
+    <path d="M 380 270 L 470 270 M 380 290 L 470 290 M 380 310 L 470 310 M 410 270 L 410 330 M 440 270 L 440 330" stroke="#000" stroke-width="1"/>
+    <text x="395" y="285" font-family="Arial, sans-serif" font-size="12" fill="#000" text-anchor="middle">1</text>
+    <text x="395" y="305" font-family="Arial, sans-serif" font-size="12" fill="#000" text-anchor="middle">2</text>
+    <text x="395" y="325" font-family="Arial, sans-serif" font-size="12" fill="#000" text-anchor="middle">3</text>
+    
+    <path d="M 520 290 L 580 290" stroke="#4FC1FF" stroke-width="3" marker-start="url(#arrow_blue_rev)" marker-end="url(#arrow_blue)"/>
+    <text x="550" y="280" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#4EC9B0" text-anchor="middle">Column Security</text>
+    
+
+    <!-- RIGHT 3: STUDENT (Column & Row Security) -->
+    <text x="440" y="390" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFF" text-anchor="middle">ORDERS_STUDENTS VIEW</text>
+    <text x="650" y="425" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#F44747" text-anchor="middle">STUDENT</text>
+    <rect x="380" y="400" width="120" height="80" fill="#FFF" stroke="#000" stroke-width="3"/>
+    <rect x="380" y="400" width="30" height="20" fill="#4FC1FF"/>
+    <rect x="410" y="400" width="30" height="20" fill="#4FC1FF"/>
+    <rect x="440" y="400" width="30" height="20" fill="#4FC1FF"/>
+    
+    <rect x="470" y="400" width="30" height="80" fill="#555"/> <!-- Blocked Column -->
+    <path d="M 470 400 L 500 480 M 500 400 L 470 480" stroke="#F44747" stroke-width="2"/>
+    
+    <rect x="380" y="450" width="90" height="30" fill="#555"/> <!-- Blocked Row -->
+    <path d="M 380 450 L 470 480 M 470 450 L 380 480" stroke="#F44747" stroke-width="2"/>
+    
+    <text x="395" y="415" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">A</text>
+    <text x="425" y="415" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">B</text>
+    <text x="455" y="415" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">C</text>
+    <path d="M 380 420 L 470 420 M 380 440 L 470 440 M 410 420 L 410 450 M 440 420 L 440 450" stroke="#000" stroke-width="1"/>
+    <text x="395" y="435" font-family="Arial, sans-serif" font-size="12" fill="#000" text-anchor="middle">1</text>
+    <text x="395" y="450" font-family="Arial, sans-serif" font-size="12" fill="#000" text-anchor="middle">2</text>
+    
+    <path d="M 520 440 L 580 440" stroke="#4FC1FF" stroke-width="3" marker-start="url(#arrow_blue_rev)" marker-end="url(#arrow_blue)"/>
+    <text x="550" y="420" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#4EC9B0" text-anchor="middle">Column Security</text>
+    <text x="550" y="435" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#4EC9B0" text-anchor="middle">&amp; Row Security</text>
+
+    <!-- Defs -->
+    <defs>
+        <marker id="arrow_blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4FC1FF" /></marker>
+        <marker id="arrow_blue_rev" markerWidth="10" markerHeight="10" refX="2" refY="5" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#4FC1FF" /></marker>
+    </defs>
+</svg>

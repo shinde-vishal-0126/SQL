@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+    <rect width="900" height="600" fill="#1E1E1E" rx="10"/>
+    
+    <!-- Title -->
+    <text x="450" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFD700" text-anchor="middle">View vs Physical Table (Abstraction Layer)</text>
+    
+    <!-- Part 1: The Flow -->
+    <rect x="50" y="80" width="800" height="200" fill="#2D2D30" stroke="#555" stroke-width="2" rx="10"/>
+    
+    <!-- Physical Table -->
+    <rect x="100" y="100" width="160" height="100" fill="#252526" stroke="#4EC9B0" stroke-width="3"/>
+    <rect x="100" y="100" width="160" height="30" fill="#4EC9B0"/>
+    <text x="180" y="120" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">TABLE</text>
+    <path d="M 100 130 L 260 130 M 153 130 L 153 200 M 206 130 L 206 200 M 100 165 L 260 165" stroke="#555" stroke-width="2"/>
+    <text x="180" y="225" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4EC9B0" text-anchor="middle">Physical Table</text>
+    <text x="180" y="250" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFF" text-anchor="middle">REAL DATA</text>
+    
+    <!-- View -->
+    <rect x="420" y="100" width="160" height="100" fill="#252526" stroke="#FFD700" stroke-width="3"/>
+    <rect x="420" y="100" width="160" height="30" fill="#FFD700"/>
+    <text x="500" y="120" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">VIEW</text>
+    <path d="M 420 130 L 580 130 M 473 130 L 473 200 M 526 130 L 526 200 M 420 165 L 580 165" stroke="#555" stroke-width="2"/>
+    
+    <rect x="360" y="110" width="60" height="80" fill="#FFF" stroke="#000"/>
+    <text x="390" y="130" font-family="Arial, sans-serif" font-size="12" fill="#000" text-anchor="middle">SELECT</text>
+    <text x="390" y="150" font-family="Arial, sans-serif" font-size="12" fill="#000" text-anchor="middle">FROM</text>
+    <text x="390" y="170" font-family="Arial, sans-serif" font-size="12" fill="#000" text-anchor="middle">WHERE</text>
+    <path d="M 390 100 L 400 80 L 380 80 Z" fill="#F44747"/>
+    <text x="390" y="70" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#F44747" text-anchor="middle">Query</text>
+    
+    <text x="500" y="225" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFD700" text-anchor="middle">Virtual Table</text>
+    <text x="500" y="250" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFF" text-anchor="middle">ABSTRACTION LAYER</text>
+    
+    <!-- User Query -->
+    <rect x="700" y="100" width="120" height="90" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="760" y="90" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4FC1FF" text-anchor="middle">QUERY</text>
+    <text x="760" y="130" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#000" text-anchor="middle">SELECT *</text>
+    <text x="760" y="155" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#000" text-anchor="middle">FROM View</text>
+    <text x="760" y="250" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFF" text-anchor="middle">YOU (User)</text>
+    
+    <!-- Arrows for Flow -->
+    <path d="M 270 140 Q 315 120 350 140" fill="none" stroke="#F44747" stroke-width="3" marker-end="url(#arrow_red)"/>
+    <path d="M 350 160 Q 315 180 270 160" fill="none" stroke="#F44747" stroke-width="3" marker-end="url(#arrow_red)"/>
+    
+    <path d="M 590 150 L 690 150" fill="none" stroke="#4FC1FF" stroke-width="3" marker-start="url(#arrow_blue_rev)" marker-end="url(#arrow_blue)"/>
+    
+    <path d="M 250 240 L 370 240" fill="none" stroke="#FFF" stroke-width="3" marker-start="url(#arrow_white_rev)" marker-end="url(#arrow_white)"/>
+    <path d="M 620 240 L 680 240" fill="none" stroke="#FFF" stroke-width="3" marker-start="url(#arrow_white_rev)" marker-end="url(#arrow_white)"/>
+
+
+    <!-- Part 2: Differences Comparison -->
+    <rect x="50" y="320" width="800" height="250" fill="#2D2D30" stroke="#555" stroke-width="2" rx="10"/>
+    <path d="M 450 330 L 450 560" stroke="#888" stroke-width="2" stroke-dasharray="10,10"/>
+    
+    <!-- View Side -->
+    <rect x="250" y="340" width="120" height="40" fill="#FFD700" rx="5" stroke="#000" stroke-width="2"/>
+    <text x="310" y="367" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#000" text-anchor="middle">VIEW</text>
+    
+    <text x="310" y="420" font-family="Arial, sans-serif" font-size="18" fill="#FFF" text-anchor="middle">No Persistence (No Data)</text>
+    <text x="310" y="460" font-family="Arial, sans-serif" font-size="18" fill="#4EC9B0" text-anchor="middle">Easy to Maintain</text>
+    <text x="310" y="500" font-family="Arial, sans-serif" font-size="18" fill="#F44747" text-anchor="middle">Slower Response (2 Queries)</text>
+    <text x="310" y="540" font-family="Arial, sans-serif" font-size="18" fill="#FFF" text-anchor="middle">Read (Usually)</text>
+    
+    <!-- Table Side -->
+    <rect x="530" y="340" width="120" height="40" fill="#FFD700" rx="5" stroke="#000" stroke-width="2"/>
+    <text x="590" y="367" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#000" text-anchor="middle">TABLE</text>
+    
+    <text x="590" y="420" font-family="Arial, sans-serif" font-size="18" fill="#FFF" text-anchor="middle">Persisted Data (On Disk)</text>
+    <text x="590" y="460" font-family="Arial, sans-serif" font-size="18" fill="#F44747" text-anchor="middle">Hard to Maintain / Alter</text>
+    <text x="590" y="500" font-family="Arial, sans-serif" font-size="18" fill="#4EC9B0" text-anchor="middle">Fast Response</text>
+    <text x="590" y="540" font-family="Arial, sans-serif" font-size="18" fill="#FFF" text-anchor="middle">Read / Write</text>
+    
+    <!-- Markers -->
+    <defs>
+        <marker id="arrow_red" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#F44747" /></marker>
+        <marker id="arrow_blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4FC1FF" /></marker>
+        <marker id="arrow_blue_rev" markerWidth="10" markerHeight="10" refX="2" refY="5" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#4FC1FF" /></marker>
+        <marker id="arrow_white" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#FFF" /></marker>
+        <marker id="arrow_white_rev" markerWidth="10" markerHeight="10" refX="2" refY="5" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#FFF" /></marker>
+    </defs>
+</svg>

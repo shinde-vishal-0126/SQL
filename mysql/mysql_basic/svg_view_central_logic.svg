@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+    <rect width="900" height="600" fill="#1E1E1E" rx="10"/>
+    
+    <!-- Title -->
+    <text x="450" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFD700" text-anchor="middle">Central Query Logic (View vs CTE)</text>
+    
+    <path d="M 450 60 L 450 560" stroke="#888" stroke-width="3" stroke-dasharray="10,10"/>
+    
+    <!-- LEFT SIDE: CTE (Redundant) -->
+    <text x="225" y="80" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#F44747" text-anchor="middle">Without View (Using CTEs)</text>
+    <text x="225" y="100" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle">100% Redundancy &amp; Waste of time</text>
+    
+    <rect x="30" y="150" width="100" height="150" fill="#252526" stroke="#4EC9B0" stroke-width="2"/>
+    <text x="80" y="170" font-family="Arial, sans-serif" font-size="14" fill="#4EC9B0" text-anchor="middle">TABLES</text>
+    <rect x="40" y="180" width="80" height="20" fill="#3E3E42"/><text x="80" y="195" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle">Orders</text>
+    <rect x="40" y="210" width="80" height="20" fill="#3E3E42"/><text x="80" y="225" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle">Customers</text>
+    
+    <!-- Analyst 1 -->
+    <rect x="150" y="130" width="120" height="60" fill="#FFF" stroke="#F44747" stroke-width="4"/>
+    <text x="210" y="155" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#F44747" text-anchor="middle">CTE Query</text>
+    <text x="210" y="175" font-family="Arial, sans-serif" font-size="14" fill="#000" text-anchor="middle">SUM &amp; JOIN</text>
+    
+    <rect x="290" y="140" width="70" height="40" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="325" y="165" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#4FC1FF" text-anchor="middle">RANK</text>
+    <text x="390" y="165" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle">Analyst 1</text>
+    <path d="M 130 160 L 150 160" stroke="#4FC1FF" stroke-width="2" marker-end="url(#arrow_blue)"/>
+    <path d="M 270 160 L 290 160" stroke="#4FC1FF" stroke-width="2" marker-end="url(#arrow_blue)"/>
+    
+    <!-- Analyst 2 -->
+    <rect x="150" y="220" width="120" height="60" fill="#FFF" stroke="#F44747" stroke-width="4"/>
+    <text x="210" y="245" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#F44747" text-anchor="middle">CTE Query</text>
+    <text x="210" y="265" font-family="Arial, sans-serif" font-size="14" fill="#000" text-anchor="middle">SUM &amp; JOIN</text>
+    
+    <rect x="290" y="230" width="70" height="40" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="325" y="255" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#4FC1FF" text-anchor="middle">MIN/MAX</text>
+    <text x="390" y="255" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle">Analyst 2</text>
+    <path d="M 130 225 L 150 250" stroke="#4FC1FF" stroke-width="2" marker-end="url(#arrow_blue)"/>
+    <path d="M 270 250 L 290 250" stroke="#4FC1FF" stroke-width="2" marker-end="url(#arrow_blue)"/>
+    
+    <!-- Analyst 3 -->
+    <rect x="150" y="310" width="120" height="60" fill="#FFF" stroke="#F44747" stroke-width="4"/>
+    <text x="210" y="335" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#F44747" text-anchor="middle">CTE Query</text>
+    <text x="210" y="355" font-family="Arial, sans-serif" font-size="14" fill="#000" text-anchor="middle">SUM &amp; JOIN</text>
+    
+    <rect x="290" y="320" width="70" height="40" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="325" y="345" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#4FC1FF" text-anchor="middle">COMPARE</text>
+    <text x="390" y="345" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle">Analyst 3</text>
+    <path d="M 130 280 L 150 340" stroke="#4FC1FF" stroke-width="2" marker-end="url(#arrow_blue)"/>
+    <path d="M 270 340 L 290 340" stroke="#4FC1FF" stroke-width="2" marker-end="url(#arrow_blue)"/>
+
+
+    <!-- RIGHT SIDE: View (Central Logic) -->
+    <text x="675" y="80" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#4EC9B0" text-anchor="middle">With View (Central Logic)</text>
+    <text x="675" y="100" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle">Reusability &amp; No Redundancy</text>
+    
+    <rect x="470" y="200" width="100" height="100" fill="#252526" stroke="#4EC9B0" stroke-width="2"/>
+    <text x="520" y="230" font-family="Arial, sans-serif" font-size="14" fill="#4EC9B0" text-anchor="middle">TABLES</text>
+    <rect x="480" y="240" width="80" height="20" fill="#3E3E42"/><text x="520" y="255" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle">Orders</text>
+    <rect x="480" y="270" width="80" height="20" fill="#3E3E42"/><text x="520" y="285" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle">Customers</text>
+    
+    <!-- The Central View -->
+    <rect x="600" y="200" width="120" height="100" fill="#FFF" stroke="#4EC9B0" stroke-width="5" rx="5"/>
+    <rect x="585" y="185" width="150" height="130" fill="none" stroke="#4EC9B0" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="660" y="230" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#4EC9B0" text-anchor="middle">VIEW</text>
+    <text x="660" y="255" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">SUM &amp; JOIN</text>
+    <text x="660" y="285" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">Central Logic</text>
+    
+    <path d="M 570 250 L 600 250" stroke="#4FC1FF" stroke-width="2" marker-end="url(#arrow_blue)"/>
+    
+    <!-- Analyst 1 -->
+    <rect x="760" y="140" width="70" height="40" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="795" y="165" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#4FC1FF" text-anchor="middle">RANK</text>
+    <text x="860" y="165" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle">Analyst 1</text>
+    <path d="M 720 220 L 760 160" stroke="#4FC1FF" stroke-width="2" marker-end="url(#arrow_blue)"/>
+    
+    <!-- Analyst 2 -->
+    <rect x="760" y="230" width="70" height="40" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="795" y="255" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#4FC1FF" text-anchor="middle">MIN/MAX</text>
+    <text x="860" y="255" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle">Analyst 2</text>
+    <path d="M 720 250 L 760 250" stroke="#4FC1FF" stroke-width="2" marker-end="url(#arrow_blue)"/>
+    
+    <!-- Analyst 3 -->
+    <rect x="760" y="320" width="70" height="40" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="795" y="345" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#4FC1FF" text-anchor="middle">COMPARE</text>
+    <text x="860" y="345" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle">Analyst 3</text>
+    <path d="M 720 280 L 760 340" stroke="#4FC1FF" stroke-width="2" marker-end="url(#arrow_blue)"/>
+    
+    <defs>
+        <marker id="arrow_blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4FC1FF" /></marker>
+    </defs>
+</svg>

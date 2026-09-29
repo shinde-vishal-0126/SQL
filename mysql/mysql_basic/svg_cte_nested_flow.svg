@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 250">
+    <rect width="1000" height="250" fill="#1E1E1E" rx="10"/>
+    
+    <!-- Title -->
+    <text x="500" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#F44747" text-anchor="middle">NESTED CTE (Dependent Flow)</text>
+    
+    <!-- DB -->
+    <rect x="20" y="80" width="60" height="100" fill="#2D2D30" stroke="#E0E0E0" stroke-width="2"/>
+    <text x="50" y="135" font-family="Arial" font-size="16" font-weight="bold" fill="#E0E0E0" text-anchor="middle">DB</text>
+    
+    <path d="M 80 130 L 120 130" fill="none" stroke="#F44747" stroke-width="3" marker-end="url(#arrow)"/>
+    <polygon points="120,130 110,125 110,135" fill="#F44747"/>
+    <path d="M 120 130 L 80 130" fill="none" stroke="#F44747" stroke-width="3" marker-end="url(#arrow)"/>
+    
+    <!-- CTE 1 -->
+    <rect x="130" y="80" width="80" height="100" fill="#1E1E1E" stroke="#4EC9B0" stroke-width="3" rx="5"/>
+    <text x="170" y="105" font-family="Arial" font-size="14" font-weight="bold" fill="#4EC9B0" text-anchor="middle">#1 CTE</text>
+    <line x1="145" y1="120" x2="195" y2="120" stroke="#E0E0E0" stroke-width="2"/>
+    <line x1="145" y1="140" x2="195" y2="140" stroke="#E0E0E0" stroke-width="2"/>
+    
+    <path d="M 210 130 L 260 130" fill="none" stroke="#F44747" stroke-width="3" marker-end="url(#arrow)"/>
+    <polygon points="260,130 250,125 250,135" fill="#F44747"/>
+    
+    <!-- Inter Result 1 -->
+    <rect x="270" y="90" width="80" height="80" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2"/>
+    <text x="310" y="115" font-family="Arial" font-size="10" font-style="italic" fill="#4FC1FF" text-anchor="middle">Intermediate</text>
+    <text x="310" y="135" font-family="Arial" font-size="12" font-weight="bold" fill="#4FC1FF" text-anchor="middle">RESULT</text>
+    <rect x="280" y="145" width="60" height="15" fill="#1E1E1E" stroke="#E0E0E0" stroke-width="1"/>
+    
+    <path d="M 350 130 L 400 130" fill="none" stroke="#F44747" stroke-width="3" marker-end="url(#arrow)"/>
+    <polygon points="400,130 390,125 390,135" fill="#F44747"/>
+    <path d="M 400 130 L 350 130" fill="none" stroke="#F44747" stroke-width="3" marker-end="url(#arrow)"/>
+    
+    <!-- CTE 2 -->
+    <rect x="410" y="80" width="80" height="100" fill="#1E1E1E" stroke="#4EC9B0" stroke-width="3" rx="5"/>
+    <text x="450" y="105" font-family="Arial" font-size="14" font-weight="bold" fill="#4EC9B0" text-anchor="middle">#2 CTE</text>
+    <line x1="425" y1="120" x2="475" y2="120" stroke="#E0E0E0" stroke-width="2"/>
+    <line x1="425" y1="140" x2="475" y2="140" stroke="#E0E0E0" stroke-width="2"/>
+    
+    <path d="M 490 130 L 540 130" fill="none" stroke="#F44747" stroke-width="3" marker-end="url(#arrow)"/>
+    <polygon points="540,130 530,125 530,135" fill="#F44747"/>
+    
+    <!-- Inter Result 2 -->
+    <rect x="550" y="90" width="80" height="80" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2"/>
+    <text x="590" y="115" font-family="Arial" font-size="10" font-style="italic" fill="#4FC1FF" text-anchor="middle">Intermediate</text>
+    <text x="590" y="135" font-family="Arial" font-size="12" font-weight="bold" fill="#4FC1FF" text-anchor="middle">RESULT</text>
+    <rect x="560" y="145" width="60" height="15" fill="#1E1E1E" stroke="#E0E0E0" stroke-width="1"/>
+    
+    <path d="M 630 130 L 680 130" fill="none" stroke="#F44747" stroke-width="3" marker-end="url(#arrow)"/>
+    <polygon points="680,130 670,125 670,135" fill="#F44747"/>
+    <path d="M 680 130 L 630 130" fill="none" stroke="#F44747" stroke-width="3" marker-end="url(#arrow)"/>
+    
+    <!-- Main Query -->
+    <rect x="690" y="80" width="100" height="100" fill="#1E1E1E" stroke="#FFD700" stroke-width="3" rx="5"/>
+    <text x="740" y="115" font-family="Arial" font-size="14" font-weight="bold" fill="#FFD700" text-anchor="middle">MAIN QUERY</text>
+    <line x1="710" y1="135" x2="770" y2="135" stroke="#E0E0E0" stroke-width="2"/>
+    
+    <path d="M 790 130 L 840 130" fill="none" stroke="#F44747" stroke-width="3" marker-end="url(#arrow)"/>
+    <polygon points="840,130 830,125 830,135" fill="#F44747"/>
+    
+    <!-- Final Result -->
+    <rect x="850" y="90" width="80" height="80" fill="#2D2D30" stroke="#4EC9B0" stroke-width="2"/>
+    <text x="890" y="115" font-family="Arial" font-size="12" font-weight="bold" fill="#4EC9B0" text-anchor="middle">FINAL</text>
+    <text x="890" y="135" font-family="Arial" font-size="10" font-weight="bold" fill="#4EC9B0" text-anchor="middle">RESULT</text>
+    <rect x="860" y="145" width="60" height="15" fill="#1E1E1E" stroke="#E0E0E0" stroke-width="1"/>
+</svg>

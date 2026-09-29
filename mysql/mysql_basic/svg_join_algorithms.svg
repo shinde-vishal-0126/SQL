@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 250">
+    <rect width="800" height="250" fill="#1E1E1E" rx="10"/>
+    <text x="400" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#DCDCAA" text-anchor="middle">SQL Join Algorithms</text>
+    
+    <g transform="translate(50, 70)">
+        <rect width="200" height="130" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2" rx="5"/>
+        <text x="100" y="25" font-family="Arial" font-size="14" font-weight="bold" fill="#4FC1FF" text-anchor="middle">Nested Loop Join</text>
+        <text x="100" y="55" font-family="Arial" font-size="12" fill="#E0E0E0" text-anchor="middle">For each row in Table 1,</text>
+        <text x="100" y="75" font-family="Arial" font-size="12" fill="#E0E0E0" text-anchor="middle">find match in Table 2.</text>
+        <text x="100" y="105" font-family="Arial" font-size="11" fill="#A0A0A0" text-anchor="middle">Default. Very fast with Indexes.</text>
+    </g>
+    
+    <g transform="translate(300, 70)">
+        <rect width="200" height="130" fill="#2D2D30" stroke="#C586C0" stroke-width="2" rx="5"/>
+        <text x="100" y="25" font-family="Arial" font-size="14" font-weight="bold" fill="#C586C0" text-anchor="middle">Hash Join</text>
+        <text x="100" y="55" font-family="Arial" font-size="12" fill="#E0E0E0" text-anchor="middle">Builds Hash Table in memory</text>
+        <text x="100" y="75" font-family="Arial" font-size="12" fill="#E0E0E0" text-anchor="middle">then probes with second table.</text>
+        <text x="100" y="105" font-family="Arial" font-size="11" fill="#A0A0A0" text-anchor="middle">Fast for large, non-indexed joins.</text>
+    </g>
+    
+    <g transform="translate(550, 70)">
+        <rect width="200" height="130" fill="#2D2D30" stroke="#DCDCAA" stroke-width="2" rx="5"/>
+        <text x="100" y="25" font-family="Arial" font-size="14" font-weight="bold" fill="#DCDCAA" text-anchor="middle">Block Nested Loop</text>
+        <text x="100" y="55" font-family="Arial" font-size="12" fill="#E0E0E0" text-anchor="middle">Uses blocks/chunks instead</text>
+        <text x="100" y="75" font-family="Arial" font-size="12" fill="#E0E0E0" text-anchor="middle">of row-by-row comparisons.</text>
+        <text x="100" y="105" font-family="Arial" font-size="11" fill="#A0A0A0" text-anchor="middle">Reduces repeated scans.</text>
+    </g>
+</svg>

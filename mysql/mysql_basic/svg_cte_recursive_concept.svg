@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500">
+    <rect width="600" height="500" fill="#1E1E1E" rx="10"/>
+    
+    <text x="300" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#4FC1FF" text-anchor="middle">CTE Recursive Concept</text>
+    
+    <!-- Outer Box (CTE) -->
+    <rect x="150" y="70" width="300" height="350" fill="#2D2D30" stroke="#1E1E1E" stroke-width="4"/>
+    
+    <!-- Anchor Query Box -->
+    <rect x="200" y="100" width="200" height="80" fill="#E0E0E0" stroke="#1E1E1E" stroke-width="4"/>
+    <text x="300" y="135" font-family="Comic Sans MS, cursive, sans-serif" font-size="20" font-weight="bold" fill="#1E1E1E" text-anchor="middle">ANCHOR</text>
+    <text x="300" y="160" font-family="Comic Sans MS, cursive, sans-serif" font-size="20" font-weight="bold" fill="#1E1E1E" text-anchor="middle">QUERY</text>
+    
+    <!-- Recursive Query Box -->
+    <rect x="200" y="250" width="200" height="100" fill="#E0E0E0" stroke="#1E1E1E" stroke-width="4"/>
+    <text x="300" y="295" font-family="Comic Sans MS, cursive, sans-serif" font-size="20" font-weight="bold" fill="#1E1E1E" text-anchor="middle">RECURSIVE</text>
+    <text x="300" y="320" font-family="Comic Sans MS, cursive, sans-serif" font-size="20" font-weight="bold" fill="#1E1E1E" text-anchor="middle">QUERY</text>
+    
+    <!-- Arrows -->
+    <!-- Anchor to Recursive -->
+    <path d="M 370 100 L 370 250" fill="none" stroke="#F44747" stroke-width="4" marker-end="url(#arrow)"/>
+    <polygon points="370,250 360,235 380,235" fill="#F44747"/>
+    
+    <!-- Recursive Loop -->
+    <path d="M 280 300 C 200 350, 150 250, 250 230 C 320 210, 390 280, 320 340 C 260 380, 230 330, 280 280" fill="none" stroke="#F44747" stroke-width="4"/>
+    <!-- Loop arrowhead roughly pointing correctly -->
+    <polygon points="280,280 270,290 290,290" fill="#F44747" transform="rotate(45 280 280)"/>
+    
+    <!-- Exit to Main Query -->
+    <path d="M 370 350 L 370 480" fill="none" stroke="#F44747" stroke-width="4" marker-end="url(#arrow)"/>
+    <polygon points="370,480 360,465 380,465" fill="#F44747"/>
+    
+    <!-- Fold in corner of CTE document -->
+    <polygon points="450,420 420,420 450,390" fill="#1E1E1E"/>
+</svg>

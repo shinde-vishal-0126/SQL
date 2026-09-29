@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650">
+    <rect width="1000" height="650" fill="#1E1E1E" rx="10"/>
+
+    <text x="500" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFCC00" text-anchor="middle">How Database Executes a Temporary Table</text>
+
+    <!-- Divide into SERVER and CLIENT -->
+    <line x1="550" y1="80" x2="550" y2="600" stroke="#888" stroke-width="3" stroke-dasharray="10,10"/>
+    <text x="275" y="80" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFF" text-anchor="middle">SERVER</text>
+    <text x="775" y="80" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFF" text-anchor="middle">CLIENT</text>
+
+    <!-- SERVER SIDE -->
+    <!-- Cache Box -->
+    <rect x="50" y="110" width="400" height="80" fill="#FFF" stroke="#000" stroke-width="3"/>
+    <text x="250" y="155" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#888" text-anchor="middle">CACHE (Memory)</text>
+
+    <!-- Disk Box -->
+    <rect x="50" y="210" width="400" height="350" fill="#F0F0F0" stroke="#000" stroke-width="3"/>
+    <text x="250" y="240" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#000" text-anchor="middle">DISK</text>
+
+    <!-- Disk Sections: TEMP, CATALOG, USER -->
+    <line x1="150" y1="250" x2="150" y2="560" stroke="#CCC" stroke-width="2" stroke-dasharray="5,5"/>
+    <line x1="350" y1="250" x2="350" y2="560" stroke="#CCC" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="100" y="270" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#F44747" text-anchor="middle">TEMP</text>
+    <text x="250" y="270" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">CATALOG</text>
+    <text x="400" y="270" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">USER</text>
+
+    <!-- Catalog Metadata -->
+    <rect x="210" y="290" width="80" height="40" fill="#FFF" stroke="#4FC1FF" stroke-width="2"/>
+    <text x="250" y="315" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#4FC1FF" text-anchor="middle">META (Orders)</text>
+
+    <rect x="210" y="350" width="80" height="40" fill="#FFF" stroke="#4FC1FF" stroke-width="2"/>
+    <text x="250" y="375" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#4FC1FF" text-anchor="middle">META (Sales)</text>
+    
+    <rect x="210" y="410" width="80" height="40" fill="#FFF" stroke="#F44747" stroke-width="3"/>
+    <text x="250" y="435" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#F44747" text-anchor="middle">META (Temp)</text>
+
+    <!-- User Physical Tables -->
+    <rect x="370" y="300" width="60" height="40" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <line x1="370" y1="310" x2="430" y2="310" stroke="#000" stroke-width="1"/>
+    <line x1="370" y1="320" x2="430" y2="320" stroke="#000" stroke-width="1"/>
+    <line x1="370" y1="330" x2="430" y2="330" stroke="#000" stroke-width="1"/>
+    <text x="400" y="295" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000" text-anchor="middle">ORDERS</text>
+
+    <rect x="370" y="380" width="60" height="40" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <line x1="370" y1="390" x2="430" y2="390" stroke="#000" stroke-width="1"/>
+    <line x1="370" y1="400" x2="430" y2="400" stroke="#000" stroke-width="1"/>
+    <line x1="370" y1="410" x2="430" y2="410" stroke="#000" stroke-width="1"/>
+    <text x="400" y="375" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000" text-anchor="middle">SALES</text>
+
+    <!-- Temp Storage Physical Table -->
+    <rect x="70" y="450" width="60" height="40" fill="#FFF" stroke="#F44747" stroke-width="3"/>
+    <line x1="70" y1="460" x2="130" y2="460" stroke="#F44747" stroke-width="1"/>
+    <line x1="70" y1="470" x2="130" y2="470" stroke="#F44747" stroke-width="1"/>
+    <line x1="70" y1="480" x2="130" y2="480" stroke="#F44747" stroke-width="1"/>
+    <text x="100" y="445" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#F44747" text-anchor="middle">TEMP TABLE</text>
+
+    <!-- Database Engine (Middle) -->
+    <rect x="490" y="150" width="40" height="350" fill="#252526" stroke="#4FC1FF" stroke-width="2" rx="5"/>
+    <text x="510" y="325" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFF" transform="rotate(-90 510,325)" text-anchor="middle">DATABASE ENGINE</text>
+
+
+    <!-- CLIENT SIDE -->
+    <!-- Data Engineer -->
+    <text x="750" y="270" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFF" text-anchor="middle">Data Engineer</text>
+    <rect x="700" y="150" width="100" height="100" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="750" y="145" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#4FC1FF" text-anchor="middle">Query</text>
+    <!-- Code lines -->
+    <line x1="710" y1="170" x2="750" y2="170" stroke="#000" stroke-width="2"/>
+    <line x1="710" y1="190" x2="780" y2="190" stroke="#000" stroke-width="2"/>
+    <line x1="710" y1="210" x2="760" y2="210" stroke="#000" stroke-width="2"/>
+    
+    <path d="M 680 200 L 530 200" stroke="#4FC1FF" stroke-width="3" marker-end="url(#arrow_blue)"/>
+
+    <!-- Data Analyst Session -->
+    <text x="750" y="550" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFF" text-anchor="middle">Data Analyst</text>
+    <!-- Laptop -->
+    <rect x="700" y="450" width="100" height="60" fill="#FFF" stroke="#000" stroke-width="3"/>
+    <rect x="680" y="510" width="140" height="15" fill="#CCC" stroke="#000" stroke-width="2"/>
+    <circle cx="750" cy="480" r="10" fill="#F44747"/> <!-- Session identifier dot -->
+
+    <!-- Connecting Session to Engine to Temp -->
+    <path d="M 740 480 L 530 420" stroke="#F44747" stroke-width="3" stroke-dasharray="8,8" marker-end="url(#arrow_red)"/>
+    <text x="650" y="440" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#F44747" transform="rotate(-15 650,440)">SESSION ID</text>
+    
+    <path d="M 490 420 L 140 470" stroke="#F44747" stroke-width="3" stroke-dasharray="8,8" marker-end="url(#arrow_red)"/>
+
+    <!-- Sleep Zs indicating Auto Cleanup -->
+    <text x="820" y="420" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFCC00">Z</text>
+    <text x="835" y="400" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFCC00">Z</text>
+    <text x="850" y="380" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#FFCC00">Z</text>
+    
+    <text x="700" y="590" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#F44747">When session closes -> Auto Cleanup!</text>
+
+
+    <defs>
+        <marker id="arrow_red" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#F44747" /></marker>
+        <marker id="arrow_blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4FC1FF" /></marker>
+    </defs>
+</svg>

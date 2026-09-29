@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+    <rect width="900" height="600" fill="#1E1E1E" rx="10"/>
+    
+    <!-- Title -->
+    <text x="450" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFD700" text-anchor="middle">View Use Case: Flexibility &amp; Dynamic Changes</text>
+    
+    <path d="M 450 80 L 450 560" stroke="#888" stroke-width="2" stroke-dasharray="10,10"/>
+
+    <!-- LEFT SIDE: WITHOUT VIEW (Breaking Changes) -->
+    <text x="225" y="80" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#F44747" text-anchor="middle">Without View (Direct Table Access)</text>
+    <text x="225" y="100" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle">Schema changes break users' queries</text>
+
+    <!-- The Breaking Changes -->
+    <text x="150" y="140" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#F44747" text-anchor="middle">CHANGES</text>
+    <path d="M 140 150 L 160 170 L 140 180 L 160 200" stroke="#F44747" stroke-width="3" fill="none"/>
+    
+    <text x="100" y="220" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle">TABLE 1</text>
+    <rect x="60" y="230" width="80" height="70" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="73" y="250" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">F</text>
+    <text x="100" y="250" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">Z</text>
+    <text x="126" y="250" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">B</text>
+    <path d="M 60 260 L 140 260 M 60 280 L 140 280 M 86 230 L 86 300 M 112 230 L 112 300" stroke="#000" stroke-width="1"/>
+
+    <text x="200" y="220" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle">TABLE 2</text>
+    <rect x="170" y="230" width="60" height="70" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="185" y="250" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">C</text>
+    <text x="215" y="250" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">D</text>
+    <path d="M 170 260 L 230 260 M 170 280 L 230 280 M 200 230 L 200 300" stroke="#000" stroke-width="1"/>
+    
+    <!-- Arrows crashing -->
+    <path d="M 330 180 L 250 240" stroke="#4FC1FF" stroke-width="3" marker-end="url(#arrow_blue)"/>
+    <path d="M 330 260 L 250 260" stroke="#4FC1FF" stroke-width="3" marker-end="url(#arrow_blue)"/>
+    <path d="M 330 350 L 250 280" stroke="#4FC1FF" stroke-width="3" marker-end="url(#arrow_blue)"/>
+
+    <!-- Users Queries (Errors) -->
+    <text x="290" y="160" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#F44747" text-anchor="middle" transform="rotate(-30 290,160)">Error</text>
+    <rect x="330" y="140" width="60" height="70" fill="#FFF" stroke="#F44747" stroke-width="3"/>
+    <path d="M 330 140 L 390 210 M 390 140 L 330 210" stroke="#F44747" stroke-width="3"/>
+    <circle cx="420" cy="170" r="10" fill="#FFF"/><path d="M 410 200 Q 420 180 430 200 Z" fill="#FFF"/>
+
+    <text x="290" y="240" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#F44747" text-anchor="middle" transform="rotate(-30 290,240)">Error</text>
+    <rect x="330" y="230" width="60" height="70" fill="#FFF" stroke="#F44747" stroke-width="3"/>
+    <path d="M 330 230 L 390 300 M 390 230 L 330 300" stroke="#F44747" stroke-width="3"/>
+    <circle cx="420" cy="260" r="10" fill="#FFF"/><path d="M 410 290 Q 420 270 430 290 Z" fill="#FFF"/>
+
+    <text x="290" y="330" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#F44747" text-anchor="middle" transform="rotate(-30 290,330)">Error</text>
+    <rect x="330" y="320" width="60" height="70" fill="#FFF" stroke="#F44747" stroke-width="3"/>
+    <path d="M 330 320 L 390 390 M 390 320 L 330 390" stroke="#F44747" stroke-width="3"/>
+    <circle cx="420" cy="350" r="10" fill="#FFF"/><path d="M 410 380 Q 420 360 430 380 Z" fill="#FFF"/>
+
+
+    <!-- RIGHT SIDE: WITH VIEW (Seamless) -->
+    <text x="675" y="80" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#4EC9B0" text-anchor="middle">With View (Abstraction)</text>
+    <text x="675" y="100" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle">Users don't even notice the change</text>
+
+    <!-- The Breaking Changes -->
+    <text x="550" y="140" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#F44747" text-anchor="middle">CHANGES</text>
+    <path d="M 540 150 L 560 170 L 540 180 L 560 200" stroke="#F44747" stroke-width="3" fill="none"/>
+    
+    <text x="500" y="220" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle">TABLE 1</text>
+    <rect x="460" y="230" width="80" height="70" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="473" y="250" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">F</text>
+    <text x="500" y="250" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">Z</text>
+    <text x="526" y="250" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">B</text>
+    <path d="M 460 260 L 540 260 M 460 280 L 540 280 M 486 230 L 486 300 M 512 230 L 512 300" stroke="#000" stroke-width="1"/>
+
+    <text x="600" y="220" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle">TABLE 2</text>
+    <rect x="570" y="230" width="60" height="70" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="585" y="250" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">C</text>
+    <text x="615" y="250" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">D</text>
+    <path d="M 570 260 L 630 260 M 570 280 L 630 280 M 600 230 L 600 300" stroke="#000" stroke-width="1"/>
+
+    <!-- THE SAVIOR: VIEW -->
+    <path d="M 640 260 L 670 260" stroke="#4FC1FF" stroke-width="3" marker-end="url(#arrow_blue)"/>
+    <text x="720" y="200" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4EC9B0" text-anchor="middle">VIEW (Restores old shape)</text>
+    <rect x="670" y="210" width="100" height="70" fill="#FFD700" stroke="#000" stroke-width="3"/>
+    <rect x="670" y="210" width="100" height="20" fill="#4EC9B0"/>
+    <text x="682" y="225" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">A</text>
+    <text x="707" y="225" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">B</text>
+    <text x="732" y="225" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">C</text>
+    <text x="757" y="225" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">D</text>
+    <path d="M 670 250 L 770 250 M 695 210 L 695 280 M 720 210 L 720 280 M 745 210 L 745 280" stroke="#000" stroke-width="1"/>
+
+    <!-- Happy Users Queries -->
+    <path d="M 780 180 L 740 210" stroke="#4FC1FF" stroke-width="3" marker-start="url(#arrow_blue_rev)"/>
+    <path d="M 780 260 L 770 260" stroke="#4FC1FF" stroke-width="3" marker-start="url(#arrow_blue_rev)"/>
+    <path d="M 780 350 L 740 280" stroke="#4FC1FF" stroke-width="3" marker-start="url(#arrow_blue_rev)"/>
+
+    <rect x="780" y="140" width="60" height="70" fill="#FFF" stroke="#4EC9B0" stroke-width="3"/>
+    <text x="810" y="155" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">Query</text>
+    <path d="M 790 170 L 830 170 M 790 180 L 830 180" stroke="#000" stroke-width="2"/>
+    <circle cx="870" cy="170" r="10" fill="#FFF"/><path d="M 860 200 Q 870 180 880 200 Z" fill="#FFF"/>
+
+    <rect x="780" y="230" width="60" height="70" fill="#FFF" stroke="#4EC9B0" stroke-width="3"/>
+    <text x="810" y="245" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">Query</text>
+    <path d="M 790 260 L 830 260 M 790 270 L 830 270" stroke="#000" stroke-width="2"/>
+    <circle cx="870" cy="260" r="10" fill="#FFF"/><path d="M 860 290 Q 870 270 880 290 Z" fill="#FFF"/>
+
+    <rect x="780" y="320" width="60" height="70" fill="#FFF" stroke="#4EC9B0" stroke-width="3"/>
+    <text x="810" y="335" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">Query</text>
+    <path d="M 790 350 L 830 350 M 790 360 L 830 360" stroke="#000" stroke-width="2"/>
+    <circle cx="870" cy="350" r="10" fill="#FFF"/><path d="M 860 380 Q 870 360 880 380 Z" fill="#FFF"/>
+
+    <defs>
+        <marker id="arrow_blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4FC1FF" /></marker>
+        <marker id="arrow_blue_rev" markerWidth="10" markerHeight="10" refX="2" refY="5" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#4FC1FF" /></marker>
+    </defs>
+</svg>

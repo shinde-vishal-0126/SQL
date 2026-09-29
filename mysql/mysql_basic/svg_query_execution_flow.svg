@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+    <rect width="800" height="400" fill="#1E1E1E" rx="10"/>
+    <text x="400" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#DCDCAA" text-anchor="middle">How a Simple Query Works</text>
+    
+    <!-- Engine -->
+    <rect x="350" y="80" width="100" height="240" fill="#2D2D30" stroke="#DCDCAA" stroke-width="2"/>
+    <text x="400" y="200" font-family="Arial" font-size="16" font-weight="bold" fill="#DCDCAA" text-anchor="middle" transform="rotate(-90 400 200)">ENGINE</text>
+    
+    <!-- Client -->
+    <rect x="600" y="150" width="150" height="100" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2"/>
+    <text x="675" y="190" font-family="Arial" font-size="14" font-weight="bold" fill="#4FC1FF" text-anchor="middle">CLIENT</text>
+    <text x="675" y="215" font-family="Arial" font-size="12" fill="#E0E0E0" text-anchor="middle">SELECT * FROM orders</text>
+    
+    <!-- Cache -->
+    <rect x="50" y="80" width="150" height="80" fill="#2D2D30" stroke="#4EC9B0" stroke-width="2"/>
+    <text x="125" y="125" font-family="Arial" font-size="14" font-weight="bold" fill="#4EC9B0" text-anchor="middle">CACHE</text>
+    
+    <!-- Disk -->
+    <rect x="50" y="220" width="150" height="100" fill="#2D2D30" stroke="#C586C0" stroke-width="2"/>
+    <text x="125" y="275" font-family="Arial" font-size="14" font-weight="bold" fill="#C586C0" text-anchor="middle">DISK (User Data)</text>
+    
+    <!-- Arrows and Steps -->
+    <text x="530" y="175" font-family="Arial" font-size="12" fill="#4FC1FF" text-anchor="middle">1. Send Query</text>
+    <path d="M 600 180 L 460 180" stroke="#4FC1FF" stroke-width="2"/>
+    <polygon points="460,180 470,175 470,185" fill="#4FC1FF"/>
+    
+    <text x="270" y="115" font-family="Arial" font-size="12" fill="#4EC9B0" text-anchor="middle">2. Check Cache</text>
+    <path d="M 340 120 L 210 120" stroke="#4EC9B0" stroke-width="2"/>
+    <polygon points="210,120 220,115 220,125" fill="#4EC9B0"/>
+    
+    <text x="270" y="155" font-family="Arial" font-size="12" fill="#F44747" text-anchor="middle" font-weight="bold">NO! (Not in cache)</text>
+    <path d="M 210 140 L 340 140" stroke="#F44747" stroke-width="2" stroke-dasharray="5,5"/>
+    <polygon points="340,140 330,135 330,145" fill="#F44747"/>
+    
+    <text x="270" y="255" font-family="Arial" font-size="12" fill="#C586C0" text-anchor="middle">3. Read from Disk</text>
+    <path d="M 340 260 L 210 260" stroke="#C586C0" stroke-width="2"/>
+    <polygon points="210,260 220,255 220,265" fill="#C586C0"/>
+    
+    <text x="270" y="295" font-family="Arial" font-size="12" fill="#C586C0" text-anchor="middle">Return Data</text>
+    <path d="M 210 280 L 340 280" stroke="#C586C0" stroke-width="2" stroke-dasharray="5,5"/>
+    <polygon points="340,280 330,275 330,285" fill="#C586C0"/>
+    
+    <text x="530" y="235" font-family="Arial" font-size="12" fill="#4EC9B0" text-anchor="middle">4. Send Result</text>
+    <path d="M 460 220 L 600 220" stroke="#4EC9B0" stroke-width="2"/>
+    <polygon points="600,220 590,215 590,225" fill="#4EC9B0"/>
+</svg>

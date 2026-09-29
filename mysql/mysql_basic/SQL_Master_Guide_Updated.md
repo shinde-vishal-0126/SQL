@@ -196,18 +196,76 @@
     - [20.8 Window Function Limitations & Rules](#208-window-function-limitations--rules)
     - [20.9 Why Window Functions? (Advantages)](#209-why-window-functions-advantages)
     - [20.10 GROUP BY + HAVING vs Window Functions](#2010-group-by--having-vs-window-functions)
-21. [Topic 21: Final Summary / निष्कर्ष](#topic-21-final-summary--निष्कर्ष)
-22. [Topic 22: Interview Q&A Bank (Most-Asked SQL Questions)](#topic-22-interview-qa-bank-most-asked-sql-questions)
-    - [22.1 Part A: Database Basics](#221-part-a-database-basics)
-    - [22.2 Part B: Data Types](#222-part-b-data-types)
-    - [22.3 Part C: DDL, DML & Command Types](#223-part-c-ddl-dml--command-types)
-    - [22.4 Part D: Keys & Constraints](#224-part-d-keys--constraints)
-    - [22.5 Part E: Querying, Filtering, Grouping](#225-part-e-querying-filtering-grouping)
-    - [22.6 Part F: Joins & SET Operators](#226-part-f-joins--set-operators)
-    - [22.7 Part G: Functions, NULL & CASE](#227-part-g-functions-null--case)
-    - [22.8 Part H: Window Functions](#228-part-h-window-functions)
-    - [22.9 Part I: Transactions & Security](#229-part-i-transactions--security)
-    - [22.10 Part J: Query-Writing Questions (Practice These)](#2210-part-j-query-writing-questions-practice-these)
+21. [Topic 21: Database Optimization & Indexing (Analytics & Performance)](#topic-21-database-optimization--indexing-analytics--performance)
+    - [21.1 Introduction to Performance Optimization](#211-introduction-to-performance-optimization)
+    - [21.2 Database Storage Architecture: How data is stored?](#212-database-storage-architecture-how-data-is-stored)
+    - [21.3 The HEAP Structure & Full Table Scan](#213-the-heap-structure--full-table-scan)
+    - [21.4 The Clustered Index (B-Tree Structure)](#214-the-clustered-index-b-tree-structure)
+    - [21.5 Non-Clustered Index (Secondary Index)](#215-non-clustered-index-secondary-index)
+    - [21.6 Clustered vs Non-Clustered Index Summary](#216-clustered-vs-non-clustered-index-summary)
+    - [21.7 Rowstore vs Columnstore Index (Storage Architecture)](#217-rowstore-vs-columnstore-index-storage-architecture)
+    - [21.8 Indexing by Function (Unique, Filtered, Composite)](#218-indexing-by-function)
+    - [21.9 Indexing Best Practices in MySQL](#219-indexing-best-practices-in-mysql)
+    - [21.10 Advantages & Disadvantages of Indexes](#2110-advantages--disadvantages-of-indexes)
+    - [21.11 Index Management & Monitoring](#2111-index-management--monitoring)
+    - [21.12 Indexing Strategies](#2112-indexing-strategies)
+    - [21.13 Interview Perspective (Pro-Tips)](#2113-interview-perspective-pro-tips)
+22. [Topic 22: Final Summary / निष्कर्ष](#topic-22-final-summary--निष्कर्ष)
+23. [Topic 23: Interview Q&A Bank (Most-Asked SQL Questions)](#topic-23-interview-qa-bank-most-asked-sql-questions)
+    - [23.1 Part A: Database Basics](#231-part-a-database-basics)
+    - [23.2 Part B: Data Types](#232-part-b-data-types)
+    - [23.3 Part C: DDL, DML & Command Types](#233-part-c-ddl-dml--command-types)
+    - [23.4 Part D: Keys & Constraints](#234-part-d-keys--constraints)
+    - [23.5 Part E: Querying, Filtering, Grouping](#235-part-e-querying-filtering-grouping)
+    - [23.6 Part F: Joins & SET Operators](#236-part-f-joins--set-operators)
+    - [23.7 Part G: Functions, NULL & CASE](#237-part-g-functions-null--case)
+    - [23.8 Part H: Window Functions](#238-part-h-window-functions)
+    - [23.9 Part I: Transactions & Security](#239-part-i-transactions--security)
+    - [23.10 Part J: Query-Writing Questions (Practice These)](#2310-part-j-query-writing-questions-practice-these)
+24. [Topic 24: Derived Tables in SQL](#topic-24-derived-tables-in-sql)
+    - [24.1 What is a Derived Table?](#241-what-is-a-derived-table)
+    - [24.2 Syntax and Example](#242-syntax-and-example)
+    - [24.3 Difference Between Derived Table and Subquery](#243-difference-between-derived-table-and-subquery)
+25. [Topic 25: Query Execution Plans (EXPLAIN)](#topic-25-query-execution-plans-explain)
+26. [Topic 26: Scans & Seeks (Data Access Methods)](#topic-26-scans--seeks-data-access-methods)
+27. [Topic 27: SQL Join Algorithms (How Joins Work Internally)](#topic-27-sql-join-algorithms-how-joins-work-internally)
+28. [Topic 28: Heap vs Clustered Index (Internal Storage)](#topic-28-heap-vs-clustered-index-internal-storage)
+29. [Topic 29: Table Duplication & Copying Techniques](#topic-29-table-duplication--copying-techniques)
+30. [Topic 30: SQL Table Partitioning (Performance Optimization)](#topic-30-sql-table-partitioning-performance-optimization)
+31. [Topic 31: CTEs (Common Table Expressions) & Recursive CTEs](#topic-31-ctes-common-table-expressions--recursive-ctes)
+32. [Topic 32: ACID Properties & Transaction Isolation Levels](#topic-32-acid-properties--transaction-isolation-levels)
+33. [Topic 33: Database Normalization (1NF to BCNF) & Denormalization](#topic-33-database-normalization-1nf-to-bcnf--denormalization)
+34. [Topic 34: Deadlocks in SQL](#topic-34-deadlocks-in-sql)
+35. [Topic 35: Query Optimization / Tuning Checklist](#topic-35-query-optimization--tuning-checklist-interview-favorite)
+36. [Topic 36: Database Engine Architecture & Storage Concepts](#topic-36-database-engine-architecture--storage-concepts)
+37. [Topic 37: Subqueries Deep Dive (Nested Queries)](#topic-37-subqueries-deep-dive-nested-queries)
+38. [Topic 38: Subqueries Advanced (Clauses, Operators & Execution)](#topic-38-subqueries-advanced-clauses-operators--execution)
+39. [Topic 39: Common Table Expressions (CTE)](#topic-39-common-table-expressions-cte)
+40. [Topic 40: Database Import & Export (CSV, SQL Dumps)](#topic-40-database-import--export-csv-sql-dumps)
+41. [Topic 41: SQL Server Architecture & Database Hierarchy](#topic-41-sql-server-architecture--database-hierarchy)
+42. [Topic 42: SQL Views (Virtual Tables) Deep Dive](#topic-42-sql-views-virtual-tables-deep-dive)
+    - [42.1 What is a View?](#421-what-is-a-view)
+    - [42.2 Differences Between Table and View](#422-differences-between-table-and-view)
+    - [42.3 Why Do We Need Views? (6 Major Use Cases)](#423-why-do-we-need-views-6-major-use-cases)
+    - [42.4 View vs CTE](#424-view-vs-cte)
+    - [42.5 Syntax & Schema Naming](#425-syntax--schema-naming)
+    - [42.6 Modifying/Updating Views (CREATE OR REPLACE vs ALTER VIEW)](#426-modifyingupdating-views-create-or-replace-vs-alter-view)
+    - [42.7 Updatable Views (Insert / Update / Delete through a View)](#427-updatable-views-insert--update--delete-through-a-view)
+    - [42.8 Materialized Views (Performance Booster)](#428-materialized-views-performance-booster)
+    - [42.9 Index vs View vs Materialized View](#429-index-vs-view-vs-materialized-view)
+    - [42.10 How Database Executes a View](#4210-how-database-executes-a-view)
+    - [42.11 Summary of SQL Views](#4211-summary-of-sql-views)
+    - [42.12 Interview Perspective & Hindi Summary](#4212-interview-perspective--hindi-summary)
+43. [Topic 43: Tables, CTAS & Temporary Tables Deep Dive](#topic-43-tables-ctas--temporary-tables-deep-dive)
+    - [43.1 What are Database Tables? (Physical Storage vs Logical Grid)](#431-what-are-database-tables-physical-storage-vs-logical-grid)
+    - [43.2 How to Create Permanent Tables: CREATE/INSERT vs CTAS](#432-how-to-create-permanent-tables-createinsert-vs-ctas)
+    - [43.3 CTAS Use Cases](#433-ctas-use-cases)
+    - [43.4 Temporary Tables (Session-Based Tables)](#434-temporary-tables-session-based-tables)
+    - [43.5 How Database Executes Temporary Tables](#435-how-database-executes-temporary-tables)
+    - [43.6 Use Case of Temporary Tables (ETL & Intermediate Results)](#436-use-case-of-temporary-tables-etl--intermediate-results)
+    - [43.7 Ultimate Comparison: Subquery vs CTE vs Temp Table vs CTAS vs View](#437-ultimate-comparison-subquery-vs-cte-vs-temp-table-vs-ctas-vs-view)
+    - [43.8 The Big Picture of SQL (How everything connects)](#438-the-big-picture-of-sql-how-everything-connects)
+    - [43.9 Interview Perspective & Hindi Summary](#439-interview-perspective--hindi-summary)
 
 ---
 
@@ -7698,9 +7756,16 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   * Based on the formulas, we have to find out the percentage value of the relative position of each row overall. So it is very important to measure the contribution of each value to the overall distribution.
 
 
-### 20.5 Aggregate Window Functions (SUM, AVG, MIN, MAX)
-* **English Definition:** In window aggregation, functions like `SUM`, `AVG`, `MIN`, `MAX` calculate their values for each window separately (or the entire dataset if no partition is given), but unlike `GROUP BY`, they do not collapse the rows.
+### 20.5 Aggregate Window Functions (SUM, AVG, MIN, MAX, COUNT)
+* **English Definition:** In window aggregation, functions like `SUM`, `AVG`, `MIN`, `MAX`, and `COUNT` calculate their values for each window separately (or the entire dataset if no partition is given), but unlike `GROUP BY`, they do not collapse the rows.
 * **मराठी सारांश:** इथे ॲग्रीगेशन फंक्शन्स प्रत्येक विंडोसाठी (ग्रुप) वेगळे गणित करतात, पण `GROUP BY` प्रमाणे rows कमी होत नाहीत; प्रत्येक मूळ row सोबत ॲग्रीगेट मूल्य जोडले जाते.
+
+#### The `COUNT()` Function Details (Data Quality & Duplicates)
+* **English:** The `COUNT()` function returns the number of rows in each window (i.e., how many rows are in a subset of data). It counts the number of values regardless of their data type.
+  * `COUNT(*)` or `COUNT(1)`: Counts **all** rows, regardless of NULLs. (`COUNT(1)` works because 1 is a constant and never NULL).
+  * `COUNT(column)`: Counts the number of **non-NULL** values in that specific column.
+* **Note on Duplicates:** The `COUNT()` function counts the total number of rows **including duplicates**, not just unique values.
+* **Data Quality Issue:** Duplicates lead to inaccuracies in analysis. `COUNT()` can be used to identify duplicates. For example, if you partition by a unique ID and `COUNT() > 1`, you have duplicate rows!
 
 #### Use Cases for Aggregate Window Functions
 * ![Aggregate Window Use Cases](./svg_window_agg_usecases.svg)
@@ -8119,7 +8184,340 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
 
 ---
 
-## Topic 21: Final Summary / निष्कर्ष
+## Topic 21: Database Optimization & Indexing (Analytics & Performance)
+
+### 21.1 Introduction to Performance Optimization
+**English:** The first and most famous way to optimize database performance is by building indexes. An index in SQL is a data structure (similar to an index in a book) that improves the speed of data retrieval operations on a database table. It acts as a guide for your database to speed up the process of searching for data, especially in large tables.
+**Hindi:** डेटाबेस की परफॉरमेंस को ऑप्टिमाइज़ करने का पहला और सबसे प्रसिद्ध तरीका इंडेक्स (Index) बनाना है। SQL में इंडेक्स एक डेटा स्ट्रक्चर है (जैसे किसी किताब का इंडेक्स) जो डेटाबेस टेबल से डेटा खोजने की स्पीड को बढ़ाता है। यह डेटाबेस के लिए एक गाइड की तरह काम करता है, ताकि बड़े टेबल में भी डेटा तेज़ी से खोजा जा सके।
+
+**Trade-offs (नुकसान):**
+While indexes speed up reads, they slow down writes (INSERT, UPDATE, DELETE) because the index must be updated every time data changes.
+*(इंडेक्स से डेटा पढ़ने की स्पीड बढ़ती है, लेकिन लिखते समय (INSERT, UPDATE, DELETE) स्पीड कम हो जाती है क्योंकि हर बदलाव के साथ इंडेक्स को भी अपडेट करना पड़ता है।)*
+
+* **Pros:** Faster `SELECT`, `WHERE`, `JOIN`, `ORDER BY`, `GROUP BY`.
+* **Without an index:** MySQL scans the entire table row by row (Full Table Scan) ➔ **Slow for large tables.**
+* **With an index:** MySQL can directly jump to the location of the data ➔ **Much faster.**
+
+**Types of Indexes in MySQL (Engines):**
+MySQL uses B-Tree or Hash indexes depending on the storage engine:
+* **InnoDB Engine (Default):** Uses **B+Tree** indexes (balanced tree structure). **Supports Clustered Indexes** (The Primary Key is always the Clustered Index, and all others are Non-Clustered / Secondary).
+* **MyISAM Engine:** **Does not support Clustered Indexes**. All indexes in MyISAM are Non-Clustered.
+* **Memory Engine:** Uses **Hash** indexes (excellent for exact equality lookups like `WHERE id = 5`, but bad for range queries like `>`, `<`).
+
+### 21.2 Database Storage Architecture: How data is stored?
+
+Before understanding indexes, we must understand how a database stores data on a hard drive.
+**English:** Databases store data in fixed-size blocks called **Pages** (typically 8KB or 16KB). A table's data is split across multiple data pages inside a physical file (like `.mdf` or `.ibd`).
+**Hindi:** डेटाबेस डेटा को एक फिक्स साइज़ के ब्लॉक में स्टोर करता है जिसे **Page** कहते हैं (आमतौर पर 8KB या 16KB)। एक टेबल का पूरा डेटा कई पेजों (Data Pages) में बंट कर एक फिजिकल फाइल (.mdf या .ibd) में सेव होता है।
+
+![Data Pages Overview](./svg_db_pages_overview.svg)
+*Description: Overview of a Data File containing Data Pages (actual table rows) and Index Pages (B-Tree pointers).*
+
+**Anatomy of a Data Page:**
+* **Page Header:** 96 Bytes. Stores metadata (Page ID, next/previous page pointers, free space info).
+* **Data Rows:** Actual rows inserted into the database.
+* **Free Space:** Empty space for new rows.
+* **Offset Array (Row Locator):** Located at the bottom. It contains pointers (memory addresses) to the exact location of each row in the page. When SQL reads a page, it uses the offset array to find rows instantly without scanning the whole page.
+
+![Data Page Anatomy](./svg_data_page_anatomy.svg)
+*Description: Anatomy of an 8KB Data Page showing Header, Rows, Free Space, and the Offset Array.*
+
+### 21.3 The HEAP Structure & Full Table Scan
+
+**What happens when a table has NO Clustered Index?**
+Such a table is called a **HEAP**.
+
+**English:** In a Heap structure, data is stored in no particular order. New rows are just appended wherever there is free space.
+**Hindi:** Heap स्ट्रक्चर में डेटा किसी विशेष क्रम (order) में स्टोर नहीं होता। नई रो (row) जहाँ भी खाली जगह मिलती है, वहाँ जोड़ दी जाती है।
+
+* **Fast Write:** Because the database doesn't need to sort the data, inserts are extremely fast. (Just toss the data anywhere).
+* **Slow Read:** Because data is random, finding a specific row requires scanning every single page and row. This is called a **Full Table Scan**.
+
+![Heap Structure](./svg_heap_structure.svg)
+*Description: HEAP Structure showing randomly ordered rows across pages.*
+
+![Full Table Scan](./svg_full_table_scan.svg)
+*Description: Full Table Scan searching for ID=14. SQL must read every row across every page to find it.*
+
+### 21.4 The Clustered Index (B-Tree Structure) & Reading Speed
+
+To fix the Full Table Scan problem, SQL uses a **Clustered Index**, usually created automatically when you define a `PRIMARY KEY`. You can think of the clustered index like the table of contents at the front of a book, telling you exactly where to find each chapter.
+
+**English:** A Clustered Index physically sorts the data in the table based on the indexed column (e.g., Customer ID). It uses a **B-Tree** (Balanced Tree) structure. In a clustered index, the leaf nodes (the bottom level of the tree) are the actual Data Pages themselves.
+**Hindi:** Clustered Index टेबल के डेटा को इंडेक्स किए गए कॉलम (जैसे ID) के आधार पर फिजिकली सॉर्ट (क्रमबद्ध) कर देता है। यह **B-Tree** स्ट्रक्चर का उपयोग करता है। Clustered Index में सबसे नीचे (Leaf level) असल डेटा पेज (Data Pages) ही होते हैं।
+
+**Structure of a B-Tree:**
+1. **Root Node:** The starting point. It contains high-level ranges and points to Intermediate nodes.
+2. **Intermediate Nodes:** Act as signboards, narrowing down the search and pointing to the correct Leaf nodes.
+3. **Leaf Nodes (Base Data Pages):** For a Clustered Index, the leaf node *is* the actual data page containing your rows.
+
+**Detailed Execution Example (Searching for ID 14):**
+If you query `WHERE customer_id = 14`, SQL does not scan all pages. Instead, it navigates the B-Tree:
+1. **Step 1 (Root Node):** SQL checks the root node. Since 14 is between 11 and 20, it uses the 2nd pointer to jump to the intermediate index page `1:201`.
+2. **Step 2 (Intermediate Node):** SQL checks the pointers in page `1:201`. Since 14 is between 11 and 15, it uses the pointer pointing to data page `1:102`.
+3. **Step 3 (Leaf Node):** SQL locates the correct data page (`1:102`), opens it, and instantly finds customer ID 14.
+*(Hindi: SQL सीधा Root Node से Intermediate Node होते हुए सीधे सही Data Page तक पहुँचता है, बिना फालतू पेजों को पढ़े।)*
+
+**Why is this so fast?**
+It only took 3 jumps! You might think, "Well, we still read 3 pages (Root, Intermediate, Leaf), how is this faster than a HEAP?"
+The secret is: **Reading an index page is extremely fast** compared to reading a large data page. The B-Tree structure allows the database to locate the exact row without scanning irrelevant data. 
+
+![Clustered B-Tree](./svg_clustered_btree.svg)
+*Description: Clustered Index B-Tree. The search for ID=14 traverses the Root (Step 1), then Intermediate (Step 2), directly landing on the correct Data Page (Step 3).*
+
+### 21.5 Non-Clustered Index (Secondary Index)
+
+If we already have a Heap or a Clustered Index, what happens when we create an index on another column (e.g., `Customer Name`)? SQL immediately builds a new, separate B-Tree structure. This is called a **Non-Clustered Index** (or Secondary Index).
+
+* **Definition:** Any index that is not the Primary Key. It logically sorts the indexed column without changing the physical order of the actual table.
+
+**English:** A Non-Clustered Index is a completely separate structure from the data pages. The B-Tree contains a sorted copy of the indexed column. However, the Leaf Nodes do **not** contain the full row data. Instead, they contain a **pointer** back to the actual data page where the rest of the row is stored.
+**Hindi:** Non-Clustered Index डेटा पेजों से एक अलग स्ट्रक्चर होता है। इसके B-Tree में इंडेक्स किए गए कॉलम की सॉर्ट की गई कॉपी होती है। लेकिन, Leaf Nodes में पूरा डेटा नहीं होता, बल्कि एक **पॉइंटर (Pointer)** होता है जो असल डेटा पेज का एड्रेस बताता है।
+
+**What exactly is this Pointer?**
+The value of the pointer depends on the base table structure:
+1. **If the base table is a HEAP:** The pointer is a **Row ID (RID)**. It looks like `Page Number : Row Offset` (e.g., `1:102:96`). SQL uses this RID to jump straight to the exact byte in the heap.
+2. **If the base table has a Clustered Index:** The pointer is the **Primary Key** (e.g., `EmpID = 1`). SQL takes this primary key and traverses the Clustered Index B-Tree to find the row.
+
+**The "Extra Lookup" Process (Key Lookup):**
+When you query `WHERE name = 'Vishal'`:
+1. MySQL scans the Non-Clustered B-Tree to find the name 'Vishal'.
+2. It reaches the Leaf Node and finds the pointer (e.g., `Primary Key = 1`).
+3. MySQL must now do **one extra jump** (an Extra Lookup) using the Clustered Index to find the rest of the row for `EmpID = 1`.
+*(Hindi: Non-Clustered Index सिर्फ पता (address) बताता है। पूरा डेटा लाने के लिए SQL को एक अतिरिक्त छलांग (Extra Lookup) लगानी पड़ती है।)*
+
+![Non-Clustered B-Tree](./svg_non_clustered_btree.svg)
+*Description: Non-Clustered Index B-Tree. The leaf nodes contain pointers. SQL must perform an extra jump to fetch the full row from the physically separate Data Pages.*
+
+### 21.6 Clustered vs Non-Clustered Index Summary
+
+**English:** Here is a quick comparison summarizing the differences between a Clustered and Non-Clustered Index.
+**Hindi:** Clustered और Non-Clustered इंडेक्स के बीच का मुख्य अंतर नीचे दिया गया है।
+
+| Feature | Clustered Index (Primary Key) | Non-Clustered Index (Secondary Index) |
+| :--- | :--- | :--- |
+| **Definition** | Physically sorts and stores rows. | Separate structure with pointers to the data. |
+| **Number of Indexes** | **One** Index per Table. | **Multiple** indexes are allowed. |
+| **Read Performance** | **Faster** (data is right there). | **Slower** (requires an extra pointer lookup). |
+| **Write Performance** | **Slower**, due to potential data row reordering. | **Faster**, since physical data order is unaffected. |
+| **Storage Efficiency** | More **storage-efficient**. | Requires **additional** storage space for the B-Tree. |
+| **Use Case** | Unique Column, Not frequently modified, Range queries. | Columns frequently used in search conditions and exact match queries. |
+
+**Syntax to Create Indexes:**
+```sql
+-- Default is NONCLUSTERED
+CREATE [CLUSTERED | NONCLUSTERED] INDEX index_name ON table_name (column1, column2, ...)
+
+CREATE CLUSTERED INDEX IX_Customers_ID ON Customers (ID)
+
+CREATE NONCLUSTERED INDEX IX_Customers_City ON Customers (City)
+
+CREATE INDEX IX_Customers_Name ON Customers (LastName ASC, FirstName DESC)
+```
+
+### 21.7 Rowstore vs Columnstore Index (Storage Architecture)
+
+Indexes can also be categorized by how they physically store data on the disk (By Storage).
+
+#### 1. Rowstore Index (The Default)
+**English:** Organizes and stores data row by row. This is the traditional RDBMS structure. If you fetch a single row, the database pulls the entire row together.
+**Hindi:** इसमें डेटा रो (row) के अनुसार स्टोर होता है। यह डिफ़ॉल्ट तरीका है।
+* **Note:** By default, a table is built as a Heap structure where rows are stored row by row inside the data pages.
+
+![Rowstore vs Columnstore](./svg_rowstore_vs_columnstore.svg)
+*Description: Rowstore stores complete rows in pages. Columnstore stores each column separately in its own pages.*
+
+#### 2. Columnstore Index (For Analytics)
+**English:** Organizes and stores data column by column. This is highly optimized for analytical queries (OLAP) where you might need to sum up a single column (e.g., Sales) across millions of rows without reading the rest of the columns.
+**Hindi:** इसमें डेटा कॉलम (column) के अनुसार स्टोर होता है। यह डेटा एनालिसिस (Analytics) के लिए बहुत तेज़ है।
+
+**The Columnstore Creation Process:**
+![Columnstore Process](./svg_columnstore_process.svg)
+*Description: The three steps of creating a Columnstore index.*
+
+1. **#1 Row Groups:** The table is first divided horizontally into Row Groups (up to 1 million rows per group).
+2. **#2 Column Segments:** Each Row Group is then divided vertically into independent Column Segments.
+3. **#3 Compression (Dictionary):** Each Column Segment is heavily compressed. For example, if a `Status` column has 'Active' and 'Inactive' repeating thousands of times, it creates a Dictionary (`'Active' -> 1`, `'Inactive' -> 2`) and stores tiny numbers instead of large strings. This saves massive amounts of space and memory.
+
+#### Comparison: Rowstore vs Columnstore
+
+| Feature | Rowstore Index | Columnstore Index |
+| :--- | :--- | :--- |
+| **Definition** | Organizes and stores data **row by row** | Organizes and stores data **column by column** |
+| **Storage Efficiency** | **Less efficient** in storage | **Highly efficient** with Compression |
+| **Read/Write Optimization** | **Fair** speed for read & write operations | **Fast** read performance, **Slow** write performance |
+| **I/O Efficiency** | **Lower** (retrieves all columns) | **Higher** (retrieves specific columns) |
+| **Best for** | **OLTP (Transactional)** commerce, banking, order processing | **OLAP (Analytical)** Data Warehouse, Business intelligence, Analytics |
+| **Use Case** | High-frequency transaction applications, Quick access to complete records | Big Data Analytics, Scanning large datasets, Fast aggregation |
+
+**Columnstore Index Syntax:**
+```sql
+-- Default is ROWSTORE
+CREATE [CLUSTERED | NONCLUSTERED] [COLUMNSTORE] INDEX index_name ON table_name (column1, column2, ...)
+
+-- Rowstore
+CREATE NONCLUSTERED INDEX IX_Customers_Country ON Customers (Country)
+CREATE CLUSTERED INDEX IX_Customers_ID ON Customers (ID)
+
+-- Columnstore
+CREATE NONCLUSTERED COLUMNSTORE INDEX IX_Customers_Country ON Customers (Country)
+CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED TO USE COLUMNS
+
+-- Rules: You can't specify columns in Clustered Index Columnstore
+```
+
+### 21.8 Indexing by Function (Unique, Filtered, Composite)
+
+**1. Unique Index (यूनिक इंडेक्स)**
+* **Definition:** A Unique Index ensures that all values in a specific column are distinct (no duplicate values exist).
+* **Why it is important:** 
+  * **Data Integrity:** Enforces uniqueness of data at the database level.
+  * **Improved Performance:** Slightly increases query performance as the database engine knows there's only one match.
+* **Important Note:** 
+  * Writing to a unique index is slower than a non-unique index (normal clustered index).
+  * Reading from a unique index is faster than a non-unique index.
+  * If a duplicate exists in the column, it will prevent you from creating a unique index.
+* **Hindi (मराठी/हिंदी सारांश):** यह इंडेक्स सुनिश्चित करता है कि कॉलम में कोई डुप्लीकेट (Duplicate) डेटा न हो। इससे डेटा सुरक्षित रहता है (Data Integrity) और पढ़ने (Read) की स्पीड बढ़ती है, लेकिन नया डेटा डालने (Write) की स्पीड थोड़ी कम हो जाती है।
+* **Example / Syntax:** 
+  ```sql
+  CREATE UNIQUE INDEX idx_email ON employees(email);
+  ```
+* **Image Reference:** ![Index Syntax vs Unique Index](./svg_index_syntax.svg) *(Description: Compares default index syntax which allows duplicates vs unique index syntax which enforces uniqueness).*
+
+**2. Filtered Index (फिल्टर्ड इंडेक्स)**
+* **Definition:** An index that includes only a specific subset of rows meeting a defined condition.
+* **Benefits:** 
+  * **Targeted Optimization:** Optimizes queries for a specific subset of data.
+  * **Reduced Storage:** Stores less data in the index, which saves space and improves overall index maintenance performance.
+* **When to use:** Use when a query frequently targets a specific category (e.g., Active employees, unpaid invoices).
+* **Hindi (मराठी/हिंदी सारांश):** यह इंडेक्स पूरे टेबल के बजाय सिर्फ एक खास कंडीशन (जैसे Status = 'Active') वाले डेटा पर बनता है। इससे इंडेक्स का साइज छोटा रहता है और स्पीड बहुत तेज होती है।
+* **Syntax:** 
+  ```sql
+  CREATE NONCLUSTERED INDEX idx_active_users ON users(status) WHERE status = 'ACTIVE';
+  ```
+* **Image Reference:** ![Filtered Index & When to Use](./svg_filtered_index.svg) *(Description: Shows Filtered Index syntax with WHERE condition and a flowchart on When To Use different indexes: Heap for staging, Clustered for PK/OLTP, Columnstore for OLAP, Non-Clustered for Joins/Filters).*
+
+**3. Simple (Single-Column) Index**
+* **Definition:** An index created on just one column.
+* **Hindi (मराठी/हिंदी सारांश):** यह इंडेक्स केवल एक ही कॉलम पर बनाया जाता है। इसका उपयोग तब होता है जब हम किसी एक स्पेसिफिक कॉलम (जैसे Salary या Age) के आधार पर डेटा सर्च करते हैं।
+* **Example:** 
+  ```sql
+  CREATE INDEX idx_salary ON employees(salary);
+  ```
+
+**4. Composite (Multi-Column) Index**
+* **Definition:** An index created on multiple columns.
+* **Leftmost Prefix Rule:** The index works **only** if your query filters start from the first column in the index and follow its exact order.
+  * If the index is `(col1, col2, col3)`, it works for: `col1` | `col1, col2` | `col1, col2, col3`.
+  * It will **NOT** work for only `col2` without `col1`. Always start with the leftmost column!
+* **Hindi (मराठी/हिंदी सारांश):** यह इंडेक्स एक से ज्यादा कॉलम्स को मिलाकर बनाया जाता है। इसमें लेफ्ट-मोस्ट प्रिफिक्स रूल (Leftmost Prefix Rule) का पालन करना जरूरी है, जिसका मतलब है कि क्वेरी में हमेशा पहला कॉलम शामिल होना चाहिए, तभी इंडेक्स काम करेगा।
+* **Example:** 
+  ```sql
+  CREATE INDEX idx_name_salary ON employees(name, salary);
+  ```
+
+**5. Full-Text Index**
+* **Definition:** Used for searching text efficiently within large text columns. Allows usage of `MATCH() AGAINST()` functions.
+* **Hindi (मराठी/हिंदी सारांश):** यह इंडेक्स बड़े टेक्स्ट या आर्टिकल्स के अंदर शब्दों (Keywords) को तेजी से खोजने के लिए इस्तेमाल किया जाता है। इसके लिए हम `MATCH() AGAINST()` फंक्शन का उपयोग करते हैं।
+* **Example:** 
+  ```sql
+  CREATE FULLTEXT INDEX idx_desc ON products(description);
+  ```
+
+**6. Spatial Index**
+* **Definition:** Used for geometry or GIS (Geographic Information System) data. (MySQL supports SPATIAL indexes with MyISAM and InnoDB since 5.7).
+* **Hindi (मराठी/हिंदी सारांश):** इस इंडेक्स का उपयोग जियोग्राफिक डेटा (जैसे लोकेशन, मैप्स, GPS निर्देशांक) को स्टोर और सर्च करने के लिए किया जाता है। यह स्थानों के बीच की दूरी या एरिया को तेजी से कैलकुलेट करने में मदद करता है।
+* **Example:** 
+  ```sql
+  CREATE SPATIAL INDEX idx_location ON places(location);
+  ```
+
+#### Summary of Index Types: When & How to Use
+
+* **Image Reference:** ![Index Types Summary Overview](./svg_index_types_summary.svg) *(Description: A visual summary of index types, showing when to use them and what their primary purpose is).*
+
+| Index Type | When To Use (Scenario) | How It Helps |
+| :--- | :--- | :--- |
+| **Clustered Index** | For Primary Keys and ranges. | Sorts physical data. (1 per table). |
+| **Non-Clustered** | For Foreign keys, WHERE filters, Joins. | Creates secondary pointers. (Many allowed). |
+| **Unique Index** | When a column must not have duplicates. | Enforces data integrity & speeds up exact matches. |
+| **Filtered Index** | When querying a specific subset (e.g., Active only). | Reduces index size & increases speed. |
+| **Composite Index** | When queries filter by multiple columns often. | Avoids multiple index lookups (respects Leftmost Rule). |
+| **Columnstore Index**| When aggregating massive data (Data Warehouse).| Reads specific columns efficiently (OLAP). |
+| **Full-Text Index** | When searching for words inside large text/articles. | Enables fast keyword searches (`MATCH AGAINST`). |
+| **Spatial Index** | When dealing with maps, GPS, geometry. | Fast spatial queries on polygon/point data. |
+
+### 21.9 Indexing Best Practices in MySQL
+* **Do Use Indexes For:**
+  * Columns frequently used in `WHERE`, `JOIN`, `ORDER BY`, and `GROUP BY` clauses.
+  * Frequently searched columns.
+  * Foreign keys (MySQL automatically indexes foreign keys).
+* **Avoid Indexing (Do Not Use For):**
+  * **Avoid Over-Indexing:** Indexing slows down write performance. When data is inserted, updated, or deleted, the database has to update the indexes.
+  * Columns with low selectivity (e.g., `Gender` with only 'M'/'F' values).
+  * Very small tables (indexes have overhead and don't help much).
+  * Columns that are updated frequently (high index maintenance overhead).
+* **Useful Commands:**
+  * See existing indexes: `SHOW INDEX FROM employees;`
+  * Check if a query uses an index: `EXPLAIN SELECT * FROM employees WHERE name = 'Vishal';`
+* **Hindi (मराठी/हिंदी सारांश):** हमेशा उन कॉलम्स पर इंडेक्स बनाएं जो `WHERE`, `JOIN` या `GROUP BY` में बार-बार इस्तेमाल होते हैं। गैर-जरूरी (Over-indexing) या छोटे टेबल्स पर इंडेक्स बनाने से बचें क्योंकि इससे इंसर्ट (Insert) और अपडेट (Update) की स्पीड धीमी हो जाती है।
+
+### 21.10 Advantages & Disadvantages of Indexes
+* **Advantages:**
+  * Faster `SELECT` queries (Reading).
+  * Efficient `JOIN` operations.
+  * Enforces uniqueness (via `PRIMARY` / `UNIQUE` constraints).
+  * Helps with faster sorting (`ORDER BY`) and grouping (`GROUP BY`).
+  * **Summary:** Indexes in MySQL = Speed for reads.
+* **Disadvantages:**
+  * Requires extra disk space.
+  * Slower writes (`INSERT`, `UPDATE`, `DELETE`).
+  * Poorly chosen or over-indexed tables can severely hurt performance.
+  * **Summary:** Indexes in MySQL = Cost for writes.
+* **Hindi (मराठी/हिंदी सारांश):** 
+  * **फायदे (Advantages):** डेटा पढ़ने (SELECT) और जॉइन (JOIN) करने की स्पीड बहुत बढ़ जाती है।
+  * **नुकसान (Disadvantages):** नया डेटा डालने (INSERT, UPDATE) में समय लगता है और इंडेक्स डिस्क स्पेस (Disk Space) ज्यादा घेरते हैं।
+
+### 21.11 Index Management & Monitoring
+* **Definition:** Building an index is not the final step. Over time, indexes get fragmented, outdated, and unused. This can lead to poor query performance, increased storage costs, and a drop in overall database speed.
+* **Key Maintenance Steps:**
+  1. **Monitor Index Usage:** Identify if the created indexes are actually being used by queries. Unused indexes consume unnecessary storage and slow down writes.
+  2. **Monitor Missing Indexes:** Find queries that are slow because an index is missing.
+  3. **Monitor Duplicate Indexes:** Remove redundant indexes that cover the same columns.
+  4. **Update Statistics:** The Query Optimizer relies on statistics to choose the best index. Keep them updated.
+  5. **Monitor Fragmentation:** As data is added or deleted, indexes become fragmented (scattered). Rebuild or reorganize them to maintain speed.
+* **Hindi (मराठी/हिंदी सारांश):** इंडेक्स बनाने के बाद उसे मेन्टेन (Maintain) करना भी जरूरी है। समय के साथ बिना इस्तेमाल वाले (Unused) या डुप्लीकेट इंडेक्स को डिलीट करें। जैसे-जैसे डेटा बदलता है, इंडेक्स फ्रैगमेंट (Fragment) हो जाते हैं, इसलिए उन्हें बीच-बीच में रीबिल्ड (Rebuild) करना पड़ता है।
+
+### 21.12 Indexing Strategies
+* **Image Reference:** ![Indexing Strategy Overview](./svg_indexing_strategy.svg) *(Description: 4-step Indexing Strategy flowchart: 1. Initial Strategy (OLAP vs OLTP), 2. Usage Patterns Indexing, 3. Scenario-Based Indexing, 4. Monitoring & Maintenance).*
+* **Point-Wise Explanation:**
+  1. **Initial Indexing Strategy (OLAP vs OLTP):**
+     * **OLAP (Analytical):** Goal is to optimize READ performance (e.g., Data Warehouses). Switch large frequently used tables to **ColumnStore** Index.
+     * **OLTP (Transactional):** Goal is to optimize WRITE performance (e.g., Apps, Web). Use **Clustered Index** for Primary Keys.
+  2. **Usage Patterns Indexing:**
+     * Identify frequently used tables & columns.
+     * Choose the right index (Unique, Composite, Filtered).
+     * Test the index performance.
+  3. **Scenario-Based Indexing:**
+     * Identify slow queries using logs.
+     * Check the execution plan using `EXPLAIN`.
+     * Choose the right index and compare the execution plans before and after.
+  4. **Monitoring & Maintenance:**
+     * Continuously monitor usage, missing indexes, duplicates, statistics, and fragmentation.
+* **Hindi (मराठी/हिंदी सारांश):** सही इंडेक्स चुनने के लिए 4 स्टेप्स होते हैं: (1) पहले तय करें कि आपको रीड स्पीड चाहिए या राइट। (2) सबसे ज्यादा इस्तेमाल होने वाले कॉलम्स को पहचानें। (3) `EXPLAIN` कमांड का इस्तेमाल करके चेक करें कि क्या क्वेरी सच में इंडेक्स का उपयोग कर रही है या नहीं। (4) अंत में हमेशा उनका रखरखाव (Maintenance) करें।
+
+### 21.13 Interview Perspective (Pro-Tips)
+
+* **Q: Why not put an index on every column?**
+  * **A:** Avoid over-indexing! Indexes require disk space. More importantly, every `INSERT`, `UPDATE`, or `DELETE` requires the database to update the index. Too many indexes will kill write performance.
+* **Q: What is an Execution Plan (`EXPLAIN`)?**
+  * **A:** You can write `EXPLAIN SELECT ...` in MySQL to see if the database is using your index (Index Seek) or doing a Full Table Scan.
+* **Q: Heap vs Clustered vs Non-Clustered Index?**
+  * **A:** A Heap is a table without a primary key (reads are full scans). A Clustered Index stores data in physical sorted order (only 1 allowed). Non-Clustered Indexes are secondary pointers (many allowed). Choose wisely → help reads, hurt writes.
+
+---
+
+## Topic 22: Final Summary / निष्कर्ष
 * **English Summary:**
   * **HAVING vs WHERE:** `WHERE` filters individual rows before grouping, while `HAVING` filters aggregated data after `GROUP BY`.
   * **Order of Execution:** The database engine processes SQL in this order: `FROM` $\rightarrow$ `WHERE` $\rightarrow$ `GROUP BY` $\rightarrow$ `HAVING` $\rightarrow$ `SELECT` $\rightarrow$ `ORDER BY` $\rightarrow$ `LIMIT`.
@@ -8134,11 +8532,11 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
 
 ---
 
-## Topic 22: Interview Q&A Bank (Most-Asked SQL Questions)
+## Topic 23: Interview Q&A Bank (Most-Asked SQL Questions)
 
 > Short, simple answers you can say in an interview. The **See** column tells you where the full explanation is in these notes.
 
-### 22.1 Part A: Database Basics
+### 23.1 Part A: Database Basics
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
@@ -8150,7 +8548,7 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
 | 6 | What is a schema? | A logical folder inside a database that groups tables; also means the structure (blueprint) of the tables. | 6.4 |
 | 7 | What is CRUD? | Create (`INSERT`), Read (`SELECT`), Update (`UPDATE`), Delete (`DELETE`). | 3.3 |
 
-### 22.2 Part B: Data Types
+### 23.2 Part B: Data Types
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
@@ -8160,7 +8558,7 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
 | 11 | What is `BOOLEAN` in MySQL? | Just an alias for `TINYINT(1)` — stores 0 (false) or 1 (true). | 6.8.3 |
 | 12 | `ENUM` vs `SET`? | `ENUM` stores **one** value from a list; `SET` can store **many** values from a list. | 6.8.3 |
 
-### 22.3 Part C: DDL, DML & Command Types
+### 23.3 Part C: DDL, DML & Command Types
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
@@ -8174,7 +8572,7 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
 | 20 | `REPLACE` vs `INSERT ... ON DUPLICATE KEY UPDATE`? | `REPLACE` deletes the old row and inserts a new one (other columns reset). `ON DUPLICATE KEY UPDATE` updates the existing row in place. | 9.8 |
 | 21 | Soft delete vs hard delete? | Hard delete physically removes the row (`DELETE`). Soft delete only marks it (`UPDATE ... SET is_deleted = 1`), so it can be restored. | 9.6 |
 
-### 22.4 Part D: Keys & Constraints
+### 23.4 Part D: Keys & Constraints
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
@@ -8185,7 +8583,7 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
 | 26 | Super, Candidate, Alternate, Composite, Surrogate key? | Super = any set that identifies a row; Candidate = minimal super key; Alternate = candidate not chosen as PK; Composite = key of 2+ columns; Surrogate = artificial ID like `AUTO_INCREMENT`. | Topic 14 |
 | 27 | Name the SQL constraints. | `PRIMARY KEY`, `FOREIGN KEY`, `UNIQUE`, `NOT NULL`, `CHECK`, `DEFAULT`. | 8.7, Topic 14 |
 
-### 22.5 Part E: Querying, Filtering, Grouping
+### 23.5 Part E: Querying, Filtering, Grouping
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
@@ -8202,7 +8600,7 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
 | 38 | What is `ONLY_FULL_GROUP_BY`? | A mode that requires every selected column to be either in `GROUP BY` or inside an aggregate function (error 1055 otherwise). | 13.9 |
 | 39 | `LIMIT` vs `TOP`? Pagination? | MySQL uses `LIMIT`, SQL Server uses `TOP`. Page 3 with 10 rows per page: `LIMIT 10 OFFSET 20`. | 13.12 |
 
-### 22.6 Part F: Joins & SET Operators
+### 23.6 Part F: Joins & SET Operators
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
@@ -8215,7 +8613,7 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
 | 46 | `UNION` vs `UNION ALL`? | `UNION` removes duplicates (slower); `UNION ALL` keeps all rows (faster). | Topic 16 |
 | 47 | Rules for SET operators? | Same number of columns, compatible data types, same column order; `ORDER BY` only once at the end; names come from the first query. | Topic 16 |
 
-### 22.7 Part G: Functions, NULL & CASE
+### 23.7 Part G: Functions, NULL & CASE
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
@@ -8225,7 +8623,7 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
 | 51 | `DATEDIFF` vs `TIMESTAMPDIFF` in MySQL? | `DATEDIFF(end, start)` gives days only; `TIMESTAMPDIFF(unit, start, end)` gives years, months, hours, etc. | Topic 18 |
 | 52 | Single-row vs aggregate functions? | Single-row: one input → one output per row (`UPPER`, `ROUND`). Aggregate: many rows → one result (`SUM`, `AVG`). | Topic 17 |
 
-### 22.8 Part H: Window Functions
+### 23.8 Part H: Window Functions
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
@@ -8237,7 +8635,7 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
 | 58 | Why does `LAST_VALUE` give a wrong answer? | The default frame ends at the current row. Use `ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING`. | Topic 20 |
 | 59 | Can we use a window function in `WHERE`? | No — wrap the query in a subquery/CTE and filter outside. | Topic 20 |
 
-### 22.9 Part I: Transactions & Security
+### 23.9 Part I: Transactions & Security
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
@@ -8249,7 +8647,7 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
 | 65 | Is autocommit on by default? | Yes. Each statement is committed immediately unless you use `START TRANSACTION` or `SET autocommit = 0`. | 12.7 |
 | 66 | `GRANT` vs `REVOKE`? Is `FLUSH PRIVILEGES` needed? | `GRANT ... TO` gives permission; `REVOKE ... FROM` removes it. `FLUSH PRIVILEGES` is **not** needed after them. | Topic 11 |
 
-### 22.10 Part J: Query-Writing Questions (Practice These)
+### 23.10 Part J: Query-Writing Questions (Practice These)
 
 * **Q67. Find the 2nd highest salary.**
   ```sql
@@ -8341,3 +8739,1540 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
   * मुलाखतीत सर्वात जास्त विचारले जाणारे ७६ प्रश्न, भागांनुसार (Basics, Data Types, DDL/DML, Keys, Querying, Joins, Functions, Window Functions, Transactions, Query-writing).
   * प्रत्येक उत्तर लहान आणि सोपे आहे; सविस्तर माहितीसाठी **See** कॉलममधील विभाग वाचा.
   * **Part J** मधील queries (2nd / Nth highest salary, डुप्लिकेट शोधणे व डिलीट करणे, ऑर्डर न दिलेले ग्राहक, मॅनेजरपेक्षा जास्त पगार, running total) स्वतः लिहून सराव करा.
+
+---
+
+## Topic 24: Derived Tables in SQL
+
+### 24.1 What is a Derived Table?
+* **Definition:** A derived table is a subquery inside the `FROM` clause that acts like a temporary table for the duration of the main query.
+* **Key Properties:**
+  * It is **not stored permanently** (unlike normal tables or views).
+  * It **only exists** while the query is running.
+  * It is primarily used to simplify complex queries and break down logic into simpler steps.
+  * **Important Rule:** You **MUST** give the derived table an alias (a name).
+* **Hindi (मराठी/हिंदी सारांश):** Derived Table एक Subquery होती है जो `FROM` क्लॉज के अंदर लिखी जाती है। यह एक टेम्परेरी (Temporary) टेबल की तरह काम करती है और केवल क्वेरी के चलने तक ही रहती है। इसे हमेशा एक Alias (नाम) देना ज़रूरी है।
+
+### 24.2 Syntax and Example
+* **Syntax:**
+  ```sql
+  SELECT columns
+  FROM (subquery) AS alias_name;
+  ```
+* **Example (Derived Table with Aggregation):**
+  Suppose you want the average salary of **active** employees by department.
+  ```sql
+  SELECT dept_id, AVG(salary) AS avg_salary
+  FROM (
+      -- This is the Derived Table (Subquery in FROM clause)
+      SELECT dept_id, salary
+      FROM employees
+      WHERE status = 'ACTIVE'
+  ) AS active_emps
+  GROUP BY dept_id;
+  ```
+  * *Explanation:* The subquery `(SELECT dept_id, salary FROM employees WHERE status = 'ACTIVE')` acts like a temporary table named `active_emps`. The main query then groups this temporary table.
+
+### 24.3 Difference Between Derived Table and Subquery
+| Feature | Subquery (in WHERE / SELECT) | Derived Table (in FROM) |
+| :--- | :--- | :--- |
+| **Placement** | Written inside `WHERE`, `HAVING`, or `SELECT` clauses. | Written **only** inside the `FROM` clause. |
+| **Output Type** | Returns a single value or a list of values (1 column). | Acts like a full virtual table (Rows & Columns). |
+| **Usage** | Used for filtering or returning a single calculated column. | Used so you can `JOIN`, `GROUP BY`, or filter on its result like a real table. |
+
+---
+
+## Topic 25: Query Execution Plans (EXPLAIN)
+
+### 25.1 What is an Execution Plan?
+* **Definition:** An execution plan (also called a query plan or roadmap) is a detailed map or blueprint generated by the database engine that shows **exactly how it processes your query step-by-step**. 
+* **Uses:** It is used to understand how the database retrieves data, which indexes it uses, what joins are performed, and how efficient your query is. It shows exactly where you might have performance issues.
+* **How it works:** 
+  1. Before executing the query, the database plans how to execute it based on statistics (e.g., Scan index vs full table scan).
+  2. It decides which type of joins to use (e.g., hash join vs nested loop join).
+  3. Finally, it executes the `SELECT` statement.
+  4. Once ready, the database engine implements the steps, reads tables from disk, joins them, and sends the result.
+  5. **Caching:** The database engine stores this execution plan in the cache. If you run the exact same query again, it reuses the cached plan instantly instead of building it from scratch!
+* **Hindi (मराठी/हिंदी सारांश):** Execution Plan एक ब्लूप्रिंट (Blueprint) की तरह है जो बताता है कि डेटाबेस आपकी क्वेरी को स्टेप-बाय-स्टेप कैसे चलाएगा। यह बताता है कि डेटाबेस कौन सा इंडेक्स यूज़ करेगा और जॉइन कैसे करेगा। एक बार प्लान बन जाने पर डेटाबेस उसे 'Cache' में सेव कर लेता है ताकि अगली बार सेम क्वेरी तेज़ी से चल सके।
+
+### 25.2 Types of Execution Plans
+
+* **Image Reference:** ![Execution Plan Types](./svg_execution_plan_types.svg) *(Description: Compares Estimated vs Actual vs Live execution plans).*
+
+**1. Estimated Execution Plan (What MySQL plans to do)**
+* **Definition:** The optimizer’s prediction of how it plans to execute the query without actually running it.
+* **Key Points:**
+  * **Query is NOT executed.**
+  * Shows the optimizer’s guess about: which indexes it will use, join types, estimated rows to read, and query cost.
+  * Helps you preview performance before running a heavy query.
+* **Example:** `EXPLAIN SELECT * FROM employees WHERE department = 'Sales';`
+* **Hindi (मराठी/हिंदी सारांश):** यह सिर्फ एक अनुमान (Estimate) होता है। इसमें क्वेरी असल में रन नहीं होती, बस डेटाबेस बताता है कि वह इसे कैसे चलाने वाला है।
+
+**2. Actual Execution Plan (What MySQL really did)**
+* **Definition:** The real plan showing how the query actually executed, including real row counts, time taken, and runtime statistics.
+* **Key Points:**
+  * **Query IS executed.**
+  * Shows what actually happened: real number of rows read, actual execution time per step, and whether the optimizer’s estimates were correct.
+* **Example:** `EXPLAIN ANALYZE SELECT * FROM employees WHERE department = 'Sales';`
+* **Hindi (मराठी/हिंदी सारांश):** यह तब बनता है जब क्वेरी पूरी तरह से रन हो जाती है। यह असल डेटा (Actual Data) दिखाता है कि क्वेरी चलने में कितना समय लगा और कितनी रोज़ (Rows) प्रोसेस हुईं।
+
+**3. Live Execution Plan (with Live Statistics)**
+* **Definition:** Shows query execution in real-time (mainly in tools like SQL Server Management Studio or MySQL Workbench 8+).
+* **Key Points:**
+  * Used for long-running queries to identify bottlenecks while the query is executing.
+  * Shows live progress (% completion) and live row counts.
+
+### 25.3 Estimated vs Actual Execution Plan Match
+* If the prediction **does not match** the actual plan, it indicates issues like inaccurate statistics or outdated indexes leading to poor performance.
+* If the estimated and actual execution plan **match**, then your statistics are up-to-date and performance is optimal.
+
+---
+
+## Topic 26: Scans & Seeks (Data Access Methods)
+
+* **Image Reference:** ![Scan vs Seek](./svg_scan_vs_seek.svg) *(Description: Visual comparison of Full Table Scan vs Index Scan vs Index Seek).*
+
+### 26.1 What is a Table Scan?
+* **Definition:** Reading the entire table page by page and row by row.
+* **Impact:** Leads to very slow query performance on large datasets.
+* **Example:** Like reading every single page of a book to find a name.
+* **Hindi (मराठी/हिंदी सारांश):** टेबल स्कैन का मतलब है टेबल की हर एक लाइन (Row) को शुरू से अंत तक पढ़ना। यह बहुत धीमा होता है।
+
+### 26.2 What is an Index Scan?
+* **Definition:** Scanning all data inside an index to find matching rows (or only scanning the data which is part of the index).
+* **Impact:** Faster than a table scan, but still reads a lot of entries.
+* **Example:** Like reading every entry in the index section at the back of a book.
+
+### 26.3 What is an Index Seek?
+* **Definition:** A targeted search within an index, retrieving only specific rows. MySQL directly looks up the specific rows it needs using the index key.
+* **Impact:** Extremely fast (Targeted lookup).
+* **Example:** Looking up the name "John Smith" in an index and jumping directly to that exact page.
+* **Hindi (मराठी/हिंदी सारांश):** इंडेक्स सीक सबसे तेज़ होता है क्योंकि इसमें डेटाबेस सीधा उसी रो (Row) पर जंप करता है जो आपको चाहिए, बिना फालतू डेटा पढ़े।
+
+### 26.4 Best Practices to Ensure Index Seek
+1. Use `WHERE` filters on indexed columns.
+2. Prefer equality (`=`) or range conditions (`>`, `<`).
+3. Create composite indexes for multi-column filters.
+
+---
+
+## Topic 27: SQL Join Algorithms (How Joins Work Internally)
+
+* **Image Reference:** ![Join Algorithms](./svg_join_algorithms.svg) *(Description: Shows Nested Loop Join, Hash Join, and Block Nested Loop Join concepts).*
+
+* **Definition:** A join algorithm is the method the SQL engine uses under the hood to combine rows from two (or more) tables. Even though you just write `JOIN`, MySQL must decide exactly how to perform that match.
+
+### 27.1 Nested Loop Join (NLJ)
+* **Definition:** For each row in the first (outer) table, MySQL looks up matching rows in the second (inner) table.
+* **Details:** This is the most common (default) algorithm. If there is an index on the join column, it is an **Index Nested Loop Join** (Very Fast). If there is no index, it becomes very slow.
+* **Hindi (मराठी/हिंदी सारांश):** इसमें डेटाबेस पहले टेबल की हर एक रो (Row) को उठाता है और दूसरे टेबल में जाकर मैच ढूंढता है। (For loop के अंदर For loop की तरह)।
+
+### 27.2 Hash Join (MySQL 8.0.18+)
+* **Definition:** Builds a hash table in memory from one table, then probes (checks) it with rows from the other table.
+* **Details:** Used for large, non-indexed joins. It is much faster than nested loops when indexes are missing.
+
+### 27.3 Block Nested Loop Join (BNLJ)
+* **Definition:** Uses blocks of rows (chunks) instead of one-by-one row comparisons.
+* **Details:** Improves performance when indexes aren't helpful, reducing the number of times the inner table needs to be scanned.
+
+* **Interview Perspective (SQL Server specific):** 
+  * **Merge Join Algorithm:** Used when both tables are already sorted on the join keys. It merges them extremely efficiently. (Popular in SQL Server).
+
+---
+
+## Topic 28: Heap vs Clustered Index (Internal Storage)
+
+### 28.1 What is a Heap Table?
+* **Definition:** A Heap is a table without a clustered index (no Primary Key). The data is not stored in any specific order — it’s just a collection of rows stored randomly wherever space is available.
+* **Characteristics:**
+  * **No clustered index:** Data has no defined physical order.
+  * **Storage:** Rows are appended randomly.
+  * **Access Method:** Usually requires a Full Table Scan (unless non-clustered indexes exist).
+  * **Pros:** Faster inserts (data goes anywhere).
+  * **Cons:** Slower lookups.
+* **Hindi (मराठी/हिंदी सारांश):** हीप एक ऐसा टेबल है जिसमें कोई प्राइमरी की (Primary Key) नहीं होती। डेटा बिना किसी क्रम (Order) के सेव होता है। इसमें नया डेटा डालना तेज़ होता है, लेकिन ढूँढना बहुत धीमा।
+
+### 28.2 What is a Clustered Index?
+* **Definition:** A Clustered Index determines the physical order of data in the table. The table’s rows are stored on disk in the exact order of the clustered index key. (In InnoDB MySQL, the primary key is always the clustered index).
+* **Characteristics:**
+  * **One per table:** You can have only ONE clustered index.
+  * **Data stored in order:** Physically arranged by the key.
+  * **Pros:** Extremely fast range queries and exact match lookups.
+  * **Cons:** Slower inserts if the key order changes (can cause page splits).
+  * **Note:** Non-clustered indexes store this clustered key as a pointer to find the actual data row.
+
+---
+
+## Topic 29: Table Duplication & Copying Techniques
+
+* **Image Reference:** ![Table Copying Techniques](./svg_table_copying.svg) *(Description: Compares CREATE TABLE AS vs CREATE TABLE LIKE).*
+
+### 29.1 Copying Table Data WITHOUT Constraints
+* **Definition:** You can create a new table from an existing one that contains the structure and the data, but **does NOT** copy constraints (Indexes, Primary Keys, Foreign Keys, Triggers, or Auto-increment properties).
+* **Syntax / Example:**
+  ```sql
+  CREATE TABLE SALESDB_CUSTOMERS_HP AS
+  SELECT * FROM CUSTOMERS;
+  ```
+* **Hindi (मराठी/हिंदी सारांश):** इस तरीके से टेबल का स्ट्रक्चर और डेटा तो कॉपी हो जाता है, लेकिन प्राइमरी की (Primary Key) और इंडेक्स (Indexes) कॉपी नहीं होते।
+
+### 29.2 Copying Table Data WITH Constraints (Exact Clone)
+* **Definition:** If you want an exact clone of the table structure (including all indexes, primary keys, and auto-increments), you must use `LIKE`. After creating the empty clone, you copy the data using `INSERT INTO ... SELECT`.
+* **Step 1: Copy Structure & Constraints**
+  ```sql
+  CREATE TABLE CUSTOMERS2 LIKE CUSTOMERS;
+  ```
+* **Step 2: Copy the Data**
+  ```sql
+  INSERT INTO CUSTOMERS2 
+  SELECT * FROM CUSTOMERS;
+  ```
+  ```sql
+  -- Verify the copy
+  SELECT * FROM CUSTOMERS2;
+  ```
+* **Hindi (मराठी/हिंदी सारांश):** अगर आपको टेबल का पूरा स्ट्रक्चर (प्राइमरी की, इंडेक्स के साथ) कॉपी करना है, तो पहले `LIKE` का उपयोग करके खाली टेबल बनाएं, और फिर `INSERT INTO` का इस्तेमाल करके उसमें डेटा डालें।
+
+---
+
+## Topic 30: SQL Table Partitioning (Performance Optimization)
+
+### 30.1 What is Partitioning?
+* **Definition:** Partitioning is the process of splitting one large, big table into smaller, manageable physical pieces (called partitions) while keeping it logically as **one single table** for queries.
+* **How it works:** MySQL automatically decides which partition(s) to read based on your query. You don't have to manually select from different tables; the database engine handles the routing for you.
+* **Hindi (मराठी/हिंदी सारांश):** पार्टीशनिंग का मतलब है एक बहुत बड़ी टेबल को छोटे-छोटे टुकड़ों (Partitions) में बाँटना। बाहर से देखने पर यह एक ही टेबल लगती है, लेकिन अंदर डेटाबेस इसे अलग-अलग फाइल्स में सेव करता है। इससे डेटा ढूँढना और मैनेज करना बहुत तेज़ हो जाता है।
+
+### 30.2 The Problem: Why Do We Need Partitioning?
+* **Image Reference:** ![Big Table Problem](./svg_big_table_problem.svg) *(Description: A massive 100M+ row table causes full table scans to be extremely slow. Trying to fix it with a massive single index also fails because inserting, updating, and deleting rows in a huge index takes a long time).*
+* **Scenario:** Imagine a table with 100 million rows that grows every year (e.g., 2023, 2024, 2025). 
+  * If you do a full table scan, it takes forever.
+  * If you add a massive index, reading is faster, but `INSERT`, `UPDATE`, and `DELETE` operations become extremely slow because updating a massive index tree takes heavy processing.
+  * Usually, you only query **new data** (e.g., 2025) heavily, and rarely need old data (e.g., 2023).
+
+### 30.3 The Solution: Partitioning & Scalability
+* **Image Reference:** ![Partition Solution](./svg_partition_solution.svg) *(Description: The big table is split by year. A query for 2025 ONLY scans the 2025 partition).*
+* **Targeted Scanning:** We split the table by year. When you run `SELECT * FROM table WHERE year = 2025`, MySQL will **only scan the 2025 partition** and completely ignore 2023 and 2024.
+* **Parallel Processing:** Modern databases can process each partition independently and in parallel. This drastically reduces overall execution time.
+* **Smaller Indexes:** 
+  * **Image Reference:** ![Partition Indexing](./svg_partition_indexing.svg) *(Description: Each partition gets its own small index instead of one giant index for the whole table).*
+  * Instead of one giant index, each partition gets its own smaller index. When you insert data in 2025, it only updates the small index for 2025 without touching the 2023/2024 indexes. This makes indexing **highly efficient**.
+
+### 30.4 Advantages & Limitations of Partitioning
+* **Advantages:**
+  * **Speeds up queries:** Targeted partition scanning is incredibly fast.
+  * **Maintenance:** Archiving is trivial.
+  * **Fast Deletions:** You can drop old data instantly: `ALTER TABLE sales DROP PARTITION p2022;` (This is much faster than running a massive `DELETE` query).
+  * **Parallelism:** Supports parallel processing for big data.
+* **Limitations (MySQL):**
+  * Works mostly with `InnoDB` or `NDB` engines.
+  * The Primary Key (or Unique Key) **MUST** include the partition key column(s).
+  * Too many partitions can actually hurt performance.
+
+### 30.5 Partition Boundaries (LEFT vs RIGHT)
+* **Image Reference:** ![Partition Boundaries](./svg_partition_boundaries.svg) *(Description: LEFT partitioning includes the boundary in the left partition, while RIGHT includes it in the right partition).*
+* When using `RANGE` partitioning, we define boundaries (e.g., the last day of the year). But where does the exact boundary value go?
+* **1. LEFT Partitioning (MySQL Default):**
+  * The boundary value is included in the partition to the **LEFT** of the boundary.
+  * Example: A row exactly on `2023-12-31` belongs to Partition 1 (2023). 
+* **2. RIGHT Partitioning (SQL Server):**
+  * The boundary value is included in the partition to the **RIGHT** of the boundary.
+  * Example: A row exactly on `2023-12-31` belongs to Partition 2 (Next year).
+  * *Note: MySQL does not natively support RIGHT partitioning syntax, it is always LEFT-inclusive.*
+
+### 30.6 Building Partitions in MySQL (4 Steps)
+
+**1. Create a Partitioned Table (Inline Creation)**
+In MySQL, partitioning logic is defined inline with the table creation.
+```sql
+CREATE TABLE person_data (
+    sales_id INT AUTO_INCREMENT,
+    amount INT,
+    order_date DATE,
+    -- The partition column (order_date) MUST be part of the Primary Key
+    PRIMARY KEY(sales_id, order_date)
+)
+PARTITION BY RANGE(YEAR(order_date)) (
+    PARTITION p2022 VALUES LESS THAN (2023),
+    PARTITION p2023 VALUES LESS THAN (2024),
+    PARTITION p2024 VALUES LESS THAN (2025),
+    PARTITION pmax VALUES LESS THAN MAXVALUE
+);
+```
+* **Hindi (मराठी/हिंदी सारांश):** टेबल बनाते समय ही `PARTITION BY RANGE` का इस्तेमाल करके हम अलग-अलग सालों (Years) के लिए पार्टीशन बना सकते हैं। जो कॉलम पार्टीशन के लिए यूज़ हो रहा है, उसका Primary Key में होना जरूरी है।
+
+**2. View All Partitions**
+* Check table structure:
+  ```sql
+  SHOW CREATE TABLE person_data;
+  ```
+* Best way to check partition metadata (Detailed):
+  ```sql
+  SELECT 
+      TABLE_SCHEMA,
+      TABLE_NAME,
+      PARTITION_NAME,
+      PARTITION_ORDINAL_POSITION AS position,
+      PARTITION_METHOD,
+      PARTITION_DESCRIPTION AS range_value,
+      TABLE_ROWS
+  FROM INFORMATION_SCHEMA.PARTITIONS
+  WHERE TABLE_NAME = 'person_data';
+  ```
+
+**3. Adding Partitions to an Existing Empty Table**
+If the table is completely empty, you can alter it directly:
+```sql
+ALTER TABLE sales
+PARTITION BY RANGE (YEAR(order_date)) (
+    PARTITION p2022 VALUES LESS THAN (2023),
+    PARTITION p2023 VALUES LESS THAN (2024),
+    PARTITION pmax VALUES LESS THAN MAXVALUE
+);
+```
+
+**4. Adding Partitions to a Table WITH Existing Data (Recommended Safe Way)**
+MySQL doesn’t easily let you add partitions to a huge table full of data. The safest way is to clone it.
+* **Step 1:** Rename the old table.
+  ```sql
+  RENAME TABLE sales TO sales_old;
+  ```
+* **Step 2:** Create a new partitioned table with the exact same structure (Ensure the partition key is in the PK).
+* **Step 3:** Copy data back.
+  ```sql
+  INSERT INTO sales SELECT * FROM sales_old;
+  ```
+
+### 30.7 Interview Perspective (Pro-Tips)
+* **Q: Indexing vs Partitioning?**
+  * **A:** Indexing optimizes search by creating a sorted tree of pointers. Partitioning optimizes search by physically dividing the table into smaller chunks. Combining both (Partitioned Indexing) gives maximum performance for massive data.
+* **Q: Why is dropping a partition better than deleting old rows?**
+  * **A:** Running `DELETE FROM table WHERE year = 2022` removes rows one-by-one, logging every deletion and heavily fragmenting the index. Running `ALTER TABLE table DROP PARTITION p2022` just deletes the physical file from the disk instantly, saving hours of processing time!
+
+---
+
+## Topic 31: CTEs (Common Table Expressions) & Recursive CTEs
+
+### 31.1 What is a CTE?
+* **Definition:** A CTE (Common Table Expression) is a temporary result set that you can reference within another `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement. It exists only for the duration of the query.
+* **Syntax:**
+  ```sql
+  WITH EmployeeCTE AS (
+      SELECT id, name, salary FROM employees WHERE salary > 50000
+  )
+  SELECT * FROM EmployeeCTE;
+  ```
+* **Hindi (मराठी/हिंदी सारांश):** CTE एक टेम्परेरी (Temporary) टेबल की तरह है जो केवल एक क्वेरी के चलने तक रहता है। यह कॉम्प्लेक्स क्वेरीज को छोटे और पढ़ने लायक (Readable) हिस्सों में तोड़ने के काम आता है।
+
+### 31.2 CTE vs Subquery vs Temp Table (Interview Favorite)
+| Feature | Subquery | CTE | Temp Table (`#Temp`) |
+| :--- | :--- | :--- | :--- |
+| **Readability** | Hard to read if nested deeply. | Very easy to read (Top-down logic). | Easy to read. |
+| **Reusability** | Cannot be reused in the same query. | Can be referenced multiple times in the same query. | Can be used across multiple queries in the same session. |
+| **Storage** | Lives in memory (usually). | Lives in memory. | Lives physically in `tempdb` (on disk). |
+| **Performance** | Optimizer treats it similarly to a CTE. | Optimizer treats it similarly to a Subquery. | Good for massive data (supports indexing). |
+
+### 31.3 Recursive CTEs
+* **Definition:** A Recursive CTE is a CTE that references itself. It is primarily used for querying hierarchical data, such as Employee-Manager relationships, category trees, or organization charts.
+* **How it works:** It has an **Anchor Member** (the starting point) and a **Recursive Member** (which loops until a condition is met), connected by `UNION ALL`.
+* **Hindi (मराठी/हिंदी सारांश):** Recursive CTE अपने आप को ही बार-बार कॉल करता है। यह ट्री (Tree) जैसे डेटा (जैसे बॉस और उसके नीचे काम करने वाले कर्मचारी) को निकालने के लिए बेस्ट है।
+
+---
+
+## Topic 32: ACID Properties & Transaction Isolation Levels
+
+### 32.1 What are ACID Properties?
+ACID guarantees that database transactions are processed reliably.
+1. **Atomicity (All or Nothing):** A transaction is a single unit. Either all statements in the transaction succeed, or none do (Rollback).
+2. **Consistency:** A transaction must take the database from one valid state to another. (e.g., constraints and rules are never violated).
+3. **Isolation:** Concurrent transactions execute independently without interfering with each other.
+4. **Durability:** Once a transaction is committed, it remains saved even if the system crashes or loses power.
+* **Hindi (मराठी/हिंदी सारांश):** ACID मतलब: 1. काम पूरा होगा या बिल्कुल नहीं होगा (A), 2. रूल्स कभी नहीं टूटेंगे (C), 3. दो ट्रांसक्शन्स एक-दूसरे से भिड़ेंगे नहीं (I), 4. एक बार सेव हो गया तो डेटा उड़ेगा नहीं (D)।
+
+### 32.2 Concurrency Problems (Read Phenomena)
+1. **Dirty Read:** Reading uncommitted data from another transaction (which might get rolled back later).
+2. **Non-Repeatable Read:** Reading the same row twice in a transaction, but getting different data because someone else UPDATED it in between.
+3. **Phantom Read:** Running the same query twice, but getting a different number of rows because someone else INSERTED/DELETED rows in between.
+
+### 32.3 Transaction Isolation Levels (MySQL InnoDB)
+* Isolation levels determine how strictly a database handles concurrency problems.
+1. **READ UNCOMMITTED:** No isolation. Allows Dirty, Non-Repeatable, and Phantom reads. (Fastest, but dangerous).
+2. **READ COMMITTED:** Fixes Dirty Reads. (You only read committed data).
+3. **REPEATABLE READ (MySQL Default):** Fixes Dirty & Non-Repeatable reads. If you read a row, it stays exactly the same for your entire transaction.
+4. **SERIALIZABLE:** Fixes all problems. Transactions wait in line (lock the tables). (Safest, but slowest).
+
+---
+
+## Topic 33: Database Normalization (1NF to BCNF)
+
+### 33.1 What is Normalization?
+* **Definition:** The process of organizing data in a database to eliminate redundancy (data duplication) and ensure data integrity.
+* **Hindi (मराठी/हिंदी सारांश):** डेटाबेस डिज़ाइन करते समय एक ही डेटा को बार-बार लिखने (Duplication) से बचने और टेबल को सही हिस्सों में तोड़ने के तरीके को नार्मलाइज़ेशन कहते हैं।
+
+### 33.2 The Normal Forms (Step-by-Step)
+1. **1NF (First Normal Form):**
+   * Rule: Each column must have atomic (single) values. No comma-separated lists in one column!
+2. **2NF (Second Normal Form):**
+   * Rule: Must be in 1NF. AND all non-key columns must depend on the **entire** Primary Key (Removes partial dependency). Usually solved by moving data to a new table with a Foreign Key.
+3. **3NF (Third Normal Form):**
+   * Rule: Must be in 2NF. AND no non-key column should depend on another non-key column (Removes transitive dependency). "Every non-key attribute must provide a fact about the key, the whole key, and nothing but the key."
+4. **BCNF (Boyce-Codd Normal Form):**
+   * Rule: A stricter version of 3NF. Every determinant must be a candidate key.
+
+### 33.3 What is Denormalization?
+* **Definition:** Intentionally adding redundancy back to a normalized database to speed up heavy read queries (avoiding complex Joins). Common in Data Warehouses (OLAP).
+
+---
+
+## Topic 34: Deadlocks in SQL
+
+### 34.1 What is a Deadlock?
+* **Definition:** A deadlock occurs when two or more transactions are waiting for each other to release locks. They get stuck in an infinite wait, and neither can proceed.
+* **Example:** 
+  * Transaction A locks Table 1 and needs Table 2.
+  * Transaction B locks Table 2 and needs Table 1.
+  * *Result:* Deadlock! The Database Engine steps in, kills one transaction (the "victim"), and lets the other finish.
+* **Hindi (मराठी/हिंदी सारांश):** डेडलॉक तब होता है जब दो ट्रांज़ैक्शन एक-दूसरे का रास्ता रोक कर खड़े हो जाते हैं और दोनों आगे नहीं बढ़ पाते। डेटाबेस को मज़बूरी में एक को किल (Kill) करना पड़ता है।
+
+### 34.2 How to Prevent Deadlocks?
+1. Always access tables in the **same order** across all transactions.
+2. Keep transactions as **short** and fast as possible.
+3. Add proper **Indexes** so queries run faster and release locks quicker.
+4. Use a lower **Isolation Level** if appropriate (e.g., READ COMMITTED).
+
+---
+
+## Topic 35: Query Optimization / Tuning Checklist (Interview Favorite)
+
+If an interviewer asks: *"You have a slow query, how do you optimize it?"*, follow this checklist:
+
+1. **Check the Execution Plan (`EXPLAIN`):** Look for "Full Table Scans". Are indexes being used properly (Index Seek vs Scan)?
+2. **Avoid `SELECT *`:** Only select the columns you actually need. Less data transferred = faster query.
+3. **Analyze `WHERE` clauses:** 
+   * Avoid functions on indexed columns in the `WHERE` clause (e.g., `WHERE YEAR(date) = 2023` breaks the index. Use `WHERE date >= '2023-01-01'`).
+   * Avoid leading wildcards in `LIKE` (e.g., `LIKE '%name'` prevents index usage. Use `LIKE 'name%'`).
+4. **Optimize Joins:** 
+   * Join on indexed columns (Foreign Keys / Primary Keys).
+   * Filter data *before* joining by using subqueries or CTEs to reduce the dataset size early on.
+5. **Add or Rebuild Indexes:** If a query filters on a column frequently, add an index. If the index is fragmented, rebuild it.
+6. **Consider Partitioning:** If the table is massive (millions of rows), partition it by Date/Year.
+
+---
+
+## Topic 36: Database Engine Architecture & Storage Concepts
+
+### 36.1 What is a Data Warehouse?
+* **Definition:** A special database that collects data from different sources and integrates it into one centralized place. It enables heavy analytics and supports business decision-making.
+* **Hindi (मराठी/हिंदी सारांश):** डेटा वेयरहाउस एक स्पेशल डेटाबेस है जो अलग-अलग सोर्सेज से डेटा को एक जगह पर इकट्ठा करता है, ताकि उस पर बड़े-बड़े एनालिसिस (Analytics) किये जा सकें और बिज़नेस के डिसीजन्स लिए जा सकें।
+
+### 36.2 The Database Engine
+* **Definition:** The Database Engine is the "brain" of the database. It is responsible for executing multiple operations such as storing, retrieving, and managing data within the database.
+* Every time you execute a query, the Database Engine takes care of processing it.
+* **Hindi (मराठी/हिंदी सारांश):** डेटाबेस इंजन डेटाबेस का "दिमाग" होता है। आप जो भी क्वेरी लिखते हैं, यह इंजन ही उसे चलाता है, डेटा सेव करता है और ढूँढकर लाता है।
+
+### 36.3 Database Storage Types (Disk vs Cache)
+* **Image Reference:** ![DB Engine Architecture](./svg_db_engine_architecture.svg) *(Description: Shows Client sending query to Server. Database Engine checks Cache first, then checks Disk [Temp, Catalog, User]).*
+* In a database, there are two main types of data storage:
+
+#### 1. Disk Storage (Long-term Memory)
+* **Definition:** Disk storage is where data is stored permanently. 
+* **Pros/Cons:** It has a very high capacity to hold massive amounts of data, but it is slow to read and write compared to cache.
+* Disk storage is divided into 3 main areas depending on their purpose:
+  1. **User Data Storage:** This is the main content of the database. It stores the actual data that the user cares about (e.g., all the information in your `customer` or `orders` tables). This is the storage the user actively interacts with.
+  2. **System Catalog Storage (Metadata):** This is the database's internal storage for its own information. It is a blueprint that keeps track of everything about the database itself (not the user data). Its main purpose is to hold the **Metadata** (Data about Data). 
+     * *Example:* If you create a `customer` table, the Database doesn't just store the user data. It also stores metadata like `tableName`, `columnName`, `dataTypes`, length, and constraints in the System Catalog.
+     * *Information Schema:* All this metadata is stored in a special, built-in schema called the **`INFORMATION_SCHEMA`**. It contains views that help us find information about our tables. (e.g., `SELECT * FROM INFORMATION_SCHEMA.COLUMNS;`).
+  3. **Temporary Data Storage:** Temporary space used by the database for short-term tasks like processing complex queries or sorting data. Once the task is done, this storage is cleared.
+
+#### 2. Cache Storage (Short-term Memory)
+* **Definition:** Cache is fast, short-term memory (like RAM) where data is stored temporarily.
+* **Pros/Cons:** It can only store smaller amounts of data (lower capacity), but it is extremely fast to read and write.
+
+### 36.4 How a Simple Query Works (Step-by-Step)
+* **Image Reference:** ![Query Execution Flow](./svg_query_execution_flow.svg) *(Description: Shows the flow of a query: Client -> Engine -> Cache [MISS] -> Disk -> Return Result & Store in Cache).*
+
+When a Data Engineer writes a query like `SELECT * FROM orders`:
+1. **Send Query:** The query is sent from the Client side to the Database Server.
+2. **Check Cache (Fast Path):** The Database Engine takes the query and first checks the **Cache Storage**. Because cache is extremely fast, if the information is already there, the engine solves the task instantly.
+3. **Check Disk (Slow Path):** If the query information is NOT in the cache, the Database Engine says, *"Query data is not in cache, let's check Disk Storage."* It finds the relevant table in the User Data Storage and executes the query.
+4. **Return Result:** The result of the query is sent back to the Client side. 
+* *Note:* Once the result is fetched from the disk, the Database Engine will also store it in the Cache so that if someone runs the exact same query again, it returns instantly!
+* **Hindi (मराठी/हिंदी सारांश):** जब आप कोई क्वेरी चलाते हैं, तो डेटाबेस इंजन सबसे पहले "Cache" (रैम) में डेटा ढूंढता है क्योंकि वह बहुत तेज़ होता है। अगर डेटा Cache में नहीं मिलता, तो वह "Disk" (हार्ड ड्राइव) में जाता है, डेटा लाता है, क्लाइंट को आउटपुट दिखाता है, और फिर उसे Cache में सेव कर लेता है ताकि अगली बार वो तुरंत मिल जाए!
+
+---
+
+## Topic 37: Subqueries Deep Dive (Nested Queries)
+
+### 37.1 What is a Subquery?
+* **Definition:** A subquery is a SQL query that is written *inside* another query. It is also known as an **Inner Query** or a **Nested Query**. 
+* **The Structure:**
+  1. The outer query is called the **Main Query**.
+  2. The inside query is called the **Subquery** (or Nested Query).
+* **Hindi (मराठी/हिंदी सारांश):** सबक्वेरी (Subquery) का मतलब है "एक क्वेरी के अंदर दूसरी क्वेरी"। जो क्वेरी बाहर होती है उसे Main Query कहते हैं, और जो अंदर होती है उसे Subquery कहते हैं।
+
+### 37.2 How Subqueries Work (The Execution Flow)
+* **Image Reference:** ![Subquery Flow](./svg_subquery_flow.svg) *(Description: Shows the DB Tables sending data to the Inner SubQuery, which creates an intermediate result, which is then used by the Main Query to produce the Final Result).*
+* Subqueries act as an embedded query. SQL executes them in a specific order (Usually from Right to Left, or Innermost to Outermost).
+* **Step-by-step Flow:**
+  1. **Inner Query Runs First:** SQL executes the subquery first. It retrieves data from the database.
+  2. **Intermediate Result:** The result of the subquery is NOT shown directly to the user. Instead, it becomes a temporary (intermediate) dataset stored in memory.
+  3. **Main Query Takes Over:** The main query uses this intermediate result to perform operations like Filtering (`WHERE`), Joining, Ordering, or Aggregation.
+  4. **Final Output:** The main query merges its own table data with the subquery's result to produce the final output for the user.
+
+### 37.3 Why are Subqueries Important? (When to use them)
+* **Image Reference:** ![Subquery Nesting](./svg_subquery_nesting.svg) *(Description: Shows Main Query, SubQuery, and Nested Subquery wrapped like Russian Dolls).*
+* **Use Cases:**
+  * To filter data based on values calculated from another table.
+  * To perform aggregations (like `MAX`, `AVG`) and use that aggregated value in a `WHERE` condition.
+  * To simplify complex logic step-by-step and avoid confusing `JOIN` operations.
+* **Importance:**
+  * They break down complex problems into smaller, manageable chunks.
+  * They allow writing cleaner and more readable SQL.
+  * They prevent the need for creating physical Temporary Tables.
+* **Where can they be used?**
+  * In the `SELECT` clause (to return a calculated value).
+  * In the `FROM` clause (used as a temporary table/derived table).
+  * In the `WHERE` clause (to filter based on another query).
+  * In the `HAVING` clause (to filter after a `GROUP BY`).
+
+### 37.4 The Golden Rules of Subqueries
+1. The **inner query** runs first, and its result is passed to the **outer query**.
+2. A subquery must be enclosed in parentheses `()`.
+3. **No DML Inside:** By design, a subquery **cannot** perform DML (`INSERT`, `UPDATE`, `DELETE`) operations inside it. It must produce a result set (rows/columns or a single value). *Example of what NOT to do: `SELECT * FROM (DELETE FROM employees);` (This will fail).*
+4. The **outer query** depends on the result of the inner query. The outer query *can* be an `INSERT`, `UPDATE`, or `DELETE` statement.
+
+#### Using Subqueries with DML (Outer Query)
+* **INSERT with Subquery:**
+  ```sql
+  INSERT INTO high_salary_emps (emp_id, name, salary)
+  SELECT id, name, salary FROM employees 
+  WHERE salary > (SELECT AVG(salary) FROM employees);
+  ```
+* **UPDATE with Subquery:**
+  ```sql
+  UPDATE employees SET bonus = 1000 
+  WHERE dept_id IN (SELECT id FROM departments WHERE location = 'New York');
+  ```
+* **DELETE with Subquery:**
+  ```sql
+  DELETE FROM employees 
+  WHERE dept_id = (SELECT id FROM departments WHERE dept_name = 'ClosedDept');
+  ```
+* **Hindi (मराठी/हिंदी सारांश):** सबक्वेरी हमेशा पहले रन होती है (अंदर से बाहर की तरफ)। सबक्वेरी के अंदर आप `INSERT/UPDATE/DELETE` नहीं चला सकते, क्योंकि उसे सिर्फ एक डेटा/वैल्यू वापस (Return) करनी होती है। हाँ, आप Main (Outer) क्वेरी में `UPDATE` या `DELETE` यूज़ कर सकते हैं!
+
+### 37.5 Subquery Classification (Types of Subqueries)
+* **Image Reference:** ![Subquery Classification](./svg_subquery_classification.svg) *(Description: Shows the classification by Result Types, Dependency, and Location).*
+
+Subqueries can be categorized in three different ways:
+
+#### A. Based on DEPENDENCY (Connection to Main Query)
+1. **Non-Correlated Subquery:** 
+   * The subquery is completely independent of the outer query. It executes only **ONCE**, and the result is passed to the outer query. This is the most common type.
+2. **Correlated Subquery:** 
+   * The subquery totally depends on the main query. It is executed **ONCE FOR EACH ROW** processed by the outer query. It is used when comparing values within a group or partition.
+
+#### B. Based on RESULT TYPE (What the Inner Query Returns)
+1. **Scalar Subquery (Single-Row, Single-Column):**
+   * Returns exactly **one single value** (one row and one column). Often used in `SELECT` or `WHERE` with operators like `=`, `<`, `>`.
+   * *Example:* Find all employees who earn more than the average salary.
+     ```sql
+     SELECT name, salary FROM employees
+     WHERE salary > (SELECT AVG(salary) FROM employees);
+     ```
+2. **Row Subquery (Single-Row, Multiple-Columns):**
+   * Returns a **single row but multiple columns**. Used with operators like `=`, `IN`, or row-value comparison.
+   * *Example:* `WHERE (col1, col2) = (SELECT col1, col2 FROM table LIMIT 1);`
+3. **Table Subquery (Multiple-Rows, Multiple-Columns):**
+   * Returns multiple rows and columns (looks like a table). It is heavily used in the `FROM` clause (also known as a Derived Table) or with the `IN` operator.
+   * *Example:* `SELECT * FROM (SELECT id, name FROM employees) AS temp_table;`
+
+#### C. Based on LOCATION / CLAUSES
+1. **SELECT clause**
+2. **FROM clause** (Creates a derived table)
+3. **JOIN clause**
+4. **WHERE clause:** This is the most common place. Operations here are split into two types:
+   * **Comparison Operators:** `<`, `>`, `=`, `!=`, `<=`, `>=` (Used with Scalar subqueries).
+   * **Logical Operators:** `IN`, `ANY`, `ALL`, `EXISTS` (Used with Row or Table subqueries).
+
+---
+
+## Topic 38: Subqueries Advanced (Clauses, Operators & Execution)
+* **Image Reference (Notebook Summary):** ![Subquery Summary](./svg_subquery_summary_notebook.svg) *(Description: Notebook page summarizing Subquery use cases like filtering, JOIN preparation, EXISTS, and Correlated row-by-row comparisons).*
+
+### 38.1 Subqueries by Location (Clauses)
+* **Image Reference:** ![Location Clauses](./svg_subquery_location_clauses.svg) *(Description: Tree diagram showing subqueries in SELECT, FROM, JOIN, and WHERE. WHERE is split into Comparison and Logical operators).*
+
+A subquery can be placed in different parts of a SQL statement. Depending on where it is placed, its behavior and rules change.
+
+#### 1. In the `FROM` Clause (Derived Tables)
+* **Image Reference:** ![FROM Clause Execution](./svg_subquery_from_execution.svg) *(Description: Shows Main Query wrapping a Subquery acting as a temporary table).*
+* **How it works:** A subquery in the `FROM` clause acts as a **temporary table** (also called a Derived Table) that the main query can `SELECT` from.
+* **Rule:** It MUST return a table (Multiple Rows/Columns) and MUST have an alias (e.g., `AS temp_table`).
+* **Example 1: Compare with Average:**
+  ```sql
+  -- Find products that have a price higher than the average price of all products.
+  SELECT * FROM (
+      SELECT product, price, AVG(price) OVER() AS avg_price 
+      FROM PRODUCTS
+  ) AS ProdTemp
+  WHERE price > avg_price;
+  ```
+* **Example 2: Ranking (Window Functions):**
+  ```sql
+  -- Rank customers based on their total amount of sales
+  SELECT *, RANK() OVER(ORDER BY total_sales DESC) AS sales_rank
+  FROM (
+      SELECT customerid, SUM(sales) AS total_sales FROM ORDERS GROUP BY customerid
+  ) AS OrderSummary;
+  ```
+
+#### 2. In the `SELECT` Clause
+* **Image Reference:** ![SELECT Clause Execution](./svg_subquery_select_execution.svg) *(Description: Shows Main Query with a Subquery inside the SELECT statement, requiring a scalar value).*
+* **How it works:** Used to aggregate or calculate a value side-by-side with the main query’s normal columns, allowing for direct comparison.
+* **👿 RULE (Very Important):** **ONLY Scalar Subqueries** (returning exactly 1 Row and 1 Column) are allowed in the `SELECT` clause!
+* **Example:**
+  ```sql
+  -- Show product IDs, names, prices, and the total number of orders in the DB side-by-side
+  SELECT productid, product, price,
+         (SELECT COUNT(*) FROM ORDERS) AS total_orders 
+  FROM PRODUCTS;
+  ```
+
+#### 3. In the `JOIN` Clause
+* **How it works:** Used to prepare the data (filtering or aggregating) *before* joining it with another table.
+* **👿 RULE:** The subquery must be given an Alias and added inside the `JOIN ... ON` condition as a temporary table.
+* **Example:**
+  ```sql
+  -- Show all customer details and find the total orders for each customer
+  SELECT c.customerid, c.firstname, c.lastname, COALESCE(t.total_order, 0) AS total_orders
+  FROM CUSTOMERS c
+  LEFT JOIN (
+      SELECT customerid, COUNT(orderid) AS total_order FROM ORDERS GROUP BY customerid
+  ) AS t
+  ON c.customerid = t.customerid;
+  ```
+
+### 38.2 Subqueries in the `WHERE` Clause (Filtering)
+This is the most common place for a subquery. It uses two groups of operators:
+* **Image Reference:** ![Where Filtering](./svg_subquery_where_filtering.svg) *(Description: Compares '=' needing scalar subqueries vs 'IN' needing list/row subqueries).*
+
+#### A. Comparison Operators (`>`, `<`, `>=`, `<=`, `=`, `!=`)
+* **Image Reference:** ![WHERE Comparison](./svg_subquery_where_comparison.svg) *(Description: Shows a scalar subquery used with a comparison operator).*
+* Used to filter data by comparing a column to a **Single Value**.
+* **👿 RULE:** The subquery MUST be a **Scalar Subquery** (Return exactly 1 value).
+* **Example:**
+  ```sql
+  SELECT product, price FROM products
+  WHERE price > (SELECT AVG(price) FROM products);
+  ```
+
+#### B. Logical Operators (`IN`, `ANY`, `ALL`, `EXISTS`)
+* Used to filter data against a **List of Values** (Row or Table Subquery).
+
+1. **`IN` Operator:** Checks if a value exists anywhere inside the list returned by the subquery.
+   * **Image Reference (Syntax):** ![WHERE IN Syntax](./svg_subquery_where_in.svg)
+   * **Image Reference (Execution Flow):** ![WHERE IN Flow](./svg_subquery_where_in_flow.svg) *(Description: Shows data flowing from Customers table subquery to intermediate array, and then to Main Query and Orders final result).*
+   ```sql
+   -- Show orders made by customers in Germany
+   SELECT * FROM ORDERS 
+   WHERE customerid IN (SELECT customerID FROM CUSTOMERS WHERE country = 'Germany');
+
+   -- Show the details of orders of customers which are NOT in Germany
+   SELECT * FROM ORDERS 
+   WHERE customerid NOT IN (SELECT customerID FROM CUSTOMERS WHERE country = 'Germany');
+   ```
+2. **`ANY` Operator:** Checks if the condition is TRUE for **at least ONE** of the values in the list.
+   * **Image Reference:** ![WHERE ANY Syntax](./svg_subquery_where_any.svg)
+   ```sql
+   -- Find female employees whose salary is greater than ANY male employee's salary
+   SELECT salary, firstname, lastname FROM EMPLOYEES 
+   WHERE gender = 'F' AND salary > ANY (SELECT salary FROM EMPLOYEES WHERE gender = 'M');
+   ```
+3. **`ALL` Operator:** Checks if the condition is TRUE for **ALL** the values in the list.
+   ```sql
+   -- Find female employees whose salary is greater than ALL male employees (highest earner)
+   SELECT salary, firstname, lastname FROM EMPLOYEES 
+   WHERE gender = 'F' AND salary > ALL (SELECT salary FROM EMPLOYEES WHERE gender = 'M');
+   ```
+4. **`EXISTS` Operator:** Checks if the subquery returns **any rows at all**. It does not compare values; it just checks for *existence* (TRUE/FALSE).
+   * **Image Reference:** ![WHERE EXISTS Syntax](./svg_subquery_where_exists.svg) *(Description: Shows correlated subquery using Table2 from the Main Query inside the Subquery).*
+   * **Image Reference (Flowchart):** ![How EXISTS Works](./svg_subquery_exists_flowchart.svg) *(Description: Flowchart explaining the Yes/No logic of EXISTS).*
+   * **Behind the scenes:** For each row in the main query, it runs the subquery. If the subquery returns a result, the main query row is included in the final output. If the subquery returns nothing, the main row is excluded.
+   ```sql
+   -- Show orders made by customers in Germany using EXISTS
+   SELECT * FROM ORDERS o 
+   WHERE EXISTS (
+       SELECT 1 FROM CUSTOMERS c WHERE c.country = 'Germany' AND o.customerid = c.customerID
+   );
+
+   -- Show the details of orders made by customers NOT in Germany
+   SELECT * FROM ORDERS o 
+   WHERE NOT EXISTS (
+       SELECT 1 FROM CUSTOMERS c WHERE c.country = 'Germany' AND o.customerid = c.customerID
+   );
+   ```
+
+### 38.3 Correlated vs Non-Correlated Subqueries (Execution Behind the Scenes)
+* **Image Reference:** ![Server Execution](./svg_subquery_server_execution.svg) *(Description: Shows Client sending query, Database Engine fetching Subquery from Disk, caching it, and returning the Final Result).*
+* **Image Reference (Dependency):** ![Dependency Tree](./svg_subquery_dependency_tree.svg)
+* **Image Reference (Execution Loop):** ![Execution Loop](./svg_subquery_execution_loop.svg) *(Description: Shows Correlated looping vs Non-Correlated linear execution).*
+
+#### 1. Non-Correlated Subquery (Independent)
+* **Execution:** It runs completely independently. It is executed **first**, stores its intermediate result in memory (cache/temporary table). Then the main query runs **ONCE** using that cached result.
+* **Cache Cleanup:** Once the execution is done and the final result is sent to the client, the database engine cleans up the cache and destroys the subquery's temporary result so it is ready to execute another query.
+* **Performance:** Very fast. It executes exactly once.
+
+#### 2. Correlated Subquery (Dependent)
+* **Execution:** The inner query depends on the outer query (it references a column from the outer query). It cannot run independently.
+* **How it works behind the scenes:** 
+  1. SQL starts executing the main query.
+  2. SQL processes the main query **Row by Row**.
+  3. For the **first row**, the main query passes a value to the subquery. The subquery executes and returns a result to the main query.
+  4. The main query checks the result and decides whether to keep the row.
+  5. The cycle repeats for the **second row**, **third row**, etc.
+* **Performance:** Very Slow! If the main query has 1 million rows, the subquery will be executed 1 million times! (Iteration).
+* **Example (Correlated):**
+  ```sql
+  SELECT *, (
+      SELECT COUNT(*) FROM ORDERS o WHERE o.customerid = c.customerid
+  ) AS order_count
+  FROM CUSTOMERS c;
+  ```
+
+### 38.4 JOIN vs SUBQUERY (Interview Comparison)
+
+| Feature | JOIN | SUBQUERY |
+| :--- | :--- | :--- |
+| **Purpose** | Combines data from two or more tables into a single result set. | A query inside another query, used to pass intermediate results. |
+| **Execution** | Tables are combined first, then filtering/selection is applied. | Inner query executes first, result is passed to outer query. |
+| **Performance** | Usually **faster** and more efficient for large datasets (uses Indexes and Hash/Loop algorithms). | Sometimes **slower** (especially Correlated subqueries which run row-by-row). |
+| **Readability** | More readable when pulling columns from multiple related tables. | Easier to understand for simple filtering (e.g., finding the `MAX` or `AVG`). |
+| **Load Distribution**| Maximizes the calculation burden on the database Engine. | Keeps the responsibility on calculation logic (step-by-step). |
+| **Types** | INNER, LEFT, RIGHT, FULL, CROSS, SELF. | Scalar, Row, Table, Correlated, Non-Correlated. |
+
+* **Interview Tip:** Always prefer a `JOIN` over a `Correlated Subquery` for better performance. However, modern SQL Optimizers are smart enough to automatically convert many subqueries into Joins behind the scenes!
+
+### 38.5 Key Points & Summary
+* A subquery is a query inside another query that helps break complex logic into smaller, manageable queries. It makes the code easier to understand and more readable.
+* A subquery **MUST** always be enclosed in parentheses `()`.
+* Subqueries can be used in the `SELECT`, `FROM`, `WHERE`, and `HAVING` clauses.
+* Subqueries can also use aggregate functions like `SUM()`, `AVG()`, etc.
+* **Return Types:** Subqueries can return:
+  1. A Single value (Scalar Subquery)
+  2. A List of values (Row/List Subquery)
+  3. A Table / Result Set (Table Subquery)
+
+* **Hindi (मराठी/हिंदी सारांश):** 
+  * **Location Rules:** `SELECT` में सिर्फ़ 1 वैल्यू वाली सबक्वेरी चलेगी। `FROM` में टेबल वाली सबक्वेरी चलेगी जिसे Alias देना ज़रूरी है। 
+  * **Operators:** `=` या `>` के साथ 1 वैल्यू आनी चाहिए। `IN`, `ANY`, `ALL` के साथ लिस्ट आ सकती है। `EXISTS` सिर्फ़ ये चेक करता है कि अंदर से डेटा मिला या नहीं (True/False)।
+  * **Correlated vs Non-Correlated:** Non-Correlated एक ही बार रन होती है (फ़ास्ट)। Correlated हर एक रो (Row) के लिए बार-बार रन होती है (स्लो)। इसलिए इंटरव्यू में हमेशा `JOIN` को बेहतर परफॉरमेंस वाला माना जाता है!
+
+---
+
+## Topic 39: Common Table Expressions (CTE)
+
+### 39.1 What is a CTE? (Definition & Concept)
+* **CTE = Common Table Expression**.
+* **In Short:** It is a temporary, named result set (a "virtual table") that you can reference within a `SELECT`, `INSERT`, `UPDATE`, or `DELETE`.
+* **Purpose:** It allows you to create a named, reusable subquery within your SQL statement to simplify and organize complex queries, making them much more readable.
+* **Duration:** It exists **only** during the execution of that specific query. It is not stored permanently in the database like a regular table or view.
+* **Keyword:** CTEs are defined using the `WITH` keyword.
+
+**Key Features of a CTE Table:**
+1. **Short-Lived:** This table does not live long. Once the query ends, the temporary CTE table is destroyed.
+2. **Not Available Later:** It is not available after the query execution is done.
+3. **Cannot Re-Query:** You are not able to query it again in a separate new query.
+
+#### How CTE Works (Behind the Scenes)
+* **Image Reference:** ![Simple vs CTE Execution](./svg_cte_architecture.svg) *(Description: Compares Normal Query accessing DB vs CTE creating a virtual table first, then main query using it).*
+
+* **In a Normal Query:** We have a database with multiple tables, and we write a simple query to retrieve data and get a result.
+* **In a CTE:** We have a query inside another query. The new inner query is named the "CTE Query", and the outer query is the "Main Query". Here is exactly what happens step-by-step:
+  1. **CTE Query Executes First:** SQL goes and executes the CTE query first to retrieve information from the database tables.
+  2. **Intermediate Virtual Table:** The output is made available only to the query, shaped exactly like a table. This output is temporarily stored in **high-speed cache memory**.
+  3. **Main Query Dual Sourcing:** The Main Query can now act on this virtual table as if it were a real database table. In fact, the Main Query can pull data from **two sources simultaneously**:
+     * **Source 1:** Get data directly from the actual database tables.
+     * **Source 2:** Get data from the virtual table created by the CTE.
+  4. **Final Result:** The Main Query retrieves and processes everything (utilizing the high-speed cache memory for the CTE, which is way faster than disk storage), and the final result is presented to the user.
+  5. **Destruction:** Once everything is done, the CTE table has finished its task and is immediately removed/destroyed.
+
+### 39.2 CTE vs Regular Subquery
+* **Image Reference:** ![Subquery vs CTE](./svg_cte_vs_subquery.svg) *(Description: Shows Subquery executing Bottom-Up with nesting, while CTE executes Top-Down for better readability).*
+
+#### Why use CTE instead of Subquery? (Benefits)
+* **Image Reference (Benefits):** ![CTE Benefits](./svg_cte_benefits.svg) *(Description: Shows how CTE gives Readability, Modularity, and Reusability).*
+* **Image Reference (Execution Steps):** ![Subquery vs CTE Steps](./svg_cte_steps_comparison.svg) *(Description: Shows Subquery doing redundant JOINs vs CTE doing JOIN once and reusing it).*
+* **Readability:** Subqueries get messy when nested deeply. CTEs break the query into smaller, logical steps (Top-to-Bottom flow).
+* **Reusability & Avoid Redundancy:** A Subquery can only be used once. A CTE can be joined and referenced multiple times in the same main query. If you need the same aggregated data in step 2 and step 4, doing it with subqueries repeats the JOINs and work. CTE does it once.
+* **Modularity & Debugging:** Breaks huge queries into small, self-contained chunks. You can easily test and debug each CTE part separately.
+* **When to STILL use Subqueries:** 
+  1. For very simple one-liners (e.g., `WHERE salary > (SELECT AVG(salary)...`). 
+  2. **Correlated Subqueries:** If the inner query depends on the outer query dynamically (row-by-row), you *must* use a Subquery. CTEs cannot be correlated to the main query row-by-row.
+
+### 39.3 Types of CTEs
+* **Image Reference:** ![CTE Types](./svg_cte_types_tree.svg) *(Description: Tree diagram showing Non-Recursive (Standalone, Nested) and Recursive CTEs).*
+
+#### 1. Non-Recursive CTE
+A Non-Recursive CTE is a query that runs independently from the main query, executing **only once** without any repetition or looping. There are mainly two types under this category: Standalone CTE and Nested CTE.
+
+---
+##### A. Standalone CTE
+* **Definition:** A Standalone CTE is defined and used independently in the query. It runs independently as a self-contained unit and doesn't rely on any other CTE or query.
+* **Explanation:** If you have a CTE, it queries the database tables and outputs an intermediate result. This output is then used by the main query. The CTE itself is completely independent from anything else.
+* **Image References:** 
+  * ![Standalone Flow](./svg_cte_standalone_flow.svg) *(Description: DB -> CTE Query -> Intermediate Result -> Main Query -> Final Result)*
+  * ![CTE Syntax](./svg_cte_syntax.svg) *(Description: Highlights CTE Definition vs CTE Usage)*
+
+* **Syntax & Example:**
+  ```sql
+  -- CTE Definition (Query)
+  WITH TOTAL_SALES AS (
+      SELECT customerID, SUM(SALES) AS TOTAL_SALES FROM ORDERS GROUP BY customerID
+  )
+  -- Main Query (Usage)
+  SELECT c.FIRSTNAME, cte.TOTAL_SALES FROM customers c
+  LEFT JOIN TOTAL_SALES cte ON cte.customerid = c.customerid;
+  ```
+
+##### B. Multiple Standalone CTEs
+* **Definition:** You can define multiple independent CTEs in a single query separated by commas.
+* **Important Rule:** If you have multiple CTEs, only the **first** CTE takes the `WITH` keyword. Subsequent CTEs are just separated by a comma `,`.
+* **Image Reference:** ![Multiple CTE Syntax](./svg_cte_multiple_syntax.svg) *(Description: Showing WITH CTE1, CTE2 format)*
+
+* **Syntax & Example:**
+  ```sql
+  -- Q1. Find total sales and last order date per customer
+  WITH TOTAL_SALES AS (
+      SELECT customerID, SUM(SALES) AS TOTALCUSTOMERSSALES 
+      FROM ORDERS GROUP BY customerID
+  ), -- Comma separates multiple CTEs (No second WITH)
+  LAST_ORDERS_DATE AS (
+      SELECT customerid, MAX(ORDERDATE) AS LAST_ORDER 
+      FROM ORDERS GROUP BY customerid
+  )
+  SELECT c.FIRSTNAME, c.LASTNAME, c.customerID, 
+         cte.TOTALCUSTOMERSSALES, newcte.LAST_ORDER
+  FROM customers c
+  LEFT JOIN TOTAL_SALES cte ON cte.customerid = c.customerid
+  LEFT JOIN LAST_ORDERS_DATE newcte ON newcte.customerid = c.customerid;
+  ```
+  *(Note: `ORDER BY` inside a CTE is ignored in MySQL unless combined with a `LIMIT` clause. Always sort in the final main query instead).*
+
+---
+##### C. Nested CTE (Dependent)
+* **Definition:** A Nested CTE is a CTE inside another CTE (or a query that depends on another query). 
+* **Explanation:** The main query doesn't just use the result of a CTE directly; instead, **another CTE** can use the result of a previous CTE. This means the CTEs are dependent. You cannot run the dependent CTE independently; you must run the parent CTE first.
+* **Image References:** 
+  * ![Nested Flow](./svg_cte_nested_flow.svg) *(Description: DB -> #1 CTE -> #2 CTE -> Main Query)*
+  * ![Nested Syntax](./svg_cte_nested_syntax.svg) *(Description: CTE-Name2 selects from CTE-Name1)*
+
+* **Syntax & Example (Complex Nested Pipeline):**
+  ```sql
+  WITH TOTAL_SALES AS (
+      -- CTE 1: Base Aggregation
+      SELECT customerID, SUM(SALES) AS TOTALCUSTOMERSSALES 
+      FROM ORDERS GROUP BY customerID
+  ), 
+  CUSTOMER_SEGMENTS AS (
+      -- CTE 2: Nested! Reads from TOTAL_SALES
+      SELECT customerid, TOTALCUSTOMERSSALES,
+      CASE 
+          WHEN TOTALCUSTOMERSSALES > 100 THEN 'HIGH'
+          WHEN TOTALCUSTOMERSSALES > 50 THEN 'MEDIUM'  
+          ELSE 'LOW'
+      END AS SEGMENT
+      FROM TOTAL_SALES
+  ), 
+  RANK_PER_CUSTOMER AS (
+      -- CTE 3: Nested! Reads from TOTAL_SALES
+      SELECT customerid, 
+             RANK() OVER(ORDER BY TOTALCUSTOMERSSALES DESC) AS RANK_CUSTOMERS
+      FROM TOTAL_SALES
+  )
+  -- Main Query brings it all together
+  SELECT c.FIRSTNAME, c.customerID, cs.SEGMENT, r.RANK_CUSTOMERS
+  FROM customers c
+  LEFT JOIN CUSTOMER_SEGMENTS cs ON cs.customerid = c.customerid
+  LEFT JOIN RANK_PER_CUSTOMER r ON r.customerid = c.customerid;
+  ```
+---
+
+#### 2. Recursive CTE (Looping)
+* **Definition:** A Recursive CTE is a query that repeatedly runs or loops over itself until a given condition is met.
+* **Explanation:** It is widely used to navigate through hierarchical data (like Manager-Employee relations, Category trees, Graph nodes) or to generate a sequential series of numbers/dates.
+* **Image References:** 
+  * ![Recursive Flow Concept](./svg_cte_recursive_concept.svg) *(Description: Anchor Query flowing directly into a looping Recursive Query block).*
+  * ![Recursive Syntax Breakdown](./svg_cte_recursive_syntax2.svg) *(Description: Detailed syntax showing Anchor Query, UNION ALL, Recursive Query, and Break Condition).*
+
+**Execution Flow (How it loops):**
+1. **Anchor Query (Start):** The base query. It runs only once and provides the initial starting dataset.
+2. **UNION ALL:** Connects the Anchor to the Recursive Query. It combines the results of the two without deduplicating (which keeps performance high).
+3. **Recursive Query (Loop):** The query that refers back to the CTE itself. It keeps looping and generating new rows.
+4. **Termination (End):** The loop breaks when the Recursive Query produces an empty result set (0 rows). The final result is then passed to the Main Query.
+
+---
+##### Example 1: Number Sequence Generation (1 to 20)
+* **Image Reference:** ![Number Flowchart](./svg_cte_recursive_number_flow.svg) *(Description: Flowchart showing the exact looping mechanism of creating numbers from 1 to 20).*
+
+```sql
+WITH RECURSIVE SERIES AS (
+    -- Anchor Query
+    SELECT 1 AS MyNumber
+    UNION ALL
+    -- Recursive Query (Loops)
+    SELECT MyNumber + 1 FROM SERIES WHERE MyNumber < 20
+)
+-- Main Query
+SELECT * FROM SERIES; 
+```
+*(Note: MySQL handles recursion limits using the `cte_max_recursion_depth` variable, default is 1000. SQL Server uses `OPTION (MAXRECURSION n)`).*
+
+---
+##### Example 2: Employee Hierarchy Navigation
+* **Image Reference:** ![Hierarchy Flow](./svg_cte_recursive_hierarchy.svg) *(Description: Flowchart matching the Employee-Manager table logic, generating a Top-Down Hierarchy tree: Frank -> Kevin -> Michael).*
+
+```sql
+WITH RECURSIVE CTE_Emp_Hierarchy AS (
+    -- 1. Anchor Query (Find Top-Level Managers / CEO)
+    SELECT EmployeeID, FirstName, ManagerID, 1 AS Level
+    FROM Sales.Employees 
+    WHERE ManagerID IS NULL
+    
+    UNION ALL
+    
+    -- 2. Recursive Query (Find subordinates of the managers found above)
+    SELECT e.EmployeeID, e.FirstName, e.ManagerID, ceh.Level + 1
+    FROM Sales.Employees AS e
+    INNER JOIN CTE_Emp_Hierarchy ceh ON e.ManagerID = ceh.EmployeeID
+)
+-- 3. Main Query (View entire org chart)
+SELECT * FROM CTE_Emp_Hierarchy;
+```
+
+---
+##### Recursive CTE Q&A (Interview Perspectives)
+* **What is the purpose of the Anchor Member?**
+  1. **Initialization:** It defines the base result set ("Where do I start?") from which recursion starts.
+  2. **Guarantees Termination:** Without the anchor, the query wouldn't know where to begin and would either fail or run infinitely.
+* **Analogy:** Think of recursion like **climbing a ladder**. The Anchor member is planting your feet on the first rung. The Recursive member is climbing up one step at a time.
+* **Why use UNION ALL instead of UNION?**
+  * `UNION ALL` simply appends rows. It is much **faster** because no duplicate check is required.
+  * `UNION` performs a deduplication (`DISTINCT`) at every step, which requires extra work and is **slower**. It may also accidentally filter out valid paths (e.g., matrix management where a person reports to two managers).
+* **Can a Recursive CTE call itself more than once?**
+  * **Yes.** While normally it calls itself once, in complex graph traversals (like walking forward and backward), you can reference the CTE multiple times using multiple `UNION ALL` statements.
+* **Can we write a Recursive CTE without an Anchor Member?**
+  * **No.** It will throw a syntax error or loop infinitely because there is no starting dataset.
+
+### 39.4 CTE vs Derived Table
+
+| Feature | Derived Table (Subquery in FROM) | CTE (WITH Clause) |
+| :--- | :--- | :--- |
+| **Definition** | A subquery written directly inside the `FROM` clause. | Declared at the top using `WITH`. Acts like a temporary view. |
+| **Reusability** | Cannot be reused. If you need it again, you must rewrite it. | Can be referenced multiple times in the main query. |
+| **Recursion** | Does not support recursion. | Supports Recursive querying (Hierarchies). |
+| **Readability** | Becomes very messy if nested deeply. | Clean, Top-to-Bottom logical flow. |
+
+### 39.5 CTE Summary & Best Practices
+* **Image Reference:** ![CTE Summary Diagram](./svg_cte_summary.svg) *(Description: Complete summary of CTEs, including Advantages, Rules, and Flow diagrams for Standalone, Nested, and Recursive CTEs).*
+
+**What is a CTE?**
+* Common Table Expression (CTE) is a **Temporary, named result set** that can be used **multiple times** within the query.
+* **Important Rule:** The result of a CTE is like a Table, **but it can't be used from multiple queries** (it only exists for the duration of the query it is defined in).
+
+**Advantages of using CTEs:**
+1. **Readability:** Breaks down Complex Queries into smaller Pieces.
+2. **Modularity:** Pieces are easy to manage, develop, and self-contained.
+3. **Reusability:** Reduce redundancy in Query by reusing the same CTE.
+4. **Recursive:** Enables iterations & looping in SQL for hierarchical data.
+
+> [!TIP]
+> **Don't** create more than **5** CTEs in One Query. Doing so will make the query extremely difficult to maintain and could impact performance.
+
+* **Hindi (मराठी/हिंदी सारांश) & Interview Pointers:** 
+  * **CTE क्या है?:** CTE (Common Table Expression) एक वर्चुअल (Temporary) टेबल है। यह सिर्फ उसी क्वेरी के रन होने तक हाई-स्पीड (High-speed cache) मेमोरी में रहता है। इसे `WITH` कीवर्ड से लिखते हैं। 
+  * **Behind the Scenes (Execution):** 
+    - CTE पहले रन होकर अपना रिजल्ट हाई-स्पीड कैश (cache) में स्टोर करता है।
+    - फिर Main Query दो जगह से डेटा उठाती है: **Database Table (Slow)** + **CTE Cache (Fast)**। इसे **Dual Sourcing** कहते हैं।
+  * **फायदा:** एक ही सबक्वेरी को बार-बार लिखने (Redundancy) से बचाता है। Subquery हर बार रन होकर स्लो होती है, लेकिन CTE एक बार रन होकर आप उसे Main Query में कई बार अलग-अलग जगह JOIN कर सकते हैं।
+  * **Types (प्रकार):** 
+    1) **Non-Recursive:** जो एक बार रन होता है।
+       - **Standalone CTE:** जो अकेला हो, सीधा डेटाबेस से डेटा लाता हो।
+       - **Multiple Standalone CTE:** एक ही क्वेरी में कॉमा (`,`) लगाकर कई आज़ाद CTEs बनाना (सिर्फ पहले वाले में `WITH` लगता है)।
+       - **Nested CTE:** जब एक CTE दूसरे CTE के डेटा पर डिपेंड हो। (जैसे Pipeline: Sales -> Segments -> Rank)।
+    2) **Recursive (Looping):** जो लूप में तब तक रन होता है जब तक कंडीशन ख़त्म न हो जाए (जैसे एम्प्लोयी-मैनेजर ट्री या Number Sequence)।
+  * **Recursive Rules & Interview Tricks:** 
+    - **Anchor Member:** यह सीढ़ी (Ladder) का पहला कदम (First Rung) है। यह स्टार्टिंग पॉइंट सेट करता है, वरना क्वेरी infinite loop में फँस जाएगी।
+    - **UNION ALL:** हम Anchor और Recursive को जोड़ने के लिए हमेशा `UNION ALL` यूज़ करते हैं। अगर `UNION` यूज़ किया, तो वह हर स्टेप पर डुप्लीकेट चेक करेगा (DISTINCT) और बहुत स्लो हो जाएगा!
+    - **Can it call itself multiple times?:** हाँ! कॉम्प्लेक्स ग्राफ के लिए एक CTE खुद को कई बार कॉल कर सकता है (Forward and Backward)।
+
+---
+
+## Topic 40: Database Import & Export (CSV, SQL Dumps)
+
+### 40.1 Working with CSV Files
+* **CSV:** Stands for **Comma Separated Value**.
+* **Rule of CSV Imports:** The table schema must exactly match the CSV file. Columns in the table must correspond (in number, order, and data type) to the values in the CSV. (e.g., If CSV has `id, name, salary`, the table must have the exact same structure).
+
+#### CSV Format Rules
+1. **Delimiter:** Usually a comma (`,`), but it could be `;` or `\t` (Tab). You must specify it.
+2. **Quotes:** Text values may be enclosed in double-quotes `"`.
+3. **Header Row:** If the file has column headers at the top, you must use `IGNORE 1 ROWS` during the import.
+4. **Line Endings:** Should match the operating system (`\n` for Linux/Mac, `\r\n` for Windows).
+
+#### File Location Rules & Privileges
+* **Server Machine (`LOAD DATA INFILE`):** If you omit the word `LOCAL`, MySQL expects the file to be on the server. The file must be placed in a directory allowed by the MySQL variable `secure_file_priv`. You also need the `FILE` privilege (`GRANT FILE ON *.* TO 'username'@'localhost';`).
+* **Local Machine (`LOAD DATA LOCAL INFILE`):** If the file is on your personal client machine (your laptop), you use `LOCAL`. 
+* **Handling NULL & Constraints:** Empty fields in CSV may become `NULL` if allowed. If the table has a Primary Key or Unique constraint, duplicates in the CSV will cause errors (unless the `IGNORE` keyword is used in the query).
+
+### 40.2 Importing Data into MySQL
+#### Method 1: Using `LOAD DATA INFILE` (Fastest Way)
+MySQL has a built-in command to directly import CSV into a table extremely fast.
+
+* **Scenario:** You have a file `employees.csv` (`id, name, salary, dept_id`).
+```sql
+CREATE TABLE employees (
+  id INT,
+  name VARCHAR(100),
+  salary DECIMAL(10,2),
+  dept_id INT
+);
+
+-- Importing the file
+LOAD DATA INFILE '/path/to/employees.csv'
+INTO TABLE employees
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+```
+* **Explanation:**
+  * `FIELDS TERMINATED BY ','` $\rightarrow$ The CSV delimiter.
+  * `ENCLOSED BY '"'` $\rightarrow$ Handles text values wrapped in quotes.
+  * `IGNORE 1 ROWS` $\rightarrow$ Skips the header row in the CSV file.
+  * *(If the file is on your local machine, change it to `LOAD DATA LOCAL INFILE 'C:/path/employees.csv'`)*.
+
+#### Method 2: Using `mysqlimport` Command-Line Tool
+You can run this directly from your terminal (CMD/Bash) without logging into the MySQL shell.
+```bash
+mysqlimport --local -u root -p --fields-terminated-by=',' --lines-terminated-by='\n' --ignore-lines=1 my_database employees.csv
+```
+* `--local` $\rightarrow$ File is on the client machine.
+* `my_database` $\rightarrow$ The target database name.
+* `employees.csv` $\rightarrow$ **Important:** The filename must exactly match the table name (i.e., `employees` table).
+
+#### Method 3: Using GUI Tools (MySQL Workbench / phpMyAdmin)
+* **Workbench:** Right-click table $\rightarrow$ `Table Data Import Wizard` $\rightarrow$ Select CSV file $\rightarrow$ Map columns $\rightarrow$ Finish.
+
+### 40.3 Exporting Data from MySQL
+#### 1. Export Query Results to CSV (`INTO OUTFILE`)
+```sql
+SELECT id, name, salary
+FROM employees
+INTO OUTFILE '/var/lib/mysql-files/employees.csv'
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
+```
+* **Note:** This creates the `employees.csv` file on the *server*. You require write access to that directory and the `FILE` privilege in MySQL.
+
+#### 2. Export via GUI (MySQL Workbench)
+* Right-click a table $\rightarrow$ `Table Data Export Wizard` $\rightarrow$ Choose CSV, JSON, or SQL format.
+
+### 40.4 Database Backups & Dumps (`mysqldump`)
+`mysqldump` is a powerful command-line tool provided by MySQL to create a full backup (SQL Dump) of your schema and data.
+
+* **Export Full Database:** 
+  ```bash
+  mysqldump -u root -p mydb > mydb.sql
+  ```
+  *(Creates a `.sql` file with schema + data. `>` redirects output into the file).*
+
+* **Export Single Table:**
+  ```bash
+  mysqldump -u root -p mydb employees > employees.sql
+  ```
+
+* **Export Only Schema (Without Data):**
+  ```bash
+  mysqldump -u root -p --no-data mydb > schema.sql
+  ```
+
+* **Export Only Data (No Table Structure):**
+  ```bash
+  mysqldump -u root -p --no-create-info mydb > data.sql
+  ```
+
+* **Export with Conditions (`WHERE` clause):**
+  ```bash
+  mysqldump -u root -p mydb employees --where="salary > 5000" > high_salary.sql
+  ```
+
+#### How to Import a Dump file back to MySQL:
+```bash
+mysql -u root -p mydb < mydb.sql
+```
+*(This executes all the `CREATE TABLE` and `INSERT` statements inside the `.sql` file, restoring your database completely).*
+
+### 40.5 Exporting/Importing Other File Types (XML & JSON)
+
+#### 1. XML Files
+MySQL natively supports XML exports and imports.
+* **Exporting to XML:**
+  ```bash
+  mysql -u root -p --xml -e "SELECT * FROM mydb.employees" > employees.xml
+  ```
+* **Importing XML (`LOAD XML INFILE`):**
+  ```sql
+  LOAD XML INFILE '/path/to/employees.xml'
+  INTO TABLE employees
+  ROWS IDENTIFIED BY '<row>';
+  ```
+
+#### 2. JSON Files
+* **Exporting to JSON (MySQL 8.0+):**
+  You can use MySQL Workbench GUI (Export to JSON) or write a query using JSON functions:
+  ```sql
+  SELECT JSON_ARRAYAGG(JSON_OBJECT('id', id, 'name', name, 'salary', salary)) 
+  FROM employees 
+  INTO OUTFILE '/path/to/employees.json';
+  ```
+* **Importing JSON:**
+  MySQL doesn't have a direct `LOAD JSON INFILE` command. Instead, you read it using `LOAD DATA` into a single text column and parse it using `JSON_TABLE()`. For bulk JSON imports, **GUI Tools (MySQL Workbench) or scripts (Python/Node.js)** are highly recommended over raw SQL.
+
+### 40.6 Advanced `mysqldump` (Routines, Triggers, Events)
+By default, `mysqldump` exports tables and data. If you have Stored Procedures, Functions, Triggers, or Scheduled Events, you **MUST** include specific flags; otherwise, they will be left behind in the backup!
+
+* **Export everything including Routines, Triggers, and Events:**
+  ```bash
+  mysqldump -u root -p --routines --triggers --events mydb > full_backup.sql
+  ```
+  *(Note: `--routines` exports Procedures & Functions. `--triggers` is usually on by default, but it's good practice to specify it).*
+
+### 40.7 Performance Tip: Importing HUGE SQL Files
+When you import a massive `.sql` dump (e.g., 50GB file), running `mysql < dump.sql` can take hours. To drastically speed it up, log into MySQL and temporarily disable constraint checks:
+
+```sql
+SET autocommit=0;
+SET unique_checks=0;
+SET foreign_key_checks=0;
+
+-- In the MySQL command line, use the 'source' command (Faster than < in terminal)
+SOURCE C:/path/to/huge_backup.sql;
+
+-- After import completes, turn them back on and commit
+COMMIT;
+SET autocommit=1;
+SET unique_checks=1;
+SET foreign_key_checks=1;
+```
+*(This prevents MySQL from verifying constraints and writing transaction logs for every single row inserted, making bulk imports extremely fast).*
+
+---
+
+## Topic 41: SQL Server Architecture & Database Hierarchy
+
+### 41.1 What is a SQL Server and Database Hierarchy?
+* **Image Reference:** ![Database Hierarchy](./svg_db_hierarchy.svg) *(Description: Shows the top-down hierarchy: SQL Server -> Database -> Schema -> Table / View).*
+
+1. **SQL Server (DBMS):** It allows us to store, manage, and provide access to databases for users or applications.
+2. **Database:** Inside a SQL Server, there are multiple databases. A database is a collection of information stored in a structured way where all your data is kept and organized into different tables and objects. Each database is separated from the others and has its own data.
+3. **Schema:** Inside each database, you will find multiple schemas. A schema is a logical layer that groups up related objects (like tables and views) together.
+4. **Table:** Inside the schema, we find tables. A table is the place where your data actually lives physically, organized into rows and columns.
+5. **View:** Inside the schema, there is another object called a View.
+   - A View is like a **virtual table** that has a structure (columns and data types) but does not store data physically.
+   - It shows data without storing it. To see the data, the query behind the view must execute.
+   - Unlike a table, it does not store data permanently.
+
+---
+
+### 41.2 The 3-Tier Database Architecture (Three Levels of Abstraction)
+* **Image Reference:** ![Database Abstraction Layers](./svg_db_abstraction_layers.svg) *(Description: Shows the High to Low Abstraction levels involving Business Analysts, Power BI, App Developers, and DBAs).*
+
+The architecture of a database is divided into three distinct levels:
+
+#### 1. Physical Level (Internal Layer)
+* **What is it?** This is the lowest level of the database. It is where data is actually stored in physical storage (Disk).
+* **Who uses it?** **Database Administrators (DBA)**. They are experts who manage access, security, performance optimization, backups, recovery, and configuration.
+* **What it deals with:** Data files, partitions, logs, catalogs, blocks, cache, and everything a database needs to physically store data.
+* **Complexity:** This is the most complicated layer.
+
+#### 2. Logical Level (Conceptual Layer)
+* **What is it?** This level describes *what* data is stored in the database and the relationships among those data. It focuses on how to structure the data rather than how it is physically stored.
+* **Who uses it?** **Application Developers**. They interact with this layer to build the data model for their projects.
+* **What it deals with:** Creating tables, defining relationships, views, indexing for performance optimization, and writing stored procedures/functions. 
+* **Complexity:** Less complicated than the physical layer. It provides a perfect abstraction for developers, so they don't have to worry about physical storage.
+
+#### 3. View Level (External Layer)
+* **What is it?** This is the highest level of abstraction. It only holds the relevant data or information needed for a specific use case.
+* **Who uses it?** **End Users** and **Applications**. They access and see the data through different views tailored to their perspectives.
+* **What it deals with:** Users at this level only deal with Views. They don't have to deal with complex tables, indexes, stored procedures, data files, or partitions.
+* **Complexity:** The least complicated. Its focus is to make data friendly and easy to consume for end users.
+
+---
+
+### 41.3 Interview Perspective & Key Takeaways
+* **Abstraction:** The 3-tier architecture exists to provide **Data Abstraction**. End-users don't need to know how data is logically structured, and developers don't need to know how data is physically stored on the hard drive.
+* **Security:** Views (External Layer) provide a massive security benefit because you can hide sensitive columns (like passwords or salaries) from end-users by simply not including them in the view.
+
+* **Hindi (मराठी/हिंदी सारांश) with Real-Life Example (ई-कॉमर्स/Amazon):** 
+  * **Database Hierarchy:** सबसे ऊपर **SQL Server** होता है $\rightarrow$ उसके अंदर कई **Databases** होते हैं $\rightarrow$ Database के अंदर **Schema** (जो टेबल्स को लॉजिकली ग्रुप करता है) होता है $\rightarrow$ और Schema के अंदर **Table** (जहाँ असली डेटा फिजिकली स्टोर होता है) और **View** (Virtual टेबल, जिसमें डेटा स्टोर नहीं होता, बस दिखता है) होते हैं।
+  * **3-Tier Architecture (3 लेवल्स):**
+    1) **Physical Level (सबसे नीचे - Internal Layer):** 
+       - **Ex:** Amazon का असली डेटा सर्वर की हार्ड डिस्क (HDD/SSD) पर किस फॉर्मेट (Blocks, Logs, Partitions) में सेव है।
+       - इसे **DBA (Database Administrators)** हैंडल करते हैं। यूज़र्स या डेवलपर्स को इससे कोई मतलब नहीं होता। यह सबसे कॉम्प्लिकेटेड लेयर है।
+    2) **Logical Level (बीच में - Conceptual Layer):** 
+       - **Ex:** Amazon के सॉफ्टवेयर डेवलपर्स `Users` टेबल, `Orders` टेबल बनाते हैं और उनमें रिलेशनशिप (Foreign Keys) सेट करते हैं। 
+       - यहाँ **Application Developers** काम करते हैं। उन्हें मतलब नहीं होता कि हार्ड डिस्क पर डेटा कैसे सेव है, वो बस टेबल्स और डेटाबेस का स्ट्रक्चर डिज़ाइन करते हैं।
+    3) **View Level (सबसे ऊपर - External Layer):** 
+       - **Ex:** जब आप (End User) Amazon ऐप खोलते हैं, तो आपको सिर्फ आपका 'My Orders' या 'Cart' दिखता है। आपको पीछे के करोड़ों यूज़र्स के टेबल्स, कोडिंग या हार्ड डिस्क से कोई मतलब नहीं होता। 
+       - यह सबसे हाईएस्ट एब्स्ट्रैक्शन (Highest Abstraction) है, ताकि **End Users** के लिए सिस्टम एकदम सिंपल और सेफ (Secure) रहे। 
+---
+
+## Topic 42: SQL Views (Virtual Tables) Deep Dive
+
+### 42.1 What is a View?
+* **Definition:** A View is a database object that acts like a **Virtual Table**. It is based on the result set of an SQL query.
+* **Types of Views:**
+  1. **Simple View:** Based on only *one* table, contains no functions or joins.
+  2. **Complex View:** Based on *multiple* tables, uses joins, `GROUP BY`, aggregate functions, etc.
+* **No Persistence:** A View **does not store any data physically** (by default). It only stores the SQL query structure (metadata) in the database system catalog.
+* **Execution Flow (How it works behind the scenes):**
+  1. Real data is stored inside physical database tables.
+  2. The View acts as an **Abstraction Layer** between the user and the real data.
+  3. When a user queries a view (`SELECT * FROM my_view`), SQL retrieves the query attached to the view from the catalog.
+  4. The View's query then executes against the physical table, fills the virtual structure with results, and returns it to the user.
+  *(You are directly querying the view, but indirectly querying the physical table).*
+
+* **Image Reference:** ![View vs Table](./svg_view_vs_table.svg) *(Description: Shows the flow of execution and the differences between Physical Tables and Views).*
+
+### 42.2 Differences Between Table and View
+
+| Feature | Physical Table | Virtual Table (View) |
+| :--- | :--- | :--- |
+| **Storage** | Persists actual data physically on disk. | No persistence. Stores only the SQL query logic. |
+| **Maintenance & Flexibility** | Hard to maintain/change. Modifying large tables (adding/moving columns) takes huge effort. | Easy to maintain & flexible. You just update the underlying query without touching physical data. |
+| **Performance** | **Fast Response.** (1 Query execution). | **Slow Response.** (2 Queries execute: User's query + View's query). |
+| **Operations** | Read and Write. | Mostly Read-Only (some exceptions apply for simple views). |
+
+> **Does a View improve performance?**
+> **No.** By themselves, views do NOT automatically improve performance. A view is just a saved SELECT query. Executing it 100 times executes the base query 100 times. No extra indexes are created just because it’s a view.
+
+### 42.3 Why Do We Need Views? (6 Major Use Cases)
+
+**1. Central Query Logic (Reusability & Reducing Redundancy)**
+* **Image Reference:** ![View Central Logic](./svg_view_central_logic.svg) *(Description: Shows 3 analysts writing redundant CTEs vs using a central View).*
+* **Scenario without View (CTE Issue):** If 3 analysts need to rank, get min/max, or compare sales, they all write the same `SUM` & `JOIN` logic in their own CTEs. This is redundant and wastes time.
+* **Solution:** Create a View for the `SUM` & `JOIN` logic. Now, it is centralized in the database. All analysts just `SELECT` from the view and apply their specific `RANK` or `MIN/MAX` logic.
+
+**2. Hide Complexity (Abstraction)**
+* **Image Reference:** ![Hide Complexity](./svg_view_hide_complexity.svg) *(Description: Shows how multiple complex tables are joined and abstracted into one simple view for the user).*
+* Large databases have complex, cryptic table names and relationships. Asking an end-user to do 5 `JOIN`s just to get customer details is a nightmare.
+* **Solution:** A developer creates a View that pre-joins all tables into one clean, friendly virtual table.
+
+**3. Data Security (Column & Row-Level Protection)**
+* **Image Reference:** ![View Security](./svg_view_security.svg) *(Description: Demonstrates how Manager, Data Analyst, and Student get different views with column/row level security).*
+* **Column-Level Security:** A table has a sensitive `salary` column. You create a view that selects everything *except* the salary column, and give data analysts access only to the view.
+* **Row-Level Security:** You want the EU Sales team to only see EU data. You create a view with `WHERE Country != 'USA'`. They can never access USA data.
+
+**4. Flexibility and Dynamic Changes**
+* **Image Reference:** ![View Flexibility](./svg_view_flexibility.svg) *(Description: Shows how changing a physical table breaks queries, but a view absorbs the impact).*
+* If you rename a physical table column or split a table, 100 users' queries will break.
+* **Solution:** Instead, users query the View. If you rename the physical column, you just update the View's query to alias it back. Users won't notice a thing!
+
+**5. Multiple Languages Support**
+* **Image Reference:** ![Multiple Languages](./svg_view_multiple_languages.svg) *(Description: Shows one base table connected to multiple views, each translated for a specific region's users).*
+* You can create separate views to display column aliases in different languages for different regions. For example, a German user gets a view called `BESTELLUNG`, and an Indian user gets a view called `आदेश`, both pointing to the same underlying `ORDERS` table.
+
+**6. Virtual Data Marts (DWH)**
+* **Image Reference:** ![Virtual Data Marts](./svg_view_data_marts.svg) *(Description: Shows data flowing from Source Systems to a Physical Data Warehouse, then abstracted into Virtual Data Marts for Reporting).*
+* Used in Data Warehousing to provide flexible, efficient presentation layers (Data Marts). Instead of creating physical tables for every mart, you create Virtual Data Marts using views, which connect directly to BI Tools/Reporting Dashboards.
+
+### 42.4 View vs CTE
+* **Image Reference:** ![View vs CTE](./svg_view_vs_cte.svg) *(Description: Comparison chart showing Redundancy, Reusability, Persistence, and Maintenance differences).*
+
+| Feature | View | CTE (Common Table Expression) |
+| :--- | :--- | :--- |
+| **Purpose** | Reduces redundancy across **Multiple Queries / Entire Project**. | Reduces redundancy within **One Single Query**. |
+| **Persistence** | Logic is saved permanently in the database as an object. | Logic is temporary, calculated on the fly, and destroyed when query ends. |
+| **Maintenance** | Requires manual maintenance (`CREATE`, `ALTER`, `DROP`). | No maintenance. Cleaned up automatically. |
+
+### 42.5 Syntax & Schema Naming
+* **Image Reference:** ![View Syntax](./svg_view_syntax.svg) *(Description: Basic DDL syntax showing CREATE VIEW view-name AS query).*
+* **Create View:**
+  ```sql
+  CREATE VIEW view_name AS
+  SELECT column1, column2 FROM table_name WHERE condition;
+  ```
+* **Schema Qualification:** If you don't specify a schema, it goes to default (like `dbo`). To place it in a specific schema: `CREATE VIEW SALES.V_total_sales AS (...)`
+* **Drop View:** `DROP VIEW view_name;`
+
+### 42.6 Modifying/Updating Views (`CREATE OR REPLACE` vs `ALTER VIEW`)
+
+**1. `CREATE OR REPLACE VIEW` (Best & Most Common - MySQL/PostgreSQL)**
+* Replaces the existing view definition automatically without dropping it first. Keeps existing permissions safe. Works even if the view doesn't exist yet.
+
+**2. `ALTER VIEW` (SQL Server/Oracle/MySQL)**
+* Similar effect, but only works if the view *already exists*.
+
+**3. Drop & Recreate (Two-step method)**
+* `DROP VIEW IF EXISTS...` then `CREATE VIEW...`. **Warning:** Loses permissions assigned to the view.
+
+**Rules for Modifying a View:**
+* **Allowed:** Add new columns (they must be added at the end), remove columns, change/add joins, modify `WHERE`, `GROUP BY`, `ORDER BY`.
+* **Not Allowed:** You **cannot change the order of existing columns**, you **cannot insert a new column in the middle**, and you cannot change underlying data types without breaking dependencies.
+* **Note:** If you add a new column to the *underlying physical table*, the view won't show it automatically because the view only stores the old query structure. You must use `CREATE OR REPLACE VIEW` to refresh it.
+
+**Renaming Columns and Views:**
+* **Rename a Column in a View (MySQL 8.0+):** `ALTER VIEW view_name RENAME COLUMN old_col TO new_col;` *(This does NOT affect the base table, only the view).*
+* **Rename the View Itself:** `ALTER VIEW old_view_name RENAME TO new_view_name;`
+
+### 42.7 Updatable Views (Insert / Update / Delete through a View)
+Normally views are read-only, but you *can* update the base table through a view **only if** the view meets strict criteria:
+1. It must reference **only one base table** (No Joins).
+2. Cannot contain `GROUP BY`, `HAVING`, `DISTINCT`, Aggregate functions (`SUM`, `COUNT`), Window functions, or `WITH` (CTE) clauses.
+3. Must include primary keys/NOT NULL columns of the base table for inserts.
+
+**WITH CHECK OPTION:**
+* A security feature for updatable views. It ensures that any `INSERT` or `UPDATE` through the view satisfies the view's `WHERE` condition.
+* Example: View filters `WHERE salary > 5000 WITH CHECK OPTION;`. If you try to update a salary to `4000` via the view, it will fail because the new row wouldn't be visible in the view anymore.
+
+### 42.8 Materialized Views (Performance Booster)
+* **What is it?** A normal view just stores the query. A **Materialized View** (MV) stores the query **AND** physically stores the precomputed data (snapshot) on the disk.
+* **Why do we need it?** For complex joins and aggregations (Data Warehousing/Dashboards) that take too long to compute every time. Querying an MV is instant because data is precomputed.
+* **Indexes:** Because data is physically stored, you **can add Indexes** to an MV (unlike normal views).
+* **Refresh Strategies:** Because data is stored, it gets stale. You must refresh it:
+  1. **ON DEMAND (Manual):** `REFRESH MATERIALIZED VIEW view_name;`
+  2. **SCHEDULED:** Auto-refreshes daily/hourly.
+  3. **ON COMMIT:** Refreshes immediately when base table changes.
+* **Note:** MySQL does not support native Materialized Views. You simulate them by creating a real summary table and updating it via Events or Triggers.
+
+### 42.9 Index vs View vs Materialized View
+| Feature | Index | View | Materialized View |
+| :--- | :--- | :--- | :--- |
+| **Purpose** | **Fast Search** (Lookups) | **Query Shortcut / Security** | **Precomputed Result for Speed** |
+| **Data Storage** | Stores a lookup structure (B-Tree). | No data storage (Virtual). | Stores actual precomputed query results. |
+| **Data Freshness**| Auto-updates instantly. | Always 100% fresh (queries base table). | Stale until Refreshed (Manual/Auto). |
+
+---
+
+### 42.10 How Database Executes a View
+* **Image Reference:** ![View Execution](./svg_view_execution.svg) *(Description: Shows the DB Engine interacting with the Catalog (Disk) to fetch the View's query, and then executing it against the Physical Table).*
+
+**Step-by-Step Execution Flow:**
+1. **Creation:** When a Data Engineer creates a view (`CREATE VIEW TOPN AS...`), the database engine **does not store any actual data**. It stores the metadata and the SQL statement inside the **System Catalog (Disk)**.
+2. **Querying:** A Data Analyst executes a query against the view (`SELECT * FROM TOPN`).
+3. **Execution Query 1 (Metadata Lookup):** The database engine realizes it's a view, not a table. It goes to the System Catalog, retrieves the stored SQL query attached to that view, and prepares it.
+4. **Execution Query 2 (Physical Table):** The database engine then executes that retrieved query against the actual underlying **Physical Table** (e.g., `ORDERS`), fetches the physical data, and returns the result back to the analyst.
+* **Conclusion:** Querying a view always results in executing **two steps/queries** internally (fetching the definition from the catalog + querying the base table).
+
+### 42.11 Summary of SQL Views
+* **Image Reference:** ![View Summary](./svg_view_summary.svg) *(Description: A quick cheat-sheet summarizing that a View is a virtual table used to persist complex logic, better than CTEs for reusability, and outlining the 6 core use cases).*
+
+---
+
+### 42.12 Interview Perspective & Hindi Summary
+
+* **Hindi (मराठी/हिंदी सारांश) with Examples:**
+  * **View (Virtual Table) क्या है?:** View कोई असली टेबल नहीं है, इसमें कोई डेटा सेव नहीं होता। यह सिर्फ एक सेवड क्वेरी (Saved Query) है। 
+  * **Ex:** अगर आप `SELECT * FROM View` करते हैं, तो डेटाबेस पहले व्यू की क्वेरी रन करता है, फिर असली टेबल (Physical table) से डेटा लाकर आपको दिखाता है।
+  * **फायदे (6 Use Cases):**
+    1. **Security:** अगर किसी टेबल में Employee की Salary है और आप उसे छिपाना चाहते हैं, तो एक व्यू बनाओ जिसमें Salary कॉलम न हो और यूज़र्स को सिर्फ व्यू का एक्सेस दो। इसे (Column-Level Security) कहते हैं।
+    2. **Central Logic:** अगर कोई `JOIN` या `SUM` वाली मुश्किल क्वेरी पूरी टीम बार-बार लिख रही है, तो उसका एक View बना दो। सब उसे सीधा यूज़ कर लेंगे (CTE की तरह बार-बार नहीं लिखना पड़ेगा)।
+    3. **Flexibility:** कल को असली टेबल का नाम बदलना हो तो यूज़र्स का कोड नहीं फटेगा (Break नहीं होगा), क्योंकि वो व्यू यूज़ कर रहे हैं।
+    4. **Hide Complexity:** बहुत सारे टेबल्स को `JOIN` करके एक सिंपल व्यू बना देना।
+    5. **Multiple Languages:** अलग-अलग देशों के यूज़र्स के लिए उनकी भाषा में कॉलम नाम वाला व्यू बनाना।
+    6. **Virtual Data Marts:** Data Warehouse में बिना एक्स्ट्रा स्पेस लिए रिपोर्टिंग के लिए वर्चुअल टेबल्स बनाना।
+  * **Database View को Execute कैसे करता है?:** 
+    - जब आप View बनाते हैं, तो डेटाबेस सिर्फ उसकी क्वेरी को अपनी **Catalog (Disk)** में सेव करता है, असली डेटा नहीं।
+    - जब यूज़र `SELECT * FROM View` रन करता है, तो डेटाबेस पहले Catalog से वो क्वेरी निकालता है (Query 1), और फिर उस क्वेरी को असली टेबल (Physical Table) पर रन करके डेटा लाता है (Query 2)।
+  * **View vs Materialized View:** View स्लो होता है क्योंकि वह हर बार कैलकुलेट होता है। Materialized View फास्ट होता है क्योंकि वह रिजल्ट को डिस्क (Disk) पर सेव कर लेता है। (लेकिन इसे रिफ्रेश - Refresh करना पड़ता है)।
+  * **Updatable View:** आप व्यू के ज़रिये डेटाबेस में इंसर्ट (Insert) भी कर सकते हैं, लेकिन शर्त यह है कि व्यू में `JOIN`, `GROUP BY`, या `SUM` नहीं होना चाहिए। 
+  * **WITH CHECK OPTION:** यह चेक करता है कि आप व्यू की `WHERE` कंडीशन के खिलाफ जाकर कुछ इंसर्ट या अपडेट न करें।
+
+---
+
+## Topic 43: Tables, CTAS & Temporary Tables Deep Dive
+
+### 43.1 What are Database Tables? (Physical Storage vs Logical Grid)
+* **Image Reference:** ![Table Structure](./svg_table_structure.svg) *(Description: Shows the connection between physical database files on disk and the logical grid of rows, columns, and cells).*
+* **Definition:** A database table is a structured collection of data. It is similar to a simple grid or spreadsheet (like Excel).
+* **Logical Structure:**
+  * **Columns:** Represent different fields (e.g., `ID`, `Name`, `Score`).
+  * **Rows:** Represent a single record or entry (e.g., one employee's complete data).
+  * **Cells:** The intersection of a row and a column, holding a single piece of data.
+* **Physical Storage:** 
+  * While they look like spreadsheets to us, tables are **physically stored as database files on the disk**.
+  * Users and developers usually do not have direct access to these files. The "Table" we see is an abstraction. Every time you query a table, the database engine goes to these files on the disk, fetches the data, and presents it to you.
+* **Types of Tables:**
+  1. **Permanent Tables:** Stay in the database permanently until you drop them.
+  2. **Temporary Tables:** Session-specific tables that are automatically deleted when the session ends.
+
+### 43.2 How to Create Permanent Tables: CREATE/INSERT vs CTAS
+There are two main ways to create and populate a permanent table in SQL.
+
+* **Image Reference:** ![CREATE vs CTAS](./svg_create_vs_ctas.svg) *(Description: Compares the 2-step CREATE/INSERT process vs the 1-step CTAS process).*
+* **Image Reference:** ![CTAS Syntax](./svg_ctas_syntax.svg) *(Description: Shows the syntax differences between the two methods).*
+
+**1. The Classical Way: CREATE / INSERT (2 Steps)**
+* **Step 1 (CREATE):** You define the structure of the table from scratch using a DDL statement.
+  ```sql
+  CREATE TABLE Table_Name (
+      ID INT,
+      Name VARCHAR(50)
+  );
+  ```
+* **Step 2 (INSERT):** You insert data into the newly created structure (from a CSV, manual input, or another query).
+  ```sql
+  INSERT INTO Table_Name VALUES (1, 'Frank');
+  ```
+
+**2. CTAS (Create Table As Select) - (1 Step)**
+* **Definition:** Creates a brand new table based on the result of an SQL query.
+* **How it works:** You define a query. The database executes it, retrieves the data, and creates a new table whose structure (columns/datatypes) and data come **one-to-one** directly from the query's result. You don't need to manually define data types.
+  ```sql
+  CREATE TABLE new_table_name AS 
+  SELECT * FROM source_table WHERE condition;
+  ```
+
+---
+
+### 43.3 CTAS Use Cases
+
+#### Use Case 1: Optimizing Performance (Storing Complex Logic)
+* **Image Reference:** ![CTAS Optimize](./svg_ctas_optimize.svg) *(Description: Shows a 30-min complex query saved into a CTAS table, allowing multiple analysts to query it instantly).*
+* **The Problem with Views:** If you put a very complex, heavy query (e.g., massive joins and aggregations) inside a View, the database has to execute that 30-minute query *every time* an analyst queries the view. This makes the system incredibly slow.
+* **The CTAS Solution:** Instead of a view, you run a **CTAS** query at night. The database takes the 30 minutes to generate the intermediate result, but it saves it as a **Physical Table**.
+* **Result:** In the morning, when analysts query the CTAS table, the response time is fast and instant, because the data is already computed and prepared.
+
+**Example: Total Orders by Month**
+```sql
+DROP TABLE IF EXISTS TOTAL_ORDERS;
+
+-- CREATE TABLE AS SELECT
+CREATE TABLE TOTAL_ORDERS AS (
+    SELECT 
+        COUNT(*) AS total_count,
+        MONTHNAME(ORDERDATE) AS MONTH,
+        SUM(SALES) AS TOTAL_SALES
+    FROM ORDERS
+    GROUP BY MONTHNAME(ORDERDATE)
+);
+
+-- Query the prepared data instantly
+SELECT * FROM TOTAL_ORDERS;
+```
+
+> **How to Refresh a CTAS Table (MySQL)?**
+> CTAS tables do not auto-refresh. If the source data changes, the CTAS table becomes stale.
+> 1. **Option 1 (Full Refresh):** `DROP TABLE IF EXISTS` and run CTAS again. (Warning: loses indexes/constraints).
+> 2. **Option 2 (Best Practice):** `TRUNCATE TABLE total_orders;` followed by `INSERT INTO total_orders SELECT ...`. (Preserves table structure and indexes).
+> 3. **Option 3 (Incremental):** `REPLACE INTO` or `INSERT ... ON DUPLICATE KEY UPDATE` (if primary keys exist).
+
+#### Use Case 2: Creating a Persistent Snapshot (Debugging)
+* **Image Reference:** ![CTAS Snapshot](./svg_ctas_snapshot.svg) *(Description: Shows live orders changing, and a static CTAS snapshot being extracted for analysis).*
+* **The Problem:** You have a data quality issue to investigate, but the live table is constantly receiving updates and new records. It is impossible to analyze a moving target.
+* **The Solution:** Use CTAS to create a fixed, persistent snapshot of the data at a specific moment in time. You can safely run your analysis on this static snapshot table without worrying about live updates messing up your debugging.
+
+#### Use Case 3: Physical Data Marts in Data Warehouses
+* **Image Reference:** ![CTAS Data Marts](./svg_ctas_data_marts.svg) *(Description: Shows Source Systems feeding a Data Warehouse, and CTAS creating fast Physical Data Marts for Reporting).*
+* **Definition:** A data mart is a subset of a data warehouse that focuses on a specific business area, department, or function (for example: sales, finance, marketing, or HR).
+* **The Performance Issue:** If you create Data Marts as Views (Virtual Layer), performance can be slow because the view has to waste time waiting for the data mart to get the data from the warehouse every single time.
+* **The CTAS Solution:** Using CTAS (e.g., taking 30 mins to run), you convert the Virtual Data Mart into a **Physical Data Mart**. Parsing a physical data mart improves the speed of data retrieval dramatically compared to using a view. The response time from a table is always much faster.
+* **Important Note (Best Practice):** You have to use CTAS for performance. But the recommendation is that you start first with a view (Virtual Table). Why? Because view implementation is very dynamic, fast to set up, and you are always getting fresh data. Once performance drops, convert it to a CTAS physical table.
+
+---
+
+### 43.4 Temporary Tables (Session-Based Tables)
+* **Definition:** Temporary tables are used to store intermediate results during a specific database session.
+* **Lifecycle:** The database **automatically drops (deletes) all temporary tables once the session ends** (i.e., when you close your connection/client).
+
+**Syntax:**
+```sql
+CREATE TEMPORARY TABLE temp_users (
+    id INT PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+-- Or using CTAS logic:
+CREATE TEMPORARY TABLE temp_orders AS
+SELECT * FROM orders WHERE order_date >= '2025-01-01';
+```
+
+* **Visibility:** Temporary tables are visible **only within the current session**. Other users/sessions cannot see them. You can even have a temp table with the exact same name as a permanent table (the temp one takes precedence in your session).
+* **Storage:** They are not stored in regular database files. They are stored in special format files in memory or a special temporary directory (check `SHOW VARIABLES LIKE 'tmpdir';`). You will not find them in `information_schema.tables`.
+* **How to check if a temp table exists:** You can use `SHOW TABLES LIKE 'temp_users';`
+
+> **What does a session mean?**
+> The time between connecting and disconnecting from the database is called a session. 
+> Once you open a client (like SQL Workbench), connect, and start doing queries, the session begins. When you close the client or shut down your PC, you disconnect. At that exact moment, the database goes and destroys all the temporary tables you created during that session. They live only as long as you have the session open.
+
+### 43.5 How Database Executes Temporary Tables
+* **Image Reference:** ![Temp Table Execution](./svg_temp_execution.svg) *(Description: Shows the Database Engine linking a client session to temporary storage on disk).*
+1. **Creation:** When you execute `CREATE TEMPORARY TABLE AS SELECT...`, the engine runs the query and gets the data from the source table.
+2. **Storage:** The engine stores the metadata in the system catalog and stores the actual physical table inside the **temporary storage (TEMP partition) on the Server's disk**.
+3. **Usage:** A Data Engineer or Analyst can write multiple SQL queries to analyze this temp table while the session is active.
+4. **Automatic Cleanup:** Once you close your client or disconnect (session ends), the database engine realizes the connection is gone. That means the database automatically cleans up the storage (making room for other sessions). This is how database engines work with temporary tables.
+
+### 43.6 Use Case of Temporary Tables (ETL & Intermediate Results)
+* **Image Reference:** ![Temp Table ETL](./svg_temp_etl_intermediate.svg) *(Description: Shows Extraction from a Source DB to an Intermediate Temp Table, Transformations like Filtering and Aggregation, Loading to a DWH, and automatic Dropping).*
+* **Why do we need temporary tables?** In your source database, you have an `orders` table. Now you would like to load the table into your data warehouse. We have to do several transformations in order to prepare the data for analysis.
+* You cannot run these heavy transformations directly on the source database. Of course it is not allowed! That's why in data warehousing we have to go and get our own copy of the data, and then on top of this data we can do our transformation.
+
+**ETL (Extract, Transform, Load) flow using Temp Tables:**
+  1. **Extraction (Query):** You have one script in order to extract the data from the table `orders` and put it into a **Temporary Table** to act as an intermediate result.
+  2. **Transformation (Query):** You safely perform operations like *Filtering*, *Handling Nulls*, *Removing Duplicates*, and *Aggregation* on this intermediate copy without affecting live data.
+  3. **Load (Query):** Once transformed and clean, you load the final data into the target DWH Database Table.
+  4. **Drop (Auto):** The temp table handles its own cleanup. Once the ETL script finishes and the session closes, the database automatically runs the equivalent of a `DROP` query, deleting the junk intermediate data.
+
+> **Important Note on Debugging ETLs:**
+> While automatic cleanup is amazing, if there is something wrong with your loaded data in the Data Warehouse, you might want to check the intermediate copy (where the transformations were done) in order to debug and find the issue. If you use a temporary table, the data is gone the moment the script ends. Therefore, in scenarios where debugging is critical, developers often avoid temporary tables and just use normal permanent tables to store intermediate results.
+
+---
+
+* **Image Reference:** ![Tables Summary](./svg_tables_summary.svg) *(Description: Summary sheet of Tables, separating Permanent and Temporary types, defining CTAS use cases, and highlighting the auto-cleanup advantage of temp tables).*
+
+---
+
+### 43.7 Ultimate Comparison: Subquery vs CTE vs Temp Table vs CTAS vs View
+
+| Feature | Subquery | CTE | Temp Table | CTAS (Permanent) | View |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Storage Type** | Memory / Cache | Memory / Cache | Temp Disk Storage | Physical Disk Storage | No Storage (Only Metadata) |
+| **Lifetime** | Ends when Query ends | Ends when Query ends | Ends when Session ends | Permanent (Until Dropped) | Permanent (Until Dropped) |
+| **Scope (Access)** | One specific Query | One specific Query | Multiple Queries (Same Session) | Global (All Users/Sessions) | Global (All Users/Sessions) |
+| **Reusability** | Worst (Repeated logic) | Low (Reused in 1 query) | Medium (Reused in 1 session) | High (Reused globally) | High (Reused globally) |
+| **Data Freshness**| 100% Fresh (On-the-fly) | 100% Fresh (On-the-fly)| Stale (Snapshot at creation) | Stale (Snapshot at creation) | 100% Fresh (Queries base table) |
+| **Performance** | Slow for complex logic | Slow for complex logic | Fast for session analysis | Fastest (Precomputed) | Slowest (Executes every time) |
+
+* **Image Reference:** ![View vs CTAS Freshness](./svg_view_vs_ctas_freshness.svg) *(Description: Comparison showing how a View fetches fresh data directly from the updated base table, whereas a CTAS returns old, snapshot data from the time it was physically created).*
+
+---
+
+### 43.8 The Big Picture of SQL (How everything connects)
+
+* **Image Reference:** ![SQL Big Picture](./svg_sql_big_picture.svg) *(Description: Visual flow showing how Tables, Views, Subqueries, CTEs, and CTAS connect from the Database Admin level to the Data Scientist's final query).*
+
+**The Complete Story (Only for overview):**
+1. **Creation (DDL):** So we have a database, and a developer or data engineer creates a new table from scratch. They are going to write a DDL (`CREATE TABLE`) statement in order to create one physical table in our database. Since the database table is empty, we move to the 2nd step.
+2. **Insertion (DML):** They go and write an `INSERT INTO VALUES` statement in order to fill our new table with data. 
+3. **Access:** Now once we have the table, we're going to give access to a Data Scientist or Data Analyst in order to start writing SQL queries.
+4. **Subquery:** The first thing that could happen is that the logic is complex, and the analyst has to do it in two steps. The first step is a query that prepares data in order to execute the 2nd step. That is why they are going to use a **Subquery**. The main query is going to retrieve the data from the intermediate result in order to prepare the final result for the analyst.
+5. **CTE (Common Table Expression):** Now, what could happen is that there will be SQL logic in the query that keeps repeating in the script. So instead of writing another subquery for that, she goes and puts this logic in a **CTE (Temp Set)**. Now she is going to the main query and using the result of the CTE in multiple places in the same single script. So all those subqueries, CTE queries, and main queries happen in one single query window.
+6. **View:** And now what could happen is she is writing an amazing code that everyone can benefit from! Instead of keeping it just in her query, she is going to go and persist the logic in the database. She puts it as a **VIEW** in the database so all users can benefit from the logic and they don't have to write it again. Instead, they're going to go and query the view directly, making life easier. (The end user uses this view in the main query).
+7. **CTAS (Physical Table):** And one more thing: she has another piece of logic that is really complex and everyone can benefit from it, but the issue is this query is *very slow*. She has to decide: "Do I put it in a view, or do I create a new table based on the query using CTAS?". Because of performance (the view takes around 30 minutes to execute), she decides to execute the query using **CTAS** where she generates a physical table so end users can access those tables in order to reuse the result instantly.
+8. **Conclusion:** And of course, she can use the CTAS table in her main query. With that, now you have experience on how things progress. It is not just a simple query from a table; it is understanding how and why most people create Sub-queries, CTEs, Temporary Tables, and CTAS for different purposes.
+
+---
+
+### 43.9 Interview Perspective & Hindi Summary
+
+* **Hindi (मराठी/हिंदी सारांश) with Examples:**
+  * **Table क्या है?:** Table डेटाबेस की फाइल्स में हार्ड डिस्क पर सेव होता है। ये एक्सेल (Excel) की तरह rows और columns का ग्रिड होता है जहाँ असली डेटा (Cells में) रखा जाता है।
+  * **Create Table के 2 तरीके:** 
+    1. **Classical (CREATE/INSERT):** पहले टेबल का स्ट्रक्चर बनाओ, फिर उसमें एक-एक करके डेटा डालो।
+    2. **CTAS (Create Table As Select):** एक ही झटके में क्वेरी रन करो, और उस क्वेरी के रिजल्ट से एक नया टेबल अपने आप बन जाएगा (स्ट्रक्चर और डेटा दोनों)।
+  * **CTAS का फायदा (Performance):** अगर आपका कोई View बहुत स्लो है (30 मिनट लेता है), तो आप रात में एक CTAS चला दो। वो 30 मिनट लेकर एक असली (Physical) टेबल बना देगा। सुबह जब analysts आएंगे, तो उन्हें डेटा तुरंत (Fast) मिल जाएगा क्योंकि डेटा पहले से तैयार है।
+  * **CTAS (Snapshot):** अगर लाइव टेबल में लगातार डेटा बदल रहा है और आपको कोई बग (Bug) ढूँढना है, तो CTAS से उस पल का एक "Snapshot" (कॉपी) बना लो। अब आप आराम से शांति में एनालिसिस कर सकते हो।
+  * **Temporary Table क्या है?:** यह एक कच्चा (Temp) टेबल होता है। यह सिर्फ आपके करंट सेशन (Connection) तक ही ज़िंदा रहता है। जैसे ही आप डेटाबेस क्लाइंट बंद करोगे (Session ends), डेटाबेस इसे खुद-ब-खुद डिलीट कर देगा।
+  * **Temporary Table का फायदा (ETL):** जब हमें डेटा को साफ़ (Clean/Transform) करना होता है, तो हम उसे Temp table में डालते हैं। सारा काम ख़त्म होने के बाद हमें इसे मैन्युअली ड्रॉप (Drop) करने की टेंशन नहीं होती, डेटाबेस खुद डिलीट कर देता है।
+
+* **Pro-Tip for Interviews:** Always remember the difference in **Data Freshness**. Views are always fresh but slow. CTAS is extremely fast but the data is stale (snapshot) and needs to be truncated/re-inserted to refresh. Temporary tables are amazing for ETL pipelines to avoid dropping intermediate tables manually.

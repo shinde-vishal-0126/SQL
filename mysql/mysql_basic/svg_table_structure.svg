@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+    <rect width="900" height="500" fill="#1E1E1E" rx="10"/>
+
+    <!-- Disk and DB Files (Left side) -->
+    <rect x="100" y="280" width="120" height="80" fill="#CCC" stroke="#000" stroke-width="3" rx="5"/>
+    <line x1="100" y1="306" x2="220" y2="306" stroke="#000" stroke-width="3"/>
+    <line x1="100" y1="332" x2="220" y2="332" stroke="#000" stroke-width="3"/>
+    <circle cx="120" cy="293" r="3" fill="#000"/>
+    <circle cx="120" cy="319" r="3" fill="#000"/>
+    <circle cx="120" cy="345" r="3" fill="#000"/>
+    <text x="240" y="325" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFF">DISK</text>
+
+    <!-- Arrow from Disk to Files -->
+    <path d="M 160 270 L 160 230" stroke="#F44747" stroke-width="4" marker-end="url(#arrow_red)"/>
+    
+    <!-- DB Files -->
+    <g transform="translate(100, 100)">
+        <rect x="30" y="10" width="80" height="100" fill="#FFF" stroke="#000" stroke-width="2"/>
+        <rect x="25" y="15" width="80" height="100" fill="#FFF" stroke="#000" stroke-width="2"/>
+        <rect x="20" y="20" width="80" height="100" fill="#FFF" stroke="#000" stroke-width="2"/>
+        <rect x="15" y="25" width="80" height="100" fill="#FFF" stroke="#000" stroke-width="2"/>
+        <rect x="10" y="30" width="80" height="100" fill="#FFF" stroke="#000" stroke-width="2"/>
+        
+        <text x="50" y="55" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">FILE</text>
+        <path d="M 20 70 Q 30 65 40 70 T 60 70 T 80 70" fill="none" stroke="#000" stroke-width="2"/>
+        <path d="M 20 85 Q 30 80 40 85 T 60 85 T 80 85" fill="none" stroke="#000" stroke-width="2"/>
+        <path d="M 20 100 Q 30 95 40 100 T 60 100" fill="none" stroke="#000" stroke-width="2"/>
+    </g>
+
+    <!-- Database Logo -->
+    <ellipse cx="140" cy="60" rx="30" ry="10" fill="#CCC" stroke="#000" stroke-width="2"/>
+    <path d="M 110 60 L 110 80 A 30 10 0 0 0 170 80 L 170 60" fill="#CCC" stroke="#000" stroke-width="2"/>
+    <path d="M 110 70 L 110 90 A 30 10 0 0 0 170 90 L 170 70" fill="#CCC" stroke="#000" stroke-width="2"/>
+    <text x="190" y="70" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFF">DATABASE</text>
+    <text x="190" y="95" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFF">FILES</text>
+
+    <!-- Arrows from files to Table -->
+    <path d="M 200 150 L 400 150" stroke="#F44747" stroke-width="3" stroke-dasharray="5,5" marker-end="url(#arrow_red)"/>
+    <path d="M 400 170 L 200 170" stroke="#F44747" stroke-width="3" stroke-dasharray="5,5" marker-end="url(#arrow_red)"/>
+    <path d="M 200 130 L 400 90" stroke="#F44747" stroke-width="2" stroke-dasharray="5,5"/>
+    <path d="M 200 190 L 400 230" stroke="#F44747" stroke-width="2" stroke-dasharray="5,5"/>
+
+
+    <!-- Logical Table Grid (Right side) -->
+    <!-- Headers -->
+    <rect x="420" y="90" width="80" height="30" fill="#4FC1FF" stroke="#000" stroke-width="2"/>
+    <text x="460" y="112" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#000" text-anchor="middle">ID</text>
+
+    <rect x="500" y="90" width="120" height="30" fill="#4FC1FF" stroke="#000" stroke-width="2"/>
+    <text x="560" y="112" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#000" text-anchor="middle">NAME</text>
+
+    <rect x="620" y="90" width="100" height="30" fill="#4FC1FF" stroke="#000" stroke-width="2"/>
+    <text x="670" y="112" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#000" text-anchor="middle">SCORE</text>
+
+    <!-- Rows -->
+    <!-- Row 1 -->
+    <rect x="420" y="120" width="80" height="30" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="460" y="142" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">1</text>
+    <rect x="500" y="120" width="120" height="30" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="560" y="142" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">John</text>
+    <rect x="620" y="120" width="100" height="30" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="670" y="142" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">20</text>
+
+    <!-- Row 2 -->
+    <rect x="420" y="150" width="80" height="30" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="460" y="172" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">2</text>
+    <rect x="500" y="150" width="120" height="30" fill="#FFF" stroke="#F44747" stroke-width="4"/> <!-- Highlighted Cell -->
+    <text x="560" y="172" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">Mary</text>
+    <rect x="620" y="150" width="100" height="30" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="670" y="172" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">50</text>
+
+    <!-- Row 3 -->
+    <rect x="420" y="180" width="80" height="30" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="460" y="202" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">3</text>
+    <rect x="500" y="180" width="120" height="30" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="560" y="202" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">Martin</text>
+    <rect x="620" y="180" width="100" height="30" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <text x="670" y="202" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">30</text>
+
+    <!-- Annotations -->
+    <!-- Columns -->
+    <text x="560" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFD700" text-anchor="middle">COLUMNS</text>
+    <path d="M 560 50 L 560 80" stroke="#F44747" stroke-width="2" marker-end="url(#arrow_red)"/>
+    <path d="M 530 50 L 460 80" stroke="#F44747" stroke-width="2" marker-end="url(#arrow_red)"/>
+    <path d="M 590 50 L 670 80" stroke="#F44747" stroke-width="2" marker-end="url(#arrow_red)"/>
+
+    <!-- Rows -->
+    <text x="800" y="160" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFD700" text-anchor="middle">ROWS</text>
+    <path d="M 760 155 L 730 135" stroke="#F44747" stroke-width="2" marker-end="url(#arrow_red)"/>
+    <path d="M 750 160 L 730 160" stroke="#F44747" stroke-width="2" marker-end="url(#arrow_red)"/>
+    <path d="M 760 165 L 730 195" stroke="#F44747" stroke-width="2" marker-end="url(#arrow_red)"/>
+
+    <!-- Cell -->
+    <text x="620" y="240" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFD700" text-anchor="middle">CELL</text>
+    <path d="M 600 220 L 570 185" stroke="#F44747" stroke-width="2" marker-end="url(#arrow_red)"/>
+
+    <!-- Arrows Definitions -->
+    <defs>
+        <marker id="arrow_red" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#F44747" /></marker>
+    </defs>
+</svg>
