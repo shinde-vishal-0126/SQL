@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="1000" height="420" fill="#f8fafc" rx="12"/>
+  <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a">Cursor Lifecycle in a Stored Procedure</text>
+  <text x="500" y="62" text-anchor="middle" font-size="13" fill="#64748b">DECLARE → OPEN → FETCH (loop) → CLOSE · read-only · forward-only</text>
+
+  <rect x="30" y="100" width="170" height="80" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="115" y="130" text-anchor="middle" font-size="16" font-weight="800" fill="#6d28d9">1. DECLARE</text>
+  <text x="115" y="152" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#334155">CURSOR FOR SELECT</text>
+  <text x="115" y="168" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#334155">+ NOT FOUND handler</text>
+  <line x1="202" y1="140" x2="246" y2="140" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+
+  <rect x="250" y="100" width="150" height="80" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="325" y="132" text-anchor="middle" font-size="16" font-weight="800" fill="#1d4ed8">2. OPEN</text>
+  <text x="325" y="156" text-anchor="middle" font-size="11" fill="#334155">runs the SELECT</text>
+  <line x1="402" y1="140" x2="446" y2="140" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+
+  <rect x="450" y="100" width="170" height="80" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="535" y="132" text-anchor="middle" font-size="16" font-weight="800" fill="#b45309">3. FETCH</text>
+  <text x="535" y="156" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#334155">INTO v_id, v_salary</text>
+  <line x1="622" y1="140" x2="663" y2="140" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+
+  <polygon points="755,95 845,140 755,185 665,140" fill="#ffffff" stroke="#475569" stroke-width="2"/>
+  <text x="755" y="137" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">row</text>
+  <text x="755" y="153" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">found?</text>
+
+  <!-- yes path -->
+  <line x1="755" y1="187" x2="755" y2="240" stroke="#16a34a" stroke-width="2" marker-end="url(#k)"/>
+  <text x="768" y="218" font-size="12" font-weight="700" fill="#15803d">YES</text>
+  <rect x="640" y="244" width="230" height="56" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="755" y="268" text-anchor="middle" font-size="13" font-weight="700" fill="#15803d">process the row</text>
+  <text x="755" y="287" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#334155">UPDATE / INSERT / CALL</text>
+  <path d="M640,272 L535,272 L535,184" fill="none" stroke="#16a34a" stroke-width="2" marker-end="url(#k)"/>
+  <text x="545" y="262" font-size="11" fill="#15803d">loop again</text>
+
+  <!-- no path -->
+  <line x1="847" y1="140" x2="930" y2="140" stroke="#dc2626" stroke-width="2"/>
+  <text x="885" y="130" text-anchor="middle" font-size="12" font-weight="700" fill="#b91c1c">NO</text>
+  <line x1="930" y1="140" x2="930" y2="336" stroke="#dc2626" stroke-width="2" marker-end="url(#k)"/>
+  <rect x="780" y="340" width="200" height="60" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="880" y="364" text-anchor="middle" font-size="12" font-weight="700" fill="#b91c1c">handler: done = 1</text>
+  <text x="880" y="384" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#334155">LEAVE read_loop</text>
+  <line x1="778" y1="370" x2="562" y2="370" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <rect x="400" y="340" width="160" height="60" rx="10" fill="#e2e8f0" stroke="#475569" stroke-width="2"/>
+  <text x="480" y="368" text-anchor="middle" font-size="16" font-weight="800" fill="#334155">4. CLOSE</text>
+  <text x="480" y="388" text-anchor="middle" font-size="11" fill="#334155">frees result set</text>
+
+  <rect x="30" y="215" width="330" height="120" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="45" y="240" font-size="13" font-weight="800" fill="#0f172a">Declaration order (top of BEGIN):</text>
+  <text x="45" y="263" font-size="12" fill="#334155">① variables  ② cursors  ③ handlers</text>
+  <text x="45" y="286" font-size="12" fill="#334155">• check done right after FETCH</text>
+  <text x="45" y="309" font-size="12" fill="#334155">• FETCH variables = SELECT columns</text>
+</svg>

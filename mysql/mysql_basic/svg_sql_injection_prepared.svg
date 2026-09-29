@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="1000" height="470" fill="#f8fafc" rx="12"/>
+  <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a">SQL Injection vs Prepared Statement</text>
+  <text x="500" y="62" text-anchor="middle" font-size="13" fill="#64748b">Same attacker input: username = admin' --</text>
+
+  <!-- vulnerable -->
+  <rect x="20" y="85" width="470" height="365" rx="12" fill="#ffffff" stroke="#fca5a5" stroke-width="2"/>
+  <rect x="20" y="85" width="470" height="44" rx="12" fill="#fee2e2"/>
+  <text x="255" y="113" text-anchor="middle" font-size="16" font-weight="800" fill="#b91c1c">❌ String concatenation</text>
+  <rect x="45" y="148" width="420" height="44" rx="8" fill="#fef2f2" stroke="#dc2626"/>
+  <text x="255" y="167" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#334155">"... WHERE username = '" + user +</text>
+  <text x="255" y="183" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#334155">"' AND password = '" + pass + "'"</text>
+  <line x1="255" y1="194" x2="255" y2="226" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <rect x="45" y="230" width="420" height="62" rx="8" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="255" y="254" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#334155">WHERE username = 'admin' <tspan fill="#b91c1c" font-weight="700">-- ' AND password = 'x'</tspan></text>
+  <text x="255" y="278" text-anchor="middle" font-size="11" fill="#b91c1c">password check becomes a comment</text>
+  <line x1="255" y1="294" x2="255" y2="326" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <rect x="45" y="330" width="420" height="44" rx="8" fill="#fee2e2" stroke="#dc2626"/>
+  <text x="255" y="357" text-anchor="middle" font-size="14" font-weight="800" fill="#b91c1c">🚨 Logged in as admin without password</text>
+  <text x="45" y="405" font-size="12" fill="#334155">Input becomes part of the SQL code.</text>
+  <text x="45" y="428" font-size="12" fill="#334155">Also: ' OR '1'='1 · UNION SELECT · SLEEP(5)</text>
+
+  <!-- safe -->
+  <rect x="510" y="85" width="470" height="365" rx="12" fill="#ffffff" stroke="#86efac" stroke-width="2"/>
+  <rect x="510" y="85" width="470" height="44" rx="12" fill="#dcfce7"/>
+  <text x="745" y="113" text-anchor="middle" font-size="16" font-weight="800" fill="#15803d">✅ Prepared statement</text>
+  <rect x="535" y="148" width="200" height="44" rx="8" fill="#f0fdf4" stroke="#16a34a"/>
+  <text x="635" y="167" text-anchor="middle" font-size="11" font-weight="700" fill="#15803d">① SQL with ? sent first</text>
+  <text x="635" y="183" text-anchor="middle" font-size="10" font-family="Consolas, monospace" fill="#334155">WHERE username = ?</text>
+  <rect x="755" y="148" width="200" height="44" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="855" y="167" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">② value sent separately</text>
+  <text x="855" y="183" text-anchor="middle" font-size="10" font-family="Consolas, monospace" fill="#334155">"admin' --"</text>
+  <line x1="635" y1="194" x2="700" y2="226" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <line x1="855" y1="194" x2="790" y2="226" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <rect x="535" y="230" width="420" height="62" rx="8" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="745" y="254" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#334155">username = <tspan fill="#1d4ed8" font-weight="700">[data: admin' --]</tspan></text>
+  <text x="745" y="278" text-anchor="middle" font-size="11" fill="#15803d">value is only data, never parsed as SQL</text>
+  <line x1="745" y1="294" x2="745" y2="326" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <rect x="535" y="330" width="420" height="44" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="745" y="357" text-anchor="middle" font-size="14" font-weight="800" fill="#15803d">🛡️ 0 rows → login fails safely</text>
+  <text x="535" y="405" font-size="12" fill="#334155">+ allow-list for column names, least privilege,</text>
+  <text x="535" y="428" font-size="12" fill="#334155">  hashed passwords, hide DB errors.</text>
+</svg>
