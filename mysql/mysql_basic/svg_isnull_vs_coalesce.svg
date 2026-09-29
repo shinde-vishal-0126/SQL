@@ -1,19 +1,19 @@
 ﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200">
-    <rect width="600" height="200" fill="#1E1E1E" rx="10"/>
-    <text x="300" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#E0E0E0" text-anchor="middle">ISNULL vs COALESCE</text>
+    <rect width="600" height="200" fill="#eeeeee" rx="10"/>
+    <text x="300" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1f1f1f" text-anchor="middle">ISNULL vs COALESCE</text>
     
-    <text x="200" y="70" font-family="Courier New" font-size="18" font-weight="bold" fill="#4FC1FF" text-anchor="middle">ISNULL</text>
-    <text x="400" y="70" font-family="Courier New" font-size="18" font-weight="bold" fill="#4FC1FF" text-anchor="middle">COALESCE</text>
+    <text x="200" y="70" font-family="Courier New" font-size="18" font-weight="bold" fill="#0072b0" text-anchor="middle">ISNULL</text>
+    <text x="400" y="70" font-family="Courier New" font-size="18" font-weight="bold" fill="#0072b0" text-anchor="middle">COALESCE</text>
 
-    <text x="200" y="100" font-family="Arial" font-size="14" fill="#E0E0E0" text-anchor="middle">Limited to two values</text>
-    <text x="400" y="100" font-family="Arial" font-size="14" fill="#E0E0E0" text-anchor="middle">Unlimited expressions</text>
+    <text x="200" y="100" font-family="Arial" font-size="14" fill="#1f1f1f" text-anchor="middle">Limited to two values</text>
+    <text x="400" y="100" font-family="Arial" font-size="14" fill="#1f1f1f" text-anchor="middle">Unlimited expressions</text>
 
-    <text x="200" y="130" font-family="Arial" font-size="14" fill="#4EC9B0" text-anchor="middle">Fast</text>
-    <text x="400" y="130" font-family="Arial" font-size="14" fill="#F44747" text-anchor="middle">Slow (ANSI Standard)</text>
+    <text x="200" y="130" font-family="Arial" font-size="14" fill="#267d6b" text-anchor="middle">Fast</text>
+    <text x="400" y="130" font-family="Arial" font-size="14" fill="#b80b0b" text-anchor="middle">Slow (ANSI Standard)</text>
 
-    <text x="200" y="160" font-family="Arial" font-size="14" fill="#A0A0A0" text-anchor="middle">SQL Server ONLY</text>
-    <text x="400" y="160" font-family="Arial" font-size="14" fill="#4EC9B0" text-anchor="middle">Available in All Databases</text>
+    <text x="200" y="160" font-family="Arial" font-size="14" fill="#5f5f5f" text-anchor="middle">SQL Server ONLY</text>
+    <text x="400" y="160" font-family="Arial" font-size="14" fill="#267d6b" text-anchor="middle">Available in All Databases</text>
 
     <!-- Grid lines -->
-    <path d="M 300 50 L 300 180" fill="none" stroke="#3E3E42" stroke-width="1"/>
+    <path d="M 300 50 L 300 180" fill="none" stroke="#b1b1b6" stroke-width="1"/>
 </svg>

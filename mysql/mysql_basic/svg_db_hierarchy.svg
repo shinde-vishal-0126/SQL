@@ -1,42 +1,42 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
-    <rect width="800" height="600" fill="#1E1E1E" rx="10"/>
+    <rect width="800" height="600" fill="#eeeeee" rx="10"/>
     
     <!-- Title -->
-    <text x="400" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFD700" text-anchor="middle">SQL Server / Database Hierarchy</text>
+    <text x="400" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#a38a00" text-anchor="middle">SQL Server / Database Hierarchy</text>
     
     <!-- SQL Server -->
-    <rect x="250" y="90" width="300" height="60" fill="#2D2D30" stroke="#4FC1FF" stroke-width="3" rx="10"/>
-    <text x="400" y="125" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#4FC1FF" text-anchor="middle">1. SQL Server / DBMS</text>
-    <path d="M 400 150 L 400 190" fill="none" stroke="#E0E0E0" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="250" y="90" width="300" height="60" fill="#e8e8e9" stroke="#0072b0" stroke-width="3" rx="10"/>
+    <text x="400" y="125" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#0072b0" text-anchor="middle">1. SQL Server / DBMS</text>
+    <path d="M 400 150 L 400 190" fill="none" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
     
     <!-- Database -->
-    <rect x="250" y="190" width="300" height="60" fill="#2D2D30" stroke="#4EC9B0" stroke-width="3" rx="10"/>
-    <text x="400" y="225" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#4EC9B0" text-anchor="middle">2. Database</text>
-    <path d="M 400 250 L 400 290" fill="none" stroke="#E0E0E0" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="250" y="190" width="300" height="60" fill="#e8e8e9" stroke="#267d6b" stroke-width="3" rx="10"/>
+    <text x="400" y="225" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#267d6b" text-anchor="middle">2. Database</text>
+    <path d="M 400 250 L 400 290" fill="none" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
     
     <!-- Schema -->
-    <rect x="250" y="290" width="300" height="60" fill="#2D2D30" stroke="#CE9178" stroke-width="3" rx="10"/>
-    <text x="400" y="325" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#CE9178" text-anchor="middle">3. Schema</text>
+    <rect x="250" y="290" width="300" height="60" fill="#e8e8e9" stroke="#874a31" stroke-width="3" rx="10"/>
+    <text x="400" y="325" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#874a31" text-anchor="middle">3. Schema</text>
     
     <!-- Branching -->
-    <path d="M 400 350 L 400 380" fill="none" stroke="#E0E0E0" stroke-width="2"/>
-    <path d="M 250 380 L 550 380" fill="none" stroke="#E0E0E0" stroke-width="2"/>
-    <path d="M 250 380 L 250 410" fill="none" stroke="#E0E0E0" stroke-width="2" marker-end="url(#arrow)"/>
-    <path d="M 550 380 L 550 410" fill="none" stroke="#E0E0E0" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 400 350 L 400 380" fill="none" stroke="#333333" stroke-width="2"/>
+    <path d="M 250 380 L 550 380" fill="none" stroke="#333333" stroke-width="2"/>
+    <path d="M 250 380 L 250 410" fill="none" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 550 380 L 550 410" fill="none" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
     
     <!-- Table -->
-    <rect x="130" y="410" width="240" height="120" fill="#2D2D30" stroke="#DCDCAA" stroke-width="3" rx="10"/>
-    <text x="250" y="440" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#DCDCAA" text-anchor="middle">4. Table</text>
-    <text x="250" y="465" font-family="Arial, sans-serif" font-size="14" fill="#E0E0E0" text-anchor="middle">Stores physical data</text>
-    <rect x="150" y="480" width="200" height="30" fill="#3E3E42" rx="5"/>
-    <text x="250" y="500" font-family="Arial, sans-serif" font-size="14" fill="#E0E0E0" text-anchor="middle">Columns, Rows, Keys</text>
+    <rect x="130" y="410" width="240" height="120" fill="#e8e8e9" stroke="#575724" stroke-width="3" rx="10"/>
+    <text x="250" y="440" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#575724" text-anchor="middle">4. Table</text>
+    <text x="250" y="465" font-family="Arial, sans-serif" font-size="14" fill="#1f1f1f" text-anchor="middle">Stores physical data</text>
+    <rect x="150" y="480" width="200" height="30" fill="#e3e3e5" rx="5"/>
+    <text x="250" y="500" font-family="Arial, sans-serif" font-size="14" fill="#1f1f1f" text-anchor="middle">Columns, Rows, Keys</text>
     
     <!-- View -->
-    <rect x="430" y="410" width="240" height="120" fill="#2D2D30" stroke="#C586C0" stroke-width="3" rx="10"/>
-    <text x="550" y="440" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#C586C0" text-anchor="middle">4. View</text>
-    <text x="550" y="465" font-family="Arial, sans-serif" font-size="14" fill="#E0E0E0" text-anchor="middle">Virtual Table (No Data)</text>
-    <rect x="450" y="480" width="200" height="30" fill="#3E3E42" rx="5"/>
-    <text x="550" y="500" font-family="Arial, sans-serif" font-size="14" fill="#E0E0E0" text-anchor="middle">Columns &amp; Data Types</text>
+    <rect x="430" y="410" width="240" height="120" fill="#e8e8e9" stroke="#793a74" stroke-width="3" rx="10"/>
+    <text x="550" y="440" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#793a74" text-anchor="middle">4. View</text>
+    <text x="550" y="465" font-family="Arial, sans-serif" font-size="14" fill="#1f1f1f" text-anchor="middle">Virtual Table (No Data)</text>
+    <rect x="450" y="480" width="200" height="30" fill="#e3e3e5" rx="5"/>
+    <text x="550" y="500" font-family="Arial, sans-serif" font-size="14" fill="#1f1f1f" text-anchor="middle">Columns &amp; Data Types</text>
     
     <!-- Arrow definitions -->
     <defs>

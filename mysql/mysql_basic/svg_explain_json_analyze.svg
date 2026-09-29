@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="1000" height="500" fill="#f8fafc" rx="12"/>
+  <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a">Step 1 of Optimization: Measure the Query</text>
+  <text x="500" y="62" text-anchor="middle" font-size="13" fill="#64748b">EXPLAIN  vs  EXPLAIN FORMAT=JSON  vs  EXPLAIN ANALYZE  (MySQL 8)</text>
+
+  <!-- card 1 -->
+  <rect x="20" y="85" width="310" height="330" rx="12" fill="#ffffff" stroke="#93c5fd" stroke-width="2"/>
+  <rect x="20" y="85" width="310" height="46" rx="12" fill="#dbeafe"/>
+  <text x="175" y="115" text-anchor="middle" font-size="16" font-weight="800" fill="#1d4ed8">EXPLAIN</text>
+  <text x="40" y="158" font-size="12" font-family="Consolas, monospace" fill="#334155">EXPLAIN SELECT * FROM employees</text>
+  <text x="40" y="176" font-size="12" font-family="Consolas, monospace" fill="#334155">WHERE department_id = 5;</text>
+  <rect x="40" y="192" width="270" height="70" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="50" y="212" font-size="11" font-family="Consolas, monospace" fill="#334155">type | key       | rows | Extra</text>
+  <text x="50" y="232" font-size="11" font-family="Consolas, monospace" fill="#b91c1c">ALL  | NULL      | 9800 | Using where</text>
+  <text x="50" y="252" font-size="11" font-family="Consolas, monospace" fill="#15803d">ref  | idx_dept  |   40 |</text>
+  <text x="40" y="290" font-size="12" fill="#334155">✔ Plan as a table</text>
+  <text x="40" y="310" font-size="12" fill="#334155">✔ Index used? Full scan? Row estimate</text>
+  <text x="40" y="330" font-size="12" fill="#b91c1c">✖ Does NOT run the query</text>
+  <text x="40" y="350" font-size="12" fill="#b91c1c">✖ No time shown</text>
+  <rect x="40" y="370" width="270" height="30" rx="15" fill="#dbeafe"/>
+  <text x="175" y="390" text-anchor="middle" font-size="12" font-weight="700" fill="#1d4ed8">Quick first check</text>
+
+  <!-- card 2 -->
+  <rect x="345" y="85" width="310" height="330" rx="12" fill="#ffffff" stroke="#c4b5fd" stroke-width="2"/>
+  <rect x="345" y="85" width="310" height="46" rx="12" fill="#ede9fe"/>
+  <text x="500" y="115" text-anchor="middle" font-size="16" font-weight="800" fill="#6d28d9">EXPLAIN FORMAT=JSON</text>
+  <rect x="365" y="145" width="270" height="118" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="375" y="165" font-size="11" font-family="Consolas, monospace" fill="#334155">{ "query_block": {</text>
+  <text x="375" y="183" font-size="11" font-family="Consolas, monospace" fill="#6d28d9">   "cost_info":</text>
+  <text x="375" y="201" font-size="11" font-family="Consolas, monospace" fill="#6d28d9">     {"query_cost": "4.25"},</text>
+  <text x="375" y="219" font-size="11" font-family="Consolas, monospace" fill="#334155">   "table": { "access_type":</text>
+  <text x="375" y="237" font-size="11" font-family="Consolas, monospace" fill="#334155">     "ref", "filtered": "100" }</text>
+  <text x="375" y="255" font-size="11" font-family="Consolas, monospace" fill="#334155">}}</text>
+  <text x="365" y="290" font-size="12" fill="#334155">✔ Same plan, more detail</text>
+  <text x="365" y="310" font-size="12" fill="#334155">✔ Cost estimates, filtering %</text>
+  <text x="365" y="330" font-size="12" fill="#334155">✔ Easy for tools/scripts to read</text>
+  <text x="365" y="350" font-size="12" fill="#b91c1c">✖ Still does NOT run the query</text>
+  <rect x="365" y="370" width="270" height="30" rx="15" fill="#ede9fe"/>
+  <text x="500" y="390" text-anchor="middle" font-size="12" font-weight="700" fill="#6d28d9">Deeper plan analysis</text>
+
+  <!-- card 3 -->
+  <rect x="670" y="85" width="310" height="330" rx="12" fill="#ffffff" stroke="#86efac" stroke-width="2"/>
+  <rect x="670" y="85" width="310" height="46" rx="12" fill="#dcfce7"/>
+  <text x="825" y="115" text-anchor="middle" font-size="16" font-weight="800" fill="#15803d">EXPLAIN ANALYZE</text>
+  <rect x="690" y="145" width="270" height="118" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="700" y="167" font-size="11" font-family="Consolas, monospace" fill="#334155">-&gt; Index lookup on employees</text>
+  <text x="700" y="185" font-size="11" font-family="Consolas, monospace" fill="#334155">   using idx_dept</text>
+  <text x="700" y="203" font-size="11" font-family="Consolas, monospace" fill="#334155">   (department_id=5)</text>
+  <text x="700" y="221" font-size="11" font-family="Consolas, monospace" fill="#15803d">   (actual time=0.05..0.21</text>
+  <text x="700" y="239" font-size="11" font-family="Consolas, monospace" fill="#15803d">    rows=40 loops=1)</text>
+  <text x="690" y="290" font-size="12" fill="#15803d">✔ Really RUNS the query</text>
+  <text x="690" y="310" font-size="12" fill="#334155">✔ Actual time per step</text>
+  <text x="690" y="330" font-size="12" fill="#334155">✔ Actual rows vs estimated rows</text>
+  <text x="690" y="350" font-size="12" fill="#92400e">⚠ Careful on UPDATE/DELETE-heavy work</text>
+  <rect x="690" y="370" width="270" height="30" rx="15" fill="#dcfce7"/>
+  <text x="825" y="390" text-anchor="middle" font-size="12" font-weight="700" fill="#15803d">Find the real slow step</text>
+
+  <rect x="20" y="430" width="960" height="55" rx="10" fill="#fffbeb" stroke="#fcd34d"/>
+  <text x="500" y="453" text-anchor="middle" font-size="13" fill="#92400e"><tspan font-weight="800">Read type: </tspan>ALL = full table scan (bad) · index = full index scan · range / ref / eq_ref / const = index seek (good)</text>
+  <text x="500" y="474" text-anchor="middle" font-size="13" fill="#92400e"><tspan font-weight="800">Extra: </tspan>Using index = covering index (great) · Using filesort / Using temporary = extra work</text>
+</svg>

@@ -1,46 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
-    <rect width="800" height="400" fill="#1E1E1E" rx="10"/>
+    <rect width="800" height="400" fill="#eeeeee" rx="10"/>
     
-    <rect x="250" y="10" width="300" height="40" fill="#FFD700" stroke="#1E1E1E" stroke-width="2" rx="5"/>
+    <rect x="250" y="10" width="300" height="40" fill="#FFD700" stroke="#bebebe" stroke-width="2" rx="5"/>
     <text x="400" y="35" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1E1E1E" text-anchor="middle">Nested CTE Syntax</text>
     
     <!-- CTE 1 -->
-    <text x="140" y="120" font-family="Arial" font-size="14" font-weight="bold" fill="#F44747" text-anchor="end">Standalone CTE</text>
-    <rect x="150" y="70" width="300" height="90" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2" rx="5"/>
-    <text x="170" y="95" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#4FC1FF">WITH</text>
-    <rect x="220" y="80" width="100" height="20" fill="#1E1E1E" stroke="#E0E0E0" stroke-width="1"/>
-    <text x="270" y="95" font-family="Consolas, monospace" font-size="14" fill="#E0E0E0" text-anchor="middle">CTE-Name1</text>
-    <text x="330" y="95" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#4FC1FF">AS (</text>
+    <text x="140" y="120" font-family="Arial" font-size="14" font-weight="bold" fill="#b80b0b" text-anchor="end">Standalone CTE</text>
+    <rect x="150" y="70" width="300" height="90" fill="#e8e8e9" stroke="#0072b0" stroke-width="2" rx="5"/>
+    <text x="170" y="95" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#0072b0">WITH</text>
+    <rect x="220" y="80" width="100" height="20" fill="#eeeeee" stroke="#333333" stroke-width="1"/>
+    <text x="270" y="95" font-family="Consolas, monospace" font-size="14" fill="#1f1f1f" text-anchor="middle">CTE-Name1</text>
+    <text x="330" y="95" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#0072b0">AS (</text>
     
-    <text x="190" y="120" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#4EC9B0">SELECT ...</text>
-    <text x="170" y="145" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#4FC1FF">)</text>
+    <text x="190" y="120" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#267d6b">SELECT ...</text>
+    <text x="170" y="145" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#0072b0">)</text>
     
     <!-- CTE 2 (Nested) -->
-    <text x="140" y="220" font-family="Arial" font-size="14" font-weight="bold" fill="#F44747" text-anchor="end">NESTED CTE</text>
-    <rect x="150" y="170" width="300" height="90" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2" rx="5"/>
-    <text x="170" y="195" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#4FC1FF">,</text>
-    <rect x="190" y="180" width="100" height="20" fill="#1E1E1E" stroke="#E0E0E0" stroke-width="1"/>
-    <text x="240" y="195" font-family="Consolas, monospace" font-size="14" fill="#E0E0E0" text-anchor="middle">CTE-Name2</text>
-    <text x="300" y="195" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#4FC1FF">AS (</text>
+    <text x="140" y="220" font-family="Arial" font-size="14" font-weight="bold" fill="#b80b0b" text-anchor="end">NESTED CTE</text>
+    <rect x="150" y="170" width="300" height="90" fill="#e8e8e9" stroke="#0072b0" stroke-width="2" rx="5"/>
+    <text x="170" y="195" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#0072b0">,</text>
+    <rect x="190" y="180" width="100" height="20" fill="#eeeeee" stroke="#333333" stroke-width="1"/>
+    <text x="240" y="195" font-family="Consolas, monospace" font-size="14" fill="#1f1f1f" text-anchor="middle">CTE-Name2</text>
+    <text x="300" y="195" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#0072b0">AS (</text>
     
-    <text x="190" y="220" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#4EC9B0">SELECT ...</text>
-    <text x="190" y="240" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#4EC9B0">FROM</text>
-    <rect x="230" y="225" width="100" height="20" fill="#1E1E1E" stroke="#E0E0E0" stroke-width="1"/>
-    <text x="280" y="240" font-family="Consolas, monospace" font-size="14" fill="#E0E0E0" text-anchor="middle">CTE-Name1</text>
-    <text x="170" y="255" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#4FC1FF">)</text>
+    <text x="190" y="220" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#267d6b">SELECT ...</text>
+    <text x="190" y="240" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#267d6b">FROM</text>
+    <rect x="230" y="225" width="100" height="20" fill="#eeeeee" stroke="#333333" stroke-width="1"/>
+    <text x="280" y="240" font-family="Consolas, monospace" font-size="14" fill="#1f1f1f" text-anchor="middle">CTE-Name1</text>
+    <text x="170" y="255" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#0072b0">)</text>
     
     <!-- Main Query -->
-    <rect x="150" y="280" width="300" height="80" fill="#2D2D30" stroke="#FFD700" stroke-width="2" rx="5"/>
-    <text x="170" y="310" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#4EC9B0">SELECT ...</text>
-    <text x="170" y="330" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#4EC9B0">FROM</text>
-    <rect x="220" y="315" width="100" height="20" fill="#1E1E1E" stroke="#E0E0E0" stroke-width="1"/>
-    <text x="270" y="330" font-family="Consolas, monospace" font-size="14" fill="#E0E0E0" text-anchor="middle">CTE-Name2</text>
+    <rect x="150" y="280" width="300" height="80" fill="#e8e8e9" stroke="#a38a00" stroke-width="2" rx="5"/>
+    <text x="170" y="310" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#267d6b">SELECT ...</text>
+    <text x="170" y="330" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#267d6b">FROM</text>
+    <rect x="220" y="315" width="100" height="20" fill="#eeeeee" stroke="#333333" stroke-width="1"/>
+    <text x="270" y="330" font-family="Consolas, monospace" font-size="14" fill="#1f1f1f" text-anchor="middle">CTE-Name2</text>
     
     <!-- Connection Arc from CTE1 to CTE2 -->
-    <path d="M 330 95 Q 480 160 340 235" fill="none" stroke="#C586C0" stroke-dasharray="4,4" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 330 95 Q 480 160 340 235" fill="none" stroke="#793a74" stroke-dasharray="4,4" stroke-width="2" marker-end="url(#arrow)"/>
     <polygon points="340,235 348,230 348,240" fill="#C586C0"/>
     
     <!-- Connection Arc from CTE2 to Main Query -->
-    <path d="M 300 195 Q 400 260 330 325" fill="none" stroke="#4EC9B0" stroke-dasharray="4,4" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 300 195 Q 400 260 330 325" fill="none" stroke="#267d6b" stroke-dasharray="4,4" stroke-width="2" marker-end="url(#arrow)"/>
     <polygon points="330,325 338,320 338,330" fill="#4EC9B0"/>
 </svg>

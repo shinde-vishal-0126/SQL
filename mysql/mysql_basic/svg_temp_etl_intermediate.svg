@@ -1,123 +1,123 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650">
-    <rect width="1000" height="650" fill="#1E1E1E" rx="10"/>
+    <rect width="1000" height="650" fill="#eeeeee" rx="10"/>
 
-    <text x="500" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFCC00" text-anchor="middle">Use Case 4: Temporary Tables for ETL & Intermediate Results</text>
+    <text x="500" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#a38300" text-anchor="middle">Use Case 4: Temporary Tables for ETL &amp; Intermediate Results</text>
 
     <!-- Phases -->
-    <text x="150" y="90" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#4FC1FF" text-anchor="middle">Extraction</text>
-    <text x="500" y="90" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#4FC1FF" text-anchor="middle">Transformation</text>
-    <text x="850" y="90" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#4FC1FF" text-anchor="middle">Load</text>
+    <text x="150" y="90" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#0072b0" text-anchor="middle">Extraction</text>
+    <text x="500" y="90" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#0072b0" text-anchor="middle">Transformation</text>
+    <text x="850" y="90" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#0072b0" text-anchor="middle">Load</text>
     
-    <line x1="300" y1="100" x2="300" y2="600" stroke="#555" stroke-width="2" stroke-dasharray="5,5"/>
-    <line x1="700" y1="100" x2="700" y2="600" stroke="#555" stroke-width="2" stroke-dasharray="5,5"/>
+    <line x1="300" y1="100" x2="300" y2="600" stroke="#adadad" stroke-width="2" stroke-dasharray="5,5"/>
+    <line x1="700" y1="100" x2="700" y2="600" stroke="#adadad" stroke-width="2" stroke-dasharray="5,5"/>
 
     <!-- EXTRACTION PHASE -->
-    <text x="150" y="130" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFF" text-anchor="middle">SOURCE DATABASE</text>
-    <ellipse cx="150" cy="170" rx="40" ry="15" fill="#FFF" stroke="#000" stroke-width="2"/>
-    <path d="M 110 170 L 110 220 A 40 15 0 0 0 190 220 L 190 170" fill="#FFF" stroke="#000" stroke-width="2"/>
-    <path d="M 110 195 L 110 220 A 40 15 0 0 0 190 220 L 190 195" fill="none" stroke="#000" stroke-width="2"/>
+    <text x="150" y="130" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1f1f1f" text-anchor="middle">SOURCE DATABASE</text>
+    <ellipse cx="150" cy="170" rx="40" ry="15" fill="#FFF" stroke="#c7c7c7" stroke-width="2"/>
+    <path d="M 110 170 L 110 220 A 40 15 0 0 0 190 220 L 190 170" fill="#FFF" stroke="#c7c7c7" stroke-width="2"/>
+    <path d="M 110 195 L 110 220 A 40 15 0 0 0 190 220 L 190 195" fill="none" stroke="#c7c7c7" stroke-width="2"/>
 
     <text x="150" y="270" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">ORDERS</text>
-    <rect x="110" y="280" width="80" height="60" fill="#FFF" stroke="#000" stroke-width="2"/>
-    <line x1="110" y1="300" x2="190" y2="300" stroke="#000" stroke-width="1"/>
-    <line x1="110" y1="320" x2="190" y2="320" stroke="#000" stroke-width="1"/>
-    <line x1="136" y1="280" x2="136" y2="340" stroke="#000" stroke-width="1"/>
-    <line x1="162" y1="280" x2="162" y2="340" stroke="#000" stroke-width="1"/>
+    <rect x="110" y="280" width="80" height="60" fill="#FFF" stroke="#c7c7c7" stroke-width="2"/>
+    <line x1="110" y1="300" x2="190" y2="300" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="110" y1="320" x2="190" y2="320" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="136" y1="280" x2="136" y2="340" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="162" y1="280" x2="162" y2="340" stroke="#c7c7c7" stroke-width="1"/>
 
     <!-- Extract Query -->
-    <rect x="230" y="150" width="60" height="70" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <rect x="230" y="150" width="60" height="70" fill="#FFF" stroke="#c7c7c7" stroke-width="2"/>
     <text x="260" y="165" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000" text-anchor="middle">QUERY</text>
-    <line x1="240" y1="180" x2="280" y2="180" stroke="#000" stroke-width="1"/>
-    <line x1="240" y1="190" x2="270" y2="190" stroke="#000" stroke-width="1"/>
-    <line x1="240" y1="200" x2="280" y2="200" stroke="#000" stroke-width="1"/>
+    <line x1="240" y1="180" x2="280" y2="180" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="240" y1="190" x2="270" y2="190" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="240" y1="200" x2="280" y2="200" stroke="#c7c7c7" stroke-width="1"/>
     
-    <path d="M 150 350 L 150 480 Q 150 520 250 520 L 400 520" stroke="#F44747" stroke-width="3" fill="none" marker-end="url(#arrow_red)"/>
-    <text x="150" y="400" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#F44747" text-anchor="middle">Extract</text>
+    <path d="M 150 350 L 150 480 Q 150 520 250 520 L 400 520" stroke="#b80b0b" stroke-width="3" fill="none" marker-end="url(#arrow_red)"/>
+    <text x="150" y="400" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#b80b0b" text-anchor="middle">Extract</text>
 
 
     <!-- TRANSFORMATION PHASE (Intermediate Result) -->
     
     <!-- Temp Table Base -->
-    <text x="500" y="590" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#F44747" text-anchor="middle">TEMP TABLE</text>
-    <rect x="420" y="490" width="160" height="80" fill="#FFF" stroke="#F44747" stroke-width="4" stroke-dasharray="10,5"/>
-    <text x="500" y="480" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFF" text-anchor="middle">Intermediate Result</text>
+    <text x="500" y="590" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#b80b0b" text-anchor="middle">TEMP TABLE</text>
+    <rect x="420" y="490" width="160" height="80" fill="#FFF" stroke="#b80b0b" stroke-width="4" stroke-dasharray="10,5"/>
+    <text x="500" y="480" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1f1f1f" text-anchor="middle">Intermediate Result</text>
     <!-- Grid -->
-    <line x1="420" y1="516" x2="580" y2="516" stroke="#000" stroke-width="1"/>
-    <line x1="420" y1="542" x2="580" y2="542" stroke="#000" stroke-width="1"/>
-    <line x1="473" y1="490" x2="473" y2="570" stroke="#000" stroke-width="1"/>
-    <line x1="526" y1="490" x2="526" y2="570" stroke="#000" stroke-width="1"/>
+    <line x1="420" y1="516" x2="580" y2="516" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="420" y1="542" x2="580" y2="542" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="473" y1="490" x2="473" y2="570" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="526" y1="490" x2="526" y2="570" stroke="#c7c7c7" stroke-width="1"/>
     <!-- Data squiggles -->
-    <path d="M 430 505 Q 440 500 450 505" fill="none" stroke="#4EC9B0" stroke-width="2"/>
-    <path d="M 480 505 Q 490 500 500 505" fill="none" stroke="#4EC9B0" stroke-width="2"/>
-    <path d="M 540 505 Q 550 500 560 505" fill="none" stroke="#4EC9B0" stroke-width="2"/>
+    <path d="M 430 505 Q 440 500 450 505" fill="none" stroke="#267d6b" stroke-width="2"/>
+    <path d="M 480 505 Q 490 500 500 505" fill="none" stroke="#267d6b" stroke-width="2"/>
+    <path d="M 540 505 Q 550 500 560 505" fill="none" stroke="#267d6b" stroke-width="2"/>
 
-    <path d="M 430 530 Q 440 525 450 530" fill="none" stroke="#4EC9B0" stroke-width="2"/>
-    <path d="M 480 530 Q 490 525 500 530" fill="none" stroke="#4EC9B0" stroke-width="2"/>
-    <path d="M 540 530 Q 550 525 560 530" fill="none" stroke="#4EC9B0" stroke-width="2"/>
+    <path d="M 430 530 Q 440 525 450 530" fill="none" stroke="#267d6b" stroke-width="2"/>
+    <path d="M 480 530 Q 490 525 500 530" fill="none" stroke="#267d6b" stroke-width="2"/>
+    <path d="M 540 530 Q 550 525 560 530" fill="none" stroke="#267d6b" stroke-width="2"/>
 
     <!-- The 4 Transformation Queries pointing to Temp Table -->
     <!-- Q1 -->
-    <rect x="350" y="150" width="80" height="70" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <rect x="350" y="150" width="80" height="70" fill="#FFF" stroke="#c7c7c7" stroke-width="2"/>
     <text x="390" y="165" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">QUERY</text>
-    <text x="390" y="190" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#4FC1FF" text-anchor="middle">Filtering</text>
-    <path d="M 390 220 L 460 480" stroke="#F44747" stroke-width="2" marker-end="url(#arrow_red)"/>
+    <text x="390" y="190" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0072b0" text-anchor="middle">Filtering</text>
+    <path d="M 390 220 L 460 480" stroke="#b80b0b" stroke-width="2" marker-end="url(#arrow_red)"/>
 
     <!-- Q2 -->
-    <rect x="450" y="130" width="80" height="70" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <rect x="450" y="130" width="80" height="70" fill="#FFF" stroke="#c7c7c7" stroke-width="2"/>
     <text x="490" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">QUERY</text>
-    <text x="490" y="170" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#4FC1FF" text-anchor="middle">Handle Nulls</text>
-    <path d="M 490 200 L 490 480" stroke="#F44747" stroke-width="2" marker-end="url(#arrow_red)"/>
+    <text x="490" y="170" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0072b0" text-anchor="middle">Handle Nulls</text>
+    <path d="M 490 200 L 490 480" stroke="#b80b0b" stroke-width="2" marker-end="url(#arrow_red)"/>
 
     <!-- Q3 -->
-    <rect x="400" y="240" width="80" height="70" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <rect x="400" y="240" width="80" height="70" fill="#FFF" stroke="#c7c7c7" stroke-width="2"/>
     <text x="440" y="255" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">QUERY</text>
-    <text x="440" y="275" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#4FC1FF" text-anchor="middle">Remove</text>
-    <text x="440" y="290" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#4FC1FF" text-anchor="middle">Duplicates</text>
-    <path d="M 440 310 L 510 480" stroke="#F44747" stroke-width="2" marker-end="url(#arrow_red)"/>
+    <text x="440" y="275" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#0072b0" text-anchor="middle">Remove</text>
+    <text x="440" y="290" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#0072b0" text-anchor="middle">Duplicates</text>
+    <path d="M 440 310 L 510 480" stroke="#b80b0b" stroke-width="2" marker-end="url(#arrow_red)"/>
 
     <!-- Q4 -->
-    <rect x="520" y="220" width="80" height="70" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <rect x="520" y="220" width="80" height="70" fill="#FFF" stroke="#c7c7c7" stroke-width="2"/>
     <text x="560" y="235" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">QUERY</text>
-    <text x="560" y="260" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#4FC1FF" text-anchor="middle">Aggregation</text>
-    <path d="M 560 290 L 530 480" stroke="#F44747" stroke-width="2" marker-end="url(#arrow_red)"/>
+    <text x="560" y="260" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0072b0" text-anchor="middle">Aggregation</text>
+    <path d="M 560 290 L 530 480" stroke="#b80b0b" stroke-width="2" marker-end="url(#arrow_red)"/>
 
     <!-- Large X showing Drop -->
-    <line x1="420" y1="490" x2="580" y2="570" stroke="#F44747" stroke-width="4"/>
-    <line x1="420" y1="570" x2="580" y2="490" stroke="#F44747" stroke-width="4"/>
+    <line x1="420" y1="490" x2="580" y2="570" stroke="#b80b0b" stroke-width="4"/>
+    <line x1="420" y1="570" x2="580" y2="490" stroke="#b80b0b" stroke-width="4"/>
     
-    <rect x="610" y="410" width="80" height="70" fill="#FFF" stroke="#000" stroke-width="3"/>
+    <rect x="610" y="410" width="80" height="70" fill="#FFF" stroke="#c7c7c7" stroke-width="3"/>
     <text x="650" y="430" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">QUERY</text>
-    <text x="650" y="460" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#0000FF" text-anchor="middle">DROP</text>
-    <path d="M 610 470 C 580 470 580 530 550 530" stroke="#F44747" stroke-width="3" fill="none" marker-end="url(#arrow_red)"/>
-    <text x="650" y="500" font-family="Arial, sans-serif" font-size="12" fill="#F44747" text-anchor="middle">(Auto at session end)</text>
+    <text x="650" y="460" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#0000d6" text-anchor="middle">DROP</text>
+    <path d="M 610 470 C 580 470 580 530 550 530" stroke="#b80b0b" stroke-width="3" fill="none" marker-end="url(#arrow_red)"/>
+    <text x="650" y="500" font-family="Arial, sans-serif" font-size="12" fill="#b80b0b" text-anchor="middle">(Auto at session end)</text>
 
 
     <!-- LOAD PHASE -->
-    <text x="850" y="130" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFF" text-anchor="middle">DWH DATABASE</text>
-    <ellipse cx="850" cy="170" rx="40" ry="15" fill="#FFF" stroke="#000" stroke-width="2"/>
-    <path d="M 810 170 L 810 220 A 40 15 0 0 0 890 220 L 890 170" fill="#FFF" stroke="#000" stroke-width="2"/>
-    <path d="M 810 195 L 810 220 A 40 15 0 0 0 890 220 L 890 195" fill="none" stroke="#000" stroke-width="2"/>
+    <text x="850" y="130" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1f1f1f" text-anchor="middle">DWH DATABASE</text>
+    <ellipse cx="850" cy="170" rx="40" ry="15" fill="#FFF" stroke="#c7c7c7" stroke-width="2"/>
+    <path d="M 810 170 L 810 220 A 40 15 0 0 0 890 220 L 890 170" fill="#FFF" stroke="#c7c7c7" stroke-width="2"/>
+    <path d="M 810 195 L 810 220 A 40 15 0 0 0 890 220 L 890 195" fill="none" stroke="#c7c7c7" stroke-width="2"/>
 
     <!-- Load Query -->
-    <rect x="730" y="150" width="60" height="70" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <rect x="730" y="150" width="60" height="70" fill="#FFF" stroke="#c7c7c7" stroke-width="2"/>
     <text x="760" y="165" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000" text-anchor="middle">QUERY</text>
-    <line x1="740" y1="180" x2="780" y2="180" stroke="#000" stroke-width="1"/>
-    <line x1="740" y1="190" x2="770" y2="190" stroke="#000" stroke-width="1"/>
+    <line x1="740" y1="180" x2="780" y2="180" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="740" y1="190" x2="770" y2="190" stroke="#c7c7c7" stroke-width="1"/>
     
-    <path d="M 580 530 Q 850 530 850 350" stroke="#F44747" stroke-width="3" fill="none" marker-end="url(#arrow_red)"/>
-    <text x="750" y="440" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#F44747" text-anchor="middle">Load Final</text>
+    <path d="M 580 530 Q 850 530 850 350" stroke="#b80b0b" stroke-width="3" fill="none" marker-end="url(#arrow_red)"/>
+    <text x="750" y="440" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#b80b0b" text-anchor="middle">Load Final</text>
 
     <text x="850" y="270" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">TABLE</text>
-    <rect x="810" y="280" width="80" height="60" fill="#FFF" stroke="#000" stroke-width="2"/>
-    <line x1="810" y1="300" x2="890" y2="300" stroke="#000" stroke-width="1"/>
-    <line x1="810" y1="320" x2="890" y2="320" stroke="#000" stroke-width="1"/>
-    <line x1="836" y1="280" x2="836" y2="340" stroke="#000" stroke-width="1"/>
-    <line x1="862" y1="280" x2="862" y2="340" stroke="#000" stroke-width="1"/>
+    <rect x="810" y="280" width="80" height="60" fill="#FFF" stroke="#c7c7c7" stroke-width="2"/>
+    <line x1="810" y1="300" x2="890" y2="300" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="810" y1="320" x2="890" y2="320" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="836" y1="280" x2="836" y2="340" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="862" y1="280" x2="862" y2="340" stroke="#c7c7c7" stroke-width="1"/>
     
     <!-- Final Data squiggles -->
-    <path d="M 820 290 Q 825 285 830 290" fill="none" stroke="#4EC9B0" stroke-width="2"/>
-    <path d="M 845 290 Q 850 285 855 290" fill="none" stroke="#4EC9B0" stroke-width="2"/>
-    <path d="M 870 290 Q 875 285 880 290" fill="none" stroke="#4EC9B0" stroke-width="2"/>
+    <path d="M 820 290 Q 825 285 830 290" fill="none" stroke="#267d6b" stroke-width="2"/>
+    <path d="M 845 290 Q 850 285 855 290" fill="none" stroke="#267d6b" stroke-width="2"/>
+    <path d="M 870 290 Q 875 285 880 290" fill="none" stroke="#267d6b" stroke-width="2"/>
 
     <defs>
         <marker id="arrow_red" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#F44747" /></marker>

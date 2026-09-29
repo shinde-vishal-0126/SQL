@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="1000" height="540" fill="#f8fafc" rx="12"/>
+  <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a">Transaction: All or Nothing &amp; its States</text>
+  <text x="500" y="62" text-anchor="middle" font-size="13" fill="#64748b">START TRANSACTION → statements → COMMIT (save all)  or  ROLLBACK (undo all)</text>
+
+  <!-- top: money transfer -->
+  <rect x="20" y="80" width="960" height="170" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="40" y="106" font-size="15" font-weight="800" fill="#334155">Example: transfer ₹1000 from A to B</text>
+  <rect x="40" y="125" width="170" height="44" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="125" y="152" text-anchor="middle" font-size="12" font-family="Consolas, monospace" font-weight="700" fill="#1d4ed8">START TRANSACTION</text>
+  <rect x="250" y="125" width="200" height="44" rx="8" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="350" y="145" text-anchor="middle" font-size="12" font-family="Consolas, monospace" fill="#334155">UPDATE A</text>
+  <text x="350" y="161" text-anchor="middle" font-size="11" fill="#64748b">balance − 1000</text>
+  <rect x="490" y="125" width="200" height="44" rx="8" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="590" y="145" text-anchor="middle" font-size="12" font-family="Consolas, monospace" fill="#334155">UPDATE B</text>
+  <text x="590" y="161" text-anchor="middle" font-size="11" fill="#64748b">balance + 1000</text>
+  <line x1="212" y1="147" x2="246" y2="147" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <line x1="452" y1="147" x2="486" y2="147" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <line x1="692" y1="140" x2="740" y2="115" stroke="#16a34a" stroke-width="2.5" marker-end="url(#g)"/>
+  <line x1="692" y1="156" x2="740" y2="190" stroke="#dc2626" stroke-width="2.5" marker-end="url(#r)"/>
+  <rect x="745" y="92" width="215" height="50" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="852" y="113" text-anchor="middle" font-size="13" font-weight="800" fill="#15803d">All OK → COMMIT</text>
+  <text x="852" y="131" text-anchor="middle" font-size="11" fill="#14532d">both changes saved permanently</text>
+  <rect x="745" y="170" width="215" height="50" rx="8" fill="#fee2e2" stroke="#dc2626"/>
+  <text x="852" y="191" text-anchor="middle" font-size="13" font-weight="800" fill="#b91c1c">Any error → ROLLBACK</text>
+  <text x="852" y="209" text-anchor="middle" font-size="11" fill="#7f1d1d">both changes undone</text>
+  <text x="40" y="200" font-size="12" fill="#334155">A: 5000 → 4000   B: 2000 → 3000  (after COMMIT)</text>
+  <text x="40" y="222" font-size="12" fill="#334155">If UPDATE B fails → A stays 5000, B stays 2000  (no money lost)</text>
+
+  <!-- bottom: states -->
+  <text x="500" y="280" text-anchor="middle" font-size="16" font-weight="800" fill="#334155">5 States of a Transaction (DBMS)</text>
+  <rect x="30" y="300" width="160" height="70" rx="35" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="110" y="330" text-anchor="middle" font-size="14" font-weight="800" fill="#1d4ed8">ACTIVE</text>
+  <text x="110" y="350" text-anchor="middle" font-size="11" fill="#1e3a8a">running, read/write</text>
+  <rect x="250" y="300" width="200" height="70" rx="35" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="350" y="330" text-anchor="middle" font-size="14" font-weight="800" fill="#b45309">PARTIALLY COMMITTED</text>
+  <text x="350" y="350" text-anchor="middle" font-size="11" fill="#78350f">last statement done</text>
+  <rect x="510" y="300" width="170" height="70" rx="35" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="595" y="330" text-anchor="middle" font-size="14" font-weight="800" fill="#15803d">COMMITTED</text>
+  <text x="595" y="350" text-anchor="middle" font-size="11" fill="#14532d">changes permanent</text>
+  <rect x="250" y="420" width="200" height="70" rx="35" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="350" y="450" text-anchor="middle" font-size="14" font-weight="800" fill="#b91c1c">FAILED</text>
+  <text x="350" y="470" text-anchor="middle" font-size="11" fill="#7f1d1d">error, cannot continue</text>
+  <rect x="510" y="420" width="170" height="70" rx="35" fill="#ffe4e6" stroke="#e11d48" stroke-width="2"/>
+  <text x="595" y="450" text-anchor="middle" font-size="14" font-weight="800" fill="#be123c">ABORTED</text>
+  <text x="595" y="470" text-anchor="middle" font-size="11" fill="#881337">rolled back</text>
+  <rect x="770" y="360" width="190" height="70" rx="35" fill="#e2e8f0" stroke="#475569" stroke-width="2"/>
+  <text x="865" y="390" text-anchor="middle" font-size="14" font-weight="800" fill="#334155">TERMINATED</text>
+  <text x="865" y="410" text-anchor="middle" font-size="11" fill="#475569">finished (commit / abort)</text>
+  <line x1="192" y1="335" x2="246" y2="335" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <line x1="452" y1="335" x2="506" y2="335" stroke="#16a34a" stroke-width="2" marker-end="url(#g)"/>
+  <line x1="682" y1="340" x2="766" y2="385" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <line x1="130" y1="372" x2="252" y2="440" stroke="#dc2626" stroke-width="2" marker-end="url(#r)"/>
+  <line x1="350" y1="372" x2="350" y2="416" stroke="#dc2626" stroke-width="2" marker-end="url(#r)"/>
+  <line x1="452" y1="455" x2="506" y2="455" stroke="#dc2626" stroke-width="2" marker-end="url(#r)"/>
+  <line x1="682" y1="450" x2="766" y2="410" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <text x="170" y="415" font-size="11" fill="#b91c1c">error</text>
+  <text x="358" y="398" font-size="11" fill="#b91c1c">error</text>
+  <text x="470" y="325" font-size="11" fill="#15803d">COMMIT</text>
+  <text x="458" y="445" font-size="11" fill="#b91c1c">ROLLBACK</text>
+  <text x="500" y="520" text-anchor="middle" font-size="13" fill="#334155"><tspan font-weight="800">ACID: </tspan>Atomicity (all or nothing) · Consistency (rules kept) · Isolation (no half-done data seen) · Durability (saved after commit)</text>
+</svg>

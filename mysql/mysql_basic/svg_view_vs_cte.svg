@@ -1,47 +1,47 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
-    <rect width="900" height="600" fill="#1E1E1E" rx="10"/>
+    <rect width="900" height="600" fill="#eeeeee" rx="10"/>
     
     <!-- Title -->
-    <text x="450" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFD700" text-anchor="middle">VIEW vs CTE Comparison</text>
+    <text x="450" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#a38a00" text-anchor="middle">VIEW vs CTE Comparison</text>
     
-    <path d="M 450 80 L 450 560" stroke="#888" stroke-width="2" stroke-dasharray="10,10"/>
-    <path d="M 100 210 L 800 210" stroke="#555" stroke-width="2" stroke-dasharray="5,5"/>
-    <path d="M 100 330 L 800 330" stroke="#555" stroke-width="2" stroke-dasharray="5,5"/>
-    <path d="M 100 450 L 800 450" stroke="#555" stroke-width="2" stroke-dasharray="5,5"/>
+    <path d="M 450 80 L 450 560" stroke="#777777" stroke-width="2" stroke-dasharray="10,10"/>
+    <path d="M 100 210 L 800 210" stroke="#adadad" stroke-width="2" stroke-dasharray="5,5"/>
+    <path d="M 100 330 L 800 330" stroke="#adadad" stroke-width="2" stroke-dasharray="5,5"/>
+    <path d="M 100 450 L 800 450" stroke="#adadad" stroke-width="2" stroke-dasharray="5,5"/>
 
     <!-- VIEWS Header -->
-    <rect x="230" y="100" width="140" height="50" fill="#FFD700" stroke="#000" stroke-width="3" rx="5"/>
+    <rect x="230" y="100" width="140" height="50" fill="#FFD700" stroke="#c7c7c7" stroke-width="3" rx="5"/>
     <text x="300" y="133" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#000" text-anchor="middle">VIEWS</text>
 
     <!-- CTE Header -->
-    <rect x="530" y="100" width="140" height="50" fill="#FFD700" stroke="#000" stroke-width="3" rx="5"/>
+    <rect x="530" y="100" width="140" height="50" fill="#FFD700" stroke="#c7c7c7" stroke-width="3" rx="5"/>
     <text x="600" y="133" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#000" text-anchor="middle">CTE</text>
 
     <!-- Row 1: Redundancy -->
-    <text x="300" y="170" font-family="Arial, sans-serif" font-size="18" fill="#FFF" text-anchor="middle">Reduce Redundancy</text>
-    <text x="300" y="195" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#4EC9B0" text-anchor="middle">in Multi-Queries</text>
+    <text x="300" y="170" font-family="Arial, sans-serif" font-size="18" fill="#1f1f1f" text-anchor="middle">Reduce Redundancy</text>
+    <text x="300" y="195" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#267d6b" text-anchor="middle">in Multi-Queries</text>
 
-    <text x="600" y="170" font-family="Arial, sans-serif" font-size="18" fill="#FFF" text-anchor="middle">Reduce Redundancy</text>
-    <text x="600" y="195" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#4EC9B0" text-anchor="middle">in 1 Query</text>
+    <text x="600" y="170" font-family="Arial, sans-serif" font-size="18" fill="#1f1f1f" text-anchor="middle">Reduce Redundancy</text>
+    <text x="600" y="195" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#267d6b" text-anchor="middle">in 1 Query</text>
 
     <!-- Row 2: Reusability -->
-    <text x="300" y="270" font-family="Arial, sans-serif" font-size="18" fill="#FFF" text-anchor="middle">Improve Reusability</text>
-    <text x="300" y="295" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#4EC9B0" text-anchor="middle">in Multi-Queries</text>
+    <text x="300" y="270" font-family="Arial, sans-serif" font-size="18" fill="#1f1f1f" text-anchor="middle">Improve Reusability</text>
+    <text x="300" y="295" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#267d6b" text-anchor="middle">in Multi-Queries</text>
 
-    <text x="600" y="270" font-family="Arial, sans-serif" font-size="18" fill="#FFF" text-anchor="middle">Improve Reusability</text>
-    <text x="600" y="295" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#4EC9B0" text-anchor="middle">in 1 Query</text>
+    <text x="600" y="270" font-family="Arial, sans-serif" font-size="18" fill="#1f1f1f" text-anchor="middle">Improve Reusability</text>
+    <text x="600" y="295" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#267d6b" text-anchor="middle">in 1 Query</text>
 
     <!-- Row 3: Logic Type -->
-    <text x="300" y="400" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#FFF" text-anchor="middle">Persisted Logic</text>
+    <text x="300" y="400" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1f1f1f" text-anchor="middle">Persisted Logic</text>
 
-    <text x="600" y="390" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#FFF" text-anchor="middle">Temporary Logic</text>
+    <text x="600" y="390" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1f1f1f" text-anchor="middle">Temporary Logic</text>
     <text x="600" y="420" font-family="Arial, sans-serif" font-size="16" fill="#888" text-anchor="middle">- On the Fly -</text>
 
     <!-- Row 4: Maintenance -->
-    <text x="300" y="500" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#F44747" text-anchor="middle">Need to Maintain</text>
-    <text x="300" y="530" font-family="Arial, sans-serif" font-size="16" fill="#FFF" text-anchor="middle">- CREATE / DROP -</text>
+    <text x="300" y="500" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#b80b0b" text-anchor="middle">Need to Maintain</text>
+    <text x="300" y="530" font-family="Arial, sans-serif" font-size="16" fill="#1f1f1f" text-anchor="middle">- CREATE / DROP -</text>
 
-    <text x="600" y="500" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#4EC9B0" text-anchor="middle">No Maintenance</text>
-    <text x="600" y="530" font-family="Arial, sans-serif" font-size="16" fill="#FFF" text-anchor="middle">- Auto cleanup -</text>
+    <text x="600" y="500" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#267d6b" text-anchor="middle">No Maintenance</text>
+    <text x="600" y="530" font-family="Arial, sans-serif" font-size="16" fill="#1f1f1f" text-anchor="middle">- Auto cleanup -</text>
 
 </svg>

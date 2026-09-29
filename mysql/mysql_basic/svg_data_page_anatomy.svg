@@ -1,52 +1,52 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
-    <rect width="800" height="600" fill="#1E1E1E"/>
-    <text x="400" y="40" fill="#FFFFFF" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle">Anatomy of a Data Page (8KB)</text>
-    <text x="400" y="70" fill="#A0A0A0" font-family="Arial" font-size="16" text-anchor="middle">The smallest unit of data storage in SQL Databases</text>
+    <rect width="800" height="600" fill="#eeeeee"/>
+    <text x="400" y="40" fill="#1f1f1f" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle">Anatomy of a Data Page (8KB)</text>
+    <text x="400" y="70" fill="#5f5f5f" font-family="Arial" font-size="16" text-anchor="middle">The smallest unit of data storage in SQL Databases</text>
     
     <!-- Page Container -->
-    <rect x="250" y="100" width="300" height="450" fill="#2D2D30" stroke="#4FC1FF" stroke-width="3"/>
+    <rect x="250" y="100" width="300" height="450" fill="#e8e8e9" stroke="#0072b0" stroke-width="3"/>
     
     <!-- Header -->
-    <rect x="250" y="100" width="300" height="60" fill="#4FC1FF" fill-opacity="0.2" stroke="#4FC1FF" stroke-width="2"/>
-    <text x="400" y="130" fill="#4FC1FF" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle">Page Header (96 Bytes)</text>
-    <text x="400" y="150" fill="#FFFFFF" font-family="Arial" font-size="14" text-anchor="middle">Page ID: 1:150, Metadata, Pointers</text>
+    <rect x="250" y="100" width="300" height="60" fill="#4FC1FF" fill-opacity="0.2" stroke="#0072b0" stroke-width="2"/>
+    <text x="400" y="130" fill="#0072b0" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle">Page Header (96 Bytes)</text>
+    <text x="400" y="150" fill="#1f1f1f" font-family="Arial" font-size="14" text-anchor="middle">Page ID: 1:150, Metadata, Pointers</text>
 
     <!-- Data Rows -->
     <rect x="250" y="160" width="300" height="200" fill="#4EC9B0" fill-opacity="0.1"/>
     
-    <rect x="260" y="170" width="280" height="40" rx="5" fill="#3D3D40" stroke="#4EC9B0" stroke-width="1"/>
-    <text x="270" y="195" fill="#4EC9B0" font-family="Arial" font-size="16" font-weight="bold">Row 1</text>
-    <text x="350" y="195" fill="#DCDCAA" font-family="Arial" font-size="14">1 | Bob | USA | Active</text>
+    <rect x="260" y="170" width="280" height="40" rx="5" fill="#e2e2e3" stroke="#267d6b" stroke-width="1"/>
+    <text x="270" y="195" fill="#267d6b" font-family="Arial" font-size="16" font-weight="bold">Row 1</text>
+    <text x="350" y="195" fill="#575724" font-family="Arial" font-size="14">1 | Bob | USA | Active</text>
 
-    <rect x="260" y="220" width="280" height="40" rx="5" fill="#3D3D40" stroke="#4EC9B0" stroke-width="1"/>
-    <text x="270" y="245" fill="#4EC9B0" font-family="Arial" font-size="16" font-weight="bold">Row 2</text>
-    <text x="350" y="245" fill="#DCDCAA" font-family="Arial" font-size="14">2 | Anna | Germany | Inactive</text>
+    <rect x="260" y="220" width="280" height="40" rx="5" fill="#e2e2e3" stroke="#267d6b" stroke-width="1"/>
+    <text x="270" y="245" fill="#267d6b" font-family="Arial" font-size="16" font-weight="bold">Row 2</text>
+    <text x="350" y="245" fill="#575724" font-family="Arial" font-size="14">2 | Anna | Germany | Inactive</text>
 
-    <rect x="260" y="270" width="280" height="40" rx="5" fill="#3D3D40" stroke="#4EC9B0" stroke-width="1"/>
-    <text x="270" y="295" fill="#4EC9B0" font-family="Arial" font-size="16" font-weight="bold">Row 3</text>
-    <text x="350" y="295" fill="#DCDCAA" font-family="Arial" font-size="14">3 | Lisa | Italy | Active</text>
+    <rect x="260" y="270" width="280" height="40" rx="5" fill="#e2e2e3" stroke="#267d6b" stroke-width="1"/>
+    <text x="270" y="295" fill="#267d6b" font-family="Arial" font-size="16" font-weight="bold">Row 3</text>
+    <text x="350" y="295" fill="#575724" font-family="Arial" font-size="14">3 | Lisa | Italy | Active</text>
 
     <circle cx="400" cy="335" r="3" fill="#A0A0A0"/>
     <circle cx="400" cy="350" r="3" fill="#A0A0A0"/>
 
     <!-- Free Space -->
     <rect x="250" y="360" width="300" height="120" fill="none"/>
-    <text x="400" y="420" fill="#A0A0A0" font-family="Arial" font-size="18" font-style="italic" text-anchor="middle">FREE SPACE</text>
+    <text x="400" y="420" fill="#5f5f5f" font-family="Arial" font-size="18" font-style="italic" text-anchor="middle">FREE SPACE</text>
 
     <!-- Offset Array (Row Locator) -->
-    <rect x="250" y="480" width="300" height="70" fill="#C586C0" fill-opacity="0.2" stroke="#C586C0" stroke-width="2"/>
-    <text x="310" y="520" fill="#C586C0" font-family="Arial" font-size="18" font-weight="bold">Offset Array</text>
-    <rect x="420" y="495" width="40" height="40" fill="#3D3D40" stroke="#C586C0"/>
-    <text x="440" y="520" fill="#FFFFFF" font-family="Arial" font-size="14" text-anchor="middle">140</text>
-    <rect x="460" y="495" width="40" height="40" fill="#3D3D40" stroke="#C586C0"/>
-    <text x="480" y="520" fill="#FFFFFF" font-family="Arial" font-size="14" text-anchor="middle">118</text>
-    <rect x="500" y="495" width="40" height="40" fill="#3D3D40" stroke="#C586C0"/>
-    <text x="520" y="520" fill="#FFFFFF" font-family="Arial" font-size="14" text-anchor="middle">96</text>
+    <rect x="250" y="480" width="300" height="70" fill="#C586C0" fill-opacity="0.2" stroke="#793a74" stroke-width="2"/>
+    <text x="310" y="520" fill="#793a74" font-family="Arial" font-size="18" font-weight="bold">Offset Array</text>
+    <rect x="420" y="495" width="40" height="40" fill="#e2e2e3" stroke="#793a74"/>
+    <text x="440" y="520" fill="#1f1f1f" font-family="Arial" font-size="14" text-anchor="middle">140</text>
+    <rect x="460" y="495" width="40" height="40" fill="#e2e2e3" stroke="#793a74"/>
+    <text x="480" y="520" fill="#1f1f1f" font-family="Arial" font-size="14" text-anchor="middle">118</text>
+    <rect x="500" y="495" width="40" height="40" fill="#e2e2e3" stroke="#793a74"/>
+    <text x="520" y="520" fill="#1f1f1f" font-family="Arial" font-size="14" text-anchor="middle">96</text>
     
     <!-- Arrows for Offset -->
-    <path d="M 520 495 L 520 470 L 220 470 L 220 190 L 250 190" fill="none" stroke="#C586C0" stroke-width="2" marker-end="url(#arrow)"/>
-    <path d="M 480 495 L 480 460 L 230 460 L 230 240 L 250 240" fill="none" stroke="#C586C0" stroke-width="2" marker-end="url(#arrow)"/>
-    <path d="M 440 495 L 440 450 L 240 450 L 240 290 L 250 290" fill="none" stroke="#C586C0" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 520 495 L 520 470 L 220 470 L 220 190 L 250 190" fill="none" stroke="#793a74" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 480 495 L 480 460 L 230 460 L 230 240 L 250 240" fill="none" stroke="#793a74" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 440 495 L 440 450 L 240 450 L 240 290 L 250 290" fill="none" stroke="#793a74" stroke-width="2" marker-end="url(#arrow)"/>
 
     <defs>
         <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">

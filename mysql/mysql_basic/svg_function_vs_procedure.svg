@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="1000" height="540" fill="#f8fafc" rx="12"/>
+  <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a">Stored Function vs Stored Procedure</text>
+  <text x="500" y="62" text-anchor="middle" font-size="13" fill="#64748b">Function = calculate &amp; return ONE value · Procedure = DO an action</text>
+
+  <!-- headers -->
+  <rect x="20" y="80" width="220" height="44" rx="8" fill="#e2e8f0"/>
+  <text x="130" y="108" text-anchor="middle" font-size="14" font-weight="800" fill="#334155">Feature</text>
+  <rect x="250" y="80" width="360" height="44" rx="8" fill="#2563eb"/>
+  <text x="430" y="108" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">⚙ FUNCTION</text>
+  <rect x="620" y="80" width="360" height="44" rx="8" fill="#7c3aed"/>
+  <text x="800" y="108" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">📦 PROCEDURE</text>
+
+  <g font-size="13">
+    <rect x="20" y="132" width="960" height="44" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="35" y="159" font-weight="700" fill="#334155">Returns</text>
+    <text x="265" y="159" fill="#1e3a8a">Exactly ONE value (RETURN) — mandatory</text>
+    <text x="635" y="159" fill="#4c1d95">Optional: OUT/INOUT params, result sets</text>
+
+    <rect x="20" y="176" width="960" height="44" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="35" y="203" font-weight="700" fill="#334155">How to call</text>
+    <text x="265" y="203" font-family="Consolas, monospace" fill="#1e3a8a">SELECT GetFullName(f, l);</text>
+    <text x="635" y="203" font-family="Consolas, monospace" fill="#4c1d95">CALL TransferFunds(1, 2, 500);</text>
+
+    <rect x="20" y="220" width="960" height="44" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="35" y="247" font-weight="700" fill="#334155">Inside SELECT / WHERE?</text>
+    <text x="265" y="247" fill="#15803d">✔ Yes</text>
+    <text x="635" y="247" fill="#b91c1c">✖ No</text>
+
+    <rect x="20" y="264" width="960" height="44" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="35" y="291" font-weight="700" fill="#334155">Parameters</text>
+    <text x="265" y="291" fill="#1e3a8a">Only IN</text>
+    <text x="635" y="291" fill="#4c1d95">IN, OUT, INOUT</text>
+
+    <rect x="20" y="308" width="960" height="44" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="35" y="335" font-weight="700" fill="#334155">Transactions</text>
+    <text x="265" y="335" fill="#b91c1c">✖ No COMMIT / ROLLBACK</text>
+    <text x="635" y="335" fill="#15803d">✔ START TRANSACTION, COMMIT, ROLLBACK</text>
+
+    <rect x="20" y="352" width="960" height="44" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="35" y="379" font-weight="700" fill="#334155">Used for</text>
+    <text x="265" y="379" fill="#1e3a8a">Calculation, formatting, lookup</text>
+    <text x="635" y="379" fill="#4c1d95">INSERT / UPDATE / DELETE, business logic</text>
+
+    <rect x="20" y="396" width="960" height="44" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="35" y="423" font-weight="700" fill="#334155">Examples</text>
+    <text x="265" y="423" fill="#1e3a8a">Tax, full name, employee count</text>
+    <text x="635" y="423" fill="#4c1d95">Money transfer, add employee, audit log</text>
+  </g>
+
+  <rect x="20" y="455" width="470" height="70" rx="10" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="255" y="480" text-anchor="middle" font-size="12" font-family="Consolas, monospace" fill="#1d4ed8">SELECT name, AddGST(price) FROM products;</text>
+  <text x="255" y="505" text-anchor="middle" font-size="12" fill="#1e3a8a">Function runs once per row and gives a value</text>
+  <rect x="510" y="455" width="470" height="70" rx="10" fill="#f5f3ff" stroke="#c4b5fd"/>
+  <text x="745" y="480" text-anchor="middle" font-size="12" font-family="Consolas, monospace" fill="#6d28d9">CALL TransferFunds(101, 102, 5000);</text>
+  <text x="745" y="505" text-anchor="middle" font-size="12" fill="#4c1d95">Procedure performs the whole action</text>
+</svg>

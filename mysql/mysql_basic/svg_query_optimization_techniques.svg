@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="1000" height="580" fill="#f8fafc" rx="12"/>
+  <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a">Query Optimization Techniques — Map</text>
+  <text x="500" y="62" text-anchor="middle" font-size="13" fill="#64748b">Measure first, then reduce data, use indexes, join smart and avoid costly operations</text>
+
+  <rect x="400" y="88" width="200" height="60" rx="30" fill="#0f172a"/>
+  <text x="500" y="114" text-anchor="middle" font-size="15" font-weight="800" fill="#ffffff">SLOW QUERY?</text>
+  <text x="500" y="134" text-anchor="middle" font-size="12" fill="#cbd5e1">1st: EXPLAIN / ANALYZE</text>
+
+  <g stroke="#94a3b8" stroke-width="2" fill="none">
+    <path d="M400,118 C300,118 250,140 175,168"/>
+    <path d="M600,118 C700,118 750,140 825,168"/>
+    <path d="M430,148 C380,190 330,210 175,338"/>
+    <path d="M570,148 C620,190 670,210 825,338"/>
+    <path d="M500,148 L500,168"/>
+    <path d="M500,300 L500,338"/>
+  </g>
+
+  <!-- 1 data retrieval -->
+  <rect x="20" y="168" width="310" height="140" rx="10" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="175" y="192" text-anchor="middle" font-size="14" font-weight="800" fill="#1d4ed8">① Fetch Less Data</text>
+  <text x="35" y="217" font-size="12" fill="#334155">• Avoid SELECT * — list columns</text>
+  <text x="35" y="237" font-size="12" fill="#334155">• Filter early with WHERE</text>
+  <text x="35" y="257" font-size="12" fill="#334155">• LIMIT for pagination (keyset for deep pages)</text>
+  <text x="35" y="277" font-size="12" fill="#334155">• No function on indexed column:</text>
+  <text x="35" y="297" font-size="11" font-family="Consolas, monospace" fill="#b91c1c">YEAR(d)=2025 ✖  d &gt;= '2025-01-01' ✔</text>
+
+  <!-- 2 indexes -->
+  <rect x="345" y="168" width="310" height="132" rx="10" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="500" y="192" text-anchor="middle" font-size="14" font-weight="800" fill="#15803d">② Index Smartly</text>
+  <text x="360" y="217" font-size="12" fill="#334155">• WHERE / JOIN / ORDER BY / GROUP BY cols</text>
+  <text x="360" y="237" font-size="12" fill="#334155">• Covering index → "Using index"</text>
+  <text x="360" y="257" font-size="12" fill="#334155">• Composite: leftmost column first</text>
+  <text x="360" y="277" font-size="12" fill="#334155">• No over-indexing, skip tiny tables</text>
+
+  <!-- 3 joins -->
+  <rect x="670" y="168" width="310" height="140" rx="10" fill="#f5f3ff" stroke="#c4b5fd"/>
+  <text x="825" y="192" text-anchor="middle" font-size="14" font-weight="800" fill="#6d28d9">③ Join Efficiently</text>
+  <text x="685" y="217" font-size="12" fill="#334155">• Join only needed tables</text>
+  <text x="685" y="237" font-size="12" fill="#334155">• Indexed join keys (PK / FK)</text>
+  <text x="685" y="257" font-size="12" fill="#334155">• Filter before the join</text>
+  <text x="685" y="277" font-size="12" fill="#334155">• EXISTS instead of JOIN + DISTINCT</text>
+  <text x="685" y="297" font-size="12" fill="#334155">• JOIN instead of correlated subquery</text>
+
+  <!-- 4 costly ops -->
+  <rect x="20" y="338" width="310" height="150" rx="10" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="175" y="362" text-anchor="middle" font-size="14" font-weight="800" fill="#b91c1c">④ Avoid Costly Operations</text>
+  <text x="35" y="387" font-size="12" fill="#334155">• DISTINCT only when needed</text>
+  <text x="35" y="407" font-size="12" fill="#334155">• UNION ALL instead of UNION</text>
+  <text x="35" y="427" font-size="12" fill="#334155">• NOT IN / != / &lt;&gt; → NOT EXISTS, IN (...)</text>
+  <text x="35" y="447" font-size="12" fill="#334155">• LIKE 'abc%' ✔   LIKE '%abc' ✖</text>
+  <text x="35" y="467" font-size="12" fill="#334155">• Big text search → FULLTEXT index</text>
+
+  <!-- 5 data types -->
+  <rect x="345" y="338" width="310" height="150" rx="10" fill="#fffbeb" stroke="#fcd34d"/>
+  <text x="500" y="362" text-anchor="middle" font-size="14" font-weight="800" fill="#b45309">⑤ Right Data Types</text>
+  <text x="360" y="387" font-size="12" fill="#334155">• Smallest type that fits (TINYINT age)</text>
+  <text x="360" y="407" font-size="12" fill="#334155">• DECIMAL for money</text>
+  <text x="360" y="427" font-size="12" fill="#334155">• DATE / DATETIME, not VARCHAR</text>
+  <text x="360" y="447" font-size="12" fill="#334155">• CHAR fixed, VARCHAR variable</text>
+  <text x="360" y="467" font-size="12" fill="#334155">• ENUM for fixed categories</text>
+
+  <!-- 6 architecture -->
+  <rect x="670" y="338" width="310" height="150" rx="10" fill="#ecfeff" stroke="#67e8f9"/>
+  <text x="825" y="362" text-anchor="middle" font-size="14" font-weight="800" fill="#0e7490">⑥ Architecture Level</text>
+  <text x="685" y="387" font-size="12" fill="#334155">• Procedures → fewer round trips</text>
+  <text x="685" y="407" font-size="12" fill="#334155">• Batch big UPDATE/DELETE (LIMIT n)</text>
+  <text x="685" y="427" font-size="12" fill="#334155">• Partitioning / Sharding</text>
+  <text x="685" y="447" font-size="12" fill="#334155">• Redis cache, window functions</text>
+  <text x="685" y="467" font-size="12" fill="#334155">• Connection pool, short transactions</text>
+
+  <rect x="20" y="505" width="960" height="60" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="40" y="530" font-size="12" font-family="Consolas, monospace" fill="#b91c1c">✖ SELECT * FROM orders WHERE YEAR(order_date)=2025 AND status != 'cancelled';</text>
+  <text x="40" y="552" font-size="12" font-family="Consolas, monospace" fill="#15803d">✔ SELECT id, amount FROM orders WHERE order_date &gt;= '2025-01-01' AND order_date &lt; '2026-01-01' AND status IN ('placed','shipped');</text>
+</svg>

@@ -1,72 +1,72 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
-    <rect width="800" height="600" fill="#1E1E1E" rx="10"/>
+    <rect width="800" height="600" fill="#eeeeee" rx="10"/>
 
-    <rect x="250" y="40" width="300" height="60" fill="#FFCC00" stroke="#000" stroke-width="4" rx="5"/>
-    <rect x="254" y="44" width="300" height="60" fill="#000" rx="5" opacity="0.3"/> <!-- Shadow -->
+    <rect x="250" y="40" width="300" height="60" fill="#FFCC00" stroke="#c7c7c7" stroke-width="4" rx="5"/>
+    <rect x="254" y="44" width="300" height="60" fill="#f9f9f9" rx="5" opacity="0.3"/> <!-- Shadow -->
     <text x="400" y="80" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#000" text-anchor="middle">VIEWS</text>
 
     <!-- Main Points -->
-    <rect x="100" y="130" width="15" height="15" fill="none" stroke="#FFF" stroke-width="3"/>
-    <text x="140" y="145" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFF">
-        <tspan fill="#4FC1FF">Virtual Table</tspan> based on result of Query <tspan fill="#4FC1FF">without</tspan> storing data.
+    <rect x="100" y="130" width="15" height="15" fill="none" stroke="#333333" stroke-width="3"/>
+    <text x="140" y="145" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1f1f1f">
+        <tspan fill="#0072b0">Virtual Table</tspan> based on result of Query <tspan fill="#0072b0">without</tspan> storing data.
     </text>
 
-    <rect x="100" y="180" width="15" height="15" fill="none" stroke="#FFF" stroke-width="3"/>
-    <text x="140" y="195" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFF">
-        We use Views to <tspan fill="#4FC1FF">persist</tspan> Complex SQL <tspan fill="#4FC1FF">Query</tspan> in Database.
+    <rect x="100" y="180" width="15" height="15" fill="none" stroke="#333333" stroke-width="3"/>
+    <text x="140" y="195" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1f1f1f">
+        We use Views to <tspan fill="#0072b0">persist</tspan> Complex SQL <tspan fill="#0072b0">Query</tspan> in Database.
     </text>
 
-    <rect x="100" y="230" width="15" height="15" fill="none" stroke="#FFF" stroke-width="3"/>
-    <text x="140" y="245" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFF">
-        Views are better than <tspan fill="#F44747">CTE</tspan> - improves <tspan fill="#4EC9B0">reusability</tspan> in multiple Queries.
+    <rect x="100" y="230" width="15" height="15" fill="none" stroke="#333333" stroke-width="3"/>
+    <text x="140" y="245" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1f1f1f">
+        Views are better than <tspan fill="#b80b0b">CTE</tspan> - improves <tspan fill="#267d6b">reusability</tspan> in multiple Queries.
     </text>
 
-    <rect x="100" y="280" width="15" height="15" fill="none" stroke="#FFF" stroke-width="3"/>
-    <text x="140" y="295" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFF">
-        Views are better than <tspan fill="#FF8C00">Tables</tspan> - Flexible &amp; <tspan fill="#4EC9B0">ease to maintain</tspan>.
+    <rect x="100" y="280" width="15" height="15" fill="none" stroke="#333333" stroke-width="3"/>
+    <text x="140" y="295" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1f1f1f">
+        Views are better than <tspan fill="#d67600">Tables</tspan> - Flexible &amp; <tspan fill="#267d6b">ease to maintain</tspan>.
     </text>
 
     <!-- Use Cases Section -->
-    <rect x="100" y="340" width="150" height="40" fill="#4EC9B0" stroke="#000" stroke-width="3" rx="5"/>
+    <rect x="100" y="340" width="150" height="40" fill="#4EC9B0" stroke="#c7c7c7" stroke-width="3" rx="5"/>
     <text x="175" y="367" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#000" text-anchor="middle">USE CASES</text>
 
     <!-- Timeline line -->
-    <path d="M 120 380 L 120 560" stroke="#FFF" stroke-width="3"/>
+    <path d="M 120 380 L 120 560" stroke="#333333" stroke-width="3"/>
 
     <!-- Use Case 1 -->
-    <circle cx="120" cy="400" r="8" fill="#4EC9B0" stroke="#000" stroke-width="2"/>
-    <text x="150" y="407" font-family="Arial, sans-serif" font-size="18" fill="#FFF">
-        Store <tspan fill="#4EC9B0">central Complex</tspan> Business <tspan fill="#4EC9B0">logic</tspan> to be reused.
+    <circle cx="120" cy="400" r="8" fill="#4EC9B0" stroke="#c7c7c7" stroke-width="2"/>
+    <text x="150" y="407" font-family="Arial, sans-serif" font-size="18" fill="#1f1f1f">
+        Store <tspan fill="#267d6b">central Complex</tspan> Business <tspan fill="#267d6b">logic</tspan> to be reused.
     </text>
 
     <!-- Use Case 2 -->
-    <circle cx="120" cy="435" r="8" fill="#4EC9B0" stroke="#000" stroke-width="2"/>
-    <text x="150" y="442" font-family="Arial, sans-serif" font-size="18" fill="#FFF">
-        Hide Complexity by offering <tspan fill="#4EC9B0">friendly</tspan> views to users.
+    <circle cx="120" cy="435" r="8" fill="#4EC9B0" stroke="#c7c7c7" stroke-width="2"/>
+    <text x="150" y="442" font-family="Arial, sans-serif" font-size="18" fill="#1f1f1f">
+        Hide Complexity by offering <tspan fill="#267d6b">friendly</tspan> views to users.
     </text>
 
     <!-- Use Case 3 -->
-    <circle cx="120" cy="470" r="8" fill="#4EC9B0" stroke="#000" stroke-width="2"/>
-    <text x="150" y="477" font-family="Arial, sans-serif" font-size="18" fill="#FFF">
-        <tspan fill="#4EC9B0">Data Security</tspan> by hiding sensitive rows &amp; Columns.
+    <circle cx="120" cy="470" r="8" fill="#4EC9B0" stroke="#c7c7c7" stroke-width="2"/>
+    <text x="150" y="477" font-family="Arial, sans-serif" font-size="18" fill="#1f1f1f">
+        <tspan fill="#267d6b">Data Security</tspan> by hiding sensitive rows &amp; Columns.
     </text>
 
     <!-- Use Case 4 -->
-    <circle cx="120" cy="505" r="8" fill="#4EC9B0" stroke="#000" stroke-width="2"/>
-    <text x="150" y="512" font-family="Arial, sans-serif" font-size="18" fill="#FFF">
-        <tspan fill="#4EC9B0">Flexibility</tspan> &amp; <tspan fill="#4EC9B0">Dynamic</tspan> changes.
+    <circle cx="120" cy="505" r="8" fill="#4EC9B0" stroke="#c7c7c7" stroke-width="2"/>
+    <text x="150" y="512" font-family="Arial, sans-serif" font-size="18" fill="#1f1f1f">
+        <tspan fill="#267d6b">Flexibility</tspan> &amp; <tspan fill="#267d6b">Dynamic</tspan> changes.
     </text>
 
     <!-- Use Case 5 -->
-    <circle cx="120" cy="540" r="8" fill="#4EC9B0" stroke="#000" stroke-width="2"/>
-    <text x="150" y="547" font-family="Arial, sans-serif" font-size="18" fill="#FFF">
-        Offer your objects in <tspan fill="#4EC9B0">Multiple Languages</tspan>.
+    <circle cx="120" cy="540" r="8" fill="#4EC9B0" stroke="#c7c7c7" stroke-width="2"/>
+    <text x="150" y="547" font-family="Arial, sans-serif" font-size="18" fill="#1f1f1f">
+        Offer your objects in <tspan fill="#267d6b">Multiple Languages</tspan>.
     </text>
 
     <!-- Use Case 6 -->
-    <circle cx="120" cy="575" r="8" fill="#4EC9B0" stroke="#000" stroke-width="2"/>
-    <text x="150" y="582" font-family="Arial, sans-serif" font-size="18" fill="#FFF">
-        <tspan fill="#4EC9B0">Virtual layer</tspan> (Data Marts) in Data warehouses.
+    <circle cx="120" cy="575" r="8" fill="#4EC9B0" stroke="#c7c7c7" stroke-width="2"/>
+    <text x="150" y="582" font-family="Arial, sans-serif" font-size="18" fill="#1f1f1f">
+        <tspan fill="#267d6b">Virtual layer</tspan> (Data Marts) in Data warehouses.
     </text>
 
 </svg>

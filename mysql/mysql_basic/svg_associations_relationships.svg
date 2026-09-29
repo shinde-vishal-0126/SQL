@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="1000" height="600" fill="#f8fafc" rx="12"/>
+  <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a">Associations: Relationships Between Tables</text>
+  <text x="500" y="62" text-anchor="middle" font-size="13" fill="#64748b">1:1 and 1:N use a Foreign Key · M:N needs a junction table · Self refers to the same table</text>
+
+  <!-- 1:1 -->
+  <rect x="20" y="80" width="470" height="235" rx="12" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="255" y="106" text-anchor="middle" font-size="16" font-weight="800" fill="#1d4ed8">One-to-One (1:1)</text>
+  <rect x="45" y="125" width="170" height="110" rx="8" fill="#ffffff" stroke="#2563eb"/>
+  <rect x="45" y="125" width="170" height="28" rx="8" fill="#2563eb"/><text x="130" y="144" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">persons</text>
+  <text x="58" y="172" font-size="12" font-family="Consolas, monospace" fill="#334155">🔑 person_id PK</text>
+  <text x="58" y="194" font-size="12" font-family="Consolas, monospace" fill="#334155">   name</text>
+  <rect x="295" y="125" width="170" height="110" rx="8" fill="#ffffff" stroke="#2563eb"/>
+  <rect x="295" y="125" width="170" height="28" rx="8" fill="#2563eb"/><text x="380" y="144" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">passports</text>
+  <text x="305" y="172" font-size="12" font-family="Consolas, monospace" fill="#334155">🔑 passport_no PK</text>
+  <text x="305" y="194" font-size="12" font-family="Consolas, monospace" fill="#b45309">🔗 person_id FK</text>
+  <text x="305" y="214" font-size="12" font-family="Consolas, monospace" fill="#b45309">   + UNIQUE</text>
+  <line x1="293" y1="189" x2="219" y2="170" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <text x="256" y="165" text-anchor="middle" font-size="12" font-weight="700" fill="#1d4ed8">1 — 1</text>
+  <text x="255" y="265" text-anchor="middle" font-size="12" fill="#334155">One person ↔ one passport</text>
+  <text x="255" y="290" text-anchor="middle" font-size="12" fill="#1e3a8a">Implement: Foreign Key + UNIQUE</text>
+
+  <!-- 1:N -->
+  <rect x="510" y="80" width="470" height="235" rx="12" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="745" y="106" text-anchor="middle" font-size="16" font-weight="800" fill="#15803d">One-to-Many (1:N) = Many-to-One (N:1)</text>
+  <rect x="535" y="125" width="170" height="110" rx="8" fill="#ffffff" stroke="#16a34a"/>
+  <rect x="535" y="125" width="170" height="28" rx="8" fill="#16a34a"/><text x="620" y="144" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">customers</text>
+  <text x="548" y="172" font-size="12" font-family="Consolas, monospace" fill="#334155">🔑 customer_id PK</text>
+  <text x="548" y="194" font-size="12" font-family="Consolas, monospace" fill="#334155">   name</text>
+  <rect x="785" y="125" width="170" height="110" rx="8" fill="#ffffff" stroke="#16a34a"/>
+  <rect x="785" y="125" width="170" height="28" rx="8" fill="#16a34a"/><text x="870" y="144" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">orders</text>
+  <text x="795" y="172" font-size="12" font-family="Consolas, monospace" fill="#334155">🔑 order_id PK</text>
+  <text x="795" y="194" font-size="12" font-family="Consolas, monospace" fill="#b45309">🔗 customer_id FK</text>
+  <line x1="783" y1="189" x2="709" y2="170" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <text x="746" y="165" text-anchor="middle" font-size="12" font-weight="700" fill="#15803d">1 — N</text>
+  <text x="745" y="265" text-anchor="middle" font-size="12" fill="#334155">One customer → many orders (many orders → one customer)</text>
+  <text x="745" y="290" text-anchor="middle" font-size="12" fill="#14532d">Implement: Foreign Key on the "many" side</text>
+
+  <!-- M:N -->
+  <rect x="20" y="330" width="620" height="255" rx="12" fill="#f5f3ff" stroke="#c4b5fd"/>
+  <text x="330" y="356" text-anchor="middle" font-size="16" font-weight="800" fill="#6d28d9">Many-to-Many (M:N) → Junction Table</text>
+  <rect x="40" y="380" width="150" height="90" rx="8" fill="#ffffff" stroke="#7c3aed"/>
+  <rect x="40" y="380" width="150" height="28" rx="8" fill="#7c3aed"/><text x="115" y="399" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">students</text>
+  <text x="52" y="428" font-size="12" font-family="Consolas, monospace" fill="#334155">🔑 student_id</text>
+  <text x="52" y="450" font-size="12" font-family="Consolas, monospace" fill="#334155">   name</text>
+  <rect x="235" y="380" width="170" height="110" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+  <rect x="235" y="380" width="170" height="28" rx="8" fill="#d97706"/><text x="320" y="399" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">enrollments</text>
+  <text x="245" y="428" font-size="12" font-family="Consolas, monospace" fill="#b45309">🔗 student_id FK</text>
+  <text x="245" y="450" font-size="12" font-family="Consolas, monospace" fill="#b45309">🔗 course_id  FK</text>
+  <text x="245" y="472" font-size="11" fill="#64748b">PK (student_id, course_id)</text>
+  <rect x="450" y="380" width="170" height="90" rx="8" fill="#ffffff" stroke="#7c3aed"/>
+  <rect x="450" y="380" width="170" height="28" rx="8" fill="#7c3aed"/><text x="535" y="399" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">courses</text>
+  <text x="462" y="428" font-size="12" font-family="Consolas, monospace" fill="#334155">🔑 course_id</text>
+  <text x="462" y="450" font-size="12" font-family="Consolas, monospace" fill="#334155">   title</text>
+  <line x1="233" y1="425" x2="194" y2="425" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <line x1="407" y1="447" x2="446" y2="425" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <text x="213" y="416" text-anchor="middle" font-size="11" font-weight="700" fill="#6d28d9">N:1</text>
+  <text x="427" y="418" text-anchor="middle" font-size="11" font-weight="700" fill="#6d28d9">N:1</text>
+  <text x="330" y="518" text-anchor="middle" font-size="12" fill="#334155">A student takes many courses; a course has many students</text>
+  <text x="330" y="542" text-anchor="middle" font-size="12" fill="#4c1d95">M:N is broken into two 1:N relationships through the junction table</text>
+  <text x="330" y="566" text-anchor="middle" font-size="11" fill="#64748b">SQL never creates this table automatically (some ORMs do)</text>
+
+  <!-- Self -->
+  <rect x="655" y="330" width="325" height="255" rx="12" fill="#fff1f2" stroke="#fda4af"/>
+  <text x="817" y="356" text-anchor="middle" font-size="16" font-weight="800" fill="#be123c">Self-Association</text>
+  <rect x="705" y="380" width="200" height="110" rx="8" fill="#ffffff" stroke="#e11d48"/>
+  <rect x="705" y="380" width="200" height="28" rx="8" fill="#e11d48"/><text x="805" y="399" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">employees</text>
+  <text x="717" y="428" font-size="12" font-family="Consolas, monospace" fill="#334155">🔑 emp_id PK</text>
+  <text x="717" y="450" font-size="12" font-family="Consolas, monospace" fill="#334155">   name</text>
+  <text x="717" y="472" font-size="12" font-family="Consolas, monospace" fill="#b45309">🔗 manager_id FK</text>
+  <path d="M905,467 C960,467 960,423 909,423" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <text x="817" y="518" text-anchor="middle" font-size="12" fill="#334155">manager_id → emp_id of the same table</text>
+  <text x="817" y="542" text-anchor="middle" font-size="12" fill="#9f1239">Kevin's manager is Frank (both employees)</text>
+  <text x="817" y="566" text-anchor="middle" font-size="11" fill="#64748b">Query it with a SELF JOIN / recursive CTE</text>
+</svg>

@@ -1,88 +1,88 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
-    <rect width="900" height="600" fill="#1E1E1E" rx="10"/>
+    <rect width="900" height="600" fill="#eeeeee" rx="10"/>
 
     <!-- Title 1: CREATE / INSERT -->
-    <rect x="50" y="50" width="200" height="40" fill="#4EC9B0" stroke="#000" stroke-width="2" rx="5"/>
+    <rect x="50" y="50" width="200" height="40" fill="#4EC9B0" stroke="#c7c7c7" stroke-width="2" rx="5"/>
     <text x="150" y="77" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#000" text-anchor="middle">CREATE / INSERT</text>
 
     <!-- Step 1: Create -->
-    <text x="150" y="140" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4FC1FF" text-anchor="middle">#1 STEP</text>
-    <rect x="100" y="150" width="100" height="50" fill="#FFF" stroke="#000" stroke-width="3" rx="5"/>
-    <rect x="95" y="155" width="100" height="50" fill="none" stroke="#CCC" stroke-width="2" rx="5"/> <!-- Shadow effect -->
+    <text x="150" y="140" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#0072b0" text-anchor="middle">#1 STEP</text>
+    <rect x="100" y="150" width="100" height="50" fill="#FFF" stroke="#c7c7c7" stroke-width="3" rx="5"/>
+    <rect x="95" y="155" width="100" height="50" fill="none" stroke="#333333" stroke-width="2" rx="5"/> <!-- Shadow effect -->
     <text x="150" y="182" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#000" text-anchor="middle">CREATE</text>
 
-    <path d="M 210 175 C 300 175, 300 175, 380 200" stroke="#F44747" stroke-width="3" fill="none" marker-end="url(#arrow_red)"/>
+    <path d="M 210 175 C 300 175, 300 175, 380 200" stroke="#b80b0b" stroke-width="3" fill="none" marker-end="url(#arrow_red)"/>
 
     <!-- Empty Table -->
-    <rect x="400" y="170" width="120" height="80" fill="#FFF" stroke="#000" stroke-width="3"/>
-    <rect x="400" y="170" width="120" height="25" fill="#4FC1FF" stroke="#000" stroke-width="1"/>
+    <rect x="400" y="170" width="120" height="80" fill="#FFF" stroke="#c7c7c7" stroke-width="3"/>
+    <rect x="400" y="170" width="120" height="25" fill="#4FC1FF" stroke="#c7c7c7" stroke-width="1"/>
     <text x="460" y="188" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">TABLE</text>
-    <line x1="440" y1="195" x2="440" y2="250" stroke="#000" stroke-width="1"/>
-    <line x1="480" y1="195" x2="480" y2="250" stroke="#000" stroke-width="1"/>
-    <line x1="400" y1="213" x2="520" y2="213" stroke="#000" stroke-width="1"/>
-    <line x1="400" y1="231" x2="520" y2="231" stroke="#000" stroke-width="1"/>
-    <text x="540" y="185" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFD700">NEW!</text>
-    <path d="M 525 180 L 535 170 M 525 170 L 535 180" stroke="#FFD700" stroke-width="2"/> <!-- Sparkle -->
+    <line x1="440" y1="195" x2="440" y2="250" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="480" y1="195" x2="480" y2="250" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="400" y1="213" x2="520" y2="213" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="400" y1="231" x2="520" y2="231" stroke="#c7c7c7" stroke-width="1"/>
+    <text x="540" y="185" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#a38a00">NEW!</text>
+    <path d="M 525 180 L 535 170 M 525 170 L 535 180" stroke="#a38a00" stroke-width="2"/> <!-- Sparkle -->
 
     <!-- Step 2: Insert -->
-    <text x="150" y="270" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4FC1FF" text-anchor="middle">#2 STEP</text>
-    <rect x="100" y="280" width="100" height="50" fill="#FFF" stroke="#000" stroke-width="3" rx="5"/>
-    <rect x="95" y="285" width="100" height="50" fill="none" stroke="#CCC" stroke-width="2" rx="5"/>
+    <text x="150" y="270" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#0072b0" text-anchor="middle">#2 STEP</text>
+    <rect x="100" y="280" width="100" height="50" fill="#FFF" stroke="#c7c7c7" stroke-width="3" rx="5"/>
+    <rect x="95" y="285" width="100" height="50" fill="none" stroke="#333333" stroke-width="2" rx="5"/>
     <text x="150" y="312" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#000" text-anchor="middle">INSERT</text>
 
     <!-- Data source (CSV icon) -->
-    <rect x="50" y="290" width="40" height="50" fill="#FFF" stroke="#000" stroke-width="2"/>
-    <text x="70" y="310" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#4EC9B0" text-anchor="middle">CSV</text>
-    <line x1="55" y1="320" x2="85" y2="320" stroke="#000" stroke-width="1"/>
-    <line x1="55" y1="330" x2="85" y2="330" stroke="#000" stroke-width="1"/>
+    <rect x="50" y="290" width="40" height="50" fill="#FFF" stroke="#c7c7c7" stroke-width="2"/>
+    <text x="70" y="310" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#267d6b" text-anchor="middle">CSV</text>
+    <line x1="55" y1="320" x2="85" y2="320" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="55" y1="330" x2="85" y2="330" stroke="#c7c7c7" stroke-width="1"/>
     
-    <path d="M 210 305 C 300 305, 300 305, 380 230" stroke="#F44747" stroke-width="3" fill="none" marker-end="url(#arrow_red)"/>
+    <path d="M 210 305 C 300 305, 300 305, 380 230" stroke="#b80b0b" stroke-width="3" fill="none" marker-end="url(#arrow_red)"/>
     
     <!-- Squiggly lines inside table cells indicating data -->
-    <path d="M 405 205 Q 410 200 415 205 T 425 205 T 435 205" fill="none" stroke="#000" stroke-width="1.5"/>
-    <path d="M 445 205 Q 450 200 455 205 T 465 205 T 475 205" fill="none" stroke="#000" stroke-width="1.5"/>
-    <path d="M 485 205 Q 490 200 495 205 T 505 205 T 515 205" fill="none" stroke="#000" stroke-width="1.5"/>
+    <path d="M 405 205 Q 410 200 415 205 T 425 205 T 435 205" fill="none" stroke="#c7c7c7" stroke-width="1.5"/>
+    <path d="M 445 205 Q 450 200 455 205 T 465 205 T 475 205" fill="none" stroke="#c7c7c7" stroke-width="1.5"/>
+    <path d="M 485 205 Q 490 200 495 205 T 505 205 T 515 205" fill="none" stroke="#c7c7c7" stroke-width="1.5"/>
     
-    <path d="M 405 223 Q 410 218 415 223 T 425 223 T 435 223" fill="none" stroke="#000" stroke-width="1.5"/>
-    <path d="M 445 223 Q 450 218 455 223 T 465 223 T 475 223" fill="none" stroke="#000" stroke-width="1.5"/>
-    <path d="M 485 223 Q 490 218 495 223 T 505 223 T 515 223" fill="none" stroke="#000" stroke-width="1.5"/>
+    <path d="M 405 223 Q 410 218 415 223 T 425 223 T 435 223" fill="none" stroke="#c7c7c7" stroke-width="1.5"/>
+    <path d="M 445 223 Q 450 218 455 223 T 465 223 T 475 223" fill="none" stroke="#c7c7c7" stroke-width="1.5"/>
+    <path d="M 485 223 Q 490 218 495 223 T 505 223 T 515 223" fill="none" stroke="#c7c7c7" stroke-width="1.5"/>
 
     <!-- Divider Line -->
-    <line x1="50" y1="380" x2="850" y2="380" stroke="#888" stroke-width="2" stroke-dasharray="10,10"/>
+    <line x1="50" y1="380" x2="850" y2="380" stroke="#777777" stroke-width="2" stroke-dasharray="10,10"/>
 
     <!-- Title 2: CTAS -->
-    <rect x="50" y="410" width="100" height="40" fill="#FFD700" stroke="#000" stroke-width="2" rx="5"/>
+    <rect x="50" y="410" width="100" height="40" fill="#FFD700" stroke="#c7c7c7" stroke-width="2" rx="5"/>
     <text x="100" y="437" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#000" text-anchor="middle">CTAS</text>
 
     <!-- CTAS Step (1 Step) -->
-    <text x="150" y="480" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4FC1FF" text-anchor="middle">#1 STEP</text>
-    <rect x="100" y="490" width="150" height="50" fill="#FFF" stroke="#000" stroke-width="3" rx="5"/>
-    <rect x="95" y="495" width="150" height="50" fill="none" stroke="#CCC" stroke-width="2" rx="5"/>
+    <text x="150" y="480" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#0072b0" text-anchor="middle">#1 STEP</text>
+    <rect x="100" y="490" width="150" height="50" fill="#FFF" stroke="#c7c7c7" stroke-width="3" rx="5"/>
+    <rect x="95" y="495" width="150" height="50" fill="none" stroke="#333333" stroke-width="2" rx="5"/>
     <text x="175" y="522" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#000" text-anchor="middle">CREATE TABLE</text>
     
-    <rect x="110" y="550" width="130" height="30" fill="#252526" stroke="#4FC1FF" stroke-width="2"/>
-    <text x="175" y="570" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFF" text-anchor="middle">SELECT ...</text>
+    <rect x="110" y="550" width="130" height="30" fill="#ebebec" stroke="#0072b0" stroke-width="2"/>
+    <text x="175" y="570" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1f1f1f" text-anchor="middle">SELECT ...</text>
 
-    <path d="M 260 515 L 380 515" stroke="#F44747" stroke-width="3" fill="none" marker-end="url(#arrow_red)"/>
+    <path d="M 260 515 L 380 515" stroke="#b80b0b" stroke-width="3" fill="none" marker-end="url(#arrow_red)"/>
 
     <!-- Filled Table -->
-    <rect x="400" y="475" width="120" height="80" fill="#FFF" stroke="#000" stroke-width="3"/>
-    <rect x="400" y="475" width="120" height="25" fill="#4FC1FF" stroke="#000" stroke-width="1"/>
+    <rect x="400" y="475" width="120" height="80" fill="#FFF" stroke="#c7c7c7" stroke-width="3"/>
+    <rect x="400" y="475" width="120" height="25" fill="#4FC1FF" stroke="#c7c7c7" stroke-width="1"/>
     <text x="460" y="493" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">TABLE</text>
-    <line x1="440" y1="500" x2="440" y2="555" stroke="#000" stroke-width="1"/>
-    <line x1="480" y1="500" x2="480" y2="555" stroke="#000" stroke-width="1"/>
-    <line x1="400" y1="518" x2="520" y2="518" stroke="#000" stroke-width="1"/>
-    <line x1="400" y1="536" x2="520" y2="536" stroke="#000" stroke-width="1"/>
-    <text x="540" y="490" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFD700">NEW!</text>
+    <line x1="440" y1="500" x2="440" y2="555" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="480" y1="500" x2="480" y2="555" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="400" y1="518" x2="520" y2="518" stroke="#c7c7c7" stroke-width="1"/>
+    <line x1="400" y1="536" x2="520" y2="536" stroke="#c7c7c7" stroke-width="1"/>
+    <text x="540" y="490" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#a38a00">NEW!</text>
     
     <!-- Squiggly lines indicating data is instantly there -->
-    <path d="M 405 510 Q 410 505 415 510 T 425 510 T 435 510" fill="none" stroke="#000" stroke-width="1.5"/>
-    <path d="M 445 510 Q 450 505 455 510 T 465 510 T 475 510" fill="none" stroke="#000" stroke-width="1.5"/>
-    <path d="M 485 510 Q 490 505 495 510 T 505 510 T 515 510" fill="none" stroke="#000" stroke-width="1.5"/>
+    <path d="M 405 510 Q 410 505 415 510 T 425 510 T 435 510" fill="none" stroke="#c7c7c7" stroke-width="1.5"/>
+    <path d="M 445 510 Q 450 505 455 510 T 465 510 T 475 510" fill="none" stroke="#c7c7c7" stroke-width="1.5"/>
+    <path d="M 485 510 Q 490 505 495 510 T 505 510 T 515 510" fill="none" stroke="#c7c7c7" stroke-width="1.5"/>
     
-    <path d="M 405 528 Q 410 523 415 528 T 425 528 T 435 528" fill="none" stroke="#000" stroke-width="1.5"/>
-    <path d="M 445 528 Q 450 523 455 528 T 465 528 T 475 528" fill="none" stroke="#000" stroke-width="1.5"/>
-    <path d="M 485 528 Q 490 523 495 528 T 505 528 T 515 528" fill="none" stroke="#000" stroke-width="1.5"/>
+    <path d="M 405 528 Q 410 523 415 528 T 425 528 T 435 528" fill="none" stroke="#c7c7c7" stroke-width="1.5"/>
+    <path d="M 445 528 Q 450 523 455 528 T 465 528 T 475 528" fill="none" stroke="#c7c7c7" stroke-width="1.5"/>
+    <path d="M 485 528 Q 490 523 495 528 T 505 528 T 515 528" fill="none" stroke="#c7c7c7" stroke-width="1.5"/>
 
     <defs>
         <marker id="arrow_red" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#F44747" /></marker>

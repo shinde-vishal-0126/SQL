@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
-    <rect width="1200" height="800" fill="#1e1e2e" rx="20"/>
-    <text x="600" y="60" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#00ffcc" text-anchor="middle">SQL Joins - Master Venn Diagrams</text>
-    <text x="600" y="100" font-family="Arial, sans-serif" font-size="20" fill="#a6accd" text-anchor="middle">Visualizing how SQL combines tables</text>
+    <rect width="1200" height="800" fill="#e7e7ef" rx="20"/>
+    <text x="600" y="60" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#00a383" text-anchor="middle">SQL Joins - Master Venn Diagrams</text>
+    <text x="600" y="100" font-family="Arial, sans-serif" font-size="20" fill="#323859" text-anchor="middle">Visualizing how SQL combines tables</text>
 
     <!-- Define Gradients and Filters -->
     <defs>
@@ -28,82 +28,82 @@
     
     <!-- INNER JOIN -->
     <g transform="translate(150, 180)">
-        <text x="100" y="-30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">INNER JOIN</text>
-        <circle cx="60" cy="50" r="50" fill="none" stroke="#00ffcc" stroke-width="3"/>
+        <text x="100" y="-30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1f1f1f" text-anchor="middle">INNER JOIN</text>
+        <circle cx="60" cy="50" r="50" fill="none" stroke="#00a383" stroke-width="3"/>
         <circle cx="140" cy="50" r="50" fill="none" stroke="#ff00cc" stroke-width="3"/>
         <!-- Intersection -->
         <path d="M 100,10 A 50,50 0 0,0 100,90 A 50,50 0 0,0 100,10" fill="url(#intersectGrad)" filter="url(#glow)"/>
-        <text x="100" y="140" font-family="Arial, sans-serif" font-size="16" fill="#a6accd" text-anchor="middle">Only Matching Data</text>
+        <text x="100" y="140" font-family="Arial, sans-serif" font-size="16" fill="#323859" text-anchor="middle">Only Matching Data</text>
     </g>
 
     <!-- LEFT JOIN -->
     <g transform="translate(480, 180)">
-        <text x="100" y="-30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">LEFT JOIN</text>
+        <text x="100" y="-30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1f1f1f" text-anchor="middle">LEFT JOIN</text>
         <!-- Left Circle Full -->
         <circle cx="60" cy="50" r="50" fill="url(#leftGrad)" filter="url(#glow)"/>
         <circle cx="140" cy="50" r="50" fill="none" stroke="#ff00cc" stroke-width="3"/>
         <!-- Intersection -->
         <path d="M 100,10 A 50,50 0 0,0 100,90 A 50,50 0 0,0 100,10" fill="url(#intersectGrad)"/>
-        <text x="100" y="140" font-family="Arial, sans-serif" font-size="16" fill="#a6accd" text-anchor="middle">All Left + Matching Right</text>
+        <text x="100" y="140" font-family="Arial, sans-serif" font-size="16" fill="#323859" text-anchor="middle">All Left + Matching Right</text>
     </g>
 
     <!-- RIGHT JOIN -->
     <g transform="translate(810, 180)">
-        <text x="100" y="-30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">RIGHT JOIN</text>
-        <circle cx="60" cy="50" r="50" fill="none" stroke="#00ffcc" stroke-width="3"/>
+        <text x="100" y="-30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1f1f1f" text-anchor="middle">RIGHT JOIN</text>
+        <circle cx="60" cy="50" r="50" fill="none" stroke="#00a383" stroke-width="3"/>
         <!-- Right Circle Full -->
         <circle cx="140" cy="50" r="50" fill="url(#rightGrad)" filter="url(#glow)"/>
         <!-- Intersection -->
         <path d="M 100,10 A 50,50 0 0,0 100,90 A 50,50 0 0,0 100,10" fill="url(#intersectGrad)"/>
-        <text x="100" y="140" font-family="Arial, sans-serif" font-size="16" fill="#a6accd" text-anchor="middle">All Right + Matching Left</text>
+        <text x="100" y="140" font-family="Arial, sans-serif" font-size="16" fill="#323859" text-anchor="middle">All Right + Matching Left</text>
     </g>
 
     <!-- ROW 2: Anti Joins -->
 
     <!-- LEFT ANTI JOIN -->
     <g transform="translate(150, 430)">
-        <text x="100" y="-30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">LEFT ANTI JOIN</text>
+        <text x="100" y="-30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1f1f1f" text-anchor="middle">LEFT ANTI JOIN</text>
         <!-- Left Circle Half -->
         <path d="M 60,0 A 50,50 0 1,0 60,100 A 50,50 0 0,1 100,90 A 50,50 0 0,1 100,10 A 50,50 0 0,1 60,0" fill="url(#leftGrad)" filter="url(#glow)"/>
-        <circle cx="60" cy="50" r="50" fill="none" stroke="#00ffcc" stroke-width="3"/>
+        <circle cx="60" cy="50" r="50" fill="none" stroke="#00a383" stroke-width="3"/>
         <circle cx="140" cy="50" r="50" fill="none" stroke="#ff00cc" stroke-width="3"/>
-        <text x="100" y="140" font-family="Arial, sans-serif" font-size="16" fill="#a6accd" text-anchor="middle">Left Data NOT in Right</text>
+        <text x="100" y="140" font-family="Arial, sans-serif" font-size="16" fill="#323859" text-anchor="middle">Left Data NOT in Right</text>
     </g>
 
     <!-- FULL JOIN -->
     <g transform="translate(480, 430)">
-        <text x="100" y="-30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">FULL OUTER JOIN</text>
+        <text x="100" y="-30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1f1f1f" text-anchor="middle">FULL OUTER JOIN</text>
         <circle cx="60" cy="50" r="50" fill="url(#leftGrad)"/>
         <circle cx="140" cy="50" r="50" fill="url(#rightGrad)"/>
         <path d="M 100,10 A 50,50 0 0,0 100,90 A 50,50 0 0,0 100,10" fill="url(#intersectGrad)" filter="url(#glow)"/>
-        <text x="100" y="140" font-family="Arial, sans-serif" font-size="16" fill="#a6accd" text-anchor="middle">Everything (Matching &amp; Unmatching)</text>
+        <text x="100" y="140" font-family="Arial, sans-serif" font-size="16" fill="#323859" text-anchor="middle">Everything (Matching &amp; Unmatching)</text>
     </g>
 
     <!-- RIGHT ANTI JOIN -->
     <g transform="translate(810, 430)">
-        <text x="100" y="-30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">RIGHT ANTI JOIN</text>
-        <circle cx="60" cy="50" r="50" fill="none" stroke="#00ffcc" stroke-width="3"/>
+        <text x="100" y="-30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1f1f1f" text-anchor="middle">RIGHT ANTI JOIN</text>
+        <circle cx="60" cy="50" r="50" fill="none" stroke="#00a383" stroke-width="3"/>
         <circle cx="140" cy="50" r="50" fill="none" stroke="#ff00cc" stroke-width="3"/>
         <path d="M 140,0 A 50,50 0 0,0 100,10 A 50,50 0 0,0 100,90 A 50,50 0 0,0 140,100 A 50,50 0 1,0 140,0" fill="url(#rightGrad)" filter="url(#glow)"/>
-        <text x="100" y="140" font-family="Arial, sans-serif" font-size="16" fill="#a6accd" text-anchor="middle">Right Data NOT in Left</text>
+        <text x="100" y="140" font-family="Arial, sans-serif" font-size="16" fill="#323859" text-anchor="middle">Right Data NOT in Left</text>
     </g>
 
     <!-- ROW 3: Special Joins -->
     
     <!-- FULL ANTI JOIN -->
     <g transform="translate(315, 660)">
-        <text x="100" y="-30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">FULL ANTI JOIN</text>
+        <text x="100" y="-30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1f1f1f" text-anchor="middle">FULL ANTI JOIN</text>
         <path d="M 60,0 A 50,50 0 1,0 60,100 A 50,50 0 0,1 100,90 A 50,50 0 0,1 100,10 A 50,50 0 0,1 60,0" fill="url(#leftGrad)"/>
         <path d="M 140,0 A 50,50 0 0,0 100,10 A 50,50 0 0,0 100,90 A 50,50 0 0,0 140,100 A 50,50 0 1,0 140,0" fill="url(#rightGrad)"/>
-        <circle cx="60" cy="50" r="50" fill="none" stroke="#00ffcc" stroke-width="3"/>
+        <circle cx="60" cy="50" r="50" fill="none" stroke="#00a383" stroke-width="3"/>
         <circle cx="140" cy="50" r="50" fill="none" stroke="#ff00cc" stroke-width="3"/>
-        <text x="100" y="140" font-family="Arial, sans-serif" font-size="16" fill="#a6accd" text-anchor="middle">Only Unmatching Data (Excludes Center)</text>
+        <text x="100" y="140" font-family="Arial, sans-serif" font-size="16" fill="#323859" text-anchor="middle">Only Unmatching Data (Excludes Center)</text>
     </g>
     
     <!-- CROSS JOIN -->
     <g transform="translate(645, 660)">
-        <text x="100" y="-30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">CROSS JOIN</text>
-        <rect x="10" y="10" width="40" height="80" rx="5" fill="none" stroke="#00ffcc" stroke-width="2"/>
+        <text x="100" y="-30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1f1f1f" text-anchor="middle">CROSS JOIN</text>
+        <rect x="10" y="10" width="40" height="80" rx="5" fill="none" stroke="#00a383" stroke-width="2"/>
         <rect x="150" y="10" width="40" height="80" rx="5" fill="none" stroke="#ff00cc" stroke-width="2"/>
         <!-- Nodes -->
         <circle cx="30" cy="30" r="5" fill="#00ffcc"/>
@@ -115,17 +115,17 @@
         <circle cx="170" cy="70" r="5" fill="#ff00cc"/>
         
         <!-- Lines -->
-        <line x1="30" y1="30" x2="170" y2="30" stroke="#ffff00" stroke-width="1" opacity="0.5"/>
-        <line x1="30" y1="30" x2="170" y2="50" stroke="#ffff00" stroke-width="1" opacity="0.5"/>
-        <line x1="30" y1="30" x2="170" y2="70" stroke="#ffff00" stroke-width="1" opacity="0.5"/>
-        <line x1="30" y1="50" x2="170" y2="30" stroke="#ffff00" stroke-width="1" opacity="0.5"/>
-        <line x1="30" y1="50" x2="170" y2="50" stroke="#ffff00" stroke-width="1" opacity="0.5"/>
-        <line x1="30" y1="50" x2="170" y2="70" stroke="#ffff00" stroke-width="1" opacity="0.5"/>
-        <line x1="30" y1="70" x2="170" y2="30" stroke="#ffff00" stroke-width="1" opacity="0.5"/>
-        <line x1="30" y1="70" x2="170" y2="50" stroke="#ffff00" stroke-width="1" opacity="0.5"/>
-        <line x1="30" y1="70" x2="170" y2="70" stroke="#ffff00" stroke-width="1" opacity="0.5"/>
+        <line x1="30" y1="30" x2="170" y2="30" stroke="#a3a300" stroke-width="1" opacity="0.5"/>
+        <line x1="30" y1="30" x2="170" y2="50" stroke="#a3a300" stroke-width="1" opacity="0.5"/>
+        <line x1="30" y1="30" x2="170" y2="70" stroke="#a3a300" stroke-width="1" opacity="0.5"/>
+        <line x1="30" y1="50" x2="170" y2="30" stroke="#a3a300" stroke-width="1" opacity="0.5"/>
+        <line x1="30" y1="50" x2="170" y2="50" stroke="#a3a300" stroke-width="1" opacity="0.5"/>
+        <line x1="30" y1="50" x2="170" y2="70" stroke="#a3a300" stroke-width="1" opacity="0.5"/>
+        <line x1="30" y1="70" x2="170" y2="30" stroke="#a3a300" stroke-width="1" opacity="0.5"/>
+        <line x1="30" y1="70" x2="170" y2="50" stroke="#a3a300" stroke-width="1" opacity="0.5"/>
+        <line x1="30" y1="70" x2="170" y2="70" stroke="#a3a300" stroke-width="1" opacity="0.5"/>
         
-        <text x="100" y="140" font-family="Arial, sans-serif" font-size="16" fill="#a6accd" text-anchor="middle">Cartesian Product (Every Row x Every Row)</text>
+        <text x="100" y="140" font-family="Arial, sans-serif" font-size="16" fill="#323859" text-anchor="middle">Cartesian Product (Every Row x Every Row)</text>
     </g>
 
 </svg>

@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" width="1200" height="820">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f172a" />
-      <stop offset="50%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#e7ebf6" />
+      <stop offset="50%" stop-color="#e2e7f0" />
+      <stop offset="100%" stop-color="#e7ebf6" />
     </linearGradient>
     <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#38bdf8" />
@@ -11,11 +11,11 @@
       <stop offset="100%" stop-color="#c084fc" />
     </linearGradient>
     <linearGradient id="numericCard" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#e2e7f0" />
+      <stop offset="100%" stop-color="#e7ebf6" />
     </linearGradient>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.4" />
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#f9f9f9" flood-opacity="0.4" />
     </filter>
   </defs>
 
@@ -28,36 +28,36 @@
   <text x="600" y="70" text-anchor="middle" font-family="'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="bold" fill="url(#headerGrad)">
     MySQL Comprehensive Data Types Architecture
   </text>
-  <text x="600" y="98" text-anchor="middle" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" fill="#94a3b8">
+  <text x="600" y="98" text-anchor="middle" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" fill="#47566b">
     Fixed Memory vs. Variable Memory Allocation &amp; Core Category Taxonomy
   </text>
 
   <!-- Top Banner: Memory Allocation Strategy -->
   <g transform="translate(50, 120)">
     <!-- Fixed Data Types Box -->
-    <rect x="0" y="0" width="530" height="95" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="2" filter="url(#shadow)" />
-    <rect x="0" y="0" width="530" height="32" rx="12" fill="#0284c7" fill-opacity="0.2" />
-    <text x="20" y="22" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="bold" fill="#38bdf8">
+    <rect x="0" y="0" width="530" height="95" rx="12" fill="#e2e7f0" stroke="#078bc5" stroke-width="2" filter="url(#shadow)" />
+    <rect x="0" y="0" width="530" height="32" rx="12" fill="#b8e6fe" fill-opacity="0.2" />
+    <text x="20" y="22" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="bold" fill="#078cc7">
       📌 1. FIXED DATA TYPES (Fixed Storage Size)
     </text>
-    <text x="20" y="52" font-family="'Segoe UI', sans-serif" font-size="12.5" fill="#e2e8f0">
+    <text x="20" y="52" font-family="'Segoe UI', sans-serif" font-size="12.5" fill="#2a3a51">
       • Pre-allocates exact bytes in memory regardless of content length.
     </text>
-    <text x="20" y="74" font-family="'Segoe UI', sans-serif" font-size="12" fill="#94a3b8">
-      Key Examples: <tspan fill="#38bdf8" font-weight="bold">CHAR(n), INT, BIGINT, FLOAT, DOUBLE, DECIMAL</tspan>
+    <text x="20" y="74" font-family="'Segoe UI', sans-serif" font-size="12" fill="#47566b">
+      Key Examples: <tspan fill="#078cc7" font-weight="bold">CHAR(n), INT, BIGINT, FLOAT, DOUBLE, DECIMAL</tspan>
     </text>
 
     <!-- Variable Data Types Box -->
-    <rect x="560" y="0" width="540" height="95" rx="12" fill="#1e293b" stroke="#a855f7" stroke-width="2" filter="url(#shadow)" />
+    <rect x="560" y="0" width="540" height="95" rx="12" fill="#e2e7f0" stroke="#5b08aa" stroke-width="2" filter="url(#shadow)" />
     <rect x="560" y="0" width="540" height="32" rx="12" fill="#9333ea" fill-opacity="0.2" />
-    <text x="580" y="22" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="bold" fill="#c084fc">
+    <text x="580" y="22" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="bold" fill="#3f037b">
       ⚡ 2. VARIABLE DATA TYPES (Dynamic Length Storage)
     </text>
-    <text x="580" y="52" font-family="'Segoe UI', sans-serif" font-size="12.5" fill="#e2e8f0">
+    <text x="580" y="52" font-family="'Segoe UI', sans-serif" font-size="12.5" fill="#2a3a51">
       • Consumes storage strictly based on actual characters + prefix length byte.
     </text>
-    <text x="580" y="74" font-family="'Segoe UI', sans-serif" font-size="12" fill="#94a3b8">
-      Key Examples: <tspan fill="#c084fc" font-weight="bold">VARCHAR(n), TEXT, BLOB, VARBINARY(n)</tspan>
+    <text x="580" y="74" font-family="'Segoe UI', sans-serif" font-size="12" fill="#47566b">
+      Key Examples: <tspan fill="#3f037b" font-weight="bold">VARCHAR(n), TEXT, BLOB, VARBINARY(n)</tspan>
     </text>
   </g>
 
@@ -65,156 +65,156 @@
   
   <!-- Column 1: Numeric Types -->
   <g transform="translate(50, 240)">
-    <rect x="0" y="0" width="260" height="520" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="0" y="0" width="260" height="520" rx="12" fill="#e2e7f0" stroke="#0950c3" stroke-width="1.5" filter="url(#shadow)" />
     <path d="M 0 12 Q 0 0 12 0 L 248 0 Q 260 0 260 12 L 260 42 L 0 42 Z" fill="#2563eb" />
-    <text x="130" y="27" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#ffffff">
+    <text x="130" y="27" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#1f1f1f">
       🔢 Numeric Types
     </text>
 
     <!-- Content Items -->
     <g transform="translate(15, 55)">
-      <text x="0" y="16" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#60a5fa">INT / INTEGER</text>
-      <text x="0" y="32" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">4 Bytes: -2.14B to +2.14B</text>
-      <text x="0" y="47" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">UNSIGNED: 0 to 4.29B</text>
+      <text x="0" y="16" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#054a9f">INT / INTEGER</text>
+      <text x="0" y="32" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">4 Bytes: -2.14B to +2.14B</text>
+      <text x="0" y="47" font-family="'Segoe UI', sans-serif" font-size="11" fill="#47566b">UNSIGNED: 0 to 4.29B</text>
       
       <line x1="0" y1="58" x2="230" y2="58" stroke="#334155" stroke-width="1" />
 
-      <text x="0" y="76" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#60a5fa">TINYINT / SMALLINT</text>
-      <text x="0" y="92" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">TINYINT: 1 Byte (-128 to 127)</text>
-      <text x="0" y="107" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">MEDIUMINT: 3 Bytes</text>
+      <text x="0" y="76" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#054a9f">TINYINT / SMALLINT</text>
+      <text x="0" y="92" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">TINYINT: 1 Byte (-128 to 127)</text>
+      <text x="0" y="107" font-family="'Segoe UI', sans-serif" font-size="11" fill="#47566b">MEDIUMINT: 3 Bytes</text>
 
       <line x1="0" y1="118" x2="230" y2="118" stroke="#334155" stroke-width="1" />
 
-      <text x="0" y="136" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#60a5fa">BIGINT</text>
-      <text x="0" y="152" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">8 Bytes: -9 Quintillion to +9Q</text>
-      <text x="0" y="167" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">For ultra-large user/order IDs</text>
+      <text x="0" y="136" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#054a9f">BIGINT</text>
+      <text x="0" y="152" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">8 Bytes: -9 Quintillion to +9Q</text>
+      <text x="0" y="167" font-family="'Segoe UI', sans-serif" font-size="11" fill="#47566b">For ultra-large user/order IDs</text>
 
       <line x1="0" y1="178" x2="230" y2="178" stroke="#334155" stroke-width="1" />
 
-      <text x="0" y="196" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#38bdf8">DECIMAL(p, s)</text>
-      <text x="0" y="212" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">Exact fixed-point numbers</text>
-      <text x="0" y="227" font-family="'Segoe UI', sans-serif" font-size="11" fill="#fbbf24">Best for Money, Banking, Prices</text>
+      <text x="0" y="196" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#078cc7">DECIMAL(p, s)</text>
+      <text x="0" y="212" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">Exact fixed-point numbers</text>
+      <text x="0" y="227" font-family="'Segoe UI', sans-serif" font-size="11" fill="#a07403">Best for Money, Banking, Prices</text>
 
       <line x1="0" y1="238" x2="230" y2="238" stroke="#334155" stroke-width="1" />
 
-      <text x="0" y="256" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#60a5fa">FLOAT &amp; DOUBLE</text>
-      <text x="0" y="272" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">FLOAT: 4B (~7 digits precision)</text>
-      <text x="0" y="287" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">DOUBLE: 8B (~15 digits precision)</text>
-      <text x="0" y="302" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">Approximate scientific math</text>
+      <text x="0" y="256" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#054a9f">FLOAT &amp; DOUBLE</text>
+      <text x="0" y="272" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">FLOAT: 4B (~7 digits precision)</text>
+      <text x="0" y="287" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">DOUBLE: 8B (~15 digits precision)</text>
+      <text x="0" y="302" font-family="'Segoe UI', sans-serif" font-size="11" fill="#47566b">Approximate scientific math</text>
     </g>
   </g>
 
   <!-- Column 2: String & Character Types -->
   <g transform="translate(330, 240)">
-    <rect x="0" y="0" width="260" height="520" rx="12" fill="#1e293b" stroke="#10b981" stroke-width="1.5" filter="url(#shadow)" />
-    <path d="M 0 12 Q 0 0 12 0 L 248 0 Q 260 0 260 12 L 260 42 L 0 42 Z" fill="#059669" />
-    <text x="130" y="27" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#ffffff">
+    <rect x="0" y="0" width="260" height="520" rx="12" fill="#e2e7f0" stroke="#0d9669" stroke-width="1.5" filter="url(#shadow)" />
+    <path d="M 0 12 Q 0 0 12 0 L 248 0 Q 260 0 260 12 L 260 42 L 0 42 Z" fill="#bafde8" />
+    <text x="130" y="27" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#1f1f1f">
       🔤 String &amp; Text Types
     </text>
 
     <g transform="translate(15, 55)">
-      <text x="0" y="16" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#34d399">CHAR(n)</text>
-      <text x="0" y="32" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">Fixed-length string (0-255)</text>
-      <text x="0" y="47" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">Pads spaces if shorter; Fast</text>
+      <text x="0" y="16" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#1d8660">CHAR(n)</text>
+      <text x="0" y="32" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">Fixed-length string (0-255)</text>
+      <text x="0" y="47" font-family="'Segoe UI', sans-serif" font-size="11" fill="#47566b">Pads spaces if shorter; Fast</text>
 
       <line x1="0" y1="58" x2="230" y2="58" stroke="#334155" stroke-width="1" />
 
-      <text x="0" y="76" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#34d399">VARCHAR(n)</text>
-      <text x="0" y="92" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">Variable-length string (0-65,535)</text>
-      <text x="0" y="107" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">Storage = Actual Length + 1 Byte</text>
+      <text x="0" y="76" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#1d8660">VARCHAR(n)</text>
+      <text x="0" y="92" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">Variable-length string (0-65,535)</text>
+      <text x="0" y="107" font-family="'Segoe UI', sans-serif" font-size="11" fill="#47566b">Storage = Actual Length + 1 Byte</text>
 
       <line x1="0" y1="118" x2="230" y2="118" stroke="#334155" stroke-width="1" />
 
-      <text x="0" y="136" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#34d399">TEXT Family</text>
-      <text x="0" y="152" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">• TINYTEXT: 255 chars</text>
-      <text x="0" y="167" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">• TEXT: 65,535 chars (64 KB)</text>
-      <text x="0" y="182" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">• MEDIUMTEXT: 16 MB</text>
-      <text x="0" y="197" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">• LONGTEXT: up to 4 GB</text>
+      <text x="0" y="136" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#1d8660">TEXT Family</text>
+      <text x="0" y="152" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">• TINYTEXT: 255 chars</text>
+      <text x="0" y="167" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">• TEXT: 65,535 chars (64 KB)</text>
+      <text x="0" y="182" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">• MEDIUMTEXT: 16 MB</text>
+      <text x="0" y="197" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">• LONGTEXT: up to 4 GB</text>
 
       <line x1="0" y1="210" x2="230" y2="210" stroke="#334155" stroke-width="1" />
 
-      <text x="0" y="228" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#34d399">BLOB (Binary Large Object)</text>
-      <text x="0" y="244" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">Raw binary (images, audio, pdf)</text>
-      <text x="0" y="259" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">TINYBLOB, BLOB, MEDIUM, LONG</text>
+      <text x="0" y="228" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#1d8660">BLOB (Binary Large Object)</text>
+      <text x="0" y="244" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">Raw binary (images, audio, pdf)</text>
+      <text x="0" y="259" font-family="'Segoe UI', sans-serif" font-size="11" fill="#47566b">TINYBLOB, BLOB, MEDIUM, LONG</text>
     </g>
   </g>
 
   <!-- Column 3: Temporal / Date & Time Types -->
   <g transform="translate(610, 240)">
-    <rect x="0" y="0" width="260" height="520" rx="12" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" filter="url(#shadow)" />
-    <path d="M 0 12 Q 0 0 12 0 L 248 0 Q 260 0 260 12 L 260 42 L 0 42 Z" fill="#d97706" />
-    <text x="130" y="27" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#ffffff">
+    <rect x="0" y="0" width="260" height="520" rx="12" fill="#e2e7f0" stroke="#c47e08" stroke-width="1.5" filter="url(#shadow)" />
+    <path d="M 0 12 Q 0 0 12 0 L 248 0 Q 260 0 260 12 L 260 42 L 0 42 Z" fill="#fddeba" />
+    <text x="130" y="27" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#1f1f1f">
       📅 Date &amp; Time (Temporal)
     </text>
 
     <g transform="translate(15, 55)">
-      <text x="0" y="16" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">DATE</text>
-      <text x="0" y="32" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">3 Bytes: YYYY-MM-DD</text>
-      <text x="0" y="47" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">1000-01-01 to 9999-12-31</text>
+      <text x="0" y="16" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#a07403">DATE</text>
+      <text x="0" y="32" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">3 Bytes: YYYY-MM-DD</text>
+      <text x="0" y="47" font-family="'Segoe UI', sans-serif" font-size="11" fill="#47566b">1000-01-01 to 9999-12-31</text>
 
       <line x1="0" y1="58" x2="230" y2="58" stroke="#334155" stroke-width="1" />
 
-      <text x="0" y="76" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">TIME</text>
-      <text x="0" y="92" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">3 Bytes: HH:MM:SS</text>
-      <text x="0" y="107" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">-838:59:59 to +838:59:59</text>
+      <text x="0" y="76" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#a07403">TIME</text>
+      <text x="0" y="92" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">3 Bytes: HH:MM:SS</text>
+      <text x="0" y="107" font-family="'Segoe UI', sans-serif" font-size="11" fill="#47566b">-838:59:59 to +838:59:59</text>
 
       <line x1="0" y1="118" x2="230" y2="118" stroke="#334155" stroke-width="1" />
 
-      <text x="0" y="136" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">YEAR</text>
-      <text x="0" y="152" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">1 Byte: YYYY (1901 to 2155)</text>
+      <text x="0" y="136" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#a07403">YEAR</text>
+      <text x="0" y="152" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">1 Byte: YYYY (1901 to 2155)</text>
 
       <line x1="0" y1="165" x2="230" y2="165" stroke="#334155" stroke-width="1" />
 
-      <text x="0" y="183" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#f59e0b">DATETIME</text>
-      <text x="0" y="199" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">5-8 Bytes: YYYY-MM-DD HH:MM:SS</text>
-      <text x="0" y="214" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">1000-01-01 to 9999-12-31</text>
-      <text x="0" y="229" font-family="'Segoe UI', sans-serif" font-size="11" fill="#f87171">No timezone conversion</text>
+      <text x="0" y="183" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#ce8408">DATETIME</text>
+      <text x="0" y="199" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">5-8 Bytes: YYYY-MM-DD HH:MM:SS</text>
+      <text x="0" y="214" font-family="'Segoe UI', sans-serif" font-size="11" fill="#47566b">1000-01-01 to 9999-12-31</text>
+      <text x="0" y="229" font-family="'Segoe UI', sans-serif" font-size="11" fill="#8e0707">No timezone conversion</text>
 
       <line x1="0" y1="240" x2="230" y2="240" stroke="#334155" stroke-width="1" />
 
-      <text x="0" y="258" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#f59e0b">TIMESTAMP</text>
-      <text x="0" y="274" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">4 Bytes: 1970 to 2038 (UTC)</text>
-      <text x="0" y="289" font-family="'Segoe UI', sans-serif" font-size="11" fill="#4ade80">Timezone-aware + Auto-updates</text>
+      <text x="0" y="258" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#ce8408">TIMESTAMP</text>
+      <text x="0" y="274" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">4 Bytes: 1970 to 2038 (UTC)</text>
+      <text x="0" y="289" font-family="'Segoe UI', sans-serif" font-size="11" fill="#198a42">Timezone-aware + Auto-updates</text>
     </g>
   </g>
 
   <!-- Column 4: Specialized & Binary Types -->
   <g transform="translate(890, 240)">
-    <rect x="0" y="0" width="260" height="520" rx="12" fill="#1e293b" stroke="#ec4899" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="0" y="0" width="260" height="520" rx="12" fill="#e2e7f0" stroke="#b71364" stroke-width="1.5" filter="url(#shadow)" />
     <path d="M 0 12 Q 0 0 12 0 L 248 0 Q 260 0 260 12 L 260 42 L 0 42 Z" fill="#db2777" />
-    <text x="130" y="27" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#ffffff">
+    <text x="130" y="27" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#1f1f1f">
       ⚙️ Specialized &amp; Binary
     </text>
 
     <g transform="translate(15, 55)">
-      <text x="0" y="16" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#f472b6">BOOLEAN / BOOL</text>
-      <text x="0" y="32" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">Alias for TINYINT(1)</text>
-      <text x="0" y="47" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">0 = FALSE (Default), 1 = TRUE</text>
+      <text x="0" y="16" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#8d0b4f">BOOLEAN / BOOL</text>
+      <text x="0" y="32" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">Alias for TINYINT(1)</text>
+      <text x="0" y="47" font-family="'Segoe UI', sans-serif" font-size="11" fill="#47566b">0 = FALSE (Default), 1 = TRUE</text>
 
       <line x1="0" y1="58" x2="230" y2="58" stroke="#334155" stroke-width="1" />
 
-      <text x="0" y="76" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#f472b6">BIT(m) / BINARY(n)</text>
-      <text x="0" y="92" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">Stores 0 and 1 bits</text>
-      <text x="0" y="107" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">VARBINARY(n): variable binary</text>
+      <text x="0" y="76" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#8d0b4f">BIT(m) / BINARY(n)</text>
+      <text x="0" y="92" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">Stores 0 and 1 bits</text>
+      <text x="0" y="107" font-family="'Segoe UI', sans-serif" font-size="11" fill="#47566b">VARBINARY(n): variable binary</text>
 
       <line x1="0" y1="118" x2="230" y2="118" stroke="#334155" stroke-width="1" />
 
-      <text x="0" y="136" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#f472b6">ENUM('val1', 'val2')</text>
-      <text x="0" y="152" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">Single selection from predefined list</text>
-      <text x="0" y="167" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">e.g. ('active', 'inactive', 'pending')</text>
-      <text x="0" y="182" font-family="'Segoe UI', sans-serif" font-size="11" fill="#a78bfa">Controlled Vocabulary</text>
+      <text x="0" y="136" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#8d0b4f">ENUM('val1', 'val2')</text>
+      <text x="0" y="152" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">Single selection from predefined list</text>
+      <text x="0" y="167" font-family="'Segoe UI', sans-serif" font-size="11" fill="#47566b">e.g. ('active', 'inactive', 'pending')</text>
+      <text x="0" y="182" font-family="'Segoe UI', sans-serif" font-size="11" fill="#210575">Controlled Vocabulary</text>
 
       <line x1="0" y1="195" x2="230" y2="195" stroke="#334155" stroke-width="1" />
 
-      <text x="0" y="213" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#f472b6">SET('val1', 'val2')</text>
-      <text x="0" y="229" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">Multiple selections from predefined list</text>
-      <text x="0" y="244" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">Stores combinations / flags</text>
-      <text x="0" y="259" font-family="'Segoe UI', sans-serif" font-size="11" fill="#a78bfa">e.g. ('reading', 'sports', 'coding')</text>
+      <text x="0" y="213" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#8d0b4f">SET('val1', 'val2')</text>
+      <text x="0" y="229" font-family="'Segoe UI', sans-serif" font-size="11" fill="#2d3c4e">Multiple selections from predefined list</text>
+      <text x="0" y="244" font-family="'Segoe UI', sans-serif" font-size="11" fill="#47566b">Stores combinations / flags</text>
+      <text x="0" y="259" font-family="'Segoe UI', sans-serif" font-size="11" fill="#210575">e.g. ('reading', 'sports', 'coding')</text>
     </g>
   </g>
 
   <!-- Bottom Legend / Note -->
-  <rect x="50" y="770" width="1100" height="20" rx="4" fill="#1e293b" />
+  <rect x="50" y="770" width="1100" height="20" rx="4" fill="#e2e7f0" />
   <text x="600" y="784" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="11.5" fill="#64748b">
     💡 Pro-Tip: Use DECIMAL for monetary currency, VARCHAR for variable text, INT/BIGINT for primary keys, and TIMESTAMP for audit trails.
   </text>

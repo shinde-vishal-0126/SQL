@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="1000" height="440" fill="#f8fafc" rx="12"/>
+  <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a">Trigger vs Event vs Procedure — Who Starts It?</text>
+  <text x="500" y="62" text-anchor="middle" font-size="13" fill="#64748b">Procedure = you call it · Trigger = data change starts it · Event = the clock starts it</text>
+
+  <!-- procedure -->
+  <rect x="20" y="85" width="310" height="250" rx="12" fill="#ffffff" stroke="#c4b5fd" stroke-width="2"/>
+  <rect x="20" y="85" width="310" height="44" rx="12" fill="#ede9fe"/>
+  <text x="175" y="113" text-anchor="middle" font-size="16" font-weight="800" fill="#6d28d9">📦 PROCEDURE</text>
+  <rect x="45" y="150" width="110" height="40" rx="8" fill="#f5f3ff" stroke="#7c3aed"/><text x="100" y="175" text-anchor="middle" font-size="12" font-weight="700" fill="#6d28d9">👤 You</text>
+  <line x1="157" y1="170" x2="193" y2="170" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <rect x="197" y="150" width="110" height="40" rx="8" fill="#ffffff" stroke="#94a3b8"/><text x="252" y="175" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#334155">CALL sp();</text>
+  <text x="40" y="222" font-size="12" fill="#334155">• Started manually (CALL)</text>
+  <text x="40" y="244" font-size="12" fill="#334155">• Parameters IN / OUT / INOUT</text>
+  <text x="40" y="266" font-size="12" fill="#334155">• Can COMMIT / ROLLBACK</text>
+  <text x="40" y="288" font-size="12" fill="#334155">• e.g. TransferFunds(1, 2, 500)</text>
+
+  <!-- trigger -->
+  <rect x="345" y="85" width="310" height="250" rx="12" fill="#ffffff" stroke="#fcd34d" stroke-width="2"/>
+  <rect x="345" y="85" width="310" height="44" rx="12" fill="#fef3c7"/>
+  <text x="500" y="113" text-anchor="middle" font-size="16" font-weight="800" fill="#b45309">⚡ TRIGGER</text>
+  <rect x="365" y="150" width="130" height="40" rx="8" fill="#fffbeb" stroke="#d97706"/><text x="430" y="175" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#b45309">INSERT/UPDATE/DELETE</text>
+  <line x1="497" y1="170" x2="533" y2="170" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <rect x="537" y="150" width="100" height="40" rx="8" fill="#ffffff" stroke="#94a3b8"/><text x="587" y="175" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">fires</text>
+  <text x="365" y="222" font-size="12" fill="#334155">• Starts on a data change (row by row)</text>
+  <text x="365" y="244" font-size="12" fill="#334155">• Runs immediately, BEFORE / AFTER</text>
+  <text x="365" y="266" font-size="12" fill="#334155">• Uses OLD / NEW, no COMMIT</text>
+  <text x="365" y="288" font-size="12" fill="#334155">• e.g. audit every salary change</text>
+
+  <!-- event -->
+  <rect x="670" y="85" width="310" height="250" rx="12" fill="#ffffff" stroke="#86efac" stroke-width="2"/>
+  <rect x="670" y="85" width="310" height="44" rx="12" fill="#dcfce7"/>
+  <text x="825" y="113" text-anchor="middle" font-size="16" font-weight="800" fill="#15803d">⏰ EVENT</text>
+  <rect x="690" y="150" width="130" height="40" rx="8" fill="#f0fdf4" stroke="#16a34a"/><text x="755" y="175" text-anchor="middle" font-size="12" font-weight="700" fill="#15803d">🕑 02:00 daily</text>
+  <line x1="822" y1="170" x2="858" y2="170" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <rect x="862" y="150" width="100" height="40" rx="8" fill="#ffffff" stroke="#94a3b8"/><text x="912" y="175" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">runs</text>
+  <text x="690" y="222" font-size="12" fill="#334155">• Starts on a schedule (time)</text>
+  <text x="690" y="244" font-size="12" fill="#334155">• One-time (AT) or recurring (EVERY)</text>
+  <text x="690" y="266" font-size="12" fill="#334155">• Needs event_scheduler = ON</text>
+  <text x="690" y="288" font-size="12" fill="#334155">• e.g. delete old logs every night</text>
+
+  <rect x="20" y="350" width="960" height="75" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="40" y="376" font-size="13" fill="#334155"><tspan font-weight="800">Order placed</tspan> → TRIGGER reduces stock immediately.</text>
+  <text x="40" y="398" font-size="13" fill="#334155"><tspan font-weight="800">Midnight</tspan> → EVENT writes the daily sales summary.</text>
+  <text x="40" y="418" font-size="13" fill="#334155"><tspan font-weight="800">Admin clicks "Transfer"</tspan> → app runs CALL TransferFunds(...) (PROCEDURE).</text>
+</svg>

@@ -1,26 +1,26 @@
 ﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200">
-    <rect width="600" height="200" fill="#1E1E1E" rx="10"/>
-    <text x="300" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#DCDCAA" text-anchor="middle">Function Return Types</text>
+    <rect width="600" height="200" fill="#eeeeee" rx="10"/>
+    <text x="300" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#575724" text-anchor="middle">Function Return Types</text>
     
-    <text x="200" y="70" font-family="Courier New" font-size="16" font-weight="bold" fill="#4FC1FF" text-anchor="end">DATEPART</text>
-    <path d="M 220 65 L 280 65" fill="none" stroke="#3E3E42" stroke-width="3" marker-end="url(#arrow_gray)"/>
-    <text x="320" y="70" font-family="Arial" font-size="16" font-weight="bold" fill="#E0E0E0" text-anchor="start">INT</text>
+    <text x="200" y="70" font-family="Courier New" font-size="16" font-weight="bold" fill="#0072b0" text-anchor="end">DATEPART</text>
+    <path d="M 220 65 L 280 65" fill="none" stroke="#b1b1b6" stroke-width="3" marker-end="url(#arrow_gray)"/>
+    <text x="320" y="70" font-family="Arial" font-size="16" font-weight="bold" fill="#1f1f1f" text-anchor="start">INT</text>
 
-    <text x="200" y="100" font-family="Courier New" font-size="16" font-weight="bold" fill="#4FC1FF" text-anchor="end">DATENAME</text>
-    <path d="M 220 95 L 280 95" fill="none" stroke="#3E3E42" stroke-width="3" marker-end="url(#arrow_gray)"/>
-    <text x="320" y="100" font-family="Arial" font-size="16" font-weight="bold" fill="#E0E0E0" text-anchor="start">STRING</text>
+    <text x="200" y="100" font-family="Courier New" font-size="16" font-weight="bold" fill="#0072b0" text-anchor="end">DATENAME</text>
+    <path d="M 220 95 L 280 95" fill="none" stroke="#b1b1b6" stroke-width="3" marker-end="url(#arrow_gray)"/>
+    <text x="320" y="100" font-family="Arial" font-size="16" font-weight="bold" fill="#1f1f1f" text-anchor="start">STRING</text>
 
-    <text x="200" y="130" font-family="Courier New" font-size="16" font-weight="bold" fill="#4FC1FF" text-anchor="end">DATETRUNC</text>
-    <path d="M 220 125 L 280 125" fill="none" stroke="#3E3E42" stroke-width="3" marker-end="url(#arrow_gray)"/>
-    <text x="320" y="130" font-family="Arial" font-size="16" font-weight="bold" fill="#E0E0E0" text-anchor="start">DATETIME</text>
+    <text x="200" y="130" font-family="Courier New" font-size="16" font-weight="bold" fill="#0072b0" text-anchor="end">DATETRUNC</text>
+    <path d="M 220 125 L 280 125" fill="none" stroke="#b1b1b6" stroke-width="3" marker-end="url(#arrow_gray)"/>
+    <text x="320" y="130" font-family="Arial" font-size="16" font-weight="bold" fill="#1f1f1f" text-anchor="start">DATETIME</text>
 
-    <text x="200" y="160" font-family="Courier New" font-size="16" font-weight="bold" fill="#4FC1FF" text-anchor="end">EOMONTH</text>
-    <path d="M 220 155 L 280 155" fill="none" stroke="#3E3E42" stroke-width="3" marker-end="url(#arrow_gray)"/>
-    <text x="320" y="160" font-family="Arial" font-size="16" font-weight="bold" fill="#E0E0E0" text-anchor="start">DATE</text>
+    <text x="200" y="160" font-family="Courier New" font-size="16" font-weight="bold" fill="#0072b0" text-anchor="end">EOMONTH</text>
+    <path d="M 220 155 L 280 155" fill="none" stroke="#b1b1b6" stroke-width="3" marker-end="url(#arrow_gray)"/>
+    <text x="320" y="160" font-family="Arial" font-size="16" font-weight="bold" fill="#1f1f1f" text-anchor="start">DATE</text>
 
     <defs>
         <marker id="arrow_gray" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L9,3 z" fill="#3E3E42" />
+            <path d="M0,0 L0,6 L9,3 z" fill="#e3e3e5" />
         </marker>
     </defs>
 </svg>

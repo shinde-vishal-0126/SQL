@@ -2,10 +2,10 @@
   <defs>
     <!-- Shadows -->
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#e7ebf6" flood-opacity="0.08"/>
     </filter>
     <filter id="topShadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.18"/>
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#f9f9f9" flood-opacity="0.18"/>
     </filter>
 
     <!-- Gradients -->
@@ -16,9 +16,9 @@
     </linearGradient>
 
     <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0f172a"/>
-      <stop offset="50%" stop-color="#1e293b"/>
-      <stop offset="100%" stop-color="#334155"/>
+      <stop offset="0%" stop-color="#e7ebf6"/>
+      <stop offset="50%" stop-color="#e2e7f0"/>
+      <stop offset="100%" stop-color="#d2dae4"/>
     </linearGradient>
 
     <linearGradient id="gradWildcard" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -27,8 +27,8 @@
     </linearGradient>
 
     <linearGradient id="gradProject" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#059669"/>
-      <stop offset="100%" stop-color="#10b981"/>
+      <stop offset="0%" stop-color="#bafde8"/>
+      <stop offset="100%" stop-color="#bdf9e5"/>
     </linearGradient>
 
     <!-- Markers -->
@@ -36,17 +36,17 @@
       <path d="M0,0 L0,6 L6,3 z" fill="#2563eb"/>
     </marker>
     <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L6,3 z" fill="#059669"/>
+      <path d="M0,0 L0,6 L6,3 z" fill="#bafde8"/>
     </marker>
   </defs>
 
   <style>
-    .main-title { font-family: 'Segoe UI', system-ui, sans-serif; font-weight: 900; font-size: 22px; fill: #ffffff; }
-    .sub-title { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; fill: #94a3b8; }
-    .card-title { font-family: 'Segoe UI', system-ui, sans-serif; font-weight: 800; font-size: 15px; fill: #ffffff; }
+    .main-title { font-family: 'Segoe UI', system-ui, sans-serif; font-weight: 900; font-size: 22px; fill: #1f1f1f; }
+    .sub-title { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; fill: #47566b; }
+    .card-title { font-family: 'Segoe UI', system-ui, sans-serif; font-weight: 800; font-size: 15px; fill: #1f1f1f; }
     .badge { font-family: 'Segoe UI', monospace; font-size: 10px; font-weight: 800; }
     .code-sql { font-family: 'Consolas', monospace; font-size: 12px; font-weight: 700; }
-    .tbl-hdr { font-family: 'Segoe UI', sans-serif; font-weight: 800; font-size: 10.5px; fill: #ffffff; }
+    .tbl-hdr { font-family: 'Segoe UI', sans-serif; font-weight: 800; font-size: 10.5px; fill: #1f1f1f; }
     .cell-txt { font-family: 'Segoe UI', sans-serif; font-size: 10.5px; fill: #1e293b; }
     .body-desc { font-family: 'Segoe UI', sans-serif; font-size: 12px; fill: #334155; line-height: 1.4; }
     .callout-title { font-family: 'Segoe UI', sans-serif; font-weight: 800; font-size: 11px; }
@@ -54,7 +54,7 @@
 
   <!-- Background -->
   <rect width="100%" height="100%" fill="url(#bgCanvas)" rx="16"/>
-  <rect width="100%" height="100%" fill="none" stroke="#cbd5e1" stroke-width="2" rx="16"/>
+  <rect width="100%" height="100%" fill="none" stroke="#2d3c4e" stroke-width="2" rx="16"/>
 
   <!-- Top Banner -->
   <g filter="url(#topShadow)">
@@ -65,22 +65,22 @@
 
   <!-- ================= LEFT CARD: WHOLE DATA (SELECT *) ================= -->
   <g filter="url(#shadow)">
-    <rect x="30" y="112" width="530" height="520" rx="12" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
+    <rect x="30" y="112" width="530" height="520" rx="12" fill="#ffffff" stroke="#023779" stroke-width="2"/>
     <!-- Card Header -->
     <path d="M 30 124 Q 30 112 42 112 L 548 112 Q 560 112 560 124 L 560 155 L 30 155 Z" fill="url(#gradWildcard)"/>
     <text x="48" y="140" class="card-title">1. GET WHOLE DATA (ALL COLUMNS)</text>
     <rect x="420" y="122" width="125" height="24" rx="6" fill="#ffffff" fill-opacity="0.25"/>
-    <text x="430" y="138" class="badge" fill="#ffffff">WILDCARD (*)</text>
+    <text x="430" y="138" class="badge" fill="#1f1f1f">WILDCARD (*)</text>
 
     <!-- Query Display Box -->
-    <rect x="45" y="170" width="500" height="55" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
-    <text x="60" y="190" class="badge" fill="#1d4ed8">SQL QUERY:</text>
+    <rect x="45" y="170" width="500" height="55" rx="8" fill="#eff6ff" stroke="#023779"/>
+    <text x="60" y="190" class="badge" fill="#1944bd">SQL QUERY:</text>
     <text x="60" y="210" class="code-sql" fill="#1e40af">SELECT * FROM CUSTOMERS;</text>
 
     <!-- Visual Table Representation -->
-    <rect x="45" y="238" width="500" height="150" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
+    <rect x="45" y="238" width="500" height="150" rx="8" fill="#ffffff" stroke="#2a3a51"/>
     <!-- Table Header Row -->
-    <rect x="45" y="238" width="500" height="28" rx="8" fill="#1e293b"/>
+    <rect x="45" y="238" width="500" height="28" rx="8" fill="#e2e7f0"/>
     <text x="60" y="256" class="tbl-hdr">ID</text>
     <text x="110" y="256" class="tbl-hdr">FIRST_NAME</text>
     <text x="215" y="256" class="tbl-hdr">LAST_NAME</text>
@@ -95,7 +95,7 @@
     <text x="215" y="283" class="cell-txt">Sharma</text>
     <text x="315" y="283" class="cell-txt">India</text>
     <text x="410" y="283" class="cell-txt">950</text>
-    <text x="480" y="283" class="cell-txt" fill="#16a34a" font-weight="700">Active</text>
+    <text x="480" y="283" class="cell-txt" fill="#139041" font-weight="700">Active</text>
 
     <rect x="45" y="292" width="500" height="26" fill="#ffffff"/>
     <text x="60" y="309" class="cell-txt" font-weight="700">2</text>
@@ -103,7 +103,7 @@
     <text x="215" y="309" class="cell-txt">Patel</text>
     <text x="315" y="309" class="cell-txt">India</text>
     <text x="410" y="309" class="cell-txt">820</text>
-    <text x="480" y="309" class="cell-txt" fill="#16a34a" font-weight="700">Active</text>
+    <text x="480" y="309" class="cell-txt" fill="#139041" font-weight="700">Active</text>
 
     <rect x="45" y="318" width="500" height="26" fill="#f8fafc"/>
     <text x="60" y="335" class="cell-txt" font-weight="700">3</text>
@@ -119,35 +119,35 @@
     <text x="215" y="361" class="cell-txt">Singh</text>
     <text x="315" y="361" class="cell-txt">USA</text>
     <text x="410" y="361" class="cell-txt">600</text>
-    <text x="480" y="361" class="cell-txt" fill="#16a34a" font-weight="700">Active</text>
+    <text x="480" y="361" class="cell-txt" fill="#139041" font-weight="700">Active</text>
 
     <!-- Characteristics Box -->
-    <rect x="45" y="400" width="500" height="115" rx="8" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <rect x="45" y="400" width="500" height="115" rx="8" fill="#f1f5f9" stroke="#2d3c4e"/>
     <text x="58" y="418" class="callout-title" fill="#1e3a8a">HOW IT WORKS &amp; BEHAVIOR:</text>
     <text x="58" y="438" class="body-desc">• The asterisk (*) instructs the engine to fetch ALL columns in schema order.</text>
     <text x="58" y="458" class="body-desc">• Great for quick data exploration, debugging, and schema inspection.</text>
     <text x="58" y="478" class="body-desc">• ⚠️ Not recommended in production: transfers unneeded columns over network.</text>
-    <text x="58" y="500" class="badge" fill="#2563eb">Result Set: 100% of all table attributes returned</text>
+    <text x="58" y="500" class="badge" fill="#124ac4">Result Set: 100% of all table attributes returned</text>
   </g>
 
   <!-- ================= RIGHT CARD: SPECIFIC COLUMNS (PROJECTION) ================= -->
   <g filter="url(#shadow)">
-    <rect x="600" y="112" width="530" height="520" rx="12" fill="#ffffff" stroke="#a7f3d0" stroke-width="2"/>
+    <rect x="600" y="112" width="530" height="520" rx="12" fill="#ffffff" stroke="#0f6c41" stroke-width="2"/>
     <!-- Card Header -->
     <path d="M 600 124 Q 600 112 612 112 L 1118 112 Q 1130 112 1130 124 L 1130 155 L 600 155 Z" fill="url(#gradProject)"/>
     <text x="618" y="140" class="card-title">2. GET ONLY REQUIRED DATA (PROJECTION)</text>
     <rect x="980" y="122" width="135" height="24" rx="6" fill="#ffffff" fill-opacity="0.25"/>
-    <text x="990" y="138" class="badge" fill="#ffffff">BEST PRACTICE</text>
+    <text x="990" y="138" class="badge" fill="#1f1f1f">BEST PRACTICE</text>
 
     <!-- Query Display Box -->
-    <rect x="615" y="170" width="500" height="55" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+    <rect x="615" y="170" width="500" height="55" rx="8" fill="#f0fdf4" stroke="#0d6e2f"/>
     <text x="630" y="190" class="badge" fill="#15803d">SQL QUERY:</text>
     <text x="630" y="210" class="code-sql" fill="#166534">SELECT ID, FIRST_NAME, COUNTRY, SCORE FROM CUSTOMERS;</text>
 
     <!-- Visual Table Representation (Projected Columns Only) -->
-    <rect x="615" y="238" width="500" height="150" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
+    <rect x="615" y="238" width="500" height="150" rx="8" fill="#ffffff" stroke="#2a3a51"/>
     <!-- Table Header Row -->
-    <rect x="615" y="238" width="500" height="28" rx="8" fill="#065f46"/>
+    <rect x="615" y="238" width="500" height="28" rx="8" fill="#d9f5ed"/>
     <text x="635" y="256" class="tbl-hdr">ID</text>
     <text x="710" y="256" class="tbl-hdr">FIRST_NAME</text>
     <text x="840" y="256" class="tbl-hdr">COUNTRY</text>
@@ -179,7 +179,7 @@
     <text x="980" y="361" class="cell-txt">600</text>
 
     <!-- Characteristics Box -->
-    <rect x="615" y="400" width="500" height="115" rx="8" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <rect x="615" y="400" width="500" height="115" rx="8" fill="#f1f5f9" stroke="#2d3c4e"/>
     <text x="628" y="418" class="callout-title" fill="#065f46">HOW IT WORKS &amp; BEHAVIOR:</text>
     <text x="628" y="438" class="body-desc">• Fetches ONLY the columns explicitly listed, ignoring LAST_NAME &amp; STATUS.</text>
     <text x="628" y="458" class="body-desc">• Dramatically reduces I/O, network latency, and client memory allocation.</text>

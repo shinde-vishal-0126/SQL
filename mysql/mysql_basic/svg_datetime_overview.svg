@@ -1,32 +1,32 @@
 ﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 250">
-    <rect width="800" height="250" fill="#1E1E1E" rx="10"/>
-    <text x="400" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#DCDCAA" text-anchor="middle">Date &amp; Time Functions Overview</text>
+    <rect width="800" height="250" fill="#eeeeee" rx="10"/>
+    <text x="400" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#575724" text-anchor="middle">Date &amp; Time Functions Overview</text>
     
     <!-- Part Extraction -->
-    <rect x="50" y="80" width="160" height="130" rx="5" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2"/>
-    <text x="130" y="105" font-family="Arial" font-size="16" font-weight="bold" fill="#4FC1FF" text-anchor="middle">Part Extraction</text>
-    <text x="130" y="130" font-family="Courier New" font-size="14" fill="#E0E0E0" text-anchor="middle">YEAR(), MONTH()</text>
-    <text x="130" y="150" font-family="Courier New" font-size="14" fill="#E0E0E0" text-anchor="middle">DAY(), HOUR()</text>
-    <text x="130" y="170" font-family="Courier New" font-size="14" fill="#E0E0E0" text-anchor="middle">DATEPART()</text>
+    <rect x="50" y="80" width="160" height="130" rx="5" fill="#e8e8e9" stroke="#0072b0" stroke-width="2"/>
+    <text x="130" y="105" font-family="Arial" font-size="16" font-weight="bold" fill="#0072b0" text-anchor="middle">Part Extraction</text>
+    <text x="130" y="130" font-family="Courier New" font-size="14" fill="#1f1f1f" text-anchor="middle">YEAR(), MONTH()</text>
+    <text x="130" y="150" font-family="Courier New" font-size="14" fill="#1f1f1f" text-anchor="middle">DAY(), HOUR()</text>
+    <text x="130" y="170" font-family="Courier New" font-size="14" fill="#1f1f1f" text-anchor="middle">DATEPART()</text>
 
     <!-- Formatting & Casting -->
-    <rect x="230" y="80" width="160" height="130" rx="5" fill="#2D2D30" stroke="#4EC9B0" stroke-width="2"/>
-    <text x="310" y="105" font-family="Arial" font-size="16" font-weight="bold" fill="#4EC9B0" text-anchor="middle">Formatting</text>
-    <text x="310" y="130" font-family="Courier New" font-size="14" fill="#E0E0E0" text-anchor="middle">DATE_FORMAT()</text>
-    <text x="310" y="150" font-family="Courier New" font-size="14" fill="#E0E0E0" text-anchor="middle">STR_TO_DATE()</text>
-    <text x="310" y="170" font-family="Courier New" font-size="14" fill="#E0E0E0" text-anchor="middle">CAST()</text>
+    <rect x="230" y="80" width="160" height="130" rx="5" fill="#e8e8e9" stroke="#267d6b" stroke-width="2"/>
+    <text x="310" y="105" font-family="Arial" font-size="16" font-weight="bold" fill="#267d6b" text-anchor="middle">Formatting</text>
+    <text x="310" y="130" font-family="Courier New" font-size="14" fill="#1f1f1f" text-anchor="middle">DATE_FORMAT()</text>
+    <text x="310" y="150" font-family="Courier New" font-size="14" fill="#1f1f1f" text-anchor="middle">STR_TO_DATE()</text>
+    <text x="310" y="170" font-family="Courier New" font-size="14" fill="#1f1f1f" text-anchor="middle">CAST()</text>
 
     <!-- Calculations -->
-    <rect x="410" y="80" width="160" height="130" rx="5" fill="#2D2D30" stroke="#C586C0" stroke-width="2"/>
-    <text x="490" y="105" font-family="Arial" font-size="16" font-weight="bold" fill="#C586C0" text-anchor="middle">Calculations</text>
-    <text x="490" y="130" font-family="Courier New" font-size="14" fill="#E0E0E0" text-anchor="middle">DATE_ADD()</text>
-    <text x="490" y="150" font-family="Courier New" font-size="14" fill="#E0E0E0" text-anchor="middle">DATE_SUB()</text>
-    <text x="490" y="170" font-family="Courier New" font-size="14" fill="#E0E0E0" text-anchor="middle">DATEDIFF()</text>
+    <rect x="410" y="80" width="160" height="130" rx="5" fill="#e8e8e9" stroke="#793a74" stroke-width="2"/>
+    <text x="490" y="105" font-family="Arial" font-size="16" font-weight="bold" fill="#793a74" text-anchor="middle">Calculations</text>
+    <text x="490" y="130" font-family="Courier New" font-size="14" fill="#1f1f1f" text-anchor="middle">DATE_ADD()</text>
+    <text x="490" y="150" font-family="Courier New" font-size="14" fill="#1f1f1f" text-anchor="middle">DATE_SUB()</text>
+    <text x="490" y="170" font-family="Courier New" font-size="14" fill="#1f1f1f" text-anchor="middle">DATEDIFF()</text>
 
     <!-- Validation -->
-    <rect x="590" y="80" width="160" height="130" rx="5" fill="#2D2D30" stroke="#F44747" stroke-width="2"/>
-    <text x="670" y="105" font-family="Arial" font-size="16" font-weight="bold" fill="#F44747" text-anchor="middle">Validation/Source</text>
-    <text x="670" y="130" font-family="Courier New" font-size="14" fill="#E0E0E0" text-anchor="middle">NOW()</text>
-    <text x="670" y="150" font-family="Courier New" font-size="14" fill="#E0E0E0" text-anchor="middle">CURDATE()</text>
-    <text x="670" y="170" font-family="Courier New" font-size="14" fill="#E0E0E0" text-anchor="middle">ISDATE() [SQL Server]</text>
+    <rect x="590" y="80" width="160" height="130" rx="5" fill="#e8e8e9" stroke="#b80b0b" stroke-width="2"/>
+    <text x="670" y="105" font-family="Arial" font-size="16" font-weight="bold" fill="#b80b0b" text-anchor="middle">Validation/Source</text>
+    <text x="670" y="130" font-family="Courier New" font-size="14" fill="#1f1f1f" text-anchor="middle">NOW()</text>
+    <text x="670" y="150" font-family="Courier New" font-size="14" fill="#1f1f1f" text-anchor="middle">CURDATE()</text>
+    <text x="670" y="170" font-family="Courier New" font-size="14" fill="#1f1f1f" text-anchor="middle">ISDATE() [SQL Server]</text>
 </svg>

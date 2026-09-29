@@ -1,39 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300">
-    <rect width="800" height="300" fill="#1E1E1E" rx="10"/>
+    <rect width="800" height="300" fill="#eeeeee" rx="10"/>
     
-    <rect x="250" y="20" width="300" height="40" fill="#FFD700" stroke="#1E1E1E" stroke-width="2" rx="5"/>
+    <rect x="250" y="20" width="300" height="40" fill="#FFD700" stroke="#bebebe" stroke-width="2" rx="5"/>
     <text x="400" y="45" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1E1E1E" text-anchor="middle">CTE Syntax</text>
     
     <!-- CTE Definition Box -->
-    <rect x="150" y="80" width="300" height="100" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2" rx="5"/>
-    <text x="170" y="110" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#4FC1FF">WITH</text>
-    <rect x="220" y="95" width="100" height="20" fill="#1E1E1E" stroke="#E0E0E0" stroke-width="1"/>
-    <text x="270" y="110" font-family="Consolas, monospace" font-size="14" fill="#E0E0E0" text-anchor="middle">CTE-Name</text>
-    <text x="330" y="110" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#4FC1FF">AS (</text>
+    <rect x="150" y="80" width="300" height="100" fill="#e8e8e9" stroke="#0072b0" stroke-width="2" rx="5"/>
+    <text x="170" y="110" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#0072b0">WITH</text>
+    <rect x="220" y="95" width="100" height="20" fill="#eeeeee" stroke="#333333" stroke-width="1"/>
+    <text x="270" y="110" font-family="Consolas, monospace" font-size="14" fill="#1f1f1f" text-anchor="middle">CTE-Name</text>
+    <text x="330" y="110" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#0072b0">AS (</text>
     
-    <text x="190" y="135" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#4EC9B0">SELECT ...</text>
-    <text x="190" y="155" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#4EC9B0">FROM ...</text>
-    <text x="170" y="175" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#4FC1FF">)</text>
+    <text x="190" y="135" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#267d6b">SELECT ...</text>
+    <text x="190" y="155" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#267d6b">FROM ...</text>
+    <text x="170" y="175" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#0072b0">)</text>
     
     <!-- CTE Usage Box -->
-    <rect x="150" y="200" width="300" height="80" fill="#2D2D30" stroke="#FFD700" stroke-width="2" rx="5"/>
-    <text x="170" y="230" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#4EC9B0">SELECT ...</text>
-    <text x="170" y="250" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#4EC9B0">FROM</text>
-    <rect x="220" y="235" width="100" height="20" fill="#1E1E1E" stroke="#E0E0E0" stroke-width="1"/>
-    <text x="270" y="250" font-family="Consolas, monospace" font-size="14" fill="#E0E0E0" text-anchor="middle">CTE-Name</text>
+    <rect x="150" y="200" width="300" height="80" fill="#e8e8e9" stroke="#a38a00" stroke-width="2" rx="5"/>
+    <text x="170" y="230" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#267d6b">SELECT ...</text>
+    <text x="170" y="250" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#267d6b">FROM</text>
+    <rect x="220" y="235" width="100" height="20" fill="#eeeeee" stroke="#333333" stroke-width="1"/>
+    <text x="270" y="250" font-family="Consolas, monospace" font-size="14" fill="#1f1f1f" text-anchor="middle">CTE-Name</text>
     
     <!-- Arrows and Labels -->
-    <path d="M 450 130 L 520 130" fill="none" stroke="#F44747" stroke-dasharray="4,4" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 450 130 L 520 130" fill="none" stroke="#b80b0b" stroke-dasharray="4,4" stroke-width="2" marker-end="url(#arrow)"/>
     <polygon points="450,130 460,125 460,135" fill="#F44747"/>
-    <text x="540" y="125" font-family="Arial" font-size="16" font-weight="bold" fill="#4FC1FF">CTE Query</text>
-    <text x="540" y="145" font-family="Arial" font-size="12" font-style="italic" fill="#4EC9B0">- CTE Definition -</text>
+    <text x="540" y="125" font-family="Arial" font-size="16" font-weight="bold" fill="#0072b0">CTE Query</text>
+    <text x="540" y="145" font-family="Arial" font-size="12" font-style="italic" fill="#267d6b">- CTE Definition -</text>
     
-    <path d="M 450 240 L 520 240" fill="none" stroke="#F44747" stroke-dasharray="4,4" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 450 240 L 520 240" fill="none" stroke="#b80b0b" stroke-dasharray="4,4" stroke-width="2" marker-end="url(#arrow)"/>
     <polygon points="450,240 460,235 460,245" fill="#F44747"/>
-    <text x="540" y="235" font-family="Arial" font-size="16" font-weight="bold" fill="#FFD700">Main Query</text>
-    <text x="540" y="255" font-family="Arial" font-size="12" font-style="italic" fill="#4EC9B0">- CTE Usage -</text>
+    <text x="540" y="235" font-family="Arial" font-size="16" font-weight="bold" fill="#a38a00">Main Query</text>
+    <text x="540" y="255" font-family="Arial" font-size="12" font-style="italic" fill="#267d6b">- CTE Usage -</text>
     
     <!-- Connection Arc -->
-    <path d="M 330 110 Q 420 170 330 240" fill="none" stroke="#C586C0" stroke-dasharray="4,4" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 330 110 Q 420 170 330 240" fill="none" stroke="#793a74" stroke-dasharray="4,4" stroke-width="2" marker-end="url(#arrow)"/>
     <polygon points="330,240 338,235 338,245" fill="#C586C0"/>
 </svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="1000" height="500" fill="#f8fafc" rx="12"/>
+  <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a">MySQL Events: One-Time vs Recurring</text>
+  <text x="500" y="62" text-anchor="middle" font-size="13" fill="#64748b">A scheduled job inside the database (like cron) — needs event_scheduler = ON</text>
+
+  <!-- one-time -->
+  <rect x="20" y="80" width="470" height="330" rx="12" fill="#ffffff" stroke="#c4b5fd" stroke-width="2"/>
+  <rect x="20" y="80" width="470" height="46" rx="12" fill="#ede9fe"/>
+  <text x="255" y="110" text-anchor="middle" font-size="17" font-weight="800" fill="#6d28d9">⏰ One-Time Event (AT)</text>
+  <line x1="50" y1="185" x2="460" y2="185" stroke="#94a3b8" stroke-width="3"/>
+  <circle cx="255" cy="185" r="12" fill="#7c3aed"/>
+  <text x="255" y="165" text-anchor="middle" font-size="12" font-weight="700" fill="#6d28d9">runs once</text>
+  <text x="255" y="212" text-anchor="middle" font-size="11" fill="#64748b">2025-10-01 00:00</text>
+  <text x="80" y="212" text-anchor="middle" font-size="11" fill="#94a3b8">Sep 30</text>
+  <text x="430" y="212" text-anchor="middle" font-size="11" fill="#94a3b8">Oct 2</text>
+  <rect x="40" y="232" width="430" height="80" rx="8" fill="#f5f3ff" stroke="#c4b5fd"/>
+  <text x="55" y="254" font-size="12" font-family="Consolas, monospace" fill="#6d28d9">CREATE EVENT archive_old_orders</text>
+  <text x="55" y="272" font-size="12" font-family="Consolas, monospace" fill="#6d28d9">ON SCHEDULE AT '2025-10-01 00:00:00'</text>
+  <text x="55" y="290" font-size="12" font-family="Consolas, monospace" fill="#6d28d9">DO INSERT INTO order_archive SELECT ...;</text>
+  <text x="55" y="340" font-size="12" fill="#334155">• Dropped automatically after it runs</text>
+  <text x="55" y="360" font-size="12" fill="#334155">• Use for: migration, one-off cleanup, one report</text>
+  <text x="55" y="380" font-size="12" fill="#334155">• Keep it: ON COMPLETION PRESERVE</text>
+
+  <!-- recurring -->
+  <rect x="510" y="80" width="470" height="330" rx="12" fill="#ffffff" stroke="#86efac" stroke-width="2"/>
+  <rect x="510" y="80" width="470" height="46" rx="12" fill="#dcfce7"/>
+  <text x="745" y="110" text-anchor="middle" font-size="17" font-weight="800" fill="#15803d">🔁 Recurring Event (EVERY)</text>
+  <line x1="540" y1="185" x2="950" y2="185" stroke="#94a3b8" stroke-width="3"/>
+  <g fill="#16a34a"><circle cx="580" cy="185" r="10"/><circle cx="670" cy="185" r="10"/><circle cx="760" cy="185" r="10"/><circle cx="850" cy="185" r="10"/><circle cx="940" cy="185" r="6" opacity="0.5"/></g>
+  <text x="745" y="165" text-anchor="middle" font-size="12" font-weight="700" fill="#15803d">runs every day at 02:00</text>
+  <g font-size="11" fill="#64748b" text-anchor="middle"><text x="580" y="212">Sep 26</text><text x="670" y="212">Sep 27</text><text x="760" y="212">Sep 28</text><text x="850" y="212">Sep 29</text><text x="935" y="212">…</text></g>
+  <rect x="530" y="232" width="430" height="80" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="545" y="254" font-size="12" font-family="Consolas, monospace" fill="#15803d">CREATE EVENT daily_cleanup</text>
+  <text x="545" y="272" font-size="12" font-family="Consolas, monospace" fill="#15803d">ON SCHEDULE EVERY 1 DAY STARTS '2025-09-26 02:00:00'</text>
+  <text x="545" y="290" font-size="12" font-family="Consolas, monospace" fill="#15803d">DO DELETE FROM sessions WHERE ... ;</text>
+  <text x="545" y="340" font-size="12" fill="#334155">• Runs until dropped / disabled / ENDS time</text>
+  <text x="545" y="360" font-size="12" fill="#334155">• Use for: daily cleanup, summaries, reminders</text>
+  <text x="545" y="380" font-size="12" fill="#334155">• Change it: ALTER EVENT ... ON SCHEDULE EVERY 12 HOUR</text>
+
+  <rect x="20" y="425" width="960" height="60" rx="10" fill="#fffbeb" stroke="#fcd34d"/>
+  <text x="500" y="450" text-anchor="middle" font-size="13" fill="#92400e"><tspan font-weight="800">Manage: </tspan>SHOW VARIABLES LIKE 'event_scheduler' · SET GLOBAL event_scheduler = ON · SHOW EVENTS</text>
+  <text x="500" y="472" text-anchor="middle" font-size="13" fill="#92400e">ALTER EVENT name DISABLE / ENABLE · DROP EVENT IF EXISTS name · many statements → DO BEGIN ... END or DO CALL proc()</text>
+</svg>

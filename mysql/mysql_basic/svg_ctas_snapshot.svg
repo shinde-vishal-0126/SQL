@@ -1,77 +1,77 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
-    <rect width="900" height="500" fill="#1E1E1E" rx="10"/>
+    <rect width="900" height="500" fill="#eeeeee" rx="10"/>
 
-    <text x="450" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFCC00" text-anchor="middle">Use Case 2: Creating a Persistent Snapshot</text>
+    <text x="450" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#a38300" text-anchor="middle">Use Case 2: Creating a Persistent Snapshot</text>
 
     <!-- The Problem (Top Section) -->
 
     <!-- Base Table (Orders) -->
-    <text x="250" y="100" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#4FC1FF" text-anchor="middle">ORDERS Table (Live)</text>
-    <rect x="150" y="120" width="200" height="120" fill="#FFF" stroke="#000" stroke-width="3"/>
+    <text x="250" y="100" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0072b0" text-anchor="middle">ORDERS Table (Live)</text>
+    <rect x="150" y="120" width="200" height="120" fill="#FFF" stroke="#c7c7c7" stroke-width="3"/>
     
     <!-- Grid -->
-    <line x1="150" y1="150" x2="350" y2="150" stroke="#000" stroke-width="2"/>
-    <line x1="150" y1="180" x2="350" y2="180" stroke="#000" stroke-width="2"/>
-    <line x1="150" y1="210" x2="350" y2="210" stroke="#000" stroke-width="2"/>
+    <line x1="150" y1="150" x2="350" y2="150" stroke="#c7c7c7" stroke-width="2"/>
+    <line x1="150" y1="180" x2="350" y2="180" stroke="#c7c7c7" stroke-width="2"/>
+    <line x1="150" y1="210" x2="350" y2="210" stroke="#c7c7c7" stroke-width="2"/>
     
-    <line x1="200" y1="120" x2="200" y2="240" stroke="#000" stroke-width="2"/>
-    <line x1="250" y1="120" x2="250" y2="240" stroke="#000" stroke-width="2"/>
-    <line x1="300" y1="120" x2="300" y2="240" stroke="#000" stroke-width="2"/>
+    <line x1="200" y1="120" x2="200" y2="240" stroke="#c7c7c7" stroke-width="2"/>
+    <line x1="250" y1="120" x2="250" y2="240" stroke="#c7c7c7" stroke-width="2"/>
+    <line x1="300" y1="120" x2="300" y2="240" stroke="#c7c7c7" stroke-width="2"/>
 
     <!-- Data -->
     <!-- Row 1 -->
-    <text x="175" y="142" font-family="Arial, sans-serif" font-size="16" fill="#F44747" text-anchor="middle">E</text>
+    <text x="175" y="142" font-family="Arial, sans-serif" font-size="16" fill="#b80b0b" text-anchor="middle">E</text>
     <text x="225" y="142" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">1</text>
     <text x="275" y="142" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">A</text>
-    <text x="325" y="142" font-family="Arial, sans-serif" font-size="16" fill="#F44747" text-anchor="middle">4</text>
+    <text x="325" y="142" font-family="Arial, sans-serif" font-size="16" fill="#b80b0b" text-anchor="middle">4</text>
     
     <!-- Row 2 -->
     <text x="175" y="172" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">B</text>
-    <text x="225" y="172" font-family="Arial, sans-serif" font-size="16" fill="#F44747" text-anchor="middle">5</text>
-    <text x="275" y="172" font-family="Arial, sans-serif" font-size="16" fill="#F44747" text-anchor="middle">D</text>
+    <text x="225" y="172" font-family="Arial, sans-serif" font-size="16" fill="#b80b0b" text-anchor="middle">5</text>
+    <text x="275" y="172" font-family="Arial, sans-serif" font-size="16" fill="#b80b0b" text-anchor="middle">D</text>
     <text x="325" y="172" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">9</text>
 
     <!-- Row 3 -->
-    <text x="175" y="202" font-family="Arial, sans-serif" font-size="16" fill="#F44747" text-anchor="middle">D</text>
+    <text x="175" y="202" font-family="Arial, sans-serif" font-size="16" fill="#b80b0b" text-anchor="middle">D</text>
     <text x="225" y="202" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">3</text>
     <text x="275" y="202" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">D</text>
     <text x="325" y="202" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">10</text>
 
     <!-- Updates icon -->
-    <path d="M 80 180 C 60 140 120 100 160 110" stroke="#F44747" stroke-width="4" fill="none" marker-end="url(#arrow_red)"/>
-    <text x="110" y="100" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#F44747" transform="rotate(-30 110,100)">UPDATES</text>
+    <path d="M 80 180 C 60 140 120 100 160 110" stroke="#b80b0b" stroke-width="4" fill="none" marker-end="url(#arrow_red)"/>
+    <text x="110" y="100" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#b80b0b" transform="rotate(-30 110,100)">UPDATES</text>
 
     <!-- Confused Analyst -->
-    <rect x="600" y="150" width="120" height="80" fill="#FFF" stroke="#000" stroke-width="3"/>
-    <rect x="580" y="230" width="160" height="20" fill="#CCC" stroke="#000" stroke-width="2"/>
+    <rect x="600" y="150" width="120" height="80" fill="#FFF" stroke="#c7c7c7" stroke-width="3"/>
+    <rect x="580" y="230" width="160" height="20" fill="#CCC" stroke="#c7c7c7" stroke-width="2"/>
     <circle cx="660" cy="190" r="15" fill="#4FC1FF"/>
     
-    <circle cx="660" cy="120" r="20" fill="#FFF" stroke="#000" stroke-width="2"/>
+    <circle cx="660" cy="120" r="20" fill="#FFF" stroke="#c7c7c7" stroke-width="2"/>
     <text x="660" y="125" font-family="Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">:-|</text>
-    <text x="610" y="100" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#F44747">??</text>
-    <text x="700" y="100" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#F44747">!</text>
+    <text x="610" y="100" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#b80b0b">??</text>
+    <text x="700" y="100" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#b80b0b">!</text>
 
     <!-- Problem Arrow -->
-    <path d="M 380 180 C 450 150 500 150 580 180" stroke="#F44747" stroke-width="4" stroke-dasharray="10,10" fill="none" marker-end="url(#arrow_red)"/>
-    <text x="480" y="160" font-family="Arial, sans-serif" font-size="14" fill="#F44747" text-anchor="middle">Data changing during analysis</text>
+    <path d="M 380 180 C 450 150 500 150 580 180" stroke="#b80b0b" stroke-width="4" stroke-dasharray="10,10" fill="none" marker-end="url(#arrow_red)"/>
+    <text x="480" y="160" font-family="Arial, sans-serif" font-size="14" fill="#b80b0b" text-anchor="middle">Data changing during analysis</text>
 
     <!-- The Solution (Bottom Section) -->
 
     <!-- CTAS Arrow -->
     <path d="M 250 260 L 350 330" stroke="#FF8C00" stroke-width="6" marker-end="url(#arrow_orange)"/>
-    <text x="280" y="320" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FF8C00" transform="rotate(35 280,320)">CTAS</text>
+    <text x="280" y="320" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#d67600" transform="rotate(35 280,320)">CTAS</text>
 
     <!-- Snapshot Table -->
-    <text x="450" y="470" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FF8C00" text-anchor="middle">SNAPSHOT TABLE (Static)</text>
+    <text x="450" y="470" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#d67600" text-anchor="middle">SNAPSHOT TABLE (Static)</text>
     <rect x="350" y="340" width="200" height="100" fill="#FFF" stroke="#FF8C00" stroke-width="4"/>
     
     <!-- Grid -->
-    <line x1="350" y1="370" x2="550" y2="370" stroke="#000" stroke-width="2"/>
-    <line x1="350" y1="400" x2="550" y2="400" stroke="#000" stroke-width="2"/>
+    <line x1="350" y1="370" x2="550" y2="370" stroke="#c7c7c7" stroke-width="2"/>
+    <line x1="350" y1="400" x2="550" y2="400" stroke="#c7c7c7" stroke-width="2"/>
     
-    <line x1="400" y1="340" x2="400" y2="440" stroke="#000" stroke-width="2"/>
-    <line x1="450" y1="340" x2="450" y2="440" stroke="#000" stroke-width="2"/>
-    <line x1="500" y1="340" x2="500" y2="440" stroke="#000" stroke-width="2"/>
+    <line x1="400" y1="340" x2="400" y2="440" stroke="#c7c7c7" stroke-width="2"/>
+    <line x1="450" y1="340" x2="450" y2="440" stroke="#c7c7c7" stroke-width="2"/>
+    <line x1="500" y1="340" x2="500" y2="440" stroke="#c7c7c7" stroke-width="2"/>
 
     <!-- Static Data (No Red) -->
     <!-- Row 1 -->
@@ -94,8 +94,8 @@
 
 
     <!-- Analyst correctly analyzing Snapshot -->
-    <path d="M 570 340 L 640 260" stroke="#4EC9B0" stroke-width="4" marker-end="url(#arrow_green)"/>
-    <text x="610" y="320" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4EC9B0" transform="rotate(-50 610,320)">ANALYZE</text>
+    <path d="M 570 340 L 640 260" stroke="#267d6b" stroke-width="4" marker-end="url(#arrow_green)"/>
+    <text x="610" y="320" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#267d6b" transform="rotate(-50 610,320)">ANALYZE</text>
 
 
     <defs>

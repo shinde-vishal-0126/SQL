@@ -1,60 +1,60 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650">
-    <rect width="1000" height="650" fill="#1E1E1E"/>
-    <text x="500" y="40" fill="#FFFFFF" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle">Non-Clustered Index B-Tree</text>
-    <text x="500" y="70" fill="#A0A0A0" font-family="Arial" font-size="16" text-anchor="middle">Leaf Level contains Pointers (Row ID/Primary Key), NOT actual Data Pages.</text>
+    <rect width="1000" height="650" fill="#eeeeee"/>
+    <text x="500" y="40" fill="#1f1f1f" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle">Non-Clustered Index B-Tree</text>
+    <text x="500" y="70" fill="#5f5f5f" font-family="Arial" font-size="16" text-anchor="middle">Leaf Level contains Pointers (Row ID/Primary Key), NOT actual Data Pages.</text>
 
     <!-- Root Node -->
-    <rect x="400" y="100" width="200" height="60" rx="5" fill="#3D3D40" stroke="#C586C0" stroke-width="2"/>
+    <rect x="400" y="100" width="200" height="60" rx="5" fill="#e2e2e3" stroke="#793a74" stroke-width="2"/>
     <rect x="400" y="100" width="200" height="20" fill="#C586C0" fill-opacity="0.2"/>
-    <text x="500" y="115" fill="#C586C0" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle">Root Node</text>
-    <text x="500" y="135" fill="#DCDCAA" font-family="Arial" font-size="14" text-anchor="middle">Points to Intermediate</text>
+    <text x="500" y="115" fill="#793a74" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle">Root Node</text>
+    <text x="500" y="135" fill="#575724" font-family="Arial" font-size="14" text-anchor="middle">Points to Intermediate</text>
 
     <!-- Intermediate Nodes -->
-    <rect x="250" y="200" width="200" height="60" rx="5" fill="#3D3D40" stroke="#C586C0" stroke-width="2"/>
+    <rect x="250" y="200" width="200" height="60" rx="5" fill="#e2e2e3" stroke="#793a74" stroke-width="2"/>
     <rect x="250" y="200" width="200" height="20" fill="#C586C0" fill-opacity="0.2"/>
-    <text x="350" y="215" fill="#C586C0" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle">Intermediate Node</text>
+    <text x="350" y="215" fill="#793a74" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle">Intermediate Node</text>
 
-    <rect x="550" y="200" width="200" height="60" rx="5" fill="#3D3D40" stroke="#C586C0" stroke-width="2"/>
+    <rect x="550" y="200" width="200" height="60" rx="5" fill="#e2e2e3" stroke="#793a74" stroke-width="2"/>
     <rect x="550" y="200" width="200" height="20" fill="#C586C0" fill-opacity="0.2"/>
-    <text x="650" y="215" fill="#C586C0" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle">Intermediate Node</text>
+    <text x="650" y="215" fill="#793a74" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle">Intermediate Node</text>
 
     <!-- Leaf Nodes (Index Pages with Pointers) -->
-    <rect x="250" y="320" width="200" height="100" rx="5" fill="#3D3D40" stroke="#C586C0" stroke-width="3"/>
+    <rect x="250" y="320" width="200" height="100" rx="5" fill="#e2e2e3" stroke="#793a74" stroke-width="3"/>
     <rect x="250" y="320" width="200" height="25" fill="#C586C0" fill-opacity="0.2"/>
-    <text x="350" y="338" fill="#C586C0" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Leaf Node (Index Page)</text>
-    <text x="350" y="365" fill="#4FC1FF" font-family="Arial" font-size="14" text-anchor="middle">ID 1 ➔ File 1, Page 102, Row 1</text>
-    <text x="350" y="390" fill="#4FC1FF" font-family="Arial" font-size="14" text-anchor="middle">ID 2 ➔ File 1, Page 101, Row 5</text>
+    <text x="350" y="338" fill="#793a74" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Leaf Node (Index Page)</text>
+    <text x="350" y="365" fill="#0072b0" font-family="Arial" font-size="14" text-anchor="middle">ID 1 ➔ File 1, Page 102, Row 1</text>
+    <text x="350" y="390" fill="#0072b0" font-family="Arial" font-size="14" text-anchor="middle">ID 2 ➔ File 1, Page 101, Row 5</text>
 
-    <rect x="550" y="320" width="200" height="100" rx="5" fill="#3D3D40" stroke="#C586C0" stroke-width="3"/>
+    <rect x="550" y="320" width="200" height="100" rx="5" fill="#e2e2e3" stroke="#793a74" stroke-width="3"/>
     <rect x="550" y="320" width="200" height="25" fill="#C586C0" fill-opacity="0.2"/>
-    <text x="650" y="338" fill="#C586C0" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Leaf Node (Index Page)</text>
-    <text x="650" y="365" fill="#4EC9B0" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">ID 14 ➔ File 1, Page 103, Row 4</text>
-    <text x="650" y="390" fill="#4FC1FF" font-family="Arial" font-size="14" text-anchor="middle">ID 15 ➔ File 1, Page 100, Row 3</text>
+    <text x="650" y="338" fill="#793a74" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Leaf Node (Index Page)</text>
+    <text x="650" y="365" fill="#267d6b" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">ID 14 ➔ File 1, Page 103, Row 4</text>
+    <text x="650" y="390" fill="#0072b0" font-family="Arial" font-size="14" text-anchor="middle">ID 15 ➔ File 1, Page 100, Row 3</text>
 
     <!-- Actual Data Pages (Heap or Clustered) -->
-    <rect x="150" y="500" width="700" height="100" rx="5" fill="#2D2D30" stroke="#A0A0A0" stroke-width="2" stroke-dasharray="10,5"/>
-    <text x="500" y="525" fill="#A0A0A0" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle">Actual Data Pages (Physically separated from the B-Tree)</text>
+    <rect x="150" y="500" width="700" height="100" rx="5" fill="#e8e8e9" stroke="#5f5f5f" stroke-width="2" stroke-dasharray="10,5"/>
+    <text x="500" y="525" fill="#5f5f5f" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle">Actual Data Pages (Physically separated from the B-Tree)</text>
     
-    <rect x="300" y="540" width="150" height="40" fill="#4FC1FF" fill-opacity="0.2" stroke="#4FC1FF"/>
-    <text x="375" y="565" fill="#FFFFFF" font-family="Arial" font-size="14" text-anchor="middle">Data Page 100</text>
+    <rect x="300" y="540" width="150" height="40" fill="#4FC1FF" fill-opacity="0.2" stroke="#0072b0"/>
+    <text x="375" y="565" fill="#1f1f1f" font-family="Arial" font-size="14" text-anchor="middle">Data Page 100</text>
     
-    <rect x="500" y="540" width="150" height="40" fill="#4EC9B0" fill-opacity="0.2" stroke="#4EC9B0" stroke-width="2"/>
-    <text x="575" y="565" fill="#FFFFFF" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Data Page 103</text>
+    <rect x="500" y="540" width="150" height="40" fill="#4EC9B0" fill-opacity="0.2" stroke="#267d6b" stroke-width="2"/>
+    <text x="575" y="565" fill="#1f1f1f" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Data Page 103</text>
 
     <!-- Arrows -->
-    <path d="M 500 160 L 350 200" fill="none" stroke="#A0A0A0" stroke-width="2"/>
-    <path d="M 500 160 L 650 200" fill="none" stroke="#4EC9B0" stroke-width="3" marker-end="url(#arrow_green)"/>
+    <path d="M 500 160 L 350 200" fill="none" stroke="#5f5f5f" stroke-width="2"/>
+    <path d="M 500 160 L 650 200" fill="none" stroke="#267d6b" stroke-width="3" marker-end="url(#arrow_green)"/>
     
-    <path d="M 350 260 L 350 320" fill="none" stroke="#A0A0A0" stroke-width="2"/>
-    <path d="M 650 260 L 650 320" fill="none" stroke="#4EC9B0" stroke-width="3" marker-end="url(#arrow_green)"/>
+    <path d="M 350 260 L 350 320" fill="none" stroke="#5f5f5f" stroke-width="2"/>
+    <path d="M 650 260 L 650 320" fill="none" stroke="#267d6b" stroke-width="3" marker-end="url(#arrow_green)"/>
     
-    <path d="M 650 420 L 575 540" fill="none" stroke="#4EC9B0" stroke-width="3" stroke-dasharray="5,5" marker-end="url(#arrow_green)"/>
+    <path d="M 650 420 L 575 540" fill="none" stroke="#267d6b" stroke-width="3" stroke-dasharray="5,5" marker-end="url(#arrow_green)"/>
 
-    <rect x="780" y="320" width="180" height="100" rx="5" fill="#3D3D40" stroke="#CE9178" stroke-width="2"/>
-    <text x="870" y="345" fill="#CE9178" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Extra Lookup Needed!</text>
-    <text x="870" y="370" fill="#FFFFFF" font-family="Arial" font-size="12" text-anchor="middle">Leaf node gives the address.</text>
-    <text x="870" y="390" fill="#FFFFFF" font-family="Arial" font-size="12" text-anchor="middle">SQL must do 1 more jump</text>
-    <text x="870" y="405" fill="#FFFFFF" font-family="Arial" font-size="12" text-anchor="middle">to fetch actual row data.</text>
+    <rect x="780" y="320" width="180" height="100" rx="5" fill="#e2e2e3" stroke="#874a31" stroke-width="2"/>
+    <text x="870" y="345" fill="#874a31" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Extra Lookup Needed!</text>
+    <text x="870" y="370" fill="#1f1f1f" font-family="Arial" font-size="12" text-anchor="middle">Leaf node gives the address.</text>
+    <text x="870" y="390" fill="#1f1f1f" font-family="Arial" font-size="12" text-anchor="middle">SQL must do 1 more jump</text>
+    <text x="870" y="405" fill="#1f1f1f" font-family="Arial" font-size="12" text-anchor="middle">to fetch actual row data.</text>
 
     <defs>
         <marker id="arrow_green" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">

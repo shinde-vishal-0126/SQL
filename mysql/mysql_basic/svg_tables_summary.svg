@@ -1,61 +1,61 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
-    <rect width="900" height="600" fill="#1E1E1E" rx="10"/>
+    <rect width="900" height="600" fill="#eeeeee" rx="10"/>
     
     <!-- Title -->
-    <rect x="300" y="40" width="300" height="50" fill="#FFCC00" stroke="#000" stroke-width="4" rx="5"/>
-    <rect x="295" y="45" width="300" height="50" fill="none" stroke="#000" stroke-width="2" rx="5"/>
+    <rect x="300" y="40" width="300" height="50" fill="#FFCC00" stroke="#c7c7c7" stroke-width="4" rx="5"/>
+    <rect x="295" y="45" width="300" height="50" fill="none" stroke="#c7c7c7" stroke-width="2" rx="5"/>
     <text x="450" y="75" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#000" text-anchor="middle">TABLES</text>
 
     <!-- Definition -->
-    <text x="450" y="140" font-family="Arial, sans-serif" font-size="20" fill="#FFF" text-anchor="middle">
-        <tspan font-weight="bold" fill="#4FC1FF">Structured Collection</tspan> of Data like a spreadsheet (
-        <tspan font-weight="bold" fill="#FFF">Columns &amp; Rows</tspan>)
+    <text x="450" y="140" font-family="Arial, sans-serif" font-size="20" fill="#1f1f1f" text-anchor="middle">
+        <tspan font-weight="bold" fill="#0072b0">Structured Collection</tspan> of Data like a spreadsheet (
+        <tspan font-weight="bold" fill="#1f1f1f">Columns &amp; Rows</tspan>)
     </text>
 
     <!-- Types Section -->
-    <rect x="150" y="200" width="100" height="40" fill="#4FC1FF" stroke="#000" stroke-width="3" rx="5"/>
-    <rect x="145" y="205" width="100" height="40" fill="none" stroke="#000" stroke-width="1" rx="5"/>
+    <rect x="150" y="200" width="100" height="40" fill="#4FC1FF" stroke="#c7c7c7" stroke-width="3" rx="5"/>
+    <rect x="145" y="205" width="100" height="40" fill="none" stroke="#c7c7c7" stroke-width="1" rx="5"/>
     <text x="200" y="228" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#000" text-anchor="middle">TYPES</text>
 
-    <path d="M 260 220 L 300 220 L 300 180 L 330 180" stroke="#FFF" stroke-width="3" fill="none" marker-end="url(#arrow_white)"/>
-    <path d="M 260 220 L 300 220 L 300 300 L 330 300" stroke="#FFF" stroke-width="3" fill="none" marker-end="url(#arrow_white)"/>
+    <path d="M 260 220 L 300 220 L 300 180 L 330 180" stroke="#333333" stroke-width="3" fill="none" marker-end="url(#arrow_white)"/>
+    <path d="M 260 220 L 300 220 L 300 300 L 330 300" stroke="#333333" stroke-width="3" fill="none" marker-end="url(#arrow_white)"/>
 
     <!-- Permanent -->
-    <text x="350" y="185" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#4EC9B0">PERMANENT</text>
-    <text x="490" y="185" font-family="Arial, sans-serif" font-size="16" fill="#FFF">: Data Live for ever in Database.</text>
+    <text x="350" y="185" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#267d6b">PERMANENT</text>
+    <text x="490" y="185" font-family="Arial, sans-serif" font-size="16" fill="#1f1f1f">: Data Live for ever in Database.</text>
 
     <!-- Permanent Sub-types -->
-    <path d="M 400 200 L 400 230 L 430 230" stroke="#FFF" stroke-width="2" fill="none" marker-end="url(#arrow_white)"/>
-    <path d="M 400 200 L 400 260 L 430 260" stroke="#FFF" stroke-width="2" fill="none" marker-end="url(#arrow_white)"/>
+    <path d="M 400 200 L 400 230 L 430 230" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#arrow_white)"/>
+    <path d="M 400 200 L 400 260 L 430 260" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#arrow_white)"/>
     
-    <text x="450" y="235" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFF">CREATE - INSERT</text>
-    <text x="450" y="265" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFF"><tspan fill="#4FC1FF">CTAS</tspan> : Create Table from a Query.</text>
+    <text x="450" y="235" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1f1f1f">CREATE - INSERT</text>
+    <text x="450" y="265" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1f1f1f"><tspan fill="#0072b0">CTAS</tspan> : Create Table from a Query.</text>
 
     <!-- Temporary -->
-    <text x="350" y="305" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FF8C00">TEMPORARY</text>
-    <text x="490" y="305" font-family="Arial, sans-serif" font-size="16" fill="#FFF">: Data Live only during the session.</text>
+    <text x="350" y="305" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#d67600">TEMPORARY</text>
+    <text x="490" y="305" font-family="Arial, sans-serif" font-size="16" fill="#1f1f1f">: Data Live only during the session.</text>
 
 
     <!-- CTAS Use Cases Section -->
-    <rect x="150" y="380" width="220" height="40" fill="#4EC9B0" stroke="#000" stroke-width="3" rx="5"/>
+    <rect x="150" y="380" width="220" height="40" fill="#4EC9B0" stroke="#c7c7c7" stroke-width="3" rx="5"/>
     <text x="260" y="408" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#000" text-anchor="middle">CTAS USE CASES</text>
 
-    <line x1="200" y1="420" x2="200" y2="490" stroke="#FFF" stroke-width="3"/>
+    <line x1="200" y1="420" x2="200" y2="490" stroke="#333333" stroke-width="3"/>
     
-    <circle cx="200" cy="450" r="6" fill="#4EC9B0" stroke="#FFF" stroke-width="2"/>
-    <text x="220" y="455" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFF">Optimize Performance :</text>
-    <text x="420" y="455" font-family="Arial, sans-serif" font-size="16" fill="#FFF">Persist Complex SQL Logic in Table</text>
+    <circle cx="200" cy="450" r="6" fill="#4EC9B0" stroke="#333333" stroke-width="2"/>
+    <text x="220" y="455" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1f1f1f">Optimize Performance :</text>
+    <text x="420" y="455" font-family="Arial, sans-serif" font-size="16" fill="#1f1f1f">Persist Complex SQL Logic in Table</text>
 
-    <circle cx="200" cy="490" r="6" fill="#4EC9B0" stroke="#FFF" stroke-width="2"/>
-    <text x="220" y="495" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFF">Creating Snapshot :</text>
-    <text x="400" y="495" font-family="Arial, sans-serif" font-size="16" fill="#FFF">to analyse Bugs and data issues.</text>
+    <circle cx="200" cy="490" r="6" fill="#4EC9B0" stroke="#333333" stroke-width="2"/>
+    <text x="220" y="495" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1f1f1f">Creating Snapshot :</text>
+    <text x="400" y="495" font-family="Arial, sans-serif" font-size="16" fill="#1f1f1f">to analyse Bugs and data issues.</text>
 
 
     <!-- Advantages Section -->
-    <rect x="150" y="540" width="300" height="40" fill="#FFCC00" stroke="#000" stroke-width="3" rx="5"/>
+    <rect x="150" y="540" width="300" height="40" fill="#FFCC00" stroke="#c7c7c7" stroke-width="3" rx="5"/>
     <text x="300" y="568" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#000" text-anchor="middle">Advantage of TEMP Tables</text>
     
-    <text x="480" y="568" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFF">Automatic cleanup of data after session ends.</text>
+    <text x="480" y="568" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1f1f1f">Automatic cleanup of data after session ends.</text>
 
     <defs>
         <marker id="arrow_white" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#FFF" /></marker>

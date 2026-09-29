@@ -1,63 +1,63 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
-    <rect width="900" height="600" fill="#1E1E1E" rx="10"/>
+    <rect width="900" height="600" fill="#eeeeee" rx="10"/>
     
     <!-- Title -->
-    <text x="450" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFD700" text-anchor="middle">Hide Complexity using Views</text>
+    <text x="450" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#a38a00" text-anchor="middle">Hide Complexity using Views</text>
 
     <!-- LEFT: Complex Physical Tables -->
-    <text x="200" y="100" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#F44747" text-anchor="middle">Complex TABLES</text>
+    <text x="200" y="100" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#b80b0b" text-anchor="middle">Complex TABLES</text>
 
     <!-- Table 1 -->
-    <text x="140" y="150" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle">tbl_wrkfrc_dtl</text>
-    <rect x="100" y="160" width="80" height="70" fill="#252526" stroke="#4EC9B0" stroke-width="2"/>
-    <path d="M 100 180 L 180 180 M 100 200 L 180 200 M 126 160 L 126 230 M 152 160 L 152 230" stroke="#555" stroke-width="1"/>
+    <text x="140" y="150" font-family="Arial, sans-serif" font-size="14" fill="#1f1f1f" text-anchor="middle">tbl_wrkfrc_dtl</text>
+    <rect x="100" y="160" width="80" height="70" fill="#ebebec" stroke="#267d6b" stroke-width="2"/>
+    <path d="M 100 180 L 180 180 M 100 200 L 180 200 M 126 160 L 126 230 M 152 160 L 152 230" stroke="#adadad" stroke-width="1"/>
 
     <!-- Table 2 -->
-    <text x="260" y="200" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle">tbl_prsnl_mstr</text>
-    <rect x="220" y="210" width="80" height="70" fill="#252526" stroke="#4EC9B0" stroke-width="2"/>
-    <path d="M 220 230 L 300 230 M 220 250 L 300 250 M 246 210 L 246 280 M 272 210 L 272 280" stroke="#555" stroke-width="1"/>
+    <text x="260" y="200" font-family="Arial, sans-serif" font-size="14" fill="#1f1f1f" text-anchor="middle">tbl_prsnl_mstr</text>
+    <rect x="220" y="210" width="80" height="70" fill="#ebebec" stroke="#267d6b" stroke-width="2"/>
+    <path d="M 220 230 L 300 230 M 220 250 L 300 250 M 246 210 L 246 280 M 272 210 L 272 280" stroke="#adadad" stroke-width="1"/>
 
     <!-- Table 3 -->
-    <text x="140" y="290" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle">tbl_hcap_mgmt</text>
-    <rect x="100" y="300" width="80" height="70" fill="#252526" stroke="#4EC9B0" stroke-width="2"/>
-    <path d="M 100 320 L 180 320 M 100 340 L 180 340 M 126 300 L 126 370 M 152 300 L 152 370" stroke="#555" stroke-width="1"/>
+    <text x="140" y="290" font-family="Arial, sans-serif" font-size="14" fill="#1f1f1f" text-anchor="middle">tbl_hcap_mgmt</text>
+    <rect x="100" y="300" width="80" height="70" fill="#ebebec" stroke="#267d6b" stroke-width="2"/>
+    <path d="M 100 320 L 180 320 M 100 340 L 180 340 M 126 300 L 126 370 M 152 300 L 152 370" stroke="#adadad" stroke-width="1"/>
 
     <!-- Table 4 -->
-    <text x="260" y="380" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle">tbl_rsrc_rcrd</text>
-    <rect x="220" y="390" width="80" height="70" fill="#252526" stroke="#4EC9B0" stroke-width="2"/>
-    <path d="M 220 410 L 300 410 M 220 430 L 300 430 M 246 390 L 246 460 M 272 390 L 272 460" stroke="#555" stroke-width="1"/>
+    <text x="260" y="380" font-family="Arial, sans-serif" font-size="14" fill="#1f1f1f" text-anchor="middle">tbl_rsrc_rcrd</text>
+    <rect x="220" y="390" width="80" height="70" fill="#ebebec" stroke="#267d6b" stroke-width="2"/>
+    <path d="M 220 410 L 300 410 M 220 430 L 300 430 M 246 390 L 246 460 M 272 390 L 272 460" stroke="#adadad" stroke-width="1"/>
 
     <!-- Spaghetti Joins -->
-    <path d="M 180 195 L 220 245" stroke="#F44747" stroke-width="2" fill="none"/>
-    <path d="M 180 335 L 220 245" stroke="#F44747" stroke-width="2" fill="none"/>
-    <path d="M 180 335 L 220 425" stroke="#F44747" stroke-width="2" fill="none"/>
+    <path d="M 180 195 L 220 245" stroke="#b80b0b" stroke-width="2" fill="none"/>
+    <path d="M 180 335 L 220 245" stroke="#b80b0b" stroke-width="2" fill="none"/>
+    <path d="M 180 335 L 220 425" stroke="#b80b0b" stroke-width="2" fill="none"/>
 
     <path d="M 320 310 L 380 310" stroke="#FF8C00" stroke-width="4" marker-start="url(#arrow_orange_rev)" marker-end="url(#arrow_orange)"/>
 
 
     <!-- MIDDLE: The View -->
-    <text x="440" y="100" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#4EC9B0" text-anchor="middle">VIEW</text>
+    <text x="440" y="100" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#267d6b" text-anchor="middle">VIEW</text>
     
-    <rect x="400" y="130" width="80" height="240" fill="#FFF" stroke="#000" stroke-width="3" rx="5"/>
+    <rect x="400" y="130" width="80" height="240" fill="#FFF" stroke="#c7c7c7" stroke-width="3" rx="5"/>
     <text x="440" y="160" font-family="Arial, sans-serif" font-size="14" fill="#000" text-anchor="middle">SELECT</text>
-    <path d="M 410 180 L 470 180 M 410 200 L 470 200 M 410 220 L 470 220" stroke="#000" stroke-width="2" stroke-dasharray="3,3"/>
+    <path d="M 410 180 L 470 180 M 410 200 L 470 200 M 410 220 L 470 220" stroke="#c7c7c7" stroke-width="2" stroke-dasharray="3,3"/>
     
     <text x="440" y="260" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">JOIN</text>
     <text x="440" y="290" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">JOIN</text>
     <text x="440" y="320" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">JOIN</text>
     
-    <path d="M 490 310 L 530 310" stroke="#4FC1FF" stroke-width="4" marker-end="url(#arrow_blue)"/>
+    <path d="M 490 310 L 530 310" stroke="#0072b0" stroke-width="4" marker-end="url(#arrow_blue)"/>
 
 
     <!-- RIGHT: Abstracted Friendly Data -->
-    <text x="610" y="210" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4EC9B0" text-anchor="middle">Employee_Overview</text>
-    <rect x="560" y="230" width="100" height="80" fill="#252526" stroke="#4EC9B0" stroke-width="3"/>
-    <path d="M 560 255 L 660 255 M 560 280 L 660 280 M 593 230 L 593 310 M 626 230 L 626 310" stroke="#555" stroke-width="2"/>
+    <text x="610" y="210" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#267d6b" text-anchor="middle">Employee_Overview</text>
+    <rect x="560" y="230" width="100" height="80" fill="#ebebec" stroke="#267d6b" stroke-width="3"/>
+    <path d="M 560 255 L 660 255 M 560 280 L 660 280 M 593 230 L 593 310 M 626 230 L 626 310" stroke="#adadad" stroke-width="2"/>
     
-    <path d="M 680 310 L 740 310" stroke="#4FC1FF" stroke-width="4" marker-start="url(#arrow_blue_rev)" marker-end="url(#arrow_blue)"/>
+    <path d="M 680 310 L 740 310" stroke="#0072b0" stroke-width="4" marker-start="url(#arrow_blue_rev)" marker-end="url(#arrow_blue)"/>
 
-    <rect x="760" y="190" width="80" height="100" fill="#FFF" stroke="#000" stroke-width="3"/>
-    <text x="800" y="180" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFF" text-anchor="middle">Query</text>
+    <rect x="760" y="190" width="80" height="100" fill="#FFF" stroke="#c7c7c7" stroke-width="3"/>
+    <text x="800" y="180" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1f1f1f" text-anchor="middle">Query</text>
     <text x="800" y="220" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">SELECT</text>
     <text x="800" y="250" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">FROM</text>
     

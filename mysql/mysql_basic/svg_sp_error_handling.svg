@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+  </defs>
+  <rect width="1000" height="560" fill="#f8fafc" rx="12"/>
+  <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a">Error Handling in Stored Procedures</text>
+  <text x="500" y="62" text-anchor="middle" font-size="13" fill="#64748b">DECLARE  CONTINUE | EXIT  HANDLER  FOR  SQLEXCEPTION | SQLWARNING | NOT FOUND | error_no</text>
+
+  <!-- CONTINUE -->
+  <rect x="20" y="80" width="470" height="300" rx="12" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="255" y="108" text-anchor="middle" font-size="17" font-weight="800" fill="#15803d">CONTINUE Handler</text>
+  <rect x="140" y="125" width="230" height="36" rx="6" fill="#ffffff" stroke="#94a3b8"/><text x="255" y="148" text-anchor="middle" font-size="12" font-family="Consolas, monospace" fill="#334155">Statement 1  ✔</text>
+  <rect x="140" y="185" width="230" height="36" rx="6" fill="#fee2e2" stroke="#dc2626"/><text x="255" y="208" text-anchor="middle" font-size="12" font-family="Consolas, monospace" font-weight="700" fill="#b91c1c">Statement 2  ✖ ERROR</text>
+  <rect x="140" y="245" width="230" height="36" rx="6" fill="#ffffff" stroke="#94a3b8"/><text x="255" y="268" text-anchor="middle" font-size="12" font-family="Consolas, monospace" fill="#334155">Statement 3  ✔ still runs</text>
+  <line x1="255" y1="161" x2="255" y2="182" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <path d="M370,203 C430,203 430,263 374,263" fill="none" stroke="#16a34a" stroke-width="2.5" marker-end="url(#g)"/>
+  <rect x="385" y="215" width="95" height="36" rx="6" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="432" y="232" text-anchor="middle" font-size="11" font-weight="700" fill="#15803d">handler runs,</text>
+  <text x="432" y="246" text-anchor="middle" font-size="11" font-weight="700" fill="#15803d">then continue</text>
+  <text x="255" y="315" text-anchor="middle" font-size="12" fill="#334155">Use when one failure should not stop the rest</text>
+  <text x="255" y="337" text-anchor="middle" font-size="12" fill="#334155">e.g. <tspan font-family="Consolas, monospace">NOT FOUND → SET done = 1</tspan> (cursor / SELECT INTO)</text>
+  <text x="255" y="362" text-anchor="middle" font-size="11" fill="#64748b">Result: all 3 statements + handler message</text>
+
+  <!-- EXIT -->
+  <rect x="510" y="80" width="470" height="300" rx="12" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="745" y="108" text-anchor="middle" font-size="17" font-weight="800" fill="#b91c1c">EXIT Handler</text>
+  <rect x="630" y="125" width="230" height="36" rx="6" fill="#ffffff" stroke="#94a3b8"/><text x="745" y="148" text-anchor="middle" font-size="12" font-family="Consolas, monospace" fill="#334155">UPDATE (debit)  ✔</text>
+  <rect x="630" y="185" width="230" height="36" rx="6" fill="#fee2e2" stroke="#dc2626"/><text x="745" y="208" text-anchor="middle" font-size="12" font-family="Consolas, monospace" font-weight="700" fill="#b91c1c">UPDATE (credit) ✖ ERROR</text>
+  <rect x="630" y="245" width="230" height="36" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-dasharray="4 3"/><text x="745" y="268" text-anchor="middle" font-size="12" font-family="Consolas, monospace" fill="#94a3b8">COMMIT  (skipped)</text>
+  <line x1="745" y1="161" x2="745" y2="182" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <line x1="860" y1="203" x2="915" y2="203" stroke="#dc2626" stroke-width="2.5" marker-end="url(#r)"/>
+  <rect x="870" y="215" width="100" height="62" rx="6" fill="#ffffff" stroke="#dc2626"/>
+  <text x="920" y="235" text-anchor="middle" font-size="11" font-family="Consolas, monospace" font-weight="700" fill="#b91c1c">ROLLBACK;</text>
+  <text x="920" y="252" text-anchor="middle" font-size="11" font-family="Consolas, monospace" font-weight="700" fill="#b91c1c">RESIGNAL;</text>
+  <text x="920" y="269" text-anchor="middle" font-size="10" fill="#64748b">then leave</text>
+  <text x="745" y="315" text-anchor="middle" font-size="12" fill="#334155">Use for transactions: undo everything on error</text>
+  <text x="745" y="337" text-anchor="middle" font-size="12" fill="#334155">e.g. money transfer — debit + credit, or nothing</text>
+  <text x="745" y="362" text-anchor="middle" font-size="11" fill="#64748b">Result: no half-done transfer, caller gets the error</text>
+
+  <!-- bottom tools -->
+  <rect x="20" y="395" width="310" height="145" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="175" y="420" text-anchor="middle" font-size="14" font-weight="800" fill="#7c3aed">SIGNAL (raise your own error)</text>
+  <text x="40" y="448" font-size="12" font-family="Consolas, monospace" fill="#334155">IF p_amount &lt; 0 THEN</text>
+  <text x="40" y="466" font-size="12" font-family="Consolas, monospace" fill="#334155">  SIGNAL SQLSTATE '45000'</text>
+  <text x="40" y="484" font-size="12" font-family="Consolas, monospace" fill="#334155">  SET MESSAGE_TEXT = 'Amount</text>
+  <text x="40" y="502" font-size="12" font-family="Consolas, monospace" fill="#334155">    must be positive';</text>
+  <text x="40" y="524" font-size="11" fill="#64748b">→ Error 1644 with your message</text>
+
+  <rect x="345" y="395" width="310" height="145" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="500" y="420" text-anchor="middle" font-size="14" font-weight="800" fill="#2563eb">GET DIAGNOSTICS (read the error)</text>
+  <text x="362" y="448" font-size="12" font-family="Consolas, monospace" fill="#334155">GET DIAGNOSTICS CONDITION 1</text>
+  <text x="362" y="466" font-size="12" font-family="Consolas, monospace" fill="#334155">  @msg = MESSAGE_TEXT;</text>
+  <text x="362" y="484" font-size="12" font-family="Consolas, monospace" fill="#334155">INSERT INTO error_log</text>
+  <text x="362" y="502" font-size="12" font-family="Consolas, monospace" fill="#334155">  (error_message) VALUES (@msg);</text>
+  <text x="362" y="524" font-size="11" fill="#64748b">→ log the real MySQL error text</text>
+
+  <rect x="670" y="395" width="310" height="145" rx="10" fill="#fffbeb" stroke="#fcd34d"/>
+  <text x="825" y="420" text-anchor="middle" font-size="14" font-weight="800" fill="#b45309">Condition types</text>
+  <text x="688" y="448" font-size="12" fill="#334155"><tspan font-weight="700">SQLEXCEPTION</tspan> – any error</text>
+  <text x="688" y="468" font-size="12" fill="#334155"><tspan font-weight="700">SQLWARNING</tspan> – warnings</text>
+  <text x="688" y="488" font-size="12" fill="#334155"><tspan font-weight="700">NOT FOUND</tspan> – no row / cursor end</text>
+  <text x="688" y="508" font-size="12" fill="#334155"><tspan font-weight="700">1062</tspan> – a specific error number</text>
+  <text x="688" y="528" font-size="11" fill="#92400e">Note: SELECT 1/0 gives NULL, not an error</text>
+</svg>

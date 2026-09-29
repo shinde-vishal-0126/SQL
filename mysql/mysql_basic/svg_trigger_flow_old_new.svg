@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="1000" height="560" fill="#f8fafc" rx="12"/>
+  <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a">How a Trigger Fires (BEFORE / AFTER, OLD / NEW)</text>
+  <text x="500" y="62" text-anchor="middle" font-size="13" fill="#64748b">No CALL needed — a data change on the table fires the trigger automatically, once per row</text>
+
+  <!-- flow -->
+  <rect x="20" y="95" width="170" height="90" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="105" y="122" text-anchor="middle" font-size="13" font-weight="800" fill="#334155">User / App</text>
+  <text x="105" y="146" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#1d4ed8">UPDATE employees</text>
+  <text x="105" y="162" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#1d4ed8">SET salary = 60000</text>
+  <text x="105" y="178" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#1d4ed8">WHERE id = 4;</text>
+
+  <rect x="230" y="95" width="200" height="90" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="330" y="120" text-anchor="middle" font-size="14" font-weight="800" fill="#b45309">① BEFORE UPDATE</text>
+  <text x="330" y="142" text-anchor="middle" font-size="11" fill="#78350f">validate: SIGNAL '45000'</text>
+  <text x="330" y="160" text-anchor="middle" font-size="11" fill="#78350f">or change: SET NEW.col = ...</text>
+  <text x="330" y="178" text-anchor="middle" font-size="10" fill="#92400e">(NEW can still be changed)</text>
+
+  <rect x="470" y="95" width="200" height="90" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="570" y="122" text-anchor="middle" font-size="14" font-weight="800" fill="#1d4ed8">② Row is saved</text>
+  <text x="570" y="146" text-anchor="middle" font-size="11" fill="#1e3a8a">employees table</text>
+  <text x="570" y="164" text-anchor="middle" font-size="11" fill="#1e3a8a">salary 50000 → 60000</text>
+
+  <rect x="710" y="95" width="270" height="90" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="845" y="120" text-anchor="middle" font-size="14" font-weight="800" fill="#15803d">③ AFTER UPDATE</text>
+  <text x="845" y="142" text-anchor="middle" font-size="11" fill="#14532d">log / audit / update other tables</text>
+  <text x="845" y="160" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#14532d">INSERT INTO salary_audit ...</text>
+  <text x="845" y="178" text-anchor="middle" font-size="10" fill="#166534">(row already saved)</text>
+
+  <line x1="192" y1="140" x2="226" y2="140" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <line x1="432" y1="140" x2="466" y2="140" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <line x1="672" y1="140" x2="706" y2="140" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <path d="M330,187 C330,230 150,230 110,200" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#r)"/>
+  <text x="225" y="238" text-anchor="middle" font-size="11" fill="#b91c1c">invalid → error, statement cancelled</text>
+
+  <!-- OLD / NEW -->
+  <rect x="20" y="260" width="470" height="170" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="255" y="286" text-anchor="middle" font-size="15" font-weight="800" fill="#334155">OLD and NEW row values</text>
+  <rect x="40" y="300" width="200" height="90" rx="8" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="140" y="324" text-anchor="middle" font-size="14" font-weight="800" fill="#b91c1c">OLD</text>
+  <text x="140" y="346" text-anchor="middle" font-size="12" font-family="Consolas, monospace" fill="#334155">OLD.salary = 50000</text>
+  <text x="140" y="368" text-anchor="middle" font-size="11" fill="#64748b">before change</text>
+  <rect x="270" y="300" width="200" height="90" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="370" y="324" text-anchor="middle" font-size="14" font-weight="800" fill="#15803d">NEW</text>
+  <text x="370" y="346" text-anchor="middle" font-size="12" font-family="Consolas, monospace" fill="#334155">NEW.salary = 60000</text>
+  <text x="370" y="368" text-anchor="middle" font-size="11" fill="#64748b">after change</text>
+  <text x="255" y="415" text-anchor="middle" font-size="12" fill="#334155">INSERT → only NEW · UPDATE → OLD + NEW · DELETE → only OLD</text>
+
+  <!-- 6 combos -->
+  <rect x="510" y="260" width="470" height="170" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="745" y="286" text-anchor="middle" font-size="15" font-weight="800" fill="#334155">6 trigger combinations per table</text>
+  <g font-size="12" font-weight="700" text-anchor="middle">
+    <rect x="530" y="302" width="140" height="34" rx="6" fill="#fef3c7" stroke="#d97706"/><text x="600" y="324" fill="#b45309">BEFORE INSERT</text>
+    <rect x="675" y="302" width="140" height="34" rx="6" fill="#fef3c7" stroke="#d97706"/><text x="745" y="324" fill="#b45309">BEFORE UPDATE</text>
+    <rect x="820" y="302" width="140" height="34" rx="6" fill="#fef3c7" stroke="#d97706"/><text x="890" y="324" fill="#b45309">BEFORE DELETE</text>
+    <rect x="530" y="346" width="140" height="34" rx="6" fill="#dcfce7" stroke="#16a34a"/><text x="600" y="368" fill="#15803d">AFTER INSERT</text>
+    <rect x="675" y="346" width="140" height="34" rx="6" fill="#dcfce7" stroke="#16a34a"/><text x="745" y="368" fill="#15803d">AFTER UPDATE</text>
+    <rect x="820" y="346" width="140" height="34" rx="6" fill="#dcfce7" stroke="#16a34a"/><text x="890" y="368" fill="#15803d">AFTER DELETE</text>
+  </g>
+  <text x="745" y="410" text-anchor="middle" font-size="12" fill="#334155">BEFORE = validate / fix data · AFTER = log / sync</text>
+
+  <rect x="20" y="445" width="960" height="100" rx="12" fill="#fffbeb" stroke="#fcd34d"/>
+  <text x="40" y="470" font-size="14" font-weight="800" fill="#92400e">MySQL rules</text>
+  <text x="40" y="494" font-size="12" fill="#334155">✔ Row-level only (FOR EACH ROW) · ✔ many triggers per event (FOLLOWS / PRECEDES) · ✔ SIGNAL to reject data</text>
+  <text x="40" y="516" font-size="12" fill="#334155">✖ No statement-level, INSTEAD OF, DDL or logon triggers · ✖ no triggers on views · ✖ no ALTER TRIGGER (drop + create)</text>
+  <text x="40" y="536" font-size="12" fill="#334155">✖ No COMMIT / ROLLBACK inside · ✖ cannot change the table it is defined on · ✖ cannot be called manually</text>
+</svg>

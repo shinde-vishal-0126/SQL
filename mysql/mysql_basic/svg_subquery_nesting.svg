@@ -1,18 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
-    <rect width="800" height="400" fill="#1E1E1E" rx="10"/>
-    <text x="400" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#DCDCAA" text-anchor="middle">Nested Subqueries (Like Russian Dolls)</text>
+    <rect width="800" height="400" fill="#eeeeee" rx="10"/>
+    <text x="400" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#575724" text-anchor="middle">Nested Subqueries (Like Russian Dolls)</text>
     
     <!-- Outer Circle -->
-    <circle cx="400" cy="220" r="150" fill="none" stroke="#E0E0E0" stroke-width="3"/>
-    <text x="400" y="100" font-family="Arial" font-size="16" font-weight="bold" fill="#DCDCAA" text-anchor="middle">MAIN QUERY (Outer Query)</text>
+    <circle cx="400" cy="220" r="150" fill="none" stroke="#333333" stroke-width="3"/>
+    <text x="400" y="100" font-family="Arial" font-size="16" font-weight="bold" fill="#575724" text-anchor="middle">MAIN QUERY (Outer Query)</text>
     
     <!-- Inner Circle 1 -->
-    <circle cx="400" cy="240" r="100" fill="none" stroke="#4FC1FF" stroke-width="3"/>
-    <text x="400" y="170" font-family="Arial" font-size="14" font-weight="bold" fill="#4FC1FF" text-anchor="middle">SUBQUERY (Inner Query)</text>
+    <circle cx="400" cy="240" r="100" fill="none" stroke="#0072b0" stroke-width="3"/>
+    <text x="400" y="170" font-family="Arial" font-size="14" font-weight="bold" fill="#0072b0" text-anchor="middle">SUBQUERY (Inner Query)</text>
     
     <!-- Inner Circle 2 -->
-    <circle cx="400" cy="270" r="50" fill="none" stroke="#4EC9B0" stroke-width="3"/>
-    <text x="400" y="250" font-family="Arial" font-size="12" font-weight="bold" fill="#4EC9B0" text-anchor="middle">NESTED SUBQUERY</text>
+    <circle cx="400" cy="270" r="50" fill="none" stroke="#267d6b" stroke-width="3"/>
+    <text x="400" y="250" font-family="Arial" font-size="12" font-weight="bold" fill="#267d6b" text-anchor="middle">NESTED SUBQUERY</text>
     
-    <text x="400" y="385" font-family="Arial" font-size="14" font-style="italic" fill="#F44747" text-anchor="middle">Execution runs from innermost to outermost (Right to Left logic)</text>
+    <text x="400" y="385" font-family="Arial" font-size="14" font-style="italic" fill="#b80b0b" text-anchor="middle">Execution runs from innermost to outermost (Right to Left logic)</text>
 </svg>

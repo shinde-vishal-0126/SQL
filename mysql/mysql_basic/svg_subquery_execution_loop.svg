@@ -1,56 +1,56 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
-    <rect width="800" height="450" fill="#1E1E1E" rx="10"/>
+    <rect width="800" height="450" fill="#eeeeee" rx="10"/>
     
     <!-- Correlated Side -->
-    <rect x="50" y="50" width="300" height="40" fill="#FFD700" stroke="#E0E0E0" stroke-width="2" rx="5"/>
+    <rect x="50" y="50" width="300" height="40" fill="#FFD700" stroke="#333333" stroke-width="2" rx="5"/>
     <text x="200" y="75" font-family="Arial" font-size="18" font-weight="bold" fill="#1E1E1E" text-anchor="middle">Correlated Subquery</text>
     
-    <text x="200" y="120" font-family="Arial" font-size="14" font-weight="bold" fill="#4FC1FF" text-anchor="middle">DATABASE</text>
-    <rect x="175" y="130" width="50" height="40" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2" rx="5"/>
+    <text x="200" y="120" font-family="Arial" font-size="14" font-weight="bold" fill="#0072b0" text-anchor="middle">DATABASE</text>
+    <rect x="175" y="130" width="50" height="40" fill="#e8e8e9" stroke="#0072b0" stroke-width="2" rx="5"/>
     
-    <rect x="100" y="220" width="80" height="50" fill="#1E1E1E" stroke="#E0E0E0" stroke-width="2"/>
-    <text x="140" y="240" font-family="Arial" font-size="14" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Main</text>
-    <text x="140" y="260" font-family="Arial" font-size="14" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Query</text>
+    <rect x="100" y="220" width="80" height="50" fill="#eeeeee" stroke="#333333" stroke-width="2"/>
+    <text x="140" y="240" font-family="Arial" font-size="14" font-weight="bold" fill="#1f1f1f" text-anchor="middle">Main</text>
+    <text x="140" y="260" font-family="Arial" font-size="14" font-weight="bold" fill="#1f1f1f" text-anchor="middle">Query</text>
     
-    <rect x="250" y="220" width="100" height="50" fill="#1E1E1E" stroke="#E0E0E0" stroke-width="2"/>
-    <text x="300" y="250" font-family="Arial" font-size="16" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Subquery</text>
+    <rect x="250" y="220" width="100" height="50" fill="#eeeeee" stroke="#333333" stroke-width="2"/>
+    <text x="300" y="250" font-family="Arial" font-size="16" font-weight="bold" fill="#1f1f1f" text-anchor="middle">Subquery</text>
     
-    <path d="M 180 230 Q 215 210 250 230" fill="none" stroke="#F44747" stroke-width="2"/>
+    <path d="M 180 230 Q 215 210 250 230" fill="none" stroke="#b80b0b" stroke-width="2"/>
     <polygon points="250,230 240,225 240,235" fill="#F44747"/>
-    <text x="215" y="215" font-family="Arial" font-size="12" font-weight="bold" fill="#E0E0E0" text-anchor="middle">PASS</text>
+    <text x="215" y="215" font-family="Arial" font-size="12" font-weight="bold" fill="#1f1f1f" text-anchor="middle">PASS</text>
     
-    <path d="M 300 270 Q 215 320 160 270" fill="none" stroke="#F44747" stroke-width="2"/>
+    <path d="M 300 270 Q 215 320 160 270" fill="none" stroke="#b80b0b" stroke-width="2"/>
     <polygon points="160,270 165,280 175,275" fill="#F44747"/>
-    <text x="250" y="310" font-family="Arial" font-size="12" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Result</text>
+    <text x="250" y="310" font-family="Arial" font-size="12" font-weight="bold" fill="#1f1f1f" text-anchor="middle">Result</text>
     
-    <path d="M 140 270 L 140 330" fill="none" stroke="#4EC9B0" stroke-width="2"/>
+    <path d="M 140 270 L 140 330" fill="none" stroke="#267d6b" stroke-width="2"/>
     <polygon points="140,330 135,320 145,320" fill="#4EC9B0"/>
-    <text x="200" y="340" font-family="Arial" font-size="14" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Final Result</text>
+    <text x="200" y="340" font-family="Arial" font-size="14" font-weight="bold" fill="#1f1f1f" text-anchor="middle">Final Result</text>
 
     <!-- Divider -->
-    <path d="M 400 50 L 400 400" fill="none" stroke="#808080" stroke-width="2" stroke-dasharray="5,5"/>
+    <path d="M 400 50 L 400 400" fill="none" stroke="#7f7f7f" stroke-width="2" stroke-dasharray="5,5"/>
     
     <!-- Non-Correlated Side -->
-    <rect x="450" y="50" width="300" height="40" fill="#FFD700" stroke="#E0E0E0" stroke-width="2" rx="5"/>
+    <rect x="450" y="50" width="300" height="40" fill="#FFD700" stroke="#333333" stroke-width="2" rx="5"/>
     <text x="600" y="75" font-family="Arial" font-size="18" font-weight="bold" fill="#1E1E1E" text-anchor="middle">Non-Correlated Subquery</text>
     
-    <text x="600" y="120" font-family="Arial" font-size="14" font-weight="bold" fill="#4FC1FF" text-anchor="middle">DATABASE</text>
-    <rect x="575" y="130" width="50" height="40" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2" rx="5"/>
+    <text x="600" y="120" font-family="Arial" font-size="14" font-weight="bold" fill="#0072b0" text-anchor="middle">DATABASE</text>
+    <rect x="575" y="130" width="50" height="40" fill="#e8e8e9" stroke="#0072b0" stroke-width="2" rx="5"/>
     
-    <path d="M 600 170 L 600 200" fill="none" stroke="#F44747" stroke-width="2"/>
+    <path d="M 600 170 L 600 200" fill="none" stroke="#b80b0b" stroke-width="2"/>
     <polygon points="600,200 595,190 605,190" fill="#F44747"/>
     
-    <rect x="550" y="200" width="100" height="40" fill="#1E1E1E" stroke="#E0E0E0" stroke-width="2"/>
-    <text x="600" y="225" font-family="Arial" font-size="16" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Subquery</text>
+    <rect x="550" y="200" width="100" height="40" fill="#eeeeee" stroke="#333333" stroke-width="2"/>
+    <text x="600" y="225" font-family="Arial" font-size="16" font-weight="bold" fill="#1f1f1f" text-anchor="middle">Subquery</text>
     
-    <path d="M 600 240 L 600 270" fill="none" stroke="#F44747" stroke-width="2"/>
+    <path d="M 600 240 L 600 270" fill="none" stroke="#b80b0b" stroke-width="2"/>
     <polygon points="600,270 595,260 605,260" fill="#F44747"/>
-    <text x="570" y="260" font-family="Arial" font-size="12" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Result</text>
+    <text x="570" y="260" font-family="Arial" font-size="12" font-weight="bold" fill="#1f1f1f" text-anchor="middle">Result</text>
     
-    <rect x="550" y="270" width="100" height="40" fill="#1E1E1E" stroke="#E0E0E0" stroke-width="2"/>
-    <text x="600" y="295" font-family="Arial" font-size="14" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Main Query</text>
+    <rect x="550" y="270" width="100" height="40" fill="#eeeeee" stroke="#333333" stroke-width="2"/>
+    <text x="600" y="295" font-family="Arial" font-size="14" font-weight="bold" fill="#1f1f1f" text-anchor="middle">Main Query</text>
     
-    <path d="M 600 310 L 600 340" fill="none" stroke="#4EC9B0" stroke-width="2"/>
+    <path d="M 600 310 L 600 340" fill="none" stroke="#267d6b" stroke-width="2"/>
     <polygon points="600,340 595,330 605,330" fill="#4EC9B0"/>
-    <text x="660" y="355" font-family="Arial" font-size="14" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Final Result</text>
+    <text x="660" y="355" font-family="Arial" font-size="14" font-weight="bold" fill="#1f1f1f" text-anchor="middle">Final Result</text>
 </svg>

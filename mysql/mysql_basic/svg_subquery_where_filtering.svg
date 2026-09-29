@@ -1,32 +1,32 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
-    <rect width="800" height="400" fill="#1E1E1E" rx="10"/>
-    <text x="400" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#DCDCAA" text-anchor="middle">Filtering: Single Value vs List of Values</text>
+    <rect width="800" height="400" fill="#eeeeee" rx="10"/>
+    <text x="400" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#575724" text-anchor="middle">Filtering: Single Value vs List of Values</text>
     
     <!-- Single Value -->
-    <rect x="50" y="80" width="300" height="40" fill="#2D2D30" stroke="#4EC9B0" stroke-width="2"/>
-    <text x="200" y="105" font-family="Arial" font-size="16" font-weight="bold" fill="#4EC9B0" text-anchor="middle">FILTERING (SINGLE VALUE)</text>
+    <rect x="50" y="80" width="300" height="40" fill="#e8e8e9" stroke="#267d6b" stroke-width="2"/>
+    <text x="200" y="105" font-family="Arial" font-size="16" font-weight="bold" fill="#267d6b" text-anchor="middle">FILTERING (SINGLE VALUE)</text>
     
-    <rect x="50" y="140" width="300" height="80" fill="#1E1E1E" stroke="#A0A0A0" stroke-width="1"/>
-    <text x="70" y="165" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#569CD6">SELECT</text>
-    <text x="70" y="185" font-family="Courier New, monospace" font-size="14" fill="#E0E0E0">* FROM Sales.Orders</text>
-    <text x="70" y="205" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#569CD6">WHERE</text>
-    <text x="120" y="205" font-family="Courier New, monospace" font-size="14" fill="#E0E0E0">CustomerID </text>
-    <text x="210" y="205" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#4EC9B0">= 1</text>
+    <rect x="50" y="140" width="300" height="80" fill="#eeeeee" stroke="#5f5f5f" stroke-width="1"/>
+    <text x="70" y="165" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#296fa9">SELECT</text>
+    <text x="70" y="185" font-family="Courier New, monospace" font-size="14" fill="#1f1f1f">* FROM Sales.Orders</text>
+    <text x="70" y="205" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#296fa9">WHERE</text>
+    <text x="120" y="205" font-family="Courier New, monospace" font-size="14" fill="#1f1f1f">CustomerID </text>
+    <text x="210" y="205" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#267d6b">= 1</text>
     
     <!-- List of Values -->
-    <rect x="450" y="80" width="300" height="40" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2"/>
-    <text x="600" y="105" font-family="Arial" font-size="16" font-weight="bold" fill="#4FC1FF" text-anchor="middle">FILTERING (LIST OF VALUES)</text>
+    <rect x="450" y="80" width="300" height="40" fill="#e8e8e9" stroke="#0072b0" stroke-width="2"/>
+    <text x="600" y="105" font-family="Arial" font-size="16" font-weight="bold" fill="#0072b0" text-anchor="middle">FILTERING (LIST OF VALUES)</text>
 
-    <rect x="450" y="140" width="300" height="80" fill="#1E1E1E" stroke="#A0A0A0" stroke-width="1"/>
-    <text x="470" y="165" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#569CD6">SELECT</text>
-    <text x="470" y="185" font-family="Courier New, monospace" font-size="14" fill="#E0E0E0">* FROM Sales.Orders</text>
-    <text x="470" y="205" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#569CD6">WHERE</text>
-    <text x="520" y="205" font-family="Courier New, monospace" font-size="14" fill="#E0E0E0">CustomerID </text>
-    <text x="610" y="205" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#4FC1FF">IN (1, 2, 3)</text>
+    <rect x="450" y="140" width="300" height="80" fill="#eeeeee" stroke="#5f5f5f" stroke-width="1"/>
+    <text x="470" y="165" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#296fa9">SELECT</text>
+    <text x="470" y="185" font-family="Courier New, monospace" font-size="14" fill="#1f1f1f">* FROM Sales.Orders</text>
+    <text x="470" y="205" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#296fa9">WHERE</text>
+    <text x="520" y="205" font-family="Courier New, monospace" font-size="14" fill="#1f1f1f">CustomerID </text>
+    <text x="610" y="205" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#0072b0">IN (1, 2, 3)</text>
     
     <!-- Bottom Rules Box -->
-    <rect x="250" y="280" width="300" height="60" fill="#2D2D30" stroke="#F44747" stroke-width="2"/>
-    <text x="400" y="305" font-family="Arial" font-size="16" font-weight="bold" fill="#F44747" text-anchor="middle">RULES</text>
-    <text x="400" y="325" font-family="Arial" font-size="12" fill="#E0E0E0" text-anchor="middle">Comparison Operators (=) need SCALAR subqueries.</text>
-    <text x="400" y="360" font-family="Arial" font-size="12" fill="#E0E0E0" text-anchor="middle">Logical Operators (IN) need ROW/TABLE subqueries.</text>
+    <rect x="250" y="280" width="300" height="60" fill="#e8e8e9" stroke="#b80b0b" stroke-width="2"/>
+    <text x="400" y="305" font-family="Arial" font-size="16" font-weight="bold" fill="#b80b0b" text-anchor="middle">RULES</text>
+    <text x="400" y="325" font-family="Arial" font-size="12" fill="#1f1f1f" text-anchor="middle">Comparison Operators (=) need SCALAR subqueries.</text>
+    <text x="400" y="360" font-family="Arial" font-size="12" fill="#1f1f1f" text-anchor="middle">Logical Operators (IN) need ROW/TABLE subqueries.</text>
 </svg>

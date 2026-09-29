@@ -1,58 +1,58 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
-    <rect width="800" height="500" fill="#1E1E1E" rx="10"/>
+    <rect width="800" height="500" fill="#eeeeee" rx="10"/>
     
-    <text x="400" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFD700" text-anchor="middle">Employee Hierarchy (Recursive CTE Example)</text>
+    <text x="400" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#a38a00" text-anchor="middle">Employee Hierarchy (Recursive CTE Example)</text>
     
     <!-- Start -->
     <circle cx="650" cy="70" r="15" fill="#E0E0E0"/>
-    <text x="650" y="45" font-family="Arial" font-size="12" font-weight="bold" fill="#E0E0E0" text-anchor="middle">START</text>
+    <text x="650" y="45" font-family="Arial" font-size="12" font-weight="bold" fill="#1f1f1f" text-anchor="middle">START</text>
     
-    <path d="M 650 85 L 650 110" fill="none" stroke="#E0E0E0" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 650 85 L 650 110" fill="none" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
     
     <!-- Anchor Box -->
-    <rect x="580" y="110" width="140" height="50" fill="#2D2D30" stroke="#E0E0E0" stroke-width="2" rx="5"/>
-    <text x="650" y="130" font-family="Arial" font-size="14" font-weight="bold" fill="#E0E0E0" text-anchor="middle">RUN</text>
-    <text x="650" y="150" font-family="Arial" font-size="14" font-weight="bold" fill="#C586C0" text-anchor="middle">Anchor Query</text>
+    <rect x="580" y="110" width="140" height="50" fill="#e8e8e9" stroke="#333333" stroke-width="2" rx="5"/>
+    <text x="650" y="130" font-family="Arial" font-size="14" font-weight="bold" fill="#1f1f1f" text-anchor="middle">RUN</text>
+    <text x="650" y="150" font-family="Arial" font-size="14" font-weight="bold" fill="#793a74" text-anchor="middle">Anchor Query</text>
     
-    <path d="M 650 160 L 650 200" fill="none" stroke="#E0E0E0" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 650 160 L 650 200" fill="none" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
     
     <!-- Recursive Box -->
-    <rect x="580" y="200" width="140" height="50" fill="#2D2D30" stroke="#E0E0E0" stroke-width="2" rx="5"/>
-    <text x="650" y="220" font-family="Arial" font-size="14" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Run</text>
-    <text x="650" y="240" font-family="Arial" font-size="14" font-weight="bold" fill="#C586C0" text-anchor="middle">Recursive Query</text>
+    <rect x="580" y="200" width="140" height="50" fill="#e8e8e9" stroke="#333333" stroke-width="2" rx="5"/>
+    <text x="650" y="220" font-family="Arial" font-size="14" font-weight="bold" fill="#1f1f1f" text-anchor="middle">Run</text>
+    <text x="650" y="240" font-family="Arial" font-size="14" font-weight="bold" fill="#793a74" text-anchor="middle">Recursive Query</text>
     
-    <path d="M 650 250 L 650 300" fill="none" stroke="#E0E0E0" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 650 250 L 650 300" fill="none" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
     
     <!-- Condition -->
-    <polygon points="650,300 720,330 650,360 580,330" fill="#2D2D30" stroke="#E0E0E0" stroke-width="2"/>
-    <text x="650" y="325" font-family="Arial" font-size="10" font-weight="bold" fill="#E0E0E0" text-anchor="middle">All Employees</text>
-    <text x="650" y="340" font-family="Arial" font-size="10" font-weight="bold" fill="#E0E0E0" text-anchor="middle">processed?</text>
+    <polygon points="650,300 720,330 650,360 580,330" fill="#e8e8e9" stroke="#333333" stroke-width="2"/>
+    <text x="650" y="325" font-family="Arial" font-size="10" font-weight="bold" fill="#1f1f1f" text-anchor="middle">All Employees</text>
+    <text x="650" y="340" font-family="Arial" font-size="10" font-weight="bold" fill="#1f1f1f" text-anchor="middle">processed?</text>
     
     <!-- Loop Back (FALSE) -->
-    <path d="M 720 330 L 760 330 L 760 225 L 720 225" fill="none" stroke="#F44747" stroke-width="3" marker-end="url(#arrow)"/>
-    <text x="775" y="280" font-family="Arial" font-size="14" font-weight="bold" fill="#F44747">FALSE</text>
+    <path d="M 720 330 L 760 330 L 760 225 L 720 225" fill="none" stroke="#b80b0b" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="775" y="280" font-family="Arial" font-size="14" font-weight="bold" fill="#b80b0b">FALSE</text>
     <polygon points="720,225 730,220 730,230" fill="#F44747"/>
     
     <!-- End (TRUE) -->
-    <path d="M 650 360 L 650 410" fill="none" stroke="#4EC9B0" stroke-width="3" marker-end="url(#arrow)"/>
-    <text x="675" y="390" font-family="Arial" font-size="14" font-weight="bold" fill="#4EC9B0">TRUE</text>
+    <path d="M 650 360 L 650 410" fill="none" stroke="#267d6b" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="675" y="390" font-family="Arial" font-size="14" font-weight="bold" fill="#267d6b">TRUE</text>
     <circle cx="650" cy="425" r="15" fill="#E0E0E0"/>
-    <text x="650" y="455" font-family="Arial" font-size="12" font-weight="bold" fill="#E0E0E0" text-anchor="middle">END</text>
+    <text x="650" y="455" font-family="Arial" font-size="12" font-weight="bold" fill="#1f1f1f" text-anchor="middle">END</text>
     <polygon points="650,410 645,400 655,400" fill="#4EC9B0"/>
     
     <!-- Hierarchy Tree Visualization -->
-    <rect x="250" y="60" width="300" height="420" fill="#2D2D30" stroke="#4FC1FF" stroke-width="2" rx="5"/>
-    <text x="400" y="90" font-family="Arial" font-size="16" font-weight="bold" fill="#4FC1FF" text-anchor="middle">Generated Hierarchy Tree</text>
+    <rect x="250" y="60" width="300" height="420" fill="#e8e8e9" stroke="#0072b0" stroke-width="2" rx="5"/>
+    <text x="400" y="90" font-family="Arial" font-size="16" font-weight="bold" fill="#0072b0" text-anchor="middle">Generated Hierarchy Tree</text>
     
     <!-- Level 1 -->
     <rect x="330" y="120" width="140" height="40" fill="#4FC1FF" rx="5"/>
     <text x="400" y="145" font-family="Arial" font-size="14" font-weight="bold" fill="#1E1E1E" text-anchor="middle">Frank (CEO)</text>
-    <text x="500" y="145" font-family="Arial" font-size="12" font-style="italic" fill="#E0E0E0">Level 1</text>
+    <text x="500" y="145" font-family="Arial" font-size="12" font-style="italic" fill="#1f1f1f">Level 1</text>
     
-    <path d="M 400 160 L 400 190" fill="none" stroke="#E0E0E0" stroke-width="2"/>
-    <path d="M 330 190 L 470 190" fill="none" stroke="#E0E0E0" stroke-width="2"/>
-    <path d="M 330 190 L 330 220" fill="none" stroke="#E0E0E0" stroke-width="2" marker-end="url(#arrow)"/>
-    <path d="M 470 190 L 470 220" fill="none" stroke="#E0E0E0" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 400 160 L 400 190" fill="none" stroke="#333333" stroke-width="2"/>
+    <path d="M 330 190 L 470 190" fill="none" stroke="#333333" stroke-width="2"/>
+    <path d="M 330 190 L 330 220" fill="none" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 470 190 L 470 220" fill="none" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
     
     <!-- Level 2 -->
     <rect x="270" y="220" width="120" height="40" fill="#4EC9B0" rx="5"/>
@@ -60,31 +60,31 @@
     
     <rect x="410" y="220" width="120" height="40" fill="#4EC9B0" rx="5"/>
     <text x="470" y="245" font-family="Arial" font-size="14" font-weight="bold" fill="#1E1E1E" text-anchor="middle">Mary</text>
-    <text x="550" y="245" font-family="Arial" font-size="12" font-style="italic" fill="#E0E0E0">Level 2</text>
+    <text x="550" y="245" font-family="Arial" font-size="12" font-style="italic" fill="#1f1f1f">Level 2</text>
     
     <!-- Kevin's subordinates -->
-    <path d="M 330 260 L 330 310" fill="none" stroke="#E0E0E0" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 330 260 L 330 310" fill="none" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
     <!-- Level 3 -->
     <rect x="270" y="310" width="120" height="40" fill="#FFD700" rx="5"/>
     <text x="330" y="335" font-family="Arial" font-size="14" font-weight="bold" fill="#1E1E1E" text-anchor="middle">Michael</text>
     
     <!-- Mary's subordinates -->
-    <path d="M 470 260 L 470 310" fill="none" stroke="#E0E0E0" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 470 260 L 470 310" fill="none" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
     <rect x="410" y="310" width="120" height="40" fill="#FFD700" rx="5"/>
     <text x="470" y="335" font-family="Arial" font-size="14" font-weight="bold" fill="#1E1E1E" text-anchor="middle">Carol</text>
-    <text x="550" y="335" font-family="Arial" font-size="12" font-style="italic" fill="#E0E0E0">Level 3</text>
+    <text x="550" y="335" font-family="Arial" font-size="12" font-style="italic" fill="#1f1f1f">Level 3</text>
     
     <!-- Employees Source Table Snippet -->
-    <text x="120" y="90" font-family="Arial" font-size="14" font-weight="bold" fill="#4EC9B0" text-anchor="middle">Source Table</text>
-    <rect x="50" y="100" width="140" height="150" fill="#1E1E1E" stroke="#E0E0E0" stroke-width="1"/>
-    <text x="60" y="120" font-family="Arial" font-size="10" fill="#E0E0E0">ID | Name   | MngID</text>
-    <text x="60" y="140" font-family="Arial" font-size="10" fill="#E0E0E0">1  | Frank  | NULL</text>
-    <text x="60" y="160" font-family="Arial" font-size="10" fill="#E0E0E0">2  | Kevin  | 1</text>
-    <text x="60" y="180" font-family="Arial" font-size="10" fill="#E0E0E0">3  | Mary   | 1</text>
-    <text x="60" y="200" font-family="Arial" font-size="10" fill="#E0E0E0">4  | Michael| 2</text>
-    <text x="60" y="220" font-family="Arial" font-size="10" fill="#E0E0E0">5  | Carol  | 3</text>
+    <text x="120" y="90" font-family="Arial" font-size="14" font-weight="bold" fill="#267d6b" text-anchor="middle">Source Table</text>
+    <rect x="50" y="100" width="140" height="150" fill="#eeeeee" stroke="#333333" stroke-width="1"/>
+    <text x="60" y="120" font-family="Arial" font-size="10" fill="#1f1f1f">ID | Name   | MngID</text>
+    <text x="60" y="140" font-family="Arial" font-size="10" fill="#1f1f1f">1  | Frank  | NULL</text>
+    <text x="60" y="160" font-family="Arial" font-size="10" fill="#1f1f1f">2  | Kevin  | 1</text>
+    <text x="60" y="180" font-family="Arial" font-size="10" fill="#1f1f1f">3  | Mary   | 1</text>
+    <text x="60" y="200" font-family="Arial" font-size="10" fill="#1f1f1f">4  | Michael| 2</text>
+    <text x="60" y="220" font-family="Arial" font-size="10" fill="#1f1f1f">5  | Carol  | 3</text>
     
     <!-- Arrow from Source to Tree -->
-    <path d="M 190 170 Q 220 170 250 170" fill="none" stroke="#F44747" stroke-dasharray="4,4" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M 190 170 Q 220 170 250 170" fill="none" stroke="#b80b0b" stroke-dasharray="4,4" stroke-width="2" marker-end="url(#arrow)"/>
     <polygon points="250,170 240,165 240,175" fill="#F44747"/>
 </svg>
