@@ -82,7 +82,7 @@
    - [8.4 Visual Concept: Language vs RDBMS Software](#84-visual-concept-language-vs-rdbms-software)
    - [8.5 Topic 8 Summary (मराठी सारांश)](#85-topic-8-summary-मराठी-सारांश)
 
-**[📘 Part 2: SQL Commands, Keys & Transactions (DDL, DML, DQL, DCL, TCL) (Topics 9–17)](#-part-2-sql-commands-keys--transactions-ddl-dml-dql-dcl-tcl-topics-917)**
+**[📘 Part 2: SQL Commands, Keys & Transactions (DDL, DML, DQL, DCL, TCL) (Topics 9–19)](#-part-2-sql-commands-keys--transactions-ddl-dml-dql-dcl-tcl-topics-919)**
 
 9. [Topic 9: SQL Commands & DDL (Data Definition Language) In-Depth](#topic-9-sql-commands--ddl-data-definition-language-in-depth)
    - [9.1 Check Current SQL / MySQL Version](#91-check-current-sql--mysql-version)
@@ -133,342 +133,391 @@
     - [13.8 Advanced Interview Concepts & Gotchas in DCL / Security](#138-advanced-interview-concepts--gotchas-in-dcl--security)
     - [13.9 Visual Architecture Diagram: DCL & Privileges](#139-visual-architecture-diagram-dcl--privileges)
     - [13.10 Topic 13 Summary (मराठी सारांश)](#1310-topic-13-summary-मराठी-सारांश)
-14. [Topic 14: TCL (Transaction Control Language) & Transaction Management](#topic-14-tcl-transaction-control-language--transaction-management)
-    - [14.1 What is TCL (Transaction Control Language)?](#141-what-is-tcl-transaction-control-language)
-    - [14.2 What is a Transaction? (ACID Overview)](#142-what-is-a-transaction-acid-overview)
-    - [14.3 Core TCL Commands: START, COMMIT, ROLLBACK, SAVEPOINT, SET](#143-core-tcl-commands-start-commit-rollback-savepoint-set)
-    - [14.4 Real-World Banking Transaction Example (Atomic Transfer)](#144-real-world-banking-transaction-example-atomic-transfer)
-    - [14.5 Critical Rules & Constraints of TCL](#145-critical-rules--constraints-of-tcl)
-    - [14.6 Transaction Isolation Levels & Concurrency Anomalies](#146-transaction-isolation-levels--concurrency-anomalies)
-    - [14.7 Advanced Interview Concepts & Gotchas in TCL / Transaction Management](#147-advanced-interview-concepts--gotchas-in-tcl--transaction-management)
-    - [14.8 Visual Architecture Diagram: TCL Lifecycle & Isolation Levels](#148-visual-architecture-diagram-tcl-lifecycle--isolation-levels)
-    - [14.9 Topic 14 Summary (मराठी सारांश)](#149-topic-14-summary-मराठी-सारांश)
-15. [Topic 15: ACID Properties & Transaction Isolation Levels](#topic-15-acid-properties--transaction-isolation-levels)
-    - [15.1 What are ACID Properties?](#151-what-are-acid-properties)
-    - [15.2 Concurrency Problems (Read Phenomena)](#152-concurrency-problems-read-phenomena)
-    - [15.3 Transaction Isolation Levels (MySQL InnoDB)](#153-transaction-isolation-levels-mysql-innodb)
-    - [15.4 Topic 15 Summary (मराठी सारांश)](#154-topic-15-summary-मराठी-सारांश)
-16. [Topic 16: Transactions in SQL (Complete Guide)](#topic-16-transactions-in-sql-complete-guide)
-    - [16.1 What is a Transaction?](#161-what-is-a-transaction)
-    - [16.2 Why Do We Use Transactions?](#162-why-do-we-use-transactions)
-    - [16.3 Transaction Properties (ACID)](#163-transaction-properties-acid)
-    - [16.4 Transaction Control Commands (How to Start a Transaction)](#164-transaction-control-commands-how-to-start-a-transaction)
-    - [16.5 Transaction States (5 States in DBMS)](#165-transaction-states-5-states-in-dbms)
-    - [16.6 What is Autocommit in SQL?](#166-what-is-autocommit-in-sql)
-    - [16.7 Explicit vs Implicit Commit](#167-explicit-vs-implicit-commit)
-    - [16.8 Transactions with Stored Procedures](#168-transactions-with-stored-procedures)
-    - [16.9 Topic 16 Summary (मराठी सारांश)](#169-topic-16-summary-मराठी-सारांश)
-17. [Topic 17: Deadlocks in SQL](#topic-17-deadlocks-in-sql)
-    - [17.1 What is a Deadlock?](#171-what-is-a-deadlock)
-    - [17.2 How to Prevent Deadlocks?](#172-how-to-prevent-deadlocks)
-    - [17.3 Topic 17 Summary (मराठी सारांश)](#173-topic-17-summary-मराठी-सारांश)
+14. [Topic 14: SQL Injection & Prepared Statements (Database Security)](#topic-14-sql-injection--prepared-statements-database-security)
+    - [14.1 What is SQL Injection?](#141-what-is-sql-injection)
+    - [14.2 Types of SQL Injection](#142-types-of-sql-injection)
+    - [14.3 How to Prevent SQL Injection](#143-how-to-prevent-sql-injection)
+    - [14.4 Prepared Statements in MySQL and in Application Code](#144-prepared-statements-in-mysql-and-in-application-code)
+    - [14.5 Safe Dynamic SQL Inside Stored Procedures](#145-safe-dynamic-sql-inside-stored-procedures)
+    - [14.6 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)](#146-interview-perspective-नेहमी-विचारले-जाणारे-प्रश्न)
+    - [14.7 Topic 14 Summary (मराठी सारांश)](#147-topic-14-summary-मराठी-सारांश)
+15. [Topic 15: TCL (Transaction Control Language) & Transaction Management](#topic-15-tcl-transaction-control-language--transaction-management)
+    - [15.1 What is TCL (Transaction Control Language)?](#151-what-is-tcl-transaction-control-language)
+    - [15.2 What is a Transaction? (ACID Overview)](#152-what-is-a-transaction-acid-overview)
+    - [15.3 Core TCL Commands: START, COMMIT, ROLLBACK, SAVEPOINT, SET](#153-core-tcl-commands-start-commit-rollback-savepoint-set)
+    - [15.4 Real-World Banking Transaction Example (Atomic Transfer)](#154-real-world-banking-transaction-example-atomic-transfer)
+    - [15.5 Critical Rules & Constraints of TCL](#155-critical-rules--constraints-of-tcl)
+    - [15.6 Transaction Isolation Levels & Concurrency Anomalies](#156-transaction-isolation-levels--concurrency-anomalies)
+    - [15.7 Advanced Interview Concepts & Gotchas in TCL / Transaction Management](#157-advanced-interview-concepts--gotchas-in-tcl--transaction-management)
+    - [15.8 Visual Architecture Diagram: TCL Lifecycle & Isolation Levels](#158-visual-architecture-diagram-tcl-lifecycle--isolation-levels)
+    - [15.9 Topic 15 Summary (मराठी सारांश)](#159-topic-15-summary-मराठी-सारांश)
+16. [Topic 16: ACID Properties & Transaction Isolation Levels](#topic-16-acid-properties--transaction-isolation-levels)
+    - [16.1 What are ACID Properties?](#161-what-are-acid-properties)
+    - [16.2 Concurrency Problems (Read Phenomena)](#162-concurrency-problems-read-phenomena)
+    - [16.3 Transaction Isolation Levels (MySQL InnoDB)](#163-transaction-isolation-levels-mysql-innodb)
+    - [16.4 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)](#164-interview-perspective-नेहमी-विचारले-जाणारे-प्रश्न)
+    - [16.5 Topic 16 Summary (मराठी सारांश)](#165-topic-16-summary-मराठी-सारांश)
+17. [Topic 17: Transactions in SQL (Complete Guide)](#topic-17-transactions-in-sql-complete-guide)
+    - [17.1 What is a Transaction?](#171-what-is-a-transaction)
+    - [17.2 Why Do We Use Transactions?](#172-why-do-we-use-transactions)
+    - [17.3 Transaction Properties (ACID)](#173-transaction-properties-acid)
+    - [17.4 Transaction Control Commands (How to Start a Transaction)](#174-transaction-control-commands-how-to-start-a-transaction)
+    - [17.5 Transaction States (5 States in DBMS)](#175-transaction-states-5-states-in-dbms)
+    - [17.6 What is Autocommit in SQL?](#176-what-is-autocommit-in-sql)
+    - [17.7 Explicit vs Implicit Commit](#177-explicit-vs-implicit-commit)
+    - [17.8 Transactions with Stored Procedures](#178-transactions-with-stored-procedures)
+    - [17.9 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)](#179-interview-perspective-नेहमी-विचारले-जाणारे-प्रश्न)
+    - [17.10 Topic 17 Summary (मराठी सारांश)](#1710-topic-17-summary-मराठी-सारांश)
+18. [Topic 18: Deadlocks in SQL](#topic-18-deadlocks-in-sql)
+    - [18.1 What is a Deadlock?](#181-what-is-a-deadlock)
+    - [18.2 How to Prevent Deadlocks?](#182-how-to-prevent-deadlocks)
+    - [18.3 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)](#183-interview-perspective-नेहमी-विचारले-जाणारे-प्रश्न)
+    - [18.4 Topic 18 Summary (मराठी सारांश)](#184-topic-18-summary-मराठी-सारांश)
+19. [Topic 19: Locks in MySQL (InnoDB Locking)](#topic-19-locks-in-mysql-innodb-locking)
+    - [19.1 What is a Lock and Why Do We Need It?](#191-what-is-a-lock-and-why-do-we-need-it)
+    - [19.2 Shared (S) vs Exclusive (X) Locks](#192-shared-s-vs-exclusive-x-locks)
+    - [19.3 Row-Level vs Table-Level Locks](#193-row-level-vs-table-level-locks)
+    - [19.4 Locking Reads: SELECT ... FOR UPDATE / FOR SHARE](#194-locking-reads-select--for-update--for-share)
+    - [19.5 Record, Gap and Next-Key Locks (Phantom Protection)](#195-record-gap-and-next-key-locks-phantom-protection)
+    - [19.6 Intention Locks and Metadata Locks](#196-intention-locks-and-metadata-locks)
+    - [19.7 Optimistic vs Pessimistic Locking](#197-optimistic-vs-pessimistic-locking)
+    - [19.8 Lock Wait Timeout and Monitoring Locks](#198-lock-wait-timeout-and-monitoring-locks)
+    - [19.9 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)](#199-interview-perspective-नेहमी-विचारले-जाणारे-प्रश्न)
+    - [19.10 Topic 19 Summary (मराठी सारांश)](#1910-topic-19-summary-मराठी-सारांश)
 
-**[📘 Part 3: Querying & Combining Data (Clauses, Joins, SET Operators) (Topics 18–20)](#-part-3-querying--combining-data-clauses-joins-set-operators-topics-1820)**
+**[📘 Part 3: Querying & Combining Data (Clauses, Joins, SET Operators) (Topics 20–22)](#-part-3-querying--combining-data-clauses-joins-set-operators-topics-2022)**
 
-18. [Topic 18: Commands to Query Data (DQL In-Depth, Clauses & Filtering)](#topic-18-commands-to-query-data-dql-in-depth-clauses--filtering)
-    - [18.1 Commands to Query Data & What is DQL?](#181-commands-to-query-data--what-is-dql)
-    - [18.2 The Core Mental Model: "Ask Your Data"](#182-the-core-mental-model-ask-your-data)
-    - [18.3 Commands (to query the data) & Essential Database/Table Setup](#183-commands-to-query-the-data--essential-databasetable-setup)
-    - [18.4 SQL Query Clauses (The 9 Building Blocks)](#184-sql-query-clauses-the-9-building-blocks)
-    - [18.5 How SQL Works: Written Syntax (Left to Right) vs. Engine Execution Order](#185-how-sql-works-written-syntax-left-to-right-vs-engine-execution-order)
-    - [18.6 Select Query / Data Retrieve Query: SELECT * vs. SELECT column_name](#186-select-query--data-retrieve-query-select--vs-select-column_name)
-    - [18.7 Filtering Data & The WHERE Clause In-Depth](#187-filtering-data--the-where-clause-in-depth)
-      - [18.7.1 The 5 Families of WHERE Clause Operators](#1871-the-5-families-of-where-clause-operators)
-      - [18.7.2 Comparison Operators: Compare Two Things!](#1872-comparison-operators-compare-two-things)
-      - [18.7.3 Master Comparison Operators Reference (Definitions & Descriptions)](#1873-master-comparison-operators-reference-definitions--descriptions)
-      - [18.7.4 Internal Filtering Process (Row-by-Row Predicate Evaluation)](#1874-internal-filtering-process-row-by-row-predicate-evaluation)
-      - [18.7.5 Practical Practice Questions (Hands-on Comparison Queries)](#1875-practical-practice-questions-hands-on-comparison-queries)
-      - [18.7.6 Logical Operators In-Depth (AND, OR, NOT)](#1876-logical-operators-in-depth-and-or-not)
-      - [18.7.7 Range Operator In-Depth: BETWEEN ... AND ...](#1877-range-operator-in-depth-between--and-)
-      - [18.7.8 Membership Operator In-Depth: IN and NOT IN](#1878-membership-operator-in-depth-in-and-not-in)
-      - [18.7.9 Search Operator In-Depth: LIKE and NOT LIKE (Pattern Matching)](#1879-search-operator-in-depth-like-and-not-like-pattern-matching)
-      - [18.7.10 NULL Check Operator In-Depth: IS NULL and IS NOT NULL](#18710-null-check-operator-in-depth-is-null-and-is-not-null)
-      - [18.7.11 Advanced Filtering: Aggregates with HAVING and Subqueries](#18711-advanced-filtering-aggregates-with-having-and-subqueries)
-    - [18.8 Sorting Data & The ORDER BY Clause In-Depth](#188-sorting-data--the-order-by-clause-in-depth)
-    - [18.9 Grouping Data & The GROUP BY Clause In-Depth (Data Aggregation)](#189-grouping-data--the-group-by-clause-in-depth-data-aggregation)
-    - [18.10 Visual Diagrams & Architectural Reference](#1810-visual-diagrams--architectural-reference)
-    - [18.11 Topic 18 Summary (मराठी सारांश)](#1811-topic-18-summary-मराठी-सारांश)
-    - [18.12 SQL Clauses Deep Dive & Execution Order (Detailed Guide)](#1812-sql-clauses-deep-dive--execution-order-detailed-guide)
-19. [Topic 19: SQL Joins (Combining Data from Tables)](#topic-19-sql-joins-combining-data-from-tables)
-    - [19.1 What are Joins & Why Do We Need Them?](#191-what-are-joins--why-do-we-need-them)
-    - [19.2 Types of Joins (Basic to Advanced)](#192-types-of-joins-basic-to-advanced)
-    - [19.3 Advanced Joins (Filtering & Special Cases)](#193-advanced-joins-filtering--special-cases)
-    - [19.4 Summary: How to Choose the Right Join?](#194-summary-how-to-choose-the-right-join)
-    - [19.5 Multi-Table Joins (Interview Perspective)](#195-multi-table-joins-interview-perspective)
-    - [19.6 Pro-Tip: Interview Trick (Inner Join without INNER JOIN)](#196-pro-tip-interview-trick-inner-join-without-inner-join)
-    - [19.7 Topic 19 Summary (मराठी सारांश)](#197-topic-19-summary-मराठी-सारांश)
-20. [Topic 20: SET Operators (Combining Rows)](#topic-20-set-operators-combining-rows)
-    - [20.1 What are SET Operators & Why Do We Need Them?](#201-what-are-set-operators--why-do-we-need-them)
-    - [20.2 The 6 Golden Rules of SET Operators](#202-the-6-golden-rules-of-set-operators)
-    - [20.3 Types of SET Operators](#203-types-of-set-operators)
-    - [20.4 Advanced Scenarios & Best Practices](#204-advanced-scenarios--best-practices)
-    - [20.5 In-Depth Comparison: JOINs vs SET Operators](#205-in-depth-comparison-joins-vs-set-operators)
-    - [20.6 Advanced Interview Insights (Pro-Tips)](#206-advanced-interview-insights-pro-tips)
-    - [20.7 Topic 20 Summary (मराठी सारांश)](#207-topic-20-summary-मराठी-सारांश)
+20. [Topic 20: Commands to Query Data (DQL In-Depth, Clauses & Filtering)](#topic-20-commands-to-query-data-dql-in-depth-clauses--filtering)
+    - [20.1 Commands to Query Data & What is DQL?](#201-commands-to-query-data--what-is-dql)
+    - [20.2 The Core Mental Model: "Ask Your Data"](#202-the-core-mental-model-ask-your-data)
+    - [20.3 Commands (to query the data) & Essential Database/Table Setup](#203-commands-to-query-the-data--essential-databasetable-setup)
+    - [20.4 SQL Query Clauses (The 9 Building Blocks)](#204-sql-query-clauses-the-9-building-blocks)
+    - [20.5 How SQL Works: Written Syntax (Left to Right) vs. Engine Execution Order](#205-how-sql-works-written-syntax-left-to-right-vs-engine-execution-order)
+    - [20.6 Select Query / Data Retrieve Query: SELECT * vs. SELECT column_name](#206-select-query--data-retrieve-query-select--vs-select-column_name)
+    - [20.7 Filtering Data & The WHERE Clause In-Depth](#207-filtering-data--the-where-clause-in-depth)
+      - [20.7.1 The 5 Families of WHERE Clause Operators](#2071-the-5-families-of-where-clause-operators)
+      - [20.7.2 Comparison Operators: Compare Two Things!](#2072-comparison-operators-compare-two-things)
+      - [20.7.3 Master Comparison Operators Reference (Definitions & Descriptions)](#2073-master-comparison-operators-reference-definitions--descriptions)
+      - [20.7.4 Internal Filtering Process (Row-by-Row Predicate Evaluation)](#2074-internal-filtering-process-row-by-row-predicate-evaluation)
+      - [20.7.5 Practical Practice Questions (Hands-on Comparison Queries)](#2075-practical-practice-questions-hands-on-comparison-queries)
+      - [20.7.6 Logical Operators In-Depth (AND, OR, NOT)](#2076-logical-operators-in-depth-and-or-not)
+      - [20.7.7 Range Operator In-Depth: BETWEEN ... AND ...](#2077-range-operator-in-depth-between--and-)
+      - [20.7.8 Membership Operator In-Depth: IN and NOT IN](#2078-membership-operator-in-depth-in-and-not-in)
+      - [20.7.9 Search Operator In-Depth: LIKE and NOT LIKE (Pattern Matching)](#2079-search-operator-in-depth-like-and-not-like-pattern-matching)
+      - [20.7.10 NULL Check Operator In-Depth: IS NULL and IS NOT NULL](#20710-null-check-operator-in-depth-is-null-and-is-not-null)
+      - [20.7.11 Advanced Filtering: Aggregates with HAVING and Subqueries](#20711-advanced-filtering-aggregates-with-having-and-subqueries)
+    - [20.8 Sorting Data & The ORDER BY Clause In-Depth](#208-sorting-data--the-order-by-clause-in-depth)
+    - [20.9 Grouping Data & The GROUP BY Clause In-Depth (Data Aggregation)](#209-grouping-data--the-group-by-clause-in-depth-data-aggregation)
+    - [20.10 Visual Diagrams & Architectural Reference](#2010-visual-diagrams--architectural-reference)
+    - [20.11 Topic 20 Summary (मराठी सारांश)](#2011-topic-20-summary-मराठी-सारांश)
+    - [20.12 SQL Clauses Deep Dive & Execution Order (Detailed Guide)](#2012-sql-clauses-deep-dive--execution-order-detailed-guide)
+21. [Topic 21: SQL Joins (Combining Data from Tables)](#topic-21-sql-joins-combining-data-from-tables)
+    - [21.1 What are Joins & Why Do We Need Them?](#211-what-are-joins--why-do-we-need-them)
+    - [21.2 Types of Joins (Basic to Advanced)](#212-types-of-joins-basic-to-advanced)
+    - [21.3 Advanced Joins (Filtering & Special Cases)](#213-advanced-joins-filtering--special-cases)
+    - [21.4 Summary: How to Choose the Right Join?](#214-summary-how-to-choose-the-right-join)
+    - [21.5 Multi-Table Joins (Interview Perspective)](#215-multi-table-joins-interview-perspective)
+    - [21.6 Pro-Tip: Interview Trick (Inner Join without INNER JOIN)](#216-pro-tip-interview-trick-inner-join-without-inner-join)
+    - [21.7 Topic 21 Summary (मराठी सारांश)](#217-topic-21-summary-मराठी-सारांश)
+22. [Topic 22: SET Operators (Combining Rows)](#topic-22-set-operators-combining-rows)
+    - [22.1 What are SET Operators & Why Do We Need Them?](#221-what-are-set-operators--why-do-we-need-them)
+    - [22.2 The 6 Golden Rules of SET Operators](#222-the-6-golden-rules-of-set-operators)
+    - [22.3 Types of SET Operators](#223-types-of-set-operators)
+    - [22.4 Advanced Scenarios & Best Practices](#224-advanced-scenarios--best-practices)
+    - [22.5 In-Depth Comparison: JOINs vs SET Operators](#225-in-depth-comparison-joins-vs-set-operators)
+    - [22.6 Advanced Interview Insights (Pro-Tips)](#226-advanced-interview-insights-pro-tips)
+    - [22.7 Topic 22 Summary (मराठी सारांश)](#227-topic-22-summary-मराठी-सारांश)
 
-**[📘 Part 4: SQL Functions (String, Numeric, Date, NULL, CASE, Window) (Topics 21–24)](#-part-4-sql-functions-string-numeric-date-null-case-window-topics-2124)**
+**[📘 Part 4: SQL Functions (String, Numeric, Date, NULL, CASE, Window) (Topics 23–26)](#-part-4-sql-functions-string-numeric-date-null-case-window-topics-2326)**
 
-21. [Topic 21: SQL Built-in Functions (String & Numeric)](#topic-21-sql-built-in-functions-string--numeric)
-    - [21.1 What are SQL Functions?](#211-what-are-sql-functions)
-    - [21.2 Categories of Functions](#212-categories-of-functions)
-    - [21.3 Nested Functions](#213-nested-functions)
-    - [21.4 String Functions (Manipulation & Extraction)](#214-string-functions-manipulation--extraction)
-    - [21.5 Numeric Functions](#215-numeric-functions)
-    - [21.6 Topic 21 Summary (मराठी सारांश)](#216-topic-21-summary-मराठी-सारांश)
-22. [Topic 22: Date and Time Functions](#topic-22-date-and-time-functions)
-    - [22.1 Anatomy of Date & Time](#221-anatomy-of-date--time)
-    - [22.2 Sources of Dates (How to Query Dates)](#222-sources-of-dates-how-to-query-dates)
-    - [22.3 Overview of Built-in Date/Time Functions (MySQL focus)](#223-overview-of-built-in-datetime-functions-mysql-focus)
-    - [22.4 Topic 22 Summary (मराठी सारांश)](#224-topic-22-summary-मराठी-सारांश)
-23. [Topic 23: NULL Functions & Conditional Logic (CASE)](#topic-23-null-functions--conditional-logic-case)
-    - [23.1 What is NULL?](#231-what-is-null)
-    - [23.2 Checking for NULL](#232-checking-for-null)
-    - [23.3 Handling & Replacing NULL values](#233-handling--replacing-null-values)
-    - [23.4 NULLIF()](#234-nullif)
-    - [23.5 Data Policies regarding NULL, Space, and Empty](#235-data-policies-regarding-null-space-and-empty)
-    - [23.6 Conditional Logic: CASE Statement](#236-conditional-logic-case-statement)
-    - [23.7 IF() Function (MySQL Shorthand)](#237-if-function-mysql-shorthand)
-    - [23.8 Topic 23 Summary (मराठी सारांश)](#238-topic-23-summary-मराठी-सारांश)
-24. [Topic 24: Aggregate & Window Functions (Analytics)](#topic-24-aggregate--window-functions-analytics)
-    - [24.1 Aggregation Functions in SQL](#241-aggregation-functions-in-sql)
-    - [24.2 Window Functions (Analytical Functions)](#242-window-functions-analytical-functions)
-    - [24.3 Ranking Window Functions](#243-ranking-window-functions)
-    - [24.4 Percentage-Based Ranking Functions](#244-percentage-based-ranking-functions)
-    - [24.5 Aggregate Window Functions (SUM, AVG, MIN, MAX, COUNT)](#245-aggregate-window-functions-sum-avg-min-max-count)
-    - [24.6 Value Window Functions (Analytics Functions)](#246-value-window-functions-analytics-functions)
-    - [24.7 Window Function Syntax Deep Dive (OVER Clause)](#247-window-function-syntax-deep-dive-over-clause)
-    - [24.8 Window Function Limitations & Rules](#248-window-function-limitations--rules)
-    - [24.9 Why Window Functions? (Advantages)](#249-why-window-functions-advantages)
-    - [24.10 GROUP BY + HAVING vs Window Functions](#2410-group-by--having-vs-window-functions)
-    - [24.11 Topic 24 Summary (मराठी सारांश)](#2411-topic-24-summary-मराठी-सारांश)
+23. [Topic 23: SQL Built-in Functions (String & Numeric)](#topic-23-sql-built-in-functions-string--numeric)
+    - [23.1 What are SQL Functions?](#231-what-are-sql-functions)
+    - [23.2 Categories of Functions](#232-categories-of-functions)
+    - [23.3 Nested Functions](#233-nested-functions)
+    - [23.4 String Functions (Manipulation & Extraction)](#234-string-functions-manipulation--extraction)
+    - [23.5 Numeric Functions](#235-numeric-functions)
+    - [23.6 Pattern Matching with REGEXP (Regular Expressions)](#236-pattern-matching-with-regexp-regular-expressions)
+    - [23.7 Topic 23 Summary (मराठी सारांश)](#237-topic-23-summary-मराठी-सारांश)
+24. [Topic 24: Date and Time Functions](#topic-24-date-and-time-functions)
+    - [24.1 Anatomy of Date & Time](#241-anatomy-of-date--time)
+    - [24.2 Sources of Dates (How to Query Dates)](#242-sources-of-dates-how-to-query-dates)
+    - [24.3 Overview of Built-in Date/Time Functions (MySQL focus)](#243-overview-of-built-in-datetime-functions-mysql-focus)
+    - [24.4 Topic 24 Summary (मराठी सारांश)](#244-topic-24-summary-मराठी-सारांश)
+25. [Topic 25: NULL Functions & Conditional Logic (CASE)](#topic-25-null-functions--conditional-logic-case)
+    - [25.1 What is NULL?](#251-what-is-null)
+    - [25.2 Checking for NULL](#252-checking-for-null)
+    - [25.3 Handling & Replacing NULL values](#253-handling--replacing-null-values)
+    - [25.4 NULLIF()](#254-nullif)
+    - [25.5 Data Policies regarding NULL, Space, and Empty](#255-data-policies-regarding-null-space-and-empty)
+    - [25.6 Conditional Logic: CASE Statement](#256-conditional-logic-case-statement)
+    - [25.7 IF() Function (MySQL Shorthand)](#257-if-function-mysql-shorthand)
+    - [25.8 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)](#258-interview-perspective-नेहमी-विचारले-जाणारे-प्रश्न)
+    - [25.9 Topic 25 Summary (मराठी सारांश)](#259-topic-25-summary-मराठी-सारांश)
+26. [Topic 26: Aggregate & Window Functions (Analytics)](#topic-26-aggregate--window-functions-analytics)
+    - [26.1 Aggregation Functions in SQL](#261-aggregation-functions-in-sql)
+    - [26.2 Window Functions (Analytical Functions)](#262-window-functions-analytical-functions)
+    - [26.3 Ranking Window Functions](#263-ranking-window-functions)
+    - [26.4 Percentage-Based Ranking Functions](#264-percentage-based-ranking-functions)
+    - [26.5 Aggregate Window Functions (SUM, AVG, MIN, MAX, COUNT)](#265-aggregate-window-functions-sum-avg-min-max-count)
+    - [26.6 Value Window Functions (Analytics Functions)](#266-value-window-functions-analytics-functions)
+    - [26.7 Window Function Syntax Deep Dive (OVER Clause)](#267-window-function-syntax-deep-dive-over-clause)
+    - [26.8 Window Function Limitations & Rules](#268-window-function-limitations--rules)
+    - [26.9 Why Window Functions? (Advantages)](#269-why-window-functions-advantages)
+    - [26.10 GROUP BY + HAVING vs Window Functions](#2610-group-by--having-vs-window-functions)
+    - [26.11 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)](#2611-interview-perspective-नेहमी-विचारले-जाणारे-प्रश्न)
+    - [26.12 Topic 26 Summary (मराठी सारांश)](#2612-topic-26-summary-मराठी-सारांश)
 
-**[📘 Part 5: Advanced Querying (Subqueries, CTEs, Views, Tables) (Topics 25–36)](#-part-5-advanced-querying-subqueries-ctes-views-tables-topics-2536)**
+**[📘 Part 5: Advanced Querying (Subqueries, CTEs, Views, Tables) (Topics 27–39)](#-part-5-advanced-querying-subqueries-ctes-views-tables-topics-2739)**
 
-25. [Topic 25: Subqueries Deep Dive (Nested Queries)](#topic-25-subqueries-deep-dive-nested-queries)
-    - [25.1 What is a Subquery?](#251-what-is-a-subquery)
-    - [25.2 How Subqueries Work (The Execution Flow)](#252-how-subqueries-work-the-execution-flow)
-    - [25.3 Why are Subqueries Important? (When to use them)](#253-why-are-subqueries-important-when-to-use-them)
-    - [25.4 The Golden Rules of Subqueries](#254-the-golden-rules-of-subqueries)
-    - [25.5 Subquery Classification (Types of Subqueries)](#255-subquery-classification-types-of-subqueries)
-    - [25.6 Topic 25 Summary (मराठी सारांश)](#256-topic-25-summary-मराठी-सारांश)
-26. [Topic 26: Subqueries Advanced (Clauses, Operators & Execution)](#topic-26-subqueries-advanced-clauses-operators--execution)
-    - [26.1 Subqueries by Location (Clauses)](#261-subqueries-by-location-clauses)
-    - [26.2 Subqueries in the WHERE Clause (Filtering)](#262-subqueries-in-the-where-clause-filtering)
-    - [26.3 Correlated vs Non-Correlated Subqueries (Execution Behind the Scenes)](#263-correlated-vs-non-correlated-subqueries-execution-behind-the-scenes)
-    - [26.4 JOIN vs SUBQUERY (Interview Comparison)](#264-join-vs-subquery-interview-comparison)
-    - [26.5 Key Points & Summary](#265-key-points--summary)
-    - [26.6 Topic 26 Summary (मराठी सारांश)](#266-topic-26-summary-मराठी-सारांश)
-27. [Topic 27: Derived Tables in SQL](#topic-27-derived-tables-in-sql)
-    - [27.1 What is a Derived Table?](#271-what-is-a-derived-table)
-    - [27.2 Syntax and Example](#272-syntax-and-example)
-    - [27.3 Difference Between Derived Table and Subquery](#273-difference-between-derived-table-and-subquery)
-    - [27.4 Topic 27 Summary (मराठी सारांश)](#274-topic-27-summary-मराठी-सारांश)
-28. [Topic 28: CTEs (Common Table Expressions) & Recursive CTEs](#topic-28-ctes-common-table-expressions--recursive-ctes)
-    - [28.1 What is a CTE?](#281-what-is-a-cte)
-    - [28.2 CTE vs Subquery vs Temp Table (Interview Favorite)](#282-cte-vs-subquery-vs-temp-table-interview-favorite)
-    - [28.3 Recursive CTEs](#283-recursive-ctes)
-    - [28.4 Topic 28 Summary (मराठी सारांश)](#284-topic-28-summary-मराठी-सारांश)
-29. [Topic 29: Common Table Expressions (CTE)](#topic-29-common-table-expressions-cte)
-    - [29.1 What is a CTE? (Definition & Concept)](#291-what-is-a-cte-definition--concept)
-    - [29.2 CTE vs Regular Subquery](#292-cte-vs-regular-subquery)
-    - [29.3 Types of CTEs](#293-types-of-ctes)
-    - [29.4 CTE vs Derived Table](#294-cte-vs-derived-table)
-    - [29.5 CTE Summary & Best Practices](#295-cte-summary--best-practices)
-    - [29.6 Topic 29 Summary (मराठी सारांश)](#296-topic-29-summary-मराठी-सारांश)
-30. [Topic 30: SQL Views (Virtual Tables) Deep Dive](#topic-30-sql-views-virtual-tables-deep-dive)
-    - [30.1 What is a View?](#301-what-is-a-view)
-    - [30.2 Differences Between Table and View](#302-differences-between-table-and-view)
-    - [30.3 Why Do We Need Views? (6 Major Use Cases)](#303-why-do-we-need-views-6-major-use-cases)
-    - [30.4 View vs CTE](#304-view-vs-cte)
-    - [30.5 Syntax & Schema Naming](#305-syntax--schema-naming)
-    - [30.6 Modifying/Updating Views (CREATE OR REPLACE vs ALTER VIEW)](#306-modifyingupdating-views-create-or-replace-vs-alter-view)
-    - [30.7 Updatable Views (Insert / Update / Delete through a View)](#307-updatable-views-insert--update--delete-through-a-view)
-    - [30.8 Materialized Views (Performance Booster)](#308-materialized-views-performance-booster)
-    - [30.9 Index vs View vs Materialized View](#309-index-vs-view-vs-materialized-view)
-    - [30.10 How Database Executes a View](#3010-how-database-executes-a-view)
-    - [30.11 Summary of SQL Views](#3011-summary-of-sql-views)
-    - [30.12 Interview Perspective & Marathi Summary](#3012-interview-perspective--marathi-summary)
-    - [30.13 Topic 30 Summary (मराठी सारांश)](#3013-topic-30-summary-मराठी-सारांश)
-31. [Topic 31: Tables, CTAS & Temporary Tables Deep Dive](#topic-31-tables-ctas--temporary-tables-deep-dive)
-    - [31.1 What are Database Tables? (Physical Storage vs Logical Grid)](#311-what-are-database-tables-physical-storage-vs-logical-grid)
-    - [31.2 How to Create Permanent Tables: CREATE/INSERT vs CTAS](#312-how-to-create-permanent-tables-createinsert-vs-ctas)
-    - [31.3 CTAS Use Cases](#313-ctas-use-cases)
-    - [31.4 Temporary Tables (Session-Based Tables)](#314-temporary-tables-session-based-tables)
-    - [31.5 How Database Executes Temporary Tables](#315-how-database-executes-temporary-tables)
-    - [31.6 Use Case of Temporary Tables (ETL & Intermediate Results)](#316-use-case-of-temporary-tables-etl--intermediate-results)
-    - [31.7 Ultimate Comparison: Subquery vs CTE vs Temp Table vs CTAS vs View](#317-ultimate-comparison-subquery-vs-cte-vs-temp-table-vs-ctas-vs-view)
-    - [31.8 The Big Picture of SQL (How everything connects)](#318-the-big-picture-of-sql-how-everything-connects)
-    - [31.9 Interview Perspective & Marathi Summary](#319-interview-perspective--marathi-summary)
-    - [31.10 Topic 31 Summary (मराठी सारांश)](#3110-topic-31-summary-मराठी-सारांश)
-32. [Topic 32: Table Duplication & Copying Techniques](#topic-32-table-duplication--copying-techniques)
-    - [32.1 Copying Table Data WITHOUT Constraints](#321-copying-table-data-without-constraints)
-    - [32.2 Copying Table Data WITH Constraints (Exact Clone)](#322-copying-table-data-with-constraints-exact-clone)
-    - [32.3 Topic 32 Summary (मराठी सारांश)](#323-topic-32-summary-मराठी-सारांश)
-33. [Topic 33: Stored Procedures in MySQL (Programmability)](#topic-33-stored-procedures-in-mysql-programmability)
-    - [33.1 What Exactly is a Stored Procedure and Why Do We Use It?](#331-what-exactly-is-a-stored-procedure-and-why-do-we-use-it)
-    - [33.2 Stored Procedure vs Normal Query](#332-stored-procedure-vs-normal-query)
-    - [33.3 What is a Procedure in SQL? (Definition & What It Can Contain)](#333-what-is-a-procedure-in-sql-definition--what-it-can-contain)
-    - [33.4 Key Points About Procedures](#334-key-points-about-procedures)
-    - [33.5 What is the Purpose of Using a Procedure?](#335-what-is-the-purpose-of-using-a-procedure)
-    - [33.6 Advantages of Procedures & Real-World Example](#336-advantages-of-procedures--real-world-example)
-    - [33.7 Use Cases of Stored Procedures](#337-use-cases-of-stored-procedures)
-    - [33.8 How to Create a Procedure (Syntax)](#338-how-to-create-a-procedure-syntax)
-    - [33.9 Parameters in a Stored Procedure](#339-parameters-in-a-stored-procedure)
-    - [33.10 Default Parameter Values](#3310-default-parameter-values)
-    - [33.11 Multiple Statements in a Stored Procedure](#3311-multiple-statements-in-a-stored-procedure)
-    - [33.12 Variables in MySQL (User-Defined vs Local)](#3312-variables-in-mysql-user-defined-vs-local)
-    - [33.13 Control Flow: IF ... ELSEIF ... ELSE](#3313-control-flow-if--elseif--else)
-    - [33.14 Loops in a Stored Procedure](#3314-loops-in-a-stored-procedure)
-    - [33.15 Best-Practice Notes for Procedures](#3315-best-practice-notes-for-procedures)
-    - [33.16 What is DELIMITER in MySQL?](#3316-what-is-delimiter-in-mysql)
-    - [33.17 Messages in a Procedure (SIGNAL & Variables)](#3317-messages-in-a-procedure-signal--variables)
-    - [33.18 Types of Procedures & How to Execute Them](#3318-types-of-procedures--how-to-execute-them)
-    - [33.19 Creating Procedures With and Without Parameters (IN, OUT, INOUT)](#3319-creating-procedures-with-and-without-parameters-in-out-inout)
-    - [33.20 Error Handling in Stored Procedures](#3320-error-handling-in-stored-procedures)
-    - [33.21 Topic 33 Summary (मराठी सारांश)](#3321-topic-33-summary-मराठी-सारांश)
-34. [Topic 34: Stored Functions (User-Defined Functions) in MySQL](#topic-34-stored-functions-user-defined-functions-in-mysql)
-    - [34.1 What is a Function in SQL?](#341-what-is-a-function-in-sql)
-    - [34.2 Why Use Functions?](#342-why-use-functions)
-    - [34.3 Syntax in MySQL](#343-syntax-in-mysql)
-    - [34.4 Function Examples](#344-function-examples)
-    - [34.5 How to Manage & Drop Functions](#345-how-to-manage--drop-functions)
-    - [34.6 Differences Between Function and Procedure](#346-differences-between-function-and-procedure)
-    - [34.7 Topic 34 Summary (मराठी सारांश)](#347-topic-34-summary-मराठी-सारांश)
-35. [Topic 35: Triggers in MySQL](#topic-35-triggers-in-mysql)
-    - [35.1 Why Triggers? (From Procedures to Automatic Actions)](#351-why-triggers-from-procedures-to-automatic-actions)
-    - [35.2 What are Triggers?](#352-what-are-triggers)
-    - [35.3 Trigger Levels (Row-level vs Statement-level)](#353-trigger-levels-row-level-vs-statement-level)
-    - [35.4 Key Points About Triggers](#354-key-points-about-triggers)
-    - [35.5 Syntax of a Trigger](#355-syntax-of-a-trigger)
-    - [35.6 Types of Triggers (and Which Databases Support Them)](#356-types-of-triggers-and-which-databases-support-them)
-    - [35.7 Trigger Timing in MySQL (BEFORE vs AFTER)](#357-trigger-timing-in-mysql-before-vs-after)
-    - [35.8 Managing Triggers in MySQL](#358-managing-triggers-in-mysql)
-    - [35.9 How to Modify / Update a Trigger](#359-how-to-modify--update-a-trigger)
-    - [35.10 Use Cases of Triggers (15 Practical Examples)](#3510-use-cases-of-triggers-15-practical-examples)
-    - [35.11 Summary of Trigger Use Cases](#3511-summary-of-trigger-use-cases)
-    - [35.12 Important Key Points About Triggers in MySQL](#3512-important-key-points-about-triggers-in-mysql)
-    - [35.13 Triggers with Programming Logic (Variables, IF, CASE, Loops)](#3513-triggers-with-programming-logic-variables-if-case-loops)
-    - [35.14 Topic 35 Summary (मराठी सारांश)](#3514-topic-35-summary-मराठी-सारांश)
-36. [Topic 36: Events in MySQL (Scheduled Jobs)](#topic-36-events-in-mysql-scheduled-jobs)
-    - [36.1 What is an Event?](#361-what-is-an-event)
-    - [36.2 Purpose of Events](#362-purpose-of-events)
-    - [36.3 Use Cases of Events](#363-use-cases-of-events)
-    - [36.4 Types of Events (One-Time vs Recurring)](#364-types-of-events-one-time-vs-recurring)
-    - [36.5 Why We Use Events & How to Create Them](#365-why-we-use-events--how-to-create-them)
-    - [36.6 Managing Events (Scheduler, Show, Alter, Enable/Disable, Drop)](#366-managing-events-scheduler-show-alter-enabledisable-drop)
-    - [36.7 Differences Between Triggers and Events](#367-differences-between-triggers-and-events)
-    - [36.8 When to Use a One-Time Event vs a Recurring Event](#368-when-to-use-a-one-time-event-vs-a-recurring-event)
-    - [36.9 Topic 36 Summary (मराठी सारांश)](#369-topic-36-summary-मराठी-सारांश)
+27. [Topic 27: Subqueries Deep Dive (Nested Queries)](#topic-27-subqueries-deep-dive-nested-queries)
+    - [27.1 What is a Subquery?](#271-what-is-a-subquery)
+    - [27.2 How Subqueries Work (The Execution Flow)](#272-how-subqueries-work-the-execution-flow)
+    - [27.3 Why are Subqueries Important? (When to use them)](#273-why-are-subqueries-important-when-to-use-them)
+    - [27.4 The Golden Rules of Subqueries](#274-the-golden-rules-of-subqueries)
+    - [27.5 Subquery Classification (Types of Subqueries)](#275-subquery-classification-types-of-subqueries)
+    - [27.6 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)](#276-interview-perspective-नेहमी-विचारले-जाणारे-प्रश्न)
+    - [27.7 Topic 27 Summary (मराठी सारांश)](#277-topic-27-summary-मराठी-सारांश)
+28. [Topic 28: Subqueries Advanced (Clauses, Operators & Execution)](#topic-28-subqueries-advanced-clauses-operators--execution)
+    - [28.1 Subqueries by Location (Clauses)](#281-subqueries-by-location-clauses)
+    - [28.2 Subqueries in the WHERE Clause (Filtering)](#282-subqueries-in-the-where-clause-filtering)
+    - [28.3 Correlated vs Non-Correlated Subqueries (Execution Behind the Scenes)](#283-correlated-vs-non-correlated-subqueries-execution-behind-the-scenes)
+    - [28.4 JOIN vs SUBQUERY (Interview Comparison)](#284-join-vs-subquery-interview-comparison)
+    - [28.5 Key Points & Summary](#285-key-points--summary)
+    - [28.6 Topic 28 Summary (मराठी सारांश)](#286-topic-28-summary-मराठी-सारांश)
+29. [Topic 29: Derived Tables in SQL](#topic-29-derived-tables-in-sql)
+    - [29.1 What is a Derived Table?](#291-what-is-a-derived-table)
+    - [29.2 Syntax and Example](#292-syntax-and-example)
+    - [29.3 Difference Between Derived Table and Subquery](#293-difference-between-derived-table-and-subquery)
+    - [29.4 Topic 29 Summary (मराठी सारांश)](#294-topic-29-summary-मराठी-सारांश)
+30. [Topic 30: CTEs (Common Table Expressions) & Recursive CTEs](#topic-30-ctes-common-table-expressions--recursive-ctes)
+    - [30.1 What is a CTE?](#301-what-is-a-cte)
+    - [30.2 CTE vs Subquery vs Temp Table (Interview Favorite)](#302-cte-vs-subquery-vs-temp-table-interview-favorite)
+    - [30.3 Recursive CTEs](#303-recursive-ctes)
+    - [30.4 Topic 30 Summary (मराठी सारांश)](#304-topic-30-summary-मराठी-सारांश)
+31. [Topic 31: Common Table Expressions (CTE)](#topic-31-common-table-expressions-cte)
+    - [31.1 What is a CTE? (Definition & Concept)](#311-what-is-a-cte-definition--concept)
+    - [31.2 CTE vs Regular Subquery](#312-cte-vs-regular-subquery)
+    - [31.3 Types of CTEs](#313-types-of-ctes)
+    - [31.4 CTE vs Derived Table](#314-cte-vs-derived-table)
+    - [31.5 CTE Summary & Best Practices](#315-cte-summary--best-practices)
+    - [31.6 Topic 31 Summary (मराठी सारांश)](#316-topic-31-summary-मराठी-सारांश)
+32. [Topic 32: SQL Views (Virtual Tables) Deep Dive](#topic-32-sql-views-virtual-tables-deep-dive)
+    - [32.1 What is a View?](#321-what-is-a-view)
+    - [32.2 Differences Between Table and View](#322-differences-between-table-and-view)
+    - [32.3 Why Do We Need Views? (6 Major Use Cases)](#323-why-do-we-need-views-6-major-use-cases)
+    - [32.4 View vs CTE](#324-view-vs-cte)
+    - [32.5 Syntax & Schema Naming](#325-syntax--schema-naming)
+    - [32.6 Modifying/Updating Views (CREATE OR REPLACE vs ALTER VIEW)](#326-modifyingupdating-views-create-or-replace-vs-alter-view)
+    - [32.7 Updatable Views (Insert / Update / Delete through a View)](#327-updatable-views-insert--update--delete-through-a-view)
+    - [32.8 Materialized Views (Performance Booster)](#328-materialized-views-performance-booster)
+    - [32.9 Index vs View vs Materialized View](#329-index-vs-view-vs-materialized-view)
+    - [32.10 How Database Executes a View](#3210-how-database-executes-a-view)
+    - [32.11 Summary of SQL Views](#3211-summary-of-sql-views)
+    - [32.12 Interview Perspective & Marathi Summary](#3212-interview-perspective--marathi-summary)
+    - [32.13 Topic 32 Summary (मराठी सारांश)](#3213-topic-32-summary-मराठी-सारांश)
+33. [Topic 33: Tables, CTAS & Temporary Tables Deep Dive](#topic-33-tables-ctas--temporary-tables-deep-dive)
+    - [33.1 What are Database Tables? (Physical Storage vs Logical Grid)](#331-what-are-database-tables-physical-storage-vs-logical-grid)
+    - [33.2 How to Create Permanent Tables: CREATE/INSERT vs CTAS](#332-how-to-create-permanent-tables-createinsert-vs-ctas)
+    - [33.3 CTAS Use Cases](#333-ctas-use-cases)
+    - [33.4 Temporary Tables (Session-Based Tables)](#334-temporary-tables-session-based-tables)
+    - [33.5 How Database Executes Temporary Tables](#335-how-database-executes-temporary-tables)
+    - [33.6 Use Case of Temporary Tables (ETL & Intermediate Results)](#336-use-case-of-temporary-tables-etl--intermediate-results)
+    - [33.7 Ultimate Comparison: Subquery vs CTE vs Temp Table vs CTAS vs View](#337-ultimate-comparison-subquery-vs-cte-vs-temp-table-vs-ctas-vs-view)
+    - [33.8 The Big Picture of SQL (How everything connects)](#338-the-big-picture-of-sql-how-everything-connects)
+    - [33.9 Interview Perspective & Marathi Summary](#339-interview-perspective--marathi-summary)
+    - [33.10 Topic 33 Summary (मराठी सारांश)](#3310-topic-33-summary-मराठी-सारांश)
+34. [Topic 34: Table Duplication & Copying Techniques](#topic-34-table-duplication--copying-techniques)
+    - [34.1 Copying Table Data WITHOUT Constraints](#341-copying-table-data-without-constraints)
+    - [34.2 Copying Table Data WITH Constraints (Exact Clone)](#342-copying-table-data-with-constraints-exact-clone)
+    - [34.3 Topic 34 Summary (मराठी सारांश)](#343-topic-34-summary-मराठी-सारांश)
+35. [Topic 35: Stored Procedures in MySQL (Programmability)](#topic-35-stored-procedures-in-mysql-programmability)
+    - [35.1 What Exactly is a Stored Procedure and Why Do We Use It?](#351-what-exactly-is-a-stored-procedure-and-why-do-we-use-it)
+    - [35.2 Stored Procedure vs Normal Query](#352-stored-procedure-vs-normal-query)
+    - [35.3 What is a Procedure in SQL? (Definition & What It Can Contain)](#353-what-is-a-procedure-in-sql-definition--what-it-can-contain)
+    - [35.4 Key Points About Procedures](#354-key-points-about-procedures)
+    - [35.5 What is the Purpose of Using a Procedure?](#355-what-is-the-purpose-of-using-a-procedure)
+    - [35.6 Advantages of Procedures & Real-World Example](#356-advantages-of-procedures--real-world-example)
+    - [35.7 Use Cases of Stored Procedures](#357-use-cases-of-stored-procedures)
+    - [35.8 How to Create a Procedure (Syntax)](#358-how-to-create-a-procedure-syntax)
+    - [35.9 Parameters in a Stored Procedure](#359-parameters-in-a-stored-procedure)
+    - [35.10 Default Parameter Values](#3510-default-parameter-values)
+    - [35.11 Multiple Statements in a Stored Procedure](#3511-multiple-statements-in-a-stored-procedure)
+    - [35.12 Variables in MySQL (User-Defined vs Local)](#3512-variables-in-mysql-user-defined-vs-local)
+    - [35.13 Control Flow: IF ... ELSEIF ... ELSE](#3513-control-flow-if--elseif--else)
+    - [35.14 Loops in a Stored Procedure](#3514-loops-in-a-stored-procedure)
+    - [35.15 Best-Practice Notes for Procedures](#3515-best-practice-notes-for-procedures)
+    - [35.16 What is DELIMITER in MySQL?](#3516-what-is-delimiter-in-mysql)
+    - [35.17 Messages in a Procedure (SIGNAL & Variables)](#3517-messages-in-a-procedure-signal--variables)
+    - [35.18 Types of Procedures & How to Execute Them](#3518-types-of-procedures--how-to-execute-them)
+    - [35.19 Creating Procedures With and Without Parameters (IN, OUT, INOUT)](#3519-creating-procedures-with-and-without-parameters-in-out-inout)
+    - [35.20 Error Handling in Stored Procedures](#3520-error-handling-in-stored-procedures)
+    - [35.21 Topic 35 Summary (मराठी सारांश)](#3521-topic-35-summary-मराठी-सारांश)
+36. [Topic 36: Stored Functions (User-Defined Functions) in MySQL](#topic-36-stored-functions-user-defined-functions-in-mysql)
+    - [36.1 What is a Function in SQL?](#361-what-is-a-function-in-sql)
+    - [36.2 Why Use Functions?](#362-why-use-functions)
+    - [36.3 Syntax in MySQL](#363-syntax-in-mysql)
+    - [36.4 Function Examples](#364-function-examples)
+    - [36.5 How to Manage & Drop Functions](#365-how-to-manage--drop-functions)
+    - [36.6 Differences Between Function and Procedure](#366-differences-between-function-and-procedure)
+    - [36.7 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)](#367-interview-perspective-नेहमी-विचारले-जाणारे-प्रश्न)
+    - [36.8 Topic 36 Summary (मराठी सारांश)](#368-topic-36-summary-मराठी-सारांश)
+37. [Topic 37: Triggers in MySQL](#topic-37-triggers-in-mysql)
+    - [37.1 Why Triggers? (From Procedures to Automatic Actions)](#371-why-triggers-from-procedures-to-automatic-actions)
+    - [37.2 What are Triggers?](#372-what-are-triggers)
+    - [37.3 Trigger Levels (Row-level vs Statement-level)](#373-trigger-levels-row-level-vs-statement-level)
+    - [37.4 Key Points About Triggers](#374-key-points-about-triggers)
+    - [37.5 Syntax of a Trigger](#375-syntax-of-a-trigger)
+    - [37.6 Types of Triggers (and Which Databases Support Them)](#376-types-of-triggers-and-which-databases-support-them)
+    - [37.7 Trigger Timing in MySQL (BEFORE vs AFTER)](#377-trigger-timing-in-mysql-before-vs-after)
+    - [37.8 Managing Triggers in MySQL](#378-managing-triggers-in-mysql)
+    - [37.9 How to Modify / Update a Trigger](#379-how-to-modify--update-a-trigger)
+    - [37.10 Use Cases of Triggers (15 Practical Examples)](#3710-use-cases-of-triggers-15-practical-examples)
+    - [37.11 Summary of Trigger Use Cases](#3711-summary-of-trigger-use-cases)
+    - [37.12 Important Key Points About Triggers in MySQL](#3712-important-key-points-about-triggers-in-mysql)
+    - [37.13 Triggers with Programming Logic (Variables, IF, CASE, Loops)](#3713-triggers-with-programming-logic-variables-if-case-loops)
+    - [37.14 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)](#3714-interview-perspective-नेहमी-विचारले-जाणारे-प्रश्न)
+    - [37.15 Topic 37 Summary (मराठी सारांश)](#3715-topic-37-summary-मराठी-सारांश)
+38. [Topic 38: Events in MySQL (Scheduled Jobs)](#topic-38-events-in-mysql-scheduled-jobs)
+    - [38.1 What is an Event?](#381-what-is-an-event)
+    - [38.2 Purpose of Events](#382-purpose-of-events)
+    - [38.3 Use Cases of Events](#383-use-cases-of-events)
+    - [38.4 Types of Events (One-Time vs Recurring)](#384-types-of-events-one-time-vs-recurring)
+    - [38.5 Why We Use Events & How to Create Them](#385-why-we-use-events--how-to-create-them)
+    - [38.6 Managing Events (Scheduler, Show, Alter, Enable/Disable, Drop)](#386-managing-events-scheduler-show-alter-enabledisable-drop)
+    - [38.7 Differences Between Triggers and Events](#387-differences-between-triggers-and-events)
+    - [38.8 When to Use a One-Time Event vs a Recurring Event](#388-when-to-use-a-one-time-event-vs-a-recurring-event)
+    - [38.9 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)](#389-interview-perspective-नेहमी-विचारले-जाणारे-प्रश्न)
+    - [38.10 Topic 38 Summary (मराठी सारांश)](#3810-topic-38-summary-मराठी-सारांश)
+39. [Topic 39: Cursors in MySQL](#topic-39-cursors-in-mysql)
+    - [39.1 What is a Cursor?](#391-what-is-a-cursor)
+    - [39.2 Cursor Lifecycle: DECLARE → OPEN → FETCH → CLOSE](#392-cursor-lifecycle-declare--open--fetch--close)
+    - [39.3 Full Working Example](#393-full-working-example)
+    - [39.4 Common Mistakes with Cursors](#394-common-mistakes-with-cursors)
+    - [39.5 Cursor vs Set-Based SQL](#395-cursor-vs-set-based-sql)
+    - [39.6 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)](#396-interview-perspective-नेहमी-विचारले-जाणारे-प्रश्न)
+    - [39.7 Topic 39 Summary (मराठी सारांश)](#397-topic-39-summary-मराठी-सारांश)
 
-**[📘 Part 6: Performance, Indexing & Database Internals (Topics 37–45)](#-part-6-performance-indexing--database-internals-topics-3745)**
+**[📘 Part 6: Performance, Indexing & Database Internals (Topics 40–48)](#-part-6-performance-indexing--database-internals-topics-4048)**
 
-37. [Topic 37: Database Engine Architecture & Storage Concepts](#topic-37-database-engine-architecture--storage-concepts)
-    - [37.1 What is a Data Warehouse?](#371-what-is-a-data-warehouse)
-    - [37.2 The Database Engine](#372-the-database-engine)
-    - [37.3 Database Storage Types (Disk vs Cache)](#373-database-storage-types-disk-vs-cache)
-    - [37.4 How a Simple Query Works (Step-by-Step)](#374-how-a-simple-query-works-step-by-step)
-    - [37.5 Topic 37 Summary (मराठी सारांश)](#375-topic-37-summary-मराठी-सारांश)
-38. [Topic 38: Database Optimization & Indexing (Analytics & Performance)](#topic-38-database-optimization--indexing-analytics--performance)
-    - [38.1 Introduction to Performance Optimization](#381-introduction-to-performance-optimization)
-    - [38.2 Database Storage Architecture: How data is stored?](#382-database-storage-architecture-how-data-is-stored)
-    - [38.3 The HEAP Structure & Full Table Scan](#383-the-heap-structure--full-table-scan)
-    - [38.4 The Clustered Index (B-Tree Structure) & Reading Speed](#384-the-clustered-index-b-tree-structure--reading-speed)
-    - [38.5 Non-Clustered Index (Secondary Index)](#385-non-clustered-index-secondary-index)
-    - [38.6 Clustered vs Non-Clustered Index Summary](#386-clustered-vs-non-clustered-index-summary)
-    - [38.7 Rowstore vs Columnstore Index (Storage Architecture)](#387-rowstore-vs-columnstore-index-storage-architecture)
-    - [38.8 Indexing by Function (Unique, Filtered, Composite)](#388-indexing-by-function-unique-filtered-composite)
-    - [38.9 Indexing Best Practices in MySQL](#389-indexing-best-practices-in-mysql)
-    - [38.10 Advantages & Disadvantages of Indexes](#3810-advantages--disadvantages-of-indexes)
-    - [38.11 Index Management & Monitoring](#3811-index-management--monitoring)
-    - [38.12 Indexing Strategies](#3812-indexing-strategies)
-    - [38.13 Interview Perspective (Pro-Tips)](#3813-interview-perspective-pro-tips)
-    - [38.14 Topic 38 Summary (मराठी सारांश)](#3814-topic-38-summary-मराठी-सारांश)
-39. [Topic 39: Heap vs Clustered Index (Internal Storage)](#topic-39-heap-vs-clustered-index-internal-storage)
-    - [39.1 What is a Heap Table?](#391-what-is-a-heap-table)
-    - [39.2 What is a Clustered Index?](#392-what-is-a-clustered-index)
-    - [39.3 Topic 39 Summary (मराठी सारांश)](#393-topic-39-summary-मराठी-सारांश)
-40. [Topic 40: Query Execution Plans (EXPLAIN)](#topic-40-query-execution-plans-explain)
-    - [40.1 What is an Execution Plan?](#401-what-is-an-execution-plan)
-    - [40.2 Types of Execution Plans](#402-types-of-execution-plans)
-    - [40.3 Estimated vs Actual Execution Plan Match](#403-estimated-vs-actual-execution-plan-match)
-    - [40.4 Topic 40 Summary (मराठी सारांश)](#404-topic-40-summary-मराठी-सारांश)
-41. [Topic 41: Scans & Seeks (Data Access Methods)](#topic-41-scans--seeks-data-access-methods)
-    - [41.1 What is a Table Scan?](#411-what-is-a-table-scan)
-    - [41.2 What is an Index Scan?](#412-what-is-an-index-scan)
-    - [41.3 What is an Index Seek?](#413-what-is-an-index-seek)
-    - [41.4 Best Practices to Ensure Index Seek](#414-best-practices-to-ensure-index-seek)
-    - [41.5 Topic 41 Summary (मराठी सारांश)](#415-topic-41-summary-मराठी-सारांश)
-42. [Topic 42: SQL Join Algorithms (How Joins Work Internally)](#topic-42-sql-join-algorithms-how-joins-work-internally)
-    - [42.1 Nested Loop Join (NLJ)](#421-nested-loop-join-nlj)
-    - [42.2 Hash Join (MySQL 8.0.18+)](#422-hash-join-mysql-8018)
-    - [42.3 Block Nested Loop Join (BNLJ)](#423-block-nested-loop-join-bnlj)
-    - [42.4 Topic 42 Summary (मराठी सारांश)](#424-topic-42-summary-मराठी-सारांश)
-43. [Topic 43: SQL Table Partitioning (Performance Optimization)](#topic-43-sql-table-partitioning-performance-optimization)
-    - [43.1 What is Partitioning?](#431-what-is-partitioning)
-    - [43.2 The Problem: Why Do We Need Partitioning?](#432-the-problem-why-do-we-need-partitioning)
-    - [43.3 The Solution: Partitioning & Scalability](#433-the-solution-partitioning--scalability)
-    - [43.4 Advantages & Limitations of Partitioning](#434-advantages--limitations-of-partitioning)
-    - [43.5 Partition Boundaries (LEFT vs RIGHT)](#435-partition-boundaries-left-vs-right)
-    - [43.6 Building Partitions in MySQL (4 Steps)](#436-building-partitions-in-mysql-4-steps)
-    - [43.7 Interview Perspective (Pro-Tips)](#437-interview-perspective-pro-tips)
-    - [43.8 Topic 43 Summary (मराठी सारांश)](#438-topic-43-summary-मराठी-सारांश)
-44. [Topic 44: Query Optimization / Tuning Checklist (Interview Favorite)](#topic-44-query-optimization--tuning-checklist-interview-favorite)
-    - [44.1 Topic 44 Summary (मराठी सारांश)](#441-topic-44-summary-मराठी-सारांश)
-45. [Topic 45: Query Optimization Techniques in SQL (Detailed Guide)](#topic-45-query-optimization-techniques-in-sql-detailed-guide)
-    - [45.1 What is Query Optimization?](#451-what-is-query-optimization)
-    - [45.2 Step 1: Measure First — EXPLAIN, EXPLAIN FORMAT=JSON, EXPLAIN ANALYZE](#452-step-1-measure-first--explain-explain-formatjson-explain-analyze)
-    - [45.3 Optimize Data Retrieval](#453-optimize-data-retrieval)
-    - [45.4 Indexing Strategies](#454-indexing-strategies)
-    - [45.5 Join Optimization](#455-join-optimization)
-    - [45.6 Avoid Costly Operations](#456-avoid-costly-operations)
-    - [45.7 Data Type Optimization](#457-data-type-optimization)
-    - [45.8 Stored Procedures for Optimization](#458-stored-procedures-for-optimization)
-    - [45.9 Avoid != / <> in WHERE Clauses](#459-avoid----in-where-clauses)
-    - [45.10 Subquery Optimization](#4510-subquery-optimization)
-    - [45.11 Batch & Parallel Processing](#4511-batch--parallel-processing)
-    - [45.12 Partitioning & Sharding (Advanced)](#4512-partitioning--sharding-advanced)
-    - [45.13 Caching](#4513-caching)
-    - [45.14 Use Window Functions](#4514-use-window-functions)
-    - [45.15 Connection & Transaction Management](#4515-connection--transaction-management)
-    - [45.16 In Short & Topic 45 Summary (मराठी सारांश)](#4516-in-short--topic-45-summary-मराठी-सारांश)
+40. [Topic 40: Database Engine Architecture & Storage Concepts](#topic-40-database-engine-architecture--storage-concepts)
+    - [40.1 What is a Data Warehouse?](#401-what-is-a-data-warehouse)
+    - [40.2 The Database Engine](#402-the-database-engine)
+    - [40.3 Database Storage Types (Disk vs Cache)](#403-database-storage-types-disk-vs-cache)
+    - [40.4 How a Simple Query Works (Step-by-Step)](#404-how-a-simple-query-works-step-by-step)
+    - [40.5 Topic 40 Summary (मराठी सारांश)](#405-topic-40-summary-मराठी-सारांश)
+41. [Topic 41: Database Optimization & Indexing (Analytics & Performance)](#topic-41-database-optimization--indexing-analytics--performance)
+    - [41.1 Introduction to Performance Optimization](#411-introduction-to-performance-optimization)
+    - [41.2 Database Storage Architecture: How data is stored?](#412-database-storage-architecture-how-data-is-stored)
+    - [41.3 The HEAP Structure & Full Table Scan](#413-the-heap-structure--full-table-scan)
+    - [41.4 The Clustered Index (B-Tree Structure) & Reading Speed](#414-the-clustered-index-b-tree-structure--reading-speed)
+    - [41.5 Non-Clustered Index (Secondary Index)](#415-non-clustered-index-secondary-index)
+    - [41.6 Clustered vs Non-Clustered Index Summary](#416-clustered-vs-non-clustered-index-summary)
+    - [41.7 Rowstore vs Columnstore Index (Storage Architecture)](#417-rowstore-vs-columnstore-index-storage-architecture)
+    - [41.8 Indexing by Function (Unique, Filtered, Composite)](#418-indexing-by-function-unique-filtered-composite)
+    - [41.9 Indexing Best Practices in MySQL](#419-indexing-best-practices-in-mysql)
+    - [41.10 Advantages & Disadvantages of Indexes](#4110-advantages--disadvantages-of-indexes)
+    - [41.11 Index Management & Monitoring](#4111-index-management--monitoring)
+    - [41.12 Indexing Strategies](#4112-indexing-strategies)
+    - [41.13 Interview Perspective (Pro-Tips)](#4113-interview-perspective-pro-tips)
+    - [41.14 Topic 41 Summary (मराठी सारांश)](#4114-topic-41-summary-मराठी-सारांश)
+42. [Topic 42: Heap vs Clustered Index (Internal Storage)](#topic-42-heap-vs-clustered-index-internal-storage)
+    - [42.1 What is a Heap Table?](#421-what-is-a-heap-table)
+    - [42.2 What is a Clustered Index?](#422-what-is-a-clustered-index)
+    - [42.3 Topic 42 Summary (मराठी सारांश)](#423-topic-42-summary-मराठी-सारांश)
+43. [Topic 43: Query Execution Plans (EXPLAIN)](#topic-43-query-execution-plans-explain)
+    - [43.1 What is an Execution Plan?](#431-what-is-an-execution-plan)
+    - [43.2 Types of Execution Plans](#432-types-of-execution-plans)
+    - [43.3 Estimated vs Actual Execution Plan Match](#433-estimated-vs-actual-execution-plan-match)
+    - [43.4 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)](#434-interview-perspective-नेहमी-विचारले-जाणारे-प्रश्न)
+    - [43.5 Topic 43 Summary (मराठी सारांश)](#435-topic-43-summary-मराठी-सारांश)
+44. [Topic 44: Scans & Seeks (Data Access Methods)](#topic-44-scans--seeks-data-access-methods)
+    - [44.1 What is a Table Scan?](#441-what-is-a-table-scan)
+    - [44.2 What is an Index Scan?](#442-what-is-an-index-scan)
+    - [44.3 What is an Index Seek?](#443-what-is-an-index-seek)
+    - [44.4 Best Practices to Ensure Index Seek](#444-best-practices-to-ensure-index-seek)
+    - [44.5 Topic 44 Summary (मराठी सारांश)](#445-topic-44-summary-मराठी-सारांश)
+45. [Topic 45: SQL Join Algorithms (How Joins Work Internally)](#topic-45-sql-join-algorithms-how-joins-work-internally)
+    - [45.1 Nested Loop Join (NLJ)](#451-nested-loop-join-nlj)
+    - [45.2 Hash Join (MySQL 8.0.18+)](#452-hash-join-mysql-8018)
+    - [45.3 Block Nested Loop Join (BNLJ)](#453-block-nested-loop-join-bnlj)
+    - [45.4 Topic 45 Summary (मराठी सारांश)](#454-topic-45-summary-मराठी-सारांश)
+46. [Topic 46: SQL Table Partitioning (Performance Optimization)](#topic-46-sql-table-partitioning-performance-optimization)
+    - [46.1 What is Partitioning?](#461-what-is-partitioning)
+    - [46.2 The Problem: Why Do We Need Partitioning?](#462-the-problem-why-do-we-need-partitioning)
+    - [46.3 The Solution: Partitioning & Scalability](#463-the-solution-partitioning--scalability)
+    - [46.4 Advantages & Limitations of Partitioning](#464-advantages--limitations-of-partitioning)
+    - [46.5 Partition Boundaries (LEFT vs RIGHT)](#465-partition-boundaries-left-vs-right)
+    - [46.6 Building Partitions in MySQL (4 Steps)](#466-building-partitions-in-mysql-4-steps)
+    - [46.7 Interview Perspective (Pro-Tips)](#467-interview-perspective-pro-tips)
+    - [46.8 Topic 46 Summary (मराठी सारांश)](#468-topic-46-summary-मराठी-सारांश)
+47. [Topic 47: Query Optimization / Tuning Checklist (Interview Favorite)](#topic-47-query-optimization--tuning-checklist-interview-favorite)
+    - [47.1 Topic 47 Summary (मराठी सारांश)](#471-topic-47-summary-मराठी-सारांश)
+48. [Topic 48: Query Optimization Techniques in SQL (Detailed Guide)](#topic-48-query-optimization-techniques-in-sql-detailed-guide)
+    - [48.1 What is Query Optimization?](#481-what-is-query-optimization)
+    - [48.2 Step 1: Measure First — EXPLAIN, EXPLAIN FORMAT=JSON, EXPLAIN ANALYZE](#482-step-1-measure-first--explain-explain-formatjson-explain-analyze)
+    - [48.3 Optimize Data Retrieval](#483-optimize-data-retrieval)
+    - [48.4 Indexing Strategies](#484-indexing-strategies)
+    - [48.5 Join Optimization](#485-join-optimization)
+    - [48.6 Avoid Costly Operations](#486-avoid-costly-operations)
+    - [48.7 Data Type Optimization](#487-data-type-optimization)
+    - [48.8 Stored Procedures for Optimization](#488-stored-procedures-for-optimization)
+    - [48.9 Avoid != / <> in WHERE Clauses](#489-avoid----in-where-clauses)
+    - [48.10 Subquery Optimization](#4810-subquery-optimization)
+    - [48.11 Batch & Parallel Processing](#4811-batch--parallel-processing)
+    - [48.12 Partitioning & Sharding (Advanced)](#4812-partitioning--sharding-advanced)
+    - [48.13 Caching](#4813-caching)
+    - [48.14 Use Window Functions](#4814-use-window-functions)
+    - [48.15 Connection & Transaction Management](#4815-connection--transaction-management)
+    - [48.16 In Short & Topic 48 Summary (मराठी सारांश)](#4816-in-short--topic-48-summary-मराठी-सारांश)
 
-**[📘 Part 7: Database Design & Data Management (Topics 46–48)](#-part-7-database-design--data-management-topics-4648)**
+**[📘 Part 7: Database Design & Data Management (Topics 49–51)](#-part-7-database-design--data-management-topics-4951)**
 
-46. [Topic 46: Database Normalization (1NF to BCNF)](#topic-46-database-normalization-1nf-to-bcnf)
-    - [46.1 What is Normalization?](#461-what-is-normalization)
-    - [46.2 The Normal Forms (Step-by-Step)](#462-the-normal-forms-step-by-step)
-    - [46.3 What is Denormalization?](#463-what-is-denormalization)
-    - [46.4 Topic 46 Summary (मराठी सारांश)](#464-topic-46-summary-मराठी-सारांश)
-47. [Topic 47: Associations (Relationships Between Tables)](#topic-47-associations-relationships-between-tables)
-    - [47.1 What is an Association in SQL?](#471-what-is-an-association-in-sql)
-    - [47.2 Types of Associations (Relationships)](#472-types-of-associations-relationships)
-    - [47.3 Why Associations Are Important](#473-why-associations-are-important)
-    - [47.4 How Associations Are Implemented in SQL](#474-how-associations-are-implemented-in-sql)
-    - [47.5 Topic 47 Summary (मराठी सारांश)](#475-topic-47-summary-मराठी-सारांश)
-48. [Topic 48: Database Import & Export (CSV, SQL Dumps)](#topic-48-database-import--export-csv-sql-dumps)
-    - [48.1 Working with CSV Files](#481-working-with-csv-files)
-    - [48.2 Importing Data into MySQL](#482-importing-data-into-mysql)
-    - [48.3 Exporting Data from MySQL](#483-exporting-data-from-mysql)
-    - [48.4 Database Backups & Dumps (mysqldump)](#484-database-backups--dumps-mysqldump)
-    - [48.5 Exporting/Importing Other File Types (XML & JSON)](#485-exportingimporting-other-file-types-xml--json)
-    - [48.6 Advanced mysqldump (Routines, Triggers, Events)](#486-advanced-mysqldump-routines-triggers-events)
-    - [48.7 Performance Tip: Importing HUGE SQL Files](#487-performance-tip-importing-huge-sql-files)
-    - [48.8 Topic 48 Summary (मराठी सारांश)](#488-topic-48-summary-मराठी-सारांश)
+49. [Topic 49: Database Normalization (1NF to BCNF)](#topic-49-database-normalization-1nf-to-bcnf)
+    - [49.1 What is Normalization?](#491-what-is-normalization)
+    - [49.2 The Normal Forms (Step-by-Step)](#492-the-normal-forms-step-by-step)
+    - [49.3 What is Denormalization?](#493-what-is-denormalization)
+    - [49.4 Data Warehouse Modeling: OLTP vs OLAP, Star & Snowflake Schema](#494-data-warehouse-modeling-oltp-vs-olap-star--snowflake-schema)
+    - [49.5 Topic 49 Summary (मराठी सारांश)](#495-topic-49-summary-मराठी-सारांश)
+50. [Topic 50: Associations (Relationships Between Tables)](#topic-50-associations-relationships-between-tables)
+    - [50.1 What is an Association in SQL?](#501-what-is-an-association-in-sql)
+    - [50.2 Types of Associations (Relationships)](#502-types-of-associations-relationships)
+    - [50.3 Why Associations Are Important](#503-why-associations-are-important)
+    - [50.4 How Associations Are Implemented in SQL](#504-how-associations-are-implemented-in-sql)
+    - [50.5 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)](#505-interview-perspective-नेहमी-विचारले-जाणारे-प्रश्न)
+    - [50.6 Topic 50 Summary (मराठी सारांश)](#506-topic-50-summary-मराठी-सारांश)
+51. [Topic 51: Database Import & Export (CSV, SQL Dumps)](#topic-51-database-import--export-csv-sql-dumps)
+    - [51.1 Working with CSV Files](#511-working-with-csv-files)
+    - [51.2 Importing Data into MySQL](#512-importing-data-into-mysql)
+    - [51.3 Exporting Data from MySQL](#513-exporting-data-from-mysql)
+    - [51.4 Database Backups & Dumps (mysqldump)](#514-database-backups--dumps-mysqldump)
+    - [51.5 Exporting/Importing Other File Types (XML & JSON)](#515-exportingimporting-other-file-types-xml--json)
+    - [51.6 Advanced mysqldump (Routines, Triggers, Events)](#516-advanced-mysqldump-routines-triggers-events)
+    - [51.7 Performance Tip: Importing HUGE SQL Files](#517-performance-tip-importing-huge-sql-files)
+    - [51.8 Backup Strategy & Replication](#518-backup-strategy--replication)
+    - [51.9 Topic 51 Summary (मराठी सारांश)](#519-topic-51-summary-मराठी-सारांश)
 
-**[📘 Part 8: Final Revision & Interview Preparation (Topics 49–50)](#-part-8-final-revision--interview-preparation-topics-4950)**
+**[📘 Part 8: Final Revision & Interview Preparation (Topics 52–53)](#-part-8-final-revision--interview-preparation-topics-5253)**
 
-49. [Topic 49: Final Summary / निष्कर्ष](#topic-49-final-summary--निष्कर्ष)
-50. [Topic 50: Interview Q&A Bank (Most-Asked SQL Questions)](#topic-50-interview-qa-bank-most-asked-sql-questions)
-    - [50.1 Part A: Database Basics](#501-part-a-database-basics)
-    - [50.2 Part B: Data Types](#502-part-b-data-types)
-    - [50.3 Part C: DDL, DML & Command Types](#503-part-c-ddl-dml--command-types)
-    - [50.4 Part D: Keys & Constraints](#504-part-d-keys--constraints)
-    - [50.5 Part E: Querying, Filtering, Grouping](#505-part-e-querying-filtering-grouping)
-    - [50.6 Part F: Joins & SET Operators](#506-part-f-joins--set-operators)
-    - [50.7 Part G: Functions, NULL & CASE](#507-part-g-functions-null--case)
-    - [50.8 Part H: Window Functions](#508-part-h-window-functions)
-    - [50.9 Part I: Transactions & Security](#509-part-i-transactions--security)
-    - [50.10 Part J: Query-Writing Questions (Practice These)](#5010-part-j-query-writing-questions-practice-these)
+52. [Topic 52: Final Summary / निष्कर्ष](#topic-52-final-summary--निष्कर्ष)
+53. [Topic 53: Interview Q&A Bank (Most-Asked SQL Questions)](#topic-53-interview-qa-bank-most-asked-sql-questions)
+    - [53.1 Part A: Database Basics](#531-part-a-database-basics)
+    - [53.2 Part B: Data Types](#532-part-b-data-types)
+    - [53.3 Part C: DDL, DML & Command Types](#533-part-c-ddl-dml--command-types)
+    - [53.4 Part D: Keys & Constraints](#534-part-d-keys--constraints)
+    - [53.5 Part E: Querying, Filtering, Grouping](#535-part-e-querying-filtering-grouping)
+    - [53.6 Part F: Joins & SET Operators](#536-part-f-joins--set-operators)
+    - [53.7 Part G: Functions, NULL & CASE](#537-part-g-functions-null--case)
+    - [53.8 Part H: Window Functions](#538-part-h-window-functions)
+    - [53.9 Part I: Transactions & Security](#539-part-i-transactions--security)
+    - [53.10 Part J: Query-Writing Questions (Practice These)](#5310-part-j-query-writing-questions-practice-these)
+    - [53.11 Part K: Transactions, Locks & Concurrency](#5311-part-k-transactions-locks--concurrency)
+    - [53.12 Part L: Indexes & Performance](#5312-part-l-indexes--performance)
+    - [53.13 Part M: Procedures, Functions, Triggers, Events & Cursors](#5313-part-m-procedures-functions-triggers-events--cursors)
+    - [53.14 Part N: Views, CTEs, Subqueries & Temporary Tables](#5314-part-n-views-ctes-subqueries--temporary-tables)
+    - [53.15 Part O: Database Design, Normalization & Data Warehousing](#5315-part-o-database-design-normalization--data-warehousing)
+    - [53.16 Part P: Security, Backup & Administration](#5316-part-p-security-backup--administration)
+    - [53.17 Part Q: Advanced Query-Writing Questions (with Sample Output)](#5317-part-q-advanced-query-writing-questions-with-sample-output)
+    - [53.18 Topic 53 Summary (मराठी सारांश)](#5318-topic-53-summary-मराठी-सारांश)
 
 ---
 
@@ -520,22 +569,22 @@ DB RUNS  :  FROM (+JOIN) → WHERE → GROUP BY → HAVING → SELECT (+window f
 
 ### E. Top 10 Things Interviewers Love to Ask
 1. Execution order of a query (section B above).
-2. Nth highest salary (see Topic 50, Part J).
-3. Find and delete duplicate rows (see Topic 50, Part J).
-4. Customers who never placed an order → `LEFT JOIN ... WHERE o.customer_id IS NULL` or `NOT EXISTS` (see Topic 19).
-5. `RANK` vs `DENSE_RANK` vs `ROW_NUMBER` (see Topic 24).
-6. ACID properties and isolation levels — MySQL default = `REPEATABLE READ` (see Topic 14).
-7. `NOT IN` with `NULL` returns 0 rows (see 18.7.8).
+2. Nth highest salary (see Topic 53, Part J).
+3. Find and delete duplicate rows (see Topic 53, Part J).
+4. Customers who never placed an order → `LEFT JOIN ... WHERE o.customer_id IS NULL` or `NOT EXISTS` (see Topic 21).
+5. `RANK` vs `DENSE_RANK` vs `ROW_NUMBER` (see Topic 26).
+6. ACID properties and isolation levels — MySQL default = `REPEATABLE READ` (see Topic 15).
+7. `NOT IN` with `NULL` returns 0 rows (see 20.7.8).
 8. `DELETE` vs `TRUNCATE` vs `DROP` (see 9.12).
-9. `WHERE` vs `HAVING` (see 18.12), and `UNION` vs `UNION ALL` (see Topic 20).
+9. `WHERE` vs `HAVING` (see 20.12), and `UNION` vs `UNION ALL` (see Topic 22).
 10. Primary Key vs Unique Key, and types of keys (see Topic 10).
 
 ### F. Transactions & Locks (One Look)
-* `START TRANSACTION` → statements → `COMMIT` (save all) or `ROLLBACK` (undo all); `SAVEPOINT sp` + `ROLLBACK TO sp` undoes part (see Topic 16).
-* Autocommit is ON by default; DDL (`CREATE`, `ALTER`, `DROP`, `TRUNCATE`) commits implicitly and can't be rolled back (see Topic 16).
-* Isolation levels: READ UNCOMMITTED → READ COMMITTED → **REPEATABLE READ (MySQL default)** → SERIALIZABLE (see Topic 14).
-* Locks: shared (read) vs exclusive (write); `SELECT ... FOR UPDATE` locks rows for your transaction; optimistic locking uses a `version` column (see Topic {{LOCK}}).
-* Deadlock → InnoDB rolls one transaction back (error 1213); fix by same access order + short transactions + indexes (see Topic 17).
+* `START TRANSACTION` → statements → `COMMIT` (save all) or `ROLLBACK` (undo all); `SAVEPOINT sp` + `ROLLBACK TO sp` undoes part (see Topic 17).
+* Autocommit is ON by default; DDL (`CREATE`, `ALTER`, `DROP`, `TRUNCATE`) commits implicitly and can't be rolled back (see Topic 17).
+* Isolation levels: READ UNCOMMITTED → READ COMMITTED → **REPEATABLE READ (MySQL default)** → SERIALIZABLE (see Topic 15).
+* Locks: shared (read) vs exclusive (write); `SELECT ... FOR UPDATE` locks rows for your transaction; optimistic locking uses a `version` column (see Topic 19).
+* Deadlock → InnoDB rolls one transaction back (error 1213); fix by same access order + short transactions + indexes (see Topic 18).
 
 ### G. Indexes & Performance (One Look)
 | Rule | Why |
@@ -546,7 +595,7 @@ DB RUNS  :  FROM (+JOIN) → WHERE → GROUP BY → HAVING → SELECT (+window f
 | No function on an indexed column: `d >= '2025-01-01'` not `YEAR(d) = 2025` | a function hides the index |
 | `LIKE 'abc%'` ✔, `LIKE '%abc'` ✖ | leading wildcard can't use the index |
 | `EXPLAIN` `type = ALL` = full scan; `ref / range / const` = good | read the plan before changing anything |
-* See Topic 38 (indexing), Topic 40 (EXPLAIN), Topic 45 (optimization techniques).
+* See Topic 41 (indexing), Topic 43 (EXPLAIN), Topic 48 (optimization techniques).
 
 ### H. Procedures, Functions, Triggers, Events, Cursors (One Look)
 | Object | Starts when | Key syntax |
@@ -556,14 +605,14 @@ DB RUNS  :  FROM (+JOIN) → WHERE → GROUP BY → HAVING → SELECT (+window f
 | Trigger | INSERT / UPDATE / DELETE on a table | `CREATE TRIGGER t BEFORE INSERT ON orders FOR EACH ROW ...` (OLD / NEW) |
 | Event | a time schedule | `CREATE EVENT e ON SCHEDULE EVERY 1 DAY DO ...` (event_scheduler ON) |
 | Cursor | inside a procedure, row by row | `DECLARE c CURSOR FOR ...; OPEN; FETCH ... INTO ...; CLOSE` |
-* MySQL: no `DEFAULT` for procedure parameters, no `CREATE OR REPLACE PROCEDURE/TRIGGER`, no COMMIT inside triggers/functions, `SIGNAL SQLSTATE '45000'` to raise an error (see Topic 33, Topic 34, Topic 35, Topic 36, Topic {{CUR}}).
+* MySQL: no `DEFAULT` for procedure parameters, no `CREATE OR REPLACE PROCEDURE/TRIGGER`, no COMMIT inside triggers/functions, `SIGNAL SQLSTATE '45000'` to raise an error (see Topic 35, Topic 36, Topic 37, Topic 38, Topic 39).
 
 ### I. Design & Security (One Look)
-* Normalization: 1NF atomic values → 2NF no partial dependency → 3NF no transitive dependency → BCNF every determinant is a key (see Topic 46).
-* OLTP = normalized app database; OLAP = star/snowflake schema with fact + dimension tables (see Topic 46).
-* M:N relationship → junction table with two foreign keys (see Topic 47).
-* SQL injection → always use prepared statements / parameters, never string concatenation; give apps least privilege (see Topic {{INJ}}, Topic 13).
-* Replication is not a backup; use `mysqldump --single-transaction` or physical backups + binlogs for point-in-time recovery (see Topic 48).
+* Normalization: 1NF atomic values → 2NF no partial dependency → 3NF no transitive dependency → BCNF every determinant is a key (see Topic 49).
+* OLTP = normalized app database; OLAP = star/snowflake schema with fact + dimension tables (see Topic 49).
+* M:N relationship → junction table with two foreign keys (see Topic 50).
+* SQL injection → always use prepared statements / parameters, never string concatenation; give apps least privilege (see Topic 14, Topic 13).
+* Replication is not a backup; use `mysqldump --single-transaction` or physical backups + binlogs for point-in-time recovery (see Topic 51).
 
 ### J. Most-Asked Query Patterns
 | Problem | Pattern |
@@ -576,7 +625,7 @@ DB RUNS  :  FROM (+JOIN) → WHERE → GROUP BY → HAVING → SELECT (+window f
 | Consecutive days (gaps & islands) | group by `date - ROW_NUMBER()` |
 | Rows → columns (pivot) | `SUM(CASE WHEN year = 2025 THEN sales ELSE 0 END)` |
 | Not in other table | `LEFT JOIN ... WHERE b.id IS NULL` or `NOT EXISTS` |
-* Worked answers with output: Topic 50, Part J and Part Q.
+* Worked answers with output: Topic 53, Part J and Part Q.
 
 * **📌 मराठी सारांश (नवीन भाग F–J):** Transactions व locks, indexes व EXPLAIN, procedures / functions / triggers / events / cursors ची एका तक्त्यात तुलना, design व security (normalization, star schema, SQL injection, backup), आणि नेहमी विचारले जाणारे query patterns (top N per group, gaps & islands, pivot) — interview च्या आदल्या दिवशी हे सगळे एकदा वाचा.
 * **📌 मराठी सारांश:** मुलाखतीच्या आधी हे पान वाचा — SQL कमांड्सचे ५ प्रकार, क्वेरी चालण्याचा क्रम, सर्वात जास्त विचारले जाणारे "फरक" (Difference) प्रश्न, NULL चे नियम आणि टॉप १० प्रश्न एका नजरेत.
@@ -2580,9 +2629,9 @@ The architecture of a database is divided into three distinct levels:
 
 ---
 
-# 📘 Part 2: SQL Commands, Keys & Transactions (DDL, DML, DQL, DCL, TCL) (Topics 9–17)
+# 📘 Part 2: SQL Commands, Keys & Transactions (DDL, DML, DQL, DCL, TCL) (Topics 9–19)
 
-> **मराठी:** SQL Commands, Keys आणि Transactions — या भागात Topics 9 ते 17 आहेत.
+> **मराठी:** SQL Commands, Keys आणि Transactions — या भागात Topics 9 ते 19 आहेत.
 
 ---
 
@@ -4376,7 +4425,7 @@ VALUES (7, 'Vishal', 'India', 999);
 
 ## Topic 12: DQL (Data Query Language) & Data Retrieval
 
-> 🔗 **हेही पहा:** [Topic 18: Commands to Query Data (DQL In-Depth, Clauses & Filtering)](#topic-18-commands-to-query-data-dql-in-depth-clauses--filtering) — DQL चे सर्व clauses (WHERE, ORDER BY, GROUP BY, HAVING) सविस्तर
+> 🔗 **हेही पहा:** [Topic 20: Commands to Query Data (DQL In-Depth, Clauses & Filtering)](#topic-20-commands-to-query-data-dql-in-depth-clauses--filtering) — DQL चे सर्व clauses (WHERE, ORDER BY, GROUP BY, HAVING) सविस्तर
 
 ### 12.1 What is DQL (Data Query Language)?
 
@@ -4458,6 +4507,8 @@ You can select or retrieve data in two primary ways:
 ---
 
 ## Topic 13: DCL (Data Control Language) & Security / Access Control
+
+> 🔗 **हेही पहा:** [Topic 14: SQL Injection & Prepared Statements (Database Security)](#topic-14-sql-injection--prepared-statements-database-security) — SQL Injection व Prepared Statements
 
 ### 13.1 What is DCL (Data Control Language)?
 
@@ -4770,11 +4821,160 @@ As of MySQL 8.x, there are **36+ distinct privilege types** classified into 6 pr
 
 ---
 
-## Topic 14: TCL (Transaction Control Language) & Transaction Management
+## Topic 14: SQL Injection & Prepared Statements (Database Security)
 
-> 🔗 **हेही पहा:** [Topic 15: ACID Properties & Transaction Isolation Levels](#topic-15-acid-properties--transaction-isolation-levels) — ACID आणि Isolation Levels थोडक्यात · [Topic 17: Deadlocks in SQL](#topic-17-deadlocks-in-sql) — Deadlocks · [Topic 33: Stored Procedures in MySQL (Programmability)](#topic-33-stored-procedures-in-mysql-programmability) — Procedures मध्ये transactions
+> 🔗 **हेही पहा:** [Topic 13: DCL (Data Control Language) & Security / Access Control](#topic-13-dcl-data-control-language--security--access-control) — DCL: users आणि GRANT (least privilege) · [Topic 35: Stored Procedures in MySQL (Programmability)](#topic-35-stored-procedures-in-mysql-programmability) — Stored Procedures (dynamic SQL)
 
-### 14.1 What is TCL (Transaction Control Language)?
+> **मराठी:** SQL Injection म्हणजे user ने दिलेला मजकूर थेट SQL मध्ये जोडल्यामुळे हल्लेखोर query बदलू शकतो. Prepared statements (parameters) वापरणे हा त्याचा मुख्य उपाय आहे. Backend आणि security interviews मध्ये हा प्रश्न हमखास विचारला जातो.
+
+### 14.1 What is SQL Injection?
+
+* **SQL injection** is an attack where user input is **joined directly into an SQL string**, so the input becomes part of the SQL code and changes what the query does.
+* **Vulnerable login code (string concatenation):**
+  ```python
+  # ❌ NEVER do this
+  username = request.form["username"]
+  password = request.form["password"]
+  sql = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'"
+  cursor.execute(sql)
+  ```
+* **Attack:** the attacker types `admin' -- ` as the username (and anything as the password). The query becomes:
+  ```sql
+  SELECT * FROM users WHERE username = 'admin' -- ' AND password = 'anything'
+  ```
+  * `--` starts a comment, so the password check disappears and the attacker logs in as admin.
+* Another classic input: `' OR '1'='1` → `WHERE username = '' OR '1'='1'` is true for every row.
+* **What an attacker can do:** log in without a password, read other users' data, dump whole tables with `UNION SELECT`, change or delete data, and sometimes read server files.
+* **मराठी:** App ने user चा मजकूर SQL string मध्ये थेट जोडला की `admin' -- ` सारख्या input ने password ची अट comment होते आणि हल्लेखोर admin म्हणून login करतो. यामुळे डेटा चोरी, बदल किंवा delete होऊ शकतो.
+  * **उदाहरण:** `' OR '1'='1` टाकल्यावर `WHERE` नेहमी TRUE होते आणि सर्व users ची माहिती बाहेर येते.
+
+### 14.2 Types of SQL Injection
+
+| Type | How it works | Example input |
+| :--- | :--- | :--- |
+| **Tautology / classic** | Makes the WHERE condition always true | `' OR '1'='1` |
+| **Comment-based** | Cuts off the rest of the query | `admin' -- ` |
+| **UNION-based** | Appends another SELECT to read other tables | `' UNION SELECT username, password FROM users -- ` |
+| **Error-based** | Forces database errors that reveal table/column names | `' AND extractvalue(1, concat(0x7e, database())) -- ` |
+| **Blind (boolean)** | No output shown; attacker asks true/false questions and watches the page change | `' AND SUBSTRING(database(),1,1) = 's' -- ` |
+| **Blind (time-based)** | Uses delays to learn data | `' AND IF(1=1, SLEEP(5), 0) -- ` |
+| **Second-order** | Malicious text is stored first and injected later when another query reuses it | a username like `bob'; --` saved, used later in an admin report |
+
+* **मराठी:** Injection चे प्रकार: नेहमी TRUE अट, comment ने उरलेली query तोडणे, UNION ने दुसरे टेबल वाचणे, error मधून माहिती काढणे, blind (TRUE/FALSE किंवा वेळेवरून अंदाज), आणि second-order (आधी साठवलेला मजकूर नंतर वापरला जाणे).
+
+### 14.3 How to Prevent SQL Injection
+
+1. **Prepared statements / parameterized queries (main defence):** the SQL text and the values are sent separately; values are never parsed as SQL.
+2. **Validate input with allow-lists:** for things that can't be parameters (column names in `ORDER BY`, table names, sort direction) accept only known values.
+3. **Least privilege:** the application user gets only the rights it needs (`SELECT, INSERT, UPDATE` on its own tables) — never `root`, never `FILE`, `DROP` or `GRANT`.
+4. **Stored procedures with parameters** — safe only if they don't build SQL by concatenating the parameters.
+5. **ORM / query builders** (Hibernate, Sequelize, Django ORM) — they parameterize by default; raw SQL inside them still needs parameters.
+6. **Hide database errors** from users (log them on the server) so attackers learn nothing from error messages.
+7. **Escaping** (`mysqli_real_escape_string`) is only a last resort; it is easy to get wrong.
+* **मराठी:** मुख्य उपाय = prepared statements. त्यासोबत input ची allow-list तपासणी, app user ला कमीत कमी हक्क, parameters वापरणारे procedures/ORM, आणि database error users ना न दाखवणे.
+
+### 14.4 Prepared Statements in MySQL and in Application Code
+
+* **In MySQL itself (server-side prepared statement):**
+  ```sql
+  PREPARE stmt FROM 'SELECT * FROM users WHERE username = ? AND password_hash = ?';
+  SET @u = 'admin', @p = SHA2('secret', 256);
+  EXECUTE stmt USING @u, @p;
+  DEALLOCATE PREPARE stmt;
+  ```
+  * `?` is a placeholder; the values in `USING` are always treated as data, so `admin' -- ` is just a strange username that matches nobody.
+* **Python (mysql-connector):**
+  ```python
+  # ✅ Safe: values are passed separately
+  sql = "SELECT * FROM users WHERE username = %s AND password_hash = %s"
+  cursor.execute(sql, (username, password_hash))
+  ```
+* **Java (JDBC):**
+  ```java
+  // ✅ Safe
+  PreparedStatement ps = conn.prepareStatement(
+      "SELECT * FROM users WHERE username = ? AND password_hash = ?");
+  ps.setString(1, username);
+  ps.setString(2, passwordHash);
+  ResultSet rs = ps.executeQuery();
+  ```
+* **Node.js (mysql2):**
+  ```javascript
+  // ✅ Safe
+  const [rows] = await conn.execute(
+    "SELECT * FROM users WHERE username = ? AND password_hash = ?",
+    [username, passwordHash]
+  );
+  ```
+* **Extra benefit:** a prepared statement is parsed once and can be executed many times with different values (faster for repeated queries).
+* Also store passwords **hashed** (bcrypt/argon2 in the application), never as plain text — the example above compares a hash.
+* **मराठी:** Prepared statement मध्ये SQL आणि values वेगवेगळे पाठवले जातात (`?` जागी value). त्यामुळे `admin' -- ` हा फक्त एक विचित्र username ठरतो, SQL नाही. Python मध्ये `%s`, Java मध्ये `?` + `setString`, Node मध्ये `?` + array.
+
+![SQL Injection vs Prepared Statement](./svg_sql_injection_prepared.svg)
+
+> 📌 **आकृतीचे मराठीत स्पष्टीकरण:** डावीकडे string जोडून बनवलेली query: `admin' --` टाकल्यावर password ची अट comment होते आणि हल्लेखोर login करतो. उजवीकडे prepared statement: SQL (`?` सह) आधी जाते आणि value वेगळी जाते, त्यामुळे `admin' --` फक्त डेटा राहतो आणि 0 rows येतात.
+>
+> **उदाहरण:** Login form मध्ये username = `admin' --` टाकले तरी prepared statement वापरणाऱ्या app मध्ये "चुकीचा username/password" असाच संदेश येतो.
+
+### 14.5 Safe Dynamic SQL Inside Stored Procedures
+
+* Sometimes the **table or column name** must be dynamic (e.g. sort by a column the user picks). Identifiers cannot be `?` parameters, so check them against an allow-list first, and still pass **values** with `USING`:
+  ```sql
+  DELIMITER //
+  CREATE PROCEDURE SearchCustomers(IN p_country VARCHAR(50), IN p_sort_col VARCHAR(20))
+  BEGIN
+      -- allow-list for the column name (cannot be a ? parameter)
+      IF p_sort_col NOT IN ('first_name', 'score', 'created_at') THEN
+          SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid sort column';
+      END IF;
+
+      SET @sql = CONCAT('SELECT customer_id, first_name, score FROM customers ',
+                        'WHERE country = ? ORDER BY ', p_sort_col);
+      SET @country = p_country;
+      PREPARE stmt FROM @sql;
+      EXECUTE stmt USING @country;   -- the value is still a parameter
+      DEALLOCATE PREPARE stmt;
+  END //
+  DELIMITER ;
+
+  CALL SearchCustomers('India', 'score');
+  ```
+* ❌ Unsafe version (never do): `SET @sql = CONCAT('... WHERE country = ''', p_country, '''');` — this is SQL injection inside the database.
+* **मराठी:** Column/table चे नाव `?` ने देता येत नाही, म्हणून आधी allow-list ने तपासा; पण value (country) नेहमी `?` + `USING` ने द्या. `CONCAT` ने value जोडली तर procedure सुद्धा injection ला बळी पडतो.
+
+### 14.6 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
+
+* **Q1. What is SQL injection? Give an example.**
+  * **Answer:** Injecting SQL through user input that is concatenated into a query — e.g. username `admin' -- ` removes the password check.
+  * **मराठी:** Input मधून SQL घुसवणे; `admin' -- ` ने password ची अट निघून जाते.
+* **Q2. How do prepared statements prevent it?**
+  * **Answer:** The query structure is compiled first with placeholders; values are sent separately and bound as data, so they can never change the SQL.
+  * **मराठी:** Query ची रचना आधी ठरते आणि values नंतर फक्त डेटा म्हणून जातात.
+* **Q3. Can stored procedures be vulnerable?**
+  * **Answer:** Yes, if they build dynamic SQL with `CONCAT` of parameters. Use `PREPARE ... EXECUTE ... USING` and allow-lists for identifiers.
+  * **मराठी:** हो, procedure मध्ये CONCAT ने value जोडली तर.
+* **Q4. Is escaping input enough?**
+  * **Answer:** No — it's error-prone (character sets, numeric contexts, identifiers). Parameters are the correct fix; escaping is a last resort.
+  * **मराठी:** नाही; parameters हाच योग्य उपाय.
+* **Q5. Besides parameters, what else limits the damage?**
+  * **Answer:** Least-privilege DB users, hashed passwords, hiding DB errors, input validation, WAF/monitoring, and regular security testing.
+  * **मराठी:** कमी हक्क, hashed passwords, errors लपवणे, input तपासणी.
+
+### 14.7 Topic 14 Summary (मराठी सारांश)
+
+* **SQL Injection:** user input थेट SQL string मध्ये जोडल्यामुळे हल्लेखोर query बदलतो (`' OR '1'='1`, `admin' -- `, `UNION SELECT`).
+* **प्रकार:** tautology, comment, UNION, error-based, blind (boolean/time), second-order.
+* **उपाय:** prepared statements / parameters (मुख्य), identifiers साठी allow-list, least privilege, parameters वापरणारे procedures/ORM, database errors लपवणे, passwords hash करणे.
+* **MySQL मध्ये:** `PREPARE stmt FROM '... ?'; EXECUTE stmt USING @v; DEALLOCATE PREPARE stmt;`
+* **उदाहरण:** Python मध्ये `cursor.execute("SELECT * FROM users WHERE username = %s", (username,))` — username मध्ये काहीही टाकले तरी ते फक्त डेटा राहते.
+
+---
+
+## Topic 15: TCL (Transaction Control Language) & Transaction Management
+
+> 🔗 **हेही पहा:** [Topic 16: ACID Properties & Transaction Isolation Levels](#topic-16-acid-properties--transaction-isolation-levels) — ACID आणि Isolation Levels थोडक्यात · [Topic 18: Deadlocks in SQL](#topic-18-deadlocks-in-sql) — Deadlocks · [Topic 35: Stored Procedures in MySQL (Programmability)](#topic-35-stored-procedures-in-mysql-programmability) — Procedures मध्ये transactions
+
+### 15.1 What is TCL (Transaction Control Language)?
 
 * *Definition: TCL (Transaction Control Language) commands decide whether changes are saved permanently (`COMMIT`) or undone (`ROLLBACK`).*
   * **Core Formula:**
@@ -4782,7 +4982,7 @@ As of MySQL 8.x, there are **36+ distinct privilege types** classified into 6 pr
 
 ---
 
-### 14.2 What is a Transaction? (ACID Overview)
+### 15.2 What is a Transaction? (ACID Overview)
 
 * *Definition: A Transaction is a group of one or more SQL statements executed as a single, indivisible logical unit of work.*
 * **All-or-Nothing Principle:** Either **all statements succeed**, or **none of them take effect**.
@@ -4796,7 +4996,7 @@ As of MySQL 8.x, there are **36+ distinct privilege types** classified into 6 pr
 
 ---
 
-### 14.3 Core TCL Commands: START, COMMIT, ROLLBACK, SAVEPOINT, SET
+### 15.3 Core TCL Commands: START, COMMIT, ROLLBACK, SAVEPOINT, SET
 
 | Command | Action / Role | Effect on Data |
 | :--- | :--- | :--- |
@@ -4864,7 +5064,7 @@ As of MySQL 8.x, there are **36+ distinct privilege types** classified into 6 pr
 
 ---
 
-### 14.4 Real-World Banking Transaction Example (Atomic Transfer)
+### 15.4 Real-World Banking Transaction Example (Atomic Transfer)
 
 A classic banking scenario transferring \$1,000 from Account 101 to Account 102:
 ```sql
@@ -4889,7 +5089,7 @@ COMMIT;
 
 ---
 
-### 14.5 Critical Rules & Constraints of TCL
+### 15.5 Critical Rules & Constraints of TCL
 
 * **1. Works Only with DML Commands:**
   * TCL controls **`INSERT`**, **`UPDATE`**, and **`DELETE`**.
@@ -4902,7 +5102,7 @@ COMMIT;
 
 ---
 
-### 14.6 Transaction Isolation Levels & Concurrency Anomalies
+### 15.6 Transaction Isolation Levels & Concurrency Anomalies
 
 When multiple transactions execute concurrently on the same tables, three common data anomalies can occur:
 
@@ -4925,7 +5125,7 @@ Isolation levels control how transactions see each other's data:
 
 ---
 
-### 14.7 Advanced Interview Concepts & Gotchas in TCL / Transaction Management
+### 15.7 Advanced Interview Concepts & Gotchas in TCL / Transaction Management
 
 #### 1. Autocommit Mode (`@@autocommit`) & Default Session Behavior
 * **Q. If you execute an UPDATE statement without running START TRANSACTION, can you roll it back?**
@@ -5081,7 +5281,7 @@ Isolation levels control how transactions see each other's data:
 
 ---
 
-### 14.8 Visual Architecture Diagram: TCL Lifecycle & Isolation Levels
+### 15.8 Visual Architecture Diagram: TCL Lifecycle & Isolation Levels
 
 ![TCL Transaction Lifecycle and Isolation Architecture](./tcl_transaction_lifecycle_and_isolation_diagram.svg)
 
@@ -5100,7 +5300,7 @@ Isolation levels control how transactions see each other's data:
 
 ---
 
-### 14.9 Topic 14 Summary (मराठी सारांश)
+### 15.9 Topic 15 Summary (मराठी सारांश)
 
 * **TCL (Transaction Control Language) ची व्याख्या:**
   * ट्रान्झॅक्शनचे व्यवस्थापन करण्यासाठी आणि डेटा कायम सेव्ह करायचा की पूर्ववत करायचा हे ठरवण्यासाठी TCL चा वापर होतो.
@@ -5123,11 +5323,11 @@ Isolation levels control how transactions see each other's data:
 
 ---
 
-## Topic 15: ACID Properties & Transaction Isolation Levels
+## Topic 16: ACID Properties & Transaction Isolation Levels
 
-> 🔗 **हेही पहा:** [Topic 14: TCL (Transaction Control Language) & Transaction Management](#topic-14-tcl-transaction-control-language--transaction-management) — TCL commands, isolation levels आणि बँक transaction उदाहरण सविस्तर · [Topic 16: Transactions in SQL (Complete Guide)](#topic-16-transactions-in-sql-complete-guide) — Transactions सविस्तर
+> 🔗 **हेही पहा:** [Topic 15: TCL (Transaction Control Language) & Transaction Management](#topic-15-tcl-transaction-control-language--transaction-management) — TCL commands, isolation levels आणि बँक transaction उदाहरण सविस्तर · [Topic 17: Transactions in SQL (Complete Guide)](#topic-17-transactions-in-sql-complete-guide) — Transactions सविस्तर
 
-### 15.1 What are ACID Properties?
+### 16.1 What are ACID Properties?
 ACID guarantees that database transactions are processed reliably.
 1. **Atomicity (All or Nothing):** A transaction is a single unit. Either all statements in the transaction succeed, or none do (Rollback).
 2. **Consistency:** A transaction must take the database from one valid state to another. (e.g., constraints and rules are never violated).
@@ -5135,12 +5335,12 @@ ACID guarantees that database transactions are processed reliably.
 4. **Durability:** Once a transaction is committed, it remains saved even if the system crashes or loses power.
 * **मराठी:** ACID: A = काम पूर्ण होईल किंवा अजिबात होणार नाही; C = नियम (constraints) कधीच तुटणार नाहीत; I = दोन transactions एकमेकांना त्रास देणार नाहीत; D = एकदा commit झालेला डेटा crash नंतरही सुरक्षित राहील. उदा. पैसे transfer: A च्या खात्यातून वजा आणि B मध्ये जमा, दोन्ही होतील किंवा दोन्हीपैकी काहीच नाही.
 
-### 15.2 Concurrency Problems (Read Phenomena)
+### 16.2 Concurrency Problems (Read Phenomena)
 1. **Dirty Read:** Reading uncommitted data from another transaction (which might get rolled back later).
 2. **Non-Repeatable Read:** Reading the same row twice in a transaction, but getting different data because someone else UPDATED it in between.
 3. **Phantom Read:** Running the same query twice, but getting a different number of rows because someone else INSERTED/DELETED rows in between.
 
-### 15.3 Transaction Isolation Levels (MySQL InnoDB)
+### 16.3 Transaction Isolation Levels (MySQL InnoDB)
 * Isolation levels determine how strictly a database handles concurrency problems.
 1. **READ UNCOMMITTED:** No isolation. Allows Dirty, Non-Repeatable, and Phantom reads. (Fastest, but dangerous).
 2. **READ COMMITTED:** Fixes Dirty Reads. (You only read committed data).
@@ -5154,7 +5354,7 @@ ACID guarantees that database transactions are processed reliably.
   * **SERIALIZABLE:** सर्वात सुरक्षित; वाचलेल्या rows lock होतात, त्यामुळे इतरांना थांबावे लागते — सर्वात हळू.
   * **उदाहरण:** A ने balance 1000 वाचला आणि B ने तो 500 करून commit केला ➔ READ COMMITTED मध्ये A ला पुन्हा वाचल्यावर 500 दिसतो; REPEATABLE READ मध्ये A ला 1000 च दिसतो.
 
-### 15.4 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
+### 16.4 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
 
 * **Q1. What does ACID stand for? Explain with one example.**
   * **Answer:** Atomicity (all or nothing), Consistency (rules always hold), Isolation (transactions don't see each other's half-done work), Durability (committed data survives a crash). Example: a bank transfer debits A and credits B inside one transaction.
@@ -5172,7 +5372,7 @@ ACID guarantees that database transactions are processed reliably.
   * **Answer:** Reports: `READ COMMITTED` (never dirty, fewer locks, fresh data per statement). Money transfer: keep `REPEATABLE READ` and lock the rows you change with `SELECT ... FOR UPDATE`; use `SERIALIZABLE` only when you cannot lock explicitly.
   * **मराठी:** Report साठी `READ COMMITTED`; पैशांच्या व्यवहारासाठी `REPEATABLE READ` + `FOR UPDATE`.
 
-### 15.5 Topic 15 Summary (मराठी सारांश)
+### 16.5 Topic 16 Summary (मराठी सारांश)
 
 * **ACID:**
   * **Atomicity:** transaction मधील सर्व काम होईल किंवा काहीच होणार नाही.
@@ -5183,18 +5383,18 @@ ACID guarantees that database transactions are processed reliably.
 * **4 Isolation Levels:** READ UNCOMMITTED ➔ READ COMMITTED ➔ REPEATABLE READ (MySQL default) ➔ SERIALIZABLE (सर्वात सुरक्षित पण सर्वात हळू).
 * **तपासणे/बदलणे:** `SELECT @@transaction_isolation;` आणि `SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;`
 * **उदाहरण (Bank Transfer):** `START TRANSACTION; UPDATE accounts SET bal = bal - 500 WHERE id = 1; UPDATE accounts SET bal = bal + 500 WHERE id = 2; COMMIT;` ➔ मधेच error आली तर `ROLLBACK` ➔ कोणत्याही खात्यात बदल होत नाही (Atomicity).
-* **सविस्तर माहिती:** TCL commands आणि isolation levels Topic 14 मध्ये सविस्तर आहेत.
+* **सविस्तर माहिती:** TCL commands आणि isolation levels Topic 15 मध्ये सविस्तर आहेत.
 
 ---
 
-## Topic 16: Transactions in SQL (Complete Guide)
+## Topic 17: Transactions in SQL (Complete Guide)
 
-> 🔗 **हेही पहा:** [Topic 14: TCL (Transaction Control Language) & Transaction Management](#topic-14-tcl-transaction-control-language--transaction-management) — TCL commands आणि Isolation Levels · [Topic 15: ACID Properties & Transaction Isolation Levels](#topic-15-acid-properties--transaction-isolation-levels) — ACID थोडक्यात · [Topic 17: Deadlocks in SQL](#topic-17-deadlocks-in-sql) — Deadlocks
+> 🔗 **हेही पहा:** [Topic 15: TCL (Transaction Control Language) & Transaction Management](#topic-15-tcl-transaction-control-language--transaction-management) — TCL commands आणि Isolation Levels · [Topic 16: ACID Properties & Transaction Isolation Levels](#topic-16-acid-properties--transaction-isolation-levels) — ACID थोडक्यात · [Topic 18: Deadlocks in SQL](#topic-18-deadlocks-in-sql) — Deadlocks
 
 > **Topics covered:** What is a transaction · Why we use transactions · ACID properties · Transaction control commands (`START TRANSACTION`, `COMMIT`, `ROLLBACK`, `SAVEPOINT`, `SET TRANSACTION`) · Transaction states · Autocommit, implicit & explicit commit · Transactions inside stored procedures.
 > **मराठी:** या topic मध्ये transaction म्हणजे काय, तो का वापरतात, ACID नियम, transaction चे commands, transaction च्या अवस्था (states), autocommit आणि procedure मधील transaction हे सगळे पाहू.
 
-### 16.1 What is a Transaction?
+### 17.1 What is a Transaction?
 
 * A **transaction** is a sequence of one or more SQL operations (such as `INSERT`, `UPDATE`, `DELETE`) that are executed as **a single unit of work**.
   * Either **all** operations succeed → the changes are saved (`COMMIT`),
@@ -5210,7 +5410,7 @@ ACID guarantees that database transactions are processed reliably.
 * **मराठी:** Transaction म्हणजे अनेक SQL कामांचा एक "गट", जो पूर्ण होतो किंवा अजिबात होत नाही. सगळे यशस्वी झाले तर `COMMIT` (कायम सेव्ह), एखादे जरी चुकले तर `ROLLBACK` (सगळे रद्द).
   * **उदाहरण:** A च्या खात्यातून 500 वजा आणि B च्या खात्यात 500 जमा — दोन्ही एकाच transaction मध्ये. मधेच वीज गेली तरी फक्त वजा होऊन पैसे गायब होत नाहीत.
 
-### 16.2 Why Do We Use Transactions?
+### 17.2 Why Do We Use Transactions?
 
 * Transactions are very important whenever you need **data accuracy, integrity and consistency**. They are used to:
   1. **Ensure data integrity** – prevent partial updates when something fails.
@@ -5226,7 +5426,7 @@ ACID guarantees that database transactions are processed reliably.
 * **मराठी:** Transactions मुळे अर्धवट बदल होत नाहीत, अनेक queries एकत्र "सगळे किंवा काहीच नाही" अशा चालतात, error आली तर `ROLLBACK` करून जुनी स्थिती परत मिळते, एकाच वेळी अनेक users काम करत असले तरी गोंधळ होत नाही, आणि `COMMIT` झालेला डेटा crash नंतरही सुरक्षित राहतो.
   * **उदाहरण:** order आणि त्याचे order_items एकाच transaction मध्ये टाकले; items टाकताना error आली ➔ order सुद्धा रद्द होते, "items नसलेली order" तयार होत नाही.
 
-### 16.3 Transaction Properties (ACID)
+### 17.3 Transaction Properties (ACID)
 
 * Transaction properties are known as the **ACID** properties. They define how a transaction must behave to keep data reliable.
 * **Atomicity (all or nothing)**
@@ -5239,7 +5439,7 @@ ACID guarantees that database transactions are processed reliably.
 * **Isolation (no interference)**
   * Transactions run independently, even when many run at the same time.
   * Multiple transactions can run together, but they must not interfere with each other.
-  * The intermediate (half-done) state of one transaction should not be visible to others (how strictly depends on the isolation level — Topic 14 and 15).
+  * The intermediate (half-done) state of one transaction should not be visible to others (how strictly depends on the isolation level — Topic 15 and 15).
 * **Durability (permanent after commit)**
   * Once a transaction is committed, its changes are permanent.
   * Even after a crash or power failure, the committed data remains, because InnoDB first writes every change to its **redo log** on disk.
@@ -5251,7 +5451,7 @@ ACID guarantees that database transactions are processed reliably.
   * **D – Durability:** `COMMIT` झाल्यावर डेटा crash नंतरही राहतो (redo log मुळे).
   * **उदाहरण:** 1000 रुपये transfer ➔ (A) debit + credit दोन्ही किंवा काहीच नाही, (C) balance negative होऊ देणारा `CHECK` मोडला जात नाही, (I) transfer चालू असताना दुसऱ्याला अर्धवट balance दिसत नाही, (D) commit नंतर server बंद पडला तरी transfer कायम राहतो.
 
-### 16.4 Transaction Control Commands (How to Start a Transaction)
+### 17.4 Transaction Control Commands (How to Start a Transaction)
 
 * `START TRANSACTION` / `BEGIN` → start a new transaction.
 * `COMMIT` → save all changes made in the current transaction permanently.
@@ -5274,7 +5474,7 @@ ACID guarantees that database transactions are processed reliably.
 * **मराठी:** `START TRANSACTION` ने सुरुवात, `COMMIT` ने कायम सेव्ह, `ROLLBACK` ने सगळे रद्द, `SAVEPOINT` म्हणजे मधला checkpoint (त्यानंतरचेच काम `ROLLBACK TO` ने रद्द होते), आणि `SET TRANSACTION` ने isolation level सारख्या सेटिंग्ज.
   * **उदाहरण:** वरच्या code मध्ये चुकीचा product टाकला, तर फक्त तोच `ROLLBACK TO after_order` ने रद्द झाला; order तशीच राहिली.
 
-### 16.5 Transaction States (5 States in DBMS)
+### 17.5 Transaction States (5 States in DBMS)
 
 ![Transaction: All or Nothing and its States](./svg_transaction_states.svg)
 
@@ -5299,7 +5499,7 @@ ACID guarantees that database transactions are processed reliably.
   * **Terminated:** transaction संपला (commit किंवा abort).
   * **उदाहरण:** transfer: debit + credit चालले (Active ➔ Partially Committed) ➔ `COMMIT` (Committed) ➔ संपले (Terminated). credit मध्ये error ➔ Failed ➔ Rollback (Aborted) ➔ Terminated.
 
-### 16.6 What is Autocommit in SQL?
+### 17.6 What is Autocommit in SQL?
 
 ![Autocommit, Explicit and Implicit Commit](./svg_autocommit_implicit_explicit.svg)
 
@@ -5345,7 +5545,7 @@ ACID guarantees that database transactions are processed reliably.
 * **मराठी:** Autocommit ON (MySQL default) असेल तर प्रत्येक statement लगेच कायम सेव्ह होते आणि नंतर `ROLLBACK` चालत नाही. Autocommit OFF केल्यावर तुम्ही `COMMIT` किंवा `ROLLBACK` करेपर्यंत बदल तात्पुरते राहतात.
   * **उदाहरण:** `SET autocommit = 0;` ➔ चुकून `DELETE FROM customers;` चालवले ➔ `ROLLBACK;` केले की सगळे ग्राहक परत येतात. Autocommit ON असते तर ते परत आले नसते.
 
-### 16.7 Explicit vs Implicit Commit
+### 17.7 Explicit vs Implicit Commit
 
 * **Explicit transaction / explicit commit:** you start and end the transaction yourself. Even when autocommit is ON, `START TRANSACTION` (or `BEGIN`) temporarily switches autocommit off until the next `COMMIT` or `ROLLBACK`.
   ```sql
@@ -5374,7 +5574,7 @@ ACID guarantees that database transactions are processed reliably.
 * **मराठी:** Explicit म्हणजे आपण स्वतः `START TRANSACTION ... COMMIT/ROLLBACK` लिहितो. Implicit म्हणजे MySQL स्वतःहून commit करतो: autocommit ON असताना प्रत्येक statement नंतर, आणि `CREATE`/`ALTER`/`DROP`/`TRUNCATE` सारख्या DDL आधी व नंतर. म्हणून transaction मध्ये DDL लिहिला की त्याआधीचे बदलसुद्धा कायम होतात (PostgreSQL/SQL Server मध्ये DDL सुद्धा rollback होऊ शकतो).
   * **उदाहरण:** वरच्या code मध्ये `DELETE` नंतर `CREATE TABLE` चालले ➔ implicit commit ➔ `ROLLBACK` केले तरी order 10 परत येत नाही.
 
-### 16.8 Transactions with Stored Procedures
+### 17.8 Transactions with Stored Procedures
 
 * A stored procedure can start, commit and roll back a transaction itself, so the application only runs one `CALL` and the "all or nothing" rule is guaranteed inside the database.
 * Always add an **`EXIT HANDLER`** that rolls back, so a failed step never leaves half of the work saved:
@@ -5400,11 +5600,11 @@ ACID guarantees that database transactions are processed reliably.
 
   CALL PlaceOrder(501, 7, 12, 2);
   ```
-* Remember: a function or a trigger cannot use `COMMIT` / `ROLLBACK` — only procedures (and plain SQL sessions) can. More procedure examples (money transfer with `FOR UPDATE`) are in Topic 33.
+* Remember: a function or a trigger cannot use `COMMIT` / `ROLLBACK` — only procedures (and plain SQL sessions) can. More procedure examples (money transfer with `FOR UPDATE`) are in Topic 35.
 * **मराठी:** Procedure च्या आत `START TRANSACTION ... COMMIT` लिहिले आणि error साठी `ROLLBACK` करणारा `EXIT HANDLER` ठेवला, की app ने फक्त `CALL` केले तरी order, items आणि stock हे तिन्ही एकत्र होतात किंवा काहीच होत नाही.
   * **उदाहरण:** stock update fail झाले ➔ handler `ROLLBACK` करतो ➔ order आणि order_item सुद्धा रद्द होतात.
 
-### 16.9 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
+### 17.9 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
 
 * **Q1. What happens if you run `ROLLBACK` after an `UPDATE` when autocommit is ON?**
   * **Answer:** Nothing — with autocommit ON the `UPDATE` was already committed. `ROLLBACK` only undoes work inside an open transaction (`START TRANSACTION` or autocommit = 0).
@@ -5422,7 +5622,7 @@ ACID guarantees that database transactions are processed reliably.
   * **Answer:** Locks are held until COMMIT/ROLLBACK; long transactions block other users, cause lock-wait timeouts and deadlocks, and keep old row versions (undo log) alive.
   * **मराठी:** Transaction जितका लांब, तितका वेळ locks धरले जातात आणि इतरांना थांबावे लागते; म्हणून transaction लहान ठेवा.
 
-### 16.10 Topic 16 Summary (मराठी सारांश)
+### 17.10 Topic 17 Summary (मराठी सारांश)
 
 * **Transaction:** अनेक SQL कामांचा एक गट — सगळे होईल (`COMMIT`) किंवा काहीच नाही (`ROLLBACK`). उपयोग: बँक transfer, order processing, user registration.
 * **का वापरतात:** अर्धवट बदल टाळणे, अनेक queries एकत्र, error नंतर recovery, अनेक users एकत्र असताना गोंधळ टाळणे, business rules टिकवणे, commit नंतर डेटा कायम.
@@ -5433,15 +5633,15 @@ ACID guarantees that database transactions are processed reliably.
 * **Implicit commit:** DDL (`CREATE`, `ALTER`, `DROP`, `TRUNCATE`) आधी आणि नंतर MySQL आपोआप commit करतो ➔ DDL rollback होत नाही.
 * **Procedures मध्ये:** `START TRANSACTION ... COMMIT` + `EXIT HANDLER ... ROLLBACK; RESIGNAL;`.
 * **उदाहरण:** `START TRANSACTION; UPDATE accounts SET bal = bal - 1000 WHERE id = 1; UPDATE accounts SET bal = bal + 1000 WHERE id = 2; COMMIT;`
-* **हेही पहा:** Topic 14 (TCL आणि Isolation Levels), Topic 15 (ACID), Topic 17 (Deadlocks), Topic 33 (Stored Procedures).
+* **हेही पहा:** Topic 15 (TCL आणि Isolation Levels), Topic 16 (ACID), Topic 18 (Deadlocks), Topic 35 (Stored Procedures).
 
 ---
 
-## Topic 17: Deadlocks in SQL
+## Topic 18: Deadlocks in SQL
 
-> 🔗 **हेही पहा:** [Topic 14: TCL (Transaction Control Language) & Transaction Management](#topic-14-tcl-transaction-control-language--transaction-management) — Transactions आणि locks
+> 🔗 **हेही पहा:** [Topic 15: TCL (Transaction Control Language) & Transaction Management](#topic-15-tcl-transaction-control-language--transaction-management) — Transactions आणि locks · [Topic 19: Locks in MySQL (InnoDB Locking)](#topic-19-locks-in-mysql-innodb-locking) — Locks सविस्तर
 
-### 17.1 What is a Deadlock?
+### 18.1 What is a Deadlock?
 * **Definition:** A deadlock occurs when two or more transactions are waiting for each other to release locks. They get stuck in an infinite wait, and neither can proceed.
 * **Example:** 
   * Transaction A locks Table 1 and needs Table 2.
@@ -5449,13 +5649,13 @@ ACID guarantees that database transactions are processed reliably.
   * *Result:* Deadlock! The Database Engine steps in, kills one transaction (the "victim"), and lets the other finish.
 * **मराठी:** Deadlock तेव्हा होतो जेव्हा दोन transactions एकमेकांचा रस्ता अडवून थांबतात आणि दोघेही पुढे जाऊ शकत नाहीत. तेव्हा database त्यातील एक transaction थांबवून (rollback करून) दुसऱ्याला पुढे जाऊ देतो (MySQL error 1213).
 
-### 17.2 How to Prevent Deadlocks?
+### 18.2 How to Prevent Deadlocks?
 1. Always access tables in the **same order** across all transactions.
 2. Keep transactions as **short** and fast as possible.
 3. Add proper **Indexes** so queries run faster and release locks quicker.
 4. Use a lower **Isolation Level** if appropriate (e.g., READ COMMITTED).
 
-### 17.3 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
+### 18.3 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
 
 * **Q1. What is a deadlock and how does MySQL resolve it?**
   * **Answer:** Two transactions each hold a lock the other needs. InnoDB detects the cycle immediately, rolls back the transaction with less work (error 1213) and lets the other continue.
@@ -5470,7 +5670,7 @@ ACID guarantees that database transactions are processed reliably.
   * **Answer:** Retry the failed transaction in the application; access rows/tables in the same order; keep transactions short; add indexes so fewer rows are locked; consider `READ COMMITTED` to reduce gap locks.
   * **मराठी:** App मध्ये retry, सगळीकडे एकच क्रम, लहान transactions, योग्य indexes.
 
-### 17.4 Topic 17 Summary (मराठी सारांश)
+### 18.4 Topic 18 Summary (मराठी सारांश)
 
 * **Deadlock म्हणजे काय?** दोन transactions एकमेकांनी lock केलेली row/टेबल मिळण्याची वाट पाहत अडकतात आणि दोघेही पुढे जाऊ शकत नाहीत.
 * **उदाहरण:** T1 ने row A lock केली आणि त्याला row B हवी आहे; T2 ने row B lock केली आणि त्याला row A हवी आहे ➔ deadlock.
@@ -5480,17 +5680,235 @@ ACID guarantees that database transactions are processed reliably.
 
 ---
 
-# 📘 Part 3: Querying & Combining Data (Clauses, Joins, SET Operators) (Topics 18–20)
+## Topic 19: Locks in MySQL (InnoDB Locking)
 
-> **मराठी:** डेटा शोधणे आणि जोडणे — या भागात Topics 18 ते 20 आहेत.
+> 🔗 **हेही पहा:** [Topic 16: ACID Properties & Transaction Isolation Levels](#topic-16-acid-properties--transaction-isolation-levels) — ACID आणि Isolation Levels · [Topic 17: Transactions in SQL (Complete Guide)](#topic-17-transactions-in-sql-complete-guide) — Transactions · [Topic 18: Deadlocks in SQL](#topic-18-deadlocks-in-sql) — Deadlocks
+
+> **मराठी:** अनेक transactions एकाच वेळी एकाच डेटावर काम करतात तेव्हा डेटा बिघडू नये म्हणून database **locks** वापरतो. Shared/Exclusive locks, row vs table locks, `SELECT ... FOR UPDATE`, gap/next-key locks आणि optimistic vs pessimistic locking हे interview मधील महत्त्वाचे मुद्दे आहेत.
+
+### 19.1 What is a Lock and Why Do We Need It?
+
+* A **lock** is a marker the database puts on data (a row, a range or a table) so that other transactions cannot change it in a conflicting way at the same time.
+* Without locks we get problems like **lost updates**: two users read balance = 1000, both add 500, both write 1500 → one update is lost (correct answer 2000).
+* Locks are the tool that implements **Isolation** from ACID (see Topic 16) and the isolation levels (see Topic 17).
+* InnoDB locks are taken **automatically** by `UPDATE`, `DELETE`, `INSERT` and locking reads, and are held **until COMMIT or ROLLBACK**.
+* **मराठी:** Lock म्हणजे डेटावर लावलेली "वापरात आहे" अशी खूण. दोन व्यवहार एकाच वेळी एकच row बदलू लागले तर एक update हरवू शकतो (lost update); lock मुळे दुसरा थांबतो. InnoDB चे locks COMMIT/ROLLBACK पर्यंत टिकतात.
+  * **उदाहरण:** दोन ATM वरून एकाच खात्यातून एकाच वेळी पैसे काढताना lock मुळे दुसरा व्यवहार पहिला संपेपर्यंत थांबतो.
+
+### 19.2 Shared (S) vs Exclusive (X) Locks
+
+* **Shared lock (S / read lock):** many transactions can hold it together; they can read but nobody can change the row.
+* **Exclusive lock (X / write lock):** only one transaction can hold it; others can neither take S nor X on that row.
+* **Compatibility matrix:**
+
+| Requested ↓ / Held → | S (Shared) | X (Exclusive) |
+| :--- | :--- | :--- |
+| **S (Shared)** | ✅ Compatible | ❌ Wait |
+| **X (Exclusive)** | ❌ Wait | ❌ Wait |
+
+* A normal `SELECT` in InnoDB takes **no lock** — it reads a consistent snapshot (MVCC). Only locking reads (`FOR SHARE`, `FOR UPDATE`) and writes take row locks.
+* **मराठी:** Shared lock = अनेकजण एकत्र वाचू शकतात पण बदलू शकत नाहीत. Exclusive lock = एकच जण, बाकी सगळे थांबतात. फक्त S + S एकत्र चालतात. साधा SELECT lock घेत नाही (snapshot वाचतो).
+
+![Shared vs Exclusive lock compatibility](./svg_locks_shared_exclusive.svg)
+
+> 📌 **आकृतीचे मराठीत स्पष्टीकरण:** डावीकडे दोन transactions एकाच row वर Shared lock घेऊन एकत्र वाचत आहेत. उजवीकडे एका transaction कडे Exclusive lock आहे म्हणून दुसरा (वाचण्यासाठी lock मागणारा किंवा बदलणारा) थांबलेला आहे. खाली compatibility table आहे: फक्त S + S चालते.
+>
+> **उदाहरण:** T1 ने `SELECT ... FOR SHARE` केले असेल तर T2 सुद्धा `FOR SHARE` करू शकतो, पण T2 चे `UPDATE` T1 COMMIT होईपर्यंत थांबते.
+
+### 19.3 Row-Level vs Table-Level Locks
+
+| Feature | Row-level lock | Table-level lock |
+| :--- | :--- | :--- |
+| What is locked | Only the affected rows (index records) | The whole table |
+| Concurrency | High — others work on other rows | Low — everyone waits |
+| Used by | InnoDB (default) | MyISAM, `LOCK TABLES`, some DDL |
+| Overhead | More locks to manage | Very small |
+
+* **Explicit table locks:**
+  ```sql
+  LOCK TABLES accounts WRITE, branches READ;
+  -- only these tables can be used in this session now
+  UPDATE accounts SET balance = balance + 100 WHERE account_id = 1;
+  UNLOCK TABLES;
+  ```
+* ⚠️ InnoDB locks **index records**. If the `WHERE` column has **no index**, InnoDB scans and locks every row it reads — almost like a table lock. Always index columns used in `UPDATE ... WHERE`.
+* **मराठी:** InnoDB फक्त लागणाऱ्या rows lock करतो, त्यामुळे बाकी users इतर rows वर काम करू शकतात. MyISAM पूर्ण table lock करतो. WHERE च्या column वर index नसेल तर InnoDB सर्व scan केलेल्या rows lock करतो.
+  * **उदाहरण:** `UPDATE orders SET status='X' WHERE customer_email='a@b.com'` — `customer_email` वर index नसेल तर जवळजवळ पूर्ण table lock होते.
+
+### 19.4 Locking Reads: SELECT ... FOR UPDATE / FOR SHARE
+
+* **`SELECT ... FOR UPDATE`** — reads rows and puts an **X lock** on them; use it when you will update them next (read-modify-write).
+* **`SELECT ... FOR SHARE`** (older: `LOCK IN SHARE MODE`) — puts an **S lock**; others can read-lock but not change the rows.
+* **Example — safe money withdrawal:**
+  ```sql
+  START TRANSACTION;
+  SELECT balance FROM accounts WHERE account_id = 1 FOR UPDATE;  -- row locked
+  -- application checks balance >= 500
+  UPDATE accounts SET balance = balance - 500 WHERE account_id = 1;
+  COMMIT;                                                        -- lock released
+  ```
+  * A second session running the same `SELECT ... FOR UPDATE` on account 1 **waits** until the first one commits, so it sees the new balance.
+* **`NOWAIT` and `SKIP LOCKED` (MySQL 8.0+):**
+  ```sql
+  -- fail immediately instead of waiting
+  SELECT * FROM seats WHERE seat_id = 12 FOR UPDATE NOWAIT;
+
+  -- job-queue pattern: each worker takes a different free job
+  START TRANSACTION;
+  SELECT job_id FROM jobs
+  WHERE status = 'PENDING'
+  ORDER BY job_id
+  LIMIT 1
+  FOR UPDATE SKIP LOCKED;
+  -- UPDATE jobs SET status = 'RUNNING' WHERE job_id = ...;
+  COMMIT;
+  ```
+* **मराठी:** `FOR UPDATE` = वाचताना X lock, नंतर बदलणार असाल तेव्हा. `FOR SHARE` = S lock. `NOWAIT` = थांबण्याऐवजी लगेच error. `SKIP LOCKED` = lock असलेल्या rows सोडून पुढची row घेणे (job queue, ticket booking).
+  * **उदाहरण:** 5 workers एकाच `jobs` table मधून काम घेतात; `SKIP LOCKED` मुळे प्रत्येकाला वेगळे job मिळते.
+
+### 19.5 Record, Gap and Next-Key Locks (Phantom Protection)
+
+* **Record lock:** locks one index record (e.g. `id = 10`).
+* **Gap lock:** locks the **gap between** index records so no new row can be inserted there (e.g. between 10 and 20).
+* **Next-key lock:** record lock + gap lock before it. This is InnoDB's default in **REPEATABLE READ** and it prevents **phantom rows**.
+* **Example:** table `emp` has ids 10, 20, 30.
+  ```sql
+  -- Session 1 (REPEATABLE READ)
+  START TRANSACTION;
+  SELECT * FROM emp WHERE id BETWEEN 10 AND 20 FOR UPDATE;
+
+  -- Session 2
+  INSERT INTO emp (id, name) VALUES (15, 'New');   -- WAITS (gap 10–20 is locked)
+  INSERT INTO emp (id, name) VALUES (35, 'Other'); -- runs (gap after 30 is not locked by this range)
+  ```
+* An equality search on a **unique** index (`WHERE id = 10`) locks only that record — no gap lock.
+* In **READ COMMITTED**, gap locks are mostly turned off (fewer waits, but phantoms are possible).
+* **मराठी:** Record lock = एकच row. Gap lock = दोन rows मधली रिकामी जागा, जिथे नवीन row घालता येत नाही. Next-key = दोन्ही एकत्र; REPEATABLE READ मध्ये phantom rows थांबवते.
+  * **उदाहरण:** 10 ते 20 range lock केली असेल तर 15 id ची नवीन row insert थांबते, पण 35 चालते.
+
+### 19.6 Intention Locks and Metadata Locks
+
+* **Intention locks (IS, IX):** table-level flags that say "this transaction holds (or wants) S/X locks on some rows". They let MySQL quickly check whether a table lock (`LOCK TABLES ... WRITE`) can be granted without checking every row. They do not block normal row locks.
+* **Metadata lock (MDL):** protects the table **structure**. A running transaction that has used a table holds an MDL on it, so `ALTER TABLE` / `DROP TABLE` must wait.
+  ```sql
+  -- Session 1
+  START TRANSACTION;
+  SELECT * FROM orders WHERE order_id = 1;   -- holds MDL on orders until COMMIT
+
+  -- Session 2
+  ALTER TABLE orders ADD COLUMN note VARCHAR(100);  -- "Waiting for table metadata lock"
+  ```
+  * Every new query on `orders` then queues behind the waiting `ALTER` — a common production outage. Keep transactions short, and check long-running ones before DDL.
+* **मराठी:** Intention lock = table वर "आत काही rows lock आहेत" अशी खूण; त्यामुळे table lock देता येईल का हे पटकन कळते. Metadata lock = table ची रचना (structure) बदलू नये म्हणून; उघडा transaction असेल तर `ALTER TABLE` थांबते.
+
+### 19.7 Optimistic vs Pessimistic Locking
+
+| Feature | Pessimistic locking | Optimistic locking |
+| :--- | :--- | :--- |
+| Idea | "Conflict is likely — lock first" | "Conflict is rare — check at save time" |
+| How | `SELECT ... FOR UPDATE` then `UPDATE` | `version` (or `updated_at`) column checked in `UPDATE` |
+| Waiting | Others wait for the lock | No waiting; the loser retries |
+| Best for | High contention, short transactions (bank balance, seat booking) | Low contention, long user think time (editing a profile/form) |
+
+* **Optimistic locking with a version column:**
+  ```sql
+  -- 1. read (no lock)
+  SELECT product_id, stock, version FROM products WHERE product_id = 7;
+  -- returns stock = 10, version = 3
+
+  -- 2. update only if nobody changed it meanwhile
+  UPDATE products
+  SET stock = 9, version = version + 1
+  WHERE product_id = 7 AND version = 3;
+  -- 1 row affected → success
+  -- 0 rows affected → someone else updated first → read again and retry
+  ```
+* **मराठी:** Pessimistic = आधीच lock घ्या (`FOR UPDATE`), बाकी थांबतात. Optimistic = lock नाही; update करताना `version` तपासा, 0 rows बदलल्या तर दुसऱ्याने आधी बदल केला म्हणून पुन्हा प्रयत्न करा.
+
+![Optimistic vs Pessimistic locking](./svg_locks_optimistic_pessimistic.svg)
+
+> 📌 **आकृतीचे मराठीत स्पष्टीकरण:** वरच्या भागात pessimistic locking: T1 `FOR UPDATE` ने row lock करतो, T2 थांबतो आणि T1 च्या COMMIT नंतरच पुढे जातो. खालच्या भागात optimistic locking: दोघेही version = 3 वाचतात, T1 चे update यशस्वी होते (version 4), T2 चे `WHERE version = 3` जुळत नाही म्हणून 0 rows → T2 पुन्हा वाचून retry करतो.
+>
+> **उदाहरण:** दोन admin एकच product edit करत असतील तर optimistic locking मुळे दुसऱ्याला "डेटा बदलला आहे, पुन्हा load करा" असा संदेश दाखवता येतो.
+
+### 19.8 Lock Wait Timeout and Monitoring Locks
+
+* If a transaction waits too long for a lock, MySQL raises **error 1205**: `Lock wait timeout exceeded; try restarting transaction`. Default wait is `innodb_lock_wait_timeout = 50` seconds.
+  ```sql
+  SET SESSION innodb_lock_wait_timeout = 10;  -- wait at most 10 seconds
+  ```
+  * Error 1205 rolls back only the **statement** by default, not the whole transaction — the application should roll back and retry.
+* A **deadlock** (error 1213) is different: two transactions wait for each other, and InnoDB rolls one back immediately (see Topic 18).
+* **Who is locking what (MySQL 8.0):**
+  ```sql
+  -- current locks
+  SELECT engine_transaction_id, object_name, index_name, lock_type, lock_mode, lock_status, lock_data
+  FROM performance_schema.data_locks;
+
+  -- who is waiting for whom
+  SELECT * FROM sys.innodb_lock_waits;
+
+  -- open transactions and how long they have run
+  SELECT trx_id, trx_state, trx_started, trx_mysql_thread_id, trx_query
+  FROM information_schema.innodb_trx;
+
+  -- last deadlock and lock details
+  SHOW ENGINE INNODB STATUS;
+  ```
+  * To stop a blocking session: `KILL <trx_mysql_thread_id>;`
+* **मराठी:** Lock साठी जास्त वेळ (default 50 सेकंद) थांबावे लागले तर error 1205 येतो. Deadlock (1213) वेगळा: दोघे एकमेकांसाठी थांबतात. `performance_schema.data_locks`, `sys.innodb_lock_waits`, `information_schema.innodb_trx` आणि `SHOW ENGINE INNODB STATUS` ने कोणी lock धरला आहे ते पाहता येते.
+* **Best practices:** keep transactions short, index the `WHERE` columns of updates, access tables/rows in the same order, don't wait for user input inside a transaction, and prefer `SKIP LOCKED` for queues.
+* **मराठी:** Transactions लहान ठेवा, WHERE columns वर index ठेवा, rows नेहमी एकाच क्रमाने access करा, transaction चालू असताना user ची वाट पाहू नका.
+
+### 19.9 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
+
+* **Q1. Difference between shared and exclusive locks?**
+  * **Answer:** S locks can be held by many transactions for reading; an X lock is held by one transaction for writing and blocks both S and X from others.
+  * **मराठी:** S = अनेक वाचक एकत्र; X = एकच लेखक, बाकी सगळे थांबतात.
+* **Q2. Does a plain SELECT lock rows in InnoDB?**
+  * **Answer:** No. It reads a consistent snapshot using MVCC. Only `FOR SHARE` / `FOR UPDATE` and DML take row locks.
+  * **मराठी:** नाही, साधा SELECT snapshot वाचतो.
+* **Q3. What is `SELECT ... FOR UPDATE` used for?**
+  * **Answer:** Read-modify-write safety: it X-locks the selected rows so no one else can change them until COMMIT (bank withdrawal, seat booking, inventory).
+  * **मराठी:** वाचलेल्या rows वर X lock घेऊन COMMIT पर्यंत दुसऱ्याला बदल करू न देणे.
+* **Q4. What are gap and next-key locks?**
+  * **Answer:** A gap lock blocks inserts into a range between index records; a next-key lock is record + gap. InnoDB uses them in REPEATABLE READ to prevent phantom rows.
+  * **मराठी:** रिकाम्या जागेत insert रोखणारा lock; phantom rows थांबवतो.
+* **Q5. Optimistic vs pessimistic locking?**
+  * **Answer:** Pessimistic locks before working (`FOR UPDATE`); optimistic doesn't lock but checks a version column when saving and retries on conflict.
+  * **मराठी:** Pessimistic = आधी lock; optimistic = version तपासून retry.
+* **Q6. Why can an UPDATE lock the whole table in InnoDB?**
+  * **Answer:** When the `WHERE` column isn't indexed, InnoDB must scan and lock every row it examines.
+  * **मराठी:** WHERE column वर index नसेल तर सर्व scan केलेल्या rows lock होतात.
+* **Q7. Lock wait timeout vs deadlock?**
+  * **Answer:** Timeout (1205) = waited longer than `innodb_lock_wait_timeout`; deadlock (1213) = circular wait, detected immediately and one transaction is rolled back.
+  * **मराठी:** 1205 = खूप वेळ थांबला; 1213 = एकमेकांसाठी थांबले, एकाला लगेच rollback.
+
+### 19.10 Topic 19 Summary (मराठी सारांश)
+
+* **Lock:** एकाच वेळी चालणाऱ्या transactions मुळे डेटा बिघडू नये (lost update) म्हणून; InnoDB locks COMMIT/ROLLBACK पर्यंत टिकतात.
+* **S vs X:** Shared = अनेक वाचक; Exclusive = एकच लेखक. फक्त S + S compatible.
+* **Row vs Table:** InnoDB = row locks (index records वर), MyISAM/`LOCK TABLES` = table locks. Index नसेल तर InnoDB जास्त rows lock करतो.
+* **Locking reads:** `FOR UPDATE` (X), `FOR SHARE` (S), `NOWAIT`, `SKIP LOCKED` (job queue).
+* **Record / Gap / Next-key:** REPEATABLE READ मध्ये phantom rows रोखतात.
+* **Intention व Metadata locks:** table level खुणा; उघडा transaction `ALTER TABLE` ला थांबवतो.
+* **Optimistic vs Pessimistic:** version column vs `FOR UPDATE`.
+* **Monitoring:** error 1205 (timeout), 1213 (deadlock), `performance_schema.data_locks`, `sys.innodb_lock_waits`, `SHOW ENGINE INNODB STATUS`.
+* **उदाहरण:** बँक withdrawal: `START TRANSACTION; SELECT balance ... FOR UPDATE; UPDATE ...; COMMIT;`
 
 ---
 
-## Topic 18: Commands to Query Data (DQL In-Depth, Clauses & Filtering)
+# 📘 Part 3: Querying & Combining Data (Clauses, Joins, SET Operators) (Topics 20–22)
 
-> 🔗 **हेही पहा:** [Topic 12: DQL (Data Query Language) & Data Retrieval](#topic-12-dql-data-query-language--data-retrieval) — DQL ची सुरुवातीची ओळख · [Topic 49: Final Summary / निष्कर्ष](#topic-49-final-summary--निष्कर्ष) — Clauses आणि Execution Order चा थोडक्यात सारांश
+> **मराठी:** डेटा शोधणे आणि जोडणे — या भागात Topics 20 ते 22 आहेत.
 
-### 18.1 Commands to Query Data & What is DQL?
+---
+
+## Topic 20: Commands to Query Data (DQL In-Depth, Clauses & Filtering)
+
+> 🔗 **हेही पहा:** [Topic 12: DQL (Data Query Language) & Data Retrieval](#topic-12-dql-data-query-language--data-retrieval) — DQL ची सुरुवातीची ओळख · [Topic 52: Final Summary / निष्कर्ष](#topic-52-final-summary--निष्कर्ष) — Clauses आणि Execution Order चा थोडक्यात सारांश
+
+### 20.1 Commands to Query Data & What is DQL?
 
 * *Definition: DQL (Data Query Language) is used to search and read data from tables, without changing the data or the table structure.*
   * It can read from one table or combine many tables.
@@ -5503,7 +5921,7 @@ ACID guarantees that database transactions are processed reliably.
 
 ---
 
-### 18.2 The Core Mental Model: "Ask Your Data"
+### 20.2 The Core Mental Model: "Ask Your Data"
 
 ![ASK Your Data: The SQL Query Mental Model](./sql_query_mental_model_ask_your_data.svg)
 
@@ -5519,7 +5937,7 @@ ACID guarantees that database transactions are processed reliably.
 
 ---
 
-### 18.3 Commands (to query the data) & Essential Database/Table Setup
+### 20.3 Commands (to query the data) & Essential Database/Table Setup
 
 Before executing data queries, you need an active database context and a populated table:
 
@@ -5634,7 +6052,7 @@ Before executing data queries, you need an active database context and a populat
 
 ---
 
-### 18.4 SQL Query Clauses (The 9 Building Blocks)
+### 20.4 SQL Query Clauses (The 9 Building Blocks)
 
 * **Q. What are the main clauses of an SQL query?**
 
@@ -5662,7 +6080,7 @@ Before executing data queries, you need an active database context and a populat
 
 ---
 
-### 18.5 How SQL Works: Written Syntax (Left to Right) vs. Engine Execution Order
+### 20.5 How SQL Works: Written Syntax (Left to Right) vs. Engine Execution Order
 
 * **How we write vs. how it runs:**
   * When writing an SQL query, the human developer types from left to right:
@@ -5693,7 +6111,7 @@ flowchart TD
 
 ---
 
-### 18.6 Select Query / Data Retrieve Query: `SELECT *` vs. `SELECT column_name`
+### 20.6 Select Query / Data Retrieve Query: `SELECT *` vs. `SELECT column_name`
 
 * **Select query — two ways to read data:**
   * `Select * form` → correct spelling: `SELECT * FROM ...`
@@ -5753,7 +6171,7 @@ flowchart TD
 
 ---
 
-### 18.7 Filtering Data & The WHERE Clause In-Depth
+### 20.7 Filtering Data & The WHERE Clause In-Depth
 
 * **Filtering Data (The WHERE Clause):**
   * *In databases, filtering means retrieving only the rows (records) that match specific conditions instead of fetching everything.*
@@ -5773,7 +6191,7 @@ flowchart TD
 
 ---
 
-#### 18.7.1 The 5 Families of WHERE Clause Operators
+#### 20.7.1 The 5 Families of WHERE Clause Operators
 
 * The `WHERE` clause filters data using 5 specialized families of operators:
 
@@ -5787,7 +6205,7 @@ flowchart TD
 
 ---
 
-#### 18.7.2 Comparison Operators: Compare Two Things!
+#### 20.7.2 Comparison Operators: Compare Two Things!
 
 * **What is a Comparison Operator?**
   * *Definition: Comparison operators are used to compare two things (values, columns, expressions, functions, or subqueries).*
@@ -5837,7 +6255,7 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-#### 18.7.3 Master Comparison Operators Reference (Definitions & Descriptions)
+#### 20.7.3 Master Comparison Operators Reference (Definitions & Descriptions)
 
 * Complete technical definitions and plain-English descriptions for all 6 comparison operators:
 
@@ -5860,7 +6278,7 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-#### 18.7.4 Internal Filtering Process (Row-by-Row Predicate Evaluation)
+#### 20.7.4 Internal Filtering Process (Row-by-Row Predicate Evaluation)
 
 * Let us see how the database engine evaluates conditions row-by-row in memory.
 
@@ -5916,7 +6334,7 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-#### 18.7.5 Practical Practice Questions (Hands-on Comparison Queries)
+#### 20.7.5 Practical Practice Questions (Hands-on Comparison Queries)
 
 * **Q1. Retrieve customers where scores are not equal to zero ?**
   ```sql
@@ -5976,7 +6394,7 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-#### 18.7.6 Logical Operators In-Depth (AND, OR, NOT)
+#### 20.7.6 Logical Operators In-Depth (AND, OR, NOT)
 
 * **What are Logical Operators?**
   * *Definition: Logical operators in SQL are used to combine multiple conditions or negate a condition in the `WHERE` clause.*
@@ -6123,7 +6541,7 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-#### 18.7.7 Range Operator In-Depth: `BETWEEN ... AND ...`
+#### 20.7.7 Range Operator In-Depth: `BETWEEN ... AND ...`
 
 * **What is the `BETWEEN` Operator?**
   * *Definition:* The `BETWEEN … AND …` operator checks if a value is **within a range or not**.
@@ -6185,7 +6603,7 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-#### 18.7.8 Membership Operator In-Depth: IN and NOT IN
+#### 20.7.8 Membership Operator In-Depth: IN and NOT IN
 
 * **What is the Membership Operator?**
   * *Definition:* The Membership Operator (`IN` / `NOT IN`) tests whether a specific operand or column value exists within a specified list, set of discrete values, or subquery result set.
@@ -6290,7 +6708,7 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-#### 18.7.9 Search Operator In-Depth: LIKE and NOT LIKE (Pattern Matching)
+#### 20.7.9 Search Operator In-Depth: LIKE and NOT LIKE (Pattern Matching)
 
 * **What is the Search Operator (`LIKE`)?**
   * *Definition:* The `LIKE` operator is used in SQL to search for a pattern in text (instead of requiring an exact equality match with `=`).
@@ -6383,7 +6801,7 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-#### 18.7.10 NULL Check Operator In-Depth: IS NULL and IS NOT NULL
+#### 20.7.10 NULL Check Operator In-Depth: IS NULL and IS NOT NULL
 
 * **What is `NULL` in SQL?**
   * *Definition:* `NULL` means **no value / missing value** (not 0, not an empty string, but literally "unknown").
@@ -6431,7 +6849,7 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-#### 18.7.11 Advanced Filtering: Aggregates with HAVING and Subqueries
+#### 20.7.11 Advanced Filtering: Aggregates with HAVING and Subqueries
 
 * Beyond basic row-level filters in `WHERE`, real-world SQL relies on two advanced filtering mechanisms:
 
@@ -6474,7 +6892,7 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-### 18.8 Sorting Data & The ORDER BY Clause In-Depth
+### 20.8 Sorting Data & The ORDER BY Clause In-Depth
 
 * **What is Sorting in SQL?**
   * *Definition:* Sorting in SQL is performed using the `ORDER BY` clause. It allows us to systematically arrange the output rows of a query in ascending (`ASC`) or descending (`DESC`) order based on one or more specified columns, expressions, or aliases.
@@ -6621,7 +7039,7 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-### 18.9 Grouping Data & The GROUP BY Clause In-Depth (Data Aggregation)
+### 20.9 Grouping Data & The GROUP BY Clause In-Depth (Data Aggregation)
 
 * **What is Grouping in SQL? (GROUP BY Clause: AGGREGATE YOUR DATA)**
   * *Definition:* Grouping in SQL means **combining multiple rows that have the same values in one or more columns into summary rows**.
@@ -6880,7 +7298,7 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-### 18.10 Visual Diagrams & Architectural Reference
+### 20.10 Visual Diagrams & Architectural Reference
 
 #### 1. ASK Your Data: The SQL Query Mental Model
 * **Definition:** Think of the database as something you ask questions to: your business question becomes an SQL query, and the answer comes back as a table.
@@ -7080,7 +7498,7 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-### 18.11 Topic 18 Summary (मराठी सारांश)
+### 20.11 Topic 20 Summary (मराठी सारांश)
 
 * **DQL (Data Query Language) आणि डेटा क्वेरी करण्याचे स्वरूप:**
   * DQL चा उपयोग डेटाबेसमधून अचूक माहिती शोधण्यासाठी (Fetch / Retrieve) केला जातो.
@@ -7233,7 +7651,7 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-### 18.12 SQL Clauses Deep Dive & Execution Order (Detailed Guide)
+### 20.12 SQL Clauses Deep Dive & Execution Order (Detailed Guide)
 
 #### 1. HAVING Clause (हॅविंग क्लॉज)
 * **What is it?** The `HAVING` clause in SQL is used to filter groups of rows created by the `GROUP BY` clause.
@@ -7498,9 +7916,9 @@ SQL allows flexible comparisons across different types of operands:
 
 ---
 
-## Topic 19: SQL Joins (Combining Data from Tables)
+## Topic 21: SQL Joins (Combining Data from Tables)
 
-### 19.1 What are Joins & Why Do We Need Them?
+### 21.1 What are Joins & Why Do We Need Them?
 * JOINs are used in SQL to combine data (columns) from two or more tables based on a related column between them (usually Primary Key $\leftrightarrow$ Foreign Key). They append columns side-by-side to give a wider table result.
 * **Rows vs Columns (SET Operators vs JOINs):**
   * If you want to combine **Rows** (putting rows below each other to make the table longer) $\rightarrow$ Use **SET Operators** (like `UNION`).
@@ -7527,7 +7945,7 @@ SQL allows flexible comparisons across different types of operands:
   * **उदाहरण:** `customers UNION suppliers` ➔ जास्त rows; `customers JOIN orders` ➔ जास्त columns.
 
 
-### 19.2 Types of Joins (Basic to Advanced)
+### 21.2 Types of Joins (Basic to Advanced)
 * A complete mindmap showing all 6 major types of SQL Joins and their logical connections.
 * या आकृतीत SQL Joins चे सर्व मुख्य प्रकार (Inner, Left, Right, Full, Anti, Cross) दाखवले आहेत.
 
@@ -7624,7 +8042,7 @@ SQL allows flexible comparisons across different types of operands:
     * **उदाहरण:** customers ला `zipcodes` टेबल LEFT JOIN करून प्रत्येक ग्राहकाचे शहर आणि राज्य जोडणे.
 
 
-### 19.3 Advanced Joins (Filtering & Special Cases)
+### 21.3 Advanced Joins (Filtering & Special Cases)
 
 * **1. LEFT ANTI JOIN**
   * **Properties:** Returns rows from the Left table that have NO match in the Right table. It uses the Right table strictly for filtering (checking for existence).
@@ -7730,7 +8148,7 @@ SQL allows flexible comparisons across different types of operands:
     * **उदाहरण:** 3 shirt रंग × 4 sizes = 12 combinations (`SELECT * FROM colors CROSS JOIN sizes;`).
 
 
-### 19.4 Summary: How to Choose the Right Join?
+### 21.4 Summary: How to Choose the Right Join?
 1. Want **Matching** Data only? $\rightarrow$ `INNER JOIN`
 2. Want **All Data** (Focus on primary table)? $\rightarrow$ `LEFT JOIN`
 3. Want **Everything** from both tables? $\rightarrow$ `FULL OUTER JOIN`
@@ -7755,7 +8173,7 @@ Master decision tree for selecting the correct SQL Join based on whether you wan
   * LEFT / RIGHT ANTI = एका वर्तुळाचा फक्त न जुळणारा भाग; FULL ANTI = मधला भाग सोडून बाकी सर्व; CROSS = प्रत्येक row × प्रत्येक row.
   * **उदाहरण:** Interview प्रश्न 'LEFT JOIN आणि LEFT ANTI JOIN मध्ये फरक काय?' ➔ LEFT JOIN मध्ये मधला (जुळणारा) भाग येतो, LEFT ANTI मध्ये तो येत नाही.
 
-### 19.5 Multi-Table Joins (Interview Perspective)
+### 21.5 Multi-Table Joins (Interview Perspective)
 In real-world applications, you often join more than 2 tables. The pattern is sequential: Table A joins to Table B, Table B joins to Table C.
 * **Q1. Using SalesDB, retrieve a list of all orders along with related customers, product, and employee details:**
   ```sql
@@ -7784,7 +8202,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती दोन गोष्टी एकत्र दाखवते: (1) SET operator टेबल लांब करतो तर JOIN रुंद करतो, आणि (2) Multi-Table Join मध्ये एक master टेबल B, C, D ला एकामागून एक LEFT JOIN होऊन एक सपाट (flat) रुंद result बनतो.
   * **उदाहरण:** `orders` (master) ➔ LEFT JOIN `customers` ➔ LEFT JOIN `products` ➔ LEFT JOIN `employees` = प्रत्येक order ची पूर्ण माहिती एका row मध्ये.
 
-### 19.6 Pro-Tip: Interview Trick (Inner Join without INNER JOIN)
+### 21.6 Pro-Tip: Interview Trick (Inner Join without INNER JOIN)
 * **Question:** How do you get matching data from two tables *without* using the `INNER JOIN` keyword?
 * **Answer:** You can use a `LEFT JOIN` and then filter out the unmatching data using the `WHERE` clause.
 * **Code Example:**
@@ -7796,7 +8214,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   ```
 * **इंटरव्ह्यू ट्रिक:** कोणी विचारले की "Inner Join" न लिहिता कॉमन डेटा कसा काढाल? तर Left Join लावा आणि `WHERE` मध्ये `RightTable.key IS NOT NULL` लिहा. यामुळे न जुळणारा (Unmatched) डेटा निघून जाईल आणि फक्त कॉमन डेटा राहील.
 
-### 19.7 Topic 19 Summary (मराठी सारांश)
+### 21.7 Topic 21 Summary (मराठी सारांश)
 
 * **JOIN का वापरतात?** वेगवेगळ्या टेबल्समध्ये विभागलेला संबंधित डेटा (उदा. ग्राहकाचे नाव + त्याच्या orders) columns शेजारी-शेजारी जोडून एकत्र पाहण्यासाठी. JOIN टेबल **रुंद** करतो, तर SET operators (UNION) टेबल **लांब** करतात.
 * **Basic Joins:**
@@ -7815,9 +8233,9 @@ In real-world applications, you often join more than 2 tables. The pattern is se
 
 ---
 
-## Topic 20: SET Operators (Combining Rows)
+## Topic 22: SET Operators (Combining Rows)
 
-### 20.1 What are SET Operators & Why Do We Need Them?
+### 22.1 What are SET Operators & Why Do We Need Them?
 * **English Definition/Properties:** In SQL, SET operations are used to combine the results of two or more `SELECT` queries into a single result set. While `JOIN` combines columns side-by-side, SET operators combine rows top-to-bottom.
 * **मराठी सारांश:** **काय आहे?** SET ऑपरेटर्स दोन किंवा अधिक `SELECT` क्वेरीजचे रिझल्ट एकाखाली एक (Rows मध्ये) जोडतात. **का वापरायचे?** जेव्हा वेगवेगळ्या टेबल्स किंवा क्वेरीजचा डेटा एकाच यादीत दाखवायचा असतो.
 
@@ -7833,7 +8251,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती SET operator कसा चालतो ते दाखवते: दोन स्वतंत्र `SELECT` चालतात आणि त्यांचे result एकाखाली एक जोडले जातात.
   * **उदाहरण:** `SELECT FirstName FROM Customers UNION SELECT FirstName FROM Employees` ➔ Alice, Bob, Charlie ... अशी एकच यादी.
 
-### 20.2 The 6 Golden Rules of SET Operators
+### 22.2 The 6 Golden Rules of SET Operators
 * **English Definition/Properties:** To successfully use a SET operator, your queries must strictly follow these rules:
   1. **SQL Clauses:** You can use `WHERE`, `JOIN`, `GROUP BY`, and `HAVING` in individual queries. However, `ORDER BY` is allowed **only once** at the very end of the entire combined query.
   2. **Number of Columns:** The number of columns in each `SELECT` query must be exactly the same.
@@ -7851,7 +8269,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   * SQL ने error दिली नाही तरी Name समोर Name च यायला हवे (Age समोर Name नको).
   * **उदाहरण:** Query 1: `SELECT id, name` आणि Query 2: `SELECT id, name` ➔ बरोबर. Query 2: `SELECT name, id` ➔ चुकीचे mapping.
 
-### 20.3 Types of SET Operators
+### 22.3 Types of SET Operators
 
 * **1. UNION**
   * **English Definition/Properties:** Combines the results of both queries but **removes duplicate rows** from the final output. It is generally slower than `UNION ALL` because it performs extra steps to filter out duplicates. The order of queries does not affect the result.
@@ -7919,7 +8337,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती INTERSECT दाखवते: दोन्ही queries मध्ये असलेल्या rows च.
     * **उदाहरण:** A = {1, 2}, B = {2, 3} ➔ `INTERSECT` = {2}.
 
-### 20.4 Advanced Scenarios & Best Practices
+### 22.4 Advanced Scenarios & Best Practices
 * **English Definition/Properties:** 
   1. **Source Flag:** Include an additional column in your `SELECT` statements to indicate the source of each row.
   2. **Never use an asterisk (*):** Always list the needed columns instead of `*` to prevent mapping errors.
@@ -7976,7 +8394,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
       * result मध्ये rows आल्या तर त्या B मध्ये नसलेल्या (migration मध्ये सुटलेल्या) rows आहेत.
       * **उदाहरण:** `SELECT id FROM old_db.customers EXCEPT SELECT id FROM new_db.customers;` ➔ 0 rows = migration पूर्ण.
 
-### 20.5 In-Depth Comparison: JOINs vs SET Operators
+### 22.5 In-Depth Comparison: JOINs vs SET Operators
 
 * **English Definition/Properties:** While both JOINs and SET operators combine data, they do it in completely different ways. JOINs combine columns (horizontal), and SET operators combine rows (vertical).
 * **मराठी सारांश:** **काय आहे?** JOIN आणि SET दोघेही डेटा जोडतात, पण वेगळ्या पद्धतीने. JOIN कॉलम्स शेजारी-शेजारी जोडून टेबल रुंद (Wider) करतो, तर SET ऑपरेटर Rows वर-खाली जोडून टेबल लांब (Longer) करतो.
@@ -8033,7 +8451,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   4. You want automatic duplicate handling.
   5. You need vertical stacking of results rather than horizontal merging.
 
-### 20.6 Advanced Interview Insights (Pro-Tips)
+### 22.6 Advanced Interview Insights (Pro-Tips)
 * **Q1. Interview Trick: How do SET operators handle NULL values?**
   * **English:** In SQL, `NULL = NULL` evaluates to `UNKNOWN` or `False`. However, when using `UNION`, the database treats two `NULL` values as **equal**. Therefore, if both queries return a row containing a `NULL`, `UNION` will consider them duplicates and filter one out.
   * **मराठी सारांश:** साध्या SQL मध्ये `NULL` आणि `NULL` समान नसतात. पण `UNION` करताना डेटाबेस दोन `NULL` ना समान (Equal) मानतो आणि डुप्लिकेट समजून एक काढून टाकतो!
@@ -8046,7 +8464,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   * **English:** While JOINs are used to pivot data (make it wider), `UNION ALL` is frequently used in data warehousing to **Unpivot** data (convert columns into rows) before analytical functions are applied.
   * **मराठी सारांश:** डेटा वेअरहाउसिंगमध्ये रुंद डेटा (Columns) लांब (Rows) करण्यासाठी म्हणजेच **Unpivot** करण्यासाठी `UNION ALL` खूप वापरला जातो.
 
-### 20.7 Topic 20 Summary (मराठी सारांश)
+### 22.7 Topic 22 Summary (मराठी सारांश)
 
 * **SET Operators म्हणजे काय?** दोन किंवा अधिक `SELECT` चे results एकाखाली एक (rows) जोडणे.
 * **6 नियम:** columns ची संख्या आणि क्रम सारखा; data types जुळणारे; `ORDER BY` फक्त शेवटी एकदा; column नावे पहिल्या query वरून येतात; योग्य column समोर योग्य column (Name समोर Name).
@@ -8062,22 +8480,22 @@ In real-world applications, you often join more than 2 tables. The pattern is se
 
 ---
 
-# 📘 Part 4: SQL Functions (String, Numeric, Date, NULL, CASE, Window) (Topics 21–24)
+# 📘 Part 4: SQL Functions (String, Numeric, Date, NULL, CASE, Window) (Topics 23–26)
 
-> **मराठी:** SQL Functions — या भागात Topics 21 ते 24 आहेत.
+> **मराठी:** SQL Functions — या भागात Topics 23 ते 26 आहेत.
 
 ---
 
-## Topic 21: SQL Built-in Functions (String & Numeric)
+## Topic 23: SQL Built-in Functions (String & Numeric)
 
-### 21.1 What are SQL Functions?
+### 23.1 What are SQL Functions?
 * **English Definition/Properties:** A built-in SQL code that accepts an input value, processes it, and returns an output value. 
 * **मराठी सारांश:** **काय आहे?** फंक्शन म्हणजे तयार SQL कोड. त्याला आपण इनपुट (Input) देतो, तो त्यावर प्रक्रिया (Process) करतो आणि आउटपुट (Output) देतो (जसे मशीनमध्ये ऊस टाका आणि रस मिळवा).
 * ![Functions Intro](./svg_functions_intro.svg)
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती SQL Function म्हणजे काय ते दाखवते: Input ➔ Function (प्रक्रिया) ➔ Output.
   * **उदाहरण:** `UPPER('maria')` ➔ `'MARIA'`.
 
-### 21.2 Categories of Functions
+### 23.2 Categories of Functions
 * **English Definition/Properties:** We group functions into two main categories based on how many rows they process at a time:
   1. **Single-Row Functions:** You give only one value as input, and it returns a single value as output. (e.g., converting a single name to lowercase).
   2. **Multi-Row Functions (Aggregate):** Accepts multiple rows/values as input, summarizes them, and returns a single summarized output. (e.g., `SUM()` of 10 rows returns 1 total).
@@ -8088,7 +8506,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   * Multi-Row: अनेक rows ➔ 1 output (`SUM(30, 10, 20)` ➔ `60`).
   * **उदाहरण:** `SELECT LOWER(name) FROM customers` प्रत्येक row साठी चालतो; `SELECT SUM(score) FROM customers` एकच उत्तर देतो.
 
-### 21.3 Nested Functions
+### 23.3 Nested Functions
 * **English Definition/Properties:** A function used inside another function. Multiple functions are nested together in order to manipulate a single value in stages.
 * **मराठी सारांश:** **काय आहे?** एका फंक्शनच्या आत दुसरे फंक्शन वापरले की त्याला Nested Function म्हणतात. (कांद्याच्या पापुद्र्यांसारखे — काम आतून बाहेर होते).
 * **Example / Order of Execution:** `LENGTH( LOWER( LEFT('Maria', 2) ) )`
@@ -8097,7 +8515,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   * 1. `LEFT('Maria', 2)` ➔ `'Ma'`; 2. `LOWER('Ma')` ➔ `'ma'`; 3. `LENGTH('ma')` ➔ `2`.
   * **उदाहरण:** `SELECT LENGTH(LOWER(LEFT('Maria', 2)));` ➔ 2
 
-### 21.4 String Functions (Manipulation & Extraction)
+### 23.4 String Functions (Manipulation & Extraction)
 ![String Functions Mastery](./svg_string_functions.svg)
 
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती String functions चे 3 गट दाखवते: Manipulation, Calculation, Extraction.
@@ -8181,7 +8599,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
     SELECT LOCATE('@', 'vishal@gmail.com') AS position; -- Output: 7
     ```
 
-### 21.5 Numeric Functions
+### 23.5 Numeric Functions
 * **English Definition/Properties:** Functions that operate on numeric values for mathematical operations.
 * **मराठी सारांश:** संख्या आणि गणिताच्या (Math) क्रियांसाठी वापरली जाणारी फंक्शन्स.
 * ![Numeric Functions](./svg_numeric_functions.svg)
@@ -8233,7 +8651,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
     SELECT * FROM employees WHERE MOD(id, 2) = 1;
     ```
 
-### 21.6 Pattern Matching with REGEXP (Regular Expressions)
+### 23.6 Pattern Matching with REGEXP (Regular Expressions)
 
 * `LIKE` only knows `%` and `_`. For richer patterns MySQL has **regular expressions**: `REGEXP` / `RLIKE` operator and the functions `REGEXP_LIKE()`, `REGEXP_REPLACE()`, `REGEXP_SUBSTR()`, `REGEXP_INSTR()` (MySQL 8.0+).
 * **Common pattern symbols:** `^` start, `$` end, `.` any character, `[abc]` one of, `[0-9]` a digit, `+` one or more, `*` zero or more, `{n}` exactly n times, `|` or.
@@ -8258,7 +8676,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
 * **मराठी:** `REGEXP` ने `LIKE` पेक्षा जास्त अवघड patterns शोधता येतात: `^` सुरुवात, `$` शेवट, `[0-9]` अंक, `{9}` नेमके 9 वेळा.
   * **उदाहरण:** `phone REGEXP '^[6-9][0-9]{9}$'` ➔ 6–9 ने सुरू होणारे 10 अंकी मोबाइल नंबर; `REGEXP_REPLACE(phone, '[^0-9]', '')` ➔ फक्त अंक ठेवतो. REGEXP index वापरत नाही, म्हणून मोठ्या टेबलवर मुख्य filter म्हणून टाळा.
 
-### 21.7 Topic 21 Summary (मराठी सारांश)
+### 23.7 Topic 23 Summary (मराठी सारांश)
 
 * **Function म्हणजे काय?** input घेऊन त्यावर प्रक्रिया करून output देणारा तयार SQL कोड.
 * **2 प्रकार:** Single-Row (प्रत्येक row साठी एक उत्तर, उदा. `UPPER`) आणि Multi-Row / Aggregate (अनेक rows ➔ एक उत्तर, उदा. `SUM`).
@@ -8273,9 +8691,9 @@ In real-world applications, you often join more than 2 tables. The pattern is se
 
 ---
 
-## Topic 22: Date and Time Functions
+## Topic 24: Date and Time Functions
 
-### 22.1 Anatomy of Date & Time
+### 24.1 Anatomy of Date & Time
 * **English Definition/Properties:** A Date typically contains Year, Month, and Day. A Time contains Hours, Minutes, and Seconds. A Timestamp (or Datetime) combines both.
 * **मराठी सारांश:** Date मध्ये वर्ष, महिना आणि दिवस असतो. Time मध्ये तास, मिनिटे आणि सेकंद असतात. Timestamp (Datetime) म्हणजे दोन्ही एकत्र.
 * ![Anatomy of Date & Time](./svg_datetime_anatomy.svg)
@@ -8284,14 +8702,14 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   * दोन्ही एकत्र = DATETIME / TIMESTAMP.
   * **उदाहरण:** `2025-08-20 18:55:45` ➔ Year 2025, Month 08, Day 20, Hour 18.
 
-### 22.2 Sources of Dates (How to Query Dates)
+### 24.2 Sources of Dates (How to Query Dates)
 * **English Definition/Properties:** We have three main sources to get dates in SQL:
   1. **From a Table Column:** Fetching stored dates. (e.g., `SELECT HIRE_DATE FROM CUSTOMERS;`)
   2. **Hardcoded Constant String:** Providing a static date directly in the query. (e.g., `SELECT '2025-08-20' AS NEWDATE;`)
   3. **System Current Date/Time Functions:** Using built-in functions like `GETDATE()` (SQL Server) or `NOW()` / `CURRENT_TIMESTAMP()` (MySQL).
 * **मराठी सारांश:** SQL मध्ये तारीख 3 प्रकारे मिळते: (1) टेबलच्या कॉलममधून, (2) स्वतः लिहून (hardcode/static), (3) सिस्टमची सध्याची तारीख देणारी फंक्शन्स वापरून.
 
-### 22.3 Overview of Built-in Date/Time Functions (MySQL focus)
+### 24.3 Overview of Built-in Date/Time Functions (MySQL focus)
 ![Date & Time Overview](./svg_datetime_overview.svg)
 
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती Date & Time functions चे 4 गट दाखवते.
@@ -8472,7 +8890,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
     DATEDIFF(orderdate, LAG(orderdate) OVER (ORDER BY orderdate)) AS NoOfDays FROM orders;
     ```
 
-### 22.4 Topic 22 Summary (मराठी सारांश)
+### 24.4 Topic 24 Summary (मराठी सारांश)
 
 * **Date आणि Time ची रचना:** DATE = वर्ष-महिना-दिवस, TIME = तास:मिनिट:सेकंद, DATETIME/TIMESTAMP = दोन्ही एकत्र.
 * **तारीख कुठून मिळते?** (1) टेबलच्या column मधून, (2) query मध्ये स्वतः लिहून (`'2025-08-20'`), (3) system functions ने (`NOW()`, `CURDATE()`).
@@ -8485,7 +8903,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
 
 ---
 
-## Topic 23: NULL Functions & Conditional Logic (CASE)
+## Topic 25: NULL Functions & Conditional Logic (CASE)
 ![NULL Functions Overview](./svg_null_overview.svg)
 
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती NULL functions चे 2 उपयोग दाखवते: NULL बदलणे (Replace) आणि NULL तपासणे (Check).
@@ -8493,7 +8911,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   * Check: `IS NULL` / `IS NOT NULL` ने TRUE/FALSE मिळवणे.
   * **उदाहरण:** `COALESCE(score, 0)` ➔ score NULL असेल तर 0.
 
-### 23.1 What is NULL?
+### 25.1 What is NULL?
 * **English Definition/Properties:** NULL means nothing or unknown. 
   * NULL is **not equal to anything** (not even another NULL).
   * NULL is **not zero** (0).
@@ -8501,7 +8919,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   * NULL is **not a blank space** (`' '`).
 * **मराठी सारांश:** NULL म्हणजे "काहीच नाही" (Unknown). ते 0 नाही आणि रिकामी जागा (Space) पण नाही.
 
-### 23.2 Checking for NULL
+### 25.2 Checking for NULL
 * ![IS NOT NULL Logic](./svg_is_not_null.svg)
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती `IS NOT NULL` दाखवते: value असेल तर TRUE, NULL असेल तर FALSE.
   * **उदाहरण:** Price 10 ➔ TRUE; Price NULL ➔ FALSE ➔ `WHERE price IS NOT NULL` ने फक्त किंमत असलेले products मिळतात.
@@ -8522,7 +8940,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   WHERE o.customerid IS NULL;
   ```
 
-### 23.3 Handling & Replacing NULL values
+### 25.3 Handling & Replacing NULL values
 
 * **NULL functions कुठे वापरतात? (5 उपयोग):**
 
@@ -8578,7 +8996,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
     FROM customers;
     ```
 
-### 23.4 NULLIF()
+### 25.4 NULLIF()
 * ![NULLIF Flowchart](./svg_nullif_flowchart.svg)
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती `NULLIF(Value1, Value2)` चा flowchart दाखवते: दोन्ही सारखे असतील तर NULL, नाहीतर Value1.
   * **उदाहरण:** `NULLIF(0, 0)` ➔ NULL, `NULLIF(5, 0)` ➔ 5 ➔ म्हणून `sales / NULLIF(qty, 0)` ने 0 ने भागाकाराची error टळते.
@@ -8594,7 +9012,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
     SELECT 100 / NULLIF(column_value, 0) AS result FROM your_table;
     ```
 
-### 23.5 Data Policies regarding NULL, Space, and Empty
+### 25.5 Data Policies regarding NULL, Space, and Empty
 * ![NULL vs Empty String vs Blank Space](./svg_null_vs_empty.svg)
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती NULL, `''` (रिकामी string) आणि `' '` (space) यांतील फरक दाखवते.
   * NULL = माहीत नाही (`IS NULL` ने तपासतात); `''` = लांबी 0 असलेली माहीत असलेली value (`= ''`).
@@ -8618,7 +9036,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   2. Use only NULL and avoid empty strings and blank spaces.
   3. Use a default value like `'unknown'` and avoid NULL, empty strings, and blank spaces entirely.
 
-### 23.6 Conditional Logic: CASE Statement
+### 25.6 Conditional Logic: CASE Statement
 * ![CASE Summary](./svg_case_summary.svg)
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती CASE statement चा सारांश (नियम आणि उपयोग) देते.
   * पहिली खरी अट मिळाली की तिचे उत्तर परत येते; सर्व results चा data type सारखा हवा.
@@ -8728,7 +9146,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   ```
 
 
-### 23.7 IF() Function (MySQL Shorthand)
+### 25.7 IF() Function (MySQL Shorthand)
 * ![IF Function](./svg_if_function.svg)
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती MySQL चे `IF(condition, true_value, false_value)` दाखवते: छोट्या CASE ला लहान पर्याय.
   * **उदाहरण:** `IF(score > 50, 'Pass', 'Fail')` ➔ score 72 असेल तर 'Pass'.
@@ -8743,7 +9161,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   FROM students;
   ```
 
-### 23.8 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
+### 25.8 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
 
 * **Q1. `IFNULL` vs `COALESCE` vs `NULLIF` vs `ISNULL`?**
   * **Answer:** `IFNULL(a,b)` → b when a is NULL (2 args, MySQL). `COALESCE(a,b,c…)` → first non-NULL (standard, many args). `NULLIF(a,b)` → NULL when a = b (used to avoid divide-by-zero). In MySQL `ISNULL(x)` only returns 1/0; in SQL Server `ISNULL(a,b)` replaces like IFNULL.
@@ -8761,7 +9179,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   * **Answer:** Yes. Example — custom sort order: `ORDER BY CASE status WHEN 'Pending' THEN 1 WHEN 'Shipped' THEN 2 ELSE 3 END`.
   * **मराठी:** हो; CASE ने स्वतःचा sort क्रम किंवा स्वतःचे गट बनवता येतात.
 
-### 23.9 Topic 23 Summary (मराठी सारांश)
+### 25.9 Topic 25 Summary (मराठी सारांश)
 
 * **NULL म्हणजे काय?** माहिती माहीत नाही (Unknown). NULL हा 0 नाही, `''` (रिकामी string) नाही आणि `' '` (space) पण नाही.
 * **NULL तपासणे:** `= NULL` कधीच काम करत नाही; नेहमी `IS NULL` / `IS NOT NULL` वापरा.
@@ -8777,9 +9195,9 @@ In real-world applications, you often join more than 2 tables. The pattern is se
 
 ---
 
-## Topic 24: Aggregate & Window Functions (Analytics)
+## Topic 26: Aggregate & Window Functions (Analytics)
 
-### 24.1 Aggregation Functions in SQL
+### 26.1 Aggregation Functions in SQL
 * ![Aggregation Overview](./svg_aggregation_overview.svg)
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती aggregate functions दाखवते: अनेक rows घेऊन एकच summary value देणारी functions.
   * **उदाहरण:** `COUNT(*)`, `SUM(sales)`, `AVG(sales)`, `MIN(sales)`, `MAX(sales)`, `GROUP_CONCAT(name)`.
@@ -8815,7 +9233,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
 
 ---
 
-### 24.2 Window Functions (Analytical Functions)
+### 26.2 Window Functions (Analytical Functions)
 * **English Definition/Properties:** Window Functions are one of the most powerful features in SQL. They allow you to perform calculations (e.g. aggregations) on a specific subset of data, **without losing the level of detail of the rows.**
 * **मराठी सारांश:** हे SQL चे खूप पॉवरफुल साधन आहे. हे `GROUP BY` सारखे गणित करते, पण टेबलच्या rows कमी (Squash) करत नाही. मूळ rows तशाच राहतात, फक्त शेजारी एक नवीन गणित केलेला कॉलम जोडला जातो.
 
@@ -8846,7 +9264,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
 
 ---
 
-### 24.3 Ranking Window Functions
+### 26.3 Ranking Window Functions
 * **English Definition/Properties:** Used to rank data. SQL always sorts the data as a first step before ranking your data.
 * **मराठी सारांश:** डेटाला रँक (Rank 1, 2, 3...) देण्यासाठी.
 * ![Rank vs Dense Rank](./svg_rank_vs_dense_rank.svg)
@@ -9007,7 +9425,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
 
 ---
 
-### 24.4 Percentage-Based Ranking Functions
+### 26.4 Percentage-Based Ranking Functions
 * **English Definition/Properties:** In order for SQL to generate and calculate percentages, we have 2 different formulas or functions. Instead of integer ranking, SQL computes the relative position of the row compared to others and assigns a percentage to each row. 
 * **मराठी सारांश:** हे 1, 2, 3 अशी रँक देण्याऐवजी टक्केवारीत (0.1, 0.5, 1.0) रँक देते, ज्यामुळे एखादे मूल्य पूर्ण डेटामध्ये कुठे आहे ते कळते.
 
@@ -9044,7 +9462,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
   * Based on the formulas, we have to find out the percentage value of the relative position of each row overall. So it is very important to measure the contribution of each value to the overall distribution.
 
 
-### 24.5 Aggregate Window Functions (SUM, AVG, MIN, MAX, COUNT)
+### 26.5 Aggregate Window Functions (SUM, AVG, MIN, MAX, COUNT)
 * **English Definition:** In window aggregation, functions like `SUM`, `AVG`, `MIN`, `MAX`, and `COUNT` calculate their values for each window separately (or the entire dataset if no partition is given), but unlike `GROUP BY`, they do not collapse the rows.
 * **मराठी सारांश:** इथे ॲग्रीगेशन फंक्शन्स प्रत्येक विंडोसाठी (ग्रुप) वेगळे गणित करतात, पण `GROUP BY` प्रमाणे rows कमी होत नाहीत; प्रत्येक मूळ row सोबत ॲग्रीगेट मूल्य जोडले जाते.
 
@@ -9242,7 +9660,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
 
 ---
 
-### 24.6 Value Window Functions (Analytics Functions)
+### 26.6 Value Window Functions (Analytics Functions)
 * **English Definition:** These are used to access data from other rows (in the result set) without using `JOIN`s or subqueries. They help compare current row values with previous, next, first, or last values in the window.
 * **मराठी सारांश:** JOIN किंवा Subquery न वापरता दुसऱ्या row चा डेटा पाहण्यासाठी ही फंक्शन्स वापरतात (जसे मागील row ची किंवा पुढील row ची व्हॅल्यू).
 
@@ -9380,7 +9798,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
 
 ---
 
-### 24.7 Window Function Syntax Deep Dive (OVER Clause)
+### 26.7 Window Function Syntax Deep Dive (OVER Clause)
 * **English Definition:** A Window function query mainly has two parts: The **Function** (performs calculation on top of window) and the **OVER()** clause (defines the window/subset of data). The `OVER` clause has three sub-clauses: `PARTITION BY`, `ORDER BY`, and `FRAME`.
 * **मराठी सारांश:** Window function चे 2 मुख्य भाग असतात: 1. फंक्शन (जसे AVG, SUM), 2. `OVER()` क्लॉज (कोणत्या डेटावर गणित करायचे ते ठरवतो).
 
@@ -9427,7 +9845,7 @@ In real-world applications, you often join more than 2 tables. The pattern is se
 
 ---
 
-### 24.8 Window Function Limitations & Rules
+### 26.8 Window Function Limitations & Rules
 * **Rule 1: Allowed Clauses Only**
   * **English:** Window functions can only be used in the `SELECT` and `ORDER BY` clauses. You **cannot** use them directly in `WHERE`, `GROUP BY`, or `HAVING` clauses.
   * **मराठी सारांश:** Window Function फक्त `SELECT` किंवा `ORDER BY` मध्ये लिहिता येते. `WHERE` मध्ये थेट वापरता येत नाही (त्यासाठी Subquery बनवावी लागते).
@@ -9453,13 +9871,13 @@ In real-world applications, you often join more than 2 tables. The pattern is se
 
 ---
 
-### 24.9 Why Window Functions? (Advantages)
+### 26.9 Why Window Functions? (Advantages)
 1. **Advance Analytics Without Aggregation:** Unlike `GROUP BY`, window functions do not reduce/collapse rows. You can calculate running totals, rankings, and moving averages while still keeping each row intact.
 2. **Simplify Complex Queries:** Allows you to avoid complex self-joins or subqueries when doing cumulative and comparative analysis.
 3. **Performance:** They are often much more efficient than writing equivalent subqueries or self-joins.
 4. **Better Readability:** Clear and declarative syntax for ranking, partitioning, and ordering operations.
 
-### 24.10 GROUP BY + HAVING vs Window Functions
+### 26.10 GROUP BY + HAVING vs Window Functions
 Window Functions are often confused with `GROUP BY` and `HAVING`, but they are fundamentally different:
 
 1. **GROUP BY + HAVING**
@@ -9487,7 +9905,7 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
      ```
      *(Output: Every employee stays visible, but you also see department averages next to each row).*
 
-### 24.11 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
+### 26.11 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
 
 * **Q1. `ROW_NUMBER` vs `RANK` vs `DENSE_RANK` for 100, 90, 90, 80?**
   * **Answer:** 1,2,3,4 / 1,2,2,4 / 1,2,2,3. Use DENSE_RANK for 'Nth highest' when ties should share a rank.
@@ -9504,9 +9922,9 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
 * **Q5. `GROUP BY` vs `PARTITION BY`?**
   * **Answer:** GROUP BY collapses rows (one per group); PARTITION BY keeps every row and adds the group result next to it.
   * **मराठी:** GROUP BY rows कमी करतो, PARTITION BY rows तशाच ठेवतो.
-* **Q6. Top 3 earners per department?** → see Q135 in the Interview Q&A Bank (Topic 50).
+* **Q6. Top 3 earners per department?** → see Q135 in the Interview Q&A Bank (Topic 53).
 
-### 24.12 Topic 24 Summary (मराठी सारांश)
+### 26.12 Topic 26 Summary (मराठी सारांश)
 
 * **Aggregate Functions:** `COUNT`, `SUM`, `AVG`, `MIN`, `MAX`, `GROUP_CONCAT` ➔ अनेक rows ची एक value. `COUNT(*)` सर्व rows मोजतो, `COUNT(col)` फक्त NULL नसलेल्या values.
 * **Window Functions:** `GROUP BY` सारखे गणित करतात, पण rows कमी करत नाहीत; प्रत्येक row शेजारी नवीन column जोडतात. `OVER()` लिहिल्यावर function window function बनते.
@@ -9521,33 +9939,33 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
 
 ---
 
-# 📘 Part 5: Advanced Querying (Subqueries, CTEs, Views, Tables) (Topics 25–36)
+# 📘 Part 5: Advanced Querying (Subqueries, CTEs, Views, Tables) (Topics 27–39)
 
-> **मराठी:** Advanced Queries — या भागात Topics 25 ते 36 आहेत.
+> **मराठी:** Advanced Queries — या भागात Topics 27 ते 39 आहेत.
 
 ---
 
-## Topic 25: Subqueries Deep Dive (Nested Queries)
+## Topic 27: Subqueries Deep Dive (Nested Queries)
 
-### 25.1 What is a Subquery?
+### 27.1 What is a Subquery?
 * **Definition:** A subquery is a SQL query that is written *inside* another query. It is also known as an **Inner Query** or a **Nested Query**. 
 * **The Structure:**
   1. The outer query is called the **Main Query**.
   2. The inside query is called the **Subquery** (or Nested Query).
 * **मराठी:** Subquery म्हणजे 'एका query च्या आत दुसरी query'. बाहेरच्या query ला Main Query आणि आतल्या query ला Subquery म्हणतात.
 
-### 25.2 How Subqueries Work (The Execution Flow)
+### 27.2 How Subqueries Work (The Execution Flow)
 * **Image Reference:** ![Subquery Flow](./svg_subquery_flow.svg) *(Description: Shows the DB Tables sending data to the Inner SubQuery, which creates an intermediate result, which is then used by the Main Query to produce the Final Result).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती subquery कशी चालते ते दाखवते: आधी आतली subquery DB tables मधून intermediate result बनवते आणि मग main query तो वापरून final result देते.
   * **उदाहरण:** `SELECT * FROM orders WHERE customer_id IN (SELECT id FROM customers WHERE country='India')` ➔ आधी भारतीय ग्राहकांच्या ids ची यादी, मग त्यांच्या orders.
-* Subqueries act as an embedded query. SQL executes them in a specific order (usually from the innermost query to the outermost — sometimes described as "Right to Left"). *(A correlated subquery is the exception: it runs once for each row of the outer query — see 26.3.)*
+* Subqueries act as an embedded query. SQL executes them in a specific order (usually from the innermost query to the outermost — sometimes described as "Right to Left"). *(A correlated subquery is the exception: it runs once for each row of the outer query — see 28.3.)*
 * **Step-by-step Flow:**
   1. **Inner Query Runs First:** SQL executes the subquery first. It retrieves data from the database.
   2. **Intermediate Result:** The result of the subquery is NOT shown directly to the user. Instead, it becomes a temporary (intermediate) dataset stored in memory.
   3. **Main Query Takes Over:** The main query uses this intermediate result to perform operations like Filtering (`WHERE`), Joining, Ordering, or Aggregation.
   4. **Final Output:** The main query merges its own table data with the subquery's result to produce the final output for the user.
 
-### 25.3 Why are Subqueries Important? (When to use them)
+### 27.3 Why are Subqueries Important? (When to use them)
 * **Image Reference:** ![Subquery Nesting](./svg_subquery_nesting.svg) *(Description: Shows Main Query, SubQuery, and Nested Subquery wrapped like Russian Dolls).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती nested subqueries रशियन बाहुल्यांसारख्या एकमेकांत कशा असतात ते दाखवते: सर्वात आतली आधी चालते.
   * **उदाहरण:** `... WHERE salary > (SELECT AVG(salary) FROM emp WHERE dept_id = (SELECT id FROM dept WHERE name='IT'))` ➔ आधी IT चा id, मग सरासरी, मग main query.
@@ -9565,7 +9983,7 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
   * In the `WHERE` clause (to filter based on another query).
   * In the `HAVING` clause (to filter after a `GROUP BY`).
 
-### 25.4 The Golden Rules of Subqueries
+### 27.4 The Golden Rules of Subqueries
 1. The **inner query** runs first, and its result is passed to the **outer query**.
 2. A subquery must be enclosed in parentheses `()`.
 3. **No DML Inside:** By design, a subquery **cannot** perform DML (`INSERT`, `UPDATE`, `DELETE`) operations inside it. It must produce a result set (rows/columns or a single value). *Example of what NOT to do: `SELECT * FROM (DELETE FROM employees);` (This will fail).*
@@ -9590,7 +10008,7 @@ Window Functions are often confused with `GROUP BY` and `HAVING`, but they are f
   ```
 * **मराठी:** Subquery सहसा आधी चालते (आतून बाहेर). Subquery च्या आत `INSERT`/`UPDATE`/`DELETE` चालत नाहीत, कारण तिचे काम फक्त डेटा परत देणे आहे. मात्र बाहेरची (Main) query `UPDATE` किंवा `DELETE` असू शकते.
 
-### 25.5 Subquery Classification (Types of Subqueries)
+### 27.5 Subquery Classification (Types of Subqueries)
 * **Image Reference:** ![Subquery Classification](./svg_subquery_classification.svg) *(Description: Shows the classification by Result Types, Dependency, and Location).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती subqueries चे वर्गीकरण 3 प्रकारे दाखवते.
   * Result नुसार: Scalar (1 value), Row (1 row), Table (अनेक rows/columns).
@@ -9629,7 +10047,7 @@ Subqueries can be categorized in three different ways:
    * **Comparison Operators:** `<`, `>`, `=`, `!=`, `<=`, `>=` (Used with Scalar subqueries).
    * **Logical Operators:** `IN`, `ANY`, `ALL`, `EXISTS` (Used with Row or Table subqueries).
 
-### 25.6 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
+### 27.6 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
 
 * **Q1. Correlated vs non-correlated subquery?**
   * **Answer:** A non-correlated subquery runs once on its own; a correlated one references the outer row and conceptually runs once per outer row (e.g. salary above *own department's* average).
@@ -9647,7 +10065,7 @@ Subqueries can be categorized in three different ways:
   * **Answer:** JOIN when you need columns from both tables; subquery/EXISTS for filtering; avoid correlated subqueries on big tables — rewrite them as JOIN or window functions.
   * **मराठी:** दोन्ही टेबलचे columns हवे ➔ JOIN; फक्त filter ➔ subquery/EXISTS.
 
-### 25.7 Topic 25 Summary (मराठी सारांश)
+### 27.7 Topic 27 Summary (मराठी सारांश)
 
 * **Subquery म्हणजे काय?** एका query च्या आत दुसरी query. बाहेरची = Main (Outer) Query, आतली = Subquery (Inner/Nested Query).
 * **कशी चालते?** साधारणपणे आतली query आधी चालते ➔ तिचा result तात्पुरता (intermediate) ठेवला जातो ➔ main query तो वापरते ➔ final result.
@@ -9659,15 +10077,15 @@ Subqueries can be categorized in three different ways:
 
 ---
 
-## Topic 26: Subqueries Advanced (Clauses, Operators & Execution)
+## Topic 28: Subqueries Advanced (Clauses, Operators & Execution)
 
-> 🔗 **हेही पहा:** [Topic 27: Derived Tables in SQL](#topic-27-derived-tables-in-sql) — Derived Tables (FROM मधील subquery) · [Topic 29: Common Table Expressions (CTE)](#topic-29-common-table-expressions-cte) — CTE — subquery चा वाचायला सोपा पर्याय
+> 🔗 **हेही पहा:** [Topic 29: Derived Tables in SQL](#topic-29-derived-tables-in-sql) — Derived Tables (FROM मधील subquery) · [Topic 31: Common Table Expressions (CTE)](#topic-31-common-table-expressions-cte) — CTE — subquery चा वाचायला सोपा पर्याय
 * **Image Reference (Notebook Summary):** ![Subquery Summary](./svg_subquery_summary_notebook.svg) *(Description: Notebook page summarizing Subquery use cases like filtering, JOIN preparation, EXISTS, and Correlated row-by-row comparisons).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती subquery चा वहीतल्या पानासारखा सारांश देते: query च्या आत query, जी मोठी query लहान भागांत विभागते.
   * उपयोग: temporary result set, JOIN आधी डेटा तयार करणे, dynamic filtering, `EXISTS` ने अस्तित्व तपासणे, correlated row-by-row तुलना.
   * **उदाहरण:** सरासरीपेक्षा जास्त किंमत असलेले products ➔ `WHERE price > (SELECT AVG(price) FROM products)`.
 
-### 26.1 Subqueries by Location (Clauses)
+### 28.1 Subqueries by Location (Clauses)
 * **Image Reference:** ![Location Clauses](./svg_subquery_location_clauses.svg) *(Description: Tree diagram showing subqueries in SELECT, FROM, JOIN, and WHERE. WHERE is split into Comparison and Logical operators).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती subquery कुठे-कुठे लिहिता येते ते दाखवते: SELECT, FROM, JOIN आणि WHERE.
   * WHERE मध्ये 2 गट: Comparison (`<`, `>`, `=`, `!=`, `>=`, `<=`) आणि Logical (`IN`, `ANY`, `ALL`, `EXISTS`).
@@ -9727,7 +10145,7 @@ A subquery can be placed in different parts of a SQL statement. Depending on whe
   ON c.customerid = t.customerid;
   ```
 
-### 26.2 Subqueries in the `WHERE` Clause (Filtering)
+### 28.2 Subqueries in the `WHERE` Clause (Filtering)
 This is the most common place for a subquery. It uses two groups of operators:
 * **Image Reference:** ![Where Filtering](./svg_subquery_where_filtering.svg) *(Description: Compares '=' needing scalar subqueries vs 'IN' needing list/row subqueries).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती एका value ने फिल्टर करणे (`=`) आणि values च्या यादीने फिल्टर करणे (`IN`) यांतील फरक दाखवते.
@@ -9809,7 +10227,7 @@ This is the most common place for a subquery. It uses two groups of operators:
    );
    ```
 
-### 26.3 Correlated vs Non-Correlated Subqueries (Execution Behind the Scenes)
+### 28.3 Correlated vs Non-Correlated Subqueries (Execution Behind the Scenes)
 * **Image Reference:** ![Server Execution](./svg_subquery_server_execution.svg) *(Description: Shows Client sending query, Database Engine fetching Subquery from Disk, caching it, and returning the Final Result).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती server वर subquery कशी चालते ते दाखवते: Engine subquery चा डेटा disk वरून आणतो, तात्पुरता result memory/temp मध्ये ठेवतो आणि मग main query तो वापरते.
   * query संपल्यावर तो तात्पुरता result काढून टाकला जातो.
@@ -9845,7 +10263,7 @@ This is the most common place for a subquery. It uses two groups of operators:
   FROM CUSTOMERS c;
   ```
 
-### 26.4 JOIN vs SUBQUERY (Interview Comparison)
+### 28.4 JOIN vs SUBQUERY (Interview Comparison)
 
 | Feature | JOIN | SUBQUERY |
 | :--- | :--- | :--- |
@@ -9858,7 +10276,7 @@ This is the most common place for a subquery. It uses two groups of operators:
 
 * **Interview Tip:** Always prefer a `JOIN` over a `Correlated Subquery` for better performance. However, modern SQL Optimizers are smart enough to automatically convert many subqueries into Joins behind the scenes!
 
-### 26.5 Key Points & Summary
+### 28.5 Key Points & Summary
 * A subquery is a query inside another query that helps break complex logic into smaller, manageable queries. It makes the code easier to understand and more readable.
 * A subquery **MUST** always be enclosed in parentheses `()`.
 * Subqueries can be used in the `SELECT`, `FROM`, `WHERE`, and `HAVING` clauses.
@@ -9873,7 +10291,7 @@ This is the most common place for a subquery. It uses two groups of operators:
   * **Operators:** `=` किंवा `>` सोबत subquery ने 1 value द्यायला हवी. `IN`, `ANY`, `ALL` सोबत values ची यादी चालते. `EXISTS` फक्त आतून डेटा मिळाला की नाही (True/False) एवढेच तपासतो.
   * **Correlated vs Non-Correlated:** Non-Correlated फक्त एकदाच चालते (जलद). Correlated प्रत्येक row साठी पुन्हा-पुन्हा चालते (हळू). म्हणून interview मध्ये `JOIN` ला नेहमी चांगल्या performance चा पर्याय मानले जाते!
 
-### 26.6 Topic 26 Summary (मराठी सारांश)
+### 28.6 Topic 28 Summary (मराठी सारांश)
 
 * **Location नुसार नियम:**
   * `FROM` मध्ये: Derived table; alias आवश्यक.
@@ -9888,11 +10306,11 @@ This is the most common place for a subquery. It uses two groups of operators:
 
 ---
 
-## Topic 27: Derived Tables in SQL
+## Topic 29: Derived Tables in SQL
 
-> 🔗 **हेही पहा:** [Topic 26: Subqueries Advanced (Clauses, Operators & Execution)](#topic-26-subqueries-advanced-clauses-operators--execution) — FROM clause मधील subquery चे नियम
+> 🔗 **हेही पहा:** [Topic 28: Subqueries Advanced (Clauses, Operators & Execution)](#topic-28-subqueries-advanced-clauses-operators--execution) — FROM clause मधील subquery चे नियम
 
-### 27.1 What is a Derived Table?
+### 29.1 What is a Derived Table?
 * **Definition:** A derived table is a subquery inside the `FROM` clause that acts like a temporary table for the duration of the main query.
 * **Key Properties:**
   * It is **not stored permanently** (unlike normal tables or views).
@@ -9901,7 +10319,7 @@ This is the most common place for a subquery. It uses two groups of operators:
   * **Important Rule:** You **MUST** give the derived table an alias (a name).
 * **मराठी:** Derived Table म्हणजे `FROM` मध्ये लिहिलेली subquery. ती query चालू असेपर्यंत तात्पुरत्या टेबलसारखी वागते आणि तिला alias (नाव) देणे आवश्यक आहे. उदा. `FROM (SELECT ...) AS t`.
 
-### 27.2 Syntax and Example
+### 29.2 Syntax and Example
 * **Syntax:**
   ```sql
   SELECT columns
@@ -9921,14 +10339,14 @@ This is the most common place for a subquery. It uses two groups of operators:
   ```
   * *Explanation:* The subquery `(SELECT dept_id, salary FROM employees WHERE status = 'ACTIVE')` acts like a temporary table named `active_emps`. The main query then groups this temporary table.
 
-### 27.3 Difference Between Derived Table and Subquery
+### 29.3 Difference Between Derived Table and Subquery
 | Feature | Subquery (in WHERE / SELECT) | Derived Table (in FROM) |
 | :--- | :--- | :--- |
 | **Placement** | Written inside `WHERE`, `HAVING`, or `SELECT` clauses. | Written **only** inside the `FROM` clause. |
 | **Output Type** | Returns a single value or a list of values (1 column). | Acts like a full virtual table (Rows & Columns). |
 | **Usage** | Used for filtering or returning a single calculated column. | Used so you can `JOIN`, `GROUP BY`, or filter on its result like a real table. |
 
-### 27.4 Topic 27 Summary (मराठी सारांश)
+### 29.4 Topic 29 Summary (मराठी सारांश)
 
 * **Derived Table म्हणजे काय?** `FROM` च्या आत लिहिलेली subquery, जी query चालू असेपर्यंत तात्पुरत्या टेबलसारखी वागते.
 * **नियम:** तिला alias (नाव) द्यायलाच हवे, नाहीतर MySQL error देतो ('Every derived table must have its own alias').
@@ -9938,11 +10356,11 @@ This is the most common place for a subquery. It uses two groups of operators:
 
 ---
 
-## Topic 28: CTEs (Common Table Expressions) & Recursive CTEs
+## Topic 30: CTEs (Common Table Expressions) & Recursive CTEs
 
-> 🔗 **हेही पहा:** [Topic 29: Common Table Expressions (CTE)](#topic-29-common-table-expressions-cte) — CTE चे सर्व प्रकार आणि Recursive CTE उदाहरणे सविस्तर
+> 🔗 **हेही पहा:** [Topic 31: Common Table Expressions (CTE)](#topic-31-common-table-expressions-cte) — CTE चे सर्व प्रकार आणि Recursive CTE उदाहरणे सविस्तर
 
-### 28.1 What is a CTE?
+### 30.1 What is a CTE?
 * **Definition:** A CTE (Common Table Expression) is a temporary result set that you can reference within another `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement. It exists only for the duration of the query.
 * **Syntax:**
   ```sql
@@ -9953,7 +10371,7 @@ This is the most common place for a subquery. It uses two groups of operators:
   ```
 * **मराठी:** CTE हे एका query पुरते तात्पुरते, नाव असलेले result आहे. मोठी query छोट्या, वाचायला सोप्या भागांत विभागण्यासाठी वापरतात.
 
-### 28.2 CTE vs Subquery vs Temp Table (Interview Favorite)
+### 30.2 CTE vs Subquery vs Temp Table (Interview Favorite)
 | Feature | Subquery | CTE | Temp Table (`#Temp`) |
 | :--- | :--- | :--- | :--- |
 | **Readability** | Hard to read if nested deeply. | Very easy to read (Top-down logic). | Easy to read. |
@@ -9964,7 +10382,7 @@ This is the most common place for a subquery. It uses two groups of operators:
 * ⚠️ **MySQL Note:** `#Temp` and `tempdb` are **SQL Server** names. In MySQL a temp table is created with `CREATE TEMPORARY TABLE t (...)` and lives in the session's temporary tablespace. Also, in MySQL a CTE or derived table is either merged into the main query or materialized into an internal temporary table (in memory, or on disk if it is large) — it is not guaranteed to "live in memory".
 * **मराठी:** `#Temp` आणि `tempdb` ही SQL Server ची नावे आहेत; MySQL मध्ये `CREATE TEMPORARY TABLE` लिहितात. MySQL CTE ला main query मध्ये merge करतो किंवा internal temp table बनवतो (मोठा असेल तर disk वर).
 
-### 28.3 Recursive CTEs
+### 30.3 Recursive CTEs
 * **Definition:** A Recursive CTE is a CTE that references itself. It is primarily used for querying hierarchical data, such as Employee-Manager relationships, category trees, or organization charts.
 * **How it works:** It has an **Anchor Member** (the starting point) and a **Recursive Member** (which loops until a condition is met), connected by `UNION ALL`.
 * **मराठी:** Recursive CTE स्वतःलाच पुन्हा-पुन्हा call करतो. Boss ➔ Manager ➔ Employee अशा tree/hierarchy डेटासाठी सर्वोत्तम.
@@ -9977,21 +10395,21 @@ This is the most common place for a subquery. It uses two groups of operators:
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती Recursive CTE चे 3 भाग दाखवते: 1. Anchor Member (एकदाच चालतो) ➔ `UNION ALL` ➔ 2. Recursive Member (नवीन rows येणे थांबेपर्यंत loop) ➔ 3. Main Query.
   * **उदाहरण:** `WITH RECURSIVE n AS (SELECT 1 AS x UNION ALL SELECT x + 1 FROM n WHERE x < 3) SELECT * FROM n;` ➔ 1, 2, 3. (सविस्तर उदाहरणे Recursive CTE च्या मुख्य topic मध्ये आहेत.)
 
-### 28.4 Topic 28 Summary (मराठी सारांश)
+### 30.4 Topic 30 Summary (मराठी सारांश)
 
 * **CTE म्हणजे काय?** `WITH name AS (...)` ने बनवलेला, एका query पुरता तात्पुरता आणि नाव असलेला result; मोठी query वाचायला सोपी होते.
 * **Subquery vs CTE vs Temp Table:** Subquery = एकदाच वापर; CTE = एका query मध्ये अनेकदा वापर; Temp Table = एका session मधील अनेक queries मध्ये वापर (त्यावर index सुद्धा लावता येतो).
 * **Recursive CTE:** Anchor (सुरुवात) + `UNION ALL` + Recursive भाग (स्वतःला call करतो) ➔ hierarchy / tree साठी.
 * **उदाहरण:** `WITH high_paid AS (SELECT * FROM employees WHERE salary > 50000) SELECT dept, COUNT(*) FROM high_paid GROUP BY dept;`
-* **सविस्तर माहिती:** CTE चे सर्व प्रकार आणि recursive उदाहरणे Topic 29 मध्ये आहेत.
+* **सविस्तर माहिती:** CTE चे सर्व प्रकार आणि recursive उदाहरणे Topic 31 मध्ये आहेत.
 
 ---
 
-## Topic 29: Common Table Expressions (CTE)
+## Topic 31: Common Table Expressions (CTE)
 
-> 🔗 **हेही पहा:** [Topic 28: CTEs (Common Table Expressions) & Recursive CTEs](#topic-28-ctes-common-table-expressions--recursive-ctes) — CTE vs Subquery vs Temp Table तुलना · [Topic 31: Tables, CTAS & Temporary Tables Deep Dive](#topic-31-tables-ctas--temporary-tables-deep-dive) — Subquery vs CTE vs Temp Table vs CTAS vs View अंतिम तुलना
+> 🔗 **हेही पहा:** [Topic 30: CTEs (Common Table Expressions) & Recursive CTEs](#topic-30-ctes-common-table-expressions--recursive-ctes) — CTE vs Subquery vs Temp Table तुलना · [Topic 33: Tables, CTAS & Temporary Tables Deep Dive](#topic-33-tables-ctas--temporary-tables-deep-dive) — Subquery vs CTE vs Temp Table vs CTAS vs View अंतिम तुलना
 
-### 29.1 What is a CTE? (Definition & Concept)
+### 31.1 What is a CTE? (Definition & Concept)
 * **CTE = Common Table Expression**.
 * **In Short:** It is a temporary, named result set (a "virtual table") that you can reference within a `SELECT`, `INSERT`, `UPDATE`, or `DELETE`.
 * **Purpose:** It allows you to create a named, reusable subquery within your SQL statement to simplify and organize complex queries, making them much more readable.
@@ -10022,7 +10440,7 @@ This is the most common place for a subquery. It uses two groups of operators:
 * ⚠️ **Correction (how MySQL really does it):** "High-speed cache memory" and "Dual Sourcing" are simplified teaching words. In MySQL the optimizer either **merges** the CTE into the main query (no separate table at all), or **materializes** it once into an internal temporary table — in memory if small, on disk if large. The main query can still read both real tables and the CTE, as shown above.
 * **मराठी:** प्रत्यक्षात MySQL CTE ला main query मध्ये merge करतो, किंवा एकदाच internal temporary table बनवतो (लहान असेल तर memory मध्ये, मोठा असेल तर disk वर). CTE नेहमी "high-speed cache" मध्येच राहतो असे नाही.
 
-### 29.2 CTE vs Regular Subquery
+### 31.2 CTE vs Regular Subquery
 * **Image Reference:** ![Subquery vs CTE](./svg_cte_vs_subquery.svg) *(Description: Shows Subquery executing Bottom-Up with nesting, while CTE executes Top-Down for better readability).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती दाखवते की subquery वाचताना आतून बाहेर (bottom-up) वाचावी लागते, तर CTE वरून खाली (top-down) वाचता येतो.
   * **उदाहरण:** 3 स्तरांची nested subquery समजणे कठीण असते; तेच काम 3 CTEs मध्ये एकामागून एक वाचता येते.
@@ -10042,7 +10460,7 @@ This is the most common place for a subquery. It uses two groups of operators:
   1. For very simple one-liners (e.g., `WHERE salary > (SELECT AVG(salary)...`). 
   2. **Correlated Subqueries:** If the inner query depends on the outer query dynamically (row-by-row), you *must* use a Subquery. CTEs cannot be correlated to the main query row-by-row.
 
-### 29.3 Types of CTEs
+### 31.3 Types of CTEs
 * **Image Reference:** ![CTE Types](./svg_cte_types_tree.svg) *(Description: Tree diagram showing Non-Recursive (Standalone, Nested) and Recursive CTEs).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती CTE चे प्रकार दाखवते: Non-Recursive (Standalone, Nested) आणि Recursive.
   * Recursive CTE hierarchy, tree आणि संख्यांची मालिका (looping) बनवण्यासाठी वापरतात.
@@ -10221,7 +10639,7 @@ SELECT * FROM CTE_Emp_Hierarchy;
 * **Can we write a Recursive CTE without an Anchor Member?**
   * **No.** It will throw a syntax error or loop infinitely because there is no starting dataset.
 
-### 29.4 CTE vs Derived Table
+### 31.4 CTE vs Derived Table
 
 | Feature | Derived Table (Subquery in FROM) | CTE (WITH Clause) |
 | :--- | :--- | :--- |
@@ -10230,7 +10648,7 @@ SELECT * FROM CTE_Emp_Hierarchy;
 | **Recursion** | Does not support recursion. | Supports Recursive querying (Hierarchies). |
 | **Readability** | Becomes very messy if nested deeply. | Clean, Top-to-Bottom logical flow. |
 
-### 29.5 CTE Summary & Best Practices
+### 31.5 CTE Summary & Best Practices
 * **Image Reference:** ![CTE Summary Diagram](./svg_cte_summary.svg) *(Description: Complete summary of CTEs, including Advantages, Rules, and Flow diagrams for Standalone, Nested, and Recursive CTEs).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती CTE चा संपूर्ण सारांश देते: व्याख्या, फायदे, नियम आणि Standalone/Nested/Recursive चे flow.
   * CTE हा एका query पुरता तात्पुरता, नाव असलेला result set आहे आणि त्या query मध्ये तो अनेकदा वापरता येतो.
@@ -10267,7 +10685,7 @@ SELECT * FROM CTE_Emp_Hierarchy;
     - **UNION ALL:** Anchor आणि Recursive भाग जोडण्यासाठी नेहमी `UNION ALL` वापरतात. `UNION` वापरला तर तो प्रत्येक पायरीवर duplicates तपासेल (DISTINCT) आणि खूप हळू होईल!
     - **Can it call itself multiple times?:** हो! गुंतागुंतीच्या graph साठी एक CTE स्वतःला अनेक वेळा call करू शकतो (Forward and Backward).
 
-### 29.6 Topic 29 Summary (मराठी सारांश)
+### 31.6 Topic 31 Summary (मराठी सारांश)
 
 * **CTE म्हणजे काय?** `WITH` ने सुरू होणारा, एका query पुरता तात्पुरता आणि नाव असलेला result set. Query संपल्यावर तो नाहीसा होतो.
 * **फायदे:** वाचायला सोपे (वरून खाली), भागांत विभागणी (प्रत्येक CTE वेगळा test करता येतो), एकाच query मध्ये पुन्हा वापर, आणि recursion.
@@ -10282,9 +10700,9 @@ SELECT * FROM CTE_Emp_Hierarchy;
 
 ---
 
-## Topic 30: SQL Views (Virtual Tables) Deep Dive
+## Topic 32: SQL Views (Virtual Tables) Deep Dive
 
-### 30.1 What is a View?
+### 32.1 What is a View?
 * **Definition:** A View is a database object that acts like a **Virtual Table**. It is based on the result set of an SQL query.
 * **Types of Views:**
   1. **Simple View:** Based on only *one* table, contains no functions or joins.
@@ -10303,7 +10721,7 @@ SELECT * FROM CTE_Emp_Hierarchy;
   * View: फक्त query साठवली जाते, सहज बदलता येते, आणि बहुतेक वेळा read-only असतो.
   * **उदाहरण:** `CREATE VIEW v_india AS SELECT * FROM customers WHERE country = 'India';` ➔ `SELECT * FROM v_india` लिहिले की आतून customers टेबल वाचले जाते.
 
-### 30.2 Differences Between Table and View
+### 32.2 Differences Between Table and View
 
 | Feature | Physical Table | Virtual Table (View) |
 | :--- | :--- | :--- |
@@ -10318,7 +10736,7 @@ SELECT * FROM CTE_Emp_Hierarchy;
 * ⚠️ **Note on "2 queries":** The "Slow Response (2 Queries)" point is a simplified picture. In MySQL the view definition is usually **merged** into your query (`ALGORITHM = MERGE`), so only **one** combined query runs. A view is slow only when its own query is heavy (big joins, `GROUP BY`), because that work is repeated every time — then MySQL uses `ALGORITHM = TEMPTABLE`.
 * **मराठी:** MySQL बहुतेक वेळा view ची query आणि तुमची query एकत्र करून एकच query चालवतो. view ची आतली query जड असेल तरच view हळू चालतो.
 
-### 30.3 Why Do We Need Views? (6 Major Use Cases)
+### 32.3 Why Do We Need Views? (6 Major Use Cases)
 
 **1. Central Query Logic (Reusability & Reducing Redundancy)**
 * **Image Reference:** ![View Central Logic](./svg_view_central_logic.svg) *(Description: Shows 3 analysts writing redundant CTEs vs using a central View).*
@@ -10364,7 +10782,7 @@ SELECT * FROM CTE_Emp_Hierarchy;
   * **उदाहरण:** `CREATE VIEW sales_mart AS SELECT ... FROM dwh_orders JOIN dwh_customers ...;` ➔ Power BI थेट `sales_mart` वापरतो.
 * Used in Data Warehousing to provide flexible, efficient presentation layers (Data Marts). Instead of creating physical tables for every mart, you create Virtual Data Marts using views, which connect directly to BI Tools/Reporting Dashboards.
 
-### 30.4 View vs CTE
+### 32.4 View vs CTE
 * **Image Reference:** ![View vs CTE](./svg_view_vs_cte.svg) *(Description: Comparison chart showing Redundancy, Reusability, Persistence, and Maintenance differences).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती View आणि CTE ची तुलना करते.
   * View: अनेक queries मधील पुनरावृत्ती कमी करतो, database मध्ये कायम राहतो, `CREATE`/`DROP` ने त्याची देखभाल करावी लागते.
@@ -10377,7 +10795,7 @@ SELECT * FROM CTE_Emp_Hierarchy;
 | **Persistence** | Logic is saved permanently in the database as an object. | Logic is temporary, calculated on the fly, and destroyed when query ends. |
 | **Maintenance** | Requires manual maintenance (`CREATE`, `ALTER`, `DROP`). | No maintenance. Cleaned up automatically. |
 
-### 30.5 Syntax & Schema Naming
+### 32.5 Syntax & Schema Naming
 * **Image Reference:** ![View Syntax](./svg_view_syntax.svg) *(Description: Basic DDL syntax showing CREATE VIEW view-name AS query).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती View बनवण्याची रचना दाखवते: `CREATE VIEW name AS (SELECT ...)` हा DDL command आहे.
   * **उदाहरण:** `CREATE VIEW v_top_orders AS SELECT * FROM orders WHERE sales > 1000;`
@@ -10390,7 +10808,7 @@ SELECT * FROM CTE_Emp_Hierarchy;
   * ⚠️ *MySQL Note:* `dbo` is SQL Server's default schema. In MySQL the view is created in the **current database** (`USE db_name;`), and `SALES.V_total_sales` means "database `SALES`, view `V_total_sales`".
 * **Drop View:** `DROP VIEW view_name;`
 
-### 30.6 Modifying/Updating Views (`CREATE OR REPLACE` vs `ALTER VIEW`)
+### 32.6 Modifying/Updating Views (`CREATE OR REPLACE` vs `ALTER VIEW`)
 
 **1. `CREATE OR REPLACE VIEW` (Best & Most Common - MySQL/PostgreSQL)**
 * Replaces the existing view definition automatically without dropping it first. Keeps existing permissions safe. Works even if the view doesn't exist yet.
@@ -10416,7 +10834,7 @@ SELECT * FROM CTE_Emp_Hierarchy;
   * To rename the view itself in MySQL: `RENAME TABLE old_view_name TO new_view_name;`
   * **मराठी:** वरचे दोन commands PostgreSQL चे आहेत. MySQL मध्ये column चे नाव बदलायला `CREATE OR REPLACE VIEW` मध्ये नवीन alias द्या, आणि view चे नाव बदलायला `RENAME TABLE` वापरा.
 
-### 30.7 Updatable Views (Insert / Update / Delete through a View)
+### 32.7 Updatable Views (Insert / Update / Delete through a View)
 Normally views are read-only, but you *can* update the base table through a view **only if** the view meets strict criteria:
 1. It must reference **only one base table** (No Joins).
 2. Cannot contain `GROUP BY`, `HAVING`, `DISTINCT`, Aggregate functions (`SUM`, `COUNT`), Window functions, or `WITH` (CTE) clauses.
@@ -10426,7 +10844,7 @@ Normally views are read-only, but you *can* update the base table through a view
 * A security feature for updatable views. It ensures that any `INSERT` or `UPDATE` through the view satisfies the view's `WHERE` condition.
 * Example: View filters `WHERE salary > 5000 WITH CHECK OPTION;`. If you try to update a salary to `4000` via the view, it will fail because the new row wouldn't be visible in the view anymore.
 
-### 30.8 Materialized Views (Performance Booster)
+### 32.8 Materialized Views (Performance Booster)
 * **What is it?** A normal view just stores the query. A **Materialized View** (MV) stores the query **AND** physically stores the precomputed data (snapshot) on the disk.
 * **Why do we need it?** For complex joins and aggregations (Data Warehousing/Dashboards) that take too long to compute every time. Querying an MV is instant because data is precomputed.
 * **Indexes:** Because data is physically stored, you **can add Indexes** to an MV (unlike normal views).
@@ -10436,7 +10854,7 @@ Normally views are read-only, but you *can* update the base table through a view
   3. **ON COMMIT:** Refreshes immediately when base table changes.
 * **Note:** MySQL does not support native Materialized Views. You simulate them by creating a real summary table and updating it via Events or Triggers.
 
-### 30.9 Index vs View vs Materialized View
+### 32.9 Index vs View vs Materialized View
 | Feature | Index | View | Materialized View |
 | :--- | :--- | :--- | :--- |
 | **Purpose** | **Fast Search** (Lookups) | **Query Shortcut / Security** | **Precomputed Result for Speed** |
@@ -10445,7 +10863,7 @@ Normally views are read-only, but you *can* update the base table through a view
 
 ---
 
-### 30.10 How Database Executes a View
+### 32.10 How Database Executes a View
 * **Image Reference:** ![View Execution](./svg_view_execution.svg) *(Description: Shows the DB Engine interacting with the Catalog (Disk) to fetch the View's query, and then executing it against the Physical Table).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती view कसा चालतो ते दाखवते: Data Engineer view बनवतो ➔ त्याची query CATALOG मध्ये साठवली जाते ➔ Analyst `SELECT * FROM TOPN` लिहितो ➔ Engine catalog मधून query आणून ORDERS टेबलवर चालवतो.
   * ⚠️ MySQL बहुतेक वेळा view ची query आणि user ची query एकत्र (MERGE) करून एकच query चालवतो; दोन वेगळ्या queries चालत नाहीत.
@@ -10459,7 +10877,7 @@ Normally views are read-only, but you *can* update the base table through a view
 * **Conclusion:** Querying a view always results in executing **two steps/queries** internally (fetching the definition from the catalog + querying the base table).
   * ⚠️ **Clarification:** Step 1 (reading the definition from the catalog) is very cheap. MySQL then usually merges the view query with your query and runs **one** query against the base table, not two full queries.
 
-### 30.11 Summary of SQL Views
+### 32.11 Summary of SQL Views
 * **Image Reference:** ![View Summary](./svg_view_summary.svg) *(Description: A quick cheat-sheet summarizing that a View is a virtual table used to persist complex logic, better than CTEs for reusability, and outlining the 6 core use cases).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती Views चा एका पानात सारांश देते.
   * View = डेटा न साठवता query च्या result वर आधारित virtual table.
@@ -10469,7 +10887,7 @@ Normally views are read-only, but you *can* update the base table through a view
 
 ---
 
-### 30.12 Interview Perspective & Marathi Summary
+### 32.12 Interview Perspective & Marathi Summary
 
 * **मराठी सारांश (उदाहरणांसह):**
   * **View (Virtual Table) म्हणजे काय?:** View हे खरे टेबल नाही; त्यात कोणताही डेटा साठवला जात नाही. ती फक्त एक साठवलेली query (Saved Query) आहे.
@@ -10488,7 +10906,7 @@ Normally views are read-only, but you *can* update the base table through a view
   * **Updatable View:** view मधूनही database मध्ये Insert करता येते, पण अट अशी की view मध्ये `JOIN`, `GROUP BY` किंवा `SUM` नसावे.
   * **WITH CHECK OPTION:** view च्या `WHERE` अटीच्या विरोधात जाणारे Insert किंवा Update होऊ देत नाही.
 
-### 30.13 Topic 30 Summary (मराठी सारांश)
+### 32.13 Topic 32 Summary (मराठी सारांश)
 
 * **View म्हणजे काय?** एका `SELECT` query वर आधारित virtual table. डेटा साठवत नाही, फक्त query (metadata) साठवतो. Simple view = एक टेबल; Complex view = joins/aggregates.
 * **Table vs View:** Table = डेटा disk वर, read/write; View = फक्त query, बहुतेक read-only, बदलायला सोपा. View स्वतःहून query वेगवान करत नाही.
@@ -10502,9 +10920,9 @@ Normally views are read-only, but you *can* update the base table through a view
 
 ---
 
-## Topic 31: Tables, CTAS & Temporary Tables Deep Dive
+## Topic 33: Tables, CTAS & Temporary Tables Deep Dive
 
-### 31.1 What are Database Tables? (Physical Storage vs Logical Grid)
+### 33.1 What are Database Tables? (Physical Storage vs Logical Grid)
 * **Image Reference:** ![Table Structure](./svg_table_structure.svg) *(Description: Shows the connection between physical database files on disk and the logical grid of rows, columns, and cells).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती दाखवते की आपल्याला दिसणारे rows-columns चे टेबल प्रत्यक्षात disk वरील database files मध्ये साठवलेले असते.
   * Columns = fields (ID, NAME, SCORE), Rows = records, Cell = एक value.
@@ -10521,7 +10939,7 @@ Normally views are read-only, but you *can* update the base table through a view
   1. **Permanent Tables:** Stay in the database permanently until you drop them.
   2. **Temporary Tables:** Session-specific tables that are automatically deleted when the session ends.
 
-### 31.2 How to Create Permanent Tables: CREATE/INSERT vs CTAS
+### 33.2 How to Create Permanent Tables: CREATE/INSERT vs CTAS
 There are two main ways to create and populate a permanent table in SQL.
 
 * **Image Reference:** ![CREATE vs CTAS](./svg_create_vs_ctas.svg) *(Description: Compares the 2-step CREATE/INSERT process vs the 1-step CTAS process).*
@@ -10556,7 +10974,7 @@ There are two main ways to create and populate a permanent table in SQL.
 
 ---
 
-### 31.3 CTAS Use Cases
+### 33.3 CTAS Use Cases
 
 #### Use Case 1: Optimizing Performance (Storing Complex Logic)
 * **Image Reference:** ![CTAS Optimize](./svg_ctas_optimize.svg) *(Description: Shows a 30-min complex query saved into a CTAS table, allowing multiple analysts to query it instantly).*
@@ -10608,7 +11026,7 @@ SELECT * FROM TOTAL_ORDERS;
 
 ---
 
-### 31.4 Temporary Tables (Session-Based Tables)
+### 33.4 Temporary Tables (Session-Based Tables)
 * **Definition:** Temporary tables are used to store intermediate results during a specific database session.
 * **Lifecycle:** The database **automatically drops (deletes) all temporary tables once the session ends** (i.e., when you close your connection/client).
 
@@ -10634,7 +11052,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 > The time between connecting and disconnecting from the database is called a session. 
 > Once you open a client (like SQL Workbench), connect, and start doing queries, the session begins. When you close the client or shut down your PC, you disconnect. At that exact moment, the database goes and destroys all the temporary tables you created during that session. They live only as long as you have the session open.
 
-### 31.5 How Database Executes Temporary Tables
+### 33.5 How Database Executes Temporary Tables
 * **Image Reference:** ![Temp Table Execution](./svg_temp_execution.svg) *(Description: Shows the Database Engine linking a client session to temporary storage on disk).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती temporary table कसे चालते ते दाखवते: प्रत्येक session चे temp table disk च्या TEMP भागात राहते आणि session बंद झाल्यावर आपोआप काढले जाते.
   * **उदाहरण:** `CREATE TEMPORARY TABLE t AS SELECT ...;` ➔ Workbench बंद केल्यावर `t` आपोआप नाहीसे होते.
@@ -10643,7 +11061,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 3. **Usage:** A Data Engineer or Analyst can write multiple SQL queries to analyze this temp table while the session is active.
 4. **Automatic Cleanup:** Once you close your client or disconnect (session ends), the database engine realizes the connection is gone. That means the database automatically cleans up the storage (making room for other sessions). This is how database engines work with temporary tables.
 
-### 31.6 Use Case of Temporary Tables (ETL & Intermediate Results)
+### 33.6 Use Case of Temporary Tables (ETL & Intermediate Results)
 * **Image Reference:** ![Temp Table ETL](./svg_temp_etl_intermediate.svg) *(Description: Shows Extraction from a Source DB to an Intermediate Temp Table, Transformations like Filtering and Aggregation, Loading to a DWH, and automatic Dropping).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती ETL मध्ये temp table चा उपयोग दाखवते: Source ORDERS ➔ Extract ➔ Temp Table ➔ Filtering / Nulls / Duplicates / Aggregation ➔ DWH मध्ये Load ➔ session संपल्यावर temp table आपोआप Drop.
   * **उदाहरण:** `CREATE TEMPORARY TABLE stg AS SELECT * FROM src.orders;` ➔ `DELETE FROM stg WHERE sales IS NULL;` ➔ `INSERT INTO dwh.orders SELECT * FROM stg;`
@@ -10669,7 +11087,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 
 ---
 
-### 31.7 Ultimate Comparison: Subquery vs CTE vs Temp Table vs CTAS vs View
+### 33.7 Ultimate Comparison: Subquery vs CTE vs Temp Table vs CTAS vs View
 
 | Feature | Subquery | CTE | Temp Table | CTAS (Permanent) | View |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -10698,7 +11116,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 
 ---
 
-### 31.8 The Big Picture of SQL (How everything connects)
+### 33.8 The Big Picture of SQL (How everything connects)
 
 * **Image Reference:** ![SQL Big Picture](./svg_sql_big_picture.svg) *(Description: Visual flow showing how Tables, Views, Subqueries, CTEs, and CTAS connect from the Database Admin level to the Data Scientist's final query).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती SQL चे पूर्ण चित्र दाखवते: DBA टेबल बनवतो आणि डेटा भरतो ➔ Analyst Subquery, CTE, View, CTAS वापरून एकाच script मध्ये final result बनवतो.
@@ -10716,7 +11134,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 
 ---
 
-### 31.9 Interview Perspective & Marathi Summary
+### 33.9 Interview Perspective & Marathi Summary
 
 * **मराठी सारांश (उदाहरणांसह):**
   * **Table म्हणजे काय?:** Table database च्या files मध्ये hard disk वर साठवलेले असते. ते Excel सारखे rows आणि columns चे grid असते, जिथे खरा डेटा (Cells मध्ये) ठेवला जातो.
@@ -10730,7 +11148,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 
 * **Pro-Tip for Interviews:** Always remember the difference in **Data Freshness**. Views are always fresh but slow. CTAS is extremely fast but the data is stale (snapshot) and needs to be truncated/re-inserted to refresh. Temporary tables are amazing for ETL pipelines to avoid dropping intermediate tables manually.
 
-### 31.10 Topic 31 Summary (मराठी सारांश)
+### 33.10 Topic 33 Summary (मराठी सारांश)
 
 * **Table म्हणजे काय?** rows आणि columns चा grid; प्रत्यक्षात disk वरील database files मध्ये साठवलेला. प्रकार: Permanent (drop करेपर्यंत राहतो) आणि Temporary (session संपल्यावर जातो).
 * **Permanent टेबल बनवण्याचे 2 मार्ग:** (1) `CREATE TABLE` + `INSERT` (2 पायऱ्या, columns आणि types स्वतः लिहायचे); (2) CTAS: `CREATE TABLE t AS SELECT ...` (1 पायरी, रचना query वरून आपोआप).
@@ -10742,7 +11160,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 
 ---
 
-## Topic 32: Table Duplication & Copying Techniques
+## Topic 34: Table Duplication & Copying Techniques
 
 * **Image Reference:** ![Table Copying Techniques](./svg_table_copying.svg) *(Description: Compares CREATE TABLE AS vs CREATE TABLE LIKE).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती टेबल copy करण्याच्या 2 पद्धती दाखवते.
@@ -10750,7 +11168,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * `CREATE TABLE ... LIKE`: रचना, indexes आणि PK सहित रिकामी copy बनते; डेटा नंतर `INSERT ... SELECT` ने भरतात. ⚠️ Foreign keys आणि triggers `LIKE` ने copy होत नाहीत.
   * **उदाहरण:** `CREATE TABLE customers_bkp LIKE customers; INSERT INTO customers_bkp SELECT * FROM customers;`
 
-### 32.1 Copying Table Data WITHOUT Constraints
+### 34.1 Copying Table Data WITHOUT Constraints
 * **Definition:** You can create a new table from an existing one that contains the structure and the data, but **does NOT** copy constraints (Indexes, Primary Keys, Foreign Keys, Triggers, or Auto-increment properties).
 * **Syntax / Example:**
   ```sql
@@ -10759,7 +11177,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   ```
 * **मराठी:** `CREATE TABLE ... AS SELECT` ने टेबलची रचना आणि डेटा copy होतो, पण Primary Key आणि indexes copy होत नाहीत.
 
-### 32.2 Copying Table Data WITH Constraints (Exact Clone)
+### 34.2 Copying Table Data WITH Constraints (Exact Clone)
 * **Definition:** If you want an exact clone of the table structure (including all indexes, primary keys, and auto-increments), you must use `LIKE`. After creating the empty clone, you copy the data using `INSERT INTO ... SELECT`.
 * **Step 1: Copy Structure & Constraints**
   ```sql
@@ -10775,10 +11193,10 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   SELECT * FROM CUSTOMERS2;
   ```
 * **मराठी:** Primary Key आणि indexes सहित पूर्ण रचना copy करायची असेल तर आधी `CREATE TABLE new LIKE old` ने रिकामे टेबल बनवा आणि मग `INSERT INTO new SELECT * FROM old` ने डेटा भरा.
-* ⚠️ **Note:** `CREATE TABLE ... LIKE` copies columns, `NOT NULL`, defaults, indexes, the Primary Key and `AUTO_INCREMENT`, but **not Foreign Keys and not Triggers** — add those again manually. Also, `CREATE TABLE ... AS SELECT` (32.1) does keep `NOT NULL` and default values; it only loses keys, indexes and `AUTO_INCREMENT`.
+* ⚠️ **Note:** `CREATE TABLE ... LIKE` copies columns, `NOT NULL`, defaults, indexes, the Primary Key and `AUTO_INCREMENT`, but **not Foreign Keys and not Triggers** — add those again manually. Also, `CREATE TABLE ... AS SELECT` (34.1) does keep `NOT NULL` and default values; it only loses keys, indexes and `AUTO_INCREMENT`.
 * **मराठी:** `LIKE` ने Foreign Keys आणि Triggers copy होत नाहीत; ते पुन्हा हाताने बनवावे लागतात.
 
-### 32.3 Topic 32 Summary (मराठी सारांश)
+### 34.3 Topic 34 Summary (मराठी सारांश)
 
 * **पद्धत 1 – `CREATE TABLE new AS SELECT * FROM old;` (CTAS):** रचना + डेटा copy होतो; Primary Key, indexes आणि `AUTO_INCREMENT` copy होत नाहीत.
 * **पद्धत 2 – `CREATE TABLE new LIKE old;` + `INSERT INTO new SELECT * FROM old;`:** columns, indexes, Primary Key आणि `AUTO_INCREMENT` सहित हुबेहूब copy; फक्त Foreign Keys आणि Triggers हाताने पुन्हा बनवावे लागतात.
@@ -10787,14 +11205,14 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 
 ---
 
-## Topic 33: Stored Procedures in MySQL (Programmability)
+## Topic 35: Stored Procedures in MySQL (Programmability)
 
-> 🔗 **हेही पहा:** [Topic 34: Stored Functions (User-Defined Functions) in MySQL](#topic-34-stored-functions-user-defined-functions-in-mysql) — Stored Functions (value परत करणारे) · [Topic 14: TCL (Transaction Control Language) & Transaction Management](#topic-14-tcl-transaction-control-language--transaction-management) — Transactions (START, COMMIT, ROLLBACK) · [Topic 35: Triggers in MySQL](#topic-35-triggers-in-mysql) — Triggers आणि Events
+> 🔗 **हेही पहा:** [Topic 36: Stored Functions (User-Defined Functions) in MySQL](#topic-36-stored-functions-user-defined-functions-in-mysql) — Stored Functions (value परत करणारे) · [Topic 15: TCL (Transaction Control Language) & Transaction Management](#topic-15-tcl-transaction-control-language--transaction-management) — Transactions (START, COMMIT, ROLLBACK) · [Topic 37: Triggers in MySQL](#topic-37-triggers-in-mysql) — Triggers आणि Events · [Topic 39: Cursors in MySQL](#topic-39-cursors-in-mysql) — Cursors
 
 > **In one line:** A stored procedure lets us put our SQL code **inside the database** and add programming features like parameters, variables, `IF`/loops and error handling.
 > **मराठी:** Stored Procedure म्हणजे आपला SQL code database च्या आतच साठवणे आणि त्यात parameters, variables, `IF`/loops, error handling अशा programming सुविधा वापरणे.
 
-### 33.1 What Exactly is a Stored Procedure and Why Do We Use It?
+### 35.1 What Exactly is a Stored Procedure and Why Do We Use It?
 
 ![Stored Procedure: Why We Need It](./svg_sp_client_server_flow.svg)
 
@@ -10822,7 +11240,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * Stored Procedure मध्ये हे सर्व statements ठरलेल्या क्रमाने database मध्येच साठवले जातात. मग कोणीही फक्त `CALL procedure_name();` चालवले की database सर्व statements वरून खाली क्रमाने चालवतो.
   * **उदाहरण:** तुम्ही सुट्टीवर गेलात तरी सहकाऱ्याला 3 scripts देण्याची गरज नाही; त्याने फक्त `CALL daily_job();` चालवले की सगळे काम बरोबर क्रमाने होते.
 
-### 33.2 Stored Procedure vs Normal Query
+### 35.2 Stored Procedure vs Normal Query
 
 * **Stored Procedure:**
   * Contains **multiple SQL statements**; when you execute it, there are many interactions with the database **in one go** (it can run multiple transactions).
@@ -10837,7 +11255,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **मराठी:** साधी query म्हणजे एक प्रश्न ➔ एक उत्तर. Stored Procedure म्हणजे छोटा program: त्यात अनेक queries, `IF-ELSE`, loops, variables, parameters आणि error handling असू शकतात, आणि ते सर्व एकाच `CALL` ने चालतात.
   * **उदाहरण:** `SELECT * FROM orders;` ही एक query आहे. पण "order टाका ➔ stock कमी करा ➔ log लिहा" हे तिन्ही एकत्र करणारा `CALL place_order(...)` हा procedure आहे.
 
-### 33.3 What is a Procedure in SQL? (Definition & What It Can Contain)
+### 35.3 What is a Procedure in SQL? (Definition & What It Can Contain)
 
 * Creating a stored procedure in MySQL allows you to save a block of SQL statements that can be executed later with a single command — useful for **reusability, fewer network round trips and organization**.
 * A **Stored Procedure** is a **named block of SQL statements (code)** that you save in the database and execute whenever needed. Think of it as a **function in programming, but for the database**.
@@ -10852,7 +11270,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * A procedure is not only used to query data from a table; we can use it to build **complex logic, data validation, data cleanup** and much more. That is why procedures are powerful — they can do much more than plain SQL queries.
 * **मराठी:** Procedure म्हणजे नाव दिलेला SQL code चा block, जो database मध्ये साठवून कधीही चालवता येतो (programming मधील function सारखा). त्यात queries, DML/DDL/DCL/TCL commands, temporary tables, cursors, loops, `IF-ELSE`, variables आणि error handling असू शकतात. त्यामुळे data validation, data cleanup सारखी गुंतागुंतीची कामे करता येतात.
 
-### 33.4 Key Points About Procedures
+### 35.4 Key Points About Procedures
 
 * **Stored & parsed once per connection:** The procedure is stored in the database. In MySQL it is parsed the first time a connection calls it and kept in that connection's cache (SQL Server / Oracle go further and cache a compiled execution plan). The biggest speed gain in MySQL comes from sending **one `CALL` instead of many queries**.
 * **Reusable:** Instead of writing the same SQL again and again, you call the procedure.
@@ -10866,7 +11284,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * **Encapsulation:** business logic app मध्ये विखुरलेली न राहता database मध्ये एका ठिकाणी राहते.
   * **वेग:** MySQL मध्ये मुख्य फायदा म्हणजे अनेक queries ऐवजी network वरून एकच `CALL` जातो.
 
-### 33.5 What is the Purpose of Using a Procedure?
+### 35.5 What is the Purpose of Using a Procedure?
 
 * Procedures were introduced to **give more power to the SQL language**.
 * Procedures are generally used to do things which are **not possible (or not easy) with plain SQL queries**.
@@ -10882,7 +11300,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * Procedures **centralize logic, improve performance, enhance security and simplify maintenance**.
 * **मराठी:** Procedure चा उद्देश: logic एका ठिकाणी ठेवणे, पुन्हा वापरणे, network वरून अनेक queries ऐवजी एकच `CALL` पाठवणे, table ला थेट हात न लावू देता सुरक्षितता देणे, नियम बदलला तर फक्त procedure बदलणे, आणि अनेक queries "सगळे होतील किंवा काहीच नाही" (transaction) अशा पद्धतीने चालवणे.
 
-### 33.6 Advantages of Procedures & Real-World Example
+### 35.6 Advantages of Procedures & Real-World Example
 
 * **Advantages:**
   * Faster execution (one call, statements already parsed in the session).
@@ -10896,7 +11314,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * Instead of writing these 3 SQL queries every time in the app, you create a procedure `TransferFunds` and just call it.
 * **मराठी:** बँकेत पैसे पाठवताना (1) एका खात्यातून वजा, (2) दुसऱ्या खात्यात जमा, (3) नोंद (log) — हे तिन्ही app मध्ये प्रत्येक वेळी लिहिण्याऐवजी `TransferFunds` procedure बनवून फक्त `CALL TransferFunds(101, 102, 5000);` चालवतात.
 
-### 33.7 Use Cases of Stored Procedures
+### 35.7 Use Cases of Stored Procedures
 
 * A stored procedure is a stored block of SQL code that performs a specific task inside the database. You can call it whenever you need, using the `CALL` command.
 
@@ -11011,7 +11429,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * Use case: generate a sales report for a specific date range.
   * **मराठी:** तारखांची range parameter म्हणून देऊन कोणत्याही कालावधीचा category-wise विक्री report मिळतो.
 
-### 33.8 How to Create a Procedure (Syntax)
+### 35.8 How to Create a Procedure (Syntax)
 
 * Creating a stored procedure in MySQL allows you to save a block of SQL statements that can be executed later with a single command — useful for reusability and organization.
 * **Syntax of a Stored Procedure in MySQL:**
@@ -11060,7 +11478,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   ```
   * **मराठी:** हा parameter नसलेला procedure आहे; तो नेहमी फक्त USA च्या ग्राहकांची संख्या आणि सरासरी score देतो.
 
-### 33.9 Parameters in a Stored Procedure
+### 35.9 Parameters in a Stored Procedure
 
 * **What are parameters in a stored procedure?**
   * Parameters are **placeholders** used to pass values (information) as input from the caller to the stored procedure.
@@ -11094,7 +11512,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **मराठी:** Parameter म्हणजे procedure ला बाहेरून value देण्याची जागा. एकाच procedure ला 'GERMANY', 'USA', 'INDIA' अशी वेगवेगळी value देऊन प्रत्येक देशाचा निकाल मिळतो; प्रत्येक देशासाठी वेगळी query लिहावी लागत नाही. Parameter चे नाव column सारखे ठेवू नका (`p_country` असे `p_` prefix वापरा).
   * **उदाहरण:** `CALL TOTALSALESGERMANY('USA');` ➔ USA चे ग्राहक; `CALL TOTALSALESGERMANY('GERMANY');` ➔ Germany चे ग्राहक.
 
-### 33.10 Default Parameter Values
+### 35.10 Default Parameter Values
 
 * **Can we use default parameter values in MySQL?**
   * A default parameter means: if the user doesn't pass a value when calling the procedure, a default value is used automatically.
@@ -11138,7 +11556,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **मराठी:** MySQL मध्ये procedure parameter ला `DEFAULT` देता येत नाही आणि `CALL` करताना सर्व values द्याव्याच लागतात. म्हणून "default" हवा असेल तर `NULL` पाठवा आणि procedure च्या आत `IF p_country IS NULL THEN SET p_country = 'USA'; END IF;` असे लिहा.
   * **उदाहरण:** `CALL GetCustomersByCountry(NULL, NULL);` ➔ USA आणि score ≥ 50; `CALL GetCustomersByCountry('GERMANY', NULL);` ➔ Germany आणि score ≥ 50.
 
-### 33.11 Multiple Statements in a Stored Procedure
+### 35.11 Multiple Statements in a Stored Procedure
 
 * **What does "multiple statements" mean?** A stored procedure can contain more than one SQL statement, for example:
   * `SELECT`, `INSERT`, `UPDATE`, `DELETE`
@@ -11243,7 +11661,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   ```
 * **मराठी:** एका procedure मध्ये log टाकणे, update करणे आणि निकाल दाखवणे अशी अनेक statements वरून खाली क्रमाने चालतात. प्रत्येक `SELECT` स्वतंत्र result set देतो. `DECLARE` केलेल्या variables मध्ये मधले निकाल (उदा. total, average) साठवून पुढच्या statements मध्ये वापरता येतात (variables ना `v_` prefix दिल्याने ते column नावांशी गोंधळत नाहीत).
 
-### 33.12 Variables in MySQL (User-Defined vs Local)
+### 35.12 Variables in MySQL (User-Defined vs Local)
 
 * **What is a variable?**
   * Variables are placeholders used to store a value and use it later in the procedure.
@@ -11355,7 +11773,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * **`INTO`:** query चे उत्तर variable मध्ये भरतो; query ने एकच row द्यायला हवी.
   * **उदाहरण:** `CALL VariableDemo();` ➔ Germany चे ग्राहक मोजून `local_total` मध्ये ठेवले जातात आणि `@user_country` = 'USA' सोबत दाखवले जातात; procedure नंतर `SELECT @user_country;` केले तरी 'USA' मिळते, पण `local_total` मिळत नाही.
 
-### 33.13 Control Flow: IF ... ELSEIF ... ELSE
+### 35.13 Control Flow: IF ... ELSEIF ... ELSE
 
 * In MySQL, the `IF ... THEN ... ELSE` structure is used inside stored programs (procedures, functions, triggers).
 * **Syntax:**
@@ -11513,7 +11931,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **मराठी:** Procedure मध्ये `IF ... THEN ... ELSEIF ... ELSE ... END IF;` ने निर्णय घेतले जातात (प्रत्येक `IF` ला `END IF;` आवश्यक). Query च्या आत छोट्या अटीसाठी `IF(अट, खरे, खोटे)` function वापरतात.
   * **उदाहरण:** `CALL customerDiscount(750);` ➔ 500 पेक्षा जास्त पण 1000 पेक्षा कमी ➔ `Discount rate: 10.00%`. `CALL CustomerLevel(2);` ➔ score 900 ➔ GOLD.
 
-### 33.14 Loops in a Stored Procedure
+### 35.14 Loops in a Stored Procedure
 
 * **Ex. (WHILE loop):**
   ```sql
@@ -11536,7 +11954,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * MySQL has 3 loop types: `WHILE ... DO ... END WHILE` (checks the condition first), `REPEAT ... UNTIL ... END REPEAT` (runs at least once), and `label: LOOP ... END LOOP` (exit with `LEAVE label;`, skip to the next round with `ITERATE label;`).
 * **मराठी:** Loop मुळे तेच काम अनेक वेळा चालते. वरच्या उदाहरणात `i` 1 पासून 5 पर्यंत वाढतो आणि `numbers_table` मध्ये 1, 2, 3, 4, 5 अशा 5 rows टाकल्या जातात. `SET i = i + 1;` विसरलात तर loop कधीच थांबणार नाही.
 
-### 33.15 Best-Practice Notes for Procedures
+### 35.15 Best-Practice Notes for Procedures
 
 * Always enclose multi-statement logic in `BEGIN ... END`.
 * Use `DELIMITER //` (or any symbol) while creating, and reset it back with `DELIMITER ;` at the end.
@@ -11548,7 +11966,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * Best practice: if you have multiple queries in a stored procedure, add a semicolon at the end of **each** query so it is easy to see where each query ends — this matters a lot in big, complex queries with CTEs, `UNION` and so on.
 * **मराठी:** सर्व statements `BEGIN ... END` मध्ये ठेवा, प्रत्येक query च्या शेवटी `;` लावा, `DELIMITER` नंतर पुन्हा `;` करायला विसरू नका, आणि transaction व error handling वापरून procedure सुरक्षित ठेवा.
 
-### 33.16 What is DELIMITER in MySQL?
+### 35.16 What is DELIMITER in MySQL?
 
 * `DELIMITER` just tells MySQL where the procedure definition ends; it is **not part of SQL itself** (it is a command of the client — the `mysql` command line and MySQL Workbench).
 * In MySQL, the default statement delimiter is `;` (semicolon).
@@ -11578,7 +11996,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **How to see procedures:** `SHOW PROCEDURE STATUS WHERE Db = 'mydb';` and `SHOW CREATE PROCEDURE procedure_name;`
 * **मराठी:** Procedure च्या आत प्रत्येक query `;` ने संपते; MySQL ला वाटू नये की procedure तिथेच संपला, म्हणून आधी `DELIMITER //` करतात, procedure `END //` ने संपवतात आणि मग `DELIMITER ;` ने परत नेहमीचे चिन्ह करतात. MySQL मध्ये `CREATE OR REPLACE PROCEDURE` नाही ➔ आधी `DROP PROCEDURE IF EXISTS`, मग `CREATE PROCEDURE`.
 
-### 33.17 Messages in a Procedure (SIGNAL & Variables)
+### 35.17 Messages in a Procedure (SIGNAL & Variables)
 
 * **1. Using `SIGNAL` (for custom messages or errors)**
   * If you want to raise an error with your own message, use `SIGNAL`.
@@ -11621,7 +12039,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **मराठी:** चुकीचा input आला तर `SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = '...';` ने स्वतःची error दाखवून procedure थांबवता येतो. साधा संदेश दाखवायचा असेल तर तो variable मध्ये ठेवून `SELECT msg;` करा.
   * **उदाहरण:** `CALL check_score(-5);` ➔ `Error 1644: Score cannot be negative`; `CALL check_score(80);` ➔ `Score is valid`.
 
-### 33.18 Types of Procedures & How to Execute Them
+### 35.18 Types of Procedures & How to Execute Them
 
 * **A. By parameters**
   1. **Without parameters** – no input/output, just executes fixed logic. Example: `GetAllEmployees()`
@@ -11725,7 +12143,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **मराठी:** Parameters नुसार 4 प्रकार: parameter नसलेला, `IN` (value आत देणे), `OUT` (value बाहेर घेणे), `INOUT` (value देऊन बदललेली value परत घेणे). कामानुसार: डेटा बदलणारे, डेटा आणणारे आणि log/audit सारखे utility procedures. चालवण्यासाठी नेहमी `CALL`; `OUT`/`INOUT` साठी `@count` सारखा variable द्यावा लागतो.
   * **उदाहरण:** `SET @sal = 40000; CALL CalculateBonus(@sal); SELECT @sal;` ➔ 48000.00.
 
-### 33.19 Creating Procedures With and Without Parameters (IN, OUT, INOUT)
+### 35.19 Creating Procedures With and Without Parameters (IN, OUT, INOUT)
 
 ![Procedure Parameters: IN, OUT, INOUT](./svg_sp_parameters_in_out_inout.svg)
 
@@ -11793,7 +12211,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * **OUT:** `CALL GetEmployeeCount(2, @count); SELECT @count;` ➔ department 2 मधील कर्मचाऱ्यांची संख्या `@count` मध्ये येते.
   * **INOUT:** `SET @salary = 50000; CALL IncreaseSalary(@salary); SELECT @salary;` ➔ 55000 (तोच variable आत गेला आणि 10% वाढून परत आला).
 
-### 33.20 Error Handling in Stored Procedures
+### 35.20 Error Handling in Stored Procedures
 
 ![Error Handling in Stored Procedures](./svg_sp_error_handling.svg)
 
@@ -11962,7 +12380,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * MySQL मध्ये `1/0` error देत नाही (NULL येतो), म्हणून handler तपासण्यासाठी खरी error (उदा. नसलेले table) वापरा.
   * **उदाहरण:** बँक transfer मध्ये `DECLARE EXIT HANDLER FOR SQLEXCEPTION BEGIN ROLLBACK; RESIGNAL; END;` लिहिले की कोणतीही error आल्यावर पूर्ण transaction रद्द होते आणि पैसे अर्धवट हलत नाहीत.
 
-### 33.21 Topic 33 Summary (मराठी सारांश)
+### 35.21 Topic 35 Summary (मराठी सारांश)
 
 * **Stored Procedure म्हणजे काय?** database मध्ये साठवलेला, नाव असलेला SQL program. एकदा `CREATE PROCEDURE` ने बनवा आणि मग कधीही `CALL name(...)` ने चालवा.
 * **का वापरतात?** मानवी चुका टळतात (statements नेहमी ठरलेल्या क्रमाने चालतात), code पुन्हा वापरता येतो, network traffic कमी होतो, `GRANT EXECUTE` ने सुरक्षितता मिळते, logic एका ठिकाणी राहते, आणि transactions ने "सगळे किंवा काहीच नाही" हे नियम पाळता येतात.
@@ -11973,24 +12391,24 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **Error handling:** `DECLARE CONTINUE/EXIT HANDLER FOR SQLEXCEPTION / SQLWARNING / NOT FOUND`, स्वतःची error `SIGNAL SQLSTATE '45000'`, error चा मजकूर `GET DIAGNOSTICS`, परत पाठवणे `RESIGNAL`.
 * **व्यवस्थापन:** `SHOW PROCEDURE STATUS`, `SHOW CREATE PROCEDURE`, `DROP PROCEDURE IF EXISTS`. MySQL मध्ये `CREATE OR REPLACE PROCEDURE` नाही.
 * **उदाहरण:** `CALL TransferFunds(1, 2, 500);` ➔ procedure transaction सुरू करतो, `FOR UPDATE` ने balance lock करून तपासतो, एका खात्यातून वजा करून दुसऱ्यात जमा करतो आणि `COMMIT` करतो; पैसे कमी असतील किंवा error आली तर `ROLLBACK`.
-* **Interview लक्षात ठेवा:** Procedure `CALL` ने चालतो आणि `SELECT` च्या आत वापरता येत नाही; Function `SELECT` च्या आत वापरता येते आणि नेहमी एक value परत करते (Topic 34).
+* **Interview लक्षात ठेवा:** Procedure `CALL` ने चालतो आणि `SELECT` च्या आत वापरता येत नाही; Function `SELECT` च्या आत वापरता येते आणि नेहमी एक value परत करते (Topic 36).
 
 ---
 
-## Topic 34: Stored Functions (User-Defined Functions) in MySQL
+## Topic 36: Stored Functions (User-Defined Functions) in MySQL
 
-> 🔗 **हेही पहा:** [Topic 33: Stored Procedures in MySQL (Programmability)](#topic-33-stored-procedures-in-mysql-programmability) — Stored Procedures · [Topic 21: SQL Built-in Functions (String & Numeric)](#topic-21-sql-built-in-functions-string--numeric) — Built-in functions (String & Numeric)
+> 🔗 **हेही पहा:** [Topic 35: Stored Procedures in MySQL (Programmability)](#topic-35-stored-procedures-in-mysql-programmability) — Stored Procedures · [Topic 23: SQL Built-in Functions (String & Numeric)](#topic-23-sql-built-in-functions-string--numeric) — Built-in functions (String & Numeric)
 
-### 34.1 What is a Function in SQL?
+### 36.1 What is a Function in SQL?
 
 * A **function** in SQL is a named block of code stored in the database that:
   * Accepts parameters (only `IN` parameters in MySQL — you don't write the word `IN`).
   * Always returns **a single value** (a number, string, date, etc.). *(Some databases like SQL Server/PostgreSQL also have table-valued functions; MySQL functions return only one scalar value.)*
   * Can be used inside SQL statements (`SELECT`, `WHERE`, `ORDER BY`, etc.).
-  * Is called a **Stored Function** (user-defined function) when created by users — different from built-in functions like `UPPER()` or `ROUND()` (Topic 21).
+  * Is called a **Stored Function** (user-defined function) when created by users — different from built-in functions like `UPPER()` or `ROUND()` (Topic 23).
 * **मराठी:** Function म्हणजे database मध्ये साठवलेला, नाव असलेला code, जो input घेऊन नेहमी **एकच value** परत करतो आणि `SELECT`/`WHERE` च्या आत थेट वापरता येतो. `UPPER()` सारखी built-in functions असतात; तशीच आपली स्वतःची functions आपण बनवू शकतो.
 
-### 34.2 Why Use Functions?
+### 36.2 Why Use Functions?
 
 * **Reusability** → define the logic once, use it anywhere.
 * **Simplifies queries** → replace complex expressions with a single function call.
@@ -11999,7 +12417,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **मराठी:** एकच गणित (उदा. tax, full name, age) अनेक queries मध्ये पुन्हा-पुन्हा लिहिण्याऐवजी एक function बनवा; queries लहान आणि वाचायला सोप्या होतात.
   * **उदाहरण:** प्रत्येक query मध्ये `CONCAT(first_name, ' ', last_name)` लिहिण्याऐवजी `GetFullName(first_name, last_name)` वापरा.
 
-### 34.3 Syntax in MySQL
+### 36.3 Syntax in MySQL
 
 * **Syntax:**
   ```sql
@@ -12023,7 +12441,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * When binary logging is ON (the default in MySQL 8), you **must** declare one of `DETERMINISTIC`, `NO SQL` or `READS SQL DATA`, otherwise `CREATE FUNCTION` fails with error 1418.
 * **मराठी:** `RETURNS` ने परत येणाऱ्या value चा type सांगतात आणि आत `RETURN` ने value परत करतात. एकाच input ला नेहमी तेच उत्तर येत असेल तर `DETERMINISTIC`; आजची तारीख सारखे बदलणारे उत्तर असेल तर `NOT DETERMINISTIC`; टेबलमधून वाचत असेल तर `READS SQL DATA` लिहा.
 
-### 34.4 Function Examples
+### 36.4 Function Examples
 
 * **Ex. Function without parameters:**
   ```sql
@@ -12081,14 +12499,14 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * `SELECT GetFullName('Vishal', 'Shinde');` ➔ `'Vishal Shinde'`.
   * `GetEmployeeCount(department_id)` प्रत्येक department च्या row साठी चालते आणि तिथल्या कर्मचाऱ्यांची संख्या देते. (हे function प्रत्येक row साठी एक query चालवते, त्यामुळे मोठ्या टेबलवर `JOIN` + `GROUP BY` जास्त वेगवान असते.)
 
-### 34.5 How to Manage & Drop Functions
+### 36.5 How to Manage & Drop Functions
 
 * **See functions:** `SHOW FUNCTION STATUS WHERE Db = 'mydb';` and `SHOW CREATE FUNCTION GetEmployeeCount;`
 * **Drop a function:** `DROP FUNCTION IF EXISTS GetEmployeeCount;`
 * Like procedures, MySQL has no `CREATE OR REPLACE FUNCTION` → drop it first, then create it again.
 * **मराठी:** Functions पाहण्यासाठी `SHOW FUNCTION STATUS`, काढण्यासाठी `DROP FUNCTION IF EXISTS`; बदलायचे असेल तर आधी drop आणि मग पुन्हा create.
 
-### 34.6 Differences Between Function and Procedure
+### 36.6 Differences Between Function and Procedure
 
 ![Stored Function vs Stored Procedure](./svg_function_vs_procedure.svg)
 
@@ -12117,7 +12535,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * **Function = value काढणे** (tax, पूर्ण नाव, संख्या) ➔ `SELECT` च्या आत वापरता येते, नेहमी एकच value देते, transactions वापरू शकत नाही.
   * **उदाहरण:** `SELECT name, CalculateTax(salary) FROM employees;` ➔ function; `CALL TransferFunds(1, 2, 500);` ➔ procedure.
 
-### 34.7 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
+### 36.7 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
 
 * **Q1. Stored function vs stored procedure?**
   * **Answer:** A function returns exactly one value and can be used inside SELECT/WHERE; a procedure is called with CALL, can return many values (OUT params, result sets) and can use transactions.
@@ -12132,23 +12550,23 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * **Answer:** It runs once per row and blocks index use on that column (`WHERE GetYear(order_date) = 2025` → full scan). Prefer ranges or joins.
   * **मराठी:** WHERE मधील function प्रत्येक row वर चालते आणि index वापरू देत नाही.
 
-### 34.8 Topic 34 Summary (मराठी सारांश)
+### 36.8 Topic 36 Summary (मराठी सारांश)
 
 * **Stored Function म्हणजे काय?** database मध्ये साठवलेला code, जो फक्त `IN` parameters घेतो आणि `RETURN` ने नेहमी **एकच value** परत करतो.
 * **रचना:** `CREATE FUNCTION name(params) RETURNS type [DETERMINISTIC | NOT DETERMINISTIC | READS SQL DATA | NO SQL] BEGIN ... RETURN value; END`
 * **वापर:** `SELECT GetFullName(first_name, last_name) FROM customers;` — `SELECT`, `WHERE`, `ORDER BY` मध्ये थेट.
 * **नियम:** function मध्ये `COMMIT`/`ROLLBACK` नाही, result set (`SELECT` without `INTO`) परत करता येत नाही, binary log चालू असेल तर `DETERMINISTIC`/`READS SQL DATA`/`NO SQL` पैकी एक लिहावेच लागते.
 * **व्यवस्थापन:** `SHOW FUNCTION STATUS`, `SHOW CREATE FUNCTION`, `DROP FUNCTION IF EXISTS`.
-* **Function vs Procedure:** value हवी ➔ Function; काम (insert/update/transaction) करायचे ➔ Procedure (Topic 33).
+* **Function vs Procedure:** value हवी ➔ Function; काम (insert/update/transaction) करायचे ➔ Procedure (Topic 35).
 * **उदाहरण:** 18% GST काढणारे function ➔ `CREATE FUNCTION AddGST(p_amount DECIMAL(10,2)) RETURNS DECIMAL(10,2) DETERMINISTIC RETURN p_amount * 1.18;` ➔ `SELECT product, AddGST(price) FROM products;`
 
 ---
 
-## Topic 35: Triggers in MySQL
+## Topic 37: Triggers in MySQL
 
-> 🔗 **हेही पहा:** [Topic 36: Events in MySQL (Scheduled Jobs)](#topic-36-events-in-mysql-scheduled-jobs) — Events (वेळेवर चालणारे काम) · [Topic 33: Stored Procedures in MySQL (Programmability)](#topic-33-stored-procedures-in-mysql-programmability) — Stored Procedures
+> 🔗 **हेही पहा:** [Topic 38: Events in MySQL (Scheduled Jobs)](#topic-38-events-in-mysql-scheduled-jobs) — Events (वेळेवर चालणारे काम) · [Topic 35: Stored Procedures in MySQL (Programmability)](#topic-35-stored-procedures-in-mysql-programmability) — Stored Procedures
 
-### 35.1 Why Triggers? (From Procedures to Automatic Actions)
+### 37.1 Why Triggers? (From Procedures to Automatic Actions)
 
 * With stored procedures we put all our SQL statements in one procedure, but we must **execute it manually** (`CALL ...`). That is a limitation.
 * **So how about doing it automatically?**
@@ -12158,7 +12576,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **मराठी:** Procedure आपल्याला हाताने `CALL` करावा लागतो. Trigger मात्र टेबलवर `INSERT`/`UPDATE`/`DELETE` झाला की आपोआप चालतो — उदा. दुसऱ्या टेबलमध्ये नोंद टाकणे, delete थांबवणे किंवा warning देणे.
   * **उदाहरण:** `employees` टेबलमध्ये salary बदलली की trigger आपोआप `salary_audit` टेबलमध्ये जुनी आणि नवी salary लिहितो.
 
-### 35.2 What are Triggers?
+### 37.2 What are Triggers?
 
 * A trigger is a **special kind of stored program (a set of SQL statements)** that **automatically runs ("fires")** in response to a specific event on a table.
 * In MySQL, a trigger is a database object that is executed automatically when an `INSERT`, `UPDATE` or `DELETE` happens on a particular table. It is an automatic action that happens in response to changes in the table.
@@ -12170,7 +12588,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * A trigger is defined by its **timing** (when it fires: `BEFORE` / `AFTER`) and its **event** (which operation fires it: `INSERT`, `UPDATE`, `DELETE`).
 * **मराठी:** Trigger म्हणजे टेबलवर ठराविक घटना (INSERT/UPDATE/DELETE) घडली की आपोआप चालणारा SQL code. तो कधी चालायचा (`BEFORE`/`AFTER`) आणि कोणत्या घटनेवर (`INSERT`/`UPDATE`/`DELETE`) हे आपण ठरवतो. नियम लागू करणे, डेटा तपासणे, audit log आणि automation साठी वापरतात.
 
-### 35.3 Trigger Levels (Row-level vs Statement-level)
+### 37.3 Trigger Levels (Row-level vs Statement-level)
 
 * Most relational databases (Oracle, SQL Server, PostgreSQL) have two levels of triggers:
   1. **Row-level trigger** – fires **once per row** affected by the DML statement. ✅ This is the **only** level MySQL supports (`FOR EACH ROW`).
@@ -12178,7 +12596,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **मराठी:** Row-level trigger प्रत्येक बदललेल्या row साठी एकदा चालतो (MySQL मध्ये फक्त हाच), तर statement-level trigger एका statement साठी एकदाच चालतो (MySQL मध्ये नाही).
   * **उदाहरण:** `UPDATE employees SET salary = salary * 1.1 WHERE dept = 'IT';` ने 50 rows बदलल्या ➔ MySQL चा row-level trigger 50 वेळा चालतो.
 
-### 35.4 Key Points About Triggers
+### 37.4 Key Points About Triggers
 
 ![How a Trigger Fires: BEFORE, AFTER, OLD, NEW](./svg_trigger_flow_old_new.svg)
 
@@ -12206,7 +12624,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **मराठी:** Trigger हा टेबलला जोडलेला "लपलेला आपोआप नियम" आहे. `BEFORE`/`AFTER` × `INSERT`/`UPDATE`/`DELETE` असे 6 प्रकार होतात. `OLD` = बदलापूर्वीची row, `NEW` = बदलानंतरची row.
   * **उदाहरण:** salary 50000 वरून 60000 केली ➔ `OLD.salary = 50000`, `NEW.salary = 60000`.
 
-### 35.5 Syntax of a Trigger
+### 37.5 Syntax of a Trigger
 
 * **Syntax:**
   ```sql
@@ -12231,7 +12649,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **Note on DELIMITER:** A trigger body contains `;`, so we temporarily change the delimiter (e.g. `DELIMITER $$`) so MySQL doesn't stop early, and reset it with `DELIMITER ;` after creating the trigger.
 * **मराठी:** `CREATE TRIGGER नाव BEFORE/AFTER INSERT/UPDATE/DELETE ON टेबल FOR EACH ROW BEGIN ... END` अशी रचना असते. आत `;` असल्यामुळे आधी `DELIMITER $$` करतात आणि शेवटी `DELIMITER ;`.
 
-### 35.6 Types of Triggers (and Which Databases Support Them)
+### 37.6 Types of Triggers (and Which Databases Support Them)
 
 | Type | What it does | MySQL | Others |
 | :--- | :--- | :---: | :--- |
@@ -12245,7 +12663,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 
 * **मराठी:** MySQL मध्ये फक्त DML (INSERT/UPDATE/DELETE), row-level, BEFORE/AFTER triggers आहेत. DDL, Logon, INSTEAD OF, Compound आणि statement-level triggers MySQL मध्ये नाहीत (SQL Server/Oracle/PostgreSQL मध्ये आहेत).
 
-### 35.7 Trigger Timing in MySQL (BEFORE vs AFTER)
+### 37.7 Trigger Timing in MySQL (BEFORE vs AFTER)
 
 * MySQL supports only row-level triggers with two timing options:
   * **BEFORE** – executes before the DML operation. Used for **validation** or **changing values before they are saved** (`SET NEW.col = ...`).
@@ -12253,7 +12671,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **मराठी:** `BEFORE` = डेटा सेव्ह होण्याआधी तपासणे/बदलणे (उदा. quantity 0 असेल तर थांबवणे); `AFTER` = सेव्ह झाल्यानंतर log लिहिणे किंवा दुसरे टेबल update करणे.
   * **उदाहरण:** नाव capital करायचे ➔ `BEFORE INSERT`; salary बदलाची नोंद ➔ `AFTER UPDATE`.
 
-### 35.8 Managing Triggers in MySQL
+### 37.8 Managing Triggers in MySQL
 
 * ```sql
   SHOW TRIGGERS;                                            -- all triggers in the current database
@@ -12265,7 +12683,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * `ALTER TRIGGER` 👉 MySQL doesn't support altering a trigger directly — you must drop and recreate it.
 * **मराठी:** `SHOW TRIGGERS` ने सर्व triggers, `SHOW CREATE TRIGGER` ने एकाचा पूर्ण code, `DROP TRIGGER IF EXISTS` ने delete. MySQL मध्ये `ALTER TRIGGER` नाही.
 
-### 35.9 How to Modify / Update a Trigger
+### 37.9 How to Modify / Update a Trigger
 
 * **In MySQL — you cannot directly modify a trigger.** Unlike some other databases, MySQL has no `ALTER TRIGGER` (and no `CREATE OR REPLACE TRIGGER`).
   * **Correct process:**
@@ -12277,7 +12695,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * **PostgreSQL** — a trigger calls a **trigger function**, so to change the logic you usually update the function with `CREATE OR REPLACE FUNCTION` (PostgreSQL 14+ also has `CREATE OR REPLACE TRIGGER`).
 * **मराठी:** MySQL मध्ये trigger बदलायचा असेल तर आधी `DROP TRIGGER IF EXISTS` आणि मग नवीन logic ने `CREATE TRIGGER`. SQL Server मध्ये `ALTER TRIGGER`, Oracle मध्ये `CREATE OR REPLACE TRIGGER`, PostgreSQL मध्ये trigger function बदलतात.
 
-### 35.10 Use Cases of Triggers (15 Practical Examples)
+### 37.10 Use Cases of Triggers (15 Practical Examples)
 
 * A trigger automatically runs when an event (`INSERT`, `UPDATE`, `DELETE`) happens on a table. Triggers help automate business logic, enforce rules and maintain data integrity without application code.
 
@@ -12700,7 +13118,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   ```
   * **मराठी:** नाव कसेही टाकले तरी (`vISHAL`) पहिले अक्षर capital आणि बाकी small करून (`Vishal`) सेव्ह होते.
 
-### 35.11 Summary of Trigger Use Cases
+### 37.11 Summary of Trigger Use Cases
 
 * **Enforce business rules automatically** 👉 prevent invalid data (e.g. salary < 0).
 * **Maintain audit trails** 👉 log every insert/update/delete into an audit table.
@@ -12712,7 +13130,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **Security / compliance** 👉 track who deleted sensitive records.
 * **मराठी:** Triggers मुळे नियम, तपासणी, audit log, टेबल्समधील ताळमेळ, derived totals, default values आणि सुरक्षा नोंदी हे सगळे app मध्ये code न लिहिता database मध्येच आपोआप होते.
 
-### 35.12 Important Key Points About Triggers in MySQL
+### 37.12 Important Key Points About Triggers in MySQL
 
 * **Supported:**
   * DML triggers (`BEFORE` / `AFTER`, row-level).
@@ -12727,11 +13145,11 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * Manual invocation → triggers cannot be called; they only fire automatically.
   * `COMMIT` or `ROLLBACK` inside a trigger body → not allowed (the trigger is part of the statement's transaction; if the trigger fails, the whole statement fails).
   * A trigger cannot modify the same table it is defined on (error 1442), so a trigger cannot trigger itself (no recursion).
-* **Triggers vs Events:** Triggers → work on **data events** (`INSERT`/`UPDATE`/`DELETE`). Events → work on **time** (schedules) — Topic 36.
+* **Triggers vs Events:** Triggers → work on **data events** (`INSERT`/`UPDATE`/`DELETE`). Events → work on **time** (schedules) — Topic 38.
 * You cannot delay a trigger (like "run 1 second after insert") in MySQL. That behaviour needs an Event or an external scheduler (like CRON).
 * **मराठी:** MySQL मध्ये फक्त row-level `BEFORE`/`AFTER` DML triggers आहेत, `OLD`/`NEW` वापरता येतात, एका घटनेवर अनेक triggers ठेवता येतात. View वर trigger, statement-level, INSTEAD OF, DDL triggers नाहीत; trigger हाताने चालवता येत नाही, आत `COMMIT`/`ROLLBACK` नाही, आणि ज्या टेबलवर trigger आहे तेच टेबल तो बदलू शकत नाही. वेळेनुसार काम हवे असेल तर Event वापरा.
 
-### 35.13 Triggers with Programming Logic (Variables, IF, CASE, Loops)
+### 37.13 Triggers with Programming Logic (Variables, IF, CASE, Loops)
 
 * These examples show a trigger collection that works with a realistic sales schema and uses different MySQL logic patterns: variables (`DECLARE`, `SET`), `IF / ELSEIF / ELSE`, `CASE`, loops (`WHILE`, `LOOP` with `LEAVE`), data logging and `BEFORE` / `AFTER` timing.
 
@@ -13003,7 +13421,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * `LEAVE` needs a **label** on the loop (`voucher_loop:`), otherwise MySQL gives a syntax error.
   * **मराठी:** Score 300 किंवा जास्त असेल तर loop 3 वेळा चालून 3 vouchers बनतात; कमी असेल तर `LEAVE voucher_loop;` ने loop लगेच थांबतो आणि एकही voucher बनत नाही.
 
-### 35.14 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
+### 37.14 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
 
 * **Q1. BEFORE vs AFTER trigger — when do you use each?**
   * **Answer:** BEFORE to validate or change `NEW` values before saving; AFTER to log or update other tables once the row is saved.
@@ -13021,7 +13439,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * **Answer:** `SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = '...';` in a BEFORE INSERT trigger — the whole statement fails.
   * **मराठी:** BEFORE INSERT trigger मध्ये `SIGNAL SQLSTATE '45000'`.
 
-### 35.15 Topic 35 Summary (मराठी सारांश)
+### 37.15 Topic 37 Summary (मराठी सारांश)
 
 * **Trigger म्हणजे काय?** टेबलवर `INSERT`/`UPDATE`/`DELETE` झाला की आपोआप चालणारा SQL code (procedure सारखा, पण `CALL` करावा लागत नाही).
 * **रचना:** `CREATE TRIGGER नाव BEFORE|AFTER INSERT|UPDATE|DELETE ON टेबल FOR EACH ROW BEGIN ... END` (+ `DELIMITER $$`).
@@ -13029,16 +13447,16 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **MySQL मर्यादा:** फक्त row-level DML triggers; statement-level, INSTEAD OF, DDL, logon triggers आणि view वर triggers नाहीत; `ALTER TRIGGER` नाही (drop + create); आत `COMMIT`/`ROLLBACK` नाही; स्वतःचे टेबल बदलता येत नाही.
 * **Use cases:** validation (`SIGNAL SQLSTATE '45000'`), default values, audit log, archive, delete थांबवणे, संबंधित टेबल update, नियम लागू करणे, version history, alerts, नावे standard करणे.
 * **व्यवस्थापन:** `SHOW TRIGGERS`, `SHOW CREATE TRIGGER`, `DROP TRIGGER IF EXISTS`.
-* **Trigger vs Event:** Trigger = डेटा बदलला की लगेच; Event = ठरलेल्या वेळी (Topic 36).
+* **Trigger vs Event:** Trigger = डेटा बदलला की लगेच; Event = ठरलेल्या वेळी (Topic 38).
 * **उदाहरण:** `AFTER UPDATE ON employees` ➔ `IF OLD.salary <> NEW.salary THEN INSERT INTO employee_salary_audit ...` ➔ प्रत्येक salary बदलाची नोंद आपोआप.
 
 ---
 
-## Topic 36: Events in MySQL (Scheduled Jobs)
+## Topic 38: Events in MySQL (Scheduled Jobs)
 
-> 🔗 **हेही पहा:** [Topic 35: Triggers in MySQL](#topic-35-triggers-in-mysql) — Triggers (डेटा बदलल्यावर चालणारे काम) · [Topic 33: Stored Procedures in MySQL (Programmability)](#topic-33-stored-procedures-in-mysql-programmability) — Stored Procedures (DO CALL proc())
+> 🔗 **हेही पहा:** [Topic 37: Triggers in MySQL](#topic-37-triggers-in-mysql) — Triggers (डेटा बदलल्यावर चालणारे काम) · [Topic 35: Stored Procedures in MySQL (Programmability)](#topic-35-stored-procedures-in-mysql-programmability) — Stored Procedures (DO CALL proc())
 
-### 36.1 What is an Event?
+### 38.1 What is an Event?
 
 * An **event** in SQL (MySQL / MariaDB) is a **scheduled task that the database server runs automatically** at a defined time or at a repeating interval.
 * It is similar to a **cron job** in Linux or a **scheduled task** in Windows, but it runs **inside the database engine**.
@@ -13048,14 +13466,14 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **मराठी:** Event म्हणजे database च्या आत ठरवलेल्या वेळी किंवा ठराविक अंतराने आपोआप चालणारे काम (Linux cron / Windows scheduled task सारखे). Trigger डेटा बदलल्यावर चालतो, तर Event वेळ झाल्यावर चालतो.
   * **उदाहरण:** फोनमधील alarm सारखे — "रोज रात्री 2 वाजता जुने logs delete करा".
 
-### 36.2 Purpose of Events
+### 38.2 Purpose of Events
 
 * **Automate repetitive tasks.**
 * **Run queries or stored procedures at specific times.**
 * **Reduce the need for external schedulers** (cron, Task Scheduler, application jobs).
 * **मराठी:** रोज/दर तासाला करावी लागणारी कामे आपोआप करणे, ठराविक वेळी query किंवा procedure चालवणे, आणि बाहेरच्या scheduler ची गरज कमी करणे.
 
-### 36.3 Use Cases of Events
+### 38.3 Use Cases of Events
 
 * **Auto-delete old logs** – e.g. delete logs **older than 30 days**.
 * **Daily sales summary** – save the total sales of the day into a `sales_summary` table every night.
@@ -13075,7 +13493,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
     WHERE DATE(orderdate) = CURDATE();
   ```
 
-### 36.4 Types of Events (One-Time vs Recurring)
+### 38.4 Types of Events (One-Time vs Recurring)
 
 ![MySQL Events: One-Time vs Recurring](./svg_event_one_time_vs_recurring.svg)
 
@@ -13121,7 +13539,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **मराठी:** One-time event `AT` ने लिहितो आणि एकदाच चालतो; recurring event `EVERY` (+ `STARTS` / `ENDS`) ने लिहितो आणि ठराविक अंतराने पुन्हा-पुन्हा चालतो.
   * **उदाहरण:** `AT '2025-10-01 00:00:00'` ➔ फक्त 1 ऑक्टोबरला एकदा; `EVERY 1 DAY STARTS '2025-09-26 02:00:00'` ➔ रोज रात्री 2 वाजता.
 
-### 36.5 Why We Use Events & How to Create Them
+### 38.5 Why We Use Events & How to Create Them
 
 * An event in MySQL = **a scheduled database job that runs SQL statements automatically at a specified time or interval.**
 * **Create a one-time event:**
@@ -13162,7 +13580,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   ```
 * **मराठी:** `CREATE EVENT नाव ON SCHEDULE AT/EVERY ... DO SQL;` एवढ्याने event बनतो. एकापेक्षा जास्त statements असतील तर `BEGIN ... END` (+ `DELIMITER`) वापरा, किंवा procedure बनवून `DO CALL procedure();` लिहा.
 
-### 36.6 Managing Events (Scheduler, Show, Alter, Enable/Disable, Drop)
+### 38.6 Managing Events (Scheduler, Show, Alter, Enable/Disable, Drop)
 
 * **Events run only when the event scheduler is ON** (it is ON by default in MySQL 8).
   ```sql
@@ -13200,7 +13618,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **मराठी:** Event चालण्यासाठी `event_scheduler = ON` हवा. `SHOW EVENTS` ने यादी, `ALTER EVENT ... ON SCHEDULE` ने वेळ बदलणे, `ALTER EVENT ... DISABLE/ENABLE` ने बंद/चालू, आणि `DROP EVENT` ने delete. एका database मध्ये अनेक events ठेवता येतात.
   * **उदाहरण:** रोजचे cleanup आता दर 12 तासांनी हवे ➔ `ALTER EVENT daily_cleanup ON SCHEDULE EVERY 12 HOUR;`
 
-### 36.7 Differences Between Triggers and Events
+### 38.7 Differences Between Triggers and Events
 
 ![Trigger vs Event vs Procedure](./svg_trigger_vs_event.svg)
 
@@ -13222,7 +13640,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **मराठी:** Event = घड्याळावर चालणारे काम (ठरलेल्या वेळी), Trigger = डेटा बदलला की लगेच चालणारे काम. जुना डेटा रोज साफ करणे ➔ Event; प्रत्येक बदलाची नोंद ➔ Trigger.
   * **उदाहरण:** order टाकल्यावर लगेच stock कमी करणे ➔ Trigger; रात्री 12 वाजता दिवसाचा विक्री सारांश ➔ Event.
 
-### 36.8 When to Use a One-Time Event vs a Recurring Event
+### 38.8 When to Use a One-Time Event vs a Recurring Event
 
 * **One-time event:** runs once at the scheduled date and time, then it is **dropped automatically** (default `ON COMPLETION NOT PRESERVE`; add `ON COMPLETION PRESERVE` to keep it after it runs).
   * **When to use a one-time event:**
@@ -13257,7 +13675,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * **One-time:** एकदाच लागणारे काम (data migration, एखाद्या दिवशी archive, एकदाच report) ➔ चालल्यानंतर event आपोआप नाहीसा होतो.
   * **Recurring:** नियमित काम (रोज cleanup, summary refresh, दर सोमवारी reminders, दर तासाला monitoring) ➔ drop/disable करेपर्यंत चालू राहतो.
 
-### 36.9 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
+### 38.9 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
 
 * **Q1. Event vs trigger vs cron job?**
   * **Answer:** Event = runs on a schedule inside MySQL; trigger = runs on a data change; cron = runs on a schedule outside the database (can run scripts, send emails, call APIs).
@@ -13272,7 +13690,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
   * **Answer:** Nightly: delete sessions older than 7 days, refresh a summary table (MySQL's replacement for materialized views), expire coupons.
   * **मराठी:** रोज रात्री cleanup, summary table refresh, coupons expire.
 
-### 36.10 Topic 36 Summary (मराठी सारांश)
+### 38.10 Topic 38 Summary (मराठी सारांश)
 
 * **Event म्हणजे काय?** database च्या आत वेळापत्रकानुसार आपोआप चालणारे SQL काम (MySQL चा cron job).
 * **2 प्रकार:** One-time (`ON SCHEDULE AT '...'`) आणि Recurring (`ON SCHEDULE EVERY n DAY/HOUR STARTS ... [ENDS ...]`).
@@ -13285,24 +13703,194 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 
 ---
 
-# 📘 Part 6: Performance, Indexing & Database Internals (Topics 37–45)
+## Topic 39: Cursors in MySQL
 
-> **मराठी:** Performance आणि Database ची आतली रचना — या भागात Topics 37 ते 45 आहेत.
+> 🔗 **हेही पहा:** [Topic 35: Stored Procedures in MySQL (Programmability)](#topic-35-stored-procedures-in-mysql-programmability) — Stored Procedures · [Topic 37: Triggers in MySQL](#topic-37-triggers-in-mysql) — Triggers
+
+> **मराठी:** Cursor म्हणजे stored procedure मध्ये SELECT च्या result मधून **एक-एक row** वाचून त्यावर काम करण्याची सोय. SQL सहसा सर्व rows एकत्र (set-based) हाताळते; cursor हा row-by-row मार्ग आहे. Procedures (Topic 35) नंतर interview मध्ये हा प्रश्न येतो.
+
+### 39.1 What is a Cursor?
+
+* A **cursor** is a pointer over the result set of a `SELECT`, used **inside stored programs** (procedures, functions, triggers, events) to process the rows **one at a time**.
+* MySQL cursors are:
+  * **Read-only** — you cannot update rows through the cursor (use a normal `UPDATE` with the fetched key).
+  * **Non-scrollable** — only forward, one row at a time; no going back or jumping.
+  * **Asensitive** — the server may or may not make a copy of the result, so don't change the underlying table while the cursor is open and expect predictable results.
+* **When to use:** row-by-row logic that is hard to write as one statement — calling another procedure for each row, building dynamic SQL per table, complex multi-step processing, generating per-row audit/notification rows.
+* **मराठी:** Cursor हा SELECT च्या result वरचा पॉइंटर आहे; तो फक्त procedure/function/trigger/event मध्ये वापरता येतो. MySQL cursor फक्त वाचण्यासाठी, फक्त पुढे जाणारा आहे.
+  * **उदाहरण:** प्रत्येक customer साठी वेगळी procedure call करायची असेल तर cursor ने एक-एक customer वाचता येतो.
+
+### 39.2 Cursor Lifecycle: DECLARE → OPEN → FETCH → CLOSE
+
+1. **DECLARE** the cursor with its `SELECT`.
+2. **DECLARE a CONTINUE HANDLER FOR NOT FOUND** — sets a flag when there are no more rows.
+3. **OPEN** — runs the `SELECT`.
+4. **FETCH ... INTO** variables inside a loop; **LEAVE** the loop when the flag is set.
+5. **CLOSE** — frees the result set (it is also closed automatically at the end of the `BEGIN ... END` block).
+* **Declaration order rule** (otherwise error 1337): **variables and conditions → cursors → handlers**, all at the top of the `BEGIN ... END` block.
+* **मराठी:** क्रम: DECLARE (cursor) → NOT FOUND handler → OPEN → loop मध्ये FETCH → rows संपल्या की LEAVE → CLOSE. Declare करताना आधी variables, मग cursor, मग handler — अन्यथा error.
+
+![Cursor lifecycle](./svg_cursor_lifecycle.svg)
+
+> 📌 **आकृतीचे मराठीत स्पष्टीकरण:** आकृतीत cursor चे टप्पे डावीकडून उजवीकडे आहेत: DECLARE → OPEN → FETCH (loop) → CLOSE. FETCH नंतर "row मिळाली?" असा प्रश्न आहे: हो असेल तर row वर काम करून पुन्हा FETCH, नाही असेल तर NOT FOUND handler `done = 1` करतो आणि `LEAVE` ने loop बाहेर पडून CLOSE होते.
+>
+> **उदाहरण:** 3 employees असतील तर FETCH 3 वेळा row देतो, चौथ्या FETCH ला NOT FOUND येतो आणि loop संपतो.
+
+### 39.3 Full Working Example
+
+* **Goal:** give every employee of a department a raise based on their salary band, and log each change.
+  ```sql
+  CREATE TABLE employees (
+      emp_id INT PRIMARY KEY,
+      name   VARCHAR(50),
+      dept   VARCHAR(20),
+      salary DECIMAL(10,2)
+  );
+  INSERT INTO employees VALUES
+  (1, 'Asha',  'IT', 40000),
+  (2, 'Ravi',  'IT', 75000),
+  (3, 'Meena', 'HR', 50000),
+  (4, 'Kiran', 'IT', 90000);
+
+  CREATE TABLE salary_log (
+      emp_id     INT,
+      old_salary DECIMAL(10,2),
+      new_salary DECIMAL(10,2),
+      changed_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
+
+  DELIMITER //
+  CREATE PROCEDURE GiveRaise(IN p_dept VARCHAR(20))
+  BEGIN
+      -- 1. variables first
+      DECLARE v_done   INT DEFAULT 0;
+      DECLARE v_id     INT;
+      DECLARE v_salary DECIMAL(10,2);
+      DECLARE v_new    DECIMAL(10,2);
+
+      -- 2. then the cursor
+      DECLARE emp_cur CURSOR FOR
+          SELECT emp_id, salary FROM employees WHERE dept = p_dept;
+
+      -- 3. then the handler
+      DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_done = 1;
+
+      OPEN emp_cur;
+
+      read_loop: LOOP
+          FETCH emp_cur INTO v_id, v_salary;
+          IF v_done = 1 THEN
+              LEAVE read_loop;
+          END IF;
+
+          SET v_new = CASE
+                          WHEN v_salary < 50000 THEN v_salary * 1.10
+                          WHEN v_salary < 80000 THEN v_salary * 1.05
+                          ELSE v_salary * 1.02
+                      END;
+
+          UPDATE employees SET salary = v_new WHERE emp_id = v_id;
+          INSERT INTO salary_log (emp_id, old_salary, new_salary) VALUES (v_id, v_salary, v_new);
+      END LOOP read_loop;
+
+      CLOSE emp_cur;
+  END //
+  DELIMITER ;
+
+  CALL GiveRaise('IT');
+  SELECT emp_id, old_salary, new_salary FROM salary_log;
+  ```
+* **Output:**
+
+| emp_id | old_salary | new_salary |
+| :--- | :--- | :--- |
+| 1 | 40000.00 | 44000.00 |
+| 2 | 75000.00 | 78750.00 |
+| 4 | 90000.00 | 91800.00 |
+
+* Meena (HR) is not touched. `LEAVE` needs the loop **label** (`read_loop`).
+* **मराठी:** Cursor IT department चे employees एक-एक वाचतो, पगारानुसार वाढ ठरवतो (50000 खाली 10%, 80000 खाली 5%, बाकी 2%), `UPDATE` करतो आणि `salary_log` मध्ये नोंद ठेवतो. Rows संपल्या की handler `v_done = 1` करतो आणि `LEAVE read_loop` ने loop संपतो.
+
+### 39.4 Common Mistakes with Cursors
+
+* **Checking the flag in the wrong place:** check `v_done` **right after FETCH**; if you check at the end of the loop body, the last row is processed twice.
+* **Handler fired by an inner SELECT:** a `SELECT ... INTO` inside the loop that finds no row also triggers `NOT FOUND` and ends the loop early. Reset the flag (`SET v_done = 0;`) after such a statement, or put it in a nested `BEGIN ... END` with its own handler.
+* **Wrong declaration order** → error 1337 (`Variable or condition declaration after cursor or handler declaration`).
+* **Number of FETCH variables must match the SELECT columns**, otherwise error 1328.
+* **Using a cursor outside a stored program** — not allowed; a plain script cannot `DECLARE CURSOR`.
+* **मराठी:** FETCH नंतर लगेच flag तपासा (नाहीतर शेवटची row दोनदा), loop मधील दुसऱ्या `SELECT ... INTO` ने सुद्धा NOT FOUND लागू शकतो, declare क्रम पाळा, FETCH मधील variables = SELECT columns.
+
+### 39.5 Cursor vs Set-Based SQL
+
+* The same raise can be done in **one statement**:
+  ```sql
+  UPDATE employees
+  SET salary = CASE
+                   WHEN salary < 50000 THEN salary * 1.10
+                   WHEN salary < 80000 THEN salary * 1.05
+                   ELSE salary * 1.02
+               END
+  WHERE dept = 'IT';
+  ```
+
+| Point | Cursor (row-by-row) | Set-based SQL |
+| :--- | :--- | :--- |
+| Speed | Slow on large data (one statement per row) | Fast — optimizer handles all rows together |
+| Code | Long (declare, open, fetch, loop, close) | Short |
+| Locks / log | Many small statements | One statement |
+| Use when | Per-row procedure calls, dynamic SQL per row, complex step-by-step logic | Almost everything else |
+
+* **Rule for interviews:** "Prefer set-based SQL (`UPDATE ... CASE`, `INSERT ... SELECT`, JOINs, window functions); use a cursor only when row-by-row logic is really needed."
+* **मराठी:** वरचे पूर्ण cursor काम एका `UPDATE ... CASE` ने होते आणि ते खूप जलद असते. त्यामुळे शक्यतो set-based SQL वापरा; cursor फक्त प्रत्येक row साठी वेगळी procedure किंवा dynamic SQL लागते तेव्हाच.
+
+### 39.6 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
+
+* **Q1. What is a cursor and where can it be used in MySQL?**
+  * **Answer:** A pointer to process a SELECT's result one row at a time; only inside stored procedures, functions, triggers and events.
+  * **मराठी:** Result एक-एक row ने वाचण्याचा पॉइंटर; फक्त stored programs मध्ये.
+* **Q2. What are the steps of using a cursor?**
+  * **Answer:** DECLARE cursor → DECLARE NOT FOUND handler → OPEN → FETCH in a loop (LEAVE when done) → CLOSE.
+  * **मराठी:** DECLARE → handler → OPEN → FETCH loop → CLOSE.
+* **Q3. What are the properties of MySQL cursors?**
+  * **Answer:** Read-only, non-scrollable (forward-only), asensitive.
+  * **मराठी:** फक्त वाचणे, फक्त पुढे, asensitive.
+* **Q4. How do you know when all rows are fetched?**
+  * **Answer:** `DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;` and check `done` right after each FETCH.
+  * **मराठी:** NOT FOUND handler flag सेट करतो; FETCH नंतर लगेच तपासा.
+* **Q5. Why are cursors discouraged?**
+  * **Answer:** Row-by-row processing is much slower than set-based SQL and holds resources longer; most cursor logic can be rewritten with `UPDATE ... CASE`, `INSERT ... SELECT`, JOINs or window functions.
+  * **मराठी:** Row-by-row हळू असते; बहुतेक काम एका set-based query ने होते.
+
+### 39.7 Topic 39 Summary (मराठी सारांश)
+
+* **Cursor:** stored program मध्ये SELECT च्या result मधून एक-एक row वाचण्याचा पॉइंटर.
+* **गुणधर्म:** read-only, non-scrollable (फक्त पुढे), asensitive.
+* **टप्पे:** DECLARE → NOT FOUND handler → OPEN → FETCH loop (`LEAVE label`) → CLOSE.
+* **Declare क्रम:** variables → cursors → handlers (नाहीतर error 1337).
+* **चुका:** flag FETCH नंतर लगेच तपासा, inner `SELECT ... INTO` मुळे handler लागू शकतो, FETCH variables = columns.
+* **Cursor vs Set-based:** शक्यतो set-based (`UPDATE ... CASE`) वापरा; cursor फक्त खरोखर row-by-row गरज असेल तेव्हा.
+* **उदाहरण:** `GiveRaise('IT')` procedure IT employees ना पगारानुसार 10% / 5% / 2% वाढ देते आणि `salary_log` मध्ये नोंद करते.
 
 ---
 
-## Topic 37: Database Engine Architecture & Storage Concepts
+# 📘 Part 6: Performance, Indexing & Database Internals (Topics 40–48)
 
-### 37.1 What is a Data Warehouse?
+> **मराठी:** Performance आणि Database ची आतली रचना — या भागात Topics 40 ते 48 आहेत.
+
+---
+
+## Topic 40: Database Engine Architecture & Storage Concepts
+
+### 40.1 What is a Data Warehouse?
 * **Definition:** A special database that collects data from different sources and integrates it into one centralized place. It enables heavy analytics and supports business decision-making.
 * **मराठी:** Data Warehouse हा विशेष database आहे जो वेगवेगळ्या sources (ERP, CRM, logs) मधील डेटा एका ठिकाणी गोळा करतो, जेणेकरून मोठे analysis करून व्यवसायाचे निर्णय घेता येतील.
 
-### 37.2 The Database Engine
+### 40.2 The Database Engine
 * **Definition:** The Database Engine is the "brain" of the database. It is responsible for executing multiple operations such as storing, retrieving, and managing data within the database.
 * Every time you execute a query, the Database Engine takes care of processing it.
 * **मराठी:** Database Engine हा database चा 'मेंदू' आहे. तुम्ही लिहिलेली प्रत्येक query तोच चालवतो, डेटा साठवतो आणि शोधून आणतो (MySQL मध्ये default engine = InnoDB).
 
-### 37.3 Database Storage Types (Disk vs Cache)
+### 40.3 Database Storage Types (Disk vs Cache)
 * **Image Reference:** ![DB Engine Architecture](./svg_db_engine_architecture.svg) *(Description: Shows Client sending query to Server. Database Engine checks Cache first, then checks Disk [Temp, Catalog, User]).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती Database Engine ची रचना दाखवते: Client query पाठवतो आणि Engine आधी Cache (memory) आणि मग Disk वापरतो.
   * Cache: जलद पण लहान (RAM).
@@ -13324,7 +13912,7 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 * **Definition:** Cache is fast, short-term memory (like RAM) where data is stored temporarily.
 * **Pros/Cons:** It can only store smaller amounts of data (lower capacity), but it is extremely fast to read and write.
 
-### 37.4 How a Simple Query Works (Step-by-Step)
+### 40.4 How a Simple Query Works (Step-by-Step)
 * **Image Reference:** ![Query Execution Flow](./svg_query_execution_flow.svg) *(Description: Shows the flow of a query: Client -> Engine -> Cache [MISS] -> Disk -> Return Result & Store in Cache).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती एक साधी query कशी चालते ते दाखवते: Client ➔ Engine ➔ Cache (नसेल तर) ➔ Disk ➔ Result.
   * 1. query पाठवली; 2. आधी cache तपासला; 3. cache मध्ये नसल्यास disk वरून वाचले; 4. result client ला पाठवला.
@@ -13341,7 +13929,7 @@ When a Data Engineer writes a query like `SELECT * FROM orders`:
   * **मराठी:** MySQL 8 मध्ये query चा result cache होत नाही. InnoDB Buffer Pool मध्ये फक्त data pages राहतात, त्यामुळे पुढच्या वेळी disk न वाचता memory मधून डेटा मिळतो. मात्र query पुन्हा पूर्ण चालवली जाते.
 * **मराठी:** Query चालवल्यावर engine आधी memory (Buffer Pool) मध्ये pages शोधतो, कारण ती जलद आहे. तिथे नसतील तर disk वरून आणतो, result client ला देतो, आणि ती pages memory मध्ये ठेवतो, त्यामुळे पुढच्या वेळी ती disk ऐवजी memory मधून मिळतात. (MySQL 8 मध्ये query चा result स्वतः cache होत नाही.)
 
-### 37.5 Topic 37 Summary (मराठी सारांश)
+### 40.5 Topic 40 Summary (मराठी सारांश)
 
 * **Data Warehouse:** वेगवेगळ्या systems (ERP, CRM, logs) मधील डेटा एका ठिकाणी गोळा करून analytics आणि निर्णय घेण्यासाठी बनवलेला database.
 * **Database Engine:** database चा 'मेंदू'; query चालवणे, डेटा साठवणे आणि आणणे हे त्याचे काम. MySQL चा default engine InnoDB आहे.
@@ -13355,11 +13943,11 @@ When a Data Engineer writes a query like `SELECT * FROM orders`:
 
 ---
 
-## Topic 38: Database Optimization & Indexing (Analytics & Performance)
+## Topic 41: Database Optimization & Indexing (Analytics & Performance)
 
-> 🔗 **हेही पहा:** [Topic 39: Heap vs Clustered Index (Internal Storage)](#topic-39-heap-vs-clustered-index-internal-storage) — Heap vs Clustered Index थोडक्यात · [Topic 40: Query Execution Plans (EXPLAIN)](#topic-40-query-execution-plans-explain) — EXPLAIN (Execution Plans) · [Topic 41: Scans & Seeks (Data Access Methods)](#topic-41-scans--seeks-data-access-methods) — Scans आणि Seeks
+> 🔗 **हेही पहा:** [Topic 42: Heap vs Clustered Index (Internal Storage)](#topic-42-heap-vs-clustered-index-internal-storage) — Heap vs Clustered Index थोडक्यात · [Topic 43: Query Execution Plans (EXPLAIN)](#topic-43-query-execution-plans-explain) — EXPLAIN (Execution Plans) · [Topic 44: Scans & Seeks (Data Access Methods)](#topic-44-scans--seeks-data-access-methods) — Scans आणि Seeks
 
-### 38.1 Introduction to Performance Optimization
+### 41.1 Introduction to Performance Optimization
 **English:** The first and most famous way to optimize database performance is by building indexes. An index in SQL is a data structure (similar to an index in a book) that improves the speed of data retrieval operations on a database table. It acts as a guide for your database to speed up the process of searching for data, especially in large tables.
 **मराठी:** डेटाबेसचा वेग वाढवण्याचा पहिला आणि सर्वात प्रसिद्ध मार्ग म्हणजे Index बनवणे. Index हा पुस्तकाच्या शेवटच्या अनुक्रमणिकेसारखा असतो: पूर्ण टेबल न वाचता हवा तो डेटा पटकन सापडतो. उदा. 10 लाख ग्राहकांमधून `WHERE email = 'a@x.com'` शोधताना email वर index असेल तर काही milliseconds लागतात.
 
@@ -13377,7 +13965,7 @@ MySQL uses B-Tree or Hash indexes depending on the storage engine:
 * **MyISAM Engine:** **Does not support Clustered Indexes**. All indexes in MyISAM are Non-Clustered.
 * **Memory Engine:** Uses **Hash** indexes (excellent for exact equality lookups like `WHERE id = 5`, but bad for range queries like `>`, `<`).
 
-### 38.2 Database Storage Architecture: How data is stored?
+### 41.2 Database Storage Architecture: How data is stored?
 
 Before understanding indexes, we must understand how a database stores data on a hard drive.
 **English:** Databases store data in fixed-size blocks called **Pages** (typically 8KB or 16KB). A table's data is split across multiple data pages inside a physical file (like `.mdf` or `.ibd`).
@@ -13410,7 +13998,7 @@ Before understanding indexes, we must understand how a database stores data on a
 
 *Description: Anatomy of an 8KB Data Page showing Header, Rows, Free Space, and the Offset Array.*
 
-### 38.3 The HEAP Structure & Full Table Scan
+### 41.3 The HEAP Structure & Full Table Scan
 
 **What happens when a table has NO Clustered Index?**
 Such a table is called a **HEAP**.
@@ -13441,7 +14029,7 @@ Such a table is called a **HEAP**.
 
 *Description: Full Table Scan searching for ID=14. SQL must read every row across every page to find it.*
 
-### 38.4 The Clustered Index (B-Tree Structure) & Reading Speed
+### 41.4 The Clustered Index (B-Tree Structure) & Reading Speed
 
 To fix the Full Table Scan problem, SQL uses a **Clustered Index**, usually created automatically when you define a `PRIMARY KEY`. You can think of the clustered index like the table of contents at the front of a book, telling you exactly where to find each chapter.
 
@@ -13475,7 +14063,7 @@ The secret is: **the B-Tree skips almost all pages.** Instead of reading every p
 
 *Description: Clustered Index B-Tree. The search for ID=14 traverses the Root (Step 1), then Intermediate (Step 2), directly landing on the correct Data Page (Step 3).*
 
-### 38.5 Non-Clustered Index (Secondary Index)
+### 41.5 Non-Clustered Index (Secondary Index)
 
 If we already have a Heap or a Clustered Index, what happens when we create an index on another column (e.g., `Customer Name`)? SQL immediately builds a new, separate B-Tree structure. This is called a **Non-Clustered Index** (or Secondary Index).
 
@@ -13506,7 +14094,7 @@ When you query `WHERE name = 'Vishal'`:
 
 *Description: Non-Clustered Index B-Tree. The leaf nodes contain pointers. SQL must perform an extra jump to fetch the full row from the physically separate Data Pages.*
 
-### 38.6 Clustered vs Non-Clustered Index Summary
+### 41.6 Clustered vs Non-Clustered Index Summary
 
 **English:** Here is a quick comparison summarizing the differences between a Clustered and Non-Clustered Index.
 **मराठी:** Clustered आणि Non-Clustered index मधील मुख्य फरक खालील तक्त्यात आहे: Clustered = टेबलच (एकच), Non-Clustered = वेगळी यादी (अनेक).
@@ -13534,7 +14122,7 @@ CREATE INDEX IX_Customers_Name ON Customers (LastName ASC, FirstName DESC)
 * ⚠️ **Note:** `CLUSTERED` / `NONCLUSTERED` keywords are **SQL Server** syntax. In **MySQL** you cannot choose: the Primary Key is always the clustered index, and every `CREATE INDEX` makes a secondary (non-clustered) index. MySQL versions of the examples above: `CREATE INDEX IX_Customers_City ON Customers (City);` and `CREATE INDEX IX_Customers_Name ON Customers (LastName ASC, FirstName DESC);`.
 * **मराठी:** `CLUSTERED` / `NONCLUSTERED` हे शब्द SQL Server चे आहेत. MySQL मध्ये Primary Key आपोआप clustered index बनते आणि `CREATE INDEX` ने बनणारा प्रत्येक index non-clustered असतो.
 
-### 38.7 Rowstore vs Columnstore Index (Storage Architecture)
+### 41.7 Rowstore vs Columnstore Index (Storage Architecture)
 
 Indexes can also be categorized by how they physically store data on the disk (By Storage).
 
@@ -13602,7 +14190,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
 * ⚠️ **Note:** Columnstore indexes are a **SQL Server** feature. Normal MySQL (InnoDB) has only row-store indexes; for column-store analytics, MySQL users use MySQL HeatWave or a separate analytics database (e.g. ClickHouse, Redshift, BigQuery).
 * **मराठी:** Columnstore index हे SQL Server चे feature आहे. साधे MySQL (InnoDB) rowstore च आहे; मोठ्या analytics साठी HeatWave किंवा वेगळे analytics database वापरतात.
 
-### 38.8 Indexing by Function (Unique, Filtered, Composite)
+### 41.8 Indexing by Function (Unique, Filtered, Composite)
 
 **1. Unique Index (यूनिक इंडेक्स)**
 * **Definition:** A Unique Index ensures that all values in a specific column are distinct (no duplicate values exist).
@@ -13701,7 +14289,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
 | **Full-Text Index** | When searching for words inside large text/articles. | Enables fast keyword searches (`MATCH AGAINST`). |
 | **Spatial Index** | When dealing with maps, GPS, geometry. | Fast spatial queries on polygon/point data. |
 
-### 38.9 Indexing Best Practices in MySQL
+### 41.9 Indexing Best Practices in MySQL
 * **Do Use Indexes For:**
   * Columns frequently used in `WHERE`, `JOIN`, `ORDER BY`, and `GROUP BY` clauses.
   * Frequently searched columns.
@@ -13716,7 +14304,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
   * Check if a query uses an index: `EXPLAIN SELECT * FROM employees WHERE name = 'Vishal';`
 * **मराठी:** `WHERE`, `JOIN`, `GROUP BY` मध्ये वारंवार वापरल्या जाणाऱ्या columns वर index बनवा. गरज नसताना खूप indexes (Over-indexing) किंवा अगदी छोट्या टेबल्सवर index टाळा, कारण त्याने `INSERT`/`UPDATE` हळू होतात.
 
-### 38.10 Advantages & Disadvantages of Indexes
+### 41.10 Advantages & Disadvantages of Indexes
 * **Advantages:**
   * Faster `SELECT` queries (Reading).
   * Efficient `JOIN` operations.
@@ -13732,7 +14320,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
   * **फायदे (Advantages):** डेटा वाचणे (SELECT) आणि जोडणे (JOIN) खूप वेगवान होते.
   * **तोटे (Disadvantages):** नवीन डेटा टाकणे/बदलणे (INSERT, UPDATE) हळू होते आणि indexes जास्त disk जागा घेतात.
 
-### 38.11 Index Management & Monitoring
+### 41.11 Index Management & Monitoring
 * **Definition:** Building an index is not the final step. Over time, indexes get fragmented, outdated, and unused. This can lead to poor query performance, increased storage costs, and a drop in overall database speed.
 * **Key Maintenance Steps:**
   1. **Monitor Index Usage:** Identify if the created indexes are actually being used by queries. Unused indexes consume unnecessary storage and slow down writes.
@@ -13742,7 +14330,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
   5. **Monitor Fragmentation:** As data is added or deleted, indexes become fragmented (scattered). Rebuild or reorganize them to maintain speed.
 * **मराठी:** Index बनवल्यानंतर त्याची देखभालही करावी लागते: न वापरलेले आणि duplicate indexes काढा, statistics अद्ययावत ठेवा (`ANALYZE TABLE`), आणि डेटा बदलत गेल्यामुळे fragment झालेले indexes अधूनमधून rebuild करा (MySQL मध्ये `OPTIMIZE TABLE`).
 
-### 38.12 Indexing Strategies
+### 41.12 Indexing Strategies
 * **Image Reference:** ![Indexing Strategy Overview](./svg_indexing_strategy.svg) *(Description: 4-step Indexing Strategy flowchart: 1. Initial Strategy (OLAP vs OLTP), 2. Usage Patterns Indexing, 3. Scenario-Based Indexing, 4. Monitoring & Maintenance).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती index निवडण्याची 4 पायऱ्यांची strategy दाखवते.
   * #1 सुरुवातीची strategy: OLAP ➔ read वेगवान (columnstore), OLTP ➔ write वेगवान (clustered PK).
@@ -13766,7 +14354,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
      * Continuously monitor usage, missing indexes, duplicates, statistics, and fragmentation.
 * **मराठी:** योग्य index निवडण्याच्या 4 पायऱ्या: (1) read वेगवान हवे की write ते ठरवा, (2) सर्वात जास्त वापरले जाणारे columns ओळखा, (3) `EXPLAIN` ने query खरोखर index वापरते का ते तपासा, (4) नियमित देखभाल करा.
 
-### 38.13 Interview Perspective (Pro-Tips)
+### 41.13 Interview Perspective (Pro-Tips)
 
 * **Q: Why not put an index on every column?**
   * **A:** Avoid over-indexing! Indexes require disk space. More importantly, every `INSERT`, `UPDATE`, or `DELETE` requires the database to update the index. Too many indexes will kill write performance.
@@ -13776,7 +14364,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
   * **A:** A Heap is a table without a primary key (reads are full scans). A Clustered Index stores data in physical sorted order (only 1 allowed). Non-Clustered Indexes are secondary pointers (many allowed). Choose wisely → help reads, hurt writes.
   * *MySQL tip for the interview:* InnoDB has no heap tables — without a PK it creates a hidden clustered key — so always define a small Primary Key (e.g. `INT AUTO_INCREMENT`).
 
-### 38.14 Topic 38 Summary (मराठी सारांश)
+### 41.14 Topic 41 Summary (मराठी सारांश)
 
 * **Index म्हणजे काय?** पुस्तकाच्या अनुक्रमणिकेसारखी रचना (B-Tree), ज्यामुळे पूर्ण टेबल न वाचता हवी ती row पटकन सापडते. वाचणे (`SELECT`) वेगवान होते, पण लिहिणे (`INSERT`/`UPDATE`/`DELETE`) थोडे हळू होते.
 * **डेटा कसा साठवला जातो?** Pages मध्ये (InnoDB = 16KB). Index नसेल तर Full Table Scan: सर्व pages वाचावी लागतात.
@@ -13791,11 +14379,11 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
 
 ---
 
-## Topic 39: Heap vs Clustered Index (Internal Storage)
+## Topic 42: Heap vs Clustered Index (Internal Storage)
 
-> 🔗 **हेही पहा:** [Topic 38: Database Optimization & Indexing (Analytics & Performance)](#topic-38-database-optimization--indexing-analytics--performance) — Clustered आणि Non-Clustered Index सविस्तर (B-Tree आकृत्यांसह)
+> 🔗 **हेही पहा:** [Topic 41: Database Optimization & Indexing (Analytics & Performance)](#topic-41-database-optimization--indexing-analytics--performance) — Clustered आणि Non-Clustered Index सविस्तर (B-Tree आकृत्यांसह)
 
-### 39.1 What is a Heap Table?
+### 42.1 What is a Heap Table?
 * **Definition:** A Heap is a table without a clustered index (no Primary Key). The data is not stored in any specific order — it’s just a collection of rows stored randomly wherever space is available.
 * **Characteristics:**
   * **No clustered index:** Data has no defined physical order.
@@ -13806,7 +14394,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
 * ⚠️ **MySQL Note:** This describes SQL Server. In MySQL InnoDB there are no heap tables: without a Primary Key, InnoDB clusters the table on the first `UNIQUE NOT NULL` index or on a hidden 6-byte row ID.
 * **मराठी:** Heap म्हणजे Primary Key (clustered index) नसलेले टेबल. rows कोणत्याही क्रमाशिवाय साठवल्या जातात: नवीन डेटा टाकणे जलद, पण शोधणे हळू. (MySQL InnoDB मध्ये खरा heap नसतो.)
 
-### 39.2 What is a Clustered Index?
+### 42.2 What is a Clustered Index?
 * **Definition:** A Clustered Index determines the physical order of data in the table. The table’s rows are stored on disk in the exact order of the clustered index key. (In InnoDB MySQL, the primary key is always the clustered index).
 * **Characteristics:**
   * **One per table:** You can have only ONE clustered index.
@@ -13815,7 +14403,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
   * **Cons:** Slower inserts if the key order changes (can cause page splits).
   * **Note:** Non-clustered indexes store this clustered key as a pointer to find the actual data row.
 
-### 39.3 Topic 39 Summary (मराठी सारांश)
+### 42.3 Topic 42 Summary (मराठी सारांश)
 
 * **Heap Table:** Clustered index नसलेले टेबल; rows कोणत्याही क्रमाने असतात ➔ insert जलद, शोध हळू (full scan). (हे SQL Server मध्ये असते.)
 * **Clustered Index Table:** rows key च्या क्रमाने साठवलेल्या असतात ➔ exact match आणि range queries खूप वेगवान; मधोमध insert झाल्यास page split होऊ शकतो.
@@ -13825,9 +14413,9 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
 
 ---
 
-## Topic 40: Query Execution Plans (EXPLAIN)
+## Topic 43: Query Execution Plans (EXPLAIN)
 
-### 40.1 What is an Execution Plan?
+### 43.1 What is an Execution Plan?
 * **Definition:** An execution plan (also called a query plan or roadmap) is a detailed map or blueprint generated by the database engine that shows **exactly how it processes your query step-by-step**. 
 * **Uses:** It is used to understand how the database retrieves data, which indexes it uses, what joins are performed, and how efficient your query is. It shows exactly where you might have performance issues.
 * **How it works:** 
@@ -13840,7 +14428,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
      * **मराठी:** Plan cache करणे हे SQL Server चे वैशिष्ट्य आहे. MySQL प्रत्येक query साठी नवीन plan बनवतो.
 * **मराठी:** Execution Plan हा नकाशा (blueprint) आहे: database तुमची query कोणत्या पायऱ्यांनी, कोणता index वापरून आणि कोणता join algorithm वापरून चालवणार ते सांगतो. (Plan cache करणे हे SQL Server मध्ये होते; MySQL प्रत्येक वेळी नवीन plan बनवतो.)
 
-### 40.2 Types of Execution Plans
+### 43.2 Types of Execution Plans
 
 * **Image Reference:** ![Execution Plan Types](./svg_execution_plan_types.svg) *(Description: Compares Estimated vs Actual vs Live execution plans).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती Execution Plan चे 3 प्रकार दाखवते.
@@ -13873,13 +14461,13 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
   * Used for long-running queries to identify bottlenecks while the query is executing.
   * Shows live progress (% completion) and live row counts.
 
-### 40.3 Estimated vs Actual Execution Plan Match
+### 43.3 Estimated vs Actual Execution Plan Match
 * If the prediction **does not match** the actual plan, it indicates issues like inaccurate statistics or outdated indexes leading to poor performance.
 * If the estimated and actual execution plan **match**, then your statistics are up-to-date and performance is optimal.
   * *Clarification:* A match only means the optimizer's estimates were correct. The query can still be slow if the plan itself is bad (for example, a full table scan because an index is missing). In MySQL, refresh statistics with `ANALYZE TABLE table_name;`.
 * **मराठी सारांश:** Estimated plan (`EXPLAIN`) हा अंदाज आहे आणि Actual plan (`EXPLAIN ANALYZE`) हे खरे आकडे आहेत. दोन्हीतील rows चे आकडे खूप वेगळे असतील तर statistics जुनी झाली आहेत ➔ `ANALYZE TABLE` चालवा. दोन्ही जुळले तरी full scan दिसत असेल तर index लावावा लागतो.
 
-### 40.4 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
+### 43.4 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
 
 * **Q1. How do you find why a query is slow?**
   * **Answer:** Run `EXPLAIN` (plan), then `EXPLAIN ANALYZE` (real time per step); look at `type`, `key`, `rows`, `Extra`; also check the slow query log.
@@ -13897,7 +14485,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
   * **Answer:** `SET GLOBAL slow_query_log = 1; SET GLOBAL long_query_time = 1;` — queries slower than 1 s are logged (`SHOW VARIABLES LIKE 'slow_query_log_file';`).
   * **मराठी:** slow_query_log ON केला की 1 सेकंदापेक्षा हळू queries file मध्ये नोंदवल्या जातात.
 
-### 40.5 Topic 40 Summary (मराठी सारांश)
+### 43.5 Topic 43 Summary (मराठी सारांश)
 
 * **Execution Plan म्हणजे काय?** database तुमची query कोणत्या पायऱ्यांनी चालवणार त्याचा नकाशा: कोणते टेबल आधी, कोणता index, कोणता join algorithm आणि अंदाजे किती rows.
 * **Estimated Plan:** `EXPLAIN SELECT ...` ➔ query न चालवता अंदाज.
@@ -13908,36 +14496,36 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
 
 ---
 
-## Topic 41: Scans & Seeks (Data Access Methods)
+## Topic 44: Scans & Seeks (Data Access Methods)
 
 * **Image Reference:** ![Scan vs Seek](./svg_scan_vs_seek.svg) *(Description: Visual comparison of Full Table Scan vs Index Scan vs Index Seek).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती डेटा वाचण्याच्या 3 पद्धती दाखवते: Table Scan (सर्वात हळू), Index Scan (मध्यम) आणि Index Seek (सर्वात वेगवान).
   * MySQL `EXPLAIN` मध्ये हे असे दिसतात: `type = ALL` ➔ Table Scan, `type = index` ➔ Index Scan, `type = ref / range / const / eq_ref` ➔ Index Seek.
   * **उदाहरण:** पुस्तकात नाव शोधणे: प्रत्येक पान वाचणे = Table Scan; मागची पूर्ण सूची वाचणे = Index Scan; सूचीत थेट 'S' अक्षरावर जाणे = Index Seek.
 
-### 41.1 What is a Table Scan?
+### 44.1 What is a Table Scan?
 * **Definition:** Reading the entire table page by page and row by row.
 * **Impact:** Leads to very slow query performance on large datasets.
 * **Example:** Like reading every single page of a book to find a name.
 * **मराठी:** Table Scan म्हणजे टेबलची प्रत्येक row सुरुवातीपासून शेवटपर्यंत वाचणे. मोठ्या टेबलवर हे खूप हळू होते.
 
-### 41.2 What is an Index Scan?
+### 44.2 What is an Index Scan?
 * **Definition:** Scanning all data inside an index to find matching rows (or only scanning the data which is part of the index).
 * **Impact:** Faster than a table scan, but still reads a lot of entries.
 * **Example:** Like reading every entry in the index section at the back of a book.
 
-### 41.3 What is an Index Seek?
+### 44.3 What is an Index Seek?
 * **Definition:** A targeted search within an index, retrieving only specific rows. MySQL directly looks up the specific rows it needs using the index key.
 * **Impact:** Extremely fast (Targeted lookup).
 * **Example:** Looking up the name "John Smith" in an index and jumping directly to that exact page.
 * **मराठी:** Index Seek सर्वात वेगवान आहे, कारण database थेट हव्या असलेल्या row वर उडी मारतो आणि नको असलेला डेटा वाचत नाही.
 
-### 41.4 Best Practices to Ensure Index Seek
+### 44.4 Best Practices to Ensure Index Seek
 1. Use `WHERE` filters on indexed columns.
 2. Prefer equality (`=`) or range conditions (`>`, `<`).
 3. Create composite indexes for multi-column filters.
 
-### 41.5 Topic 41 Summary (मराठी सारांश)
+### 44.5 Topic 44 Summary (मराठी सारांश)
 
 * **डेटा वाचण्याच्या 3 पद्धती (हळू ➔ वेगवान):**
   * **Table Scan:** संपूर्ण टेबल वाचणे (MySQL `EXPLAIN`: `type = ALL`).
@@ -13949,7 +14537,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
 
 ---
 
-## Topic 42: SQL Join Algorithms (How Joins Work Internally)
+## Topic 45: SQL Join Algorithms (How Joins Work Internally)
 
 * **Image Reference:** ![Join Algorithms](./svg_join_algorithms.svg) *(Description: Shows Nested Loop Join, Hash Join, and Block Nested Loop Join concepts).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती JOIN आतून चालवण्याचे 3 algorithms दाखवते.
@@ -13960,16 +14548,16 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
 
 * **Definition:** A join algorithm is the method the SQL engine uses under the hood to combine rows from two (or more) tables. Even though you just write `JOIN`, MySQL must decide exactly how to perform that match.
 
-### 42.1 Nested Loop Join (NLJ)
+### 45.1 Nested Loop Join (NLJ)
 * **Definition:** For each row in the first (outer) table, MySQL looks up matching rows in the second (inner) table.
 * **Details:** This is the most common (default) algorithm. If there is an index on the join column, it is an **Index Nested Loop Join** (Very Fast). If there is no index, it becomes very slow.
 * **मराठी:** Nested Loop Join मध्ये database पहिल्या टेबलची प्रत्येक row घेऊन दुसऱ्या टेबलमध्ये match शोधतो (loop च्या आत loop). दुसऱ्या टेबलच्या join column वर index असेल तर हे खूप वेगवान होते.
 
-### 42.2 Hash Join (MySQL 8.0.18+)
+### 45.2 Hash Join (MySQL 8.0.18+)
 * **Definition:** Builds a hash table in memory from one table, then probes (checks) it with rows from the other table.
 * **Details:** Used for large, non-indexed joins. It is much faster than nested loops when indexes are missing.
 
-### 42.3 Block Nested Loop Join (BNLJ)
+### 45.3 Block Nested Loop Join (BNLJ)
 * **Definition:** Uses blocks of rows (chunks) instead of one-by-one row comparisons.
 * **Details:** Improves performance when indexes aren't helpful, reducing the number of times the inner table needs to be scanned.
 * ⚠️ **Note:** Block Nested Loop was **removed in MySQL 8.0.20**; MySQL now uses **Hash Join** in the same situations (join without a usable index). You will still see BNL in older MySQL 5.7 plans.
@@ -13978,7 +14566,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
 * **Interview Perspective (SQL Server specific):** 
   * **Merge Join Algorithm:** Used when both tables are already sorted on the join keys. It merges them extremely efficiently. (Popular in SQL Server).
 
-### 42.4 Topic 42 Summary (मराठी सारांश)
+### 45.4 Topic 45 Summary (मराठी सारांश)
 
 * **Join Algorithm म्हणजे काय?** आपण फक्त `JOIN` लिहितो; दोन टेबल्सच्या rows प्रत्यक्ष कशा जुळवायच्या ते MySQL आतून ठरवतो.
 * **Nested Loop Join:** पहिल्या टेबलच्या प्रत्येक row साठी दुसऱ्या टेबलमध्ये match शोधणे; दुसऱ्या टेबलच्या join column वर index असेल तर खूप वेगवान (MySQL चा default).
@@ -13989,14 +14577,14 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
 
 ---
 
-## Topic 43: SQL Table Partitioning (Performance Optimization)
+## Topic 46: SQL Table Partitioning (Performance Optimization)
 
-### 43.1 What is Partitioning?
+### 46.1 What is Partitioning?
 * **Definition:** Partitioning is the process of splitting one large, big table into smaller, manageable physical pieces (called partitions) while keeping it logically as **one single table** for queries.
 * **How it works:** MySQL automatically decides which partition(s) to read based on your query. You don't have to manually select from different tables; the database engine handles the routing for you.
 * **मराठी:** Partitioning म्हणजे खूप मोठ्या टेबलचे छोटे-छोटे भाग (partitions) करणे. बाहेरून ते एकच टेबल दिसते, पण आत database प्रत्येक भाग वेगळा साठवतो; त्यामुळे शोधणे आणि जुना डेटा सांभाळणे सोपे आणि जलद होते. उदा. `sales` टेबल वर्षानुसार p2023, p2024, p2025.
 
-### 43.2 The Problem: Why Do We Need Partitioning?
+### 46.2 The Problem: Why Do We Need Partitioning?
 * **Image Reference:** ![Big Table Problem](./svg_big_table_problem.svg) *(Description: A massive 100M+ row table causes full table scans to be extremely slow. Trying to fix it with a massive single index also fails because inserting, updating, and deleting rows in a huge index takes a long time).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती मोठ्या टेबलची समस्या दाखवते: 10 कोटी+ rows वर full scan खूप हळू होतो, आणि एक मोठा index insert/update ला हळू करतो.
   * **उदाहरण:** फक्त 2025 चा डेटा हवा असताना 2015 पासूनच्या सर्व rows वाचाव्या लागतात.
@@ -14005,7 +14593,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
   * If you add a massive index, reading is faster, but `INSERT`, `UPDATE`, and `DELETE` operations become extremely slow because updating a massive index tree takes heavy processing.
   * Usually, you only query **new data** (e.g., 2025) heavily, and rarely need old data (e.g., 2023).
 
-### 43.3 The Solution: Partitioning & Scalability
+### 46.3 The Solution: Partitioning & Scalability
 * **Image Reference:** ![Partition Solution](./svg_partition_solution.svg) *(Description: The big table is split by year. A query for 2025 ONLY scans the 2025 partition).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती partitioning चा उपाय दाखवते: बाहेरून एकच logical टेबल दिसते, पण आत ते वर्षानुसार वेगवेगळ्या partitions मध्ये विभागलेले असते.
   * `WHERE year = 2025` लिहिल्यावर फक्त 2025 चे partition वाचले जाते (Partition Pruning).
@@ -14018,7 +14606,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
     * **उदाहरण:** 2025 मध्ये नवीन order आली ➔ फक्त 2025 partition चा index update होतो; 2023/2024 चे indexes तसेच राहतात.
   * Instead of one giant index, each partition gets its own smaller index. When you insert data in 2025, it only updates the small index for 2025 without touching the 2023/2024 indexes. This makes indexing **highly efficient**.
 
-### 43.4 Advantages & Limitations of Partitioning
+### 46.4 Advantages & Limitations of Partitioning
 * **Advantages:**
   * **Speeds up queries:** Targeted partition scanning is incredibly fast.
   * **Maintenance:** Archiving is trivial.
@@ -14030,7 +14618,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
   * The Primary Key (or Unique Key) **MUST** include the partition key column(s).
   * Too many partitions can actually hurt performance.
 
-### 43.5 Partition Boundaries (LEFT vs RIGHT)
+### 46.5 Partition Boundaries (LEFT vs RIGHT)
 * **Image Reference:** ![Partition Boundaries](./svg_partition_boundaries.svg) *(Description: LEFT partitioning includes the boundary in the left partition, while RIGHT includes it in the right partition).*
 * **📌 आकृतीचे मराठीत स्पष्टीकरण:** ही आकृती RANGE partition च्या सीमेवरची (boundary) value कोणत्या partition मध्ये जाते हे दाखवते.
   * LEFT: boundary value डाव्या partition मध्ये जाते; RIGHT: boundary value उजव्या partition मध्ये जाते (SQL Server मध्ये दोन्ही पर्याय आहेत).
@@ -14046,7 +14634,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
   * *Note (corrected): MySQL has no LEFT/RIGHT keyword. MySQL uses `VALUES LESS THAN (x)`, which means "strictly less than x", so the boundary value `x` itself always goes to the **next (right)** partition. Example: with `PARTITION p2023 VALUES LESS THAN (2024)`, year 2023 goes to `p2023`, but year 2024 goes to the next partition.*
   * **मराठी:** MySQL मध्ये LEFT/RIGHT असा पर्याय नाही. `VALUES LESS THAN (2024)` म्हणजे "2024 पेक्षा कमी"; त्यामुळे 2024 ही सीमेवरची value नेहमी पुढच्या partition मध्ये जाते (SQL Server च्या RANGE RIGHT सारखे).
 
-### 43.6 Building Partitions in MySQL (4 Steps)
+### 46.6 Building Partitions in MySQL (4 Steps)
 
 **1. Create a Partitioned Table (Inline Creation)**
 In MySQL, partitioning logic is defined inline with the table creation.
@@ -14111,13 +14699,13 @@ MySQL doesn’t easily let you add partitions to a huge table full of data. The 
   INSERT INTO sales SELECT * FROM sales_old;
   ```
 
-### 43.7 Interview Perspective (Pro-Tips)
+### 46.7 Interview Perspective (Pro-Tips)
 * **Q: Indexing vs Partitioning?**
   * **A:** Indexing optimizes search by creating a sorted tree of pointers. Partitioning optimizes search by physically dividing the table into smaller chunks. Combining both (Partitioned Indexing) gives maximum performance for massive data.
 * **Q: Why is dropping a partition better than deleting old rows?**
   * **A:** Running `DELETE FROM table WHERE year = 2022` removes rows one-by-one, logging every deletion and heavily fragmenting the index. Running `ALTER TABLE table DROP PARTITION p2022` just deletes the physical file from the disk instantly, saving hours of processing time!
 
-### 43.8 Topic 43 Summary (मराठी सारांश)
+### 46.8 Topic 46 Summary (मराठी सारांश)
 
 * **Partitioning म्हणजे काय?** मोठ्या टेबलचे आतून छोटे भाग (partitions) करणे; बाहेरून ते एकच टेबल दिसते.
 * **का?** 10 कोटी+ rows वर full scan हळू होतो आणि एक मोठा index write हळू करतो. बहुतेक queries फक्त नवीन डेटावर असतात.
@@ -14129,9 +14717,9 @@ MySQL doesn’t easily let you add partitions to a huge table full of data. The 
 
 ---
 
-## Topic 44: Query Optimization / Tuning Checklist (Interview Favorite)
+## Topic 47: Query Optimization / Tuning Checklist (Interview Favorite)
 
-> 🔗 **हेही पहा:** [Topic 45: Query Optimization Techniques in SQL (Detailed Guide)](#topic-45-query-optimization-techniques-in-sql-detailed-guide) — Query Optimization Techniques सविस्तर
+> 🔗 **हेही पहा:** [Topic 48: Query Optimization Techniques in SQL (Detailed Guide)](#topic-48-query-optimization-techniques-in-sql-detailed-guide) — Query Optimization Techniques सविस्तर
 
 If an interviewer asks: *"You have a slow query, how do you optimize it?"*, follow this checklist:
 
@@ -14146,7 +14734,7 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
 5. **Add or Rebuild Indexes:** If a query filters on a column frequently, add an index. If the index is fragmented, rebuild it.
 6. **Consider Partitioning:** If the table is massive (millions of rows), partition it by Date/Year.
 
-### 44.1 Topic 44 Summary (मराठी सारांश)
+### 47.1 Topic 47 Summary (मराठी सारांश)
 
 * **Slow query सुधारण्याची checklist:**
   1. `EXPLAIN` / `EXPLAIN ANALYZE` पाहा ➔ `type = ALL` (full scan) आहे का?
@@ -14160,17 +14748,17 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
 
 ---
 
-## Topic 45: Query Optimization Techniques in SQL (Detailed Guide)
+## Topic 48: Query Optimization Techniques in SQL (Detailed Guide)
 
-> 🔗 **हेही पहा:** [Topic 44: Query Optimization / Tuning Checklist (Interview Favorite)](#topic-44-query-optimization--tuning-checklist-interview-favorite) — Slow query सुधारण्याची थोडक्यात checklist · [Topic 38: Database Optimization & Indexing (Analytics & Performance)](#topic-38-database-optimization--indexing-analytics--performance) — Indexing सविस्तर · [Topic 40: Query Execution Plans (EXPLAIN)](#topic-40-query-execution-plans-explain) — EXPLAIN (Execution Plans)
+> 🔗 **हेही पहा:** [Topic 47: Query Optimization / Tuning Checklist (Interview Favorite)](#topic-47-query-optimization--tuning-checklist-interview-favorite) — Slow query सुधारण्याची थोडक्यात checklist · [Topic 41: Database Optimization & Indexing (Analytics & Performance)](#topic-41-database-optimization--indexing-analytics--performance) — Indexing सविस्तर · [Topic 43: Query Execution Plans (EXPLAIN)](#topic-43-query-execution-plans-explain) — EXPLAIN (Execution Plans)
 
-### 45.1 What is Query Optimization?
+### 48.1 What is Query Optimization?
 
 * **Query optimization techniques** are methods used to improve the efficiency of SQL queries so that they run faster and use fewer resources (CPU, memory, disk I/O, network).
 * When you write a query, the DBMS **query optimizer** decides the best **execution plan**. Optimization techniques help the optimizer produce efficient plans (and help us write queries that it can run efficiently).
 * **मराठी:** Query Optimization म्हणजे query कमी वेळात आणि कमी CPU/memory/disk वापरून चालावी यासाठी केलेले उपाय. Query कशी चालवायची (execution plan) हे database चा optimizer ठरवतो; आपण query आणि indexes असे लिहायचे की त्याला चांगला plan निवडता येईल.
 
-### 45.2 Step 1: Measure First — EXPLAIN, EXPLAIN FORMAT=JSON, EXPLAIN ANALYZE
+### 48.2 Step 1: Measure First — EXPLAIN, EXPLAIN FORMAT=JSON, EXPLAIN ANALYZE
 
 ![EXPLAIN vs EXPLAIN FORMAT=JSON vs EXPLAIN ANALYZE](./svg_explain_json_analyze.svg)
 
@@ -14212,7 +14800,7 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
   * **`EXPLAIN ANALYZE`** ➔ query खरोखर चालवून प्रत्येक पायरीला किती वेळ आणि किती rows लागल्या ते दाखवतो.
   * **उदाहरण:** `EXPLAIN` मध्ये `type = ALL, rows = 100000` दिसले ➔ `department_id` वर index लावा ➔ पुन्हा `EXPLAIN` केल्यावर `type = ref, rows = 40` दिसते.
 
-### 45.3 Optimize Data Retrieval
+### 48.3 Optimize Data Retrieval
 
 * **Select only the needed columns** – avoid `SELECT *`; list the columns explicitly to reduce data transfer and processing.
 * **Filter early with `WHERE`** – apply restrictive `WHERE` conditions to reduce the dataset as soon as possible.
@@ -14222,7 +14810,7 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
 * **मराठी:** फक्त लागणारे columns घ्या, `WHERE` ने सुरुवातीलाच rows कमी करा, pagination साठी `LIMIT` वापरा, आणि indexed column वर function लावू नका (तारखेसाठी range वापरा).
   * **उदाहरण:** `SELECT id, name FROM customers WHERE city = 'Pune' LIMIT 20;` हे `SELECT * FROM customers` पेक्षा खूप कमी डेटा वाचते.
 
-### 45.4 Indexing Strategies
+### 48.4 Indexing Strategies
 
 * Use indexes on frequently searched columns (primary keys, foreign keys, and columns in `WHERE`, `JOIN`, `ORDER BY`, `GROUP BY`).
 * Indexing acts as a shortcut that helps the database find and retrieve data much faster. But indexes must also be designed well:
@@ -14233,9 +14821,9 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
   * Use **composite indexes** wisely → column order matters (leftmost prefix rule).
   * Keep index columns short (avoid long `TEXT`/`VARCHAR`; use a prefix index like `INDEX(email(20))` if needed).
 * **मराठी:** `WHERE`/`JOIN`/`ORDER BY`/`GROUP BY` मधील columns वर index लावा; query ला लागणारे सर्व columns index मध्येच असतील (covering index) तर टेबल वाचावेच लागत नाही. छोट्या टेबल्सवर आणि गरज नसताना खूप indexes लावू नका; composite index मध्ये columns चा क्रम महत्त्वाचा.
-  * **उदाहरण:** `SELECT email FROM users WHERE city = 'Pune';` साठी `INDEX(city, email)` ➔ covering index ➔ `EXPLAIN` मध्ये `Using index`. (सविस्तर: Topic 38.)
+  * **उदाहरण:** `SELECT email FROM users WHERE city = 'Pune';` साठी `INDEX(city, email)` ➔ covering index ➔ `EXPLAIN` मध्ये `Using index`. (सविस्तर: Topic 41.)
 
-### 45.5 Join Optimization
+### 48.5 Join Optimization
 
 * Join only the necessary tables (don't bring in extra tables you don't use).
 * **Filter early:** add filters so fewer rows go into the join — for an `INNER JOIN` put conditions in `WHERE` or `ON`; for a `LEFT JOIN`, conditions on the right table belong in `ON` (in `WHERE` they turn it into an inner join).
@@ -14248,7 +14836,7 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
 * **मराठी:** गरजेचीच टेबल्स join करा, join आधी rows कमी करा, join चे columns indexed ठेवा, आणि फक्त "आहे का" तपासायचे असेल तर `JOIN + DISTINCT` ऐवजी `EXISTS` वापरा.
   * **उदाहरण:** order दिलेले ग्राहक ➔ `SELECT DISTINCT c.* FROM customers c JOIN orders o ON ...` ऐवजी `SELECT * FROM customers c WHERE EXISTS (SELECT 1 FROM orders o WHERE o.customer_id = c.id);`
 
-### 45.6 Avoid Costly Operations
+### 48.6 Avoid Costly Operations
 
 * **`DISTINCT` – use only when necessary** (prefer `GROUP BY` or `EXISTS`).
   * It forces the database to **sort/hash and compare rows** to remove duplicates. This is extra work, especially when you retrieve many columns, the dataset is large and there is no supporting index.
@@ -14265,7 +14853,7 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
 * **मराठी:** `DISTINCT` आणि `UNION` ला duplicates काढण्यासाठी जास्तीचे काम करावे लागते, म्हणून गरज असेल तरच वापरा (अन्यथा `UNION ALL`, `EXISTS`, `GROUP BY`). `LIKE '%abc'`, `NOT IN`, `!=` मुळे index वापरला जात नाही आणि full scan होतो.
   * **उदाहरण:** 2024 आणि 2025 चे orders (duplicates शक्यच नाहीत) ➔ `UNION` ऐवजी `UNION ALL` ➔ जास्त वेगवान.
 
-### 45.7 Data Type Optimization
+### 48.7 Data Type Optimization
 
 * Use the **smallest suitable type** → smaller types = less storage = faster reads/writes and better cache usage.
 * Use `TINYINT`, `SMALLINT`, `INT`, `BIGINT` appropriately; for numeric values use `INT`, `DECIMAL` (money) or `FLOAT`/`DOUBLE` (scientific) appropriately.
@@ -14276,57 +14864,57 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
 * **मराठी:** गरजेइतकाच लहान data type वापरा: वय ➔ `TINYINT`, पैसे ➔ `DECIMAL`, तारीख ➔ `DATE` (VARCHAR नाही). लहान type मुळे जास्त rows memory मध्ये बसतात आणि queries वेगवान होतात.
   * **उदाहरण:** `age VARCHAR(10)` ऐवजी `age TINYINT UNSIGNED` (1 byte) वापरा.
 
-### 45.8 Stored Procedures for Optimization
+### 48.8 Stored Procedures for Optimization
 
 * **Why can stored procedures help with optimization?**
   * The statements are parsed once per connection and reused on the next calls (SQL Server and Oracle also cache the compiled execution plan; MySQL still builds the plan each time).
   * They **reduce network traffic**: the logic is sent once and each run is a single `CALL` instead of many queries — related queries are combined in one call, reducing round trips.
   * Useful for **batch processing** and frequently repeated queries.
-* **मराठी:** अनेक queries एकाच procedure मध्ये ठेवल्या की app आणि database मध्ये एकच फेरी होते; वारंवार चालणाऱ्या batch कामासाठी हे उपयोगी आहे (Topic 33).
+* **मराठी:** अनेक queries एकाच procedure मध्ये ठेवल्या की app आणि database मध्ये एकच फेरी होते; वारंवार चालणाऱ्या batch कामासाठी हे उपयोगी आहे (Topic 35).
 
-### 45.9 Avoid `!=` / `<>` in WHERE Clauses
+### 48.9 Avoid `!=` / `<>` in WHERE Clauses
 
 * Conditions like `WHERE status != 'completed'` usually cause a **full scan**: the database must look at every row to find the non-completed statuses.
 * To optimize, use **positive matching** instead: `WHERE status IN ('pending', 'processing')`.
 * **मराठी:** "हे नाही" (`!=`) अशी अट index नीट वापरू शकत नाही; "हे आहे" (`IN (...)`) अशी सकारात्मक अट लिहा.
 
-### 45.10 Subquery Optimization
+### 48.10 Subquery Optimization
 
 * Prefer `EXISTS` over `IN` when checking existence (especially for large subquery results, and always prefer `NOT EXISTS` over `NOT IN` because of `NULL`s).
 * Use a `JOIN` instead of a correlated subquery where possible.
 * **Use range conditions for numbers and dates** (`BETWEEN`, `>=` and `<`) so indexes can be used.
 * **मराठी:** अस्तित्व तपासताना `EXISTS` वापरा, correlated subquery ऐवजी `JOIN` करा, आणि तारखा/संख्यांसाठी range अटी वापरा.
 
-### 45.11 Batch & Parallel Processing
+### 48.11 Batch & Parallel Processing
 
 * Process large updates/inserts/deletes in **batches**, e.g. `DELETE FROM logs WHERE created_at < '2024-01-01' LIMIT 10000;` repeated until 0 rows are affected (or loop by id ranges).
 * Avoid row-by-row processing ("RBAR" — Row By Agonizing Row) → use set-based queries (one `UPDATE` for many rows instead of a loop).
 * Some DBMS support parallel query execution → enable it if available (MySQL 8 can read in parallel only for a few operations such as `SELECT COUNT(*)` on InnoDB and `CHECK TABLE`).
 * **मराठी:** 10 लाख rows एकाच वेळी delete केल्यास मोठा lock आणि मोठा log तयार होतो; 10,000-10,000 च्या batches मध्ये करा. loop मध्ये एक-एक row update करण्याऐवजी एकच set-based `UPDATE` लिहा.
 
-### 45.12 Partitioning & Sharding (Advanced)
+### 48.12 Partitioning & Sharding (Advanced)
 
-* **Partition** large tables by range, list or hash — queries get faster because irrelevant partitions are skipped (partition pruning). *(Topic 43)*
+* **Partition** large tables by range, list or hash — queries get faster because irrelevant partitions are skipped (partition pruning). *(Topic 46)*
 * **Shard** very large datasets across multiple servers (each server holds part of the data, e.g. by customer region).
 * **मराठी:** Partitioning = एका server वर मोठ्या टेबलचे भाग; Sharding = डेटा अनेक servers वर वाटणे.
 
-### 45.13 Caching
+### 48.13 Caching
 
 * Application-level caching (Redis, Memcached) reduces repeated database calls. *(MySQL 8 removed its own query-result cache; the InnoDB buffer pool caches data pages.)*
 * **मराठी:** वारंवार लागणारा आणि कमी बदलणारा डेटा (उदा. product list) Redis मध्ये ठेवल्यास database ला पुन्हा-पुन्हा विचारावे लागत नाही.
 
-### 45.14 Use Window Functions
+### 48.14 Use Window Functions
 
-* Instead of subqueries or self-joins for ranking/aggregation, use `ROW_NUMBER()`, `RANK()`, `LAG()`, etc. They process the data in one pass and are often faster. *(Topic 24)*
+* Instead of subqueries or self-joins for ranking/aggregation, use `ROW_NUMBER()`, `RANK()`, `LAG()`, etc. They process the data in one pass and are often faster. *(Topic 26)*
 * **मराठी:** "प्रत्येक विभागातील सर्वाधिक पगार" सारख्या प्रश्नांसाठी correlated subquery ऐवजी `ROW_NUMBER() OVER (PARTITION BY dept ORDER BY salary DESC)` वापरा.
 
-### 45.15 Connection & Transaction Management
+### 48.15 Connection & Transaction Management
 
 * Use **connection pooling** → avoid the overhead of opening/closing database connections.
 * Keep **transactions short** → reduces locking and blocking.
 * **मराठी:** प्रत्येक request साठी नवीन connection उघडण्याऐवजी pool मधील connection वापरा, आणि transaction मध्ये फक्त आवश्यक statements ठेवा म्हणजे locks लवकर सुटतात.
 
-### 45.16 In Short & Topic 45 Summary (मराठी सारांश)
+### 48.16 In Short & Topic 48 Summary (मराठी सारांश)
 
 ![Query Optimization Techniques Map](./svg_query_optimization_techniques.svg)
 
@@ -14345,25 +14933,25 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
   5. **महाग operations टाळा:** अनावश्यक `DISTINCT`/`UNION` (त्याऐवजी `UNION ALL`), `NOT IN`, `!=`, `LIKE '%x'`.
   6. **योग्य data types**, procedures ने कमी network फेऱ्या, batches मध्ये मोठे बदल, partitioning/sharding, Redis caching, window functions, connection pooling आणि लहान transactions.
 * **उदाहरण:** slow query `SELECT * FROM orders WHERE YEAR(order_date) = 2025 AND status != 'cancelled';` ➔ सुधारित: `SELECT order_id, amount FROM orders WHERE order_date >= '2025-01-01' AND order_date < '2026-01-01' AND status IN ('placed', 'shipped', 'delivered');` + `INDEX(order_date, status)`.
-* **हेही पहा:** Topic 44 (Tuning Checklist), Topic 38 (Indexing), Topic 40 (EXPLAIN).
+* **हेही पहा:** Topic 47 (Tuning Checklist), Topic 41 (Indexing), Topic 43 (EXPLAIN).
 
 ---
 
-# 📘 Part 7: Database Design & Data Management (Topics 46–48)
+# 📘 Part 7: Database Design & Data Management (Topics 49–51)
 
-> **मराठी:** Database Design आणि Data Management — या भागात Topics 46 ते 48 आहेत.
+> **मराठी:** Database Design आणि Data Management — या भागात Topics 49 ते 51 आहेत.
 
 ---
 
-## Topic 46: Database Normalization (1NF to BCNF)
+## Topic 49: Database Normalization (1NF to BCNF)
 
-> 🔗 **हेही पहा:** [Topic 47: Associations (Relationships Between Tables)](#topic-47-associations-relationships-between-tables) — Associations (1:1, 1:N, M:N)
+> 🔗 **हेही पहा:** [Topic 50: Associations (Relationships Between Tables)](#topic-50-associations-relationships-between-tables) — Associations (1:1, 1:N, M:N)
 
-### 46.1 What is Normalization?
+### 49.1 What is Normalization?
 * **Definition:** The process of organizing data in a database to eliminate redundancy (data duplication) and ensure data integrity.
 * **मराठी:** Normalization म्हणजे database design करताना तोच डेटा वारंवार लिहिणे (duplication) टाळण्यासाठी टेबल्स योग्य भागांत विभागणे. उदा. प्रत्येक order मध्ये ग्राहकाचा पत्ता लिहिण्याऐवजी वेगळे `customers` टेबल बनवून फक्त `customer_id` ठेवणे.
 
-### 46.2 The Normal Forms (Step-by-Step)
+### 49.2 The Normal Forms (Step-by-Step)
 1. **1NF (First Normal Form):**
    * Rule: Each column must have atomic (single) values. No comma-separated lists in one column!
 2. **2NF (Second Normal Form):**
@@ -14373,10 +14961,10 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
 4. **BCNF (Boyce-Codd Normal Form):**
    * Rule: A stricter version of 3NF. Every determinant must be a candidate key.
 
-### 46.3 What is Denormalization?
+### 49.3 What is Denormalization?
 * **Definition:** Intentionally adding redundancy back to a normalized database to speed up heavy read queries (avoiding complex Joins). Common in Data Warehouses (OLAP).
 
-### 46.4 Data Warehouse Modeling: OLTP vs OLAP, Star & Snowflake Schema
+### 49.4 Data Warehouse Modeling: OLTP vs OLAP, Star & Snowflake Schema
 
 * **OLTP vs OLAP:**
 
@@ -14407,7 +14995,13 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
   * Star = मध्ये fact आणि भोवती थेट dimensions (कमी joins, जलद); Snowflake = dimensions आणखी विभागलेले (कमी duplicate, जास्त joins).
   * **उदाहरण:** 'वर्ष आणि category नुसार revenue' ➔ `fact_sales` ला `dim_date` आणि `dim_product` join करून `SUM(amount)`.
 
-### 46.5 Topic 46 Summary (मराठी सारांश)
+![Star vs Snowflake schema](./svg_star_snowflake_schema.svg)
+
+> 📌 **आकृतीचे मराठीत स्पष्टीकरण:** डावीकडे Star schema: मध्यभागी `fact_sales` आणि त्याला थेट जोडलेले 4 dimension tables (date, product, customer, store). उजवीकडे Snowflake schema: `dim_product` पुढे `dim_category` → `dim_department` मध्ये आणि `dim_customer` पुढे `dim_city` मध्ये विभागले आहे, त्यामुळे duplicate कमी पण joins जास्त.
+>
+> **उदाहरण:** 'department नुसार विक्री' काढायला Star मध्ये 1 join (`dim_product`) पुरतो, Snowflake मध्ये 3 joins (product → category → department) लागतात.
+
+### 49.5 Topic 49 Summary (मराठी सारांश)
 
 * **Normalization म्हणजे काय?** तोच डेटा अनेक ठिकाणी लिहिला जाऊ नये (redundancy) आणि update/delete करताना चुका होऊ नयेत म्हणून टेबल्स योग्य भागांत विभागणे.
 * **1NF:** प्रत्येक cell मध्ये एकच (atomic) value.
@@ -14423,17 +15017,17 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
 
 ---
 
-## Topic 47: Associations (Relationships Between Tables)
+## Topic 50: Associations (Relationships Between Tables)
 
-> 🔗 **हेही पहा:** [Topic 10: Keys & Constraints in SQL](#topic-10-keys--constraints-in-sql) — Keys & Constraints (Foreign Key) · [Topic 46: Database Normalization (1NF to BCNF)](#topic-46-database-normalization-1nf-to-bcnf) — Normalization
+> 🔗 **हेही पहा:** [Topic 10: Keys & Constraints in SQL](#topic-10-keys--constraints-in-sql) — Keys & Constraints (Foreign Key) · [Topic 49: Database Normalization (1NF to BCNF)](#topic-49-database-normalization-1nf-to-bcnf) — Normalization
 
-### 47.1 What is an Association in SQL?
+### 50.1 What is an Association in SQL?
 
 * **Association** in database design refers to how tables (entities) are **related** to each other.
 * In simple terms: **Association in SQL = Relationship between two or more tables.**
 * **मराठी:** Association म्हणजे दोन किंवा अधिक टेबल्समधील नाते (relationship). उदा. ग्राहक आणि त्याच्या orders यांचे नाते.
 
-### 47.2 Types of Associations (Relationships)
+### 50.2 Types of Associations (Relationships)
 
 ![Associations: Relationships Between Tables](./svg_associations_relationships.svg)
 
@@ -14466,7 +15060,7 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
   * **M:N** ➔ अनेक विद्यार्थी ↔ अनेक courses; यासाठी तिसरे (junction) टेबल लागते.
   * **Self** ➔ employee टेबलमधील manager सुद्धा employee च असतो.
 
-### 47.3 Why Associations Are Important
+### 50.3 Why Associations Are Important
 
 * They enforce **referential integrity** with foreign keys.
 * They allow **JOIN** operations to combine related data.
@@ -14474,7 +15068,7 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
 * So in SQL, association = relationship (1:1, 1:N, M:N) between tables, typically implemented with foreign keys and sometimes association tables.
 * **मराठी:** नाती Foreign Keys ने लागू केल्यामुळे चुकीचा डेटा (उदा. अस्तित्वात नसलेल्या ग्राहकाची order) येत नाही, JOIN ने संबंधित डेटा एकत्र पाहता येतो, आणि database खऱ्या जगासारखे बनते.
 
-### 47.4 How Associations Are Implemented in SQL
+### 50.4 How Associations Are Implemented in SQL
 
 * Associations between tables are implemented in two ways:
   1. **Foreign Keys** — used for **One-to-One (1:1)** and **One-to-Many (1:N / N:1)**.
@@ -14544,7 +15138,7 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
   * **M:N:** `enrollments` हे तिसरे टेबल बनवून त्यात `student_id` आणि `course_id` अशा दोन Foreign Keys ठेवतात; त्यामुळे एक M:N नाते दोन 1:N नात्यांत तुटते. हे टेबल SQL आपोआप बनवत नाही, आपल्यालाच बनवावे लागते (ORM tools कधी कधी स्वतः बनवतात).
   * **Self:** `employees.manager_id` हा त्याच टेबलच्या `emp_id` ला refer करतो.
 
-### 47.5 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
+### 50.5 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
 
 * **Q1. How do you implement a many-to-many relationship?**
   * **Answer:** A junction table with two foreign keys and a composite primary key, e.g. `enrollments(student_id, course_id)`.
@@ -14562,19 +15156,19 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
   * **Answer:** How many rows of one entity can relate to another (1:1, 1:N, M:N) plus optionality (must / may). Crow's-foot notation draws it on the relationship line.
   * **मराठी:** एका entity च्या किती rows दुसऱ्याशी जोडल्या जाऊ शकतात (1:1, 1:N, M:N).
 
-### 47.6 Topic 47 Summary (मराठी सारांश)
+### 50.6 Topic 50 Summary (मराठी सारांश)
 
 * **Association = टेबल्समधील नाते.** 4 प्रकार: 1:1, 1:N (= N:1), M:N आणि Self.
 * **अंमलबजावणी:** 1:1 ➔ Foreign Key + `UNIQUE`; 1:N ➔ "अनेक" बाजूला Foreign Key; M:N ➔ दोन Foreign Keys असलेले junction टेबल (उदा. `enrollments`); Self ➔ त्याच टेबलच्या Primary Key ला Foreign Key.
 * **महत्त्व:** referential integrity, JOIN ने डेटा जोडणे, खऱ्या जगाचे नाते database मध्ये दाखवणे.
 * **उदाहरण:** Amazon ➔ एक ग्राहक अनेक orders (1:N); एका order मध्ये अनेक products आणि एक product अनेक orders मध्ये (M:N ➔ `order_items` junction टेबल).
-* **हेही पहा:** Topic 10 (Keys & Constraints), Topic 19 (Joins, Self Join), Topic 46 (Normalization).
+* **हेही पहा:** Topic 10 (Keys & Constraints), Topic 21 (Joins, Self Join), Topic 49 (Normalization).
 
 ---
 
-## Topic 48: Database Import & Export (CSV, SQL Dumps)
+## Topic 51: Database Import & Export (CSV, SQL Dumps)
 
-### 48.1 Working with CSV Files
+### 51.1 Working with CSV Files
 * **CSV:** Stands for **Comma Separated Value**.
 * **Rule of CSV Imports:** The table schema must exactly match the CSV file. Columns in the table must correspond (in number, order, and data type) to the values in the CSV. (e.g., If CSV has `id, name, salary`, the table must have the exact same structure).
   * *Tip:* This is the default behaviour. `LOAD DATA` also lets you list the target columns at the end, e.g. `... IGNORE 1 ROWS (id, name, @skip, salary);`, to change the order or skip a CSV column (`@skip` is a throw-away variable).
@@ -14591,7 +15185,7 @@ If an interviewer asks: *"You have a slow query, how do you optimize it?"*, foll
   * ⚠️ *Note:* In MySQL 8, `LOCAL` is disabled by default. Enable it on the server (`SET GLOBAL local_infile = 1;`) and on the client (connect with `mysql --local-infile=1`, or in Workbench add `OPT_LOCAL_INFILE=1` to the connection's Advanced options). Otherwise you get error 3948 / 2068.
 * **Handling NULL & Constraints:** Empty fields in CSV may become `NULL` if allowed. If the table has a Primary Key or Unique constraint, duplicates in the CSV will cause errors (unless the `IGNORE` keyword is used in the query).
 
-### 48.2 Importing Data into MySQL
+### 51.2 Importing Data into MySQL
 #### Method 1: Using `LOAD DATA INFILE` (Fastest Way)
 MySQL has a built-in command to directly import CSV into a table extremely fast.
 
@@ -14630,7 +15224,7 @@ mysqlimport --local -u root -p --fields-terminated-by=',' --lines-terminated-by=
 #### Method 3: Using GUI Tools (MySQL Workbench / phpMyAdmin)
 * **Workbench:** Right-click table $\rightarrow$ `Table Data Import Wizard` $\rightarrow$ Select CSV file $\rightarrow$ Map columns $\rightarrow$ Finish.
 
-### 48.3 Exporting Data from MySQL
+### 51.3 Exporting Data from MySQL
 #### 1. Export Query Results to CSV (`INTO OUTFILE`)
 ```sql
 SELECT id, name, salary
@@ -14645,7 +15239,7 @@ LINES TERMINATED BY '\n';
 #### 2. Export via GUI (MySQL Workbench)
 * Right-click a table $\rightarrow$ `Table Data Export Wizard` $\rightarrow$ Choose CSV, JSON, or SQL format.
 
-### 48.4 Database Backups & Dumps (`mysqldump`)
+### 51.4 Database Backups & Dumps (`mysqldump`)
 `mysqldump` is a powerful command-line tool provided by MySQL to create a full backup (SQL Dump) of your schema and data.
 
 * **Export Full Database:** 
@@ -14680,7 +15274,7 @@ mysql -u root -p mydb < mydb.sql
 ```
 *(This executes all the `CREATE TABLE` and `INSERT` statements inside the `.sql` file, restoring your database completely).*
 
-### 48.5 Exporting/Importing Other File Types (XML & JSON)
+### 51.5 Exporting/Importing Other File Types (XML & JSON)
 
 #### 1. XML Files
 MySQL natively supports XML exports and imports.
@@ -14706,7 +15300,7 @@ MySQL natively supports XML exports and imports.
 * **Importing JSON:**
   MySQL doesn't have a direct `LOAD JSON INFILE` command. Instead, you read it using `LOAD DATA` into a single text column and parse it using `JSON_TABLE()`. For bulk JSON imports, **GUI Tools (MySQL Workbench) or scripts (Python/Node.js)** are highly recommended over raw SQL.
 
-### 48.6 Advanced `mysqldump` (Routines, Triggers, Events)
+### 51.6 Advanced `mysqldump` (Routines, Triggers, Events)
 By default, `mysqldump` exports tables and data. If you have Stored Procedures, Functions, Triggers, or Scheduled Events, you **MUST** include specific flags; otherwise, they will be left behind in the backup!
 
 * **Export everything including Routines, Triggers, and Events:**
@@ -14715,7 +15309,7 @@ By default, `mysqldump` exports tables and data. If you have Stored Procedures, 
   ```
   *(Note: `--routines` exports Procedures & Functions. `--triggers` is usually on by default, but it's good practice to specify it).*
 
-### 48.7 Performance Tip: Importing HUGE SQL Files
+### 51.7 Performance Tip: Importing HUGE SQL Files
 When you import a massive `.sql` dump (e.g., 50GB file), running `mysql < dump.sql` can take hours. To drastically speed it up, log into MySQL and temporarily disable constraint checks:
 
 ```sql
@@ -14734,7 +15328,7 @@ SET foreign_key_checks=1;
 ```
 *(This prevents MySQL from verifying constraints and writing transaction logs for every single row inserted, making bulk imports extremely fast).*
 
-### 48.8 Backup Strategy & Replication
+### 51.8 Backup Strategy & Replication
 
 * **Types of backup:**
   * **Logical backup** – SQL statements (`mysqldump`, `mysqlpump`, MySQL Shell `util.dumpInstance`). Portable and readable, but slow to restore for big databases.
@@ -14754,7 +15348,7 @@ SET foreign_key_checks=1;
   * Replication = primary चे बदल binary log मधून replicas वर; reports replicas वर, primary बंद पडला तर replica ला primary बनवता येते.
   * **उदाहरण:** सकाळी 11 वाजता चुकून `DELETE` झाला ➔ रात्रीचा full backup restore करा आणि binlog 10:59 पर्यंत replay करा. Replication ने हा DELETE replicas वर सुद्धा जातो, म्हणून replication हा backup नाही.
 
-### 48.9 Topic 48 Summary (मराठी सारांश)
+### 51.9 Topic 51 Summary (मराठी सारांश)
 
 * **CSV Import चे नियम:** delimiter (`,` `;` tab), text साठी `"` quotes, header असेल तर `IGNORE 1 ROWS`, line ending (`\n` Linux / `\r\n` Windows). टेबलचे columns CSV शी जुळायला हवेत, किंवा `LOAD DATA` च्या शेवटी column list द्यावी.
 * **`LOAD DATA INFILE` (सर्वात जलद):** file server वर हवी (`secure_file_priv` मधील folder) आणि `FILE` privilege लागतो. `LOAD DATA LOCAL INFILE` ➔ file तुमच्या laptop वर; MySQL 8 मध्ये `local_infile` server आणि client दोन्हीकडे चालू करावे लागते.
@@ -14768,15 +15362,15 @@ SET foreign_key_checks=1;
 
 ---
 
-# 📘 Part 8: Final Revision & Interview Preparation (Topics 49–50)
+# 📘 Part 8: Final Revision & Interview Preparation (Topics 52–53)
 
-> **मराठी:** शेवटची उजळणी आणि Interview तयारी — या भागात Topics 49 ते 50 आहेत.
+> **मराठी:** शेवटची उजळणी आणि Interview तयारी — या भागात Topics 52 ते 53 आहेत.
 
 ---
 
-## Topic 49: Final Summary / निष्कर्ष
+## Topic 52: Final Summary / निष्कर्ष
 
-> 🔗 **हेही पहा:** [Topic 18: Commands to Query Data (DQL In-Depth, Clauses & Filtering)](#topic-18-commands-to-query-data-dql-in-depth-clauses--filtering) — SQL Clauses आणि Execution Order सविस्तर
+> 🔗 **हेही पहा:** [Topic 20: Commands to Query Data (DQL In-Depth, Clauses & Filtering)](#topic-20-commands-to-query-data-dql-in-depth-clauses--filtering) — SQL Clauses आणि Execution Order सविस्तर
 * **English Summary:**
   * **HAVING vs WHERE:** `WHERE` filters individual rows before grouping, while `HAVING` filters aggregated data after `GROUP BY`.
   * **Order of Execution:** The database engine processes SQL in this order: `FROM` $\rightarrow$ `WHERE` $\rightarrow$ `GROUP BY` $\rightarrow$ `HAVING` $\rightarrow$ `SELECT` $\rightarrow$ `ORDER BY` $\rightarrow$ `LIMIT`. *(Full order: `FROM`/`JOIN` → `WHERE` → `GROUP BY` → `HAVING` → `SELECT` (+ window functions) → `DISTINCT` → `ORDER BY` → `LIMIT`.)*
@@ -14791,11 +15385,11 @@ SET foreign_key_checks=1;
 
 ---
 
-## Topic 50: Interview Q&A Bank (Most-Asked SQL Questions)
+## Topic 53: Interview Q&A Bank (Most-Asked SQL Questions)
 
 > Short, simple answers you can say in an interview. The **See** column tells you where the full explanation is in these notes.
 
-### 50.1 Part A: Database Basics
+### 53.1 Part A: Database Basics
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
@@ -14807,7 +15401,7 @@ SET foreign_key_checks=1;
 | 6 | What is a schema? | A logical folder inside a database that groups tables; also means the structure (blueprint) of the tables. | 6.4 |
 | 7 | What is CRUD? | Create (`INSERT`), Read (`SELECT`), Update (`UPDATE`), Delete (`DELETE`). | 3.3 |
 
-### 50.2 Part B: Data Types
+### 53.2 Part B: Data Types
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
@@ -14817,13 +15411,13 @@ SET foreign_key_checks=1;
 | 11 | What is `BOOLEAN` in MySQL? | Just an alias for `TINYINT(1)` — stores 0 (false) or 1 (true). | 6.8.3 |
 | 12 | `ENUM` vs `SET`? | `ENUM` stores **one** value from a list; `SET` can store **many** values from a list. | 6.8.3 |
 
-### 50.3 Part C: DDL, DML & Command Types
+### 53.3 Part C: DDL, DML & Command Types
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
 | 13 | Types of SQL commands? | DDL (`CREATE`, `ALTER`, `DROP`, `TRUNCATE`, `RENAME`), DML (`INSERT`, `UPDATE`, `DELETE`), DQL (`SELECT`), DCL (`GRANT`, `REVOKE`), TCL (`COMMIT`, `ROLLBACK`, `SAVEPOINT`). | 9.2 |
 | 14 | `DELETE` vs `TRUNCATE` vs `DROP`? | `DELETE`: removes chosen rows, DML, can rollback. `TRUNCATE`: empties the whole table fast, DDL, resets `AUTO_INCREMENT`, no rollback. `DROP`: removes the table itself. | 9.12 |
-| 15 | Can we rollback DDL in MySQL? | No. DDL does an **implicit commit** — it also commits any pending changes before it. | 9.4, 14.7 |
+| 15 | Can we rollback DDL in MySQL? | No. DDL does an **implicit commit** — it also commits any pending changes before it. | 9.4, 15.7 |
 | 16 | `ALTER` vs `UPDATE`? | `ALTER` (DDL) changes the table **structure**; `UPDATE` (DML) changes the **data** in rows. | 11.9 |
 | 17 | `MODIFY` vs `CHANGE` in `ALTER TABLE`? | `MODIFY` changes the data type only; `CHANGE` renames the column **and** can change its type. | 9.6 |
 | 18 | Can we rename a database in MySQL? | No direct command. Create a new database, move tables with `RENAME TABLE old_db.t TO new_db.t`, then drop the old one. | 9.11 |
@@ -14831,7 +15425,7 @@ SET foreign_key_checks=1;
 | 20 | `REPLACE` vs `INSERT ... ON DUPLICATE KEY UPDATE`? | `REPLACE` deletes the old row and inserts a new one (other columns reset). `ON DUPLICATE KEY UPDATE` updates the existing row in place. | 11.8 |
 | 21 | Soft delete vs hard delete? | Hard delete physically removes the row (`DELETE`). Soft delete only marks it (`UPDATE ... SET is_deleted = 1`), so it can be restored. | 11.6 |
 
-### 50.4 Part D: Keys & Constraints
+### 53.4 Part D: Keys & Constraints
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
@@ -14842,71 +15436,71 @@ SET foreign_key_checks=1;
 | 26 | Super, Candidate, Alternate, Composite, Surrogate key? | Super = any set that identifies a row; Candidate = minimal super key; Alternate = candidate not chosen as PK; Composite = key of 2+ columns; Surrogate = artificial ID like `AUTO_INCREMENT`. | Topic 10 |
 | 27 | Name the SQL constraints. | `PRIMARY KEY`, `FOREIGN KEY`, `UNIQUE`, `NOT NULL`, `CHECK`, `DEFAULT`. | 9.7, Topic 10 |
 
-### 50.5 Part E: Querying, Filtering, Grouping
+### 53.5 Part E: Querying, Filtering, Grouping
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
-| 28 | Execution order of a `SELECT` query? | `FROM` → `WHERE` → `GROUP BY` → `HAVING` → `SELECT` → `DISTINCT` → `ORDER BY` → `LIMIT`. | 18.5, 18.12 |
-| 29 | Can we use a `SELECT` alias in `WHERE`? | No — `WHERE` runs before `SELECT`. But you **can** use it in `ORDER BY`. | 18.12 |
-| 30 | `WHERE` vs `HAVING`? | `WHERE` filters rows before grouping (no aggregates). `HAVING` filters groups after `GROUP BY` (aggregates allowed). | 18.12 |
-| 31 | Can we use `HAVING` without `GROUP BY`? | Yes — the whole table is treated as one group. | 18.9 |
+| 28 | Execution order of a `SELECT` query? | `FROM` → `WHERE` → `GROUP BY` → `HAVING` → `SELECT` → `DISTINCT` → `ORDER BY` → `LIMIT`. | 20.5, 20.12 |
+| 29 | Can we use a `SELECT` alias in `WHERE`? | No — `WHERE` runs before `SELECT`. But you **can** use it in `ORDER BY`. | 20.12 |
+| 30 | `WHERE` vs `HAVING`? | `WHERE` filters rows before grouping (no aggregates). `HAVING` filters groups after `GROUP BY` (aggregates allowed). | 20.12 |
+| 31 | Can we use `HAVING` without `GROUP BY`? | Yes — the whole table is treated as one group. | 20.9 |
 | 32 | Why is `SELECT *` bad in production? | It reads and sends unneeded columns, can't use covering indexes, and breaks when columns change. | 12.2 |
-| 33 | `BETWEEN` — inclusive or exclusive? | Inclusive: both ends are included (`>= low AND <= high`). | 18.7.7 |
-| 34 | `%` vs `_` in `LIKE`? | `%` = zero or more characters; `_` = exactly one character. | 18.7.9 |
-| 35 | Why does `col = NULL` return nothing? | Any comparison with NULL gives UNKNOWN, not TRUE. Use `IS NULL` / `IS NOT NULL`. | 18.7.10 |
-| 36 | What does `NOT IN (1, 2, NULL)` return? | Zero rows, because of the NULL. Use `NOT EXISTS` or filter NULLs out. | 18.7.8 |
-| 37 | `COUNT(*)` vs `COUNT(col)` vs `COUNT(DISTINCT col)`? | All rows / non-NULL values / unique non-NULL values. | 18.9 |
-| 38 | What is `ONLY_FULL_GROUP_BY`? | A mode that requires every selected column to be either in `GROUP BY` or inside an aggregate function (error 1055 otherwise). | 18.9 |
-| 39 | `LIMIT` vs `TOP`? Pagination? | MySQL uses `LIMIT`, SQL Server uses `TOP`. Page 3 with 10 rows per page: `LIMIT 10 OFFSET 20`. | 18.12 |
+| 33 | `BETWEEN` — inclusive or exclusive? | Inclusive: both ends are included (`>= low AND <= high`). | 20.7.7 |
+| 34 | `%` vs `_` in `LIKE`? | `%` = zero or more characters; `_` = exactly one character. | 20.7.9 |
+| 35 | Why does `col = NULL` return nothing? | Any comparison with NULL gives UNKNOWN, not TRUE. Use `IS NULL` / `IS NOT NULL`. | 20.7.10 |
+| 36 | What does `NOT IN (1, 2, NULL)` return? | Zero rows, because of the NULL. Use `NOT EXISTS` or filter NULLs out. | 20.7.8 |
+| 37 | `COUNT(*)` vs `COUNT(col)` vs `COUNT(DISTINCT col)`? | All rows / non-NULL values / unique non-NULL values. | 20.9 |
+| 38 | What is `ONLY_FULL_GROUP_BY`? | A mode that requires every selected column to be either in `GROUP BY` or inside an aggregate function (error 1055 otherwise). | 20.9 |
+| 39 | `LIMIT` vs `TOP`? Pagination? | MySQL uses `LIMIT`, SQL Server uses `TOP`. Page 3 with 10 rows per page: `LIMIT 10 OFFSET 20`. | 20.12 |
 
-### 50.6 Part F: Joins & SET Operators
-
-| # | Question | Short Answer | See |
-| :---: | :--- | :--- | :---: |
-| 40 | Types of joins? | INNER, LEFT, RIGHT, FULL (not in MySQL), CROSS, SELF, plus anti-joins (LEFT/RIGHT/FULL ANTI). | Topic 19 |
-| 41 | `INNER JOIN` vs `LEFT JOIN`? | Inner = only matching rows. Left = all rows of the left table + matches (NULL where no match). | Topic 19 |
-| 42 | How to do a `FULL JOIN` in MySQL? | `LEFT JOIN ... UNION ... RIGHT JOIN`. | Topic 19 |
-| 43 | What is a self join? | Joining a table to itself with aliases, e.g., employee → manager. | Topic 19 |
-| 44 | What is a cross join? | Every row of A × every row of B (Cartesian product), no `ON`. | Topic 19 |
-| 45 | JOIN vs UNION? | JOIN adds **columns** (wider result); UNION adds **rows** (longer result). | Topic 20 |
-| 46 | `UNION` vs `UNION ALL`? | `UNION` removes duplicates (slower); `UNION ALL` keeps all rows (faster). | Topic 20 |
-| 47 | Rules for SET operators? | Same number of columns, compatible data types, same column order; `ORDER BY` only once at the end; names come from the first query. | Topic 20 |
-
-### 50.7 Part G: Functions, NULL & CASE
+### 53.6 Part F: Joins & SET Operators
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
-| 48 | `IFNULL` vs `COALESCE`? | `IFNULL(a, b)` takes 2 values; `COALESCE(a, b, c, ...)` returns the first non-NULL of many (and is standard SQL). | Topic 23 |
-| 49 | What is `NULLIF` used for? | `NULLIF(a, b)` returns NULL if a = b. Common use: avoid divide-by-zero → `x / NULLIF(qty, 0)`. | Topic 23 |
-| 50 | What is `CASE`? | SQL's if-then-else. It checks conditions top to bottom and returns the first match; `ELSE` is the default. | Topic 23 |
-| 51 | `DATEDIFF` vs `TIMESTAMPDIFF` in MySQL? | `DATEDIFF(end, start)` gives days only; `TIMESTAMPDIFF(unit, start, end)` gives years, months, hours, etc. | Topic 22 |
-| 52 | Single-row vs aggregate functions? | Single-row: one input → one output per row (`UPPER`, `ROUND`). Aggregate: many rows → one result (`SUM`, `AVG`). | Topic 21 |
+| 40 | Types of joins? | INNER, LEFT, RIGHT, FULL (not in MySQL), CROSS, SELF, plus anti-joins (LEFT/RIGHT/FULL ANTI). | Topic 21 |
+| 41 | `INNER JOIN` vs `LEFT JOIN`? | Inner = only matching rows. Left = all rows of the left table + matches (NULL where no match). | Topic 21 |
+| 42 | How to do a `FULL JOIN` in MySQL? | `LEFT JOIN ... UNION ... RIGHT JOIN`. | Topic 21 |
+| 43 | What is a self join? | Joining a table to itself with aliases, e.g., employee → manager. | Topic 21 |
+| 44 | What is a cross join? | Every row of A × every row of B (Cartesian product), no `ON`. | Topic 21 |
+| 45 | JOIN vs UNION? | JOIN adds **columns** (wider result); UNION adds **rows** (longer result). | Topic 22 |
+| 46 | `UNION` vs `UNION ALL`? | `UNION` removes duplicates (slower); `UNION ALL` keeps all rows (faster). | Topic 22 |
+| 47 | Rules for SET operators? | Same number of columns, compatible data types, same column order; `ORDER BY` only once at the end; names come from the first query. | Topic 22 |
 
-### 50.8 Part H: Window Functions
-
-| # | Question | Short Answer | See |
-| :---: | :--- | :--- | :---: |
-| 53 | What is a window function? | A function used with `OVER()` that calculates across related rows **without collapsing them** (unlike `GROUP BY`). | Topic 24 |
-| 54 | `ROW_NUMBER` vs `RANK` vs `DENSE_RANK`? | For 100, 90, 90, 80 → 1,2,3,4 / 1,2,2,4 / 1,2,2,3. | Topic 24 |
-| 55 | `PARTITION BY` vs `GROUP BY`? | Both make groups, but `PARTITION BY` keeps every row; `GROUP BY` returns one row per group. | Topic 24 |
-| 56 | What do `LAG` and `LEAD` do? | Read the value from the previous (`LAG`) or next (`LEAD`) row — used for month-over-month comparisons. | Topic 24 |
-| 57 | Running total vs rolling total? | Running = from the first row up to the current row. Rolling = a fixed window, e.g., the last 3 rows. | Topic 24 |
-| 58 | Why does `LAST_VALUE` give a wrong answer? | The default frame ends at the current row. Use `ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING`. | Topic 24 |
-| 59 | Can we use a window function in `WHERE`? | No — wrap the query in a subquery/CTE and filter outside. | Topic 24 |
-
-### 50.9 Part I: Transactions & Security
+### 53.7 Part G: Functions, NULL & CASE
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
-| 60 | What are ACID properties? | Atomicity (all or nothing), Consistency (valid state), Isolation (transactions don't disturb each other), Durability (saved even after a crash). | 14.2 |
-| 61 | Isolation levels & MySQL default? | READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ (**MySQL default**), SERIALIZABLE. | 14.6 |
-| 62 | Dirty read / non-repeatable read / phantom read? | Reading uncommitted data / same row gives a different value on re-read / new rows appear on re-run of a range query. | 14.6 |
-| 63 | What is a savepoint? | A checkpoint inside a transaction; `ROLLBACK TO sp` undoes only the changes after it. | 14.3 |
-| 64 | What is a deadlock? | Two transactions wait for each other's locks. InnoDB detects it and rolls back one (error 1213). | 14.7 |
-| 65 | Is autocommit on by default? | Yes. Each statement is committed immediately unless you use `START TRANSACTION` or `SET autocommit = 0`. | 14.7 |
+| 48 | `IFNULL` vs `COALESCE`? | `IFNULL(a, b)` takes 2 values; `COALESCE(a, b, c, ...)` returns the first non-NULL of many (and is standard SQL). | Topic 25 |
+| 49 | What is `NULLIF` used for? | `NULLIF(a, b)` returns NULL if a = b. Common use: avoid divide-by-zero → `x / NULLIF(qty, 0)`. | Topic 25 |
+| 50 | What is `CASE`? | SQL's if-then-else. It checks conditions top to bottom and returns the first match; `ELSE` is the default. | Topic 25 |
+| 51 | `DATEDIFF` vs `TIMESTAMPDIFF` in MySQL? | `DATEDIFF(end, start)` gives days only; `TIMESTAMPDIFF(unit, start, end)` gives years, months, hours, etc. | Topic 24 |
+| 52 | Single-row vs aggregate functions? | Single-row: one input → one output per row (`UPPER`, `ROUND`). Aggregate: many rows → one result (`SUM`, `AVG`). | Topic 23 |
+
+### 53.8 Part H: Window Functions
+
+| # | Question | Short Answer | See |
+| :---: | :--- | :--- | :---: |
+| 53 | What is a window function? | A function used with `OVER()` that calculates across related rows **without collapsing them** (unlike `GROUP BY`). | Topic 26 |
+| 54 | `ROW_NUMBER` vs `RANK` vs `DENSE_RANK`? | For 100, 90, 90, 80 → 1,2,3,4 / 1,2,2,4 / 1,2,2,3. | Topic 26 |
+| 55 | `PARTITION BY` vs `GROUP BY`? | Both make groups, but `PARTITION BY` keeps every row; `GROUP BY` returns one row per group. | Topic 26 |
+| 56 | What do `LAG` and `LEAD` do? | Read the value from the previous (`LAG`) or next (`LEAD`) row — used for month-over-month comparisons. | Topic 26 |
+| 57 | Running total vs rolling total? | Running = from the first row up to the current row. Rolling = a fixed window, e.g., the last 3 rows. | Topic 26 |
+| 58 | Why does `LAST_VALUE` give a wrong answer? | The default frame ends at the current row. Use `ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING`. | Topic 26 |
+| 59 | Can we use a window function in `WHERE`? | No — wrap the query in a subquery/CTE and filter outside. | Topic 26 |
+
+### 53.9 Part I: Transactions & Security
+
+| # | Question | Short Answer | See |
+| :---: | :--- | :--- | :---: |
+| 60 | What are ACID properties? | Atomicity (all or nothing), Consistency (valid state), Isolation (transactions don't disturb each other), Durability (saved even after a crash). | 15.2 |
+| 61 | Isolation levels & MySQL default? | READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ (**MySQL default**), SERIALIZABLE. | 15.6 |
+| 62 | Dirty read / non-repeatable read / phantom read? | Reading uncommitted data / same row gives a different value on re-read / new rows appear on re-run of a range query. | 15.6 |
+| 63 | What is a savepoint? | A checkpoint inside a transaction; `ROLLBACK TO sp` undoes only the changes after it. | 15.3 |
+| 64 | What is a deadlock? | Two transactions wait for each other's locks. InnoDB detects it and rolls back one (error 1213). | 15.7 |
+| 65 | Is autocommit on by default? | Yes. Each statement is committed immediately unless you use `START TRANSACTION` or `SET autocommit = 0`. | 15.7 |
 | 66 | `GRANT` vs `REVOKE`? Is `FLUSH PRIVILEGES` needed? | `GRANT ... TO` gives permission; `REVOKE ... FROM` removes it. `FLUSH PRIVILEGES` is **not** needed after them. | Topic 13 |
 
-### 50.10 Part J: Query-Writing Questions (Practice These)
+### 53.10 Part J: Query-Writing Questions (Practice These)
 
 * **Q67. Find the 2nd highest salary.**
   ```sql
@@ -14999,95 +15593,95 @@ SET foreign_key_checks=1;
   * प्रत्येक उत्तर लहान आणि सोपे आहे; सविस्तर माहितीसाठी **See** कॉलममधील विभाग वाचा.
   * **Part J** मधील queries (2nd / Nth highest salary, डुप्लिकेट शोधणे व डिलीट करणे, ऑर्डर न दिलेले ग्राहक, मॅनेजरपेक्षा जास्त पगार, running total) स्वतः लिहून सराव करा.
 
-### 50.11 Part K: Transactions, Locks & Concurrency
+### 53.11 Part K: Transactions, Locks & Concurrency
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
-| 77 | What is a transaction? | A group of SQL statements that succeed together (`COMMIT`) or are undone together (`ROLLBACK`). | Topic 16 |
-| 78 | Explicit vs implicit commit? | Explicit: you write `START TRANSACTION ... COMMIT`. Implicit: MySQL commits by itself — after each statement when autocommit is ON, and before/after every DDL. | Topic 16 |
-| 79 | What are the 5 transaction states? | Active → Partially Committed → Committed → Terminated; or Failed → Aborted (rolled back) → Terminated. | Topic 16 |
-| 80 | Shared (S) vs exclusive (X) lock? | S = read lock, many transactions can hold it together; X = write lock, only one holder and it blocks S and X locks from others. | Topic {{LOCK}} |
-| 81 | `SELECT ... FOR UPDATE` vs `FOR SHARE`? | `FOR UPDATE` takes X locks on the rows read (others can't change or lock them); `FOR SHARE` takes S locks (others can read but not change). Both only inside a transaction. | Topic {{LOCK}} |
-| 82 | Optimistic vs pessimistic locking? | Pessimistic: lock first (`FOR UPDATE`) — safe under heavy conflict. Optimistic: no lock; a `version` column is checked in the `UPDATE ... WHERE version = ?` — fast when conflicts are rare. | Topic {{LOCK}} |
-| 83 | Row lock vs table lock? | InnoDB locks only the index records it touches (row-level, high concurrency); `LOCK TABLES` / MyISAM lock the whole table. | Topic {{LOCK}} |
-| 84 | What are gap / next-key locks? | Locks on the gap between index records (plus the record) used by `REPEATABLE READ` to stop phantom inserts into a range. | Topic {{LOCK}} |
-| 85 | Deadlock vs lock wait timeout? | Deadlock = cycle, InnoDB rolls one back at once (error 1213). Timeout = one transaction waited longer than `innodb_lock_wait_timeout` (error 1205). | Topic 17 |
-| 86 | How do you avoid lost updates when two users edit the same row? | Lock with `SELECT ... FOR UPDATE` in a transaction, or use optimistic locking with a version column, or update atomically (`SET stock = stock - 1 WHERE stock > 0`). | Topic {{LOCK}} |
+| 77 | What is a transaction? | A group of SQL statements that succeed together (`COMMIT`) or are undone together (`ROLLBACK`). | Topic 17 |
+| 78 | Explicit vs implicit commit? | Explicit: you write `START TRANSACTION ... COMMIT`. Implicit: MySQL commits by itself — after each statement when autocommit is ON, and before/after every DDL. | Topic 17 |
+| 79 | What are the 5 transaction states? | Active → Partially Committed → Committed → Terminated; or Failed → Aborted (rolled back) → Terminated. | Topic 17 |
+| 80 | Shared (S) vs exclusive (X) lock? | S = read lock, many transactions can hold it together; X = write lock, only one holder and it blocks S and X locks from others. | Topic 19 |
+| 81 | `SELECT ... FOR UPDATE` vs `FOR SHARE`? | `FOR UPDATE` takes X locks on the rows read (others can't change or lock them); `FOR SHARE` takes S locks (others can read but not change). Both only inside a transaction. | Topic 19 |
+| 82 | Optimistic vs pessimistic locking? | Pessimistic: lock first (`FOR UPDATE`) — safe under heavy conflict. Optimistic: no lock; a `version` column is checked in the `UPDATE ... WHERE version = ?` — fast when conflicts are rare. | Topic 19 |
+| 83 | Row lock vs table lock? | InnoDB locks only the index records it touches (row-level, high concurrency); `LOCK TABLES` / MyISAM lock the whole table. | Topic 19 |
+| 84 | What are gap / next-key locks? | Locks on the gap between index records (plus the record) used by `REPEATABLE READ` to stop phantom inserts into a range. | Topic 19 |
+| 85 | Deadlock vs lock wait timeout? | Deadlock = cycle, InnoDB rolls one back at once (error 1213). Timeout = one transaction waited longer than `innodb_lock_wait_timeout` (error 1205). | Topic 18 |
+| 86 | How do you avoid lost updates when two users edit the same row? | Lock with `SELECT ... FOR UPDATE` in a transaction, or use optimistic locking with a version column, or update atomically (`SET stock = stock - 1 WHERE stock > 0`). | Topic 19 |
 
-### 50.12 Part L: Indexes & Performance
-
-| # | Question | Short Answer | See |
-| :---: | :--- | :--- | :---: |
-| 87 | What is an index and why use it? | A B+Tree structure that lets MySQL jump to rows instead of scanning the whole table — faster reads, slower writes. | Topic 38 |
-| 88 | Clustered vs non-clustered index? | Clustered = the table itself stored in key order (InnoDB primary key, only one). Secondary (non-clustered) = separate tree holding the primary key as the pointer (many allowed). | Topic 38, Topic 39 |
-| 89 | What is a covering index? | An index that contains every column the query needs, so the table is never read (`EXPLAIN` → `Using index`). | Topic 45 |
-| 90 | Composite index `(a, b, c)` — which queries use it? | Queries filtering on `a`, `a,b` or `a,b,c` (leftmost prefix). Filtering only on `b` or `c` usually can't. | Topic 38 |
-| 91 | When is an index NOT used? | Function on the column (`YEAR(d)=2025`), leading wildcard (`LIKE '%x'`), type mismatch, `OR` on unindexed columns, low selectivity, or the optimizer thinks a full scan is cheaper. | Topic 44, Topic 45 |
-| 92 | Why not index every column? | Every index costs disk space and must be updated on each INSERT/UPDATE/DELETE, slowing writes. | Topic 38 |
-| 93 | `EXPLAIN` vs `EXPLAIN ANALYZE`? | EXPLAIN shows the estimated plan without running; EXPLAIN ANALYZE runs the query and shows actual time and rows per step. | Topic 40 |
-| 94 | What does `type = ALL` mean in EXPLAIN? | Full table scan — usually a missing or unusable index. | Topic 40, Topic 41 |
-| 95 | How do you optimize a slow query? | Measure (EXPLAIN), select fewer columns, filter early, add the right (covering/composite) index, fix joins, avoid functions on indexed columns, then consider partitioning/caching. | Topic 44, Topic 45 |
-| 96 | What is partition pruning? | MySQL reads only the partitions that can contain matching rows (e.g. only `p2025` for a 2025 date filter). | Topic 43 |
-| 97 | `UNION` vs `UNION ALL` performance? | `UNION ALL` is faster because it skips the duplicate-removal step. | Topic 20, Topic 45 |
-| 98 | OLTP vs OLAP? | OLTP = many small normalized transactions (app DB). OLAP = big analytical scans on denormalized/star-schema data (warehouse). | Topic 46 |
-
-### 50.13 Part M: Procedures, Functions, Triggers, Events & Cursors
+### 53.12 Part L: Indexes & Performance
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
-| 99 | What is a stored procedure? | A named block of SQL saved in the database and run with `CALL name(...)`; can have IN/OUT/INOUT parameters, variables, IF/loops, handlers and transactions. | Topic 33 |
-| 100 | IN vs OUT vs INOUT? | IN passes a value in; OUT returns a value in a `@variable`; INOUT goes in, is changed and comes back. | Topic 33 |
-| 101 | Why is `DELIMITER` needed? | So the client doesn't end the `CREATE PROCEDURE` at the first `;` inside the body. | Topic 33 |
-| 102 | Can a procedure parameter have a DEFAULT in MySQL? | No. Pass NULL and set the default inside with `IF p IS NULL THEN SET p = ...`. | Topic 33 |
-| 103 | Procedure vs function? | Procedure = action, `CALL`, OUT params, transactions. Function = returns one value, usable inside SELECT/WHERE, no COMMIT. | Topic 34 |
-| 104 | What is a trigger? | SQL that runs automatically BEFORE/AFTER an INSERT, UPDATE or DELETE on a table, once per row, with OLD/NEW values. | Topic 35 |
-| 105 | Give 3 real uses of triggers. | Audit log of salary changes, validation with `SIGNAL`, keeping a derived total (e.g. stock or total sales) in sync. | Topic 35 |
-| 106 | What is an event? | A scheduled job inside MySQL (`CREATE EVENT ... ON SCHEDULE AT/EVERY ... DO ...`); needs `event_scheduler = ON`. | Topic 36 |
-| 107 | Trigger vs event? | Trigger fires on a data change, immediately; event fires on a time schedule. | Topic 36 |
-| 108 | What is a cursor? | A pointer used inside a stored program to read a result set one row at a time: DECLARE → OPEN → FETCH (loop) → CLOSE, with a NOT FOUND handler to stop. | Topic {{CUR}} |
-| 109 | Why avoid cursors when possible? | They process row by row (slow); a single set-based UPDATE/INSERT ... SELECT is usually much faster. | Topic {{CUR}} |
-| 110 | How do you handle errors in a procedure? | `DECLARE CONTINUE/EXIT HANDLER FOR SQLEXCEPTION`, `GET DIAGNOSTICS` to read the message, `SIGNAL`/`RESIGNAL` to raise errors, and `ROLLBACK` in the handler for transactions. | Topic 33 |
+| 87 | What is an index and why use it? | A B+Tree structure that lets MySQL jump to rows instead of scanning the whole table — faster reads, slower writes. | Topic 41 |
+| 88 | Clustered vs non-clustered index? | Clustered = the table itself stored in key order (InnoDB primary key, only one). Secondary (non-clustered) = separate tree holding the primary key as the pointer (many allowed). | Topic 41, Topic 42 |
+| 89 | What is a covering index? | An index that contains every column the query needs, so the table is never read (`EXPLAIN` → `Using index`). | Topic 48 |
+| 90 | Composite index `(a, b, c)` — which queries use it? | Queries filtering on `a`, `a,b` or `a,b,c` (leftmost prefix). Filtering only on `b` or `c` usually can't. | Topic 41 |
+| 91 | When is an index NOT used? | Function on the column (`YEAR(d)=2025`), leading wildcard (`LIKE '%x'`), type mismatch, `OR` on unindexed columns, low selectivity, or the optimizer thinks a full scan is cheaper. | Topic 47, Topic 48 |
+| 92 | Why not index every column? | Every index costs disk space and must be updated on each INSERT/UPDATE/DELETE, slowing writes. | Topic 41 |
+| 93 | `EXPLAIN` vs `EXPLAIN ANALYZE`? | EXPLAIN shows the estimated plan without running; EXPLAIN ANALYZE runs the query and shows actual time and rows per step. | Topic 43 |
+| 94 | What does `type = ALL` mean in EXPLAIN? | Full table scan — usually a missing or unusable index. | Topic 43, Topic 44 |
+| 95 | How do you optimize a slow query? | Measure (EXPLAIN), select fewer columns, filter early, add the right (covering/composite) index, fix joins, avoid functions on indexed columns, then consider partitioning/caching. | Topic 47, Topic 48 |
+| 96 | What is partition pruning? | MySQL reads only the partitions that can contain matching rows (e.g. only `p2025` for a 2025 date filter). | Topic 46 |
+| 97 | `UNION` vs `UNION ALL` performance? | `UNION ALL` is faster because it skips the duplicate-removal step. | Topic 22, Topic 48 |
+| 98 | OLTP vs OLAP? | OLTP = many small normalized transactions (app DB). OLAP = big analytical scans on denormalized/star-schema data (warehouse). | Topic 49 |
 
-### 50.14 Part N: Views, CTEs, Subqueries & Temporary Tables
-
-| # | Question | Short Answer | See |
-| :---: | :--- | :--- | :---: |
-| 111 | What is a view? | A saved SELECT used like a table; stores no data (virtual table). | Topic 30 |
-| 112 | View vs materialized view? | A view re-runs its query every time (always fresh); a materialized view stores the result (fast, but must be refreshed). MySQL has no materialized views — use a summary table + event. | Topic 30 |
-| 113 | When is a view updatable? | When it is based on one table without GROUP BY, DISTINCT, aggregates, UNION or window functions. | Topic 30 |
-| 114 | What does `WITH CHECK OPTION` do? | Blocks INSERT/UPDATE through the view that would create rows the view itself would not show. | Topic 30 |
-| 115 | CTE vs subquery vs temporary table? | Subquery: inline, used once. CTE: named, reusable within one query, can be recursive. Temp table: lives for the session, can be indexed and reused by many queries. | Topic 28, Topic 31 |
-| 116 | What is a recursive CTE used for? | Hierarchies (employee → manager), trees, and generating number/date series. Anchor + `UNION ALL` + recursive part. | Topic 29 |
-| 117 | `IN` vs `EXISTS`? | EXISTS stops at the first match and is NULL-safe — best for "does a related row exist?". IN is fine for short fixed lists. `NOT IN` with a NULL returns nothing, so prefer `NOT EXISTS`. | Topic 25 |
-| 118 | Correlated vs non-correlated subquery? | Correlated uses the outer row and runs per row; non-correlated runs once. | Topic 25, Topic 26 |
-| 119 | What causes MySQL error 1093 and how do you fix it? | Updating/deleting a table while selecting from the same table in a subquery. Wrap the subquery in a derived table or use a JOIN. | Topic 25 |
-
-### 50.15 Part O: Database Design, Normalization & Data Warehousing
+### 53.13 Part M: Procedures, Functions, Triggers, Events & Cursors
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
-| 120 | What is normalization and why? | Splitting data into related tables to remove duplication and update/insert/delete anomalies. | Topic 46 |
-| 121 | 1NF, 2NF, 3NF in one line each? | 1NF: atomic values, no repeating groups. 2NF: no partial dependency on part of a composite key. 3NF: no transitive dependency (non-key depends only on the key). | Topic 46 |
-| 122 | What is BCNF? | A stricter 3NF: every determinant must be a candidate key. | Topic 46 |
-| 123 | When would you denormalize? | For read-heavy reporting/OLAP where joins are too slow — accept some duplication for speed. | Topic 46 |
-| 124 | How do you model a many-to-many relationship? | A junction table with two foreign keys and a composite primary key. | Topic 47 |
-| 125 | Fact table vs dimension table? | Fact = measurable events (amount, quantity) with foreign keys; dimension = descriptive attributes (product, date, customer). | Topic 46 |
-| 126 | Star vs snowflake schema? | Star: fact joined directly to denormalized dimensions (fewer joins, faster). Snowflake: dimensions normalized into sub-tables (less duplication, more joins). | Topic 46 |
-| 127 | What is a Slowly Changing Dimension type 2? | Keeping history by inserting a new row with `valid_from`, `valid_to`, `is_current` instead of overwriting. | Topic 46 |
+| 99 | What is a stored procedure? | A named block of SQL saved in the database and run with `CALL name(...)`; can have IN/OUT/INOUT parameters, variables, IF/loops, handlers and transactions. | Topic 35 |
+| 100 | IN vs OUT vs INOUT? | IN passes a value in; OUT returns a value in a `@variable`; INOUT goes in, is changed and comes back. | Topic 35 |
+| 101 | Why is `DELIMITER` needed? | So the client doesn't end the `CREATE PROCEDURE` at the first `;` inside the body. | Topic 35 |
+| 102 | Can a procedure parameter have a DEFAULT in MySQL? | No. Pass NULL and set the default inside with `IF p IS NULL THEN SET p = ...`. | Topic 35 |
+| 103 | Procedure vs function? | Procedure = action, `CALL`, OUT params, transactions. Function = returns one value, usable inside SELECT/WHERE, no COMMIT. | Topic 36 |
+| 104 | What is a trigger? | SQL that runs automatically BEFORE/AFTER an INSERT, UPDATE or DELETE on a table, once per row, with OLD/NEW values. | Topic 37 |
+| 105 | Give 3 real uses of triggers. | Audit log of salary changes, validation with `SIGNAL`, keeping a derived total (e.g. stock or total sales) in sync. | Topic 37 |
+| 106 | What is an event? | A scheduled job inside MySQL (`CREATE EVENT ... ON SCHEDULE AT/EVERY ... DO ...`); needs `event_scheduler = ON`. | Topic 38 |
+| 107 | Trigger vs event? | Trigger fires on a data change, immediately; event fires on a time schedule. | Topic 38 |
+| 108 | What is a cursor? | A pointer used inside a stored program to read a result set one row at a time: DECLARE → OPEN → FETCH (loop) → CLOSE, with a NOT FOUND handler to stop. | Topic 39 |
+| 109 | Why avoid cursors when possible? | They process row by row (slow); a single set-based UPDATE/INSERT ... SELECT is usually much faster. | Topic 39 |
+| 110 | How do you handle errors in a procedure? | `DECLARE CONTINUE/EXIT HANDLER FOR SQLEXCEPTION`, `GET DIAGNOSTICS` to read the message, `SIGNAL`/`RESIGNAL` to raise errors, and `ROLLBACK` in the handler for transactions. | Topic 35 |
+
+### 53.14 Part N: Views, CTEs, Subqueries & Temporary Tables
+
+| # | Question | Short Answer | See |
+| :---: | :--- | :--- | :---: |
+| 111 | What is a view? | A saved SELECT used like a table; stores no data (virtual table). | Topic 32 |
+| 112 | View vs materialized view? | A view re-runs its query every time (always fresh); a materialized view stores the result (fast, but must be refreshed). MySQL has no materialized views — use a summary table + event. | Topic 32 |
+| 113 | When is a view updatable? | When it is based on one table without GROUP BY, DISTINCT, aggregates, UNION or window functions. | Topic 32 |
+| 114 | What does `WITH CHECK OPTION` do? | Blocks INSERT/UPDATE through the view that would create rows the view itself would not show. | Topic 32 |
+| 115 | CTE vs subquery vs temporary table? | Subquery: inline, used once. CTE: named, reusable within one query, can be recursive. Temp table: lives for the session, can be indexed and reused by many queries. | Topic 30, Topic 33 |
+| 116 | What is a recursive CTE used for? | Hierarchies (employee → manager), trees, and generating number/date series. Anchor + `UNION ALL` + recursive part. | Topic 31 |
+| 117 | `IN` vs `EXISTS`? | EXISTS stops at the first match and is NULL-safe — best for "does a related row exist?". IN is fine for short fixed lists. `NOT IN` with a NULL returns nothing, so prefer `NOT EXISTS`. | Topic 27 |
+| 118 | Correlated vs non-correlated subquery? | Correlated uses the outer row and runs per row; non-correlated runs once. | Topic 27, Topic 28 |
+| 119 | What causes MySQL error 1093 and how do you fix it? | Updating/deleting a table while selecting from the same table in a subquery. Wrap the subquery in a derived table or use a JOIN. | Topic 27 |
+
+### 53.15 Part O: Database Design, Normalization & Data Warehousing
+
+| # | Question | Short Answer | See |
+| :---: | :--- | :--- | :---: |
+| 120 | What is normalization and why? | Splitting data into related tables to remove duplication and update/insert/delete anomalies. | Topic 49 |
+| 121 | 1NF, 2NF, 3NF in one line each? | 1NF: atomic values, no repeating groups. 2NF: no partial dependency on part of a composite key. 3NF: no transitive dependency (non-key depends only on the key). | Topic 49 |
+| 122 | What is BCNF? | A stricter 3NF: every determinant must be a candidate key. | Topic 49 |
+| 123 | When would you denormalize? | For read-heavy reporting/OLAP where joins are too slow — accept some duplication for speed. | Topic 49 |
+| 124 | How do you model a many-to-many relationship? | A junction table with two foreign keys and a composite primary key. | Topic 50 |
+| 125 | Fact table vs dimension table? | Fact = measurable events (amount, quantity) with foreign keys; dimension = descriptive attributes (product, date, customer). | Topic 49 |
+| 126 | Star vs snowflake schema? | Star: fact joined directly to denormalized dimensions (fewer joins, faster). Snowflake: dimensions normalized into sub-tables (less duplication, more joins). | Topic 49 |
+| 127 | What is a Slowly Changing Dimension type 2? | Keeping history by inserting a new row with `valid_from`, `valid_to`, `is_current` instead of overwriting. | Topic 49 |
 | 128 | Natural key vs surrogate key? | Natural key comes from the data (email, PAN); surrogate key is an artificial id (`AUTO_INCREMENT`) — stable and small, preferred as the primary key. | Topic 10 |
 
-### 50.16 Part P: Security, Backup & Administration
+### 53.16 Part P: Security, Backup & Administration
 
 | # | Question | Short Answer | See |
 | :---: | :--- | :--- | :---: |
-| 129 | What is SQL injection? | An attack where user input is concatenated into a SQL string and changes the query (e.g. `' OR '1'='1`). | Topic {{INJ}} |
-| 130 | How do you prevent SQL injection? | Prepared statements / parameterized queries, input validation (allow-lists), least-privilege DB users, and never building SQL with string concatenation. | Topic {{INJ}} |
-| 131 | What is a prepared statement? | A query sent once with `?` placeholders; values are sent separately and are never treated as SQL (`PREPARE ... ; EXECUTE ... USING @v;`). | Topic {{INJ}} |
+| 129 | What is SQL injection? | An attack where user input is concatenated into a SQL string and changes the query (e.g. `' OR '1'='1`). | Topic 14 |
+| 130 | How do you prevent SQL injection? | Prepared statements / parameterized queries, input validation (allow-lists), least-privilege DB users, and never building SQL with string concatenation. | Topic 14 |
+| 131 | What is a prepared statement? | A query sent once with `?` placeholders; values are sent separately and are never treated as SQL (`PREPARE ... ; EXECUTE ... USING @v;`). | Topic 14 |
 | 132 | Principle of least privilege? | Give each user/app only the rights it needs (e.g. `GRANT SELECT, INSERT ON shop.orders TO 'app'@'%'`), never root. | Topic 13 |
-| 133 | Logical vs physical backup? | Logical = SQL statements (`mysqldump`), portable but slow to restore; physical = copy of data files (XtraBackup), fast for big databases. | Topic 48 |
-| 134 | Is replication a backup? | No — a `DROP TABLE` is replicated to every replica. Replication is for read scaling and high availability; you still need backups and binlogs for point-in-time recovery. | Topic 48 |
+| 133 | Logical vs physical backup? | Logical = SQL statements (`mysqldump`), portable but slow to restore; physical = copy of data files (XtraBackup), fast for big databases. | Topic 51 |
+| 134 | Is replication a backup? | No — a `DROP TABLE` is replicated to every replica. Replication is for read scaling and high availability; you still need backups and binlogs for point-in-time recovery. | Topic 51 |
 
-### 50.17 Part Q: Advanced Query-Writing Questions (with Sample Output)
+### 53.17 Part Q: Advanced Query-Writing Questions (with Sample Output)
 
 * Sample `employees` table used below:
 
@@ -15276,7 +15870,7 @@ SET foreign_key_checks=1;
   * **What the interviewer checks:** 1:N (customer → orders), M:N through `order_items`, keys and constraints, `DECIMAL` for money, the price copied into `order_items` (history), and an index for "orders of a customer by date".
   * **मराठी:** ग्राहक ➔ orders (1:N), orders ↔ products (M:N `order_items` मधून), पैशासाठी DECIMAL, order वेळची किंमत `unit_price` मध्ये साठवणे, आणि ग्राहकाच्या orders लवकर शोधण्यासाठी index — हे मुद्दे interview मध्ये पाहिले जातात.
 
-### 50.18 Topic 50 Summary (मराठी सारांश)
+### 53.18 Topic 53 Summary (मराठी सारांश)
 
 * **Q&A Bank आता 145 प्रश्नांचा आहे:**
   * Parts A–I (प्रश्न 1–66): basics, data types, DDL/DML, keys, querying, joins, functions, window functions, transactions/security.
