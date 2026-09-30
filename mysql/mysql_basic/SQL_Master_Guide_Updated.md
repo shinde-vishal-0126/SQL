@@ -38,7 +38,8 @@
    - [4.2 Relational Database (SQL)](#42-relational-database-sql)
    - [4.3 NO-SQL Databases (Non-Relational Models)](#43-no-sql-databases-non-relational-models)
    - [4.4 Visual Concept: SQL vs NO-SQL Architecture](#44-visual-concept-sql-vs-no-sql-architecture)
-   - [4.5 Topic 4 Summary (मराठी सारांश)](#45-topic-4-summary-मराठी-सारांश)
+   - [4.5 CAP Theorem & When to Choose SQL vs NoSQL](#45-cap-theorem--when-to-choose-sql-vs-nosql)
+   - [4.6 Topic 4 Summary (मराठी सारांश)](#46-topic-4-summary-मराठी-सारांश)
 5. [Topic 5: Why SQL?](#topic-5-why-sql)
    - [5.1 Standardized Way to Interact with Databases](#51-standardized-way-to-interact-with-databases)
    - [5.2 Efficient Data Retrieval](#52-efficient-data-retrieval)
@@ -98,13 +99,15 @@
    - [9.11 RENAME Commands (Objects & Tables)](#911-rename-commands-objects--tables)
    - [9.12 Differences Between DELETE, TRUNCATE, and DROP](#912-differences-between-delete-truncate-and-drop)
    - [9.13 Visual Diagrams & Architectural Explanations](#913-visual-diagrams--architectural-explanations)
-   - [9.14 Topic 9 Summary (मराठी सारांश)](#914-topic-9-summary-मराठी-सारांश)
+   - [9.14 Generated (Computed) Columns](#914-generated-computed-columns)
+   - [9.15 Topic 9 Summary (मराठी सारांश)](#915-topic-9-summary-मराठी-सारांश)
 10. [Topic 10: Keys & Constraints in SQL](#topic-10-keys--constraints-in-sql)
     - [10.1 What are Key Constraints?](#101-what-are-key-constraints)
     - [10.2 SQL Constraints (Point-wise Detail)](#102-sql-constraints-point-wise-detail)
     - [10.3 Types of Keys (Database Architecture)](#103-types-of-keys-database-architecture)
     - [10.4 The Hierarchy of Keys (Visual Diagram)](#104-the-hierarchy-of-keys-visual-diagram)
-    - [10.5 Topic 10 Summary (मराठी सारांश)](#105-topic-10-summary-मराठी-सारांश)
+    - [10.5 UUID vs AUTO_INCREMENT Primary Key](#105-uuid-vs-auto_increment-primary-key)
+    - [10.6 Topic 10 Summary (मराठी सारांश)](#106-topic-10-summary-मराठी-सारांश)
 11. [Topic 11: DML (Data Manipulation Language) In-Depth](#topic-11-dml-data-manipulation-language-in-depth)
     - [11.1 What is DML (Data Manipulation Language)?](#111-what-is-dml-data-manipulation-language)
     - [11.2 The INSERT Command & Bulk Operations](#112-the-insert-command--bulk-operations)
@@ -182,8 +185,9 @@
     - [19.6 Intention Locks and Metadata Locks](#196-intention-locks-and-metadata-locks)
     - [19.7 Optimistic vs Pessimistic Locking](#197-optimistic-vs-pessimistic-locking)
     - [19.8 Lock Wait Timeout and Monitoring Locks](#198-lock-wait-timeout-and-monitoring-locks)
-    - [19.9 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)](#199-interview-perspective-नेहमी-विचारले-जाणारे-प्रश्न)
-    - [19.10 Topic 19 Summary (मराठी सारांश)](#1910-topic-19-summary-मराठी-सारांश)
+    - [19.9 MVCC (Multi-Version Concurrency Control)](#199-mvcc-multi-version-concurrency-control)
+    - [19.10 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)](#1910-interview-perspective-नेहमी-विचारले-जाणारे-प्रश्न)
+    - [19.11 Topic 19 Summary (मराठी सारांश)](#1911-topic-19-summary-मराठी-सारांश)
 
 **[📘 Part 3: Querying & Combining Data (Clauses, Joins, SET Operators) (Topics 20–22)](#-part-3-querying--combining-data-clauses-joins-set-operators-topics-2022)**
 
@@ -418,8 +422,10 @@
     - [41.10 Advantages & Disadvantages of Indexes](#4110-advantages--disadvantages-of-indexes)
     - [41.11 Index Management & Monitoring](#4111-index-management--monitoring)
     - [41.12 Indexing Strategies](#4112-indexing-strategies)
-    - [41.13 Interview Perspective (Pro-Tips)](#4113-interview-perspective-pro-tips)
-    - [41.14 Topic 41 Summary (मराठी सारांश)](#4114-topic-41-summary-मराठी-सारांश)
+    - [41.13 Full-Text Search (FULLTEXT Index, MATCH ... AGAINST)](#4113-full-text-search-fulltext-index-match--against)
+    - [41.14 Pagination: LIMIT OFFSET vs Keyset (Seek) Pagination](#4114-pagination-limit-offset-vs-keyset-seek-pagination)
+    - [41.15 Interview Perspective (Pro-Tips)](#4115-interview-perspective-pro-tips)
+    - [41.16 Topic 41 Summary (मराठी सारांश)](#4116-topic-41-summary-मराठी-सारांश)
 42. [Topic 42: Heap vs Clustered Index (Internal Storage)](#topic-42-heap-vs-clustered-index-internal-storage)
     - [42.1 What is a Heap Table?](#421-what-is-a-heap-table)
     - [42.2 What is a Clustered Index?](#422-what-is-a-clustered-index)
@@ -1070,7 +1076,41 @@ NoSQL (non-relational) databases store data that does not fit neatly into tables
 
 ---
 
-### 4.5 Topic 4 Summary (मराठी सारांश)
+### 4.5 CAP Theorem & When to Choose SQL vs NoSQL
+
+* **CAP theorem** (for distributed databases spread over many servers): when the network between servers breaks (**P**artition), a system must choose between:
+  * **C – Consistency:** every read gets the latest write (or an error).
+  * **A – Availability:** every request gets an answer, even if it may be old data.
+  * **P – Partition tolerance:** the system keeps working when servers can't talk to each other.
+* Network partitions will happen, so real systems choose **CP** or **AP** during a partition:
+
+| Type | During a network split | Examples |
+| :--- | :--- | :--- |
+| **CP** | Refuses some requests to stay correct | MongoDB (default), HBase, etcd, ZooKeeper, MySQL Group Replication (single primary) |
+| **AP** | Always answers, data may be briefly stale (eventual consistency) | Cassandra, DynamoDB, CouchDB, Riak |
+| **CA** | Only possible when there is no partition — a single-server RDBMS (one MySQL server) | Single-node MySQL / PostgreSQL |
+
+* **ACID vs BASE:** SQL databases follow ACID (strict correctness); many NoSQL systems follow **BASE** — **B**asically **A**vailable, **S**oft state, **E**ventually consistent.
+* **When to choose SQL:** structured data with relations, joins and reports, money/orders/inventory where correctness matters (ACID), complex queries, a fixed schema.
+* **When to choose NoSQL:** huge scale with simple key lookups, flexible or changing schema (JSON documents), very high write speed (logs, IoT, events), caching/sessions (Redis), graph relations (Neo4j).
+* **Many real systems use both:** MySQL for orders and payments + Redis for cache + Elasticsearch for search + MongoDB for product catalogues ("polyglot persistence").
+* **मराठी:**
+  * CAP: अनेक servers वर पसरलेल्या database मध्ये network तुटले (Partition) की Consistency (नेहमी नवीन डेटा) आणि Availability (नेहमी उत्तर) यापैकी एकच निवडता येते. म्हणून systems CP किंवा AP असतात.
+  * SQL = ACID, नाती (relations), अचूकता (बँक, orders). NoSQL = BASE, प्रचंड scale, बदलणारी रचना (logs, cache, JSON).
+  * **उदाहरण:** बँक खात्याचा balance → MySQL (CP/ACID). Instagram वरचे likes count थोडा उशिरा update झाला तरी चालतो → Cassandra (AP).
+
+![CAP theorem](./svg_cap_theorem.svg)
+
+> 📌 **आकृतीचे मराठीत स्पष्टीकरण:** त्रिकोणाच्या तीन कोपऱ्यांवर C (Consistency), A (Availability) आणि P (Partition tolerance) आहेत. प्रत्येक बाजूवर ते combination वापरणारे databases लिहिले आहेत: CP (MongoDB, HBase), AP (Cassandra, DynamoDB) आणि CA (एकाच server वरचा MySQL). खालच्या नोंदीत सांगितले आहे की network तुटल्यावर C किंवा A यापैकी एकच मिळते.
+>
+> **उदाहरण:** दोन data centers मधले network तुटले, तर CP system काही requests नाकारतो (चुकीचे उत्तर नको). AP system जुना डेटा देऊन तरी उत्तर देतो.
+
+* **Interview प्रश्न:**
+  * **Q. Explain the CAP theorem.** → During a network partition a distributed DB must choose consistency or availability; P can't be given up. **मराठी:** Network तुटल्यावर C किंवा A पैकी एकच.
+  * **Q. Is MySQL CP or AP?** → A single server is effectively CA (no partition). Async replication behaves AP-like (replicas may be stale); Group Replication / InnoDB Cluster is CP. **मराठी:** एक server = CA; async replica = जुना डेटा शक्य; Group Replication = CP.
+  * **Q. SQL or NoSQL for an e-commerce app?** → Both: SQL for orders/payments (ACID), NoSQL/Redis for cart, sessions, catalogue and search. **मराठी:** दोन्ही; पैसे = SQL, cache/catalogue = NoSQL.
+
+### 4.6 Topic 4 Summary (मराठी सारांश)
 
 * **डेटाबेसचे २ मुख्य प्रकार:**
   1. *SQL (Relational Database)*
@@ -1096,6 +1136,7 @@ NoSQL (non-relational) databases store data that does not fit neatly into tables
     * *उदाहरणे:* MongoDB.
 
 * **लक्षात ठेवा:** Document, Graph, Column-based आणि Key-Value या सर्वांना मिळून NO-SQL म्हणतात; तर Relational डेटाबेसला SQL म्हणतात.
+* **CAP theorem:** network तुटल्यावर Consistency किंवा Availability यापैकी एकच (CP: MongoDB, AP: Cassandra); SQL = ACID, NoSQL = BASE; पैसे/orders साठी SQL, cache/logs/मोठ्या scale साठी NoSQL.
 
 ---
 
@@ -3501,7 +3542,54 @@ In SQL, you can remove data with three commands: **`DELETE`**, **`TRUNCATE`**, a
 
 ---
 
-### 9.14 Topic 9 Summary (मराठी सारांश)
+### 9.14 Generated (Computed) Columns
+
+* A **generated column** gets its value automatically from an expression on other columns of the same row. You never insert it yourself (MySQL 5.7+).
+  ```sql
+  CREATE TABLE order_items (
+      item_id    INT PRIMARY KEY AUTO_INCREMENT,
+      price      DECIMAL(10,2) NOT NULL,
+      qty        INT NOT NULL,
+      total      DECIMAL(12,2) AS (price * qty) STORED,          -- saved on disk
+      first_name VARCHAR(50),
+      last_name  VARCHAR(50),
+      full_name  VARCHAR(101) AS (CONCAT(first_name, ' ', last_name)) VIRTUAL  -- calculated when read
+  );
+
+  INSERT INTO order_items (price, qty, first_name, last_name) VALUES (250.00, 4, 'Asha', 'Patil');
+  SELECT price, qty, total, full_name FROM order_items;
+  ```
+* **Output:**
+
+| price | qty | total | full_name |
+| :--- | :--- | :--- | :--- |
+| 250.00 | 4 | 1000.00 | Asha Patil |
+
+* **VIRTUAL vs STORED:**
+
+| Point | VIRTUAL (default) | STORED |
+| :--- | :--- | :--- |
+| Disk space | None — computed on every read | Uses space — computed on INSERT/UPDATE |
+| Read speed | Slightly slower | Faster |
+| Index | Allowed (InnoDB secondary index) | Allowed (also PRIMARY KEY) |
+
+* **Big use case — index an expression or a JSON field:**
+  ```sql
+  ALTER TABLE customers
+      ADD COLUMN email_domain VARCHAR(100) AS (SUBSTRING_INDEX(email, '@', -1)) VIRTUAL,
+      ADD INDEX idx_email_domain (email_domain);
+
+  SELECT * FROM customers WHERE email_domain = 'gmail.com';   -- uses the index
+  ```
+  * MySQL 8.0.13+ also has **functional indexes**: `CREATE INDEX idx_year ON orders ((YEAR(order_date)));` — internally this is a hidden virtual generated column.
+* **Rules:** the expression must be deterministic (no `NOW()`, `RAND()`, subqueries or user variables), and you cannot write a value into it (`INSERT` / `UPDATE` of that column gives an error unless you use `DEFAULT`).
+* **मराठी:** Generated column ची value त्याच row मधील इतर columns वरून आपोआप तयार होते (उदा. `total = price * qty`). VIRTUAL = वाचताना मोजली जाते (जागा लागत नाही). STORED = disk वर साठवली जाते (वाचणे जलद). त्यावर index लावता येतो, त्यामुळे `WHERE` मध्ये function वापरले तरी index चालतो.
+  * **उदाहरण:** email मधून domain काढणारा virtual column + index लावला की `WHERE email_domain = 'gmail.com'` जलद चालते.
+* **Interview प्रश्न:**
+  * **Q. What is a generated column and why use it?** → A column computed from an expression; it avoids repeating calculations in queries and lets you index expressions or JSON fields. **मराठी:** Expression वरून आपोआप value; calculation वारंवार लिहावे लागत नाही आणि त्यावर index लावता येतो.
+  * **Q. VIRTUAL vs STORED?** → VIRTUAL is computed on read with no storage; STORED is saved on write, so reads are faster but it takes disk space. **मराठी:** VIRTUAL = वाचताना मोजणी; STORED = साठवलेली value.
+
+### 9.15 Topic 9 Summary (मराठी सारांश)
 
 * **SQL Version तपासणे:**
   * `SELECT VERSION();` द्वारे MySQL ची चालू आवृत्ती समजते.
@@ -3548,6 +3636,7 @@ In SQL, you can remove data with three commands: **`DELETE`**, **`TRUNCATE`**, a
 
 * **कन्स्ट्रेंट्स सारांश आकृती:**
 ![Topic 9 Constraints and DDL ALTER Summary](./topic8_constraints_and_ddl_summary.svg)
+* **Generated columns:** `AS (price * qty)` ने आपोआप value; VIRTUAL (वाचताना मोजणी) vs STORED (साठवलेली); त्यावर index लावता येतो.
 
 ---
 
@@ -3655,7 +3744,37 @@ Below is a clear representation of how these keys relate to each other:
   * **Composite Key:** एका कॉलमने काम होत नसेल तर दोन-तीन कॉलम्स मिळून बनवलेली Key.
   * **Surrogate Key:** आपोआप तयार होणारा नंबर (`AUTO_INCREMENT`), ज्याचा खऱ्या जगातील माहितीशी काही संबंध नसतो.
 
-### 10.5 Topic 10 Summary (मराठी सारांश)
+### 10.5 UUID vs AUTO_INCREMENT Primary Key
+
+| Point | AUTO_INCREMENT (INT/BIGINT) | UUID (CHAR(36) / BINARY(16)) |
+| :--- | :--- | :--- |
+| Size | 4–8 bytes | 36 bytes as text, 16 bytes as binary |
+| Order | Always increasing → new rows go at the end of the clustered index | Random (v4) → inserts land anywhere, causing page splits |
+| Insert speed (InnoDB) | Fast | Slower on big tables (random I/O, fragmentation) |
+| Secondary indexes | Small (each stores the PK) | Bigger (every secondary index carries the 16/36-byte PK) |
+| Unique across servers | ❌ Only inside one table/server | ✅ Globally unique (merge, sharding, offline clients) |
+| Guessable in URLs | ✅ Yes (`/orders/1001` → try 1002) | ❌ Hard to guess |
+
+* **Best way to store a UUID in MySQL 8:**
+  ```sql
+  CREATE TABLE orders (
+      id       BINARY(16) PRIMARY KEY,
+      customer VARCHAR(50)
+  );
+
+  -- 1 = swap the time parts so values are roughly increasing (index-friendly)
+  INSERT INTO orders VALUES (UUID_TO_BIN(UUID(), 1), 'Asha');
+
+  SELECT BIN_TO_UUID(id, 1) AS id, customer FROM orders;
+  ```
+* **Common design:** keep a `BIGINT AUTO_INCREMENT` primary key for joins/speed and add a separate `UNIQUE` public UUID column for URLs and APIs. Time-ordered IDs (UUID v7, ULID, Snowflake IDs) combine both advantages.
+* **मराठी:** AUTO_INCREMENT लहान आणि क्रमाने वाढणारा असतो, त्यामुळे InnoDB मध्ये insert जलद होतो. पण तो एकाच server पुरता unique असतो आणि URL मध्ये अंदाज लावता येतो. UUID सगळीकडे unique असतो, पण मोठा आणि random असल्याने index मोठा होतो आणि insert हळू होतो. UUID वापरायचा असेल तर `BINARY(16)` मध्ये `UUID_TO_BIN(UUID(), 1)` ने साठवा.
+  * **उदाहरण:** आत PK = `BIGINT` (joins साठी), बाहेर API मध्ये `public_id` = UUID (कोणी `/orders/1002` असा अंदाज लावू नये म्हणून).
+* **Interview प्रश्न:**
+  * **Q. Why can a UUID primary key be slow in InnoDB?** → The table is clustered by the PK; random UUIDs insert into random pages (page splits, fragmentation) and every secondary index stores the large PK. **मराठी:** Random value मुळे rows मध्येच घुसवाव्या लागतात आणि सगळे indexes मोठे होतात.
+  * **Q. When would you still use UUIDs?** → Distributed/sharded systems, merging data from many sources, IDs generated on the client, or non-guessable public IDs. **मराठी:** अनेक servers, data merge करताना, अंदाज न लावता येणारे IDs हवे असताना.
+
+### 10.6 Topic 10 Summary (मराठी सारांश)
 
 * **Constraints म्हणजे काय?** कॉलमवर लावलेले नियम, ज्यामुळे चुकीचा, रिकामा किंवा duplicate डेटा टेबलमध्ये जात नाही.
 * **मुख्य Constraints:**
@@ -3668,6 +3787,7 @@ Below is a clear representation of how these keys relate to each other:
 * **उदाहरण:**
   * `Students(StudentID PRIMARY KEY, Email UNIQUE, Age CHECK (Age >= 18), City DEFAULT 'Pune')` ➔ StudentID = Primary Key, Email = Alternate Key, `{StudentID, Email}` = Super Key.
 * **Interview लक्षात ठेवा:** Primary Key = `UNIQUE` + `NOT NULL`; Primary Key एकच असते, पण Unique Keys अनेक असू शकतात.
+* **UUID vs AUTO_INCREMENT:** AUTO_INCREMENT लहान आणि क्रमाने (जलद insert); UUID सगळीकडे unique पण मोठा/random → `BINARY(16)` + `UUID_TO_BIN(UUID(), 1)`.
 
 ---
 
@@ -5860,7 +5980,53 @@ ACID guarantees that database transactions are processed reliably.
 * **Best practices:** keep transactions short, index the `WHERE` columns of updates, access tables/rows in the same order, don't wait for user input inside a transaction, and prefer `SKIP LOCKED` for queues.
 * **मराठी:** Transactions लहान ठेवा, WHERE columns वर index ठेवा, rows नेहमी एकाच क्रमाने access करा, transaction चालू असताना user ची वाट पाहू नका.
 
-### 19.9 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
+### 19.9 MVCC (Multi-Version Concurrency Control)
+
+* **Problem:** if every read took a shared lock, readers and writers would keep blocking each other.
+* **MVCC idea:** InnoDB keeps **old versions** of changed rows (in the **undo log**). A normal `SELECT` reads the version that was committed at the right moment, so **readers don't block writers and writers don't block readers**.
+* **How it works:**
+  1. Every row has hidden columns: `DB_TRX_ID` (the transaction that last changed it) and `DB_ROLL_PTR` (a pointer to its previous version in the undo log).
+  2. When a consistent read starts, InnoDB creates a **read view** — the list of transactions that were still uncommitted at that time.
+  3. For each row, if its version is not visible to the read view, InnoDB follows the roll pointer back through the undo log to an older committed version.
+* **Isolation level decides when the read view is made:**
+  * **REPEATABLE READ** (default): one read view at the **first read** of the transaction → the same snapshot for the whole transaction.
+  * **READ COMMITTED:** a **new read view for every statement** → each SELECT sees the latest committed data.
+* **Example:**
+  ```sql
+  -- Session A (REPEATABLE READ)
+  START TRANSACTION;
+  SELECT balance FROM accounts WHERE account_id = 1;   -- 1000 (snapshot taken)
+
+  -- Session B
+  UPDATE accounts SET balance = 500 WHERE account_id = 1;
+  COMMIT;                                              -- no wait: A holds no lock
+
+  -- Session A
+  SELECT balance FROM accounts WHERE account_id = 1;   -- still 1000 (old version from undo log)
+  SELECT balance FROM accounts WHERE account_id = 1 FOR UPDATE;  -- 500 (locking read = latest version)
+  COMMIT;
+  SELECT balance FROM accounts WHERE account_id = 1;   -- 500
+  ```
+* **Important points:**
+  * MVCC works only for **plain (consistent) SELECTs**. `UPDATE`, `DELETE` and `SELECT ... FOR UPDATE / FOR SHARE` read the **latest** version and take locks.
+  * Old versions are removed by the **purge thread** only when no read view needs them anymore. A **long-running transaction** stops the purge, so the undo log grows (watch "History list length" in `SHOW ENGINE INNODB STATUS`).
+  * `READ UNCOMMITTED` does not use MVCC snapshots (dirty reads); `SERIALIZABLE` turns plain SELECTs into `FOR SHARE` when autocommit is off.
+* **मराठी:** MVCC मध्ये InnoDB बदललेल्या rows च्या जुन्या आवृत्त्या undo log मध्ये ठेवतो. साधा SELECT lock न घेता त्याच्या snapshot (read view) प्रमाणे योग्य जुनी आवृत्ती वाचतो. त्यामुळे वाचणारे आणि लिहिणारे एकमेकांना थांबवत नाहीत. REPEATABLE READ मध्ये संपूर्ण transaction ला एकच snapshot असतो; READ COMMITTED मध्ये प्रत्येक statement ला नवीन snapshot. `FOR UPDATE` मात्र नेहमी नवीनतम value वाचतो.
+  * **उदाहरण:** A ने balance 1000 वाचला; B ने 500 करून COMMIT केले; A चा पुढचा साधा SELECT अजून 1000 दाखवतो, पण `FOR UPDATE` 500 दाखवतो.
+
+![MVCC read view and undo log](./svg_mvcc_read_view.svg)
+
+> 📌 **आकृतीचे मराठीत स्पष्टीकरण:** वर वेळेनुसार Session A आणि Session B दाखवले आहेत. B ने balance 1000 वरून 500 केला. नवीन version (500) table मध्ये आहे आणि जुना version (1000) undo log मध्ये आहे; दोन्ही roll pointer ने जोडलेले आहेत. A चा read view B च्या आधी तयार झाला होता, म्हणून A चा साधा SELECT pointer मागे जाऊन 1000 वाचतो. `FOR UPDATE` थेट नवीनतम 500 वाचतो.
+>
+> **उदाहरण:** Report बनवणारा मोठा SELECT चालू असताना इतर users orders update करू शकतात. Report ला सुरुवातीच्या क्षणाचा एकसारखा डेटा मिळतो आणि कोणालाही थांबावे लागत नाही.
+
+* **Interview प्रश्न:**
+  * **Q. What is MVCC?** → Keeping multiple row versions so consistent reads see a snapshot without locks; readers and writers don't block each other. **मराठी:** Rows च्या अनेक आवृत्त्या; SELECT lock शिवाय snapshot वाचतो.
+  * **Q. Where are old versions stored?** → In the undo log (undo tablespaces), linked through the row's roll pointer; the purge thread cleans them up. **मराठी:** Undo log मध्ये; purge thread नंतर साफ करतो.
+  * **Q. Difference in MVCC between READ COMMITTED and REPEATABLE READ?** → RC creates a read view per statement; RR creates one per transaction (at the first read). **मराठी:** RC = प्रत्येक statement ला नवीन snapshot; RR = संपूर्ण transaction ला एकच.
+  * **Q. Why are long transactions bad?** → They keep old read views alive, so purge can't remove undo records; the undo log grows and queries slow down (plus they hold locks). **मराठी:** Undo log वाढतो, purge थांबतो, locks धरून ठेवले जातात.
+
+### 19.10 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
 
 * **Q1. Difference between shared and exclusive locks?**
   * **Answer:** S locks can be held by many transactions for reading; an X lock is held by one transaction for writing and blocks both S and X from others.
@@ -5884,7 +6050,7 @@ ACID guarantees that database transactions are processed reliably.
   * **Answer:** Timeout (1205) = waited longer than `innodb_lock_wait_timeout`; deadlock (1213) = circular wait, detected immediately and one transaction is rolled back.
   * **मराठी:** 1205 = खूप वेळ थांबला; 1213 = एकमेकांसाठी थांबले, एकाला लगेच rollback.
 
-### 19.10 Topic 19 Summary (मराठी सारांश)
+### 19.11 Topic 19 Summary (मराठी सारांश)
 
 * **Lock:** एकाच वेळी चालणाऱ्या transactions मुळे डेटा बिघडू नये (lost update) म्हणून; InnoDB locks COMMIT/ROLLBACK पर्यंत टिकतात.
 * **S vs X:** Shared = अनेक वाचक; Exclusive = एकच लेखक. फक्त S + S compatible.
@@ -5895,6 +6061,7 @@ ACID guarantees that database transactions are processed reliably.
 * **Optimistic vs Pessimistic:** version column vs `FOR UPDATE`.
 * **Monitoring:** error 1205 (timeout), 1213 (deadlock), `performance_schema.data_locks`, `sys.innodb_lock_waits`, `SHOW ENGINE INNODB STATUS`.
 * **उदाहरण:** बँक withdrawal: `START TRANSACTION; SELECT balance ... FOR UPDATE; UPDATE ...; COMMIT;`
+* **MVCC:** undo log मधील जुन्या आवृत्त्या + read view; साधा SELECT lock शिवाय snapshot वाचतो (RR = transaction ला एक snapshot, RC = प्रत्येक statement ला नवीन); `FOR UPDATE` नवीनतम वाचतो.
 
 ---
 
@@ -14354,7 +14521,120 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
      * Continuously monitor usage, missing indexes, duplicates, statistics, and fragmentation.
 * **मराठी:** योग्य index निवडण्याच्या 4 पायऱ्या: (1) read वेगवान हवे की write ते ठरवा, (2) सर्वात जास्त वापरले जाणारे columns ओळखा, (3) `EXPLAIN` ने query खरोखर index वापरते का ते तपासा, (4) नियमित देखभाल करा.
 
-### 41.13 Interview Perspective (Pro-Tips)
+### 41.13 Full-Text Search (FULLTEXT Index, MATCH ... AGAINST)
+
+* `LIKE '%word%'` cannot use a normal B-Tree index (leading `%`), so it scans the whole table and has no relevance ranking. A **FULLTEXT index** splits text into words (an inverted index: word → rows) for fast word search.
+  ```sql
+  CREATE TABLE articles (
+      id    INT PRIMARY KEY AUTO_INCREMENT,
+      title VARCHAR(200),
+      body  TEXT,
+      FULLTEXT INDEX ft_title_body (title, body)
+  );
+
+  INSERT INTO articles (title, body) VALUES
+  ('MySQL Indexing Guide', 'Learn how B-Tree indexes speed up MySQL queries'),
+  ('Joins Explained', 'INNER JOIN and LEFT JOIN with examples'),
+  ('MySQL Transactions', 'COMMIT, ROLLBACK and isolation levels in MySQL');
+  ```
+* **1. Natural language mode (default) — ranked by relevance:**
+  ```sql
+  SELECT id, title, MATCH(title, body) AGAINST ('mysql indexes') AS score
+  FROM articles
+  WHERE MATCH(title, body) AGAINST ('mysql indexes')
+  ORDER BY score DESC;
+  ```
+  * The article that has both words ranks first. On a very small table, words that appear in 50% or more of the rows get little or no weight, so test on realistic data.
+* **2. Boolean mode — operators:**
+  ```sql
+  SELECT title FROM articles
+  WHERE MATCH(title, body) AGAINST ('+mysql -join' IN BOOLEAN MODE);   -- must have mysql, must not have join
+
+  SELECT title FROM articles
+  WHERE MATCH(title, body) AGAINST ('trans*' IN BOOLEAN MODE);         -- prefix: transaction, transactions
+
+  SELECT title FROM articles
+  WHERE MATCH(title, body) AGAINST ('"isolation levels"' IN BOOLEAN MODE);  -- exact phrase
+  ```
+* **3. Query expansion:** `AGAINST ('database' WITH QUERY EXPANSION)` runs the search twice and adds related words found in the best results (it can return loosely related rows).
+* **Rules and limits (InnoDB):**
+  * The `MATCH()` column list must be exactly the columns of one FULLTEXT index.
+  * Minimum word length is `innodb_ft_min_token_size = 3` (shorter words are ignored), and stopwords like "the" and "and" are ignored.
+  * For Marathi/Hindi or Chinese/Japanese text, use `WITH PARSER ngram` when creating the index.
+  * For very large search needs (typo tolerance, facets, synonyms) teams use Elasticsearch or OpenSearch.
+* **मराठी:** `LIKE '%शब्द%'` index वापरू शकत नाही आणि संपूर्ण table वाचतो. FULLTEXT index प्रत्येक शब्दाचा पत्ता ठेवतो (inverted index), त्यामुळे शब्द शोधणे जलद होते आणि relevance नुसार क्रम मिळतो. Natural mode = साधा शोध + score. Boolean mode = `+` (हवा), `-` (नको), `*` (सुरुवात), `" "` (नेमका वाक्यांश).
+  * **उदाहरण:** Blog मध्ये "mysql" हवा पण "join" नको असे लेख → `AGAINST ('+mysql -join' IN BOOLEAN MODE)`.
+* **Interview प्रश्न:**
+  * **Q. Why not use LIKE '%text%' for search?** → A leading wildcard can't use a B-Tree index (full scan) and gives no relevance ranking. **मराठी:** Index चालत नाही आणि ranking नाही.
+  * **Q. Natural language vs Boolean mode?** → Natural ranks rows by relevance; Boolean supports required/excluded words, prefix and phrase operators. **मराठी:** Natural = score नुसार; Boolean = +, -, *, "".
+
+### 41.14 Pagination: LIMIT OFFSET vs Keyset (Seek) Pagination
+
+* **OFFSET pagination (common but slow on deep pages):**
+  ```sql
+  -- page 1
+  SELECT order_id, order_date, amount FROM orders ORDER BY order_id LIMIT 20 OFFSET 0;
+  -- page 5001
+  SELECT order_id, order_date, amount FROM orders ORDER BY order_id LIMIT 20 OFFSET 100000;
+  ```
+  * MySQL must **read and throw away 100,000 rows** to return 20, so every next page gets slower.
+  * If rows are inserted or deleted between page loads, rows **shift**: users see duplicates or miss rows.
+* **Keyset (seek) pagination — remember the last key of the previous page:**
+  ```sql
+  -- page 1
+  SELECT order_id, order_date, amount FROM orders
+  ORDER BY order_id
+  LIMIT 20;
+  -- the last order_id on page 1 was 1020
+
+  -- next page: jump straight to it through the index
+  SELECT order_id, order_date, amount FROM orders
+  WHERE order_id > 1020
+  ORDER BY order_id
+  LIMIT 20;
+  ```
+  * With an index on `order_id`, this is an **index range scan that reads only 20 rows**, so page 1 and page 5001 are equally fast.
+* **Sorting by a non-unique column** (e.g. newest first): add a unique tie-breaker and use a row comparison:
+  ```sql
+  CREATE INDEX idx_date_id ON orders (order_date, order_id);
+
+  -- last row on the previous page: order_date = '2026-09-28', order_id = 5531
+  SELECT order_id, order_date, amount FROM orders
+  WHERE (order_date, order_id) < ('2026-09-28', 5531)
+  ORDER BY order_date DESC, order_id DESC
+  LIMIT 20;
+  ```
+  * If the optimizer doesn't use the index for the row comparison, write it out: `WHERE order_date < '2026-09-28' OR (order_date = '2026-09-28' AND order_id < 5531)`.
+
+| Point | LIMIT OFFSET | Keyset (seek) |
+| :--- | :--- | :--- |
+| Deep page speed | Slower and slower (reads offset + limit rows) | Constant (reads only limit rows) |
+| Jump to page N | ✅ Easy | ❌ Only next / previous |
+| Rows added/deleted meanwhile | Duplicates or missed rows | Stable |
+| Best for | Small tables, admin pages with page numbers | Infinite scroll, APIs ("load more"), big tables |
+
+* **If you must keep OFFSET — "deferred join":** page through the small index first, then fetch the full rows:
+  ```sql
+  SELECT o.order_id, o.order_date, o.amount
+  FROM orders o
+  JOIN (SELECT order_id FROM orders ORDER BY order_id LIMIT 20 OFFSET 100000) AS p
+       ON o.order_id = p.order_id
+  ORDER BY o.order_id;
+  ```
+* **मराठी:** `OFFSET 100000` असेल तर MySQL आधीच्या 1 लाख rows वाचून फेकून देतो, म्हणून पुढची pages हळू होतात. Keyset pagination मध्ये मागच्या page ची शेवटची key लक्षात ठेवून `WHERE order_id > शेवटची_id` लिहितो. त्यामुळे index वरून थेट तिथे जाता येते आणि प्रत्येक page तितकाच जलद मिळतो. तोटा: थेट page 50 वर उडी मारता येत नाही.
+  * **उदाहरण:** Instagram / Amazon चे "infinite scroll" आणि APIs मधील `next_cursor` हे keyset pagination आहे.
+
+![OFFSET vs Keyset pagination](./svg_keyset_pagination.svg)
+
+> 📌 **आकृतीचे मराठीत स्पष्टीकरण:** वरच्या पट्टीत OFFSET pagination आहे: 100000 rows राखाडी (वाचल्या पण फेकल्या) आणि फक्त शेवटच्या 20 हिरव्या (परत दिल्या). खालच्या पट्टीत keyset आहे: index वरून थेट `order_id > 1020` या जागी उडी मारून फक्त 20 rows वाचल्या जातात. उजवीकडे दोन्हीची तुलना आहे.
+>
+> **उदाहरण:** 10 लाख orders असलेल्या table मध्ये शेवटचे page OFFSET ने काही सेकंद घेऊ शकते, तर keyset ने काही milliseconds लागतात.
+
+* **Interview प्रश्न:**
+  * **Q. Why is `LIMIT 20 OFFSET 1000000` slow?** → MySQL reads and discards the first million rows; the cost grows with the offset. **मराठी:** आधीच्या सगळ्या rows वाचून फेकल्या जातात.
+  * **Q. How do you paginate a big table efficiently?** → Keyset pagination `WHERE id > last_id ORDER BY id LIMIT n` on an indexed, unique sort key (add a tie-breaker for non-unique sorts), or a deferred join if page numbers are required. **मराठी:** शेवटची key लक्षात ठेवून `WHERE id > last_id`; page नंबर हवेच असतील तर deferred join.
+
+### 41.15 Interview Perspective (Pro-Tips)
 
 * **Q: Why not put an index on every column?**
   * **A:** Avoid over-indexing! Indexes require disk space. More importantly, every `INSERT`, `UPDATE`, or `DELETE` requires the database to update the index. Too many indexes will kill write performance.
@@ -14364,7 +14644,7 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
   * **A:** A Heap is a table without a primary key (reads are full scans). A Clustered Index stores data in physical sorted order (only 1 allowed). Non-Clustered Indexes are secondary pointers (many allowed). Choose wisely → help reads, hurt writes.
   * *MySQL tip for the interview:* InnoDB has no heap tables — without a PK it creates a hidden clustered key — so always define a small Primary Key (e.g. `INT AUTO_INCREMENT`).
 
-### 41.14 Topic 41 Summary (मराठी सारांश)
+### 41.16 Topic 41 Summary (मराठी सारांश)
 
 * **Index म्हणजे काय?** पुस्तकाच्या अनुक्रमणिकेसारखी रचना (B-Tree), ज्यामुळे पूर्ण टेबल न वाचता हवी ती row पटकन सापडते. वाचणे (`SELECT`) वेगवान होते, पण लिहिणे (`INSERT`/`UPDATE`/`DELETE`) थोडे हळू होते.
 * **डेटा कसा साठवला जातो?** Pages मध्ये (InnoDB = 16KB). Index नसेल तर Full Table Scan: सर्व pages वाचावी लागतात.
@@ -14376,6 +14656,8 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
 * **देखभाल आणि strategy:** `EXPLAIN` ने तपासा; न वापरलेले/duplicate indexes काढा; `ANALYZE TABLE` ने statistics अद्ययावत करा; गरजेनुसार `OPTIMIZE TABLE`.
 * **उदाहरण:** `CREATE INDEX idx_city ON customers(city);` ➔ `EXPLAIN SELECT * FROM customers WHERE city = 'Pune';` मध्ये आधी `type = ALL` (full scan) होते, index नंतर `type = ref` आणि `key = idx_city` दिसते.
 * **Interview लक्षात ठेवा:** प्रत्येक column वर index का लावत नाही? ➔ disk जागा लागते आणि प्रत्येक write मध्ये सर्व indexes update करावे लागतात.
+* **Full-text search:** `FULLTEXT` index + `MATCH ... AGAINST` (natural / boolean mode); `LIKE '%x%'` index वापरत नाही.
+* **Pagination:** `OFFSET` मोठा झाला की हळू; keyset `WHERE id > last_id ORDER BY id LIMIT n` प्रत्येक page ला तितकेच जलद.
 
 ---
 
@@ -15589,7 +15871,7 @@ SET foreign_key_checks=1;
   ```
 
 * **📌 मराठी सारांश:**
-  * मुलाखतीत सर्वात जास्त विचारले जाणारे ७६ प्रश्न, भागांनुसार (Basics, Data Types, DDL/DML, Keys, Querying, Joins, Functions, Window Functions, Transactions, Query-writing).
+  * मुलाखतीत सर्वात जास्त विचारले जाणारे १४५ प्रश्न, भागांनुसार (Basics, Data Types, DDL/DML, Keys, Querying, Joins, Functions, Window Functions, Transactions, Query-writing, Locks, Indexes, Procedures/Triggers/Cursors, Views/CTEs, Design, Security/Backup, Advanced Query-writing).
   * प्रत्येक उत्तर लहान आणि सोपे आहे; सविस्तर माहितीसाठी **See** कॉलममधील विभाग वाचा.
   * **Part J** मधील queries (2nd / Nth highest salary, डुप्लिकेट शोधणे व डिलीट करणे, ऑर्डर न दिलेले ग्राहक, मॅनेजरपेक्षा जास्त पगार, running total) स्वतः लिहून सराव करा.
 

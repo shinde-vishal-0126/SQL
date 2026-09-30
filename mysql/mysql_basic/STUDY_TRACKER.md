@@ -9,16 +9,16 @@
 - दिवसाचा अभ्यास झाला की commit करा: `git add mysql/mysql_basic/STUDY_TRACKER.md` आणि `git commit -m "study: 30 Sep"`.
 - VS Code मध्ये `Ctrl+Shift+V` ने preview उघडला की किती ✓ झाले ते दिसते; GitHub वर checkbox सह दिसते.
 
-**एकूण:** 8 Parts · 53 Topics · 413 sub-topics
+**एकूण:** 8 Parts · 53 Topics · 419 sub-topics
 
 | Part | विषय | Topics | Sub-topics |
 | :---: | :--- | :---: | :---: |
-| 1 | Database Fundamentals | 1–8 | 52 |
-| 2 | SQL Commands, Keys & Transactions (DDL, DML, DQL, DCL, TCL) | 9–19 | 89 |
+| 1 | Database Fundamentals | 1–8 | 53 |
+| 2 | SQL Commands, Keys & Transactions (DDL, DML, DQL, DCL, TCL) | 9–19 | 92 |
 | 3 | Querying & Combining Data (Clauses, Joins, SET Operators) | 20–22 | 26 |
 | 4 | SQL Functions (String, Numeric, Date, NULL, CASE, Window) | 23–26 | 32 |
 | 5 | Advanced Querying (Subqueries, CTEs, Views, Tables) | 27–39 | 114 |
-| 6 | Performance, Indexing & Database Internals | 40–48 | 61 |
+| 6 | Performance, Indexing & Database Internals | 40–48 | 63 |
 | 7 | Database Design & Data Management | 49–51 | 20 |
 | 8 | Final Revision & Interview Preparation | 52–53 | 19 |
 
@@ -60,7 +60,8 @@
 - [ ] 4.2 Relational Database (SQL)
 - [ ] 4.3 NO-SQL Databases (Non-Relational Models)
 - [ ] 4.4 Visual Concept: SQL vs NO-SQL Architecture
-- [ ] 4.5 Topic 4 Summary (मराठी सारांश)
+- [ ] 4.5 CAP Theorem & When to Choose SQL vs NoSQL
+- [ ] 4.6 Topic 4 Summary (मराठी सारांश)
 
 ### [Topic 5: Why SQL?](SQL_Master_Guide_Updated.md#topic-5-why-sql)
 
@@ -121,7 +122,8 @@
 - [ ] 9.11 RENAME Commands (Objects & Tables)
 - [ ] 9.12 Differences Between DELETE, TRUNCATE, and DROP
 - [ ] 9.13 Visual Diagrams & Architectural Explanations
-- [ ] 9.14 Topic 9 Summary (मराठी सारांश)
+- [ ] 9.14 Generated (Computed) Columns
+- [ ] 9.15 Topic 9 Summary (मराठी सारांश)
 
 ### [Topic 10: Keys & Constraints in SQL](SQL_Master_Guide_Updated.md#topic-10-keys--constraints-in-sql)
 
@@ -129,7 +131,8 @@
 - [ ] 10.2 SQL Constraints (Point-wise Detail)
 - [ ] 10.3 Types of Keys (Database Architecture)
 - [ ] 10.4 The Hierarchy of Keys (Visual Diagram)
-- [ ] 10.5 Topic 10 Summary (मराठी सारांश)
+- [ ] 10.5 UUID vs AUTO_INCREMENT Primary Key
+- [ ] 10.6 Topic 10 Summary (मराठी सारांश)
 
 ### [Topic 11: DML (Data Manipulation Language) In-Depth](SQL_Master_Guide_Updated.md#topic-11-dml-data-manipulation-language-in-depth)
 
@@ -225,8 +228,9 @@
 - [ ] 19.6 Intention Locks and Metadata Locks
 - [ ] 19.7 Optimistic vs Pessimistic Locking
 - [ ] 19.8 Lock Wait Timeout and Monitoring Locks
-- [ ] 19.9 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
-- [ ] 19.10 Topic 19 Summary (मराठी सारांश)
+- [ ] 19.9 MVCC (Multi-Version Concurrency Control)
+- [ ] 19.10 Interview Perspective (नेहमी विचारले जाणारे प्रश्न)
+- [ ] 19.11 Topic 19 Summary (मराठी सारांश)
 
 ---
 
@@ -498,8 +502,10 @@
 - [ ] 41.10 Advantages & Disadvantages of Indexes
 - [ ] 41.11 Index Management & Monitoring
 - [ ] 41.12 Indexing Strategies
-- [ ] 41.13 Interview Perspective (Pro-Tips)
-- [ ] 41.14 Topic 41 Summary (मराठी सारांश)
+- [ ] 41.13 Full-Text Search (FULLTEXT Index, MATCH ... AGAINST)
+- [ ] 41.14 Pagination: LIMIT OFFSET vs Keyset (Seek) Pagination
+- [ ] 41.15 Interview Perspective (Pro-Tips)
+- [ ] 41.16 Topic 41 Summary (मराठी सारांश)
 
 ### [Topic 42: Heap vs Clustered Index (Internal Storage)](SQL_Master_Guide_Updated.md#topic-42-heap-vs-clustered-index-internal-storage)
 

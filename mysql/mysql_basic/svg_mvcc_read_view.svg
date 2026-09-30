@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="1000" height="480" fill="#f8fafc" rx="12"/>
+  <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a">MVCC — Read View &amp; Undo Log (InnoDB)</text>
+  <text x="500" y="62" text-anchor="middle" font-size="13" fill="#64748b">Readers don't block writers · writers don't block readers</text>
+
+  <!-- timeline -->
+  <line x1="60" y1="110" x2="940" y2="110" stroke="#94a3b8" stroke-width="2" marker-end="url(#k)"/>
+  <text x="945" y="100" text-anchor="end" font-size="11" fill="#64748b">time →</text>
+  <text x="60" y="140" font-size="13" font-weight="700" fill="#1d4ed8">Session A</text>
+  <rect x="150" y="124" width="220" height="28" rx="6" fill="#eff6ff" stroke="#2563eb"/><text x="260" y="143" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#1d4ed8">SELECT → 1000 (read view)</text>
+  <rect x="610" y="124" width="170" height="28" rx="6" fill="#eff6ff" stroke="#2563eb"/><text x="695" y="143" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#1d4ed8">SELECT → 1000</text>
+  <rect x="790" y="124" width="160" height="28" rx="6" fill="#fef2f2" stroke="#dc2626"/><text x="870" y="143" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#b91c1c">FOR UPDATE → 500</text>
+  <text x="60" y="186" font-size="13" font-weight="700" fill="#b45309">Session B</text>
+  <rect x="390" y="170" width="200" height="28" rx="6" fill="#fffbeb" stroke="#d97706"/><text x="490" y="189" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#b45309">UPDATE 500; COMMIT (no wait)</text>
+
+  <!-- versions -->
+  <rect x="120" y="240" width="330" height="90" rx="10" fill="#ffffff" stroke="#16a34a" stroke-width="2"/>
+  <text x="285" y="265" text-anchor="middle" font-size="14" font-weight="800" fill="#15803d">Table row (latest version)</text>
+  <text x="285" y="290" text-anchor="middle" font-size="12" font-family="Consolas, monospace" fill="#334155">id=1 balance=500</text>
+  <text x="285" y="312" text-anchor="middle" font-size="11" font-family="Consolas, monospace" fill="#64748b">DB_TRX_ID=B · DB_ROLL_PTR ●</text>
+
+  <line x1="452" y1="285" x2="546" y2="285" stroke="#475569" stroke-width="2" marker-end="url(#k)"/>
+  <text x="500" y="276" text-anchor="middle" font-size="11" fill="#475569">roll ptr</text>
+
+  <rect x="550" y="240" width="330" height="90" rx="10" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="715" y="265" text-anchor="middle" font-size="14" font-weight="800" fill="#6d28d9">Undo log (old version)</text>
+  <text x="715" y="290" text-anchor="middle" font-size="12" font-family="Consolas, monospace" fill="#334155">id=1 balance=1000</text>
+  <text x="715" y="312" text-anchor="middle" font-size="11" fill="#64748b">removed later by purge thread</text>
+
+  <rect x="120" y="355" width="370" height="105" rx="10" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="135" y="378" font-size="13" font-weight="800" fill="#1d4ed8">Plain SELECT (consistent read)</text>
+  <text x="135" y="400" font-size="12" fill="#334155">B not visible in A's read view →</text>
+  <text x="135" y="420" font-size="12" fill="#334155">follow roll pointer → read 1000</text>
+  <text x="135" y="442" font-size="12" fill="#334155">no lock taken</text>
+
+  <rect x="510" y="355" width="370" height="105" rx="10" fill="#fef2f2" stroke="#dc2626"/>
+  <text x="525" y="378" font-size="13" font-weight="800" fill="#b91c1c">Locking read / UPDATE / DELETE</text>
+  <text x="525" y="400" font-size="12" fill="#334155">always reads the latest version (500)</text>
+  <text x="525" y="420" font-size="12" fill="#334155">RR: one read view per transaction</text>
+  <text x="525" y="442" font-size="12" fill="#334155">RC: new read view per statement</text>
+</svg>
