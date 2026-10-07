@@ -8,13 +8,38 @@
 -- A. The 5 Types of SQL Commands
 -- ------------------------------------------------------------
 
--- | Type | Full Form | Commands | Works On | Can ROLLBACK? |
--- | :--- | :--- | :--- | :--- | :--- |
--- | DDL | Data Definition Language | `CREATE`, `ALTER`, `DROP`, `TRUNCATE`, `RENAME` | Structure (tables, databases) | ❌ No (auto-commit in MySQL) |
--- | DML | Data Manipulation Language | `INSERT`, `UPDATE`, `DELETE`, `REPLACE` | Data (rows) | ✅ Yes (inside a transaction) |
--- | DQL | Data Query Language | `SELECT` | Reads data only | — (nothing to undo) |
--- | DCL | Data Control Language | `GRANT`, `REVOKE` | Permissions | ❌ No |
--- | TCL | Transaction Control Language | `START TRANSACTION`, `COMMIT`, `ROLLBACK`, `SAVEPOINT` | Transactions | — |
+-- (Type → Full Form | Commands | Works On | Can ROLLBACK?)
+--
+-- * DDL
+--     - Full Form     : Data Definition Language
+--     - Commands      : CREATE, ALTER, DROP, TRUNCATE, RENAME
+--     - Works On      : Structure (tables, databases)
+--     - Can ROLLBACK? : ❌ No (auto-commit in MySQL)
+--
+-- * DML
+--     - Full Form     : Data Manipulation Language
+--     - Commands      : INSERT, UPDATE, DELETE, REPLACE
+--     - Works On      : Data (rows)
+--     - Can ROLLBACK? : ✅ Yes (inside a transaction)
+--
+-- * DQL
+--     - Full Form     : Data Query Language
+--     - Commands      : SELECT
+--     - Works On      : Reads data only
+--     - Can ROLLBACK? : — (nothing to undo)
+--
+-- * DCL
+--     - Full Form     : Data Control Language
+--     - Commands      : GRANT, REVOKE
+--     - Works On      : Permissions
+--     - Can ROLLBACK? : ❌ No
+--
+-- * TCL
+--     - Full Form     : Transaction Control Language
+--     - Commands      : START TRANSACTION, COMMIT, ROLLBACK, SAVEPOINT
+--     - Works On      : Transactions
+--     - Can ROLLBACK? : —
+--
 
 -- ------------------------------------------------------------
 -- B. Query Writing Order vs. Execution Order
@@ -31,20 +56,44 @@
 -- C. Most-Asked "Difference Between" Questions
 -- ------------------------------------------------------------
 
--- | Question | Short Answer |
--- | :--- | :--- |
--- | `DELETE` vs `TRUNCATE` vs `DROP` | `DELETE` removes chosen rows (DML, can rollback). `TRUNCATE` empties the table fast (DDL, resets `AUTO_INCREMENT`). `DROP` removes the whole table. |
--- | `WHERE` vs `HAVING` | `WHERE` filters rows before grouping; `HAVING` filters groups after `GROUP BY` (can use `SUM`, `COUNT`…). |
--- | `UNION` vs `UNION ALL` | `UNION` removes duplicates (slower); `UNION ALL` keeps all rows (faster). |
--- | `CHAR` vs `VARCHAR` | `CHAR(n)` always uses n characters (padded); `VARCHAR(n)` uses only the actual length + 1–2 bytes. |
--- | `DATETIME` vs `TIMESTAMP` | `DATETIME`: 1000–9999, no time zone change. `TIMESTAMP`: 1970–2038, stored in UTC and converted to your time zone. |
--- | `PRIMARY KEY` vs `UNIQUE` | Primary key: only one per table, no NULL. Unique: many per table, NULL allowed. |
--- | `INNER JOIN` vs `LEFT JOIN` | Inner = only matching rows. Left = all rows from the left table + matches (NULL if no match). |
--- | `ROW_NUMBER` vs `RANK` vs `DENSE_RANK` | For values 100, 90, 90, 80 → `ROW_NUMBER`: 1,2,3,4 · `RANK`: 1,2,2,4 · `DENSE_RANK`: 1,2,2,3 |
--- | `COUNT(*)` vs `COUNT(col)` | `COUNT(*)` counts all rows; `COUNT(col)` counts only non-NULL values. |
--- | `GROUP BY` vs Window function | `GROUP BY` gives one row per group; a window function keeps every row and adds the result next to it. |
--- | Subquery vs JOIN | A JOIN combines columns from tables; a subquery uses one query's result inside another. JOINs are usually faster and easier to read. |
--- | Clustered vs Non-clustered index | Clustered = table rows are stored in key order (the Primary Key in InnoDB, only one). Non-clustered (secondary) = a separate structure pointing to the rows (many allowed). |
+-- (Question → Short Answer)
+--
+-- * DELETE vs TRUNCATE vs DROP
+--     - Short Answer : DELETE removes chosen rows (DML, can rollback). TRUNCATE empties the table fast (DDL, resets AUTO_INCREMENT). DROP removes the whole table.
+--
+-- * WHERE vs HAVING
+--     - Short Answer : WHERE filters rows before grouping; HAVING filters groups after GROUP BY (can use SUM, COUNT…).
+--
+-- * UNION vs UNION ALL
+--     - Short Answer : UNION removes duplicates (slower); UNION ALL keeps all rows (faster).
+--
+-- * CHAR vs VARCHAR
+--     - Short Answer : CHAR(n) always uses n characters (padded); VARCHAR(n) uses only the actual length + 1–2 bytes.
+--
+-- * DATETIME vs TIMESTAMP
+--     - Short Answer : DATETIME: 1000–9999, no time zone change. TIMESTAMP: 1970–2038, stored in UTC and converted to your time zone.
+--
+-- * PRIMARY KEY vs UNIQUE
+--     - Short Answer : Primary key: only one per table, no NULL. Unique: many per table, NULL allowed.
+--
+-- * INNER JOIN vs LEFT JOIN
+--     - Short Answer : Inner = only matching rows. Left = all rows from the left table + matches (NULL if no match).
+--
+-- * ROW_NUMBER vs RANK vs DENSE_RANK
+--     - Short Answer : For values 100, 90, 90, 80 → ROW_NUMBER: 1,2,3,4 · RANK: 1,2,2,4 · DENSE_RANK: 1,2,2,3
+--
+-- * COUNT(*) vs COUNT(col)
+--     - Short Answer : COUNT(*) counts all rows; COUNT(col) counts only non-NULL values.
+--
+-- * GROUP BY vs Window function
+--     - Short Answer : GROUP BY gives one row per group; a window function keeps every row and adds the result next to it.
+--
+-- * Subquery vs JOIN
+--     - Short Answer : A JOIN combines columns from tables; a subquery uses one query's result inside another. JOINs are usually faster and easier to read.
+--
+-- * Clustered vs Non-clustered index
+--     - Short Answer : Clustered = table rows are stored in key order (the Primary Key in InnoDB, only one). Non-clustered (secondary) = a separate structure pointing to the rows (many allowed).
+--
 
 -- ------------------------------------------------------------
 -- D. NULL Rules (Very Common Traps)
@@ -101,27 +150,54 @@
 -- ------------------------------------------------------------
 -- G. Indexes & Performance (One Look)
 -- ------------------------------------------------------------
--- | Rule | Why |
--- | :--- | :--- |
--- | Index columns used in `WHERE`, `JOIN`, `ORDER BY`, `GROUP BY` | lets MySQL seek instead of scanning |
--- | Composite index `(a, b)` works for `a` and `a,b`, not `b` alone | leftmost prefix rule |
--- | Covering index → `EXPLAIN` shows `Using index` | table rows are never read |
--- | No function on an indexed column: `d >= '2025-01-01'` not `YEAR(d) = 2025` | a function hides the index |
--- | `LIKE 'abc%'` ✔, `LIKE '%abc'` ✖ | leading wildcard can't use the index |
--- | `EXPLAIN` `type = ALL` = full scan; `ref / range / const` = good | read the plan before changing anything |
+-- (Rule → Why)
+--
+-- * Index columns used in WHERE, JOIN, ORDER BY, GROUP BY
+--     - Why : lets MySQL seek instead of scanning
+--
+-- * Composite index (a, b) works for a and a,b, not b alone
+--     - Why : leftmost prefix rule
+--
+-- * Covering index → EXPLAIN shows Using index
+--     - Why : table rows are never read
+--
+-- * No function on an indexed column: d >= '2025-01-01' not YEAR(d) = 2025
+--     - Why : a function hides the index
+--
+-- * LIKE 'abc%' ✔, LIKE '%abc' ✖
+--     - Why : leading wildcard can't use the index
+--
+-- * EXPLAIN type = ALL = full scan; ref / range / const = good
+--     - Why : read the plan before changing anything
+--
 
 -- * See Topic 41 (indexing), Topic 43 (EXPLAIN), Topic 48 (optimization techniques).
 
 -- ------------------------------------------------------------
 -- H. Procedures, Functions, Triggers, Events, Cursors (One Look)
 -- ------------------------------------------------------------
--- | Object | Starts when | Key syntax |
--- | :--- | :--- | :--- |
--- | Procedure | you run `CALL` | `CREATE PROCEDURE p(IN a INT, OUT b INT) BEGIN ... END` |
--- | Function | used inside a query | `CREATE FUNCTION f(a INT) RETURNS INT DETERMINISTIC RETURN ...` |
--- | Trigger | INSERT / UPDATE / DELETE on a table | `CREATE TRIGGER t BEFORE INSERT ON orders FOR EACH ROW ...` (OLD / NEW) |
--- | Event | a time schedule | `CREATE EVENT e ON SCHEDULE EVERY 1 DAY DO ...` (event_scheduler ON) |
--- | Cursor | inside a procedure, row by row | `DECLARE c CURSOR FOR ...; OPEN; FETCH ... INTO ...; CLOSE` |
+-- (Object → Starts when | Key syntax)
+--
+-- * Procedure
+--     - Starts when : you run CALL
+--     - Key syntax  : CREATE PROCEDURE p(IN a INT, OUT b INT) BEGIN ... END
+--
+-- * Function
+--     - Starts when : used inside a query
+--     - Key syntax  : CREATE FUNCTION f(a INT) RETURNS INT DETERMINISTIC RETURN ...
+--
+-- * Trigger
+--     - Starts when : INSERT / UPDATE / DELETE on a table
+--     - Key syntax  : CREATE TRIGGER t BEFORE INSERT ON orders FOR EACH ROW ... (OLD / NEW)
+--
+-- * Event
+--     - Starts when : a time schedule
+--     - Key syntax  : CREATE EVENT e ON SCHEDULE EVERY 1 DAY DO ... (event_scheduler ON)
+--
+-- * Cursor
+--     - Starts when : inside a procedure, row by row
+--     - Key syntax  : DECLARE c CURSOR FOR ...; OPEN; FETCH ... INTO ...; CLOSE
+--
 
 -- * MySQL: no `DEFAULT` for procedure parameters, no `CREATE OR REPLACE PROCEDURE/TRIGGER`, no COMMIT inside triggers/functions, `SIGNAL SQLSTATE '45000'` to raise an error (see Topic 35, Topic 36, Topic 37, Topic 38, Topic 39).
 
@@ -142,16 +218,32 @@
 -- ------------------------------------------------------------
 -- J. Most-Asked Query Patterns
 -- ------------------------------------------------------------
--- | Problem | Pattern |
--- | :--- | :--- |
--- | Nth highest / top N per group | `DENSE_RANK() OVER (PARTITION BY dept ORDER BY salary DESC)` then `WHERE rnk <= N` |
--- | Latest row per group | `ROW_NUMBER() OVER (PARTITION BY customer ORDER BY date DESC) = 1` |
--- | Duplicates | `GROUP BY col HAVING COUNT(*) > 1`; delete with `ROW_NUMBER() ... rn > 1` |
--- | Running total / moving average | `SUM(x) OVER (ORDER BY d)` / `AVG(x) OVER (ORDER BY d ROWS 2 PRECEDING)` |
--- | Month-over-month change | `LAG(total) OVER (ORDER BY month)` |
--- | Consecutive days (gaps & islands) | group by `date - ROW_NUMBER()` |
--- | Rows → columns (pivot) | `SUM(CASE WHEN year = 2025 THEN sales ELSE 0 END)` |
--- | Not in other table | `LEFT JOIN ... WHERE b.id IS NULL` or `NOT EXISTS` |
+-- (Problem → Pattern)
+--
+-- * Nth highest / top N per group
+--     - Pattern : DENSE_RANK() OVER (PARTITION BY dept ORDER BY salary DESC) then WHERE rnk <= N
+--
+-- * Latest row per group
+--     - Pattern : ROW_NUMBER() OVER (PARTITION BY customer ORDER BY date DESC) = 1
+--
+-- * Duplicates
+--     - Pattern : GROUP BY col HAVING COUNT(*) > 1; delete with ROW_NUMBER() ... rn > 1
+--
+-- * Running total / moving average
+--     - Pattern : SUM(x) OVER (ORDER BY d) / AVG(x) OVER (ORDER BY d ROWS 2 PRECEDING)
+--
+-- * Month-over-month change
+--     - Pattern : LAG(total) OVER (ORDER BY month)
+--
+-- * Consecutive days (gaps & islands)
+--     - Pattern : group by date - ROW_NUMBER()
+--
+-- * Rows → columns (pivot)
+--     - Pattern : SUM(CASE WHEN year = 2025 THEN sales ELSE 0 END)
+--
+-- * Not in other table
+--     - Pattern : LEFT JOIN ... WHERE b.id IS NULL or NOT EXISTS
+--
 
 -- * Worked answers with output: Topic 53, Part J and Part Q.
 

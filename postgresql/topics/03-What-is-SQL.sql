@@ -72,12 +72,28 @@ WHERE purchase_date >= CURRENT_DATE - INTERVAL '1 month';
 
 -- SQL supports all 4 basic data operations, together called CRUD:
 
--- | CRUD Operation | Meaning | Primary SQL Command | Example Syntax & Usage |
--- | :--- | :--- | :--- | :--- |
--- | Create | Adding new data records | `INSERT` | `INSERT INTO customers (name, email) VALUES ('Rohan', 'rohan@example.com');` |
--- | Read | Searching & viewing records | `SELECT` | `SELECT * FROM customers WHERE id = 101;` |
--- | Update | Modifying existing records | `UPDATE` | `UPDATE customers SET email = 'new_email@example.com' WHERE id = 101;` |
--- | Delete | Removing unwanted records | `DELETE` | `DELETE FROM customers WHERE id = 101;` |
+-- (CRUD Operation → Meaning | Primary SQL Command | Example Syntax & Usage)
+--
+-- * Create
+--     - Meaning                : Adding new data records
+--     - Primary SQL Command    : INSERT
+--     - Example Syntax & Usage : INSERT INTO customers (name, email) VALUES ('Rohan', 'rohan@example.com');
+--
+-- * Read
+--     - Meaning                : Searching & viewing records
+--     - Primary SQL Command    : SELECT
+--     - Example Syntax & Usage : SELECT * FROM customers WHERE id = 101;
+--
+-- * Update
+--     - Meaning                : Modifying existing records
+--     - Primary SQL Command    : UPDATE
+--     - Example Syntax & Usage : UPDATE customers SET email = 'new_email@example.com' WHERE id = 101;
+--
+-- * Delete
+--     - Meaning                : Removing unwanted records
+--     - Primary SQL Command    : DELETE
+--     - Example Syntax & Usage : DELETE FROM customers WHERE id = 101;
+--
 
 -- ---
 

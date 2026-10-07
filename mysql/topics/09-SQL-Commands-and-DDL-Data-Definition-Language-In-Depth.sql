@@ -414,14 +414,32 @@ ALTER TABLE employees AUTO_INCREMENT = 1000;
 -- Quick Reference Matrix:
 -- ------------------------------------------------------------
 
--- | Constraint | How to ADD | How to DROP |
--- | :--- | :--- | :--- |
--- | PRIMARY KEY | `ALTER TABLE employees ADD PRIMARY KEY (id);` | `ALTER TABLE employees DROP PRIMARY KEY;` |
--- | UNIQUE | `ALTER TABLE employees ADD CONSTRAINT unique_email UNIQUE (email);` | `ALTER TABLE employees DROP INDEX unique_email;` |
--- | FOREIGN KEY | `ALTER TABLE orders ADD CONSTRAINT fk_cust FOREIGN KEY (customer_id) REFERENCES customers(id);` | `ALTER TABLE orders DROP FOREIGN KEY fk_cust;` |
--- | CHECK | `ALTER TABLE employees ADD CONSTRAINT chk_age CHECK (age >= 18);` | `ALTER TABLE employees DROP CHECK chk_age;` |
--- | NOT NULL | `ALTER TABLE STUDENT MODIFY EDUCATION VARCHAR(255) NOT NULL;` | `ALTER TABLE STUDENT MODIFY EDUCATION VARCHAR(255) NULL;` |
--- | DEFAULT | `ALTER TABLE employees ALTER salary SET DEFAULT 5000;` | `ALTER TABLE employees ALTER salary DROP DEFAULT;` |
+-- (Constraint → How to ADD | How to DROP)
+--
+-- * PRIMARY KEY
+--     - How to ADD  : ALTER TABLE employees ADD PRIMARY KEY (id);
+--     - How to DROP : ALTER TABLE employees DROP PRIMARY KEY;
+--
+-- * UNIQUE
+--     - How to ADD  : ALTER TABLE employees ADD CONSTRAINT unique_email UNIQUE (email);
+--     - How to DROP : ALTER TABLE employees DROP INDEX unique_email;
+--
+-- * FOREIGN KEY
+--     - How to ADD  : ALTER TABLE orders ADD CONSTRAINT fk_cust FOREIGN KEY (customer_id) REFERENCES customers(id);
+--     - How to DROP : ALTER TABLE orders DROP FOREIGN KEY fk_cust;
+--
+-- * CHECK
+--     - How to ADD  : ALTER TABLE employees ADD CONSTRAINT chk_age CHECK (age >= 18);
+--     - How to DROP : ALTER TABLE employees DROP CHECK chk_age;
+--
+-- * NOT NULL
+--     - How to ADD  : ALTER TABLE STUDENT MODIFY EDUCATION VARCHAR(255) NOT NULL;
+--     - How to DROP : ALTER TABLE STUDENT MODIFY EDUCATION VARCHAR(255) NULL;
+--
+-- * DEFAULT
+--     - How to ADD  : ALTER TABLE employees ALTER salary SET DEFAULT 5000;
+--     - How to DROP : ALTER TABLE employees ALTER salary DROP DEFAULT;
+--
 
 -- ---
 
@@ -574,14 +592,26 @@ ALTER TABLE employees ALTER salary DROP DEFAULT;
 -- 9.8 Quick Revision Cheat Sheet: ALTER Operations
 -- ------------------------------------------------------------
 
--- | Keyword | What it Does |
--- | :--- | :--- |
--- | **`ADD`** | Adds column, constraint, or index |
--- | **`DROP`** | Drops column, constraint, index, or primary key |
--- | **`MODIFY`** | Changes column definition (datatype, null, default) without renaming |
--- | **`CHANGE`** | Renames + modifies column definition in one step |
--- | **`RENAME`** | Renames table or index (or column in MySQL 8.0+) |
--- | **`ALTER`** | Sets/drops default values, character sets, or `AUTO_INCREMENT` |
+-- (Keyword → What it Does)
+--
+-- * ADD
+--     - What it Does : Adds column, constraint, or index
+--
+-- * DROP
+--     - What it Does : Drops column, constraint, index, or primary key
+--
+-- * MODIFY
+--     - What it Does : Changes column definition (datatype, null, default) without renaming
+--
+-- * CHANGE
+--     - What it Does : Renames + modifies column definition in one step
+--
+-- * RENAME
+--     - What it Does : Renames table or index (or column in MySQL 8.0+)
+--
+-- * ALTER
+--     - What it Does : Sets/drops default values, character sets, or AUTO_INCREMENT
+--
 
 -- ---
 
@@ -801,18 +831,58 @@ DROP DATABASE old_database_name;
 -- 1. Comprehensive 10-Point Comparison Matrix
 -- ------------------------------------------------------------
 
--- | Feature / Dimension | `DELETE` | `TRUNCATE` | `DROP` |
--- | :--- | :--- | :--- | :--- |
--- | 1. Command Category | DML (Data Manipulation Language) | DDL (Data Definition Language) | DDL (Data Definition Language) |
--- | 2. Core Purpose & Action | Deletes specific rows or all rows | Wipes all rows in a table simultaneously | Completely deletes table, schema & data |
--- | 3. WHERE Clause Filtering | Supported (`WHERE condition`) | NOT Supported (Cannot filter rows) | NOT Supported (Cannot filter rows) |
--- | 4. Rollback / Transactions | YES (Can be undone with `ROLLBACK`) | NO in MySQL (Implicit Commit) | NO in MySQL (Implicit Commit) |
--- | 5. Execution Speed | Slower (Logs row-by-row deletions) | Very Fast (Deallocates entire data pages) | Fastest (Removes object from catalog) |
--- | 6. Space Deallocation | NO (Keeps disk pages allocated to table) | YES (Releases data pages back to engine) | YES (100% disk and memory space freed) |
--- | 7. AUTO_INCREMENT Counter | Preserved (Next ID = Max ID + 1) | RESET back to 1 (Starts numbering fresh) | Deleted (Table no longer exists) |
--- | 8. Trigger Execution | Fires `ON DELETE` row triggers | Does NOT fire row-level triggers | Does NOT fire triggers (Triggers dropped) |
--- | 9. Foreign Key Rules | Allowed if cascade/child rules permit | BLOCKED if referenced by active FK | BLOCKED if another table's FK points to it (drop the FK or child table first; in MySQL the `CASCADE` keyword does nothing here) |
--- | 10. Table Structure After Query | 100% Intact (Columns, keys preserved) | 100% Intact (Columns, keys preserved) | DESTROYED (Table completely vanishes) |
+-- (Feature / Dimension → DELETE | TRUNCATE | DROP)
+--
+-- * 1. Command Category
+--     - DELETE   : DML (Data Manipulation Language)
+--     - TRUNCATE : DDL (Data Definition Language)
+--     - DROP     : DDL (Data Definition Language)
+--
+-- * 2. Core Purpose & Action
+--     - DELETE   : Deletes specific rows or all rows
+--     - TRUNCATE : Wipes all rows in a table simultaneously
+--     - DROP     : Completely deletes table, schema & data
+--
+-- * 3. WHERE Clause Filtering
+--     - DELETE   : Supported (WHERE condition)
+--     - TRUNCATE : NOT Supported (Cannot filter rows)
+--     - DROP     : NOT Supported (Cannot filter rows)
+--
+-- * 4. Rollback / Transactions
+--     - DELETE   : YES (Can be undone with ROLLBACK)
+--     - TRUNCATE : NO in MySQL (Implicit Commit)
+--     - DROP     : NO in MySQL (Implicit Commit)
+--
+-- * 5. Execution Speed
+--     - DELETE   : Slower (Logs row-by-row deletions)
+--     - TRUNCATE : Very Fast (Deallocates entire data pages)
+--     - DROP     : Fastest (Removes object from catalog)
+--
+-- * 6. Space Deallocation
+--     - DELETE   : NO (Keeps disk pages allocated to table)
+--     - TRUNCATE : YES (Releases data pages back to engine)
+--     - DROP     : YES (100% disk and memory space freed)
+--
+-- * 7. AUTO_INCREMENT Counter
+--     - DELETE   : Preserved (Next ID = Max ID + 1)
+--     - TRUNCATE : RESET back to 1 (Starts numbering fresh)
+--     - DROP     : Deleted (Table no longer exists)
+--
+-- * 8. Trigger Execution
+--     - DELETE   : Fires ON DELETE row triggers
+--     - TRUNCATE : Does NOT fire row-level triggers
+--     - DROP     : Does NOT fire triggers (Triggers dropped)
+--
+-- * 9. Foreign Key Rules
+--     - DELETE   : Allowed if cascade/child rules permit
+--     - TRUNCATE : BLOCKED if referenced by active FK
+--     - DROP     : BLOCKED if another table's FK points to it (drop the FK or child table first; in MySQL the CASCADE keyword does nothing here)
+--
+-- * 10. Table Structure After Query
+--     - DELETE   : 100% Intact (Columns, keys preserved)
+--     - TRUNCATE : 100% Intact (Columns, keys preserved)
+--     - DROP     : DESTROYED (Table completely vanishes)
+--
 
 -- ---
 
@@ -1001,17 +1071,30 @@ SELECT price, qty, total, full_name FROM order_items;
 
 -- * Output:
 
--- | price | qty | total | full_name |
--- | :--- | :--- | :--- | :--- |
--- | 250.00 | 4 | 1000.00 | Asha Patil |
+-- (price → qty | total | full_name)
+--
+-- * 250.00
+--     - qty       : 4
+--     - total     : 1000.00
+--     - full_name : Asha Patil
+--
 
 -- * VIRTUAL vs STORED:
 
--- | Point | VIRTUAL (default) | STORED |
--- | :--- | :--- | :--- |
--- | Disk space | None — computed on every read | Uses space — computed on INSERT/UPDATE |
--- | Read speed | Slightly slower | Faster |
--- | Index | Allowed (InnoDB secondary index) | Allowed (also PRIMARY KEY) |
+-- (Point → VIRTUAL (default) | STORED)
+--
+-- * Disk space
+--     - VIRTUAL (default) : None — computed on every read
+--     - STORED            : Uses space — computed on INSERT/UPDATE
+--
+-- * Read speed
+--     - VIRTUAL (default) : Slightly slower
+--     - STORED            : Faster
+--
+-- * Index
+--     - VIRTUAL (default) : Allowed (InnoDB secondary index)
+--     - STORED            : Allowed (also PRIMARY KEY)
+--
 
 -- * Big use case — index an expression or a JSON field:
 ALTER TABLE customers

@@ -217,14 +217,32 @@ FROM CUSTOMERS c;
 -- 28.4 JOIN vs SUBQUERY (Interview Comparison)
 -- ------------------------------------------------------------
 
--- | Feature | JOIN | SUBQUERY |
--- | :--- | :--- | :--- |
--- | Purpose | Combines data from two or more tables into a single result set. | A query inside another query, used to pass intermediate results. |
--- | Execution | Tables are combined first, then filtering/selection is applied. | Inner query executes first, result is passed to outer query. |
--- | Performance | Usually faster and more efficient for large datasets (uses Indexes and Hash/Loop algorithms). | Sometimes slower (especially Correlated subqueries which run row-by-row). |
--- | Readability | More readable when pulling columns from multiple related tables. | Easier to understand for simple filtering (e.g., finding the `MAX` or `AVG`). |
--- | Load Distribution| Maximizes the calculation burden on the database Engine. | Keeps the responsibility on calculation logic (step-by-step). |
--- | Types | INNER, LEFT, RIGHT, FULL, CROSS, SELF. | Scalar, Row, Table, Correlated, Non-Correlated. |
+-- (Feature → JOIN | SUBQUERY)
+--
+-- * Purpose
+--     - JOIN     : Combines data from two or more tables into a single result set.
+--     - SUBQUERY : A query inside another query, used to pass intermediate results.
+--
+-- * Execution
+--     - JOIN     : Tables are combined first, then filtering/selection is applied.
+--     - SUBQUERY : Inner query executes first, result is passed to outer query.
+--
+-- * Performance
+--     - JOIN     : Usually faster and more efficient for large datasets (uses Indexes and Hash/Loop algorithms).
+--     - SUBQUERY : Sometimes slower (especially Correlated subqueries which run row-by-row).
+--
+-- * Readability
+--     - JOIN     : More readable when pulling columns from multiple related tables.
+--     - SUBQUERY : Easier to understand for simple filtering (e.g., finding the MAX or AVG).
+--
+-- * Load Distribution
+--     - JOIN     : Maximizes the calculation burden on the database Engine.
+--     - SUBQUERY : Keeps the responsibility on calculation logic (step-by-step).
+--
+-- * Types
+--     - JOIN     : INNER, LEFT, RIGHT, FULL, CROSS, SELF.
+--     - SUBQUERY : Scalar, Row, Table, Correlated, Non-Correlated.
+--
 
 -- * Interview Tip: Always prefer a `JOIN` over a `Correlated Subquery` for better performance. However, modern SQL Optimizers are smart enough to automatically convert many subqueries into Joins behind the scenes!
 

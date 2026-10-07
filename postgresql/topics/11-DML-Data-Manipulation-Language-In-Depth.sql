@@ -446,16 +446,44 @@ DELETE FROM customers;   -- ERROR: DELETE requires a WHERE clause
 -- 1. Detailed 9-Point Comparison Matrix
 -- ------------------------------------------------------------
 
--- | :--- | :--- | :--- |
--- | 1. Meaning | Data is permanently removed from the table | Data is not removed; it is only marked as deleted using a status flag |
--- | 2. Data Recovery | Cannot be recovered unless a backup / PITR is available | Easily restored by changing the status flag back to active |
--- | 3. How It Works | Removes the row (marked dead, cleaned by `VACUUM`) | Updates a flag or timestamp column to indicate deletion |
--- | 4. SQL Command | Executed using `DELETE` or `TRUNCATE` | Executed using `UPDATE` (`SET is_deleted = TRUE`) |
--- | 5. Storage Usage | Uses less storage because deleted records are cleared | Uses more storage because deleted records remain in the table |
--- | 6. Query Performance | Generally faster; fewer records remain to scan and index | Queries need a filter (`WHERE NOT is_deleted`); a partial index helps |
--- | 7. Data History & Audit | Historical data is permanently lost | Maintains audit history: who deleted what and when |
--- | 8. Implementation | No extra table columns required | Requires additional columns like `is_deleted`, `deleted_at`, or `status` |
--- | 9. Common Use Cases | Temporary data, cache tables, compliance data removal (GDPR) | Banking, e-commerce orders, user accounts, audit-heavy enterprise apps |
+-- (Feature / Dimension → Hard Delete | Soft Delete)
+--
+-- * 1. Meaning
+--     - Hard Delete : Data is permanently removed from the table
+--     - Soft Delete : Data is not removed; it is only marked as deleted using a status flag
+--
+-- * 2. Data Recovery
+--     - Hard Delete : Cannot be recovered unless a backup / PITR is available
+--     - Soft Delete : Easily restored by changing the status flag back to active
+--
+-- * 3. How It Works
+--     - Hard Delete : Removes the row (marked dead, cleaned by VACUUM)
+--     - Soft Delete : Updates a flag or timestamp column to indicate deletion
+--
+-- * 4. SQL Command
+--     - Hard Delete : Executed using DELETE or TRUNCATE
+--     - Soft Delete : Executed using UPDATE (SET is_deleted = TRUE)
+--
+-- * 5. Storage Usage
+--     - Hard Delete : Uses less storage because deleted records are cleared
+--     - Soft Delete : Uses more storage because deleted records remain in the table
+--
+-- * 6. Query Performance
+--     - Hard Delete : Generally faster; fewer records remain to scan and index
+--     - Soft Delete : Queries need a filter (WHERE NOT is_deleted); a partial index helps
+--
+-- * 7. Data History & Audit
+--     - Hard Delete : Historical data is permanently lost
+--     - Soft Delete : Maintains audit history: who deleted what and when
+--
+-- * 8. Implementation
+--     - Hard Delete : No extra table columns required
+--     - Soft Delete : Requires additional columns like is_deleted, deleted_at, or status
+--
+-- * 9. Common Use Cases
+--     - Hard Delete : Temporary data, cache tables, compliance data removal (GDPR)
+--     - Soft Delete : Banking, e-commerce orders, user accounts, audit-heavy enterprise apps
+--
 
 -- ------------------------------------------------------------
 -- 2. Practical Implementation of Soft Delete
@@ -655,13 +683,33 @@ SELECT * FROM employee;
 -- 6. Summary Matrix of Referential Actions (PostgreSQL)
 -- ------------------------------------------------------------
 
--- | Action Type | Behavior on Parent Deletion (`ON DELETE`) | Behavior on Parent Update (`ON UPDATE`) | Best Use Case |
--- | :--- | :--- | :--- | :--- |
--- | `CASCADE` | Automatically deletes all related child rows | Automatically updates related child foreign keys | Child data has no meaning without parent (e.g., Order Items $\rightarrow$ Order) |
--- | `NO ACTION` (DEFAULT) | Blocks parent deletion if child rows exist (check at end of statement; can be deferred) | Blocks parent key update if child rows exist | Default protection; works with `DEFERRABLE` |
--- | `RESTRICT` | Blocks immediately (cannot be deferred) | Blocks immediately | Strict protection |
--- | `SET NULL` | Sets child foreign key column to `NULL` (Child remains) | Sets child foreign key column to `NULL` | Child can exist independently (e.g., Employee stays if Department is deleted) |
--- | `SET DEFAULT` | Sets child foreign key to its default value | Sets child foreign key to its default value | ✅ Supported in PostgreSQL (e.g., move employees to a "General" department) |
+-- (Action Type → Behavior on Parent Deletion (ON DELETE) | Behavior on Parent Update (ON UPDATE) | Best Use Case)
+--
+-- * CASCADE
+--     - Behavior on Parent Deletion (ON DELETE) : Automatically deletes all related child rows
+--     - Behavior on Parent Update (ON UPDATE)   : Automatically updates related child foreign keys
+--     - Best Use Case                           : Child data has no meaning without parent (e.g., Order Items \rightarrow Order)
+--
+-- * NO ACTION (DEFAULT)
+--     - Behavior on Parent Deletion (ON DELETE) : Blocks parent deletion if child rows exist (check at end of statement; can be deferred)
+--     - Behavior on Parent Update (ON UPDATE)   : Blocks parent key update if child rows exist
+--     - Best Use Case                           : Default protection; works with DEFERRABLE
+--
+-- * RESTRICT
+--     - Behavior on Parent Deletion (ON DELETE) : Blocks immediately (cannot be deferred)
+--     - Behavior on Parent Update (ON UPDATE)   : Blocks immediately
+--     - Best Use Case                           : Strict protection
+--
+-- * SET NULL
+--     - Behavior on Parent Deletion (ON DELETE) : Sets child foreign key column to NULL (Child remains)
+--     - Behavior on Parent Update (ON UPDATE)   : Sets child foreign key column to NULL
+--     - Best Use Case                           : Child can exist independently (e.g., Employee stays if Department is deleted)
+--
+-- * SET DEFAULT
+--     - Behavior on Parent Deletion (ON DELETE) : Sets child foreign key to its default value
+--     - Behavior on Parent Update (ON UPDATE)   : Sets child foreign key to its default value
+--     - Best Use Case                           : ✅ Supported in PostgreSQL (e.g., move employees to a "General" department)
+--
 
 --   * 1. `ON DELETE CASCADE`:
 
@@ -771,26 +819,62 @@ WHERE customers.score < EXCLUDED.score;     -- keep the higher score
 -- 4. Differences: UPDATE vs INSERT ... ON CONFLICT
 -- ------------------------------------------------------------
 
--- | Dimension | `UPDATE` | `INSERT ... ON CONFLICT DO UPDATE` |
--- | :--- | :--- | :--- |
--- | Operation Type | Modifies existing rows | Inserts, or updates the existing row with the same key |
--- | Key Conflict | Needs `WHERE` to find rows | Uses the unique key to detect the conflict |
--- | Non-Existing Key | 0 rows affected (does not insert) | Inserts as a brand new row |
--- | Trigger Execution | Fires `UPDATE` triggers | Fires `INSERT` triggers, plus `UPDATE` triggers if a conflict happened |
--- | Columns not mentioned | Unchanged | Unchanged (only the `SET` columns change) |
--- | Auto-number | No effect | The sequence still moves forward even when the row is updated (gaps in ids are normal) |
+-- (Dimension → UPDATE | INSERT ... ON CONFLICT DO UPDATE)
+--
+-- * Operation Type
+--     - UPDATE                           : Modifies existing rows
+--     - INSERT ... ON CONFLICT DO UPDATE : Inserts, or updates the existing row with the same key
+--
+-- * Key Conflict
+--     - UPDATE                           : Needs WHERE to find rows
+--     - INSERT ... ON CONFLICT DO UPDATE : Uses the unique key to detect the conflict
+--
+-- * Non-Existing Key
+--     - UPDATE                           : 0 rows affected (does not insert)
+--     - INSERT ... ON CONFLICT DO UPDATE : Inserts as a brand new row
+--
+-- * Trigger Execution
+--     - UPDATE                           : Fires UPDATE triggers
+--     - INSERT ... ON CONFLICT DO UPDATE : Fires INSERT triggers, plus UPDATE triggers if a conflict happened
+--
+-- * Columns not mentioned
+--     - UPDATE                           : Unchanged
+--     - INSERT ... ON CONFLICT DO UPDATE : Unchanged (only the SET columns change)
+--
+-- * Auto-number
+--     - UPDATE                           : No effect
+--     - INSERT ... ON CONFLICT DO UPDATE : The sequence still moves forward even when the row is updated (gaps in ids are normal)
+--
 
 -- ------------------------------------------------------------
 -- 5. Q. MySQL REPLACE vs ON DUPLICATE KEY UPDATE vs PostgreSQL ON CONFLICT
 -- ------------------------------------------------------------
 
--- | | MySQL `REPLACE INTO` | MySQL `ON DUPLICATE KEY UPDATE` | PostgreSQL `ON CONFLICT DO UPDATE` |
--- | :--- | :--- | :--- | :--- |
--- | On existing key | Delete old row + insert new | Update the row | Update the row |
--- | Columns not given | Lost (NULL/default) | Kept | Kept |
--- | Refer to new values | — | `VALUES(col)` / alias | `EXCLUDED.col` |
--- | Which key? | Any PK/unique | Any PK/unique | You name it: `ON CONFLICT (col)` or `ON CONSTRAINT name` |
--- | Skip duplicates | `INSERT IGNORE` | — | `ON CONFLICT DO NOTHING` |
+-- * On existing key
+--     - MySQL REPLACE INTO               : Delete old row + insert new
+--     - MySQL ON DUPLICATE KEY UPDATE    : Update the row
+--     - PostgreSQL ON CONFLICT DO UPDATE : Update the row
+--
+-- * Columns not given
+--     - MySQL REPLACE INTO               : Lost (NULL/default)
+--     - MySQL ON DUPLICATE KEY UPDATE    : Kept
+--     - PostgreSQL ON CONFLICT DO UPDATE : Kept
+--
+-- * Refer to new values
+--     - MySQL REPLACE INTO               : —
+--     - MySQL ON DUPLICATE KEY UPDATE    : VALUES(col) / alias
+--     - PostgreSQL ON CONFLICT DO UPDATE : EXCLUDED.col
+--
+-- * Which key?
+--     - MySQL REPLACE INTO               : Any PK/unique
+--     - MySQL ON DUPLICATE KEY UPDATE    : Any PK/unique
+--     - PostgreSQL ON CONFLICT DO UPDATE : You name it: ON CONFLICT (col) or ON CONSTRAINT name
+--
+-- * Skip duplicates
+--     - MySQL REPLACE INTO               : INSERT IGNORE
+--     - MySQL ON DUPLICATE KEY UPDATE    : —
+--     - PostgreSQL ON CONFLICT DO UPDATE : ON CONFLICT DO NOTHING
+--
 
 -- * Practical SQL Code Demonstration (From Workbench Examples, PostgreSQL version):
 -- =========================================================================
@@ -843,14 +927,32 @@ WHEN NOT MATCHED THEN
 -- 11.9 Comparison: ALTER Command vs UPDATE Command
 -- ------------------------------------------------------------
 
--- | Feature / Dimension | `ALTER` Command | `UPDATE` Command |
--- | :--- | :--- | :--- |
--- | 1. Command Category | DDL (Data Definition Language) | DML (Data Manipulation Language) |
--- | 2. Target of Operation | Works on Table Structure / Blueprint | Works on Data Values / Rows |
--- | 3. Core Action | Adds, deletes, or changes columns, constraints, data types | Modifies contents of existing rows |
--- | 4. Default Initialization | New columns are `NULL` (or the default) for all existing rows | Sets specific cell values according to `SET` clause |
--- | 5. Transaction Control | Can be rolled back in PostgreSQL (inside `BEGIN`); implicit commit in MySQL | Can be rolled back before commit |
--- | 6. Summary Purpose | Alters the definition of the database object | Modifies the actual data inside the table |
+-- (Feature / Dimension → ALTER Command | UPDATE Command)
+--
+-- * 1. Command Category
+--     - ALTER Command  : DDL (Data Definition Language)
+--     - UPDATE Command : DML (Data Manipulation Language)
+--
+-- * 2. Target of Operation
+--     - ALTER Command  : Works on Table Structure / Blueprint
+--     - UPDATE Command : Works on Data Values / Rows
+--
+-- * 3. Core Action
+--     - ALTER Command  : Adds, deletes, or changes columns, constraints, data types
+--     - UPDATE Command : Modifies contents of existing rows
+--
+-- * 4. Default Initialization
+--     - ALTER Command  : New columns are NULL (or the default) for all existing rows
+--     - UPDATE Command : Sets specific cell values according to SET clause
+--
+-- * 5. Transaction Control
+--     - ALTER Command  : Can be rolled back in PostgreSQL (inside BEGIN); implicit commit in MySQL
+--     - UPDATE Command : Can be rolled back before commit
+--
+-- * 6. Summary Purpose
+--     - ALTER Command  : Alters the definition of the database object
+--     - UPDATE Command : Modifies the actual data inside the table
+--
 
 -- ---
 

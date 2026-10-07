@@ -168,17 +168,44 @@ SELECT id, name FROM inactive_customers;
 
 -- * English Definition/Properties: While both JOINs and SET operators combine data, they do it in completely different ways. JOINs combine columns (horizontal), and SET operators combine rows (vertical).
 
--- | Feature | JOIN (Horizontal Merging) | SET Operator (Vertical Stacking) |
--- | :--- | :--- | :--- |
--- | Purpose | Combine data from multiple tables based on related columns. | Combine the results of two or more independent `SELECT` queries. |
--- | Combination Type | Horizontal (Column-wise merging). The table becomes wider. | Vertical (Row-wise stacking). The table becomes longer. |
--- | Output Structure | A combined table containing columns from all joined tables. | A single result set with the same number of columns as the input queries. |
--- | Column Requirement | Corresponding columns can be completely different. | Queries MUST return the exact same number of columns with compatible datatypes. |
--- | Duplicates | Duplicates are NOT removed automatically. | Controls duplicates: `UNION`/`INTERSECT`/`EXCEPT` removes them, `UNION ALL` keeps them. |
--- | Conditions Needed | Requires a `JOIN` condition (like the `ON` clause) except for `CROSS JOIN`. | No join condition required. Combines result sets directly. |
--- | Works On | Columns based on relationships (Primary Key / Foreign Key). | Complete rows of result sets (independent queries). |
--- | Types | `INNER`, `LEFT`, `RIGHT`, `FULL`, `CROSS` | `UNION`, `UNION ALL`, `INTERSECT`, `EXCEPT / MINUS` |
--- | Use Case | Retrieve related data (e.g. Customer info with their Orders). | Append rows from similar queries (e.g. Combine Customers and Suppliers lists). |
+-- (Feature → JOIN (Horizontal Merging) | SET Operator (Vertical Stacking))
+--
+-- * Purpose
+--     - JOIN (Horizontal Merging)        : Combine data from multiple tables based on related columns.
+--     - SET Operator (Vertical Stacking) : Combine the results of two or more independent SELECT queries.
+--
+-- * Combination Type
+--     - JOIN (Horizontal Merging)        : Horizontal (Column-wise merging). The table becomes wider.
+--     - SET Operator (Vertical Stacking) : Vertical (Row-wise stacking). The table becomes longer.
+--
+-- * Output Structure
+--     - JOIN (Horizontal Merging)        : A combined table containing columns from all joined tables.
+--     - SET Operator (Vertical Stacking) : A single result set with the same number of columns as the input queries.
+--
+-- * Column Requirement
+--     - JOIN (Horizontal Merging)        : Corresponding columns can be completely different.
+--     - SET Operator (Vertical Stacking) : Queries MUST return the exact same number of columns with compatible datatypes.
+--
+-- * Duplicates
+--     - JOIN (Horizontal Merging)        : Duplicates are NOT removed automatically.
+--     - SET Operator (Vertical Stacking) : Controls duplicates: UNION/INTERSECT/EXCEPT removes them, UNION ALL keeps them.
+--
+-- * Conditions Needed
+--     - JOIN (Horizontal Merging)        : Requires a JOIN condition (like the ON clause) except for CROSS JOIN.
+--     - SET Operator (Vertical Stacking) : No join condition required. Combines result sets directly.
+--
+-- * Works On
+--     - JOIN (Horizontal Merging)        : Columns based on relationships (Primary Key / Foreign Key).
+--     - SET Operator (Vertical Stacking) : Complete rows of result sets (independent queries).
+--
+-- * Types
+--     - JOIN (Horizontal Merging)        : INNER, LEFT, RIGHT, FULL, CROSS
+--     - SET Operator (Vertical Stacking) : UNION, UNION ALL, INTERSECT, EXCEPT / MINUS
+--
+-- * Use Case
+--     - JOIN (Horizontal Merging)        : Retrieve related data (e.g. Customer info with their Orders).
+--     - SET Operator (Vertical Stacking) : Append rows from similar queries (e.g. Combine Customers and Suppliers lists).
+--
 
 -- * Why were Set Operators introduced in SQL?
 

@@ -75,13 +75,28 @@ SELECT price FROM products WHERE productid = 101;
 -- 15.3 Core TCL Commands: START, COMMIT, ROLLBACK, SAVEPOINT, SET
 -- ------------------------------------------------------------
 
--- | Command | Action / Role | Effect on Data |
--- | :--- | :--- | :--- |
--- | **`START TRANSACTION`** | Begins a new transaction block | Opens an atomic staging session |
--- | **`COMMIT`** | Saves changes permanently | Writes staged changes to disk; ends transaction |
--- | **`ROLLBACK`** | Undoes uncommitted changes | Restores database back to pre-transaction state |
--- | **`SAVEPOINT`** | Sets an intermediate checkpoint | Allows partial rollback to a specific marker |
--- | **`SET TRANSACTION`** | Sets transaction properties | Configures isolation levels and read-only modes |
+-- (Command → Action / Role | Effect on Data)
+--
+-- * START TRANSACTION
+--     - Action / Role  : Begins a new transaction block
+--     - Effect on Data : Opens an atomic staging session
+--
+-- * COMMIT
+--     - Action / Role  : Saves changes permanently
+--     - Effect on Data : Writes staged changes to disk; ends transaction
+--
+-- * ROLLBACK
+--     - Action / Role  : Undoes uncommitted changes
+--     - Effect on Data : Restores database back to pre-transaction state
+--
+-- * SAVEPOINT
+--     - Action / Role  : Sets an intermediate checkpoint
+--     - Effect on Data : Allows partial rollback to a specific marker
+--
+-- * SET TRANSACTION
+--     - Action / Role  : Sets transaction properties
+--     - Effect on Data : Configures isolation levels and read-only modes
+--
 
 -- ------------------------------------------------------------
 -- 1. Beginning a Transaction: `START TRANSACTION` / `BEGIN`
@@ -205,23 +220,49 @@ COMMIT;
 -- ------------------------------------------------------------
 -- 1. The 3 Common Concurrency Problems
 -- ------------------------------------------------------------
--- | Problem / Phenomenon | Meaning & Manifestation |
--- | :--- | :--- |
--- | Dirty Read | A transaction reads uncommitted data written by another ongoing transaction (which might later be rolled back). |
--- | Non-Repeatable Read | A transaction re-reads the same row and discovers the data has changed because another transaction committed an `UPDATE` or `DELETE`. |
--- | Phantom Read | A transaction re-executes a range query (`WHERE score > 500`) and finds newly inserted rows committed by another transaction. |
+-- (Problem / Phenomenon → Meaning & Manifestation)
+--
+-- * Dirty Read
+--     - Meaning & Manifestation : A transaction reads uncommitted data written by another ongoing transaction (which might later be rolled back).
+--
+-- * Non-Repeatable Read
+--     - Meaning & Manifestation : A transaction re-reads the same row and discovers the data has changed because another transaction committed an UPDATE or DELETE.
+--
+-- * Phantom Read
+--     - Meaning & Manifestation : A transaction re-executes a range query (WHERE score > 500) and finds newly inserted rows committed by another transaction.
+--
 
 -- ------------------------------------------------------------
 -- 2. The 4 ANSI SQL Isolation Levels Matrix
 -- ------------------------------------------------------------
 -- Isolation levels control how transactions see each other's data:
 
--- | Isolation Level | Dirty Read | Non-Repeatable Read | Phantom Read | Standard Use Case & Defaults |
--- | :--- | :---: | :---: | :---: | :--- |
--- | **`READ UNCOMMITTED`** | ❌ Allowed | ❌ Allowed | ❌ Allowed | Highest speed, zero consistency; rarely used. |
--- | **`READ COMMITTED`** | ✓ Prevented | ❌ Allowed | ❌ Allowed | Default in Oracle, PostgreSQL, and SQL Server. |
--- | **`REPEATABLE READ`** | ✓ Prevented | ✓ Prevented | ✓ Prevented* | Default in MySQL InnoDB (Next-Key Locking blocks Phantoms). |
--- | **`SERIALIZABLE`** | ✓ Prevented | ✓ Prevented | ✓ Prevented | Strict table/row locking; highest consistency, slowest speed. |
+-- (Isolation Level → Dirty Read | Non-Repeatable Read | Phantom Read | Standard Use Case & Defaults)
+--
+-- * READ UNCOMMITTED
+--     - Dirty Read                   : ❌ Allowed
+--     - Non-Repeatable Read          : ❌ Allowed
+--     - Phantom Read                 : ❌ Allowed
+--     - Standard Use Case & Defaults : Highest speed, zero consistency; rarely used.
+--
+-- * READ COMMITTED
+--     - Dirty Read                   : ✓ Prevented
+--     - Non-Repeatable Read          : ❌ Allowed
+--     - Phantom Read                 : ❌ Allowed
+--     - Standard Use Case & Defaults : Default in Oracle, PostgreSQL, and SQL Server.
+--
+-- * REPEATABLE READ
+--     - Dirty Read                   : ✓ Prevented
+--     - Non-Repeatable Read          : ✓ Prevented
+--     - Phantom Read                 : ✓ Prevented*
+--     - Standard Use Case & Defaults : Default in MySQL InnoDB (Next-Key Locking blocks Phantoms).
+--
+-- * SERIALIZABLE
+--     - Dirty Read                   : ✓ Prevented
+--     - Non-Repeatable Read          : ✓ Prevented
+--     - Phantom Read                 : ✓ Prevented
+--     - Standard Use Case & Defaults : Strict table/row locking; highest consistency, slowest speed.
+--
 
 -- ---
 
@@ -320,12 +361,24 @@ ROLLBACK;
 
 -- * Comparison Table:
 
--- | Feature / Behavior | `ROLLBACK TO SAVEPOINT name;` | `RELEASE SAVEPOINT name;` |
--- | :--- | :--- | :--- |
--- | Data Modifications | Undoes (reverts) changes made after the savepoint | Preserves all data modifications |
--- | Commit Changes? | No (transaction remains open) | No (does NOT commit changes) |
--- | Savepoint Marker | Keeps the savepoint active for further use | Deletes the checkpoint marker from memory |
--- | Use Case | Recovering from a failed sub-task | Freeing server memory resources when checkpoint is no longer needed |
+-- (Feature / Behavior → ROLLBACK TO SAVEPOINT name; | RELEASE SAVEPOINT name;)
+--
+-- * Data Modifications
+--     - ROLLBACK TO SAVEPOINT name; : Undoes (reverts) changes made after the savepoint
+--     - RELEASE SAVEPOINT name;     : Preserves all data modifications
+--
+-- * Commit Changes?
+--     - ROLLBACK TO SAVEPOINT name; : No (transaction remains open)
+--     - RELEASE SAVEPOINT name;     : No (does NOT commit changes)
+--
+-- * Savepoint Marker
+--     - ROLLBACK TO SAVEPOINT name; : Keeps the savepoint active for further use
+--     - RELEASE SAVEPOINT name;     : Deletes the checkpoint marker from memory
+--
+-- * Use Case
+--     - ROLLBACK TO SAVEPOINT name; : Recovering from a failed sub-task
+--     - RELEASE SAVEPOINT name;     : Freeing server memory resources when checkpoint is no longer needed
+--
 
 -- * Code Demonstration:
 START TRANSACTION;
@@ -399,10 +452,18 @@ WHERE id = 101 AND version = 4;
 
 -- * Direct Comparison:
 
--- | Component | Storage Role | Guarantees | How it Works |
--- | :--- | :--- | :--- | :--- |
--- | Undo Log | Before-Images (Reverse operations) | Atomicity & MVCC | When you run an `UPDATE`, the old values are recorded in the undo log. If you run `ROLLBACK` or the server crashes mid-transaction, InnoDB replays the undo log in reverse to restore initial data. |
--- | Redo Log (WAL) | After-Images (Write-Ahead Log) | Durability | When you run `COMMIT`, InnoDB writes changes sequentially to the redo log buffer and flushes to disk before updating the actual tablespace `.ibd` files. If power cuts out, crash recovery replays the redo log. |
+-- (Component → Storage Role | Guarantees | How it Works)
+--
+-- * Undo Log
+--     - Storage Role : Before-Images (Reverse operations)
+--     - Guarantees   : Atomicity & MVCC
+--     - How it Works : When you run an UPDATE, the old values are recorded in the undo log. If you run ROLLBACK or the server crashes mid-transaction, InnoDB replays the undo log in reverse to restore initial data.
+--
+-- * Redo Log (WAL)
+--     - Storage Role : After-Images (Write-Ahead Log)
+--     - Guarantees   : Durability
+--     - How it Works : When you run COMMIT, InnoDB writes changes sequentially to the redo log buffer and flushes to disk before updating the actual tablespace .ibd files. If power cuts out, crash recovery replays the redo log.
+--
 
 -- ---
 

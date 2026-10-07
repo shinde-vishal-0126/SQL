@@ -152,11 +152,20 @@ SELECT emp_id, old_salary, new_salary FROM salary_log;
 
 -- * Output:
 
--- | emp_id | old_salary | new_salary |
--- | :--- | :--- | :--- |
--- | 1 | 40000.00 | 44000.00 |
--- | 2 | 75000.00 | 78750.00 |
--- | 4 | 90000.00 | 91800.00 |
+-- (emp_id → old_salary | new_salary)
+--
+-- * 1
+--     - old_salary : 40000.00
+--     - new_salary : 44000.00
+--
+-- * 2
+--     - old_salary : 75000.00
+--     - new_salary : 78750.00
+--
+-- * 4
+--     - old_salary : 90000.00
+--     - new_salary : 91800.00
+--
 
 -- * Version B: the same procedure with a `FOR` loop (the PostgreSQL way — shorter, no OPEN/FETCH/CLOSE):
 CREATE OR REPLACE PROCEDURE give_raise_for(p_dept VARCHAR(20))
@@ -239,12 +248,24 @@ upd AS (
 INSERT INTO salary_log (emp_id, old_salary, new_salary)
 SELECT emp_id, old_salary, new_salary FROM upd;
 
--- | Point | Cursor (row-by-row) | Set-based SQL |
--- | :--- | :--- | :--- |
--- | Speed | Slow on large data (one statement per row) | Fast — planner handles all rows together |
--- | Code | Long (declare, open, fetch, loop, close) | Short |
--- | Locks / WAL | Many small statements | One statement |
--- | Use when | Per-row procedure calls, dynamic SQL per row, batch streaming to apps | Almost everything else |
+-- (Point → Cursor (row-by-row) | Set-based SQL)
+--
+-- * Speed
+--     - Cursor (row-by-row) : Slow on large data (one statement per row)
+--     - Set-based SQL       : Fast — planner handles all rows together
+--
+-- * Code
+--     - Cursor (row-by-row) : Long (declare, open, fetch, loop, close)
+--     - Set-based SQL       : Short
+--
+-- * Locks / WAL
+--     - Cursor (row-by-row) : Many small statements
+--     - Set-based SQL       : One statement
+--
+-- * Use when
+--     - Cursor (row-by-row) : Per-row procedure calls, dynamic SQL per row, batch streaming to apps
+--     - Set-based SQL       : Almost everything else
+--
 
 -- * Rule for interviews: "Prefer set-based SQL (`UPDATE ... CASE`, `INSERT ... SELECT`, data-modifying CTEs with `RETURNING`, JOINs, window functions); use a cursor only when row-by-row logic is really needed."
 

@@ -648,13 +648,28 @@ CALL ExampleLocalVars();
 
 -- * Differences between user-defined and local variables:
 
--- | Feature | User-Defined Variable | Local Variable |
--- | :--- | :--- | :--- |
--- | Scope | Session (visible across statements) | Inside the procedure only |
--- | Declaration | Not required | Must be declared with `DECLARE` inside the procedure |
--- | Syntax | `SET @x = 10;` | `DECLARE x INT DEFAULT 10;` |
--- | Lifetime | Until the session ends | Until the procedure ends |
--- | Use case | Testing, simple queries | Stored procedures, functions |
+-- (Feature → User-Defined Variable | Local Variable)
+--
+-- * Scope
+--     - User-Defined Variable : Session (visible across statements)
+--     - Local Variable        : Inside the procedure only
+--
+-- * Declaration
+--     - User-Defined Variable : Not required
+--     - Local Variable        : Must be declared with DECLARE inside the procedure
+--
+-- * Syntax
+--     - User-Defined Variable : SET @x = 10;
+--     - Local Variable        : DECLARE x INT DEFAULT 10;
+--
+-- * Lifetime
+--     - User-Defined Variable : Until the session ends
+--     - Local Variable        : Until the procedure ends
+--
+-- * Use case
+--     - User-Defined Variable : Testing, simple queries
+--     - Local Variable        : Stored procedures, functions
+--
 
 -- * Example with both:
 DELIMITER //

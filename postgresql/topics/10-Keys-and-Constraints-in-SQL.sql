@@ -146,14 +146,32 @@ CREATE TABLE Students (
 -- 10.5 UUID vs SERIAL / IDENTITY Primary Key
 -- ------------------------------------------------------------
 
--- | Point | SERIAL / IDENTITY (INT/BIGINT) | UUID (PostgreSQL `UUID` type) |
--- | :--- | :--- | :--- |
--- | Size | 4–8 bytes | 16 bytes (native binary type — no `CHAR(36)` needed) |
--- | Order | Always increasing → new index entries go at the right end of the B-Tree | Random (v4) → inserts land anywhere in the index |
--- | Insert speed | Fast | Slower on big tables (random index pages, more WAL) |
--- | Table storage | Heap table — row order does not depend on the PK | Same (PostgreSQL tables are not clustered by PK, so the cost is only in the index) |
--- | Unique across servers | ❌ Only inside one table/server | ✅ Globally unique (merge, sharding, offline clients) |
--- | Guessable in URLs | ✅ Yes (`/orders/1001` → try 1002) | ❌ Hard to guess |
+-- (Point → SERIAL / IDENTITY (INT/BIGINT) | UUID (PostgreSQL UUID type))
+--
+-- * Size
+--     - SERIAL / IDENTITY (INT/BIGINT) : 4–8 bytes
+--     - UUID (PostgreSQL UUID type)    : 16 bytes (native binary type — no CHAR(36) needed)
+--
+-- * Order
+--     - SERIAL / IDENTITY (INT/BIGINT) : Always increasing → new index entries go at the right end of the B-Tree
+--     - UUID (PostgreSQL UUID type)    : Random (v4) → inserts land anywhere in the index
+--
+-- * Insert speed
+--     - SERIAL / IDENTITY (INT/BIGINT) : Fast
+--     - UUID (PostgreSQL UUID type)    : Slower on big tables (random index pages, more WAL)
+--
+-- * Table storage
+--     - SERIAL / IDENTITY (INT/BIGINT) : Heap table — row order does not depend on the PK
+--     - UUID (PostgreSQL UUID type)    : Same (PostgreSQL tables are not clustered by PK, so the cost is only in the index)
+--
+-- * Unique across servers
+--     - SERIAL / IDENTITY (INT/BIGINT) : ❌ Only inside one table/server
+--     - UUID (PostgreSQL UUID type)    : ✅ Globally unique (merge, sharding, offline clients)
+--
+-- * Guessable in URLs
+--     - SERIAL / IDENTITY (INT/BIGINT) : ✅ Yes (/orders/1001 → try 1002)
+--     - UUID (PostgreSQL UUID type)    : ❌ Hard to guess
+--
 
 -- * Storing a UUID in PostgreSQL (much simpler than MySQL — there is a real `UUID` type):
 CREATE TABLE orders (

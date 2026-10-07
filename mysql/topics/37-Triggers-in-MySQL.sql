@@ -156,15 +156,43 @@ DELIMITER ;
 -- 37.6 Types of Triggers (and Which Databases Support Them)
 -- ------------------------------------------------------------
 
--- | Type | What it does | MySQL | Others |
--- | :--- | :--- | :---: | :--- |
--- | DML trigger | Fires on `INSERT`, `UPDATE`, `DELETE` on a table | ✅ | SQL Server, Oracle, PostgreSQL |
--- | DDL trigger | Fires on `CREATE`, `ALTER`, `DROP` | ❌ | SQL Server, Oracle (PostgreSQL: "event triggers") |
--- | Logon / Logoff trigger | Fires when a user logs in or out | ❌ | Oracle, SQL Server |
--- | INSTEAD OF trigger | Runs instead of the DML statement (mostly on views) | ❌ | SQL Server, Oracle, PostgreSQL |
--- | Compound trigger | Several timing points (BEFORE / AFTER) in one trigger | ❌ | Oracle |
--- | Row-level trigger | Once per affected row | ✅ | SQL Server (via inserted/deleted), Oracle, PostgreSQL |
--- | Statement-level trigger | Once per statement | ❌ | SQL Server, Oracle, PostgreSQL |
+-- (Type → What it does | MySQL | Others)
+--
+-- * DML trigger
+--     - What it does : Fires on INSERT, UPDATE, DELETE on a table
+--     - MySQL        : ✅
+--     - Others       : SQL Server, Oracle, PostgreSQL
+--
+-- * DDL trigger
+--     - What it does : Fires on CREATE, ALTER, DROP
+--     - MySQL        : ❌
+--     - Others       : SQL Server, Oracle (PostgreSQL: "event triggers")
+--
+-- * Logon / Logoff trigger
+--     - What it does : Fires when a user logs in or out
+--     - MySQL        : ❌
+--     - Others       : Oracle, SQL Server
+--
+-- * INSTEAD OF trigger
+--     - What it does : Runs instead of the DML statement (mostly on views)
+--     - MySQL        : ❌
+--     - Others       : SQL Server, Oracle, PostgreSQL
+--
+-- * Compound trigger
+--     - What it does : Several timing points (BEFORE / AFTER) in one trigger
+--     - MySQL        : ❌
+--     - Others       : Oracle
+--
+-- * Row-level trigger
+--     - What it does : Once per affected row
+--     - MySQL        : ✅
+--     - Others       : SQL Server (via inserted/deleted), Oracle, PostgreSQL
+--
+-- * Statement-level trigger
+--     - What it does : Once per statement
+--     - MySQL        : ❌
+--     - Others       : SQL Server, Oracle, PostgreSQL
+--
 
 -- ------------------------------------------------------------
 -- 37.7 Trigger Timing in MySQL (BEFORE vs AFTER)

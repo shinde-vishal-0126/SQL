@@ -167,16 +167,48 @@ EXECUTE FUNCTION trigger_function_name();
 -- 37.6 Types of Triggers (and Which Databases Support Them)
 -- ------------------------------------------------------------
 
--- | Type | What it does | PostgreSQL | MySQL |
--- | :--- | :--- | :---: | :---: |
--- | DML trigger | Fires on `INSERT`, `UPDATE`, `DELETE` | ✅ | ✅ |
--- | `TRUNCATE` trigger | Fires on `TRUNCATE` (statement-level) | ✅ | ❌ |
--- | DDL trigger | Fires on `CREATE`, `ALTER`, `DROP` | ✅ "event triggers" (`CREATE EVENT TRIGGER`) | ❌ |
--- | Logon trigger | Fires when a user logs in | ❌ (PG 17 has a `login` event trigger) | ❌ |
--- | `INSTEAD OF` trigger | Runs instead of the DML (on views) | ✅ | ❌ |
--- | Row-level trigger | Once per affected row | ✅ | ✅ |
--- | Statement-level trigger | Once per statement | ✅ | ❌ |
--- | Constraint trigger | `AFTER` trigger that can be `DEFERRABLE` (checked at commit) | ✅ | ❌ |
+-- (Type → What it does | PostgreSQL | MySQL)
+--
+-- * DML trigger
+--     - What it does : Fires on INSERT, UPDATE, DELETE
+--     - PostgreSQL   : ✅
+--     - MySQL        : ✅
+--
+-- * TRUNCATE trigger
+--     - What it does : Fires on TRUNCATE (statement-level)
+--     - PostgreSQL   : ✅
+--     - MySQL        : ❌
+--
+-- * DDL trigger
+--     - What it does : Fires on CREATE, ALTER, DROP
+--     - PostgreSQL   : ✅ "event triggers" (CREATE EVENT TRIGGER)
+--     - MySQL        : ❌
+--
+-- * Logon trigger
+--     - What it does : Fires when a user logs in
+--     - PostgreSQL   : ❌ (PG 17 has a login event trigger)
+--     - MySQL        : ❌
+--
+-- * INSTEAD OF trigger
+--     - What it does : Runs instead of the DML (on views)
+--     - PostgreSQL   : ✅
+--     - MySQL        : ❌
+--
+-- * Row-level trigger
+--     - What it does : Once per affected row
+--     - PostgreSQL   : ✅
+--     - MySQL        : ✅
+--
+-- * Statement-level trigger
+--     - What it does : Once per statement
+--     - PostgreSQL   : ✅
+--     - MySQL        : ❌
+--
+-- * Constraint trigger
+--     - What it does : AFTER trigger that can be DEFERRABLE (checked at commit)
+--     - PostgreSQL   : ✅
+--     - MySQL        : ❌
+--
 
 -- ------------------------------------------------------------
 -- 37.7 Trigger Timing (BEFORE vs AFTER vs INSTEAD OF)

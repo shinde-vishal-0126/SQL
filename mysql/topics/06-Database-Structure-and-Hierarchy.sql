@@ -161,14 +161,32 @@ DESCRIBE products;
 
 -- Databases are designed in two complementary layers: Logical and Physical.
 
--- | Dimension | Logical Schema | Physical Schema |
--- | :--- | :--- | :--- |
--- | Definition | Design of the tables and how they are related. | How the data is actually stored on disk (files, partitions, indexes). |
--- | Core Focus | What data is stored and how tables relate. | How data is physically laid out, indexed, and partitioned on disk. |
--- | Key Question | "What data do we store and how is it connected?" | "How and where is the data stored on disk?" |
--- | Components | Tables, column datatypes, relationships, constraints. | Filepaths, tablespace files (`.ibd`), partitions, B-tree block sizes. |
--- | Primary Audience | Developers, Data Analysts, Data Modelers. | Database Administrators (DBAs), Storage Engineers, DB Engines. |
--- | Visibility | Visible to developers and SQL queries. | Hidden inside the storage engine. |
+-- (Dimension → Logical Schema | Physical Schema)
+--
+-- * Definition
+--     - Logical Schema  : Design of the tables and how they are related.
+--     - Physical Schema : How the data is actually stored on disk (files, partitions, indexes).
+--
+-- * Core Focus
+--     - Logical Schema  : What data is stored and how tables relate.
+--     - Physical Schema : How data is physically laid out, indexed, and partitioned on disk.
+--
+-- * Key Question
+--     - Logical Schema  : "What data do we store and how is it connected?"
+--     - Physical Schema : "How and where is the data stored on disk?"
+--
+-- * Components
+--     - Logical Schema  : Tables, column datatypes, relationships, constraints.
+--     - Physical Schema : Filepaths, tablespace files (.ibd), partitions, B-tree block sizes.
+--
+-- * Primary Audience
+--     - Logical Schema  : Developers, Data Analysts, Data Modelers.
+--     - Physical Schema : Database Administrators (DBAs), Storage Engineers, DB Engines.
+--
+-- * Visibility
+--     - Logical Schema  : Visible to developers and SQL queries.
+--     - Physical Schema : Hidden inside the storage engine.
+--
 
 -- ------------------------------------------------------------
 -- 1. Logical Schema (The Conceptual Blueprint)
@@ -196,11 +214,20 @@ DESCRIBE products;
 
 --   * Definition: A Table stores data in rows (horizontal) and columns (vertical), like an Excel sheet.
 
--- | Customer_ID | Customer_Name | City |
--- | :--- | :--- | :--- |
--- | 101 | Rahul | Pune |
--- | 102 | Priya | Mumbai |
--- | 103 | Amit | Nashik |
+-- (Customer_ID → Customer_Name | City)
+--
+-- * 101
+--     - Customer_Name : Rahul
+--     - City          : Pune
+--
+-- * 102
+--     - Customer_Name : Priya
+--     - City          : Mumbai
+--
+-- * 103
+--     - Customer_Name : Amit
+--     - City          : Nashik
+--
 
 -- ------------------------------------------------------------
 -- 1. Columns (Fields / Attributes)
@@ -240,10 +267,16 @@ DESCRIBE products;
 
 --   * Like a fingerprint: no two rows can ever have the same Primary Key value.
 
--- | Customer_ID (🔑 Primary Key) | Customer_Name | City |
--- | :--- | :--- | :--- |
--- | 101 | Rahul | Pune |
--- | 102 | Priya | Mumbai |
+-- (Customer_ID (🔑 Primary Key) → Customer_Name | City)
+--
+-- * 101
+--     - Customer_Name : Rahul
+--     - City          : Pune
+--
+-- * 102
+--     - Customer_Name : Priya
+--     - City          : Mumbai
+--
 
 -- * The 5 Core Properties of a Primary Key:
 
@@ -301,15 +334,36 @@ DESCRIBE products;
 -- Comparison: Fixed vs. Variable Data Types
 -- ------------------------------------------------------------
 
--- | Feature / Dimension | Fixed Data Types (e.g., `CHAR(10)`) | Variable Data Types (e.g., `VARCHAR(10)`) |
--- | :--- | :--- | :--- |
--- | Storage Allocation | Takes fixed, predetermined storage size in memory | Takes storage dynamically based on actual value length |
--- | Space Utilization | Can waste disk/RAM space if values are short (pads with spaces) | Highly space-efficient (stores actual length + 1-2 prefix bytes) |
--- | Read / Write Speed | Slightly faster (size is always known) | Slightly slower (must read the length first) |
--- | Space Overhead | 0 overhead bytes (exact allocated size is reserved) | 1 byte (for $L \le 255$) or 2 bytes (for $L > 255$) length header |
--- | Space Padding | Automatically padded with right-side spaces on disk | No space padding; stored exactly as entered |
--- | Best Used When | Length is fixed and predictable across all rows | Length varies significantly across different rows |
--- | Primary Examples | `CHAR(n)`, `INT`, `BIGINT`, `DECIMAL`, `FLOAT`, `DOUBLE` | `VARCHAR(n)`, `TEXT`, `BLOB`, `VARBINARY(n)` |
+-- (Feature / Dimension → Fixed Data Types (e.g., CHAR(10)) | Variable Data Types (e.g., VARCHAR(10)))
+--
+-- * Storage Allocation
+--     - Fixed Data Types (e.g., CHAR(10))       : Takes fixed, predetermined storage size in memory
+--     - Variable Data Types (e.g., VARCHAR(10)) : Takes storage dynamically based on actual value length
+--
+-- * Space Utilization
+--     - Fixed Data Types (e.g., CHAR(10))       : Can waste disk/RAM space if values are short (pads with spaces)
+--     - Variable Data Types (e.g., VARCHAR(10)) : Highly space-efficient (stores actual length + 1-2 prefix bytes)
+--
+-- * Read / Write Speed
+--     - Fixed Data Types (e.g., CHAR(10))       : Slightly faster (size is always known)
+--     - Variable Data Types (e.g., VARCHAR(10)) : Slightly slower (must read the length first)
+--
+-- * Space Overhead
+--     - Fixed Data Types (e.g., CHAR(10))       : 0 overhead bytes (exact allocated size is reserved)
+--     - Variable Data Types (e.g., VARCHAR(10)) : 1 byte (for L \le 255) or 2 bytes (for L > 255) length header
+--
+-- * Space Padding
+--     - Fixed Data Types (e.g., CHAR(10))       : Automatically padded with right-side spaces on disk
+--     - Variable Data Types (e.g., VARCHAR(10)) : No space padding; stored exactly as entered
+--
+-- * Best Used When
+--     - Fixed Data Types (e.g., CHAR(10))       : Length is fixed and predictable across all rows
+--     - Variable Data Types (e.g., VARCHAR(10)) : Length varies significantly across different rows
+--
+-- * Primary Examples
+--     - Fixed Data Types (e.g., CHAR(10))       : CHAR(n), INT, BIGINT, DECIMAL, FLOAT, DOUBLE
+--     - Variable Data Types (e.g., VARCHAR(10)) : VARCHAR(n), TEXT, BLOB, VARBINARY(n)
+--
 
 -- ------------------------------------------------------------
 -- Practical Example to Understand Memory Storage (CHAR(10) vs. VARCHAR(10))
@@ -317,13 +371,48 @@ DESCRIBE products;
 
 -- Suppose we create two columns: `code_fixed CHAR(10)` and `code_var VARCHAR(10)`, and store the same string values. Notice how MySQL stores them physically:
 
--- | Inserted String | Actual Length | `CHAR(10)` Physical Storage | Bytes Used (`CHAR(10)`) | `VARCHAR(10)` Physical Storage | Bytes Used (`VARCHAR(10)`) | Memory Saved by VARCHAR |
--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
--- | `''` (Empty) | 0 chars | `'          '` (10 spaces) | 10 Bytes | `[0]` (length prefix 0) | 1 Byte | 90% Saved (9 Bytes) |
--- | `'AB'` | 2 chars | `'AB        '` (2 chars + 8 spaces) | 10 Bytes | `[2] + 'AB'` | 3 Bytes (2 + 1) | 70% Saved (7 Bytes) |
--- | `'Pune'` | 4 chars | `'Pune      '` (4 chars + 6 spaces) | 10 Bytes | `[4] + 'Pune'` | 5 Bytes (4 + 1) | 50% Saved (5 Bytes) |
--- | `'India'` | 5 chars | `'India     '` (5 chars + 5 spaces) | 10 Bytes | `[5] + 'India'` | 6 Bytes (5 + 1) | 40% Saved (4 Bytes) |
--- | `'0123456789'` | 10 chars | `'0123456789'` (no spaces) | 10 Bytes | `[10] + '0123456789'` | 11 Bytes (10 + 1) | -1 Byte (overhead) |
+-- (Inserted String → Actual Length | CHAR(10) Physical Storage | Bytes Used (CHAR(10)) | VARCHAR(10) Physical Storage | Bytes Used (VARCHAR(10)) | Memory Saved by VARCHAR)
+--
+-- * '' (Empty)
+--     - Actual Length                : 0 chars
+--     - CHAR(10) Physical Storage    : '          ' (10 spaces)
+--     - Bytes Used (CHAR(10))        : 10 Bytes
+--     - VARCHAR(10) Physical Storage : [0] (length prefix 0)
+--     - Bytes Used (VARCHAR(10))     : 1 Byte
+--     - Memory Saved by VARCHAR      : 90% Saved (9 Bytes)
+--
+-- * 'AB'
+--     - Actual Length                : 2 chars
+--     - CHAR(10) Physical Storage    : 'AB        ' (2 chars + 8 spaces)
+--     - Bytes Used (CHAR(10))        : 10 Bytes
+--     - VARCHAR(10) Physical Storage : [2] + 'AB'
+--     - Bytes Used (VARCHAR(10))     : 3 Bytes (2 + 1)
+--     - Memory Saved by VARCHAR      : 70% Saved (7 Bytes)
+--
+-- * 'Pune'
+--     - Actual Length                : 4 chars
+--     - CHAR(10) Physical Storage    : 'Pune      ' (4 chars + 6 spaces)
+--     - Bytes Used (CHAR(10))        : 10 Bytes
+--     - VARCHAR(10) Physical Storage : [4] + 'Pune'
+--     - Bytes Used (VARCHAR(10))     : 5 Bytes (4 + 1)
+--     - Memory Saved by VARCHAR      : 50% Saved (5 Bytes)
+--
+-- * 'India'
+--     - Actual Length                : 5 chars
+--     - CHAR(10) Physical Storage    : 'India     ' (5 chars + 5 spaces)
+--     - Bytes Used (CHAR(10))        : 10 Bytes
+--     - VARCHAR(10) Physical Storage : [5] + 'India'
+--     - Bytes Used (VARCHAR(10))     : 6 Bytes (5 + 1)
+--     - Memory Saved by VARCHAR      : 40% Saved (4 Bytes)
+--
+-- * '0123456789'
+--     - Actual Length                : 10 chars
+--     - CHAR(10) Physical Storage    : '0123456789' (no spaces)
+--     - Bytes Used (CHAR(10))        : 10 Bytes
+--     - VARCHAR(10) Physical Storage : [10] + '0123456789'
+--     - Bytes Used (VARCHAR(10))     : 11 Bytes (10 + 1)
+--     - Memory Saved by VARCHAR      : -1 Byte (overhead)
+--
 
 -- ------------------------------------------------------------
 -- Visual Memory Layout Diagram
@@ -549,15 +638,36 @@ FROM storage_comparison;
 -- Comparison: `CHAR` vs. `VARCHAR`
 -- ------------------------------------------------------------
 
--- | Feature / Dimension | `CHAR(n)` | `VARCHAR(n)` |
--- | :--- | :--- | :--- |
--- | String Length Type | Fixed-length string | Variable-length string |
--- | Storage Allocation | Always uses full defined length (padded with spaces if shorter) | Uses only the actual characters stored + 1 or 2 length prefix bytes |
--- | Performance | Faster for fixed-length values (predictable byte offsets) | Slightly slower for dynamic updates (variable row sizes) |
--- | Maximum Range | Up to 255 characters | Up to 65,535 characters (shared across row) |
--- | Space Utilization | Wastes space if data is shorter than $n$ | Highly efficient (allocates only needed space) |
--- | Trailing Spaces | Padded with spaces on storage; stripped when retrieved | Preserves trailing spaces exactly as entered |
--- | Primary Use Cases | Fixed-size data: Postal codes, Country codes (`'IN'`, `'US'`), Hashes | Variable-size data: User names, Email addresses, Passwords, URLs |
+-- (Feature / Dimension → CHAR(n) | VARCHAR(n))
+--
+-- * String Length Type
+--     - CHAR(n)    : Fixed-length string
+--     - VARCHAR(n) : Variable-length string
+--
+-- * Storage Allocation
+--     - CHAR(n)    : Always uses full defined length (padded with spaces if shorter)
+--     - VARCHAR(n) : Uses only the actual characters stored + 1 or 2 length prefix bytes
+--
+-- * Performance
+--     - CHAR(n)    : Faster for fixed-length values (predictable byte offsets)
+--     - VARCHAR(n) : Slightly slower for dynamic updates (variable row sizes)
+--
+-- * Maximum Range
+--     - CHAR(n)    : Up to 255 characters
+--     - VARCHAR(n) : Up to 65,535 characters (shared across row)
+--
+-- * Space Utilization
+--     - CHAR(n)    : Wastes space if data is shorter than n
+--     - VARCHAR(n) : Highly efficient (allocates only needed space)
+--
+-- * Trailing Spaces
+--     - CHAR(n)    : Padded with spaces on storage; stripped when retrieved
+--     - VARCHAR(n) : Preserves trailing spaces exactly as entered
+--
+-- * Primary Use Cases
+--     - CHAR(n)    : Fixed-size data: Postal codes, Country codes ('IN', 'US'), Hashes
+--     - VARCHAR(n) : Variable-size data: User names, Email addresses, Passwords, URLs
+--
 
 -- ------------------------------------------------------------
 -- 3. `TEXT` Family (Long Text Strings)
@@ -776,15 +886,36 @@ FROM storage_comparison;
 
 -- Q. What is the difference between DATETIME and TIMESTAMP?
 
--- | Feature / Dimension | `DATETIME` | `TIMESTAMP` |
--- | :--- | :--- | :--- |
--- | 1. Display Format | `YYYY-MM-DD HH:MM:SS` | `YYYY-MM-DD HH:MM:SS` |
--- | 2. Storage Size | 5 Bytes in MySQL 5.6.4+ (+0–3 bytes for fractional seconds); 8 bytes in older versions | 4 Bytes (more compact) |
--- | 3. Supported Range | `1000-01-01 00:00:00` to `9999-12-31 23:59:59` (Years 1000 $\rightarrow$ 9999) | `1970-01-01 00:00:01 UTC` to `2038-01-19 03:14:07 UTC` (Years 1970 $\rightarrow$ 2038) |
--- | 4. Time Zone Handling | Does NOT store time zone information. Stores exactly what you insert; no conversion. `DATETIME` doesn't change with server time zone. | Timezone-sensitive. Stored in UTC internally, but converted to current session time zone when retrieved. |
--- | 5. Auto-Update Capability | Not automatic by default. You can add `DEFAULT` / `ON UPDATE` with `CURRENT_TIMESTAMP` (MySQL 5.6.5+). | Can automatically update: Set current time on insert (`DEFAULT CURRENT_TIMESTAMP`) and update on modification (`ON UPDATE CURRENT_TIMESTAMP`). |
--- | 6. Epoch Dependency | Independent of UNIX Epoch | Bound to UNIX Epoch (Seconds elapsed since Jan 1, 1970 UTC) |
--- | 7. Best Use Cases | When you need to store date & time exactly as given, independent of time zones.<br>Examples: Birthdays, historical events, scheduled appointment times. | When you need to track events relative to the current time zone.<br>Examples: Logging creation/update times (`created_at`, `updated_at`), audit trails. |
+-- (Feature / Dimension → DATETIME | TIMESTAMP)
+--
+-- * 1. Display Format
+--     - DATETIME  : YYYY-MM-DD HH:MM:SS
+--     - TIMESTAMP : YYYY-MM-DD HH:MM:SS
+--
+-- * 2. Storage Size
+--     - DATETIME  : 5 Bytes in MySQL 5.6.4+ (+0–3 bytes for fractional seconds); 8 bytes in older versions
+--     - TIMESTAMP : 4 Bytes (more compact)
+--
+-- * 3. Supported Range
+--     - DATETIME  : 1000-01-01 00:00:00 to 9999-12-31 23:59:59 (Years 1000 \rightarrow 9999)
+--     - TIMESTAMP : 1970-01-01 00:00:01 UTC to 2038-01-19 03:14:07 UTC (Years 1970 \rightarrow 2038)
+--
+-- * 4. Time Zone Handling
+--     - DATETIME  : Does NOT store time zone information. Stores exactly what you insert; no conversion. DATETIME doesn't change with server time zone.
+--     - TIMESTAMP : Timezone-sensitive. Stored in UTC internally, but converted to current session time zone when retrieved.
+--
+-- * 5. Auto-Update Capability
+--     - DATETIME  : Not automatic by default. You can add DEFAULT / ON UPDATE with CURRENT_TIMESTAMP (MySQL 5.6.5+).
+--     - TIMESTAMP : Can automatically update: Set current time on insert (DEFAULT CURRENT_TIMESTAMP) and update on modification (ON UPDATE CURRENT_TIMESTAMP).
+--
+-- * 6. Epoch Dependency
+--     - DATETIME  : Independent of UNIX Epoch
+--     - TIMESTAMP : Bound to UNIX Epoch (Seconds elapsed since Jan 1, 1970 UTC)
+--
+-- * 7. Best Use Cases
+--     - DATETIME  : When you need to store date & time exactly as given, independent of time zones.<br>Examples: Birthdays, historical events, scheduled appointment times.
+--     - TIMESTAMP : When you need to track events relative to the current time zone.<br>Examples: Logging creation/update times (created_at, updated_at), audit trails.
+--
 
 -- ------------------------------------------------------------
 -- Point-Wise Detailed Breakdown:
@@ -907,10 +1038,22 @@ CREATE TABLE customer_profiles (
 
 --   * MySQL provides two convenient inline operators for extracting values from JSON documents:
 
--- | Operator | Extraction Syntax | Output Type | Description & Purpose | Example | Result |
--- | :--- | :--- | :--- | :--- | :--- | :--- |
--- | `->` | `column->'path'` | JSON Value (with quotes) | Extracts the data as a JSON value preserving double quotes. Use `->` when you need to treat the result as JSON for further JSON manipulation. | `details->'$.age'` | `"25"` |
--- | `->>` | `column->>'path'` | Plain Text (unquoted) | Inline unquoting path operator. Extracts the value as clean, unquoted plain text. Use `->>` when comparing in `WHERE` clauses or displaying in UI. | `details->>'$.age'` | `25` |
+-- (Operator → Extraction Syntax | Output Type | Description & Purpose | Example | Result)
+--
+-- * ->
+--     - Extraction Syntax     : column->'path'
+--     - Output Type           : JSON Value (with quotes)
+--     - Description & Purpose : Extracts the data as a JSON value preserving double quotes. Use -> when you need to treat the result as JSON for further JSON manipulation.
+--     - Example               : details->'$.age'
+--     - Result                : "25"
+--
+-- * ->>
+--     - Extraction Syntax     : column->>'path'
+--     - Output Type           : Plain Text (unquoted)
+--     - Description & Purpose : Inline unquoting path operator. Extracts the value as clean, unquoted plain text. Use ->> when comparing in WHERE clauses or displaying in UI.
+--     - Example               : details->>'$.age'
+--     - Result                : 25
+--
 
 -- > ⚠️ Note: `age` is a number, so `details->'$.age'` actually returns `25` (without quotes). Quotes appear only for text values: `details->'$.email'` → `"alice@example.com"`, while `details->>'$.email'` → `alice@example.com`.
 
@@ -1065,16 +1208,48 @@ WHERE name = 'Vishal';
 
 -- * The 8 OpenGIS Spatial Data Types in MySQL:
 
--- | Data Type | Structural Category | Geometric Representation | Primary Real-World Use Case |
--- | :--- | :--- | :--- | :--- |
--- | `GEOMETRY` | Generic Spatial | Any geometric shape (`POINT`, `LINESTRING`, `POLYGON`). | Flexible column capable of holding any spatial geometry per row. |
--- | `POINT` | Single Coordinate | Single 2D coordinate pair $(x, y)$ (longitude, latitude). | User coordinates, GPS device locations, store/branch coordinates. |
--- | `LINESTRING` | Connected Points | Series of connected coordinate points representing a line. | Roads, delivery routes, rivers, railway tracks, flight paths. |
--- | `POLYGON` | Closed Area | Closed boundary where the last coordinate connects to the first. | City limits, delivery coverage zones, lakes, property plots. |
--- | `MULTIPOINT` | Multi-Geometry | Collection of multiple separate `POINT` objects. | Multiple branch locations of a company, multiple check-in points. |
--- | `MULTILINESTRING` | Multi-Geometry | Collection of multiple separate `LINESTRING` objects. | Road networks, subway transit systems, highway networks. |
--- | `MULTIPOLYGON` | Multi-Geometry | Collection of multiple separate `POLYGON` objects. | Country territories with archipelagos/islands, multi-district zones. |
--- | `GEOMETRYCOLLECTION` | Mixed Collection | Collection containing mixed geometry types (`POINT` + `LINE` + `POLYGON`). | Mixed complex geographic zones (e.g., city with points, routes, and parks). |
+-- (Data Type → Structural Category | Geometric Representation | Primary Real-World Use Case)
+--
+-- * GEOMETRY
+--     - Structural Category         : Generic Spatial
+--     - Geometric Representation    : Any geometric shape (POINT, LINESTRING, POLYGON).
+--     - Primary Real-World Use Case : Flexible column capable of holding any spatial geometry per row.
+--
+-- * POINT
+--     - Structural Category         : Single Coordinate
+--     - Geometric Representation    : Single 2D coordinate pair (x, y) (longitude, latitude).
+--     - Primary Real-World Use Case : User coordinates, GPS device locations, store/branch coordinates.
+--
+-- * LINESTRING
+--     - Structural Category         : Connected Points
+--     - Geometric Representation    : Series of connected coordinate points representing a line.
+--     - Primary Real-World Use Case : Roads, delivery routes, rivers, railway tracks, flight paths.
+--
+-- * POLYGON
+--     - Structural Category         : Closed Area
+--     - Geometric Representation    : Closed boundary where the last coordinate connects to the first.
+--     - Primary Real-World Use Case : City limits, delivery coverage zones, lakes, property plots.
+--
+-- * MULTIPOINT
+--     - Structural Category         : Multi-Geometry
+--     - Geometric Representation    : Collection of multiple separate POINT objects.
+--     - Primary Real-World Use Case : Multiple branch locations of a company, multiple check-in points.
+--
+-- * MULTILINESTRING
+--     - Structural Category         : Multi-Geometry
+--     - Geometric Representation    : Collection of multiple separate LINESTRING objects.
+--     - Primary Real-World Use Case : Road networks, subway transit systems, highway networks.
+--
+-- * MULTIPOLYGON
+--     - Structural Category         : Multi-Geometry
+--     - Geometric Representation    : Collection of multiple separate POLYGON objects.
+--     - Primary Real-World Use Case : Country territories with archipelagos/islands, multi-district zones.
+--
+-- * GEOMETRYCOLLECTION
+--     - Structural Category         : Mixed Collection
+--     - Geometric Representation    : Collection containing mixed geometry types (POINT + LINE + POLYGON).
+--     - Primary Real-World Use Case : Mixed complex geographic zones (e.g., city with points, routes, and parks).
+--
 
 -- * In-Depth Breakdown of Each Geometry Type with Code Examples:
 
@@ -1260,13 +1435,28 @@ VALUES ('City Example', ST_GeomFromText(
 
 --   * `GEOMETRYCOLLECTION` = A comprehensive container that holds multiple items together in one record (Points + Lines + Polygons combined).
 
--- | Feature / Aspect | `GEOMETRY` Type | `GEOMETRYCOLLECTION` Type |
--- | :--- | :--- | :--- |
--- | Storage Capacity | Stores only one geometry object at a time per row. | Stores multiple geometry objects in a single record. |
--- | Object Variation | The type can vary across rows (Row 1 = Point, Row 2 = Polygon). | Can contain a heterogeneous mix of Points, Lines, and Polygons simultaneously. |
--- | Shape Complexity | Models simple shapes (individual point or single polygon). | Models complex compound shapes (entire city layout). |
--- | Use Case | When you want column flexibility without knowing the specific type ahead of time. | When multiple geometric elements make up a single logical geographic entity. |
--- | WKT Syntax Example | `'POINT(77.59 12.97)'` or `'POLYGON((...))'` | `'GEOMETRYCOLLECTION(POINT(...), LINESTRING(...), POLYGON(...))'` |
+-- (Feature / Aspect → GEOMETRY Type | GEOMETRYCOLLECTION Type)
+--
+-- * Storage Capacity
+--     - GEOMETRY Type           : Stores only one geometry object at a time per row.
+--     - GEOMETRYCOLLECTION Type : Stores multiple geometry objects in a single record.
+--
+-- * Object Variation
+--     - GEOMETRY Type           : The type can vary across rows (Row 1 = Point, Row 2 = Polygon).
+--     - GEOMETRYCOLLECTION Type : Can contain a heterogeneous mix of Points, Lines, and Polygons simultaneously.
+--
+-- * Shape Complexity
+--     - GEOMETRY Type           : Models simple shapes (individual point or single polygon).
+--     - GEOMETRYCOLLECTION Type : Models complex compound shapes (entire city layout).
+--
+-- * Use Case
+--     - GEOMETRY Type           : When you want column flexibility without knowing the specific type ahead of time.
+--     - GEOMETRYCOLLECTION Type : When multiple geometric elements make up a single logical geographic entity.
+--
+-- * WKT Syntax Example
+--     - GEOMETRY Type           : 'POINT(77.59 12.97)' or 'POLYGON((...))'
+--     - GEOMETRYCOLLECTION Type : 'GEOMETRYCOLLECTION(POINT(...), LINESTRING(...), POLYGON(...))'
+--
 
 -- * **Code Demonstration: `GEOMETRY` vs `GEOMETRYCOLLECTION`:**
 
@@ -1383,39 +1573,117 @@ SELECT ST_Contains(@polygon, @point) AS contains;
 -- ------------------------------------------------------------
 -- 1. JSON Path Traversal Properties
 -- ------------------------------------------------------------
--- | Path Expression | Target Element | Description & Behavior | Example |
--- | :--- | :--- | :--- | :--- |
--- | `$` | Document Root | The entire JSON document / top-level object or array. | `SELECT data->'$' FROM t;` |
--- | `$.key` | Direct Object Key | Extracts the value of property `key` from the root object. | `data->>'$.age'` |
--- | `$.parent.child` | Nested Property | Traverses inside object `parent` to retrieve `child`. | `data->>'$.address.city'` |
--- | `$.array[i]` | Array Element | Retrieves element at 0-based index `i`. | `data->>'$.skills[0]'` |
--- | `$.array[*]` | Array Wildcard | Returns all elements of the array. | `JSON_EXTRACT(data, '$.skills[*]')` |
--- | `$.*` | Object Wildcard | Returns the values of all direct keys in the object. | `JSON_EXTRACT(data, '$.*')` |
+-- (Path Expression → Target Element | Description & Behavior | Example)
+--
+-- * $
+--     - Target Element         : Document Root
+--     - Description & Behavior : The entire JSON document / top-level object or array.
+--     - Example                : SELECT data->'$' FROM t;
+--
+-- * $.key
+--     - Target Element         : Direct Object Key
+--     - Description & Behavior : Extracts the value of property key from the root object.
+--     - Example                : data->>'$.age'
+--
+-- * $.parent.child
+--     - Target Element         : Nested Property
+--     - Description & Behavior : Traverses inside object parent to retrieve child.
+--     - Example                : data->>'$.address.city'
+--
+-- * $.array[i]
+--     - Target Element         : Array Element
+--     - Description & Behavior : Retrieves element at 0-based index i.
+--     - Example                : data->>'$.skills[0]'
+--
+-- * $.array[*]
+--     - Target Element         : Array Wildcard
+--     - Description & Behavior : Returns all elements of the array.
+--     - Example                : JSON_EXTRACT(data, '$.skills[*]')
+--
+-- * $.*
+--     - Target Element         : Object Wildcard
+--     - Description & Behavior : Returns the values of all direct keys in the object.
+--     - Example                : JSON_EXTRACT(data, '$.*')
+--
 
 -- ------------------------------------------------------------
 -- 2. JSON Extraction Operators Matrix
 -- ------------------------------------------------------------
--- | Operator | Name | Syntax | Return Format | Best Used For |
--- | :--- | :--- | :--- | :--- | :--- |
--- | `->` | Arrow Operator | `column->'path'` | JSON-formatted value (with double quotes) | Further JSON functions, preserving JSON typing |
--- | `->>` | Inline Unquote Operator | `column->>'path'` | Clean unquoted plain string (without quotes) | Displaying in UI, filtering in `WHERE`, joining |
+-- (Operator → Name | Syntax | Return Format | Best Used For)
+--
+-- * ->
+--     - Name          : Arrow Operator
+--     - Syntax        : column->'path'
+--     - Return Format : JSON-formatted value (with double quotes)
+--     - Best Used For : Further JSON functions, preserving JSON typing
+--
+-- * ->>
+--     - Name          : Inline Unquote Operator
+--     - Syntax        : column->>'path'
+--     - Return Format : Clean unquoted plain string (without quotes)
+--     - Best Used For : Displaying in UI, filtering in WHERE, joining
+--
 
 -- ------------------------------------------------------------
 -- 3. Complete MySQL JSON Built-in Methods
 -- ------------------------------------------------------------
--- | Method / Function | Signature / Parameters | Purpose & Description | Practical SQL Example |
--- | :--- | :--- | :--- | :--- |
--- | `JSON_EXTRACT()` | `(doc, path[, path]...)` | Extracts data from a JSON document at specified path(s). | `JSON_EXTRACT(details, '$.email')` |
--- | `JSON_SET()` | `(doc, path, val[, path, val]...)` | Updates existing keys or adds new keys if absent. | `JSON_SET(details, '$.active', true)` |
--- | `JSON_INSERT()` | `(doc, path, val[, path, val]...)` | Adds new key-value pair only if the key does not exist. | `JSON_INSERT(details, '$.role', 'Admin')` |
--- | `JSON_REPLACE()` | `(doc, path, val[, path, val]...)` | Overwrites value only if the key already exists. | `JSON_REPLACE(details, '$.age', 31)` |
--- | `JSON_REMOVE()` | `(doc, path[, path]...)` | Deletes a key, property, or array element from the JSON. | `JSON_REMOVE(details, '$.skills[1]')` |
--- | `JSON_ARRAY()` | `([val1, val2, ...])` | Creates a JSON array on the fly from arguments. | `JSON_ARRAY('Java', 'Python', 'SQL')` |
--- | `JSON_OBJECT()` | `([k1, v1, k2, v2, ...])` | Creates a JSON object on the fly from key-value pairs. | `JSON_OBJECT('city', 'Pune', 'zip', 411001)` |
--- | `JSON_CONTAINS()` | `(target, candidate[, path])` | Checks if JSON document contains a specific value (returns 1 or 0). | `JSON_CONTAINS(details, '"SQL"', '$.skills')` |
--- | `JSON_SEARCH()` | `(doc, 'one'\|'all', search_str)` | Searches for a string within a document and returns its path. | `JSON_SEARCH(details, 'one', 'Python')` |
--- | `JSON_TYPE()` | `(json_val)` | Returns the data type string (`OBJECT`, `ARRAY`, `INTEGER`, etc.). | `JSON_TYPE(JSON_EXTRACT(details, '$.age'))` |
--- | `JSON_VALID()` | `(val)` | Validates whether a string has valid JSON syntax (returns 1 or 0). | `JSON_VALID('{"valid": true}')` |
+-- (Method / Function → Signature / Parameters | Purpose & Description | Practical SQL Example)
+--
+-- * JSON_EXTRACT()
+--     - Signature / Parameters : (doc, path[, path]...)
+--     - Purpose & Description  : Extracts data from a JSON document at specified path(s).
+--     - Practical SQL Example  : JSON_EXTRACT(details, '$.email')
+--
+-- * JSON_SET()
+--     - Signature / Parameters : (doc, path, val[, path, val]...)
+--     - Purpose & Description  : Updates existing keys or adds new keys if absent.
+--     - Practical SQL Example  : JSON_SET(details, '$.active', true)
+--
+-- * JSON_INSERT()
+--     - Signature / Parameters : (doc, path, val[, path, val]...)
+--     - Purpose & Description  : Adds new key-value pair only if the key does not exist.
+--     - Practical SQL Example  : JSON_INSERT(details, '$.role', 'Admin')
+--
+-- * JSON_REPLACE()
+--     - Signature / Parameters : (doc, path, val[, path, val]...)
+--     - Purpose & Description  : Overwrites value only if the key already exists.
+--     - Practical SQL Example  : JSON_REPLACE(details, '$.age', 31)
+--
+-- * JSON_REMOVE()
+--     - Signature / Parameters : (doc, path[, path]...)
+--     - Purpose & Description  : Deletes a key, property, or array element from the JSON.
+--     - Practical SQL Example  : JSON_REMOVE(details, '$.skills[1]')
+--
+-- * JSON_ARRAY()
+--     - Signature / Parameters : ([val1, val2, ...])
+--     - Purpose & Description  : Creates a JSON array on the fly from arguments.
+--     - Practical SQL Example  : JSON_ARRAY('Java', 'Python', 'SQL')
+--
+-- * JSON_OBJECT()
+--     - Signature / Parameters : ([k1, v1, k2, v2, ...])
+--     - Purpose & Description  : Creates a JSON object on the fly from key-value pairs.
+--     - Practical SQL Example  : JSON_OBJECT('city', 'Pune', 'zip', 411001)
+--
+-- * JSON_CONTAINS()
+--     - Signature / Parameters : (target, candidate[, path])
+--     - Purpose & Description  : Checks if JSON document contains a specific value (returns 1 or 0).
+--     - Practical SQL Example  : JSON_CONTAINS(details, '"SQL"', '$.skills')
+--
+-- * JSON_SEARCH()
+--     - Signature / Parameters : (doc, 'one'|'all', search_str)
+--     - Purpose & Description  : Searches for a string within a document and returns its path.
+--     - Practical SQL Example  : JSON_SEARCH(details, 'one', 'Python')
+--
+-- * JSON_TYPE()
+--     - Signature / Parameters : (json_val)
+--     - Purpose & Description  : Returns the data type string (OBJECT, ARRAY, INTEGER, etc.).
+--     - Practical SQL Example  : JSON_TYPE(JSON_EXTRACT(details, '$.age'))
+--
+-- * JSON_VALID()
+--     - Signature / Parameters : (val)
+--     - Purpose & Description  : Validates whether a string has valid JSON syntax (returns 1 or 0).
+--     - Practical SQL Example  : JSON_VALID('{"valid": true}')
+--
 
 -- ---
 
@@ -1426,31 +1694,116 @@ SELECT ST_Contains(@polygon, @point) AS contains;
 -- ------------------------------------------------------------
 -- 1. The 8 OpenGIS Spatial Data Types Matrix
 -- ------------------------------------------------------------
--- | Spatial Type | Structural Geometry | Dimension | Real-World Application | WKT Syntax Pattern |
--- | :--- | :--- | :--- | :--- | :--- |
--- | `POINT` | Single 2D coordinate $(x, y)$ | 0D (Point) | GPS user locations, pin drop, branch coordinates | `POINT(77.59 12.97)` |
--- | `LINESTRING` | Connected series of points | 1D (Length) | Roads, delivery routes, rivers, railways, flight corridors | `LINESTRING(x1 y1, x2 y2, ...)` |
--- | `POLYGON` | Closed area (first = last point) | 2D (Area) | Delivery geofencing zones, lakes, city boundaries, plots | `POLYGON((x1 y1, x2 y2, ..., x1 y1))` |
--- | `MULTIPOINT` | Multiple distinct points | 0D Set | Multiple store branches, delivery drop points | `MULTIPOINT((x1 y1), (x2 y2))` |
--- | `MULTILINESTRING` | Multiple distinct line paths | 1D Set | Highway networks, subway train lines, multi-segment routes | `MULTILINESTRING((...), (...))` |
--- | `MULTIPOLYGON` | Multiple closed polygon zones | 2D Set | Archipelagos/islands, multi-district sales territories | `MULTIPOLYGON(((...)), ((...)))` |
--- | `GEOMETRYCOLLECTION` | Mixed heterogeneous collection | Mixed | Complex city models (Points + Lines + Polygons combined) | `GEOMETRYCOLLECTION(POINT(...), ...)` |
--- | `GEOMETRY` | Polymorphic spatial column | Any | Column that can store any single geometric object per row | Holds any single geometry object |
+-- (Spatial Type → Structural Geometry | Dimension | Real-World Application | WKT Syntax Pattern)
+--
+-- * POINT
+--     - Structural Geometry    : Single 2D coordinate (x, y)
+--     - Dimension              : 0D (Point)
+--     - Real-World Application : GPS user locations, pin drop, branch coordinates
+--     - WKT Syntax Pattern     : POINT(77.59 12.97)
+--
+-- * LINESTRING
+--     - Structural Geometry    : Connected series of points
+--     - Dimension              : 1D (Length)
+--     - Real-World Application : Roads, delivery routes, rivers, railways, flight corridors
+--     - WKT Syntax Pattern     : LINESTRING(x1 y1, x2 y2, ...)
+--
+-- * POLYGON
+--     - Structural Geometry    : Closed area (first = last point)
+--     - Dimension              : 2D (Area)
+--     - Real-World Application : Delivery geofencing zones, lakes, city boundaries, plots
+--     - WKT Syntax Pattern     : POLYGON((x1 y1, x2 y2, ..., x1 y1))
+--
+-- * MULTIPOINT
+--     - Structural Geometry    : Multiple distinct points
+--     - Dimension              : 0D Set
+--     - Real-World Application : Multiple store branches, delivery drop points
+--     - WKT Syntax Pattern     : MULTIPOINT((x1 y1), (x2 y2))
+--
+-- * MULTILINESTRING
+--     - Structural Geometry    : Multiple distinct line paths
+--     - Dimension              : 1D Set
+--     - Real-World Application : Highway networks, subway train lines, multi-segment routes
+--     - WKT Syntax Pattern     : MULTILINESTRING((...), (...))
+--
+-- * MULTIPOLYGON
+--     - Structural Geometry    : Multiple closed polygon zones
+--     - Dimension              : 2D Set
+--     - Real-World Application : Archipelagos/islands, multi-district sales territories
+--     - WKT Syntax Pattern     : MULTIPOLYGON(((...)), ((...)))
+--
+-- * GEOMETRYCOLLECTION
+--     - Structural Geometry    : Mixed heterogeneous collection
+--     - Dimension              : Mixed
+--     - Real-World Application : Complex city models (Points + Lines + Polygons combined)
+--     - WKT Syntax Pattern     : GEOMETRYCOLLECTION(POINT(...), ...)
+--
+-- * GEOMETRY
+--     - Structural Geometry    : Polymorphic spatial column
+--     - Dimension              : Any
+--     - Real-World Application : Column that can store any single geometric object per row
+--     - WKT Syntax Pattern     : Holds any single geometry object
+--
 
 -- ------------------------------------------------------------
 -- 2. Complete MySQL Spatial Analysis Methods (`ST_` Functions)
 -- ------------------------------------------------------------
--- | Function Name | Input Signature | Output Type | Description & Analysis Role | Practical SQL Example |
--- | :--- | :--- | :--- | :--- | :--- |
--- | `ST_GeomFromText()` | `(wkt_string[, srid])` | Geometry Object | Converts Well-Known Text (WKT) string to internal binary geometry. | `ST_GeomFromText('POINT(72.87 19.07)')` |
--- | `ST_AsText()` | `(geometry_obj)` | WKT String | Converts internal binary geometry back into human-readable text. | `SELECT ST_AsText(location) FROM user_location;` |
--- | `ST_Distance()` | `(geom1, geom2)` | Double | Computes planar Euclidean distance between two geometries. | `ST_Distance(point1, point2)` |
--- | `ST_Within()` | `(geom_a, geom_b)` | Boolean (0 or 1) | Checks if geometry `A` is completely inside geometry `B`. | `ST_Within(user_point, zone_polygon)` |
--- | `ST_Contains()` | `(geom_a, geom_b)` | Boolean (0 or 1) | Checks if geometry `A` completely surrounds/encloses geometry `B`. | `ST_Contains(zone_polygon, user_point)` |
--- | `ST_Area()` | `(polygon_obj)` | Double | Calculates total surface area of a closed Polygon or MultiPolygon. | `ST_Area(region)` |
--- | `ST_Length()` | `(linestring_obj)` | Double | Calculates the total length of a LineString or MultiLineString. | `ST_Length(road_path)` |
--- | `ST_Buffer()` | `(geom, distance)` | Polygon Object | Generates a polygon buffer zone of radius $d$ around a geometry. | `ST_Buffer(store_point, 5000)` |
--- | `ST_Intersects()` | `(geom1, geom2)` | Boolean (0 or 1) | Returns 1 if any part of `geom1` touches or overlaps `geom2`. | `ST_Intersects(route_line, flood_zone)` |
+-- (Function Name → Input Signature | Output Type | Description & Analysis Role | Practical SQL Example)
+--
+-- * ST_GeomFromText()
+--     - Input Signature             : (wkt_string[, srid])
+--     - Output Type                 : Geometry Object
+--     - Description & Analysis Role : Converts Well-Known Text (WKT) string to internal binary geometry.
+--     - Practical SQL Example       : ST_GeomFromText('POINT(72.87 19.07)')
+--
+-- * ST_AsText()
+--     - Input Signature             : (geometry_obj)
+--     - Output Type                 : WKT String
+--     - Description & Analysis Role : Converts internal binary geometry back into human-readable text.
+--     - Practical SQL Example       : SELECT ST_AsText(location) FROM user_location;
+--
+-- * ST_Distance()
+--     - Input Signature             : (geom1, geom2)
+--     - Output Type                 : Double
+--     - Description & Analysis Role : Computes planar Euclidean distance between two geometries.
+--     - Practical SQL Example       : ST_Distance(point1, point2)
+--
+-- * ST_Within()
+--     - Input Signature             : (geom_a, geom_b)
+--     - Output Type                 : Boolean (0 or 1)
+--     - Description & Analysis Role : Checks if geometry A is completely inside geometry B.
+--     - Practical SQL Example       : ST_Within(user_point, zone_polygon)
+--
+-- * ST_Contains()
+--     - Input Signature             : (geom_a, geom_b)
+--     - Output Type                 : Boolean (0 or 1)
+--     - Description & Analysis Role : Checks if geometry A completely surrounds/encloses geometry B.
+--     - Practical SQL Example       : ST_Contains(zone_polygon, user_point)
+--
+-- * ST_Area()
+--     - Input Signature             : (polygon_obj)
+--     - Output Type                 : Double
+--     - Description & Analysis Role : Calculates total surface area of a closed Polygon or MultiPolygon.
+--     - Practical SQL Example       : ST_Area(region)
+--
+-- * ST_Length()
+--     - Input Signature             : (linestring_obj)
+--     - Output Type                 : Double
+--     - Description & Analysis Role : Calculates the total length of a LineString or MultiLineString.
+--     - Practical SQL Example       : ST_Length(road_path)
+--
+-- * ST_Buffer()
+--     - Input Signature             : (geom, distance)
+--     - Output Type                 : Polygon Object
+--     - Description & Analysis Role : Generates a polygon buffer zone of radius d around a geometry.
+--     - Practical SQL Example       : ST_Buffer(store_point, 5000)
+--
+-- * ST_Intersects()
+--     - Input Signature             : (geom1, geom2)
+--     - Output Type                 : Boolean (0 or 1)
+--     - Description & Analysis Role : Returns 1 if any part of geom1 touches or overlaps geom2.
+--     - Practical SQL Example       : ST_Intersects(route_line, flood_zone)
+--
 
 -- ---
 

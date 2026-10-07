@@ -163,17 +163,44 @@ FROM departments;
 -- 36.6 Differences Between Function and Procedure
 -- ------------------------------------------------------------
 
--- | Feature | Procedure | Function |
--- | :--- | :--- | :--- |
--- | Return value | Optional — may or may not return values (via `OUT` / `INOUT` parameters, or result sets) | Mandatory — must return exactly one value using `RETURN` |
--- | Use in SQL | Cannot be used in `SELECT` | Can be used in `SELECT`, `WHERE`, `ORDER BY` etc. |
--- | Parameters | `IN`, `OUT`, `INOUT` | Only `IN` |
--- | Transactions | Can use `START TRANSACTION`, `COMMIT`, `ROLLBACK` | Not allowed (no statements that commit or roll back) |
--- | Purpose | Perform actions: `INSERT`, `UPDATE`, `DELETE`, complex operations, transactions | Compute and return a value (calculation, transformation, lookup) |
--- | How it is called | `CALL procedure_name(...)` | Inside SQL: `SELECT function_name(...)` |
--- | Multiple values | Can return many values using `OUT` parameters and many result sets | Always returns one single (scalar) value; cannot return a result set |
--- | Typical size | Usually heavy business logic | Usually lightweight, focused on calculations |
--- | Examples | Transfer money, insert employee, audit logs | Calculate tax, format full name, count employees |
+-- (Feature → Procedure | Function)
+--
+-- * Return value
+--     - Procedure : Optional — may or may not return values (via OUT / INOUT parameters, or result sets)
+--     - Function  : Mandatory — must return exactly one value using RETURN
+--
+-- * Use in SQL
+--     - Procedure : Cannot be used in SELECT
+--     - Function  : Can be used in SELECT, WHERE, ORDER BY etc.
+--
+-- * Parameters
+--     - Procedure : IN, OUT, INOUT
+--     - Function  : Only IN
+--
+-- * Transactions
+--     - Procedure : Can use START TRANSACTION, COMMIT, ROLLBACK
+--     - Function  : Not allowed (no statements that commit or roll back)
+--
+-- * Purpose
+--     - Procedure : Perform actions: INSERT, UPDATE, DELETE, complex operations, transactions
+--     - Function  : Compute and return a value (calculation, transformation, lookup)
+--
+-- * How it is called
+--     - Procedure : CALL procedure_name(...)
+--     - Function  : Inside SQL: SELECT function_name(...)
+--
+-- * Multiple values
+--     - Procedure : Can return many values using OUT parameters and many result sets
+--     - Function  : Always returns one single (scalar) value; cannot return a result set
+--
+-- * Typical size
+--     - Procedure : Usually heavy business logic
+--     - Function  : Usually lightweight, focused on calculations
+--
+-- * Examples
+--     - Procedure : Transfer money, insert employee, audit logs
+--     - Function  : Calculate tax, format full name, count employees
+--
 
 -- * A function in MySQL is like a procedure, but it must return a single value and can be used inside SQL queries. Best for calculations, transformations and reusable business logic inside queries.
 

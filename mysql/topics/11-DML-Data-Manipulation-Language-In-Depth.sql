@@ -397,16 +397,44 @@ SET SQL_SAFE_UPDATES = 1;
 -- 1. Detailed 9-Point Comparison Matrix
 -- ------------------------------------------------------------
 
--- | :--- | :--- | :--- |
--- | 1. Meaning | Data is permanently and physically removed from disk | Data is not physically removed; it is only marked as deleted using a status flag |
--- | 2. Data Recovery | Cannot be recovered unless a database backup is available | Easily restored by changing the status flag back to active |
--- | 3. How It Works | Removes the actual row records from the storage pages | Updates a flag or timestamp column to indicate deletion |
--- | 4. SQL Command | Executed using **`DELETE`** or **`TRUNCATE`** | Executed using **`UPDATE`** (`SET is_deleted = 1`) |
--- | 5. Storage Usage | Uses less storage because deleted records are cleared | Uses more storage because deleted records remain in the table indefinitely |
--- | 6. Query Performance | Generally faster; fewer records remain to scan and index | Queries may require filtering index checks (`WHERE is_deleted = 0`) |
--- | 7. Data History & Audit | Historical data is permanently lost | Maintains complete audit history and allows tracking of who deleted what and when |
--- | 8. Implementation | No extra table columns required | Requires additional columns like `is_deleted`, `deleted_at`, or `status` |
--- | 9. Common Use Cases | Temporary data, cache tables, compliance data removal (GDPR) | Banking, e-commerce orders, user accounts, audit-heavy enterprise apps |
+-- (Feature / Dimension → Hard Delete | Soft Delete)
+--
+-- * 1. Meaning
+--     - Hard Delete : Data is permanently and physically removed from disk
+--     - Soft Delete : Data is not physically removed; it is only marked as deleted using a status flag
+--
+-- * 2. Data Recovery
+--     - Hard Delete : Cannot be recovered unless a database backup is available
+--     - Soft Delete : Easily restored by changing the status flag back to active
+--
+-- * 3. How It Works
+--     - Hard Delete : Removes the actual row records from the storage pages
+--     - Soft Delete : Updates a flag or timestamp column to indicate deletion
+--
+-- * 4. SQL Command
+--     - Hard Delete : Executed using DELETE or TRUNCATE
+--     - Soft Delete : Executed using UPDATE (SET is_deleted = 1)
+--
+-- * 5. Storage Usage
+--     - Hard Delete : Uses less storage because deleted records are cleared
+--     - Soft Delete : Uses more storage because deleted records remain in the table indefinitely
+--
+-- * 6. Query Performance
+--     - Hard Delete : Generally faster; fewer records remain to scan and index
+--     - Soft Delete : Queries may require filtering index checks (WHERE is_deleted = 0)
+--
+-- * 7. Data History & Audit
+--     - Hard Delete : Historical data is permanently lost
+--     - Soft Delete : Maintains complete audit history and allows tracking of who deleted what and when
+--
+-- * 8. Implementation
+--     - Hard Delete : No extra table columns required
+--     - Soft Delete : Requires additional columns like is_deleted, deleted_at, or status
+--
+-- * 9. Common Use Cases
+--     - Hard Delete : Temporary data, cache tables, compliance data removal (GDPR)
+--     - Soft Delete : Banking, e-commerce orders, user accounts, audit-heavy enterprise apps
+--
 
 -- ------------------------------------------------------------
 -- 2. Practical Implementation of Soft Delete
@@ -604,13 +632,33 @@ SELECT * FROM employee;
 -- 6. Summary Matrix of Referential Actions
 -- ------------------------------------------------------------
 
--- | Action Type | Behavior on Parent Deletion (`ON DELETE`) | Behavior on Parent Update (`ON UPDATE`) | Best Use Case |
--- | :--- | :--- | :--- | :--- |
--- | **`CASCADE`** | Automatically deletes all related child rows | Automatically updates related child foreign keys | Child data has no standalone meaning without parent (e.g., Order Items $\rightarrow$ Order) |
--- | **`RESTRICT` (DEFAULT)**| Blocks parent deletion if child records exist | Blocks parent primary key update if child records exist | Strong data protection required; prevents accidental loss |
--- | **`NO ACTION`** | Same as `RESTRICT` in MySQL (blocks deletion) | Same as `RESTRICT` in MySQL (blocks update) | Standard ANSI compliance |
--- | **`SET NULL`** | Sets child foreign key column to `NULL` (Child remains) | Sets child foreign key column to `NULL` | Child can exist independently (e.g., Employee retains job if Department is deleted) |
--- | **`SET DEFAULT`** | Sets child foreign key to default value | Sets child foreign key to default value | Rare in MySQL; NOT supported by InnoDB engine |
+-- (Action Type → Behavior on Parent Deletion (ON DELETE) | Behavior on Parent Update (ON UPDATE) | Best Use Case)
+--
+-- * CASCADE
+--     - Behavior on Parent Deletion (ON DELETE) : Automatically deletes all related child rows
+--     - Behavior on Parent Update (ON UPDATE)   : Automatically updates related child foreign keys
+--     - Best Use Case                           : Child data has no standalone meaning without parent (e.g., Order Items \rightarrow Order)
+--
+-- * RESTRICT (DEFAULT)
+--     - Behavior on Parent Deletion (ON DELETE) : Blocks parent deletion if child records exist
+--     - Behavior on Parent Update (ON UPDATE)   : Blocks parent primary key update if child records exist
+--     - Best Use Case                           : Strong data protection required; prevents accidental loss
+--
+-- * NO ACTION
+--     - Behavior on Parent Deletion (ON DELETE) : Same as RESTRICT in MySQL (blocks deletion)
+--     - Behavior on Parent Update (ON UPDATE)   : Same as RESTRICT in MySQL (blocks update)
+--     - Best Use Case                           : Standard ANSI compliance
+--
+-- * SET NULL
+--     - Behavior on Parent Deletion (ON DELETE) : Sets child foreign key column to NULL (Child remains)
+--     - Behavior on Parent Update (ON UPDATE)   : Sets child foreign key column to NULL
+--     - Best Use Case                           : Child can exist independently (e.g., Employee retains job if Department is deleted)
+--
+-- * SET DEFAULT
+--     - Behavior on Parent Deletion (ON DELETE) : Sets child foreign key to default value
+--     - Behavior on Parent Update (ON UPDATE)   : Sets child foreign key to default value
+--     - Best Use Case                           : Rare in MySQL; NOT supported by InnoDB engine
+--
 
 --   * **1. `ON DELETE CASCADE`:**
 
@@ -696,14 +744,32 @@ VALUES (7, 'Vishal', 'India', 999);
 -- 4. Differences: UPDATE vs REPLACE INTO
 -- ------------------------------------------------------------
 
--- | Dimension | `UPDATE` | `REPLACE INTO` |
--- | :--- | :--- | :--- |
--- | Operation Type | Modifies existing row in-place | Deletes old row, then Inserts new row |
--- | Key Conflict | Requires key to locate; does not delete | If key exists, deletes old record first |
--- | Non-Existing Key | Returns 0 rows affected (does not insert) | Inserts as a brand new row |
--- | Trigger Execution | Fires `UPDATE` triggers only | Fires **both `DELETE` and `INSERT` triggers** |
--- | Performance | Faster (in-place modification) | Slightly slower (two-step delete + insert cycle) |
--- | AUTO_INCREMENT | Does not affect auto_increment | May cause auto-increment counter to advance |
+-- (Dimension → UPDATE | REPLACE INTO)
+--
+-- * Operation Type
+--     - UPDATE       : Modifies existing row in-place
+--     - REPLACE INTO : Deletes old row, then Inserts new row
+--
+-- * Key Conflict
+--     - UPDATE       : Requires key to locate; does not delete
+--     - REPLACE INTO : If key exists, deletes old record first
+--
+-- * Non-Existing Key
+--     - UPDATE       : Returns 0 rows affected (does not insert)
+--     - REPLACE INTO : Inserts as a brand new row
+--
+-- * Trigger Execution
+--     - UPDATE       : Fires UPDATE triggers only
+--     - REPLACE INTO : Fires both DELETE and INSERT triggers
+--
+-- * Performance
+--     - UPDATE       : Faster (in-place modification)
+--     - REPLACE INTO : Slightly slower (two-step delete + insert cycle)
+--
+-- * AUTO_INCREMENT
+--     - UPDATE       : Does not affect auto_increment
+--     - REPLACE INTO : May cause auto-increment counter to advance
+--
 
 -- ------------------------------------------------------------
 -- 5. Q. What is the difference between REPLACE and INSERT ... ON DUPLICATE KEY UPDATE?
@@ -757,14 +823,32 @@ ON DUPLICATE KEY UPDATE name = 'Alicia';
 -- 11.9 Comparison: ALTER Command vs UPDATE Command
 -- ------------------------------------------------------------
 
--- | Feature / Dimension | `ALTER` Command | `UPDATE` Command |
--- | :--- | :--- | :--- |
--- | 1. Command Category | DDL (Data Definition Language) | DML (Data Manipulation Language) |
--- | 2. Target of Operation | Works on Table Structure / Blueprint | Works on Data Values / Rows |
--- | 3. Core Action | Adds, deletes, or changes columns, constraints, data types | Modifies contents of existing rows |
--- | 4. Default Initialization | Initializes new columns for all existing rows as `NULL` (or default) | Sets specific fixed cell values according to `SET` clause |
--- | 5. Transaction Control | Implicit Commit (Cannot rollback in MySQL) | Transaction Controlled (Can rollback before commit) |
--- | 6. Summary Purpose | Alters the definition of the database object | Modifies the actual data inside the table |
+-- (Feature / Dimension → ALTER Command | UPDATE Command)
+--
+-- * 1. Command Category
+--     - ALTER Command  : DDL (Data Definition Language)
+--     - UPDATE Command : DML (Data Manipulation Language)
+--
+-- * 2. Target of Operation
+--     - ALTER Command  : Works on Table Structure / Blueprint
+--     - UPDATE Command : Works on Data Values / Rows
+--
+-- * 3. Core Action
+--     - ALTER Command  : Adds, deletes, or changes columns, constraints, data types
+--     - UPDATE Command : Modifies contents of existing rows
+--
+-- * 4. Default Initialization
+--     - ALTER Command  : Initializes new columns for all existing rows as NULL (or default)
+--     - UPDATE Command : Sets specific fixed cell values according to SET clause
+--
+-- * 5. Transaction Control
+--     - ALTER Command  : Implicit Commit (Cannot rollback in MySQL)
+--     - UPDATE Command : Transaction Controlled (Can rollback before commit)
+--
+-- * 6. Summary Purpose
+--     - ALTER Command  : Alters the definition of the database object
+--     - UPDATE Command : Modifies the actual data inside the table
+--
 
 -- ---
 

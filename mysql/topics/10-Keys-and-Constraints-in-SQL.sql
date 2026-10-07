@@ -140,14 +140,32 @@ CREATE TABLE Employees (
 -- 10.5 UUID vs AUTO_INCREMENT Primary Key
 -- ------------------------------------------------------------
 
--- | Point | AUTO_INCREMENT (INT/BIGINT) | UUID (CHAR(36) / BINARY(16)) |
--- | :--- | :--- | :--- |
--- | Size | 4–8 bytes | 36 bytes as text, 16 bytes as binary |
--- | Order | Always increasing → new rows go at the end of the clustered index | Random (v4) → inserts land anywhere, causing page splits |
--- | Insert speed (InnoDB) | Fast | Slower on big tables (random I/O, fragmentation) |
--- | Secondary indexes | Small (each stores the PK) | Bigger (every secondary index carries the 16/36-byte PK) |
--- | Unique across servers | ❌ Only inside one table/server | ✅ Globally unique (merge, sharding, offline clients) |
--- | Guessable in URLs | ✅ Yes (`/orders/1001` → try 1002) | ❌ Hard to guess |
+-- (Point → AUTO_INCREMENT (INT/BIGINT) | UUID (CHAR(36) / BINARY(16)))
+--
+-- * Size
+--     - AUTO_INCREMENT (INT/BIGINT)  : 4–8 bytes
+--     - UUID (CHAR(36) / BINARY(16)) : 36 bytes as text, 16 bytes as binary
+--
+-- * Order
+--     - AUTO_INCREMENT (INT/BIGINT)  : Always increasing → new rows go at the end of the clustered index
+--     - UUID (CHAR(36) / BINARY(16)) : Random (v4) → inserts land anywhere, causing page splits
+--
+-- * Insert speed (InnoDB)
+--     - AUTO_INCREMENT (INT/BIGINT)  : Fast
+--     - UUID (CHAR(36) / BINARY(16)) : Slower on big tables (random I/O, fragmentation)
+--
+-- * Secondary indexes
+--     - AUTO_INCREMENT (INT/BIGINT)  : Small (each stores the PK)
+--     - UUID (CHAR(36) / BINARY(16)) : Bigger (every secondary index carries the 16/36-byte PK)
+--
+-- * Unique across servers
+--     - AUTO_INCREMENT (INT/BIGINT)  : ❌ Only inside one table/server
+--     - UUID (CHAR(36) / BINARY(16)) : ✅ Globally unique (merge, sharding, offline clients)
+--
+-- * Guessable in URLs
+--     - AUTO_INCREMENT (INT/BIGINT)  : ✅ Yes (/orders/1001 → try 1002)
+--     - UUID (CHAR(36) / BINARY(16)) : ❌ Hard to guess
+--
 
 -- * Best way to store a UUID in MySQL 8:
 CREATE TABLE orders (

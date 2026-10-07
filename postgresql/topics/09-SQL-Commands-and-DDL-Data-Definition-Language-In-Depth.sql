@@ -266,20 +266,56 @@ CREATE INDEX age_index ON student (age);
 -- 8. Handy psql Meta-Commands (PostgreSQL extra)
 -- ------------------------------------------------------------
 
--- | psql command | What it shows | MySQL equivalent |
--- | :--- | :--- | :--- |
--- | `\l` | All databases | `SHOW DATABASES;` |
--- | `\c db` | Connect to a database | `USE db;` |
--- | `\dn` | All schemas | — |
--- | `\dt` | Tables | `SHOW TABLES;` |
--- | `\d table` | Table structure | `DESCRIBE table;` |
--- | `\di` | Indexes | `SHOW INDEX FROM table;` |
--- | `\dv` | Views | `SHOW FULL TABLES WHERE Table_type = 'VIEW';` |
--- | `\df` | Functions / procedures | `SHOW FUNCTION STATUS;` |
--- | `\du` | Users / roles | `SELECT user FROM mysql.user;` |
--- | `\x` | Expanded (vertical) output | `\G` at end of query |
--- | `\timing` | Show query time | (shown by default) |
--- | `\q` | Quit | `exit` |
+-- (psql command → What it shows | MySQL equivalent)
+--
+-- * \l
+--     - What it shows    : All databases
+--     - MySQL equivalent : SHOW DATABASES;
+--
+-- * \c db
+--     - What it shows    : Connect to a database
+--     - MySQL equivalent : USE db;
+--
+-- * \dn
+--     - What it shows    : All schemas
+--     - MySQL equivalent : —
+--
+-- * \dt
+--     - What it shows    : Tables
+--     - MySQL equivalent : SHOW TABLES;
+--
+-- * \d table
+--     - What it shows    : Table structure
+--     - MySQL equivalent : DESCRIBE table;
+--
+-- * \di
+--     - What it shows    : Indexes
+--     - MySQL equivalent : SHOW INDEX FROM table;
+--
+-- * \dv
+--     - What it shows    : Views
+--     - MySQL equivalent : SHOW FULL TABLES WHERE Table_type = 'VIEW';
+--
+-- * \df
+--     - What it shows    : Functions / procedures
+--     - MySQL equivalent : SHOW FUNCTION STATUS;
+--
+-- * \du
+--     - What it shows    : Users / roles
+--     - MySQL equivalent : SELECT user FROM mysql.user;
+--
+-- * \x
+--     - What it shows    : Expanded (vertical) output
+--     - MySQL equivalent : \G at end of query
+--
+-- * \timing
+--     - What it shows    : Show query time
+--     - MySQL equivalent : (shown by default)
+--
+-- * \q
+--     - What it shows    : Quit
+--     - MySQL equivalent : exit
+--
 
 -- ---
 
@@ -511,14 +547,32 @@ ALTER TABLE employees SET SCHEMA hr;     -- now it is hr.employees
 -- Quick Reference Matrix:
 -- ------------------------------------------------------------
 
--- | Constraint | How to ADD | How to DROP |
--- | :--- | :--- | :--- |
--- | PRIMARY KEY | `ALTER TABLE employees ADD PRIMARY KEY (id);` | `ALTER TABLE employees DROP CONSTRAINT employees_pkey;` |
--- | UNIQUE | `ALTER TABLE employees ADD CONSTRAINT unique_email UNIQUE (email);` | `ALTER TABLE employees DROP CONSTRAINT unique_email;` |
--- | FOREIGN KEY | `ALTER TABLE orders ADD CONSTRAINT fk_cust FOREIGN KEY (customer_id) REFERENCES customers(id);` | `ALTER TABLE orders DROP CONSTRAINT fk_cust;` |
--- | CHECK | `ALTER TABLE employees ADD CONSTRAINT chk_age CHECK (age >= 18);` | `ALTER TABLE employees DROP CONSTRAINT chk_age;` |
--- | NOT NULL | `ALTER TABLE student ALTER COLUMN education SET NOT NULL;` | `ALTER TABLE student ALTER COLUMN education DROP NOT NULL;` |
--- | DEFAULT | `ALTER TABLE employees ALTER COLUMN salary SET DEFAULT 5000;` | `ALTER TABLE employees ALTER COLUMN salary DROP DEFAULT;` |
+-- (Constraint → How to ADD | How to DROP)
+--
+-- * PRIMARY KEY
+--     - How to ADD  : ALTER TABLE employees ADD PRIMARY KEY (id);
+--     - How to DROP : ALTER TABLE employees DROP CONSTRAINT employees_pkey;
+--
+-- * UNIQUE
+--     - How to ADD  : ALTER TABLE employees ADD CONSTRAINT unique_email UNIQUE (email);
+--     - How to DROP : ALTER TABLE employees DROP CONSTRAINT unique_email;
+--
+-- * FOREIGN KEY
+--     - How to ADD  : ALTER TABLE orders ADD CONSTRAINT fk_cust FOREIGN KEY (customer_id) REFERENCES customers(id);
+--     - How to DROP : ALTER TABLE orders DROP CONSTRAINT fk_cust;
+--
+-- * CHECK
+--     - How to ADD  : ALTER TABLE employees ADD CONSTRAINT chk_age CHECK (age >= 18);
+--     - How to DROP : ALTER TABLE employees DROP CONSTRAINT chk_age;
+--
+-- * NOT NULL
+--     - How to ADD  : ALTER TABLE student ALTER COLUMN education SET NOT NULL;
+--     - How to DROP : ALTER TABLE student ALTER COLUMN education DROP NOT NULL;
+--
+-- * DEFAULT
+--     - How to ADD  : ALTER TABLE employees ALTER COLUMN salary SET DEFAULT 5000;
+--     - How to DROP : ALTER TABLE employees ALTER COLUMN salary DROP DEFAULT;
+--
 
 -- ---
 
@@ -681,19 +735,52 @@ ALTER TABLE employees ALTER COLUMN salary DROP DEFAULT;
 -- 9.8 Quick Revision Cheat Sheet: ALTER Operations (PostgreSQL vs MySQL)
 -- ------------------------------------------------------------
 
--- | What you want | MySQL | PostgreSQL |
--- | :--- | :--- | :--- |
--- | Add column | `ADD COLUMN c INT [FIRST / AFTER x]` | `ADD COLUMN c INT` (always at end) |
--- | Change type | `MODIFY c BIGINT` | `ALTER COLUMN c TYPE BIGINT [USING ...]` |
--- | Rename + change type | `CHANGE old new VARCHAR(50)` | `RENAME COLUMN old TO new` + `ALTER COLUMN new TYPE VARCHAR(50)` |
--- | Rename column | `RENAME COLUMN a TO b` | `RENAME COLUMN a TO b` (same) |
--- | NOT NULL | `MODIFY c INT NOT NULL` | `ALTER COLUMN c SET NOT NULL` |
--- | Default | `ALTER c SET DEFAULT 5` | `ALTER COLUMN c SET DEFAULT 5` (same) |
--- | Drop PK | `DROP PRIMARY KEY` | `DROP CONSTRAINT t_pkey` |
--- | Drop unique / FK / check | `DROP INDEX` / `DROP FOREIGN KEY` / `DROP CHECK` | `DROP CONSTRAINT name` (one command for all) |
--- | Rename table | `RENAME TABLE a TO b` | `ALTER TABLE a RENAME TO b` |
--- | Auto-number start | `AUTO_INCREMENT = 1000` | `ALTER COLUMN id RESTART WITH 1000` / `ALTER SEQUENCE` |
--- | Move to other schema | `RENAME TABLE db1.t TO db2.t` | `ALTER TABLE t SET SCHEMA s2` |
+-- (What you want → MySQL | PostgreSQL)
+--
+-- * Add column
+--     - MySQL      : ADD COLUMN c INT [FIRST / AFTER x]
+--     - PostgreSQL : ADD COLUMN c INT (always at end)
+--
+-- * Change type
+--     - MySQL      : MODIFY c BIGINT
+--     - PostgreSQL : ALTER COLUMN c TYPE BIGINT [USING ...]
+--
+-- * Rename + change type
+--     - MySQL      : CHANGE old new VARCHAR(50)
+--     - PostgreSQL : RENAME COLUMN old TO new + ALTER COLUMN new TYPE VARCHAR(50)
+--
+-- * Rename column
+--     - MySQL      : RENAME COLUMN a TO b
+--     - PostgreSQL : RENAME COLUMN a TO b (same)
+--
+-- * NOT NULL
+--     - MySQL      : MODIFY c INT NOT NULL
+--     - PostgreSQL : ALTER COLUMN c SET NOT NULL
+--
+-- * Default
+--     - MySQL      : ALTER c SET DEFAULT 5
+--     - PostgreSQL : ALTER COLUMN c SET DEFAULT 5 (same)
+--
+-- * Drop PK
+--     - MySQL      : DROP PRIMARY KEY
+--     - PostgreSQL : DROP CONSTRAINT t_pkey
+--
+-- * Drop unique / FK / check
+--     - MySQL      : DROP INDEX / DROP FOREIGN KEY / DROP CHECK
+--     - PostgreSQL : DROP CONSTRAINT name (one command for all)
+--
+-- * Rename table
+--     - MySQL      : RENAME TABLE a TO b
+--     - PostgreSQL : ALTER TABLE a RENAME TO b
+--
+-- * Auto-number start
+--     - MySQL      : AUTO_INCREMENT = 1000
+--     - PostgreSQL : ALTER COLUMN id RESTART WITH 1000 / ALTER SEQUENCE
+--
+-- * Move to other schema
+--     - MySQL      : RENAME TABLE db1.t TO db2.t
+--     - PostgreSQL : ALTER TABLE t SET SCHEMA s2
+--
 
 -- ---
 
@@ -909,18 +996,58 @@ WHERE datname = 'old_database_name' AND pid <> pg_backend_pid();
 -- 1. Comprehensive 10-Point Comparison Matrix (PostgreSQL)
 -- ------------------------------------------------------------
 
--- | Feature / Dimension | `DELETE` | `TRUNCATE` | `DROP` |
--- | :--- | :--- | :--- | :--- |
--- | 1. Command Category | DML (Data Manipulation Language) | DDL (Data Definition Language) | DDL (Data Definition Language) |
--- | 2. Core Purpose & Action | Deletes specific rows or all rows | Wipes all rows in a table at once | Completely deletes table, structure & data |
--- | 3. WHERE Clause Filtering | Supported (`WHERE condition`) | NOT Supported | NOT Supported |
--- | 4. Rollback / Transactions | YES | YES in PostgreSQL (inside `BEGIN`) — NO in MySQL | YES in PostgreSQL (inside `BEGIN`) — NO in MySQL |
--- | 5. Execution Speed | Slower (marks each row as deleted) | Very Fast (new empty data file) | Fastest (removes object from catalog) |
--- | 6. Space Deallocation | NO (dead rows stay until `VACUUM`) | YES (old file removed) | YES (100% space freed) |
--- | 7. Auto-number (sequence) | Not reset | Not reset unless `RESTART IDENTITY` | Sequence dropped with the table (`SERIAL`/`IDENTITY`) |
--- | 8. Trigger Execution | Fires `ON DELETE` triggers | Fires only `ON TRUNCATE` statement triggers | No triggers (triggers dropped) |
--- | 9. Foreign Key Rules | Allowed if FK rules permit (`ON DELETE ...`) | BLOCKED if referenced, unless `CASCADE` | BLOCKED if referenced, unless `CASCADE` (drops the FK constraints) |
--- | 10. Table Structure After Query | 100% Intact | 100% Intact | DESTROYED |
+-- (Feature / Dimension → DELETE | TRUNCATE | DROP)
+--
+-- * 1. Command Category
+--     - DELETE   : DML (Data Manipulation Language)
+--     - TRUNCATE : DDL (Data Definition Language)
+--     - DROP     : DDL (Data Definition Language)
+--
+-- * 2. Core Purpose & Action
+--     - DELETE   : Deletes specific rows or all rows
+--     - TRUNCATE : Wipes all rows in a table at once
+--     - DROP     : Completely deletes table, structure & data
+--
+-- * 3. WHERE Clause Filtering
+--     - DELETE   : Supported (WHERE condition)
+--     - TRUNCATE : NOT Supported
+--     - DROP     : NOT Supported
+--
+-- * 4. Rollback / Transactions
+--     - DELETE   : YES
+--     - TRUNCATE : YES in PostgreSQL (inside BEGIN) — NO in MySQL
+--     - DROP     : YES in PostgreSQL (inside BEGIN) — NO in MySQL
+--
+-- * 5. Execution Speed
+--     - DELETE   : Slower (marks each row as deleted)
+--     - TRUNCATE : Very Fast (new empty data file)
+--     - DROP     : Fastest (removes object from catalog)
+--
+-- * 6. Space Deallocation
+--     - DELETE   : NO (dead rows stay until VACUUM)
+--     - TRUNCATE : YES (old file removed)
+--     - DROP     : YES (100% space freed)
+--
+-- * 7. Auto-number (sequence)
+--     - DELETE   : Not reset
+--     - TRUNCATE : Not reset unless RESTART IDENTITY
+--     - DROP     : Sequence dropped with the table (SERIAL/IDENTITY)
+--
+-- * 8. Trigger Execution
+--     - DELETE   : Fires ON DELETE triggers
+--     - TRUNCATE : Fires only ON TRUNCATE statement triggers
+--     - DROP     : No triggers (triggers dropped)
+--
+-- * 9. Foreign Key Rules
+--     - DELETE   : Allowed if FK rules permit (ON DELETE ...)
+--     - TRUNCATE : BLOCKED if referenced, unless CASCADE
+--     - DROP     : BLOCKED if referenced, unless CASCADE (drops the FK constraints)
+--
+-- * 10. Table Structure After Query
+--     - DELETE   : 100% Intact
+--     - TRUNCATE : 100% Intact
+--     - DROP     : DESTROYED
+--
 
 -- ---
 
@@ -1116,18 +1243,34 @@ SELECT price, qty, total, full_name FROM order_items;
 
 -- * Output:
 
--- | price | qty | total | full_name |
--- | :--- | :--- | :--- | :--- |
--- | 250.00 | 4 | 1000.00 | Asha Patil |
+-- (price → qty | total | full_name)
+--
+-- * 250.00
+--     - qty       : 4
+--     - total     : 1000.00
+--     - full_name : Asha Patil
+--
 
 -- * VIRTUAL vs STORED in PostgreSQL:
 
--- | Point | VIRTUAL | STORED |
--- | :--- | :--- | :--- |
--- | Supported? | Only from PostgreSQL 18 (it is the default there) | Yes (PostgreSQL 12+) |
--- | Disk space | None — computed on every read | Uses space — computed on INSERT/UPDATE |
--- | Read speed | Slightly slower | Faster |
--- | Index | Not allowed | Allowed |
+-- (Point → VIRTUAL | STORED)
+--
+-- * Supported?
+--     - VIRTUAL : Only from PostgreSQL 18 (it is the default there)
+--     - STORED  : Yes (PostgreSQL 12+)
+--
+-- * Disk space
+--     - VIRTUAL : None — computed on every read
+--     - STORED  : Uses space — computed on INSERT/UPDATE
+--
+-- * Read speed
+--     - VIRTUAL : Slightly slower
+--     - STORED  : Faster
+--
+-- * Index
+--     - VIRTUAL : Not allowed
+--     - STORED  : Allowed
+--
 
 -- * Big use case — index an expression. In PostgreSQL you usually don't need a generated column for this, because expression indexes are built in:
 -- Expression index on the email domain (no extra column needed):

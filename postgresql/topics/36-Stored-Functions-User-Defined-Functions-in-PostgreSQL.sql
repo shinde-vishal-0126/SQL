@@ -191,18 +191,48 @@ SELECT * FROM dept_stats(2);   -- emp_count | avg_salary
 -- 36.6 Differences Between Function and Procedure (PostgreSQL)
 -- ------------------------------------------------------------
 
--- | Feature | Procedure | Function |
--- | :--- | :--- | :--- |
--- | Return value | No return value; values come back through `OUT` / `INOUT` parameters | Must return something: a value, a row, a set of rows, or `VOID` |
--- | Use in SQL | Cannot be used in `SELECT` | Can be used in `SELECT`, `WHERE`, `ORDER BY`, `FROM` |
--- | Parameters | `IN`, `OUT` (PG 14+), `INOUT` | `IN`, `OUT`, `INOUT` (OUT params become result columns) |
--- | Transactions | Can `COMMIT` / `ROLLBACK` inside (when called outside a `BEGIN` block) | Not allowed — always runs inside the caller's transaction |
--- | Purpose | Perform actions: batch jobs, multi-step changes with commits | Compute and return values or tables; trigger functions |
--- | How it is called | `CALL procedure_name(...)` | `SELECT function_name(...)` / `SELECT * FROM function_name(...)` |
--- | Returning rows | ❌ Not possible directly | ✅ `RETURNS TABLE (...)` / `RETURNS SETOF ...` |
--- | Can modify data? | Yes | Yes (if `VOLATILE`) — e.g. `INSERT ... RETURNING` inside a function |
--- | Introduced | PostgreSQL 11 | Always existed |
--- | Examples | Archive in batches, nightly job, money transfer | Calculate tax, format full name, report table, trigger logic |
+-- (Feature → Procedure | Function)
+--
+-- * Return value
+--     - Procedure : No return value; values come back through OUT / INOUT parameters
+--     - Function  : Must return something: a value, a row, a set of rows, or VOID
+--
+-- * Use in SQL
+--     - Procedure : Cannot be used in SELECT
+--     - Function  : Can be used in SELECT, WHERE, ORDER BY, FROM
+--
+-- * Parameters
+--     - Procedure : IN, OUT (PG 14+), INOUT
+--     - Function  : IN, OUT, INOUT (OUT params become result columns)
+--
+-- * Transactions
+--     - Procedure : Can COMMIT / ROLLBACK inside (when called outside a BEGIN block)
+--     - Function  : Not allowed — always runs inside the caller's transaction
+--
+-- * Purpose
+--     - Procedure : Perform actions: batch jobs, multi-step changes with commits
+--     - Function  : Compute and return values or tables; trigger functions
+--
+-- * How it is called
+--     - Procedure : CALL procedure_name(...)
+--     - Function  : SELECT function_name(...) / SELECT * FROM function_name(...)
+--
+-- * Returning rows
+--     - Procedure : ❌ Not possible directly
+--     - Function  : ✅ RETURNS TABLE (...) / RETURNS SETOF ...
+--
+-- * Can modify data?
+--     - Procedure : Yes
+--     - Function  : Yes (if VOLATILE) — e.g. INSERT ... RETURNING inside a function
+--
+-- * Introduced
+--     - Procedure : PostgreSQL 11
+--     - Function  : Always existed
+--
+-- * Examples
+--     - Procedure : Archive in batches, nightly job, money transfer
+--     - Function  : Calculate tax, format full name, report table, trigger logic
+--
 
 -- * In PostgreSQL, functions are used much more than procedures. Use a procedure mainly when you need transaction control (`COMMIT` in the middle) or when you want the "CALL" style.
 

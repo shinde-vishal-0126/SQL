@@ -65,15 +65,36 @@ SELECT * FROM users WHERE username = 'admin' -- ' AND password = 'anything'
 -- 14.2 Types of SQL Injection
 -- ------------------------------------------------------------
 
--- | Type | How it works | Example input |
--- | :--- | :--- | :--- |
--- | Tautology / classic | Makes the WHERE condition always true | `' OR '1'='1` |
--- | Comment-based | Cuts off the rest of the query | `admin' -- ` |
--- | UNION-based | Appends another SELECT to read other tables | `' UNION SELECT username, password FROM users -- ` |
--- | Error-based | Forces database errors that reveal table/column names | `' AND extractvalue(1, concat(0x7e, database())) -- ` |
--- | Blind (boolean) | No output shown; attacker asks true/false questions and watches the page change | `' AND SUBSTRING(database(),1,1) = 's' -- ` |
--- | Blind (time-based) | Uses delays to learn data | `' AND IF(1=1, SLEEP(5), 0) -- ` |
--- | Second-order | Malicious text is stored first and injected later when another query reuses it | a username like `bob'; --` saved, used later in an admin report |
+-- (Type → How it works | Example input)
+--
+-- * Tautology / classic
+--     - How it works  : Makes the WHERE condition always true
+--     - Example input : ' OR '1'='1
+--
+-- * Comment-based
+--     - How it works  : Cuts off the rest of the query
+--     - Example input : admin' --
+--
+-- * UNION-based
+--     - How it works  : Appends another SELECT to read other tables
+--     - Example input : ' UNION SELECT username, password FROM users --
+--
+-- * Error-based
+--     - How it works  : Forces database errors that reveal table/column names
+--     - Example input : ' AND extractvalue(1, concat(0x7e, database())) --
+--
+-- * Blind (boolean)
+--     - How it works  : No output shown; attacker asks true/false questions and watches the page change
+--     - Example input : ' AND SUBSTRING(database(),1,1) = 's' --
+--
+-- * Blind (time-based)
+--     - How it works  : Uses delays to learn data
+--     - Example input : ' AND IF(1=1, SLEEP(5), 0) --
+--
+-- * Second-order
+--     - How it works  : Malicious text is stored first and injected later when another query reuses it
+--     - Example input : a username like bob'; -- saved, used later in an admin report
+--
 
 -- ------------------------------------------------------------
 -- 14.3 How to Prevent SQL Injection

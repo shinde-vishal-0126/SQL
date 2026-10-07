@@ -75,13 +75,28 @@ SELECT price FROM products WHERE productid = 101;
 -- 15.3 Core TCL Commands: BEGIN, COMMIT, ROLLBACK, SAVEPOINT, SET
 -- ------------------------------------------------------------
 
--- | Command | Action / Role | Effect on Data |
--- | :--- | :--- | :--- |
--- | `BEGIN` / `START TRANSACTION` | Begins a new transaction block | Opens an atomic session |
--- | `COMMIT` (or `END`) | Saves changes permanently | Makes changes visible to others and durable; ends transaction |
--- | `ROLLBACK` (or `ABORT`) | Undoes uncommitted changes | Restores database back to pre-transaction state |
--- | `SAVEPOINT` | Sets an intermediate checkpoint | Allows partial rollback to a specific marker |
--- | `SET TRANSACTION` | Sets transaction properties | Configures isolation level and read-only mode |
+-- (Command → Action / Role | Effect on Data)
+--
+-- * BEGIN / START TRANSACTION
+--     - Action / Role  : Begins a new transaction block
+--     - Effect on Data : Opens an atomic session
+--
+-- * COMMIT (or END)
+--     - Action / Role  : Saves changes permanently
+--     - Effect on Data : Makes changes visible to others and durable; ends transaction
+--
+-- * ROLLBACK (or ABORT)
+--     - Action / Role  : Undoes uncommitted changes
+--     - Effect on Data : Restores database back to pre-transaction state
+--
+-- * SAVEPOINT
+--     - Action / Role  : Sets an intermediate checkpoint
+--     - Effect on Data : Allows partial rollback to a specific marker
+--
+-- * SET TRANSACTION
+--     - Action / Role  : Sets transaction properties
+--     - Effect on Data : Configures isolation level and read-only mode
+--
 
 -- ------------------------------------------------------------
 -- 1. Beginning a Transaction: `BEGIN` / `START TRANSACTION`
@@ -236,24 +251,52 @@ COMMIT;                                                  -- saves rows 1 and 2
 -- ------------------------------------------------------------
 -- 1. The 3 Common Concurrency Problems
 -- ------------------------------------------------------------
--- | Problem / Phenomenon | Meaning & Manifestation |
--- | :--- | :--- |
--- | Dirty Read | A transaction reads uncommitted data written by another ongoing transaction (which might later be rolled back). |
--- | Non-Repeatable Read | A transaction re-reads the same row and discovers the data has changed because another transaction committed an `UPDATE` or `DELETE`. |
--- | Phantom Read | A transaction re-executes a range query (`WHERE score > 500`) and finds newly inserted rows committed by another transaction. |
--- | Serialization Anomaly (extra) | The result of running transactions together is different from any one-by-one order (e.g., write skew). Only `SERIALIZABLE` prevents it. |
+-- (Problem / Phenomenon → Meaning & Manifestation)
+--
+-- * Dirty Read
+--     - Meaning & Manifestation : A transaction reads uncommitted data written by another ongoing transaction (which might later be rolled back).
+--
+-- * Non-Repeatable Read
+--     - Meaning & Manifestation : A transaction re-reads the same row and discovers the data has changed because another transaction committed an UPDATE or DELETE.
+--
+-- * Phantom Read
+--     - Meaning & Manifestation : A transaction re-executes a range query (WHERE score > 500) and finds newly inserted rows committed by another transaction.
+--
+-- * Serialization Anomaly (extra)
+--     - Meaning & Manifestation : The result of running transactions together is different from any one-by-one order (e.g., write skew). Only SERIALIZABLE prevents it.
+--
 
 -- ------------------------------------------------------------
 -- 2. The 4 ANSI SQL Isolation Levels in PostgreSQL
 -- ------------------------------------------------------------
 -- Isolation levels control how transactions see each other's data:
 
--- | Isolation Level | Dirty Read | Non-Repeatable Read | Phantom Read | PostgreSQL behavior |
--- | :--- | :---: | :---: | :---: | :--- |
--- | `READ UNCOMMITTED` | ✓ Prevented | ❌ Allowed | ❌ Allowed | Accepted, but behaves exactly like `READ COMMITTED` (PostgreSQL never shows dirty data). |
--- | `READ COMMITTED` | ✓ Prevented | ❌ Allowed | ❌ Allowed | DEFAULT in PostgreSQL. Each statement sees a fresh snapshot. |
--- | `REPEATABLE READ` | ✓ Prevented | ✓ Prevented | ✓ Prevented | One snapshot for the whole transaction (Snapshot Isolation). Concurrent update of the same row → error `could not serialize access`; retry. |
--- | `SERIALIZABLE` | ✓ Prevented | ✓ Prevented | ✓ Prevented | Serializable Snapshot Isolation (SSI): no blocking locks, but may abort a transaction with SQLSTATE `40001`; the app must retry. |
+-- (Isolation Level → Dirty Read | Non-Repeatable Read | Phantom Read | PostgreSQL behavior)
+--
+-- * READ UNCOMMITTED
+--     - Dirty Read          : ✓ Prevented
+--     - Non-Repeatable Read : ❌ Allowed
+--     - Phantom Read        : ❌ Allowed
+--     - PostgreSQL behavior : Accepted, but behaves exactly like READ COMMITTED (PostgreSQL never shows dirty data).
+--
+-- * READ COMMITTED
+--     - Dirty Read          : ✓ Prevented
+--     - Non-Repeatable Read : ❌ Allowed
+--     - Phantom Read        : ❌ Allowed
+--     - PostgreSQL behavior : DEFAULT in PostgreSQL. Each statement sees a fresh snapshot.
+--
+-- * REPEATABLE READ
+--     - Dirty Read          : ✓ Prevented
+--     - Non-Repeatable Read : ✓ Prevented
+--     - Phantom Read        : ✓ Prevented
+--     - PostgreSQL behavior : One snapshot for the whole transaction (Snapshot Isolation). Concurrent update of the same row → error could not serialize access; retry.
+--
+-- * SERIALIZABLE
+--     - Dirty Read          : ✓ Prevented
+--     - Non-Repeatable Read : ✓ Prevented
+--     - Phantom Read        : ✓ Prevented
+--     - PostgreSQL behavior : Serializable Snapshot Isolation (SSI): no blocking locks, but may abort a transaction with SQLSTATE 40001; the app must retry.
+--
 
 -- * Difference from MySQL: MySQL's default is `REPEATABLE READ`; PostgreSQL's default is `READ COMMITTED`.
 
@@ -361,12 +404,24 @@ ROLLBACK;
 
 -- * Comparison Table:
 
--- | Feature / Behavior | `ROLLBACK TO SAVEPOINT name;` | `RELEASE SAVEPOINT name;` |
--- | :--- | :--- | :--- |
--- | Data Modifications | Undoes changes made after the savepoint | Keeps all data modifications |
--- | Commit Changes? | No (transaction remains open) | No (does NOT commit changes) |
--- | Savepoint Marker | Keeps the savepoint active for further use | Removes the savepoint marker |
--- | Use Case | Recovering from a failed sub-task (also clears the "aborted" state) | Freeing resources when the checkpoint is no longer needed |
+-- (Feature / Behavior → ROLLBACK TO SAVEPOINT name; | RELEASE SAVEPOINT name;)
+--
+-- * Data Modifications
+--     - ROLLBACK TO SAVEPOINT name; : Undoes changes made after the savepoint
+--     - RELEASE SAVEPOINT name;     : Keeps all data modifications
+--
+-- * Commit Changes?
+--     - ROLLBACK TO SAVEPOINT name; : No (transaction remains open)
+--     - RELEASE SAVEPOINT name;     : No (does NOT commit changes)
+--
+-- * Savepoint Marker
+--     - ROLLBACK TO SAVEPOINT name; : Keeps the savepoint active for further use
+--     - RELEASE SAVEPOINT name;     : Removes the savepoint marker
+--
+-- * Use Case
+--     - ROLLBACK TO SAVEPOINT name; : Recovering from a failed sub-task (also clears the "aborted" state)
+--     - RELEASE SAVEPOINT name;     : Freeing resources when the checkpoint is no longer needed
+--
 
 -- * Code Demonstration:
 BEGIN;
@@ -453,11 +508,23 @@ RETURNING version;
 
 -- * Direct Comparison:
 
--- | Component | Storage Role | Guarantees | How it Works |
--- | :--- | :--- | :--- | :--- |
--- | MVCC row versions (no undo log) | Old and new row versions live in the table itself | Atomicity & Isolation | An `UPDATE` writes a new row version and keeps the old one. Each row has `xmin`/`xmax` transaction ids. On `ROLLBACK`, PostgreSQL just marks the transaction as aborted in the commit log (`pg_xact`) — the new versions become invisible instantly. That is why rollback is very fast in PostgreSQL. |
--- | WAL (Write-Ahead Log) | Change records in `pg_wal/` | Durability | On `COMMIT`, the WAL records are flushed to disk (`fsync`) before success is returned. Table files are written later by the checkpointer. After a power cut, crash recovery replays the WAL. |
--- | VACUUM | Cleanup | Keeps tables small | Removes dead row versions that no transaction can see anymore (autovacuum runs automatically). |
+-- (Component → Storage Role | Guarantees | How it Works)
+--
+-- * MVCC row versions (no undo log)
+--     - Storage Role : Old and new row versions live in the table itself
+--     - Guarantees   : Atomicity & Isolation
+--     - How it Works : An UPDATE writes a new row version and keeps the old one. Each row has xmin/xmax transaction ids. On ROLLBACK, PostgreSQL just marks the transaction as aborted in the commit log (pg_xact) — the new versions become invisible instantly. That is why rollback is very fast in PostgreSQL.
+--
+-- * WAL (Write-Ahead Log)
+--     - Storage Role : Change records in pg_wal/
+--     - Guarantees   : Durability
+--     - How it Works : On COMMIT, the WAL records are flushed to disk (fsync) before success is returned. Table files are written later by the checkpointer. After a power cut, crash recovery replays the WAL.
+--
+-- * VACUUM
+--     - Storage Role : Cleanup
+--     - Guarantees   : Keeps tables small
+--     - How it Works : Removes dead row versions that no transaction can see anymore (autovacuum runs automatically).
+--
 
 -- ---
 

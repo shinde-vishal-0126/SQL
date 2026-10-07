@@ -59,12 +59,28 @@ SELECT * FROM EmployeeCTE;
 -- ------------------------------------------------------------
 -- 30.2 CTE vs Subquery vs Temp Table (Interview Favorite)
 -- ------------------------------------------------------------
--- | Feature | Subquery | CTE | Temp Table (`CREATE TEMP TABLE`) |
--- | :--- | :--- | :--- | :--- |
--- | Readability | Hard to read if nested deeply. | Very easy to read (Top-down logic). | Easy to read. |
--- | Reusability | Cannot be reused in the same query. | Can be referenced multiple times in the same query. | Can be used across multiple queries in the same session. |
--- | Storage | Part of the main query plan. | Inlined into the query, or materialized once (memory, spills to disk if big). | A real table in a session-private temp schema (`pg_temp`), uses `temp_buffers` memory and disk. |
--- | Performance | Optimizer treats it similarly to a CTE. | Optimizer treats it similarly to a Subquery. | Good for massive data (supports indexing). |
+-- (Feature → Subquery | CTE | Temp Table (CREATE TEMP TABLE))
+--
+-- * Readability
+--     - Subquery                       : Hard to read if nested deeply.
+--     - CTE                            : Very easy to read (Top-down logic).
+--     - Temp Table (CREATE TEMP TABLE) : Easy to read.
+--
+-- * Reusability
+--     - Subquery                       : Cannot be reused in the same query.
+--     - CTE                            : Can be referenced multiple times in the same query.
+--     - Temp Table (CREATE TEMP TABLE) : Can be used across multiple queries in the same session.
+--
+-- * Storage
+--     - Subquery                       : Part of the main query plan.
+--     - CTE                            : Inlined into the query, or materialized once (memory, spills to disk if big).
+--     - Temp Table (CREATE TEMP TABLE) : A real table in a session-private temp schema (pg_temp), uses temp_buffers memory and disk.
+--
+-- * Performance
+--     - Subquery                       : Optimizer treats it similarly to a CTE.
+--     - CTE                            : Optimizer treats it similarly to a Subquery.
+--     - Temp Table (CREATE TEMP TABLE) : Good for massive data (supports indexing).
+--
 
 -- * 🐘 PostgreSQL Note: `#Temp` and `tempdb` are SQL Server names. In PostgreSQL a temp table is created with `CREATE TEMP TABLE t (...)` and is visible only to your session; it is dropped when the session ends (or at commit with `ON COMMIT DROP`). Since PostgreSQL 12 a CTE that is used once is inlined into the main query; you can force the old behaviour with `WITH x AS MATERIALIZED (...)` or force inlining with `AS NOT MATERIALIZED`.
 

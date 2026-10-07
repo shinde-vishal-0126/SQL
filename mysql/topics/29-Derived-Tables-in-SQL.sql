@@ -75,11 +75,20 @@ GROUP BY dept_id;
 -- ------------------------------------------------------------
 -- 29.3 Difference Between Derived Table and Subquery
 -- ------------------------------------------------------------
--- | Feature | Subquery (in WHERE / SELECT) | Derived Table (in FROM) |
--- | :--- | :--- | :--- |
--- | Placement | Written inside `WHERE`, `HAVING`, or `SELECT` clauses. | Written only inside the `FROM` clause. |
--- | Output Type | Returns a single value or a list of values (1 column). | Acts like a full virtual table (Rows & Columns). |
--- | Usage | Used for filtering or returning a single calculated column. | Used so you can `JOIN`, `GROUP BY`, or filter on its result like a real table. |
+-- (Feature → Subquery (in WHERE / SELECT) | Derived Table (in FROM))
+--
+-- * Placement
+--     - Subquery (in WHERE / SELECT) : Written inside WHERE, HAVING, or SELECT clauses.
+--     - Derived Table (in FROM)      : Written only inside the FROM clause.
+--
+-- * Output Type
+--     - Subquery (in WHERE / SELECT) : Returns a single value or a list of values (1 column).
+--     - Derived Table (in FROM)      : Acts like a full virtual table (Rows & Columns).
+--
+-- * Usage
+--     - Subquery (in WHERE / SELECT) : Used for filtering or returning a single calculated column.
+--     - Derived Table (in FROM)      : Used so you can JOIN, GROUP BY, or filter on its result like a real table.
+--
 
 -- ---
 

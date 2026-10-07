@@ -255,17 +255,53 @@ SELECT order_id FROM orders FETCH FIRST 2 ROWS ONLY;
 
 -- * The 9 Building Blocks of SQL Queries:
 
--- | # | Clause | Syntax Keyword | Core Purpose & Action |
--- | :--- | :--- | :--- | :--- |
--- | 1 | Projection | `SELECT` | Specifies which columns (attributes) to retrieve and display in the result set. |
--- | 2 | Deduplication | `DISTINCT` | Eliminates duplicate identical rows from the query output. |
--- | 3 | Row Restriction | `TOP` / `LIMIT` | Restricts the maximum number of rows returned (`LIMIT n`). |
--- | 4 | Data Source | `FROM` | Identifies the table(s) from which data must be extracted. |
--- | 5 | Relationship | `JOIN` | Merges rows from two or more tables based on related foreign key columns. |
--- | 6 | Row Filtering | `WHERE` | Filters rows based on individual boolean conditions (predicates). |
--- | 7 | Aggregation | `GROUP BY` | Groups rows sharing identical values into summary rows (e.g., per department). |
--- | 8 | Group Filtering| `HAVING` | Filters summarized groups created by `GROUP BY` using aggregate functions. |
--- | 9 | Sorting | `ORDER BY` | Sorts the final result rows in ascending (`ASC`) or descending (`DESC`) order. |
+-- (# → Clause | Syntax Keyword | Core Purpose & Action)
+--
+-- * 1
+--     - Clause                : Projection
+--     - Syntax Keyword        : SELECT
+--     - Core Purpose & Action : Specifies which columns (attributes) to retrieve and display in the result set.
+--
+-- * 2
+--     - Clause                : Deduplication
+--     - Syntax Keyword        : DISTINCT
+--     - Core Purpose & Action : Eliminates duplicate identical rows from the query output.
+--
+-- * 3
+--     - Clause                : Row Restriction
+--     - Syntax Keyword        : TOP / LIMIT
+--     - Core Purpose & Action : Restricts the maximum number of rows returned (LIMIT n).
+--
+-- * 4
+--     - Clause                : Data Source
+--     - Syntax Keyword        : FROM
+--     - Core Purpose & Action : Identifies the table(s) from which data must be extracted.
+--
+-- * 5
+--     - Clause                : Relationship
+--     - Syntax Keyword        : JOIN
+--     - Core Purpose & Action : Merges rows from two or more tables based on related foreign key columns.
+--
+-- * 6
+--     - Clause                : Row Filtering
+--     - Syntax Keyword        : WHERE
+--     - Core Purpose & Action : Filters rows based on individual boolean conditions (predicates).
+--
+-- * 7
+--     - Clause                : Aggregation
+--     - Syntax Keyword        : GROUP BY
+--     - Core Purpose & Action : Groups rows sharing identical values into summary rows (e.g., per department).
+--
+-- * 8
+--     - Clause                : Group Filtering
+--     - Syntax Keyword        : HAVING
+--     - Core Purpose & Action : Filters summarized groups created by GROUP BY using aggregate functions.
+--
+-- * 9
+--     - Clause                : Sorting
+--     - Syntax Keyword        : ORDER BY
+--     - Core Purpose & Action : Sorts the final result rows in ascending (ASC) or descending (DESC) order.
+--
 
 -- ---
 
@@ -365,12 +401,24 @@ SELECT first_name, country, score FROM customers;
 -- 3. Comparison: `SELECT *` vs. Specific Column Projection
 -- ------------------------------------------------------------
 
--- | Dimension | `SELECT *` (All Columns) | `SELECT col1, col2` (Specific Projection) |
--- | :--- | :--- | :--- |
--- | Data Returned | Returns 100% of columns in table | Returns only explicitly requested columns |
--- | Network Payload | High byte size; transfers unneeded data | Minimal byte size; transfers only required data |
--- | Performance | Slower over network; disk page scanning | Faster; can leverage memory Covering Indexes |
--- | Best Used For | Ad-hoc queries, debugging, schema exploration | Production code, web APIs, microservices, reporting |
+-- (Dimension → SELECT * (All Columns) | SELECT col1, col2 (Specific Projection))
+--
+-- * Data Returned
+--     - SELECT * (All Columns)                  : Returns 100% of columns in table
+--     - SELECT col1, col2 (Specific Projection) : Returns only explicitly requested columns
+--
+-- * Network Payload
+--     - SELECT * (All Columns)                  : High byte size; transfers unneeded data
+--     - SELECT col1, col2 (Specific Projection) : Minimal byte size; transfers only required data
+--
+-- * Performance
+--     - SELECT * (All Columns)                  : Slower over network; disk page scanning
+--     - SELECT col1, col2 (Specific Projection) : Faster; can leverage memory Covering Indexes
+--
+-- * Best Used For
+--     - SELECT * (All Columns)                  : Ad-hoc queries, debugging, schema exploration
+--     - SELECT col1, col2 (Specific Projection) : Production code, web APIs, microservices, reporting
+--
 
 -- ---
 
@@ -400,13 +448,38 @@ SELECT first_name, country, score FROM customers;
 
 -- * The `WHERE` clause filters data using 5 specialized families of operators:
 
--- | # | Operator Family | Operators / Keywords | Core Purpose & Action | SQL Syntax Example |
--- | :--- | :--- | :--- | :--- | :--- |
--- | 1 | Comparison Operators | `=`, `!=`, `<>`, `>`, `>=`, `<`, `<=` | Compares two expressions, columns, or literal values to test equality or magnitude. | `WHERE score > 500` |
--- | 2 | Logical Operators | `AND`, `OR`, `NOT` | Combines multiple conditions or negates a condition using boolean algebra. | `WHERE country = 'USA' AND score >= 500` |
--- | 3 | Range Operator | `BETWEEN ... AND ...` | Filters values falling within an inclusive lower and upper boundary range. | `WHERE score BETWEEN 500 AND 900` |
--- | 4 | Membership Operator | `IN (...)`, `NOT IN (...)` | Checks if a value matches any item within a specified discrete list or subquery set. | `WHERE country IN ('USA', 'Germany', 'UK')` |
--- | 5 | Search Operator | `LIKE` (with `%`, `_`) | Performs string pattern matching using SQL wildcards (`%` for any characters, `_` for one). | `WHERE first_name LIKE 'J%'` |
+-- (# → Operator Family | Operators / Keywords | Core Purpose & Action | SQL Syntax Example)
+--
+-- * 1
+--     - Operator Family       : Comparison Operators
+--     - Operators / Keywords  : =, !=, <>, >, >=, <, <=
+--     - Core Purpose & Action : Compares two expressions, columns, or literal values to test equality or magnitude.
+--     - SQL Syntax Example    : WHERE score > 500
+--
+-- * 2
+--     - Operator Family       : Logical Operators
+--     - Operators / Keywords  : AND, OR, NOT
+--     - Core Purpose & Action : Combines multiple conditions or negates a condition using boolean algebra.
+--     - SQL Syntax Example    : WHERE country = 'USA' AND score >= 500
+--
+-- * 3
+--     - Operator Family       : Range Operator
+--     - Operators / Keywords  : BETWEEN ... AND ...
+--     - Core Purpose & Action : Filters values falling within an inclusive lower and upper boundary range.
+--     - SQL Syntax Example    : WHERE score BETWEEN 500 AND 900
+--
+-- * 4
+--     - Operator Family       : Membership Operator
+--     - Operators / Keywords  : IN (...), NOT IN (...)
+--     - Core Purpose & Action : Checks if a value matches any item within a specified discrete list or subquery set.
+--     - SQL Syntax Example    : WHERE country IN ('USA', 'Germany', 'UK')
+--
+-- * 5
+--     - Operator Family       : Search Operator
+--     - Operators / Keywords  : LIKE (with %, _)
+--     - Core Purpose & Action : Performs string pattern matching using SQL wildcards (% for any characters, _ for one).
+--     - SQL Syntax Example    : WHERE first_name LIKE 'J%'
+--
 
 -- ---
 
@@ -470,14 +543,50 @@ SELECT * FROM orders WHERE (SELECT AVG(sales) FROM orders) = 1000;
 
 -- * Complete technical definitions and plain-English descriptions for all 6 comparison operators:
 
--- | Operator Symbol | Name / Operation | Definition & Description | SQL Query Example | Condition Evaluated | Surviving Rows |
--- | :---: | :--- | :--- | :--- | :--- | :--- |
--- | **`=`** | Equal to | Checks if two values are equal.<br/>Returns `TRUE` if the left operand has exactly the same value as the right operand; otherwise returns `FALSE`. | `SELECT * FROM customers WHERE country = 'USA';` | `country = 'USA'` | Rows where `country` is exactly `'USA'` (e.g., John, Peter). |
--- | **`!=`<br/>`<>`** | Not equal to | Checks if two values are not equal.<br/>Returns `TRUE` if the left operand is not equal to the right operand.<br/>*Note: `<>` is the official ISO/ANSI SQL standard operator, while `!=` is the widely supported industry alias.* | `SELECT * FROM customers WHERE score != 0;`<br/>`SELECT * FROM customers WHERE score <> 0;` | `score != 0`<br/>`score <> 0` | All rows where `score` is any number other than 0. |
--- | **`>`** | Greater than | Checks if a value is greater than another value.<br/>Returns `TRUE` strictly when the left operand has a numerically or alphabetically larger value than the right operand. | `SELECT * FROM customers WHERE score > 500;` | `score > 500` | Rows where `score` is strictly greater than 500 (e.g., 750, 900). Excludes 500. |
--- | **`>=`** | Greater than or equal to | Checks if a value is greater than or equal to another value.<br/>Returns `TRUE` if the left operand is either strictly larger than or exactly equal to the right operand. | `SELECT * FROM customers WHERE score >= 500;` | `score >= 500` | Rows where `score` is 500 or higher (e.g., 500, 750, 900). Includes 500. |
--- | **`<`** | Less than | Checks if a value is less than another value.<br/>Returns `TRUE` strictly when the left operand has a numerically or alphabetically smaller value than the right operand. | `SELECT * FROM customers WHERE score < 500;` | `score < 500` | Rows where `score` is strictly less than 500 (e.g., 0, 350). Excludes 500. |
--- | **`<=`** | Less than or equal to | Checks if a value is less than or equal to another value.<br/>Returns `TRUE` if the left operand is either strictly smaller than or exactly equal to the right operand. | `SELECT * FROM customers WHERE score <= 500;` | `score <= 500` | Rows where `score` is 500 or lower (e.g., 0, 350, 500). Includes 500. |
+-- (Operator Symbol → Name / Operation | Definition & Description | SQL Query Example | Condition Evaluated | Surviving Rows)
+--
+-- * =
+--     - Name / Operation         : Equal to
+--     - Definition & Description : Checks if two values are equal.<br/>Returns TRUE if the left operand has exactly the same value as the right operand; otherwise returns FALSE.
+--     - SQL Query Example        : SELECT * FROM customers WHERE country = 'USA';
+--     - Condition Evaluated      : country = 'USA'
+--     - Surviving Rows           : Rows where country is exactly 'USA' (e.g., John, Peter).
+--
+-- * !=<br/><>
+--     - Name / Operation         : Not equal to
+--     - Definition & Description : Checks if two values are not equal.<br/>Returns TRUE if the left operand is not equal to the right operand.<br/>*Note: <> is the official ISO/ANSI SQL standard operator, while != is the widely supported industry alias.*
+--     - SQL Query Example        : SELECT * FROM customers WHERE score != 0;<br/>SELECT * FROM customers WHERE score <> 0;
+--     - Condition Evaluated      : score != 0<br/>score <> 0
+--     - Surviving Rows           : All rows where score is any number other than 0.
+--
+-- * >
+--     - Name / Operation         : Greater than
+--     - Definition & Description : Checks if a value is greater than another value.<br/>Returns TRUE strictly when the left operand has a numerically or alphabetically larger value than the right operand.
+--     - SQL Query Example        : SELECT * FROM customers WHERE score > 500;
+--     - Condition Evaluated      : score > 500
+--     - Surviving Rows           : Rows where score is strictly greater than 500 (e.g., 750, 900). Excludes 500.
+--
+-- * >=
+--     - Name / Operation         : Greater than or equal to
+--     - Definition & Description : Checks if a value is greater than or equal to another value.<br/>Returns TRUE if the left operand is either strictly larger than or exactly equal to the right operand.
+--     - SQL Query Example        : SELECT * FROM customers WHERE score >= 500;
+--     - Condition Evaluated      : score >= 500
+--     - Surviving Rows           : Rows where score is 500 or higher (e.g., 500, 750, 900). Includes 500.
+--
+-- * <
+--     - Name / Operation         : Less than
+--     - Definition & Description : Checks if a value is less than another value.<br/>Returns TRUE strictly when the left operand has a numerically or alphabetically smaller value than the right operand.
+--     - SQL Query Example        : SELECT * FROM customers WHERE score < 500;
+--     - Condition Evaluated      : score < 500
+--     - Surviving Rows           : Rows where score is strictly less than 500 (e.g., 0, 350). Excludes 500.
+--
+-- * <=
+--     - Name / Operation         : Less than or equal to
+--     - Definition & Description : Checks if a value is less than or equal to another value.<br/>Returns TRUE if the left operand is either strictly smaller than or exactly equal to the right operand.
+--     - SQL Query Example        : SELECT * FROM customers WHERE score <= 500;
+--     - Condition Evaluated      : score <= 500
+--     - Surviving Rows           : Rows where score is 500 or lower (e.g., 0, 350, 500). Includes 500.
+--
 
 -- > [!WARNING]
 -- > Technical Gotcha: Three-Valued Logic & NULL Values
@@ -517,10 +626,16 @@ WHERE country = 'USA';
 --   5. **Row 5 (`Peter`, `USA`, `0`):** Evaluates `'USA' = 'USA'` $\rightarrow$ **`TRUE`** $\rightarrow$ Row Kept ✔️
 
 -- * Output Result Set:
---   | name | country | score |
---   | :--- | :--- | :--- |
---   | John | USA | 900 |
---   | Peter | USA | 0 |
+-- (name → country | score)
+--
+-- * John
+--     - country : USA
+--     - score   : 900
+--
+-- * Peter
+--     - country : USA
+--     - score   : 0
+--
 
 -- ---
 
@@ -546,10 +661,16 @@ WHERE score > 500;
 --   5. Row 5 (Peter, 0): $0 > 500 \rightarrow$ **`FALSE`** $\rightarrow$ Row Discarded ❌
 
 -- * Output Result Set:
---   | name | country | score |
---   | :--- | :--- | :--- |
---   | John | USA | 900 |
---   | Georg | UK | 750 |
+-- (name → country | score)
+--
+-- * John
+--     - country : USA
+--     - score   : 900
+--
+-- * Georg
+--     - country : UK
+--     - score   : 750
+--
 
 -- ---
 
@@ -630,12 +751,28 @@ WHERE price * quantity = 1000;
 --   * If even a single condition evaluates to `FALSE`, the entire combined expression evaluates to `FALSE` and the row is discarded.
 
 -- * **Mathematical Truth Table for `AND`:**
---   | Condition 1 | Condition 2 | Combined (`Cond1 AND Cond2`) | Row Evaluation Action |
---   | :---: | :---: | :---: | :---: |
---   | **`TRUE`** | **`TRUE`** | **`TRUE`** | Row Kept in Result Set ✔️ |
---   | **`TRUE`** | `FALSE` | `FALSE` | Row Discarded ❌ |
---   | `FALSE` | **`TRUE`** | `FALSE` | Row Discarded ❌ |
---   | `FALSE` | `FALSE` | `FALSE` | Row Discarded ❌ |
+-- (Condition 1 → Condition 2 | Combined (Cond1 AND Cond2) | Row Evaluation Action)
+--
+-- * TRUE
+--     - Condition 2                : TRUE
+--     - Combined (Cond1 AND Cond2) : TRUE
+--     - Row Evaluation Action      : Row Kept in Result Set ✔️
+--
+-- * TRUE
+--     - Condition 2                : FALSE
+--     - Combined (Cond1 AND Cond2) : FALSE
+--     - Row Evaluation Action      : Row Discarded ❌
+--
+-- * FALSE
+--     - Condition 2                : TRUE
+--     - Combined (Cond1 AND Cond2) : FALSE
+--     - Row Evaluation Action      : Row Discarded ❌
+--
+-- * FALSE
+--     - Condition 2                : FALSE
+--     - Combined (Cond1 AND Cond2) : FALSE
+--     - Row Evaluation Action      : Row Discarded ❌
+--
 
 -- * Hands-on Query Example:
 SELECT * FROM customers 
@@ -654,9 +791,12 @@ WHERE country = 'USA' AND score > 500;
 --   5. Peter (`USA`, `0`): `'USA' = 'USA'` (✔️) AND `0 > 500` (❌) $\rightarrow$ `FALSE` $\rightarrow$ Discarded ❌
 
 -- * Surviving Result Set:
---   | name | country | score |
---   | :--- | :--- | :--- |
---   | John | USA | 900 |
+-- (name → country | score)
+--
+-- * John
+--     - country : USA
+--     - score   : 900
+--
 
 -- ---
 
@@ -673,12 +813,28 @@ WHERE country = 'USA' AND score > 500;
 --   * Evaluates to `FALSE` only when all combined conditions evaluate to `FALSE`.
 
 -- * **Mathematical Truth Table for `OR`:**
---   | Condition 1 | Condition 2 | Combined (`Cond1 OR Cond2`) | Row Evaluation Action |
---   | :---: | :---: | :---: | :---: |
---   | **`TRUE`** | **`TRUE`** | **`TRUE`** | Row Kept in Result Set ✔️ |
---   | **`TRUE`** | `FALSE` | **`TRUE`** | Row Kept in Result Set ✔️ |
---   | `FALSE` | **`TRUE`** | **`TRUE`** | Row Kept in Result Set ✔️ |
---   | `FALSE` | `FALSE` | `FALSE` | Row Discarded ❌ |
+-- (Condition 1 → Condition 2 | Combined (Cond1 OR Cond2) | Row Evaluation Action)
+--
+-- * TRUE
+--     - Condition 2               : TRUE
+--     - Combined (Cond1 OR Cond2) : TRUE
+--     - Row Evaluation Action     : Row Kept in Result Set ✔️
+--
+-- * TRUE
+--     - Condition 2               : FALSE
+--     - Combined (Cond1 OR Cond2) : TRUE
+--     - Row Evaluation Action     : Row Kept in Result Set ✔️
+--
+-- * FALSE
+--     - Condition 2               : TRUE
+--     - Combined (Cond1 OR Cond2) : TRUE
+--     - Row Evaluation Action     : Row Kept in Result Set ✔️
+--
+-- * FALSE
+--     - Condition 2               : FALSE
+--     - Combined (Cond1 OR Cond2) : FALSE
+--     - Row Evaluation Action     : Row Discarded ❌
+--
 
 -- * Hands-on Query Example:
 SELECT * FROM customers 
@@ -697,11 +853,20 @@ WHERE country = 'USA' OR score > 500;
 --   5. Peter (`USA`, `0`): `country = 'USA'` is true $\rightarrow$ **`TRUE`** $\rightarrow$ Row Kept ✔️
 
 -- * Surviving Result Set:
---   | name | country | score |
---   | :--- | :--- | :--- |
---   | John | USA | 900 |
---   | Georg | UK | 750 |
---   | Peter | USA | 0 |
+-- (name → country | score)
+--
+-- * John
+--     - country : USA
+--     - score   : 900
+--
+-- * Georg
+--     - country : UK
+--     - score   : 750
+--
+-- * Peter
+--     - country : USA
+--     - score   : 0
+--
 
 -- ---
 
@@ -718,10 +883,16 @@ WHERE country = 'USA' OR score > 500;
 --   * Excludes matching values from the result set.
 
 -- * **Mathematical Truth Table for `NOT`:**
---   | Inner Condition Predicate | Combined State (`NOT Condition`) | Row Evaluation Action |
---   | :---: | :---: | :---: |
---   | **`TRUE`** | `FALSE` | Row Discarded ❌ (Excluded) |
---   | `FALSE` | **`TRUE`** | Row Kept in Result Set ✔️ |
+-- (Inner Condition Predicate → Combined State (NOT Condition) | Row Evaluation Action)
+--
+-- * TRUE
+--     - Combined State (NOT Condition) : FALSE
+--     - Row Evaluation Action          : Row Discarded ❌ (Excluded)
+--
+-- * FALSE
+--     - Combined State (NOT Condition) : TRUE
+--     - Row Evaluation Action          : Row Kept in Result Set ✔️
+--
 
 -- * Hands-on Query Example:
 SELECT * FROM customers 
@@ -740,11 +911,20 @@ WHERE NOT (country = 'USA');
 --   5. Peter (`USA`): `'USA' = 'USA'` is `TRUE` $\rightarrow$ `NOT TRUE` = `FALSE` $\rightarrow$ Discarded ❌
 
 -- * Surviving Result Set:
---   | name | country | score |
---   | :--- | :--- | :--- |
---   | Maria | Germany | 350 |
---   | Georg | UK | 750 |
---   | Martin | Germany | 500 |
+-- (name → country | score)
+--
+-- * Maria
+--     - country : Germany
+--     - score   : 350
+--
+-- * Georg
+--     - country : UK
+--     - score   : 750
+--
+-- * Martin
+--     - country : Germany
+--     - score   : 500
+--
 
 -- * Equivalence Note:
 
@@ -813,10 +993,16 @@ SELECT * FROM customers WHERE score >= 100 AND score <= 500;
 --   5. Peter (`0`): $0 < 100$ (below lower boundary) is `FALSE` $\rightarrow$ Discarded ❌
 
 -- * Output Result Set:
---   | name | country | score |
---   | :--- | :--- | :--- |
---   | Maria | Germany | 350 |
---   | Martin | Germany | 500 |
+-- (name → country | score)
+--
+-- * Maria
+--     - country : Germany
+--     - score   : 350
+--
+-- * Martin
+--     - country : Germany
+--     - score   : 500
+--
 
 -- ------------------------------------------------------------
 -- 4. Negating a Range: `NOT BETWEEN … AND …`
@@ -907,17 +1093,32 @@ WHERE country NOT IN ('Germany', 'USA');
 -- * Output Result Set Comparison:
 
 --   * **Result of `WHERE country IN ('Germany', 'USA')`:**
---     | name | country | score |
---     | :--- | :--- | :--- |
---     | Maria | Germany | 350 |
---     | John | USA | 900 |
---     | Martin | Germany | 500 |
---     | Peter | USA | 0 |
+-- (name → country | score)
+--
+-- * Maria
+--     - country : Germany
+--     - score   : 350
+--
+-- * John
+--     - country : USA
+--     - score   : 900
+--
+-- * Martin
+--     - country : Germany
+--     - score   : 500
+--
+-- * Peter
+--     - country : USA
+--     - score   : 0
+--
 
 --   * **Result of `WHERE country NOT IN ('Germany', 'USA')`:**
---     | name | country | score |
---     | :--- | :--- | :--- |
---     | Georg | UK | 750 |
+-- (name → country | score)
+--
+-- * Georg
+--     - country : UK
+--     - score   : 750
+--
 
 -- * **4. Critical Interview Trap: The `NOT IN` with `NULL` Trap (Three-Valued Logic Danger)**
 
@@ -1013,15 +1214,43 @@ WHERE id NOT IN (SELECT customer_id FROM orders WHERE customer_id IS NOT NULL);
 --     * Point-wise Explanation: 1st letter 'S', 2nd letter is any 1 char (`_`), 3rd & 4th are 'ne', followed by zero or more characters (`%`) (e.g., Sanel, Soney, Sinead).
 
 -- * 3. Master Pattern Reference Table:
---   | Pattern Expression | Description & Rule | Matching Examples | Non-Matching Examples |
---   | :--- | :--- | :--- | :--- |
---   | `LIKE 'a%'` | Start with "a" | `adam`, `alice`, `amber` | `maria`, `john` |
---   | `LIKE '%a'` | End with "a" | `maria`, `emma`, `anna` | `martin`, `peter` |
---   | `LIKE '%am%'` | Have "am" in any position | `sam`, `adam`, `pamela` | `georg`, `john` |
---   | `LIKE 'a%m'` | Start with "a" and Ends with "m" | `adam`, `abraham`, `am` | `alice`, `martin` |
---   | `LIKE '_a%'` | "a" in the second position | `maria`, `james`, `david` | `alice`, `georg` |
---   | `LIKE '__a%'` | "a" in the third position | `clara`, `charlie`, `brandon` | `maria`, `john` |
---   | `LIKE '_oy'` | "o" in the second and "y" in third position (exact 3 chars) | `roy`, `joy`, `boy` | `troy` (4 chars), `ray` |
+-- (Pattern Expression → Description & Rule | Matching Examples | Non-Matching Examples)
+--
+-- * LIKE 'a%'
+--     - Description & Rule    : Start with "a"
+--     - Matching Examples     : adam, alice, amber
+--     - Non-Matching Examples : maria, john
+--
+-- * LIKE '%a'
+--     - Description & Rule    : End with "a"
+--     - Matching Examples     : maria, emma, anna
+--     - Non-Matching Examples : martin, peter
+--
+-- * LIKE '%am%'
+--     - Description & Rule    : Have "am" in any position
+--     - Matching Examples     : sam, adam, pamela
+--     - Non-Matching Examples : georg, john
+--
+-- * LIKE 'a%m'
+--     - Description & Rule    : Start with "a" and Ends with "m"
+--     - Matching Examples     : adam, abraham, am
+--     - Non-Matching Examples : alice, martin
+--
+-- * LIKE '_a%'
+--     - Description & Rule    : "a" in the second position
+--     - Matching Examples     : maria, james, david
+--     - Non-Matching Examples : alice, georg
+--
+-- * LIKE '__a%'
+--     - Description & Rule    : "a" in the third position
+--     - Matching Examples     : clara, charlie, brandon
+--     - Non-Matching Examples : maria, john
+--
+-- * LIKE '_oy'
+--     - Description & Rule    : "o" in the second and "y" in third position (exact 3 chars)
+--     - Matching Examples     : roy, joy, boy
+--     - Non-Matching Examples : troy (4 chars), ray
+--
 
 -- * 4. Detailed 4-Column Visual Pattern Breakdown:
 
@@ -1250,13 +1479,38 @@ ORDER BY score ASC;
 --     * **Step ③ (`ORDER BY score DESC`):** Sorts the rows by `score`, highest first, and returns the sorted result to the client.
 
 --   * Reordered Result Set:
---     | id | name | country | score | Sort Position & Action |
---     | :---: | :--- | :--- | :---: | :--- |
---     | 2 | John | USA | 900 | Row 1 (Highest score in table) |
---     | 3 | Georg | UK | 750 | Row 2 |
---     | 4 | Martin | Germany | 500 | Row 3 |
---     | 1 | Maria | Germany | 350 | Row 4 |
---     | 5 | Peter | USA | 0 | Row 5 (Lowest score in table) |
+-- (id → name | country | score | Sort Position & Action)
+--
+-- * 2
+--     - name                   : John
+--     - country                : USA
+--     - score                  : 900
+--     - Sort Position & Action : Row 1 (Highest score in table)
+--
+-- * 3
+--     - name                   : Georg
+--     - country                : UK
+--     - score                  : 750
+--     - Sort Position & Action : Row 2
+--
+-- * 4
+--     - name                   : Martin
+--     - country                : Germany
+--     - score                  : 500
+--     - Sort Position & Action : Row 3
+--
+-- * 1
+--     - name                   : Maria
+--     - country                : Germany
+--     - score                  : 350
+--     - Sort Position & Action : Row 4
+--
+-- * 5
+--     - name                   : Peter
+--     - country                : USA
+--     - score                  : 0
+--     - Sort Position & Action : Row 5 (Lowest score in table)
+--
 
 -- * Nested ORDER BY: Multiple Columns Sorting (TO SORT YOUR DATA)
 
@@ -1297,13 +1551,38 @@ ORDER BY city ASC, score DESC;
 --       * Within USA (John with score 900, Peter with score 0): Since John has the higher score, John (900) appears before Peter (0)!
 
 --   * **Output Table for Nested Sort (`country ASC, score DESC`):**
---     | id | name | country (ASC) | score (DESC) | Tie-Breaker Observation |
---     | :---: | :--- | :--- | :---: | :--- |
---     | 4 | Martin | Germany | 500 | ▲ Higher score in Germany |
---     | 1 | Maria | Germany | 350 | ▼ Lower score in Germany |
---     | 3 | Georg | UK | 750 | Single UK record |
---     | 2 | John | USA | 900 | ▲ Higher score in USA |
---     | 5 | Peter | USA | 0 | ▼ Lower score in USA |
+-- (id → name | country (ASC) | score (DESC) | Tie-Breaker Observation)
+--
+-- * 4
+--     - name                    : Martin
+--     - country (ASC)           : Germany
+--     - score (DESC)            : 500
+--     - Tie-Breaker Observation : ▲ Higher score in Germany
+--
+-- * 1
+--     - name                    : Maria
+--     - country (ASC)           : Germany
+--     - score (DESC)            : 350
+--     - Tie-Breaker Observation : ▼ Lower score in Germany
+--
+-- * 3
+--     - name                    : Georg
+--     - country (ASC)           : UK
+--     - score (DESC)            : 750
+--     - Tie-Breaker Observation : Single UK record
+--
+-- * 2
+--     - name                    : John
+--     - country (ASC)           : USA
+--     - score (DESC)            : 900
+--     - Tie-Breaker Observation : ▲ Higher score in USA
+--
+-- * 5
+--     - name                    : Peter
+--     - country (ASC)           : USA
+--     - score (DESC)            : 0
+--     - Tie-Breaker Observation : ▼ Lower score in USA
+--
 
 -- * Operators and Keywords Used in Sorting:
 
@@ -1438,12 +1717,28 @@ SELECT SUM((score > 500)::INT) AS high_scorers FROM customers;
 SELECT SUM(CASE WHEN score > 500 THEN 1 ELSE 0 END) AS high_scorers FROM customers;
 
 --   * **2. The 4 Variants of `COUNT` (Top Interview Comparison):**
---     | Function | What it Counts | Counts `NULL`s? | Performance |
---     | :--- | :--- | :---: | :--- |
---     | **`COUNT(*)`** | Total rows in the table/group | YES | Highly optimized by query optimizer |
---     | **`COUNT(1)`** | Rows where constant expression `1` is generated | YES | Identical execution plan to `COUNT(*)` |
---     | **`COUNT(column)`** | Total rows where designated `column` is NOT NULL | NO (Ignores `NULL`) | Slightly slower (must check column nullability) |
---     | **`COUNT(DISTINCT col)`| Total **unique non-null values in column | NO (Ignores `NULL`) | Requires sorting/hashing in temp buffer |
+-- (Function → What it Counts | Counts NULLs? | Performance)
+--
+-- * COUNT(*)
+--     - What it Counts : Total rows in the table/group
+--     - Counts NULLs?  : YES
+--     - Performance    : Highly optimized by query optimizer
+--
+-- * COUNT(1)
+--     - What it Counts : Rows where constant expression 1 is generated
+--     - Counts NULLs?  : YES
+--     - Performance    : Identical execution plan to COUNT(*)
+--
+-- * COUNT(column)
+--     - What it Counts : Total rows where designated column is NOT NULL
+--     - Counts NULLs?  : NO (Ignores NULL)
+--     - Performance    : Slightly slower (must check column nullability)
+--
+-- * COUNT(DISTINCT col)
+--     - What it Counts : Total unique non-null values in column
+--     - Counts NULLs?  : NO (Ignores NULL)
+--     - Performance    : Requires sorting/hashing in temp buffer
+--
 
 --   * **3. The `AVG()` NULL Trap:**
 
@@ -1488,11 +1783,20 @@ FROM customers
 GROUP BY country;
 
 --     * Result Set:
---       | country | total_score | customer_count |
---       | :--- | :---: | :---: |
---       | Germany | 850 | 2 |
---       | USA | 900 | 2 |
---       | UK | 750 | 1 |
+-- (country → total_score | customer_count)
+--
+-- * Germany
+--     - total_score    : 850
+--     - customer_count : 2
+--
+-- * USA
+--     - total_score    : 900
+--     - customer_count : 2
+--
+-- * UK
+--     - total_score    : 750
+--     - customer_count : 1
+--
 
 -- * **Note on Alias (`AS`):**
 
@@ -1636,12 +1940,24 @@ ORDER BY country;
 --   * PostgreSQL also has `CUBE (a, b)` (all combinations of subtotals) and `GROUPING SETS ((a), (b), ())` (exactly the subtotals you list). `GROUPING(country)` returns 1 on the total row — safer than checking `NULL`.
 
 --   * Output Table with ROLLUP:
---     | country | group_score | Note |
---     | :--- | :---: | :--- |
---     | Germany | 850 | Subtotal for Germany |
---     | UK | 750 | Subtotal for UK |
---     | USA | 900 | Subtotal for USA |
---     | TOTAL | 2500 | ★ Grand Total across all customers ★ |
+-- (country → group_score | Note)
+--
+-- * Germany
+--     - group_score : 850
+--     - Note        : Subtotal for Germany
+--
+-- * UK
+--     - group_score : 750
+--     - Note        : Subtotal for UK
+--
+-- * USA
+--     - group_score : 900
+--     - Note        : Subtotal for USA
+--
+-- * TOTAL
+--     - group_score : 2500
+--     - Note        : ★ Grand Total across all customers ★
+--
 
 -- * The `STRING_AGG()` Aggregate Function (PostgreSQL version of `GROUP_CONCAT()`):
 
@@ -1656,10 +1972,14 @@ FROM employees
 GROUP BY department;
 
 --     * Example Output:
---       | department | employees |
---       | :--- | :--- |
---       | IT | Alice,Bob,Charlie |
---       | HR | David,Emma |
+-- (department → employees)
+--
+-- * IT
+--     - employees : Alice,Bob,Charlie
+--
+-- * HR
+--     - employees : David,Emma
+--
 
 -- * Best Practice Rules for GROUP BY:
 
@@ -2028,15 +2348,36 @@ HAVING COUNT(*) > 1 AND AVG(salary) > 60000;
 -- ------------------------------------------------------------
 -- 4. Differences Between WHERE and HAVING (WHERE vs HAVING)
 -- ------------------------------------------------------------
--- | Feature | WHERE Clause | HAVING Clause |
--- | :--- | :--- | :--- |
--- | When it works | Works on rows before grouping. Filters the rows. | Works on groups after grouping. Filters the grouped/aggregated result. |
--- | Purpose | Used to fetch data/values from the table according to the given condition. | Used to fetch data/values from the groups according to the given condition. |
--- | Without GROUP BY | Can be executed without `GROUP BY`. | Usually used with `GROUP BY` (PostgreSQL also allows it without — the whole table is one group). |
--- | Aggregate Functions| Aggregation functions are NOT allowed (`WHERE SUM(val)` is invalid). | Aggregation functions are allowed (`HAVING AVG(salary) > 60000`). |
--- | Execution Order | Executed before `GROUP BY`. | Executed after `GROUP BY`. |
--- | Usage | Used with `SELECT`, `UPDATE`, `DELETE`. | Used only with `SELECT`. |
--- | Filter Type | Pre-filter (e.g., `WHERE salary > 1000`). | Post-filter (e.g., `HAVING AVG(salary) > 60000`). |
+-- (Feature → WHERE Clause | HAVING Clause)
+--
+-- * When it works
+--     - WHERE Clause  : Works on rows before grouping. Filters the rows.
+--     - HAVING Clause : Works on groups after grouping. Filters the grouped/aggregated result.
+--
+-- * Purpose
+--     - WHERE Clause  : Used to fetch data/values from the table according to the given condition.
+--     - HAVING Clause : Used to fetch data/values from the groups according to the given condition.
+--
+-- * Without GROUP BY
+--     - WHERE Clause  : Can be executed without GROUP BY.
+--     - HAVING Clause : Usually used with GROUP BY (PostgreSQL also allows it without — the whole table is one group).
+--
+-- * Aggregate Functions
+--     - WHERE Clause  : Aggregation functions are NOT allowed (WHERE SUM(val) is invalid).
+--     - HAVING Clause : Aggregation functions are allowed (HAVING AVG(salary) > 60000).
+--
+-- * Execution Order
+--     - WHERE Clause  : Executed before GROUP BY.
+--     - HAVING Clause : Executed after GROUP BY.
+--
+-- * Usage
+--     - WHERE Clause  : Used with SELECT, UPDATE, DELETE.
+--     - HAVING Clause : Used only with SELECT.
+--
+-- * Filter Type
+--     - WHERE Clause  : Pre-filter (e.g., WHERE salary > 1000).
+--     - HAVING Clause : Post-filter (e.g., HAVING AVG(salary) > 60000).
+--
 
 -- * Best Practices:
 

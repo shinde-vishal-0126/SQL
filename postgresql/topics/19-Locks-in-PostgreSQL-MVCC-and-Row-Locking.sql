@@ -55,19 +55,37 @@ ROLLBACK;
 
 -- * PostgreSQL has 4 row lock modes (from weakest to strongest):
 
--- | Row lock mode | Taken by | Blocks |
--- | :--- | :--- | :--- |
--- | `FOR KEY SHARE` | Foreign key checks (inserting a child row) | Only `FOR UPDATE` (deleting the parent / changing its key) |
--- | `FOR SHARE` | `SELECT ... FOR SHARE` | `UPDATE`, `DELETE`, `FOR NO KEY UPDATE`, `FOR UPDATE` |
--- | `FOR NO KEY UPDATE` | Normal `UPDATE` that does not change a key column | Other updates and `FOR SHARE` / `FOR UPDATE` |
--- | `FOR UPDATE` | `SELECT ... FOR UPDATE`, `DELETE`, `UPDATE` of a key column | Everything except plain `SELECT` |
+-- (Row lock mode → Taken by | Blocks)
+--
+-- * FOR KEY SHARE
+--     - Taken by : Foreign key checks (inserting a child row)
+--     - Blocks   : Only FOR UPDATE (deleting the parent / changing its key)
+--
+-- * FOR SHARE
+--     - Taken by : SELECT ... FOR SHARE
+--     - Blocks   : UPDATE, DELETE, FOR NO KEY UPDATE, FOR UPDATE
+--
+-- * FOR NO KEY UPDATE
+--     - Taken by : Normal UPDATE that does not change a key column
+--     - Blocks   : Other updates and FOR SHARE / FOR UPDATE
+--
+-- * FOR UPDATE
+--     - Taken by : SELECT ... FOR UPDATE, DELETE, UPDATE of a key column
+--     - Blocks   : Everything except plain SELECT
+--
 
 -- * Simple compatibility matrix (Shared = `FOR SHARE`, Exclusive = `FOR UPDATE`):
 
--- | Requested ↓ / Held → | S (Shared) | X (Exclusive) |
--- | :--- | :--- | :--- |
--- | S (Shared) | ✅ Compatible | ❌ Wait |
--- | X (Exclusive) | ❌ Wait | ❌ Wait |
+-- (Requested ↓ / Held → → S (Shared) | X (Exclusive))
+--
+-- * S (Shared)
+--     - S (Shared)    : ✅ Compatible
+--     - X (Exclusive) : ❌ Wait
+--
+-- * X (Exclusive)
+--     - S (Shared)    : ❌ Wait
+--     - X (Exclusive) : ❌ Wait
+--
 
 -- * A normal `SELECT` in PostgreSQL takes no row lock — it reads a snapshot (MVCC). It is never blocked by writers, and never blocks writers.
 
@@ -77,25 +95,61 @@ ROLLBACK;
 -- 19.3 Row-Level vs Table-Level Locks
 -- ------------------------------------------------------------
 
--- | Feature | Row-level lock | Table-level lock |
--- | :--- | :--- | :--- |
--- | What is locked | Only the affected rows | The whole table |
--- | Concurrency | High — others work on other rows | Depends on the lock mode |
--- | Used by | `UPDATE`, `DELETE`, `SELECT ... FOR UPDATE` | Every statement (light modes), DDL, `LOCK TABLE` |
--- | Where stored | In the row itself (`xmax`), not in memory | In the shared lock table (`pg_locks`) |
+-- (Feature → Row-level lock | Table-level lock)
+--
+-- * What is locked
+--     - Row-level lock   : Only the affected rows
+--     - Table-level lock : The whole table
+--
+-- * Concurrency
+--     - Row-level lock   : High — others work on other rows
+--     - Table-level lock : Depends on the lock mode
+--
+-- * Used by
+--     - Row-level lock   : UPDATE, DELETE, SELECT ... FOR UPDATE
+--     - Table-level lock : Every statement (light modes), DDL, LOCK TABLE
+--
+-- * Where stored
+--     - Row-level lock   : In the row itself (xmax), not in memory
+--     - Table-level lock : In the shared lock table (pg_locks)
+--
 
 -- * PostgreSQL has 8 table lock modes. Every query takes one (most are light):
 
--- | Table lock mode | Taken by | Conflicts with (main ones) |
--- | :--- | :--- | :--- |
--- | `ACCESS SHARE` | `SELECT` | Only `ACCESS EXCLUSIVE` |
--- | `ROW SHARE` | `SELECT ... FOR UPDATE/SHARE` | `EXCLUSIVE`, `ACCESS EXCLUSIVE` |
--- | `ROW EXCLUSIVE` | `INSERT`, `UPDATE`, `DELETE`, `MERGE` | `SHARE` and stronger |
--- | `SHARE UPDATE EXCLUSIVE` | `VACUUM`, `ANALYZE`, `CREATE INDEX CONCURRENTLY` | Itself and stronger |
--- | `SHARE` | `CREATE INDEX` (normal) | Writes (`ROW EXCLUSIVE`) |
--- | `SHARE ROW EXCLUSIVE` | `CREATE TRIGGER` | Writes and itself |
--- | `EXCLUSIVE` | `REFRESH MATERIALIZED VIEW CONCURRENTLY` | Everything except `SELECT` |
--- | `ACCESS EXCLUSIVE` | `DROP`, `TRUNCATE`, most `ALTER TABLE`, `VACUUM FULL`, `LOCK TABLE` (default) | Everything, even `SELECT` |
+-- (Table lock mode → Taken by | Conflicts with (main ones))
+--
+-- * ACCESS SHARE
+--     - Taken by                   : SELECT
+--     - Conflicts with (main ones) : Only ACCESS EXCLUSIVE
+--
+-- * ROW SHARE
+--     - Taken by                   : SELECT ... FOR UPDATE/SHARE
+--     - Conflicts with (main ones) : EXCLUSIVE, ACCESS EXCLUSIVE
+--
+-- * ROW EXCLUSIVE
+--     - Taken by                   : INSERT, UPDATE, DELETE, MERGE
+--     - Conflicts with (main ones) : SHARE and stronger
+--
+-- * SHARE UPDATE EXCLUSIVE
+--     - Taken by                   : VACUUM, ANALYZE, CREATE INDEX CONCURRENTLY
+--     - Conflicts with (main ones) : Itself and stronger
+--
+-- * SHARE
+--     - Taken by                   : CREATE INDEX (normal)
+--     - Conflicts with (main ones) : Writes (ROW EXCLUSIVE)
+--
+-- * SHARE ROW EXCLUSIVE
+--     - Taken by                   : CREATE TRIGGER
+--     - Conflicts with (main ones) : Writes and itself
+--
+-- * EXCLUSIVE
+--     - Taken by                   : REFRESH MATERIALIZED VIEW CONCURRENTLY
+--     - Conflicts with (main ones) : Everything except SELECT
+--
+-- * ACCESS EXCLUSIVE
+--     - Taken by                   : DROP, TRUNCATE, most ALTER TABLE, VACUUM FULL, LOCK TABLE (default)
+--     - Conflicts with (main ones) : Everything, even SELECT
+--
 
 -- * Explicit table locks (MySQL: `LOCK TABLES ... / UNLOCK TABLES`):
 BEGIN;
@@ -205,12 +259,24 @@ ALTER TABLE orders ADD COLUMN note VARCHAR(100);
 -- 19.7 Optimistic vs Pessimistic Locking
 -- ------------------------------------------------------------
 
--- | Feature | Pessimistic locking | Optimistic locking |
--- | :--- | :--- | :--- |
--- | Idea | "Conflict is likely — lock first" | "Conflict is rare — check at save time" |
--- | How | `SELECT ... FOR UPDATE` then `UPDATE` | `version` (or `updated_at`, or `xmin`) column checked in `UPDATE` |
--- | Waiting | Others wait for the lock | No waiting; the loser retries |
--- | Best for | High contention, short transactions (bank balance, seat booking) | Low contention, long user think time (editing a profile/form) |
+-- (Feature → Pessimistic locking | Optimistic locking)
+--
+-- * Idea
+--     - Pessimistic locking : "Conflict is likely — lock first"
+--     - Optimistic locking  : "Conflict is rare — check at save time"
+--
+-- * How
+--     - Pessimistic locking : SELECT ... FOR UPDATE then UPDATE
+--     - Optimistic locking  : version (or updated_at, or xmin) column checked in UPDATE
+--
+-- * Waiting
+--     - Pessimistic locking : Others wait for the lock
+--     - Optimistic locking  : No waiting; the loser retries
+--
+-- * Best for
+--     - Pessimistic locking : High contention, short transactions (bank balance, seat booking)
+--     - Optimistic locking  : Low contention, long user think time (editing a profile/form)
+--
 
 -- * Optimistic locking with a version column:
 -- 1. read (no lock)

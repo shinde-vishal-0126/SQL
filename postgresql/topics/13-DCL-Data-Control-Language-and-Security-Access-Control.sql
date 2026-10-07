@@ -62,10 +62,18 @@ DROP ROLE viewer;
 
 -- The two primary DCL commands in SQL:
 
--- | Command | Keyword | Purpose | Action Performed |
--- | :--- | :--- | :--- | :--- |
--- | `GRANT` | `TO` | Give permission | Gives specific privileges on database objects to a role/user |
--- | `REVOKE` | `FROM` | Remove permission | Removes previously granted privileges from a role/user |
+-- (Command → Keyword | Purpose | Action Performed)
+--
+-- * GRANT
+--     - Keyword          : TO
+--     - Purpose          : Give permission
+--     - Action Performed : Gives specific privileges on database objects to a role/user
+--
+-- * REVOKE
+--     - Keyword          : FROM
+--     - Purpose          : Remove permission
+--     - Action Performed : Removes previously granted privileges from a role/user
+--
 
 -- * 1. The `GRANT` Command:
 
@@ -298,14 +306,32 @@ DROP USER vishal;                       -- or DROP ROLE vishal;
 -- 13.7 Privilege Categories in PostgreSQL
 -- ------------------------------------------------------------
 
--- | Category | Typical Privileges / Attributes | Operational Scope & Role |
--- | :--- | :--- | :--- |
--- | 1. Data Privileges (DML) | `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `TRUNCATE` | Reading and changing rows in tables / views. |
--- | 2. Structure (DDL) | `CREATE` on database / schema, table ownership | Creating schemas and tables; only owners can `ALTER` / `DROP`. |
--- | 3. Connection & Schema access | `CONNECT` (database), `USAGE` (schema, sequence), `TEMPORARY` | Logging into a database and seeing objects inside a schema. |
--- | 4. Code | `EXECUTE` (functions, procedures), `TRIGGER`, `REFERENCES` | Running functions, creating triggers or foreign keys on a table. |
--- | 5. Role attributes (admin) | `SUPERUSER`, `CREATEDB`, `CREATEROLE`, `REPLICATION`, `BYPASSRLS` | Server-wide powers given to a role. |
--- | 6. Built-in roles | `pg_read_all_data`, `pg_write_all_data`, `pg_monitor`, `pg_signal_backend` | Ready-made permission groups. |
+-- (Category → Typical Privileges / Attributes | Operational Scope & Role)
+--
+-- * 1. Data Privileges (DML)
+--     - Typical Privileges / Attributes : SELECT, INSERT, UPDATE, DELETE, TRUNCATE
+--     - Operational Scope & Role        : Reading and changing rows in tables / views.
+--
+-- * 2. Structure (DDL)
+--     - Typical Privileges / Attributes : CREATE on database / schema, table ownership
+--     - Operational Scope & Role        : Creating schemas and tables; only owners can ALTER / DROP.
+--
+-- * 3. Connection & Schema access
+--     - Typical Privileges / Attributes : CONNECT (database), USAGE (schema, sequence), TEMPORARY
+--     - Operational Scope & Role        : Logging into a database and seeing objects inside a schema.
+--
+-- * 4. Code
+--     - Typical Privileges / Attributes : EXECUTE (functions, procedures), TRIGGER, REFERENCES
+--     - Operational Scope & Role        : Running functions, creating triggers or foreign keys on a table.
+--
+-- * 5. Role attributes (admin)
+--     - Typical Privileges / Attributes : SUPERUSER, CREATEDB, CREATEROLE, REPLICATION, BYPASSRLS
+--     - Operational Scope & Role        : Server-wide powers given to a role.
+--
+-- * 6. Built-in roles
+--     - Typical Privileges / Attributes : pg_read_all_data, pg_write_all_data, pg_monitor, pg_signal_backend
+--     - Operational Scope & Role        : Ready-made permission groups.
+--
 
 -- ------------------------------------------------------------
 -- 13.8 Advanced Interview Concepts & Gotchas in DCL / Security
@@ -385,12 +411,24 @@ CREATE POLICY rep_sees_own_rows ON customers
 -- ------------------------------------------------------------
 -- 6. Difference: `DROP USER` vs. `REVOKE ALL PRIVILEGES`
 -- ------------------------------------------------------------
--- | Dimension | `REVOKE ALL PRIVILEGES` | `DROP USER` |
--- | :--- | :--- | :--- |
--- | Account Existence | Role still exists in `pg_roles` | Role is completely removed |
--- | Authentication | User can still log in (if it has `LOGIN` and `CONNECT`) | Login fails: `role "vishal" does not exist` |
--- | Access Rights | User has no table permissions | User does not exist at all |
--- | Pre-condition | None | Must not own objects (`REASSIGN OWNED` / `DROP OWNED` first) |
+-- (Dimension → REVOKE ALL PRIVILEGES | DROP USER)
+--
+-- * Account Existence
+--     - REVOKE ALL PRIVILEGES : Role still exists in pg_roles
+--     - DROP USER             : Role is completely removed
+--
+-- * Authentication
+--     - REVOKE ALL PRIVILEGES : User can still log in (if it has LOGIN and CONNECT)
+--     - DROP USER             : Login fails: role "vishal" does not exist
+--
+-- * Access Rights
+--     - REVOKE ALL PRIVILEGES : User has no table permissions
+--     - DROP USER             : User does not exist at all
+--
+-- * Pre-condition
+--     - REVOKE ALL PRIVILEGES : None
+--     - DROP USER             : Must not own objects (REASSIGN OWNED / DROP OWNED first)
+--
 
 -- ------------------------------------------------------------
 -- 7. Account Locking & Password Expiry Management

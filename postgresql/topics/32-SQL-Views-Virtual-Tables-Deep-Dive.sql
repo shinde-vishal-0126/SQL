@@ -68,12 +68,24 @@ DROP VIEW v_customer_orders;
 -- 32.2 Differences Between Table and View
 -- ------------------------------------------------------------
 
--- | Feature | Physical Table | Virtual Table (View) |
--- | :--- | :--- | :--- |
--- | Storage | Persists actual data physically on disk. | No persistence. Stores only the SQL query logic. |
--- | Maintenance & Flexibility | Hard to maintain/change. Modifying large tables (adding/moving columns) takes huge effort. | Easy to maintain & flexible. You just update the underlying query without touching physical data. |
--- | Performance | Fast Response. (1 Query execution). | Slow Response. (2 Queries execute: User's query + View's query). |
--- | Operations | Read and Write. | Mostly Read-Only (some exceptions apply for simple views). |
+-- (Feature → Physical Table | Virtual Table (View))
+--
+-- * Storage
+--     - Physical Table       : Persists actual data physically on disk.
+--     - Virtual Table (View) : No persistence. Stores only the SQL query logic.
+--
+-- * Maintenance & Flexibility
+--     - Physical Table       : Hard to maintain/change. Modifying large tables (adding/moving columns) takes huge effort.
+--     - Virtual Table (View) : Easy to maintain & flexible. You just update the underlying query without touching physical data.
+--
+-- * Performance
+--     - Physical Table       : Fast Response. (1 Query execution).
+--     - Virtual Table (View) : Slow Response. (2 Queries execute: User's query + View's query).
+--
+-- * Operations
+--     - Physical Table       : Read and Write.
+--     - Virtual Table (View) : Mostly Read-Only (some exceptions apply for simple views).
+--
 
 -- > Does a View improve performance?
 -- > No. By themselves, views do NOT automatically improve performance. A view is just a saved SELECT query. Executing it 100 times executes the base query 100 times. No extra indexes are created just because it’s a view.
@@ -134,11 +146,20 @@ DROP VIEW v_customer_orders;
 
 -- * Diagram summary: Comparison chart showing Redundancy, Reusability, Persistence, and Maintenance differences
 
--- | Feature | View | CTE (Common Table Expression) |
--- | :--- | :--- | :--- |
--- | Purpose | Reduces redundancy across Multiple Queries / Entire Project. | Reduces redundancy within One Single Query. |
--- | Persistence | Logic is saved permanently in the database as an object. | Logic is temporary, calculated on the fly, and destroyed when query ends. |
--- | Maintenance | Requires manual maintenance (`CREATE`, `ALTER`, `DROP`). | No maintenance. Cleaned up automatically. |
+-- (Feature → View | CTE (Common Table Expression))
+--
+-- * Purpose
+--     - View                          : Reduces redundancy across Multiple Queries / Entire Project.
+--     - CTE (Common Table Expression) : Reduces redundancy within One Single Query.
+--
+-- * Persistence
+--     - View                          : Logic is saved permanently in the database as an object.
+--     - CTE (Common Table Expression) : Logic is temporary, calculated on the fly, and destroyed when query ends.
+--
+-- * Maintenance
+--     - View                          : Requires manual maintenance (CREATE, ALTER, DROP).
+--     - CTE (Common Table Expression) : No maintenance. Cleaned up automatically.
+--
 
 -- ------------------------------------------------------------
 -- 32.5 Syntax & Schema Naming
@@ -253,11 +274,23 @@ REFRESH MATERIALIZED VIEW CONCURRENTLY mv_monthly_sales;
 -- ------------------------------------------------------------
 -- 32.9 Index vs View vs Materialized View
 -- ------------------------------------------------------------
--- | Feature | Index | View | Materialized View |
--- | :--- | :--- | :--- | :--- |
--- | Purpose | Fast Search (Lookups) | Query Shortcut / Security | Precomputed Result for Speed |
--- | Data Storage | Stores a lookup structure (B-Tree). | No data storage (Virtual). | Stores actual precomputed query results. |
--- | Data Freshness| Auto-updates instantly. | Always 100% fresh (queries base table). | Stale until Refreshed (Manual/Auto). |
+-- (Feature → Index | View | Materialized View)
+--
+-- * Purpose
+--     - Index             : Fast Search (Lookups)
+--     - View              : Query Shortcut / Security
+--     - Materialized View : Precomputed Result for Speed
+--
+-- * Data Storage
+--     - Index             : Stores a lookup structure (B-Tree).
+--     - View              : No data storage (Virtual).
+--     - Materialized View : Stores actual precomputed query results.
+--
+-- * Data Freshness
+--     - Index             : Auto-updates instantly.
+--     - View              : Always 100% fresh (queries base table).
+--     - Materialized View : Stale until Refreshed (Manual/Auto).
+--
 
 -- ---
 

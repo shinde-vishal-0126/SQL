@@ -156,11 +156,20 @@ SELECT emp_id, old_salary, new_salary FROM salary_log;
 
 -- * Output:
 
--- | emp_id | old_salary | new_salary |
--- | :--- | :--- | :--- |
--- | 1 | 40000.00 | 44000.00 |
--- | 2 | 75000.00 | 78750.00 |
--- | 4 | 90000.00 | 91800.00 |
+-- (emp_id → old_salary | new_salary)
+--
+-- * 1
+--     - old_salary : 40000.00
+--     - new_salary : 44000.00
+--
+-- * 2
+--     - old_salary : 75000.00
+--     - new_salary : 78750.00
+--
+-- * 4
+--     - old_salary : 90000.00
+--     - new_salary : 91800.00
+--
 
 -- * Meena (HR) is not touched. `LEAVE` needs the loop label (`read_loop`).
 
@@ -191,12 +200,24 @@ SET salary = CASE
              END
 WHERE dept = 'IT';
 
--- | Point | Cursor (row-by-row) | Set-based SQL |
--- | :--- | :--- | :--- |
--- | Speed | Slow on large data (one statement per row) | Fast — optimizer handles all rows together |
--- | Code | Long (declare, open, fetch, loop, close) | Short |
--- | Locks / log | Many small statements | One statement |
--- | Use when | Per-row procedure calls, dynamic SQL per row, complex step-by-step logic | Almost everything else |
+-- (Point → Cursor (row-by-row) | Set-based SQL)
+--
+-- * Speed
+--     - Cursor (row-by-row) : Slow on large data (one statement per row)
+--     - Set-based SQL       : Fast — optimizer handles all rows together
+--
+-- * Code
+--     - Cursor (row-by-row) : Long (declare, open, fetch, loop, close)
+--     - Set-based SQL       : Short
+--
+-- * Locks / log
+--     - Cursor (row-by-row) : Many small statements
+--     - Set-based SQL       : One statement
+--
+-- * Use when
+--     - Cursor (row-by-row) : Per-row procedure calls, dynamic SQL per row, complex step-by-step logic
+--     - Set-based SQL       : Almost everything else
+--
 
 -- * Rule for interviews: "Prefer set-based SQL (`UPDATE ... CASE`, `INSERT ... SELECT`, JOINs, window functions); use a cursor only when row-by-row logic is really needed."
 

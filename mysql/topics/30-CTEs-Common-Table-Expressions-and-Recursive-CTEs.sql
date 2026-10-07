@@ -59,12 +59,28 @@ SELECT * FROM EmployeeCTE;
 -- ------------------------------------------------------------
 -- 30.2 CTE vs Subquery vs Temp Table (Interview Favorite)
 -- ------------------------------------------------------------
--- | Feature | Subquery | CTE | Temp Table (`#Temp`) |
--- | :--- | :--- | :--- | :--- |
--- | Readability | Hard to read if nested deeply. | Very easy to read (Top-down logic). | Easy to read. |
--- | Reusability | Cannot be reused in the same query. | Can be referenced multiple times in the same query. | Can be used across multiple queries in the same session. |
--- | Storage | Lives in memory (usually). | Lives in memory. | Lives physically in `tempdb` (on disk). |
--- | Performance | Optimizer treats it similarly to a CTE. | Optimizer treats it similarly to a Subquery. | Good for massive data (supports indexing). |
+-- (Feature → Subquery | CTE | Temp Table (#Temp))
+--
+-- * Readability
+--     - Subquery           : Hard to read if nested deeply.
+--     - CTE                : Very easy to read (Top-down logic).
+--     - Temp Table (#Temp) : Easy to read.
+--
+-- * Reusability
+--     - Subquery           : Cannot be reused in the same query.
+--     - CTE                : Can be referenced multiple times in the same query.
+--     - Temp Table (#Temp) : Can be used across multiple queries in the same session.
+--
+-- * Storage
+--     - Subquery           : Lives in memory (usually).
+--     - CTE                : Lives in memory.
+--     - Temp Table (#Temp) : Lives physically in tempdb (on disk).
+--
+-- * Performance
+--     - Subquery           : Optimizer treats it similarly to a CTE.
+--     - CTE                : Optimizer treats it similarly to a Subquery.
+--     - Temp Table (#Temp) : Good for massive data (supports indexing).
+--
 
 -- * ⚠️ MySQL Note: `#Temp` and `tempdb` are SQL Server names. In MySQL a temp table is created with `CREATE TEMPORARY TABLE t (...)` and lives in the session's temporary tablespace. Also, in MySQL a CTE or derived table is either merged into the main query or materialized into an internal temporary table (in memory, or on disk if it is large) — it is not guaranteed to "live in memory".
 

@@ -60,10 +60,18 @@ DROP USER 'viewer'@'localhost';
 
 -- The two primary DCL commands in SQL:
 
--- | Command | Keyword | Purpose | Action Performed |
--- | :--- | :--- | :--- | :--- |
--- | **`GRANT`** | **`TO`** | Give permission | Bestows specific privileges/access on database objects to a user |
--- | **`REVOKE`** | **`FROM`** | Remove permission | Withdraws/removes previously granted access privileges from a user |
+-- (Command → Keyword | Purpose | Action Performed)
+--
+-- * GRANT
+--     - Keyword          : TO
+--     - Purpose          : Give permission
+--     - Action Performed : Bestows specific privileges/access on database objects to a user
+--
+-- * REVOKE
+--     - Keyword          : FROM
+--     - Purpose          : Remove permission
+--     - Action Performed : Withdraws/removes previously granted access privileges from a user
+--
 
 -- * **1. The `GRANT` Command:**
 
@@ -252,14 +260,32 @@ DROP USER 'VISHAL'@'localhost';
 
 -- As of MySQL 8.x, there are 36+ distinct privilege types classified into 6 primary operational categories:
 
--- | Category | Typical Privileges | Operational Scope & Role |
--- | :--- | :--- | :--- |
--- | 1. Data Privileges (DML) | `SELECT`, `INSERT`, `UPDATE`, `DELETE` | Controls managing, querying, and updating row records inside tables. |
--- | 2. Structure Privileges (DDL) | `CREATE`, `DROP`, `ALTER`, `INDEX` | Controls creating, modifying, re-indexing, or destroying databases, tables, and views. |
--- | 3. Administrative Privileges | `GRANT OPTION`, `SUPER`, `RELOAD`, `SHUTDOWN` | Controls global MySQL server operation, user delegation, process management, and shutdowns. |
--- | 4. Replication Privileges | `REPLICATION SLAVE`, `REPLICATION CLIENT` | Used in Master-Replica high availability topologies to stream binary logs. |
--- | 5. Security & Process Privileges | `CREATE USER`, `PROCESS`, `SHOW DATABASES` | Controls user account provisioning, inspecting the server process list, and discovering databases. |
--- | 6. Proxy Privilege | `PROXY` | Allows one user account to authenticate and assume the privileges of another account. |
+-- (Category → Typical Privileges | Operational Scope & Role)
+--
+-- * 1. Data Privileges (DML)
+--     - Typical Privileges       : SELECT, INSERT, UPDATE, DELETE
+--     - Operational Scope & Role : Controls managing, querying, and updating row records inside tables.
+--
+-- * 2. Structure Privileges (DDL)
+--     - Typical Privileges       : CREATE, DROP, ALTER, INDEX
+--     - Operational Scope & Role : Controls creating, modifying, re-indexing, or destroying databases, tables, and views.
+--
+-- * 3. Administrative Privileges
+--     - Typical Privileges       : GRANT OPTION, SUPER, RELOAD, SHUTDOWN
+--     - Operational Scope & Role : Controls global MySQL server operation, user delegation, process management, and shutdowns.
+--
+-- * 4. Replication Privileges
+--     - Typical Privileges       : REPLICATION SLAVE, REPLICATION CLIENT
+--     - Operational Scope & Role : Used in Master-Replica high availability topologies to stream binary logs.
+--
+-- * 5. Security & Process Privileges
+--     - Typical Privileges       : CREATE USER, PROCESS, SHOW DATABASES
+--     - Operational Scope & Role : Controls user account provisioning, inspecting the server process list, and discovering databases.
+--
+-- * 6. Proxy Privilege
+--     - Typical Privileges       : PROXY
+--     - Operational Scope & Role : Allows one user account to authenticate and assume the privileges of another account.
+--
 
 -- ------------------------------------------------------------
 -- 13.8 Advanced Interview Concepts & Gotchas in DCL / Security
@@ -328,11 +354,20 @@ GRANT SELECT (emp_id, emp_name, department) ON company.employees TO 'intern'@'lo
 -- ------------------------------------------------------------
 -- 5. Difference: `DROP USER` vs. `REVOKE ALL PRIVILEGES`
 -- ------------------------------------------------------------
--- | Dimension | `REVOKE ALL PRIVILEGES` | `DROP USER` |
--- | :--- | :--- | :--- |
--- | Account Existence | Account credentials remain in `mysql.user` | Account is completely purged from server |
--- | Authentication | User can still connect and log in successfully | Connection is rejected with `Access Denied` |
--- | Access Rights | User has 0 permissions (cannot access tables) | User does not exist at all |
+-- (Dimension → REVOKE ALL PRIVILEGES | DROP USER)
+--
+-- * Account Existence
+--     - REVOKE ALL PRIVILEGES : Account credentials remain in mysql.user
+--     - DROP USER             : Account is completely purged from server
+--
+-- * Authentication
+--     - REVOKE ALL PRIVILEGES : User can still connect and log in successfully
+--     - DROP USER             : Connection is rejected with Access Denied
+--
+-- * Access Rights
+--     - REVOKE ALL PRIVILEGES : User has 0 permissions (cannot access tables)
+--     - DROP USER             : User does not exist at all
+--
 
 -- ------------------------------------------------------------
 -- 6. Account Locking & Password Expiry Management

@@ -55,10 +55,16 @@ ROLLBACK;
 
 -- * Compatibility matrix:
 
--- | Requested ↓ / Held → | S (Shared) | X (Exclusive) |
--- | :--- | :--- | :--- |
--- | S (Shared) | ✅ Compatible | ❌ Wait |
--- | X (Exclusive) | ❌ Wait | ❌ Wait |
+-- (Requested ↓ / Held → → S (Shared) | X (Exclusive))
+--
+-- * S (Shared)
+--     - S (Shared)    : ✅ Compatible
+--     - X (Exclusive) : ❌ Wait
+--
+-- * X (Exclusive)
+--     - S (Shared)    : ❌ Wait
+--     - X (Exclusive) : ❌ Wait
+--
 
 -- * A normal `SELECT` in InnoDB takes no lock — it reads a consistent snapshot (MVCC). Only locking reads (`FOR SHARE`, `FOR UPDATE`) and writes take row locks.
 
@@ -68,12 +74,24 @@ ROLLBACK;
 -- 19.3 Row-Level vs Table-Level Locks
 -- ------------------------------------------------------------
 
--- | Feature | Row-level lock | Table-level lock |
--- | :--- | :--- | :--- |
--- | What is locked | Only the affected rows (index records) | The whole table |
--- | Concurrency | High — others work on other rows | Low — everyone waits |
--- | Used by | InnoDB (default) | MyISAM, `LOCK TABLES`, some DDL |
--- | Overhead | More locks to manage | Very small |
+-- (Feature → Row-level lock | Table-level lock)
+--
+-- * What is locked
+--     - Row-level lock   : Only the affected rows (index records)
+--     - Table-level lock : The whole table
+--
+-- * Concurrency
+--     - Row-level lock   : High — others work on other rows
+--     - Table-level lock : Low — everyone waits
+--
+-- * Used by
+--     - Row-level lock   : InnoDB (default)
+--     - Table-level lock : MyISAM, LOCK TABLES, some DDL
+--
+-- * Overhead
+--     - Row-level lock   : More locks to manage
+--     - Table-level lock : Very small
+--
 
 -- * Explicit table locks:
 LOCK TABLES accounts WRITE, branches READ;
@@ -157,12 +175,24 @@ ALTER TABLE orders ADD COLUMN note VARCHAR(100);  -- "Waiting for table metadata
 -- 19.7 Optimistic vs Pessimistic Locking
 -- ------------------------------------------------------------
 
--- | Feature | Pessimistic locking | Optimistic locking |
--- | :--- | :--- | :--- |
--- | Idea | "Conflict is likely — lock first" | "Conflict is rare — check at save time" |
--- | How | `SELECT ... FOR UPDATE` then `UPDATE` | `version` (or `updated_at`) column checked in `UPDATE` |
--- | Waiting | Others wait for the lock | No waiting; the loser retries |
--- | Best for | High contention, short transactions (bank balance, seat booking) | Low contention, long user think time (editing a profile/form) |
+-- (Feature → Pessimistic locking | Optimistic locking)
+--
+-- * Idea
+--     - Pessimistic locking : "Conflict is likely — lock first"
+--     - Optimistic locking  : "Conflict is rare — check at save time"
+--
+-- * How
+--     - Pessimistic locking : SELECT ... FOR UPDATE then UPDATE
+--     - Optimistic locking  : version (or updated_at) column checked in UPDATE
+--
+-- * Waiting
+--     - Pessimistic locking : Others wait for the lock
+--     - Optimistic locking  : No waiting; the loser retries
+--
+-- * Best for
+--     - Pessimistic locking : High contention, short transactions (bank balance, seat booking)
+--     - Optimistic locking  : Low contention, long user think time (editing a profile/form)
+--
 
 -- * Optimistic locking with a version column:
 -- 1. read (no lock)

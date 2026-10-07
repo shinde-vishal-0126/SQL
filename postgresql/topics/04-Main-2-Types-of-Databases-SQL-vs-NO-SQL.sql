@@ -44,13 +44,28 @@ JOIN customers c ON c.customerid = o.customerid;
 
 --     2. NO-SQL (Non-Relational Databases)
 
--- | Dimension | SQL (Relational Databases) | NO-SQL (Non-Relational Databases) |
--- | :--- | :--- | :--- |
--- | Storage Paradigm | Tables with strictly typed columns and rows | Key-Value, Document, Columnar, or Graph models |
--- | Schema Design | Predefined, rigid, structured schema | Flexible, dynamic, schema-less architecture |
--- | Primary Query Tool | Standardized SQL language | Specialized document queries, APIs, or key lookups |
--- | Primary Strengths | ACID compliance, data integrity, complex relations | Rapid horizontal scalability, big data, rapid prototyping |
--- | Typical Examples | MySQL, PostgreSQL, Oracle, SQL Server | MongoDB, Redis, Cassandra, Neo4j |
+-- (Dimension → SQL (Relational Databases) | NO-SQL (Non-Relational Databases))
+--
+-- * Storage Paradigm
+--     - SQL (Relational Databases)        : Tables with strictly typed columns and rows
+--     - NO-SQL (Non-Relational Databases) : Key-Value, Document, Columnar, or Graph models
+--
+-- * Schema Design
+--     - SQL (Relational Databases)        : Predefined, rigid, structured schema
+--     - NO-SQL (Non-Relational Databases) : Flexible, dynamic, schema-less architecture
+--
+-- * Primary Query Tool
+--     - SQL (Relational Databases)        : Standardized SQL language
+--     - NO-SQL (Non-Relational Databases) : Specialized document queries, APIs, or key lookups
+--
+-- * Primary Strengths
+--     - SQL (Relational Databases)        : ACID compliance, data integrity, complex relations
+--     - NO-SQL (Non-Relational Databases) : Rapid horizontal scalability, big data, rapid prototyping
+--
+-- * Typical Examples
+--     - SQL (Relational Databases)        : MySQL, PostgreSQL, Oracle, SQL Server
+--     - NO-SQL (Non-Relational Databases) : MongoDB, Redis, Cassandra, Neo4j
+--
 
 -- > 📌 Important Note:
 -- > * Relational Database is commonly referred to as SQL.
@@ -206,11 +221,20 @@ JOIN customers c ON c.customerid = o.customerid;
 
 -- * Network partitions will happen, so real systems choose CP or AP during a partition:
 
--- | Type | During a network split | Examples |
--- | :--- | :--- | :--- |
--- | CP | Refuses some requests to stay correct | MongoDB (default), HBase, etcd, ZooKeeper, PostgreSQL with synchronous replication (Patroni) |
--- | AP | Always answers, data may be briefly stale (eventual consistency) | Cassandra, DynamoDB, CouchDB, Riak |
--- | CA | Only possible when there is no partition — a single-server RDBMS (one PostgreSQL server) | Single-node PostgreSQL / MySQL |
+-- (Type → During a network split | Examples)
+--
+-- * CP
+--     - During a network split : Refuses some requests to stay correct
+--     - Examples               : MongoDB (default), HBase, etcd, ZooKeeper, PostgreSQL with synchronous replication (Patroni)
+--
+-- * AP
+--     - During a network split : Always answers, data may be briefly stale (eventual consistency)
+--     - Examples               : Cassandra, DynamoDB, CouchDB, Riak
+--
+-- * CA
+--     - During a network split : Only possible when there is no partition — a single-server RDBMS (one PostgreSQL server)
+--     - Examples               : Single-node PostgreSQL / MySQL
+--
 
 -- * ACID vs BASE: SQL databases follow ACID (strict correctness); many NoSQL systems follow BASE — Basically Available, Soft state, Eventually consistent.
 

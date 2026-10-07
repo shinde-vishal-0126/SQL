@@ -308,12 +308,24 @@ SELECT * FROM CTE_Emp_Hierarchy;
 -- 31.4 CTE vs Derived Table
 -- ------------------------------------------------------------
 
--- | Feature | Derived Table (Subquery in FROM) | CTE (WITH Clause) |
--- | :--- | :--- | :--- |
--- | Definition | A subquery written directly inside the `FROM` clause. | Declared at the top using `WITH`. Acts like a temporary view. |
--- | Reusability | Cannot be reused. If you need it again, you must rewrite it. | Can be referenced multiple times in the main query. |
--- | Recursion | Does not support recursion. | Supports Recursive querying (Hierarchies). |
--- | Readability | Becomes very messy if nested deeply. | Clean, Top-to-Bottom logical flow. |
+-- (Feature → Derived Table (Subquery in FROM) | CTE (WITH Clause))
+--
+-- * Definition
+--     - Derived Table (Subquery in FROM) : A subquery written directly inside the FROM clause.
+--     - CTE (WITH Clause)                : Declared at the top using WITH. Acts like a temporary view.
+--
+-- * Reusability
+--     - Derived Table (Subquery in FROM) : Cannot be reused. If you need it again, you must rewrite it.
+--     - CTE (WITH Clause)                : Can be referenced multiple times in the main query.
+--
+-- * Recursion
+--     - Derived Table (Subquery in FROM) : Does not support recursion.
+--     - CTE (WITH Clause)                : Supports Recursive querying (Hierarchies).
+--
+-- * Readability
+--     - Derived Table (Subquery in FROM) : Becomes very messy if nested deeply.
+--     - CTE (WITH Clause)                : Clean, Top-to-Bottom logical flow.
+--
 
 -- ------------------------------------------------------------
 -- 31.5 CTE Summary & Best Practices

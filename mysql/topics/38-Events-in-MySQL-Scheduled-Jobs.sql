@@ -199,14 +199,32 @@ DROP EVENT IF EXISTS daily_cleanup;
 -- 38.7 Differences Between Triggers and Events
 -- ------------------------------------------------------------
 
--- | Point | EVENT | TRIGGER |
--- | :--- | :--- | :--- |
--- | What it is | A scheduled task that runs at a defined time or interval, independent of table operations | An automatic action that fires when a table event (`INSERT`, `UPDATE`, `DELETE`) occurs |
--- | When it runs | At a specific time or repeating interval (like a cron job) | Immediately, in response to a data change |
--- | Depends on | The event scheduler (time), not on user activity | DML operations on a table |
--- | Runs for | Once per schedule | Once per affected row |
--- | Use cases | Purge old data periodically, recalculate summary tables, send scheduled reports | Maintain audit logs, enforce business rules, validate data automatically |
--- | In one line | Event = runs scheduled jobs at specific times | Trigger = reacts to data changes immediately |
+-- (Point → EVENT | TRIGGER)
+--
+-- * What it is
+--     - EVENT   : A scheduled task that runs at a defined time or interval, independent of table operations
+--     - TRIGGER : An automatic action that fires when a table event (INSERT, UPDATE, DELETE) occurs
+--
+-- * When it runs
+--     - EVENT   : At a specific time or repeating interval (like a cron job)
+--     - TRIGGER : Immediately, in response to a data change
+--
+-- * Depends on
+--     - EVENT   : The event scheduler (time), not on user activity
+--     - TRIGGER : DML operations on a table
+--
+-- * Runs for
+--     - EVENT   : Once per schedule
+--     - TRIGGER : Once per affected row
+--
+-- * Use cases
+--     - EVENT   : Purge old data periodically, recalculate summary tables, send scheduled reports
+--     - TRIGGER : Maintain audit logs, enforce business rules, validate data automatically
+--
+-- * In one line
+--     - EVENT   : Event = runs scheduled jobs at specific times
+--     - TRIGGER : Trigger = reacts to data changes immediately
+--
 
 -- ------------------------------------------------------------
 -- 38.8 When to Use a One-Time Event vs a Recurring Event

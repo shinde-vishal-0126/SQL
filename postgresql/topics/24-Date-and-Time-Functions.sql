@@ -71,22 +71,64 @@ FROM orders;
 -- Quick Map: MySQL → PostgreSQL Date Functions
 -- ------------------------------------------------------------
 
--- | Task | MySQL | PostgreSQL |
--- | :--- | :--- | :--- |
--- | Current date + time | `NOW()` | `now()` / `CURRENT_TIMESTAMP` |
--- | Current date | `CURDATE()` | `CURRENT_DATE` |
--- | Current time | `CURTIME()` | `CURRENT_TIME` / `LOCALTIME` |
--- | Year / month / day | `YEAR(d)`, `MONTH(d)`, `DAY(d)` | `EXTRACT(YEAR FROM d)` / `DATE_PART('year', d)` |
--- | Day / month name | `DAYNAME(d)`, `MONTHNAME(d)` | `TO_CHAR(d, 'FMDay')`, `TO_CHAR(d, 'FMMonth')` |
--- | Add 10 days | `DATE_ADD(d, INTERVAL 10 DAY)` | `d + INTERVAL '10 days'` (or `d + 10` for a DATE) |
--- | Subtract 2 months | `DATE_SUB(d, INTERVAL 2 MONTH)` | `d - INTERVAL '2 months'` |
--- | Days between | `DATEDIFF(d2, d1)` | `d2 - d1` (DATE minus DATE = integer days) |
--- | Years between (age) | `TIMESTAMPDIFF(YEAR, b, NOW())` | `EXTRACT(YEAR FROM AGE(now(), b))` |
--- | First day of month | `DATE_FORMAT(d, '%Y-%m-01')` | `DATE_TRUNC('month', d)` |
--- | Last day of month | `LAST_DAY(d)` | `(DATE_TRUNC('month', d) + INTERVAL '1 month - 1 day')::DATE` |
--- | Format date as text | `DATE_FORMAT(d, '%d-%m-%Y')` | `TO_CHAR(d, 'DD-MM-YYYY')` |
--- | Text to date | `STR_TO_DATE('03-09-2025', '%d-%m-%Y')` | `TO_DATE('03-09-2025', 'DD-MM-YYYY')` |
--- | Unix seconds | `UNIX_TIMESTAMP(d)` / `FROM_UNIXTIME(n)` | `EXTRACT(EPOCH FROM d)` / `TO_TIMESTAMP(n)` |
+-- (Task → MySQL | PostgreSQL)
+--
+-- * Current date + time
+--     - MySQL      : NOW()
+--     - PostgreSQL : now() / CURRENT_TIMESTAMP
+--
+-- * Current date
+--     - MySQL      : CURDATE()
+--     - PostgreSQL : CURRENT_DATE
+--
+-- * Current time
+--     - MySQL      : CURTIME()
+--     - PostgreSQL : CURRENT_TIME / LOCALTIME
+--
+-- * Year / month / day
+--     - MySQL      : YEAR(d), MONTH(d), DAY(d)
+--     - PostgreSQL : EXTRACT(YEAR FROM d) / DATE_PART('year', d)
+--
+-- * Day / month name
+--     - MySQL      : DAYNAME(d), MONTHNAME(d)
+--     - PostgreSQL : TO_CHAR(d, 'FMDay'), TO_CHAR(d, 'FMMonth')
+--
+-- * Add 10 days
+--     - MySQL      : DATE_ADD(d, INTERVAL 10 DAY)
+--     - PostgreSQL : d + INTERVAL '10 days' (or d + 10 for a DATE)
+--
+-- * Subtract 2 months
+--     - MySQL      : DATE_SUB(d, INTERVAL 2 MONTH)
+--     - PostgreSQL : d - INTERVAL '2 months'
+--
+-- * Days between
+--     - MySQL      : DATEDIFF(d2, d1)
+--     - PostgreSQL : d2 - d1 (DATE minus DATE = integer days)
+--
+-- * Years between (age)
+--     - MySQL      : TIMESTAMPDIFF(YEAR, b, NOW())
+--     - PostgreSQL : EXTRACT(YEAR FROM AGE(now(), b))
+--
+-- * First day of month
+--     - MySQL      : DATE_FORMAT(d, '%Y-%m-01')
+--     - PostgreSQL : DATE_TRUNC('month', d)
+--
+-- * Last day of month
+--     - MySQL      : LAST_DAY(d)
+--     - PostgreSQL : (DATE_TRUNC('month', d) + INTERVAL '1 month - 1 day')::DATE
+--
+-- * Format date as text
+--     - MySQL      : DATE_FORMAT(d, '%d-%m-%Y')
+--     - PostgreSQL : TO_CHAR(d, 'DD-MM-YYYY')
+--
+-- * Text to date
+--     - MySQL      : STR_TO_DATE('03-09-2025', '%d-%m-%Y')
+--     - PostgreSQL : TO_DATE('03-09-2025', 'DD-MM-YYYY')
+--
+-- * Unix seconds
+--     - MySQL      : UNIX_TIMESTAMP(d) / FROM_UNIXTIME(n)
+--     - PostgreSQL : EXTRACT(EPOCH FROM d) / TO_TIMESTAMP(n)
+--
 
 -- ------------------------------------------------------------
 -- A. Current Date & Time Functions

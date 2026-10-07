@@ -64,14 +64,32 @@ FROM customers;
 -- 8.3 Key Differences: Comparison Table
 -- ------------------------------------------------------------
 
--- | Feature / Aspect | SQL (Structured Query Language) | MySQL (Relational DBMS) |
--- | :--- | :--- | :--- |
--- | Category | Declarative Query Language. | Complete RDBMS Software Engine. |
--- | Primary Purpose | Querying, filtering, and manipulating data. | Storing, persisting, indexing, and securing data files. |
--- | Data Storage | Does not store data itself. | Stores and manages data blocks on physical disk. |
--- | Version Cycles | Standardized language specification (ANSI SQL). | Continuously updated database software (e.g., MySQL 8.0, 8.4). |
--- | Installation | Cannot be installed (it is a language standard). | Installed as a background service/daemon on servers and cloud. |
--- | Analogy | Like the English Language (medium of speech). | Like a Person who understands and speaks English. |
+-- (Feature / Aspect → SQL (Structured Query Language) | MySQL (Relational DBMS))
+--
+-- * Category
+--     - SQL (Structured Query Language) : Declarative Query Language.
+--     - MySQL (Relational DBMS)         : Complete RDBMS Software Engine.
+--
+-- * Primary Purpose
+--     - SQL (Structured Query Language) : Querying, filtering, and manipulating data.
+--     - MySQL (Relational DBMS)         : Storing, persisting, indexing, and securing data files.
+--
+-- * Data Storage
+--     - SQL (Structured Query Language) : Does not store data itself.
+--     - MySQL (Relational DBMS)         : Stores and manages data blocks on physical disk.
+--
+-- * Version Cycles
+--     - SQL (Structured Query Language) : Standardized language specification (ANSI SQL).
+--     - MySQL (Relational DBMS)         : Continuously updated database software (e.g., MySQL 8.0, 8.4).
+--
+-- * Installation
+--     - SQL (Structured Query Language) : Cannot be installed (it is a language standard).
+--     - MySQL (Relational DBMS)         : Installed as a background service/daemon on servers and cloud.
+--
+-- * Analogy
+--     - SQL (Structured Query Language) : Like the English Language (medium of speech).
+--     - MySQL (Relational DBMS)         : Like a Person who understands and speaks English.
+--
 
 -- ---
 

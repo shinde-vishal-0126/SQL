@@ -1,6 +1,5 @@
--- ======================================================================
 -- Topic 33: Tables, CTAS & Temporary Tables Deep Dive
--- ======================================================================
+
 
 -- ------------------------------------------------------------
 -- 📖 In Simple Words
@@ -47,7 +46,7 @@ DROP TABLE usa_customers;
 
 --   * Cells: The intersection of a row and a column, holding a single piece of data.
 
--- * Physical Storage: 
+-- * Physical Storage:
 
 --   * While they look like spreadsheets to us, tables are physically stored as database files on the disk.
 
@@ -84,7 +83,7 @@ INSERT INTO Table_Name VALUES (1, 'Frank');
 -- * Definition: Creates a brand new table based on the result of an SQL query.
 
 -- * How it works: You define a query. The database executes it, retrieves the data, and creates a new table whose structure (columns/datatypes) and data come one-to-one directly from the query's result. You don't need to manually define data types.
-CREATE TABLE new_table_name AS 
+CREATE TABLE new_table_name AS
 SELECT * FROM source_table WHERE condition;
 
 -- ---
@@ -190,7 +189,7 @@ SELECT to_regclass('pg_temp.temp_users');   -- returns the name, or NULL if it d
 --   * Unlike MySQL, PostgreSQL temp tables are visible in `information_schema.tables` (with `table_type = 'LOCAL TEMPORARY'`) for your own session.
 
 -- > What does a session mean?
--- > The time between connecting and disconnecting from the database is called a session. 
+-- > The time between connecting and disconnecting from the database is called a session.
 -- > Once you open a client (like psql, pgAdmin or DBeaver), connect, and start doing queries, the session begins. When you close the client or shut down your PC, you disconnect. At that exact moment, the database goes and destroys all the temporary tables you created during that session. They live only as long as you have the session open.
 
 -- ------------------------------------------------------------
@@ -242,14 +241,50 @@ SELECT to_regclass('pg_temp.temp_users');   -- returns the name, or NULL if it d
 
 -- * Diagram summary: Comparison showing how a View fetches fresh data directly from the updated base table, whereas a CTAS returns old, snapshot data from the time it was physically created
 
--- | Feature | Subquery | CTE | Temp Table | CTAS (Permanent) | View |
--- | :--- | :--- | :--- | :--- | :--- | :--- |
--- | Storage Type | Memory / Cache | Memory / Cache | Temp Disk Storage | Physical Disk Storage | No Storage (Only Metadata) |
--- | Lifetime | Ends when Query ends | Ends when Query ends | Ends when Session ends | Permanent (Until Dropped) | Permanent (Until Dropped) |
--- | Scope (Access) | One specific Query | One specific Query | Multiple Queries (Same Session) | Global (All Users/Sessions) | Global (All Users/Sessions) |
--- | Reusability | Worst (Repeated logic) | Low (Reused in 1 query) | Medium (Reused in 1 session) | High (Reused globally) | High (Reused globally) |
--- | Data Freshness| 100% Fresh (On-the-fly) | 100% Fresh (On-the-fly)| Stale (Snapshot at creation) | Stale (Snapshot at creation) | 100% Fresh (Queries base table) |
--- | Performance | Slow for complex logic | Slow for complex logic | Fast for session analysis | Fastest (Precomputed) | Slowest (Executes every time) |
+-- (Feature → Subquery | CTE | Temp Table | CTAS (Permanent) | View)
+--
+-- * Storage Type
+--     - Subquery         : Memory / Cache
+--     - CTE              : Memory / Cache
+--     - Temp Table       : Temp Disk Storage
+--     - CTAS (Permanent) : Physical Disk Storage
+--     - View             : No Storage (Only Metadata)
+--
+-- * Lifetime
+--     - Subquery         : Ends when Query ends
+--     - CTE              : Ends when Query ends
+--     - Temp Table       : Ends when Session ends
+--     - CTAS (Permanent) : Permanent (Until Dropped)
+--     - View             : Permanent (Until Dropped)
+--
+-- * Scope (Access)
+--     - Subquery         : One specific Query
+--     - CTE              : One specific Query
+--     - Temp Table       : Multiple Queries (Same Session)
+--     - CTAS (Permanent) : Global (All Users/Sessions)
+--     - View             : Global (All Users/Sessions)
+--
+-- * Reusability
+--     - Subquery         : Worst (Repeated logic)
+--     - CTE              : Low (Reused in 1 query)
+--     - Temp Table       : Medium (Reused in 1 session)
+--     - CTAS (Permanent) : High (Reused globally)
+--     - View             : High (Reused globally)
+--
+-- * Data Freshness
+--     - Subquery         : 100% Fresh (On-the-fly)
+--     - CTE              : 100% Fresh (On-the-fly)
+--     - Temp Table       : Stale (Snapshot at creation)
+--     - CTAS (Permanent) : Stale (Snapshot at creation)
+--     - View             : 100% Fresh (Queries base table)
+--
+-- * Performance
+--     - Subquery         : Slow for complex logic
+--     - CTE              : Slow for complex logic
+--     - Temp Table       : Fast for session analysis
+--     - CTAS (Permanent) : Fastest (Precomputed)
+--     - View             : Slowest (Executes every time)
+--
 
 -- * ⚠️ Note: "Memory / Cache" for Subquery and CTE is simplified: in PostgreSQL they are planned together with the main query, or computed once into a work area (memory up to `work_mem`, then disk). The View "Slowest" rating means the view's query re-runs every time; a simple view is just as fast as writing the same query yourself.
 
@@ -265,7 +300,7 @@ SELECT to_regclass('pg_temp.temp_users');   -- returns the name, or NULL if it d
 
 -- 1. Creation (DDL): So we have a database, and a developer or data engineer creates a new table from scratch. They are going to write a DDL (`CREATE TABLE`) statement in order to create one physical table in our database. Since the database table is empty, we move to the 2nd step.
 
--- 2. Insertion (DML): They go and write an `INSERT INTO VALUES` statement in order to fill our new table with data. 
+-- 2. Insertion (DML): They go and write an `INSERT INTO VALUES` statement in order to fill our new table with data.
 
 -- 3. Access: Now once we have the table, we're going to give access to a Data Scientist or Data Analyst in order to start writing SQL queries.
 

@@ -668,13 +668,28 @@ $$;
 
 -- * Differences between psql variables and local variables:
 
--- | Feature | psql variable (`\set`) | Local Variable (PL/pgSQL) |
--- | :--- | :--- | :--- |
--- | Scope | The psql session (client side) | Inside the block only |
--- | Declaration | `\set x 10` | `DECLARE x INT := 10;` |
--- | Use | `:x` / `:'x'` in a query | `x` |
--- | Lifetime | Until psql closes | Until the block ends |
--- | Use case | Testing, scripts | Procedures, functions, triggers |
+-- (Feature → psql variable (\set) | Local Variable (PL/pgSQL))
+--
+-- * Scope
+--     - psql variable (\set)      : The psql session (client side)
+--     - Local Variable (PL/pgSQL) : Inside the block only
+--
+-- * Declaration
+--     - psql variable (\set)      : \set x 10
+--     - Local Variable (PL/pgSQL) : DECLARE x INT := 10;
+--
+-- * Use
+--     - psql variable (\set)      : :x / :'x' in a query
+--     - Local Variable (PL/pgSQL) : x
+--
+-- * Lifetime
+--     - psql variable (\set)      : Until psql closes
+--     - Local Variable (PL/pgSQL) : Until the block ends
+--
+-- * Use case
+--     - psql variable (\set)      : Testing, scripts
+--     - Local Variable (PL/pgSQL) : Procedures, functions, triggers
+--
 
 -- * Example with both (psql variable passed into a procedure parameter):
 CREATE OR REPLACE PROCEDURE variable_demo(p_user_country TEXT, OUT p_total_local BIGINT, OUT p_user_country_out TEXT)

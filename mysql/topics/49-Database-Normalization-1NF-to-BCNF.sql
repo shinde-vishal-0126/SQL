@@ -75,13 +75,28 @@ FROM orders o JOIN products p ON p.productid = o.productid;
 
 -- * OLTP vs OLAP:
 
--- | Point | OLTP (Online Transaction Processing) | OLAP (Online Analytical Processing) |
--- | :--- | :--- | :--- |
--- | Purpose | Run the business: orders, payments, logins | Analyse the business: reports, dashboards, trends |
--- | Queries | Many small reads/writes of a few rows | Few huge reads that scan and aggregate millions of rows |
--- | Design | Highly normalized (3NF) to avoid duplicates | Denormalized (star / snowflake) for fast reads |
--- | Data | Current data | Historical data (years) |
--- | Examples | MySQL/PostgreSQL app database | Data warehouse: Snowflake, BigQuery, Redshift, ClickHouse |
+-- (Point → OLTP (Online Transaction Processing) | OLAP (Online Analytical Processing))
+--
+-- * Purpose
+--     - OLTP (Online Transaction Processing) : Run the business: orders, payments, logins
+--     - OLAP (Online Analytical Processing)  : Analyse the business: reports, dashboards, trends
+--
+-- * Queries
+--     - OLTP (Online Transaction Processing) : Many small reads/writes of a few rows
+--     - OLAP (Online Analytical Processing)  : Few huge reads that scan and aggregate millions of rows
+--
+-- * Design
+--     - OLTP (Online Transaction Processing) : Highly normalized (3NF) to avoid duplicates
+--     - OLAP (Online Analytical Processing)  : Denormalized (star / snowflake) for fast reads
+--
+-- * Data
+--     - OLTP (Online Transaction Processing) : Current data
+--     - OLAP (Online Analytical Processing)  : Historical data (years)
+--
+-- * Examples
+--     - OLTP (Online Transaction Processing) : MySQL/PostgreSQL app database
+--     - OLAP (Online Analytical Processing)  : Data warehouse: Snowflake, BigQuery, Redshift, ClickHouse
+--
 
 -- * Fact table: stores measurable events (numbers) — e.g. `fact_sales(date_key, product_key, customer_key, store_key, quantity, amount)`. It is long (millions of rows) and narrow.
 

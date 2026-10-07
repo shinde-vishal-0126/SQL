@@ -48,7 +48,9 @@
 
 -- DROP AND CREATE DATABASE
 DROP DATABASE IF EXISTS `salesdb`;
+
 CREATE DATABASE `salesdb` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 USE `salesdb`;
 
 -- ======================================================
@@ -211,20 +213,28 @@ INSERT INTO `orders_archive` (
 Database Creation and Table Setup Script (MySQL Version)
 =============================================================
 Script Purpose:
-    This script creates a new MySQL database named 'MyDatabase'. 
-    If the database already exists, it is dropped to ensure a clean setup. 
+    This script creates a new MySQL database named 'MyDatabase'.
+    If the database already exists, it is dropped to ensure a clean setup.
     The script then creates two tables: 'customers' and 'orders'
     with their respective schemas, and populates them with sample data.
-    
+
 WARNING:
-    Running this script will drop the entire 'MyDatabase' database if it exists, 
-    permanently deleting all data within it. Proceed with caution and ensure you 
+    Running this script will drop the entire 'MyDatabase' database if it exists,
+    permanently deleting all data within it. Proceed with caution and ensure you
     have proper backups before executing this script.
 */
+
+
+
 
 DROP DATABASE IF EXISTS MyDatabase;
 CREATE DATABASE MyDatabase;
 USE MyDatabase;
+
+
+
+
+
 
 -- ======================================================
 -- Table: customers
@@ -246,6 +256,13 @@ INSERT INTO customers (id, first_name, country, score) VALUES
     (3, 'Georg', 'UK', 750),
     (4, 'Martin', 'Germany', 500),
     (5, 'Peter', 'USA', 0);
+
+
+
+
+
+
+
 
 -- ======================================================
 -- Table: orders

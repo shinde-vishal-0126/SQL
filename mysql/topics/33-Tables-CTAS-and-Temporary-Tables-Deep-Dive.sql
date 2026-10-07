@@ -232,14 +232,50 @@ SELECT * FROM orders WHERE order_date >= '2025-01-01';
 
 -- * Diagram summary: Comparison showing how a View fetches fresh data directly from the updated base table, whereas a CTAS returns old, snapshot data from the time it was physically created
 
--- | Feature | Subquery | CTE | Temp Table | CTAS (Permanent) | View |
--- | :--- | :--- | :--- | :--- | :--- | :--- |
--- | Storage Type | Memory / Cache | Memory / Cache | Temp Disk Storage | Physical Disk Storage | No Storage (Only Metadata) |
--- | Lifetime | Ends when Query ends | Ends when Query ends | Ends when Session ends | Permanent (Until Dropped) | Permanent (Until Dropped) |
--- | Scope (Access) | One specific Query | One specific Query | Multiple Queries (Same Session) | Global (All Users/Sessions) | Global (All Users/Sessions) |
--- | Reusability | Worst (Repeated logic) | Low (Reused in 1 query) | Medium (Reused in 1 session) | High (Reused globally) | High (Reused globally) |
--- | Data Freshness| 100% Fresh (On-the-fly) | 100% Fresh (On-the-fly)| Stale (Snapshot at creation) | Stale (Snapshot at creation) | 100% Fresh (Queries base table) |
--- | Performance | Slow for complex logic | Slow for complex logic | Fast for session analysis | Fastest (Precomputed) | Slowest (Executes every time) |
+-- (Feature → Subquery | CTE | Temp Table | CTAS (Permanent) | View)
+--
+-- * Storage Type
+--     - Subquery         : Memory / Cache
+--     - CTE              : Memory / Cache
+--     - Temp Table       : Temp Disk Storage
+--     - CTAS (Permanent) : Physical Disk Storage
+--     - View             : No Storage (Only Metadata)
+--
+-- * Lifetime
+--     - Subquery         : Ends when Query ends
+--     - CTE              : Ends when Query ends
+--     - Temp Table       : Ends when Session ends
+--     - CTAS (Permanent) : Permanent (Until Dropped)
+--     - View             : Permanent (Until Dropped)
+--
+-- * Scope (Access)
+--     - Subquery         : One specific Query
+--     - CTE              : One specific Query
+--     - Temp Table       : Multiple Queries (Same Session)
+--     - CTAS (Permanent) : Global (All Users/Sessions)
+--     - View             : Global (All Users/Sessions)
+--
+-- * Reusability
+--     - Subquery         : Worst (Repeated logic)
+--     - CTE              : Low (Reused in 1 query)
+--     - Temp Table       : Medium (Reused in 1 session)
+--     - CTAS (Permanent) : High (Reused globally)
+--     - View             : High (Reused globally)
+--
+-- * Data Freshness
+--     - Subquery         : 100% Fresh (On-the-fly)
+--     - CTE              : 100% Fresh (On-the-fly)
+--     - Temp Table       : Stale (Snapshot at creation)
+--     - CTAS (Permanent) : Stale (Snapshot at creation)
+--     - View             : 100% Fresh (Queries base table)
+--
+-- * Performance
+--     - Subquery         : Slow for complex logic
+--     - CTE              : Slow for complex logic
+--     - Temp Table       : Fast for session analysis
+--     - CTAS (Permanent) : Fastest (Precomputed)
+--     - View             : Slowest (Executes every time)
+--
 
 -- * ⚠️ Note: "Memory / Cache" for Subquery and CTE is simplified: in MySQL they are merged into the main query or stored in an internal temporary table (memory or disk). The View "Slowest" rating means the view's query re-runs every time; a simple view is just as fast as writing the same query yourself.
 

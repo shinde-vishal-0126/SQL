@@ -175,14 +175,32 @@ SELECT name, city FROM customers WHERE name = 'Vishal';   -- Index Only Scan
 
 -- English: Here is a quick comparison. Remember: PostgreSQL only has the right column (non-clustered) indexes, on a heap table.
 
--- | Feature | Clustered Index (SQL Server / MySQL PK) | Non-Clustered Index (all PostgreSQL indexes) |
--- | :--- | :--- | :--- |
--- | Definition | Physically sorts and stores rows. | Separate structure with pointers to the data. |
--- | Number of Indexes | One Index per Table. | Multiple indexes are allowed. |
--- | Read Performance | Faster for PK lookups/ranges (data is right there). | Needs an extra heap fetch (unless Index-Only Scan). |
--- | Write Performance | Slower, due to page splits / row reordering. | No reordering; but every index must be updated (HOT updates help). |
--- | Storage Efficiency | More storage-efficient. | Requires additional storage space for the B-Tree. |
--- | Use Case | Unique Column, Not frequently modified, Range queries. | Columns frequently used in search conditions and exact match queries. |
+-- (Feature → Clustered Index (SQL Server / MySQL PK) | Non-Clustered Index (all PostgreSQL indexes))
+--
+-- * Definition
+--     - Clustered Index (SQL Server / MySQL PK)      : Physically sorts and stores rows.
+--     - Non-Clustered Index (all PostgreSQL indexes) : Separate structure with pointers to the data.
+--
+-- * Number of Indexes
+--     - Clustered Index (SQL Server / MySQL PK)      : One Index per Table.
+--     - Non-Clustered Index (all PostgreSQL indexes) : Multiple indexes are allowed.
+--
+-- * Read Performance
+--     - Clustered Index (SQL Server / MySQL PK)      : Faster for PK lookups/ranges (data is right there).
+--     - Non-Clustered Index (all PostgreSQL indexes) : Needs an extra heap fetch (unless Index-Only Scan).
+--
+-- * Write Performance
+--     - Clustered Index (SQL Server / MySQL PK)      : Slower, due to page splits / row reordering.
+--     - Non-Clustered Index (all PostgreSQL indexes) : No reordering; but every index must be updated (HOT updates help).
+--
+-- * Storage Efficiency
+--     - Clustered Index (SQL Server / MySQL PK)      : More storage-efficient.
+--     - Non-Clustered Index (all PostgreSQL indexes) : Requires additional storage space for the B-Tree.
+--
+-- * Use Case
+--     - Clustered Index (SQL Server / MySQL PK)      : Unique Column, Not frequently modified, Range queries.
+--     - Non-Clustered Index (all PostgreSQL indexes) : Columns frequently used in search conditions and exact match queries.
+--
 
 -- Syntax to Create Indexes (PostgreSQL):
 -- PostgreSQL has no CLUSTERED / NONCLUSTERED keywords
@@ -236,14 +254,32 @@ CREATE INDEX CONCURRENTLY ix_customers_country ON customers (country);
 -- Comparison: Rowstore vs Columnstore
 -- ------------------------------------------------------------
 
--- | Feature | Rowstore Index | Columnstore Index |
--- | :--- | :--- | :--- |
--- | Definition | Organizes and stores data row by row | Organizes and stores data column by column |
--- | Storage Efficiency | Less efficient in storage | Highly efficient with Compression |
--- | Read/Write Optimization | Fair speed for read & write operations | Fast read performance, Slow write performance |
--- | I/O Efficiency | Lower (retrieves all columns) | Higher (retrieves specific columns) |
--- | Best for | OLTP (Transactional) commerce, banking, order processing | OLAP (Analytical) Data Warehouse, Business intelligence, Analytics |
--- | Use Case | High-frequency transaction applications, Quick access to complete records | Big Data Analytics, Scanning large datasets, Fast aggregation |
+-- (Feature → Rowstore Index | Columnstore Index)
+--
+-- * Definition
+--     - Rowstore Index    : Organizes and stores data row by row
+--     - Columnstore Index : Organizes and stores data column by column
+--
+-- * Storage Efficiency
+--     - Rowstore Index    : Less efficient in storage
+--     - Columnstore Index : Highly efficient with Compression
+--
+-- * Read/Write Optimization
+--     - Rowstore Index    : Fair speed for read & write operations
+--     - Columnstore Index : Fast read performance, Slow write performance
+--
+-- * I/O Efficiency
+--     - Rowstore Index    : Lower (retrieves all columns)
+--     - Columnstore Index : Higher (retrieves specific columns)
+--
+-- * Best for
+--     - Rowstore Index    : OLTP (Transactional) commerce, banking, order processing
+--     - Columnstore Index : OLAP (Analytical) Data Warehouse, Business intelligence, Analytics
+--
+-- * Use Case
+--     - Rowstore Index    : High-frequency transaction applications, Quick access to complete records
+--     - Columnstore Index : Big Data Analytics, Scanning large datasets, Fast aggregation
+--
 
 -- Columnstore Index Syntax (SQL Server, for comparison):
 -- Default is ROWSTORE
@@ -378,18 +414,48 @@ CREATE INDEX idx_logs_created_brin ON logs USING BRIN (created_at);
 
 --   * Full-Text (GIN + tsvector) · Spatial (GiST/PostGIS).
 
--- | Index Type (PostgreSQL) | When To Use (Scenario) | How It Helps |
--- | :--- | :--- | :--- |
--- | B-Tree (default) | PK, FK, WHERE filters, joins, sorting, ranges | Fast `=`, `<`, `>`, `BETWEEN`, `ORDER BY` |
--- | Unique | When a column must not have duplicates | Enforces data integrity & speeds up exact matches |
--- | Partial (`WHERE`) | When querying a specific subset (e.g., Active only) | Smaller index & faster writes |
--- | Composite | When queries filter by multiple columns often | One index for the whole filter (Leftmost Rule) |
--- | Expression | When the query uses `LOWER(col)`, `EXTRACT(...)` etc. | Lets function-based filters use an index |
--- | Covering (`INCLUDE`) | When a query needs a few extra columns | Enables Index-Only Scans |
--- | GIN | JSONB, arrays, full-text search, `pg_trgm` (`LIKE '%x%'`) | Finds rows containing an item |
--- | GiST / SP-GiST | PostGIS, ranges, nearest neighbour, `EXCLUDE` | Geometric / range searches |
--- | BRIN | Huge append-only tables ordered by time/id | Tiny index for range scans |
--- | Hash | Only equality, very long keys | Equality lookups |
+-- (Index Type (PostgreSQL) → When To Use (Scenario) | How It Helps)
+--
+-- * B-Tree (default)
+--     - When To Use (Scenario) : PK, FK, WHERE filters, joins, sorting, ranges
+--     - How It Helps           : Fast =, <, >, BETWEEN, ORDER BY
+--
+-- * Unique
+--     - When To Use (Scenario) : When a column must not have duplicates
+--     - How It Helps           : Enforces data integrity & speeds up exact matches
+--
+-- * Partial (WHERE)
+--     - When To Use (Scenario) : When querying a specific subset (e.g., Active only)
+--     - How It Helps           : Smaller index & faster writes
+--
+-- * Composite
+--     - When To Use (Scenario) : When queries filter by multiple columns often
+--     - How It Helps           : One index for the whole filter (Leftmost Rule)
+--
+-- * Expression
+--     - When To Use (Scenario) : When the query uses LOWER(col), EXTRACT(...) etc.
+--     - How It Helps           : Lets function-based filters use an index
+--
+-- * Covering (INCLUDE)
+--     - When To Use (Scenario) : When a query needs a few extra columns
+--     - How It Helps           : Enables Index-Only Scans
+--
+-- * GIN
+--     - When To Use (Scenario) : JSONB, arrays, full-text search, pg_trgm (LIKE '%x%')
+--     - How It Helps           : Finds rows containing an item
+--
+-- * GiST / SP-GiST
+--     - When To Use (Scenario) : PostGIS, ranges, nearest neighbour, EXCLUDE
+--     - How It Helps           : Geometric / range searches
+--
+-- * BRIN
+--     - When To Use (Scenario) : Huge append-only tables ordered by time/id
+--     - How It Helps           : Tiny index for range scans
+--
+-- * Hash
+--     - When To Use (Scenario) : Only equality, very long keys
+--     - How It Helps           : Equality lookups
+--
 
 -- ------------------------------------------------------------
 -- 41.9 Indexing Best Practices in PostgreSQL
@@ -597,12 +663,24 @@ LIMIT 20;
 
 --   * PostgreSQL uses the composite B-Tree index directly for this row comparison (it is one of the databases that does this well).
 
--- | Point | LIMIT OFFSET | Keyset (seek) |
--- | :--- | :--- | :--- |
--- | Deep page speed | Slower and slower (reads offset + limit rows) | Constant (reads only limit rows) |
--- | Jump to page N | ✅ Easy | ❌ Only next / previous |
--- | Rows added/deleted meanwhile | Duplicates or missed rows | Stable |
--- | Best for | Small tables, admin pages with page numbers | Infinite scroll, APIs ("load more"), big tables |
+-- (Point → LIMIT OFFSET | Keyset (seek))
+--
+-- * Deep page speed
+--     - LIMIT OFFSET  : Slower and slower (reads offset + limit rows)
+--     - Keyset (seek) : Constant (reads only limit rows)
+--
+-- * Jump to page N
+--     - LIMIT OFFSET  : ✅ Easy
+--     - Keyset (seek) : ❌ Only next / previous
+--
+-- * Rows added/deleted meanwhile
+--     - LIMIT OFFSET  : Duplicates or missed rows
+--     - Keyset (seek) : Stable
+--
+-- * Best for
+--     - LIMIT OFFSET  : Small tables, admin pages with page numbers
+--     - Keyset (seek) : Infinite scroll, APIs ("load more"), big tables
+--
 
 -- * If you must keep OFFSET — "deferred join": page through the small index first, then fetch the full rows:
 SELECT o.order_id, o.order_date, o.amount

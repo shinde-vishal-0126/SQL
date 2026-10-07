@@ -104,14 +104,26 @@ SELECT cron.schedule(
 
 -- * Cron expression = 5 fields: `minute hour day-of-month month day-of-week`
 
--- | Expression | Meaning |
--- | :--- | :--- |
--- | `0 2 * * *` | Every day at 02:00 |
--- | `*/15 * * * *` | Every 15 minutes |
--- | `0 * * * *` | Every hour |
--- | `0 9 * * 1` | Every Monday at 09:00 |
--- | `0 0 1 * *` | First day of every month at midnight |
--- | `30 seconds` | Every 30 seconds (pg_cron 1.5+) |
+-- (Expression → Meaning)
+--
+-- * 0 2 * * *
+--     - Meaning : Every day at 02:00
+--
+-- * */15 * * * *
+--     - Meaning : Every 15 minutes
+--
+-- * 0 * * * *
+--     - Meaning : Every hour
+--
+-- * 0 9 * * 1
+--     - Meaning : Every Monday at 09:00
+--
+-- * 0 0 1 * *
+--     - Meaning : First day of every month at midnight
+--
+-- * 30 seconds
+--     - Meaning : Every 30 seconds (pg_cron 1.5+)
+--
 
 -- * Times are in UTC by default (setting `cron.timezone`). India 02:00 IST = `30 20 * * *` UTC.
 
@@ -195,14 +207,32 @@ SELECT cron.unschedule('daily-cleanup');
 -- 38.7 Differences Between Triggers and Scheduled Jobs
 -- ------------------------------------------------------------
 
--- | Point | SCHEDULED JOB (pg_cron) | TRIGGER |
--- | :--- | :--- | :--- |
--- | What it is | A task that runs at a defined time or interval, independent of table operations | An automatic action that fires when a table event (`INSERT`, `UPDATE`, `DELETE`, `TRUNCATE`) occurs |
--- | When it runs | At a specific time or repeating interval (cron) | Immediately, in response to a data change |
--- | Depends on | The pg_cron background worker (time) | DML operations on a table |
--- | Runs for | Once per schedule | Once per affected row (or per statement) |
--- | Use cases | Purge old data, refresh materialized views, nightly reports | Audit logs, business rules, validation |
--- | In one line | Job = runs at specific times | Trigger = reacts to data changes immediately |
+-- (Point → SCHEDULED JOB (pg_cron) | TRIGGER)
+--
+-- * What it is
+--     - SCHEDULED JOB (pg_cron) : A task that runs at a defined time or interval, independent of table operations
+--     - TRIGGER                 : An automatic action that fires when a table event (INSERT, UPDATE, DELETE, TRUNCATE) occurs
+--
+-- * When it runs
+--     - SCHEDULED JOB (pg_cron) : At a specific time or repeating interval (cron)
+--     - TRIGGER                 : Immediately, in response to a data change
+--
+-- * Depends on
+--     - SCHEDULED JOB (pg_cron) : The pg_cron background worker (time)
+--     - TRIGGER                 : DML operations on a table
+--
+-- * Runs for
+--     - SCHEDULED JOB (pg_cron) : Once per schedule
+--     - TRIGGER                 : Once per affected row (or per statement)
+--
+-- * Use cases
+--     - SCHEDULED JOB (pg_cron) : Purge old data, refresh materialized views, nightly reports
+--     - TRIGGER                 : Audit logs, business rules, validation
+--
+-- * In one line
+--     - SCHEDULED JOB (pg_cron) : Job = runs at specific times
+--     - TRIGGER                 : Trigger = reacts to data changes immediately
+--
 
 -- ------------------------------------------------------------
 -- 38.8 When to Use a One-Time Job vs a Recurring Job

@@ -161,14 +161,32 @@ DROP INDEX idx_orders_status ON orders;
 
 -- English: Here is a quick comparison summarizing the differences between a Clustered and Non-Clustered Index.
 
--- | Feature | Clustered Index (Primary Key) | Non-Clustered Index (Secondary Index) |
--- | :--- | :--- | :--- |
--- | Definition | Physically sorts and stores rows. | Separate structure with pointers to the data. |
--- | Number of Indexes | One Index per Table. | Multiple indexes are allowed. |
--- | Read Performance | Faster (data is right there). | Slower (requires an extra pointer lookup). |
--- | Write Performance | Slower, due to potential data row reordering. | Faster, since physical data order is unaffected. |
--- | Storage Efficiency | More storage-efficient. | Requires additional storage space for the B-Tree. |
--- | Use Case | Unique Column, Not frequently modified, Range queries. | Columns frequently used in search conditions and exact match queries. |
+-- (Feature → Clustered Index (Primary Key) | Non-Clustered Index (Secondary Index))
+--
+-- * Definition
+--     - Clustered Index (Primary Key)         : Physically sorts and stores rows.
+--     - Non-Clustered Index (Secondary Index) : Separate structure with pointers to the data.
+--
+-- * Number of Indexes
+--     - Clustered Index (Primary Key)         : One Index per Table.
+--     - Non-Clustered Index (Secondary Index) : Multiple indexes are allowed.
+--
+-- * Read Performance
+--     - Clustered Index (Primary Key)         : Faster (data is right there).
+--     - Non-Clustered Index (Secondary Index) : Slower (requires an extra pointer lookup).
+--
+-- * Write Performance
+--     - Clustered Index (Primary Key)         : Slower, due to potential data row reordering.
+--     - Non-Clustered Index (Secondary Index) : Faster, since physical data order is unaffected.
+--
+-- * Storage Efficiency
+--     - Clustered Index (Primary Key)         : More storage-efficient.
+--     - Non-Clustered Index (Secondary Index) : Requires additional storage space for the B-Tree.
+--
+-- * Use Case
+--     - Clustered Index (Primary Key)         : Unique Column, Not frequently modified, Range queries.
+--     - Non-Clustered Index (Secondary Index) : Columns frequently used in search conditions and exact match queries.
+--
 
 -- Syntax to Create Indexes:
 -- Default is NONCLUSTERED
@@ -218,14 +236,32 @@ CREATE INDEX IX_Customers_Name ON Customers (LastName ASC, FirstName DESC)
 -- Comparison: Rowstore vs Columnstore
 -- ------------------------------------------------------------
 
--- | Feature | Rowstore Index | Columnstore Index |
--- | :--- | :--- | :--- |
--- | Definition | Organizes and stores data row by row | Organizes and stores data column by column |
--- | Storage Efficiency | Less efficient in storage | Highly efficient with Compression |
--- | Read/Write Optimization | Fair speed for read & write operations | Fast read performance, Slow write performance |
--- | I/O Efficiency | Lower (retrieves all columns) | Higher (retrieves specific columns) |
--- | Best for | OLTP (Transactional) commerce, banking, order processing | OLAP (Analytical) Data Warehouse, Business intelligence, Analytics |
--- | Use Case | High-frequency transaction applications, Quick access to complete records | Big Data Analytics, Scanning large datasets, Fast aggregation |
+-- (Feature → Rowstore Index | Columnstore Index)
+--
+-- * Definition
+--     - Rowstore Index    : Organizes and stores data row by row
+--     - Columnstore Index : Organizes and stores data column by column
+--
+-- * Storage Efficiency
+--     - Rowstore Index    : Less efficient in storage
+--     - Columnstore Index : Highly efficient with Compression
+--
+-- * Read/Write Optimization
+--     - Rowstore Index    : Fair speed for read & write operations
+--     - Columnstore Index : Fast read performance, Slow write performance
+--
+-- * I/O Efficiency
+--     - Rowstore Index    : Lower (retrieves all columns)
+--     - Columnstore Index : Higher (retrieves specific columns)
+--
+-- * Best for
+--     - Rowstore Index    : OLTP (Transactional) commerce, banking, order processing
+--     - Columnstore Index : OLAP (Analytical) Data Warehouse, Business intelligence, Analytics
+--
+-- * Use Case
+--     - Rowstore Index    : High-frequency transaction applications, Quick access to complete records
+--     - Columnstore Index : Big Data Analytics, Scanning large datasets, Fast aggregation
+--
 
 -- Columnstore Index Syntax:
 -- Default is ROWSTORE
@@ -327,16 +363,40 @@ CREATE SPATIAL INDEX idx_location ON places(location);
 
 -- * Diagram summary: A visual summary of index types, showing when to use them and what their primary purpose is
 
--- | Index Type | When To Use (Scenario) | How It Helps |
--- | :--- | :--- | :--- |
--- | Clustered Index | For Primary Keys and ranges. | Sorts physical data. (1 per table). |
--- | Non-Clustered | For Foreign keys, WHERE filters, Joins. | Creates secondary pointers. (Many allowed). |
--- | Unique Index | When a column must not have duplicates. | Enforces data integrity & speeds up exact matches. |
--- | Filtered Index | When querying a specific subset (e.g., Active only). | Reduces index size & increases speed. |
--- | Composite Index | When queries filter by multiple columns often. | Avoids multiple index lookups (respects Leftmost Rule). |
--- | Columnstore Index| When aggregating massive data (Data Warehouse).| Reads specific columns efficiently (OLAP). |
--- | Full-Text Index | When searching for words inside large text/articles. | Enables fast keyword searches (`MATCH AGAINST`). |
--- | Spatial Index | When dealing with maps, GPS, geometry. | Fast spatial queries on polygon/point data. |
+-- (Index Type → When To Use (Scenario) | How It Helps)
+--
+-- * Clustered Index
+--     - When To Use (Scenario) : For Primary Keys and ranges.
+--     - How It Helps           : Sorts physical data. (1 per table).
+--
+-- * Non-Clustered
+--     - When To Use (Scenario) : For Foreign keys, WHERE filters, Joins.
+--     - How It Helps           : Creates secondary pointers. (Many allowed).
+--
+-- * Unique Index
+--     - When To Use (Scenario) : When a column must not have duplicates.
+--     - How It Helps           : Enforces data integrity & speeds up exact matches.
+--
+-- * Filtered Index
+--     - When To Use (Scenario) : When querying a specific subset (e.g., Active only).
+--     - How It Helps           : Reduces index size & increases speed.
+--
+-- * Composite Index
+--     - When To Use (Scenario) : When queries filter by multiple columns often.
+--     - How It Helps           : Avoids multiple index lookups (respects Leftmost Rule).
+--
+-- * Columnstore Index
+--     - When To Use (Scenario) : When aggregating massive data (Data Warehouse).
+--     - How It Helps           : Reads specific columns efficiently (OLAP).
+--
+-- * Full-Text Index
+--     - When To Use (Scenario) : When searching for words inside large text/articles.
+--     - How It Helps           : Enables fast keyword searches (MATCH AGAINST).
+--
+-- * Spatial Index
+--     - When To Use (Scenario) : When dealing with maps, GPS, geometry.
+--     - How It Helps           : Fast spatial queries on polygon/point data.
+--
 
 -- ------------------------------------------------------------
 -- 41.9 Indexing Best Practices in MySQL
@@ -531,12 +591,24 @@ LIMIT 20;
 
 --   * If the optimizer doesn't use the index for the row comparison, write it out: `WHERE order_date < '2026-09-28' OR (order_date = '2026-09-28' AND order_id < 5531)`.
 
--- | Point | LIMIT OFFSET | Keyset (seek) |
--- | :--- | :--- | :--- |
--- | Deep page speed | Slower and slower (reads offset + limit rows) | Constant (reads only limit rows) |
--- | Jump to page N | ✅ Easy | ❌ Only next / previous |
--- | Rows added/deleted meanwhile | Duplicates or missed rows | Stable |
--- | Best for | Small tables, admin pages with page numbers | Infinite scroll, APIs ("load more"), big tables |
+-- (Point → LIMIT OFFSET | Keyset (seek))
+--
+-- * Deep page speed
+--     - LIMIT OFFSET  : Slower and slower (reads offset + limit rows)
+--     - Keyset (seek) : Constant (reads only limit rows)
+--
+-- * Jump to page N
+--     - LIMIT OFFSET  : ✅ Easy
+--     - Keyset (seek) : ❌ Only next / previous
+--
+-- * Rows added/deleted meanwhile
+--     - LIMIT OFFSET  : Duplicates or missed rows
+--     - Keyset (seek) : Stable
+--
+-- * Best for
+--     - LIMIT OFFSET  : Small tables, admin pages with page numbers
+--     - Keyset (seek) : Infinite scroll, APIs ("load more"), big tables
+--
 
 -- * If you must keep OFFSET — "deferred join": page through the small index first, then fetch the full rows:
 SELECT o.order_id, o.order_date, o.amount

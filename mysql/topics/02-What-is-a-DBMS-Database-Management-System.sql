@@ -141,12 +141,24 @@ INSERT INTO customers (customerid, firstname) VALUES (1, 'Copy');   -- fails
 -- 2.5 The 4 Core Pillars (Quick Reference)
 -- ------------------------------------------------------------
 
--- | Component | Role in the Ecosystem | Simple Analogy |
--- | :--- | :--- | :--- |
--- | 🗄️ Database | Stores Data | The physical storage locker / container |
--- | 🗣️ SQL | Speaks to Database | The standardized language used to communicate |
--- | ⚙️ DBMS | Manages Database | The intelligent manager / security controller |
--- | 🖥️ Server | Hosts Database Engine | The 24/7 operating computer host (Cloud / On-Premise) |
+-- (Component → Role in the Ecosystem | Simple Analogy)
+--
+-- * 🗄️ Database
+--     - Role in the Ecosystem : Stores Data
+--     - Simple Analogy        : The physical storage locker / container
+--
+-- * 🗣️ SQL
+--     - Role in the Ecosystem : Speaks to Database
+--     - Simple Analogy        : The standardized language used to communicate
+--
+-- * ⚙️ DBMS
+--     - Role in the Ecosystem : Manages Database
+--     - Simple Analogy        : The intelligent manager / security controller
+--
+-- * 🖥️ Server
+--     - Role in the Ecosystem : Hosts Database Engine
+--     - Simple Analogy        : The 24/7 operating computer host (Cloud / On-Premise)
+--
 
 -- ---
 

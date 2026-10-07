@@ -67,14 +67,32 @@ FROM customers;
 -- 8.3 Key Differences: Comparison Table
 -- ------------------------------------------------------------
 
--- | Feature / Aspect | SQL (Structured Query Language) | PostgreSQL (Relational DBMS) |
--- | :--- | :--- | :--- |
--- | Category | Declarative Query Language. | Complete RDBMS Software Engine. |
--- | Primary Purpose | Querying, filtering, and manipulating data. | Storing, persisting, indexing, and securing data files. |
--- | Data Storage | Does not store data itself. | Stores and manages data pages (8 KB) on physical disk. |
--- | Version Cycles | Standardized language specification (ANSI SQL). | Continuously updated database software (one major version per year, e.g., PostgreSQL 16, 17). |
--- | Installation | Cannot be installed (it is a language standard). | Installed as a background service on servers and cloud (AWS RDS, Azure, Supabase, Neon). |
--- | Analogy | Like the English Language (medium of speech). | Like a Person who understands and speaks English. |
+-- (Feature / Aspect → SQL (Structured Query Language) | PostgreSQL (Relational DBMS))
+--
+-- * Category
+--     - SQL (Structured Query Language) : Declarative Query Language.
+--     - PostgreSQL (Relational DBMS)    : Complete RDBMS Software Engine.
+--
+-- * Primary Purpose
+--     - SQL (Structured Query Language) : Querying, filtering, and manipulating data.
+--     - PostgreSQL (Relational DBMS)    : Storing, persisting, indexing, and securing data files.
+--
+-- * Data Storage
+--     - SQL (Structured Query Language) : Does not store data itself.
+--     - PostgreSQL (Relational DBMS)    : Stores and manages data pages (8 KB) on physical disk.
+--
+-- * Version Cycles
+--     - SQL (Structured Query Language) : Standardized language specification (ANSI SQL).
+--     - PostgreSQL (Relational DBMS)    : Continuously updated database software (one major version per year, e.g., PostgreSQL 16, 17).
+--
+-- * Installation
+--     - SQL (Structured Query Language) : Cannot be installed (it is a language standard).
+--     - PostgreSQL (Relational DBMS)    : Installed as a background service on servers and cloud (AWS RDS, Azure, Supabase, Neon).
+--
+-- * Analogy
+--     - SQL (Structured Query Language) : Like the English Language (medium of speech).
+--     - PostgreSQL (Relational DBMS)    : Like a Person who understands and speaks English.
+--
 
 -- ---
 
@@ -100,34 +118,112 @@ FROM customers;
 
 -- * Q. What are the main differences between PostgreSQL and MySQL? (Very common interview question.)
 
--- | Area | MySQL | PostgreSQL |
--- | :--- | :--- | :--- |
--- | Type | RDBMS | Object-Relational DBMS |
--- | Default port / admin user | `3306` / `root` | `5432` / `postgres` |
--- | Command-line client | `mysql` | `psql` |
--- | Auto-increment | `AUTO_INCREMENT` | `SERIAL` / `GENERATED AS IDENTITY` |
--- | Database vs Schema | Same thing | Different: Database → Schema (`public`) → Table |
--- | Switch database | `USE db;` | `\c db` (in psql) — one connection = one database |
--- | Quote identifiers | `` `name` `` (backticks) | `"name"` (double quotes) |
--- | String compare | Case-insensitive by default | Case-sensitive (`ILIKE` for case-insensitive) |
--- | Boolean | `TINYINT(1)` (0/1) | Real `BOOLEAN` (`TRUE`/`FALSE`) |
--- | Date + time types | `DATETIME`, `TIMESTAMP` | `TIMESTAMP`, `TIMESTAMPTZ`, `INTERVAL` |
--- | JSON | `JSON` | `JSON` and `JSONB` (indexable with GIN) |
--- | Arrays | No | Yes (`INT[]`, `TEXT[]`) |
--- | `FULL OUTER JOIN` | Not supported (use `UNION`) | Supported |
--- | `INTERSECT` / `EXCEPT` | From 8.0.31 | Always supported |
--- | Upsert | `ON DUPLICATE KEY UPDATE` | `ON CONFLICT ... DO UPDATE` |
--- | Get inserted id | `LAST_INSERT_ID()` | `RETURNING id` |
--- | Transactional DDL | No (DDL auto-commits) | Yes (`CREATE`/`ALTER`/`DROP` can be rolled back) |
--- | Storage engine | Pluggable (InnoDB, MyISAM…) | One built-in heap storage + WAL |
--- | Primary key storage | Clustered index (InnoDB) | Heap table + separate B-Tree index |
--- | Old row cleanup | Undo log (purge thread) | `VACUUM` / autovacuum |
--- | Index types | B-Tree, Full-text, Spatial, Hash (memory) | B-Tree, Hash, GIN, GiST, SP-GiST, BRIN |
--- | Partial / expression index | Functional index only (8.0.13+) | Both (`WHERE` in index, any expression) |
--- | Procedural language | SQL/PSM in procedures | PL/pgSQL (+ PL/Python, PL/Perl…) |
--- | Scheduled jobs | `CREATE EVENT` | Extension `pg_cron` (or OS cron) |
--- | Backup tool | `mysqldump` | `pg_dump` / `pg_restore` |
--- | License | GPL (Oracle owned) | PostgreSQL License (very permissive, community owned) |
+-- (Area → MySQL | PostgreSQL)
+--
+-- * Type
+--     - MySQL      : RDBMS
+--     - PostgreSQL : Object-Relational DBMS
+--
+-- * Default port / admin user
+--     - MySQL      : 3306 / root
+--     - PostgreSQL : 5432 / postgres
+--
+-- * Command-line client
+--     - MySQL      : mysql
+--     - PostgreSQL : psql
+--
+-- * Auto-increment
+--     - MySQL      : AUTO_INCREMENT
+--     - PostgreSQL : SERIAL / GENERATED AS IDENTITY
+--
+-- * Database vs Schema
+--     - MySQL      : Same thing
+--     - PostgreSQL : Different: Database → Schema (public) → Table
+--
+-- * Switch database
+--     - MySQL      : USE db;
+--     - PostgreSQL : \c db (in psql) — one connection = one database
+--
+-- * Quote identifiers
+--     - MySQL      : name  (backticks)
+--     - PostgreSQL : "name" (double quotes)
+--
+-- * String compare
+--     - MySQL      : Case-insensitive by default
+--     - PostgreSQL : Case-sensitive (ILIKE for case-insensitive)
+--
+-- * Boolean
+--     - MySQL      : TINYINT(1) (0/1)
+--     - PostgreSQL : Real BOOLEAN (TRUE/FALSE)
+--
+-- * Date + time types
+--     - MySQL      : DATETIME, TIMESTAMP
+--     - PostgreSQL : TIMESTAMP, TIMESTAMPTZ, INTERVAL
+--
+-- * JSON
+--     - MySQL      : JSON
+--     - PostgreSQL : JSON and JSONB (indexable with GIN)
+--
+-- * Arrays
+--     - MySQL      : No
+--     - PostgreSQL : Yes (INT[], TEXT[])
+--
+-- * FULL OUTER JOIN
+--     - MySQL      : Not supported (use UNION)
+--     - PostgreSQL : Supported
+--
+-- * INTERSECT / EXCEPT
+--     - MySQL      : From 8.0.31
+--     - PostgreSQL : Always supported
+--
+-- * Upsert
+--     - MySQL      : ON DUPLICATE KEY UPDATE
+--     - PostgreSQL : ON CONFLICT ... DO UPDATE
+--
+-- * Get inserted id
+--     - MySQL      : LAST_INSERT_ID()
+--     - PostgreSQL : RETURNING id
+--
+-- * Transactional DDL
+--     - MySQL      : No (DDL auto-commits)
+--     - PostgreSQL : Yes (CREATE/ALTER/DROP can be rolled back)
+--
+-- * Storage engine
+--     - MySQL      : Pluggable (InnoDB, MyISAM…)
+--     - PostgreSQL : One built-in heap storage + WAL
+--
+-- * Primary key storage
+--     - MySQL      : Clustered index (InnoDB)
+--     - PostgreSQL : Heap table + separate B-Tree index
+--
+-- * Old row cleanup
+--     - MySQL      : Undo log (purge thread)
+--     - PostgreSQL : VACUUM / autovacuum
+--
+-- * Index types
+--     - MySQL      : B-Tree, Full-text, Spatial, Hash (memory)
+--     - PostgreSQL : B-Tree, Hash, GIN, GiST, SP-GiST, BRIN
+--
+-- * Partial / expression index
+--     - MySQL      : Functional index only (8.0.13+)
+--     - PostgreSQL : Both (WHERE in index, any expression)
+--
+-- * Procedural language
+--     - MySQL      : SQL/PSM in procedures
+--     - PostgreSQL : PL/pgSQL (+ PL/Python, PL/Perl…)
+--
+-- * Scheduled jobs
+--     - MySQL      : CREATE EVENT
+--     - PostgreSQL : Extension pg_cron (or OS cron)
+--
+-- * Backup tool
+--     - MySQL      : mysqldump
+--     - PostgreSQL : pg_dump / pg_restore
+--
+-- * License
+--     - MySQL      : GPL (Oracle owned)
+--     - PostgreSQL : PostgreSQL License (very permissive, community owned)
+--
 
 -- ---
 

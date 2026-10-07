@@ -114,15 +114,36 @@ EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM employees WHERE department = 'Sales';
 
 -- * Common nodes:
 
--- | Node | Meaning | Good / Bad |
--- | :--- | :--- | :--- |
--- | `Seq Scan` | Reads the whole table | Bad on big tables with selective filters; fine on small tables |
--- | `Index Scan` | Walks the index, then reads heap rows | Good for few rows |
--- | `Index Only Scan` | Answers from the index alone (`Heap Fetches: 0` is best) | Best |
--- | `Bitmap Index Scan` + `Bitmap Heap Scan` | Collects matching CTIDs, then reads pages in order | Good for medium number of rows |
--- | `Nested Loop` / `Hash Join` / `Merge Join` | Join algorithms (Topic 45) | Depends on sizes |
--- | `Sort` (`Sort Method: external merge Disk`) | Sorting spilled to disk | Increase `work_mem` or add an index |
--- | `HashAggregate` / `GroupAggregate` | `GROUP BY` | — |
+-- (Node → Meaning | Good / Bad)
+--
+-- * Seq Scan
+--     - Meaning    : Reads the whole table
+--     - Good / Bad : Bad on big tables with selective filters; fine on small tables
+--
+-- * Index Scan
+--     - Meaning    : Walks the index, then reads heap rows
+--     - Good / Bad : Good for few rows
+--
+-- * Index Only Scan
+--     - Meaning    : Answers from the index alone (Heap Fetches: 0 is best)
+--     - Good / Bad : Best
+--
+-- * Bitmap Index Scan + Bitmap Heap Scan
+--     - Meaning    : Collects matching CTIDs, then reads pages in order
+--     - Good / Bad : Good for medium number of rows
+--
+-- * Nested Loop / Hash Join / Merge Join
+--     - Meaning    : Join algorithms (Topic 45)
+--     - Good / Bad : Depends on sizes
+--
+-- * Sort (Sort Method: external merge Disk)
+--     - Meaning    : Sorting spilled to disk
+--     - Good / Bad : Increase work_mem or add an index
+--
+-- * HashAggregate / GroupAggregate
+--     - Meaning    : GROUP BY
+--     - Good / Bad : —
+--
 
 -- * Red flags: estimated `rows=` very different from actual `rows=`, `Rows Removed by Filter` very large, `Seq Scan` on a big table, sorts on disk, `loops=` huge inside a Nested Loop.
 

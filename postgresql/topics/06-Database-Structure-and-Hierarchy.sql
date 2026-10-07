@@ -188,14 +188,32 @@ SET search_path TO orders, public;    -- now you can write just: SELECT * FROM o
 
 -- Databases are designed in two complementary layers: Logical and Physical.
 
--- | Dimension | Logical Schema | Physical Schema |
--- | :--- | :--- | :--- |
--- | Definition | Design of the tables and how they are related. | How the data is actually stored on disk (files, partitions, indexes). |
--- | Core Focus | What data is stored and how tables relate. | How data is physically laid out, indexed, and partitioned on disk. |
--- | Key Question | "What data do we store and how is it connected?" | "How and where is the data stored on disk?" |
--- | Components | Tables, column datatypes, relationships, constraints. | Filepaths, tablespaces, data files under `PGDATA/base/`, partitions, B-tree block sizes. |
--- | Primary Audience | Developers, Data Analysts, Data Modelers. | Database Administrators (DBAs), Storage Engineers, DB Engines. |
--- | Visibility | Visible to developers and SQL queries. | Hidden inside the storage engine. |
+-- (Dimension → Logical Schema | Physical Schema)
+--
+-- * Definition
+--     - Logical Schema  : Design of the tables and how they are related.
+--     - Physical Schema : How the data is actually stored on disk (files, partitions, indexes).
+--
+-- * Core Focus
+--     - Logical Schema  : What data is stored and how tables relate.
+--     - Physical Schema : How data is physically laid out, indexed, and partitioned on disk.
+--
+-- * Key Question
+--     - Logical Schema  : "What data do we store and how is it connected?"
+--     - Physical Schema : "How and where is the data stored on disk?"
+--
+-- * Components
+--     - Logical Schema  : Tables, column datatypes, relationships, constraints.
+--     - Physical Schema : Filepaths, tablespaces, data files under PGDATA/base/, partitions, B-tree block sizes.
+--
+-- * Primary Audience
+--     - Logical Schema  : Developers, Data Analysts, Data Modelers.
+--     - Physical Schema : Database Administrators (DBAs), Storage Engineers, DB Engines.
+--
+-- * Visibility
+--     - Logical Schema  : Visible to developers and SQL queries.
+--     - Physical Schema : Hidden inside the storage engine.
+--
 
 -- ------------------------------------------------------------
 -- 1. Logical Schema (The Conceptual Blueprint)
@@ -223,11 +241,20 @@ SET search_path TO orders, public;    -- now you can write just: SELECT * FROM o
 
 --   * Definition: A Table stores data in rows (horizontal) and columns (vertical), like an Excel sheet.
 
--- | Customer_ID | Customer_Name | City |
--- | :--- | :--- | :--- |
--- | 101 | Rahul | Pune |
--- | 102 | Priya | Mumbai |
--- | 103 | Amit | Nashik |
+-- (Customer_ID → Customer_Name | City)
+--
+-- * 101
+--     - Customer_Name : Rahul
+--     - City          : Pune
+--
+-- * 102
+--     - Customer_Name : Priya
+--     - City          : Mumbai
+--
+-- * 103
+--     - Customer_Name : Amit
+--     - City          : Nashik
+--
 
 -- ------------------------------------------------------------
 -- 1. Columns (Fields / Attributes)
@@ -267,10 +294,16 @@ SET search_path TO orders, public;    -- now you can write just: SELECT * FROM o
 
 --   * Like a fingerprint: no two rows can ever have the same Primary Key value.
 
--- | Customer_ID (🔑 Primary Key) | Customer_Name | City |
--- | :--- | :--- | :--- |
--- | 101 | Rahul | Pune |
--- | 102 | Priya | Mumbai |
+-- (Customer_ID (🔑 Primary Key) → Customer_Name | City)
+--
+-- * 101
+--     - Customer_Name : Rahul
+--     - City          : Pune
+--
+-- * 102
+--     - Customer_Name : Priya
+--     - City          : Mumbai
+--
 
 -- * The 5 Core Properties of a Primary Key:
 
@@ -332,15 +365,36 @@ SET search_path TO orders, public;    -- now you can write just: SELECT * FROM o
 -- Comparison: Fixed vs. Variable Data Types
 -- ------------------------------------------------------------
 
--- | Feature / Dimension | Fixed Data Types (e.g., `CHAR(10)`) | Variable Data Types (e.g., `VARCHAR(10)`) |
--- | :--- | :--- | :--- |
--- | Storage Allocation | Takes fixed, predetermined storage size | Takes storage based on actual value length |
--- | Space Utilization | Can waste space if values are short (`CHAR` pads with spaces) | Space-efficient (actual length + 1 or 4 byte header) |
--- | Read / Write Speed | No real speed benefit for text in PostgreSQL | Same speed as `CHAR` in PostgreSQL |
--- | Space Overhead | Header + padding for `CHAR`; no header for numbers | 1 byte (short values) or 4 bytes (long values) |
--- | Space Padding | `CHAR` is padded with spaces | No padding; stored exactly as entered |
--- | Best Used When | Numbers, dates, flags | Text whose length varies |
--- | Primary Examples | `INTEGER`, `BIGINT`, `DATE`, `BOOLEAN`, `CHAR(n)` | `VARCHAR(n)`, `TEXT`, `BYTEA`, `NUMERIC`, `JSONB` |
+-- (Feature / Dimension → Fixed Data Types (e.g., CHAR(10)) | Variable Data Types (e.g., VARCHAR(10)))
+--
+-- * Storage Allocation
+--     - Fixed Data Types (e.g., CHAR(10))       : Takes fixed, predetermined storage size
+--     - Variable Data Types (e.g., VARCHAR(10)) : Takes storage based on actual value length
+--
+-- * Space Utilization
+--     - Fixed Data Types (e.g., CHAR(10))       : Can waste space if values are short (CHAR pads with spaces)
+--     - Variable Data Types (e.g., VARCHAR(10)) : Space-efficient (actual length + 1 or 4 byte header)
+--
+-- * Read / Write Speed
+--     - Fixed Data Types (e.g., CHAR(10))       : No real speed benefit for text in PostgreSQL
+--     - Variable Data Types (e.g., VARCHAR(10)) : Same speed as CHAR in PostgreSQL
+--
+-- * Space Overhead
+--     - Fixed Data Types (e.g., CHAR(10))       : Header + padding for CHAR; no header for numbers
+--     - Variable Data Types (e.g., VARCHAR(10)) : 1 byte (short values) or 4 bytes (long values)
+--
+-- * Space Padding
+--     - Fixed Data Types (e.g., CHAR(10))       : CHAR is padded with spaces
+--     - Variable Data Types (e.g., VARCHAR(10)) : No padding; stored exactly as entered
+--
+-- * Best Used When
+--     - Fixed Data Types (e.g., CHAR(10))       : Numbers, dates, flags
+--     - Variable Data Types (e.g., VARCHAR(10)) : Text whose length varies
+--
+-- * Primary Examples
+--     - Fixed Data Types (e.g., CHAR(10))       : INTEGER, BIGINT, DATE, BOOLEAN, CHAR(n)
+--     - Variable Data Types (e.g., VARCHAR(10)) : VARCHAR(n), TEXT, BYTEA, NUMERIC, JSONB
+--
 
 -- > 🐘 Important PostgreSQL fact: In PostgreSQL, `CHAR(n)` is NOT faster than `VARCHAR(n)` or `TEXT`. The official docs say `CHAR(n)` is usually the slowest of the three because of the padding work. Most PostgreSQL developers use `TEXT` or `VARCHAR(n)` for all strings.
 
@@ -350,13 +404,48 @@ SET search_path TO orders, public;    -- now you can write just: SELECT * FROM o
 
 -- Suppose we create two columns: `code_fixed CHAR(10)` and `code_var VARCHAR(10)`, and store the same string values (English letters = 1 byte each). Notice how PostgreSQL stores them:
 
--- | Inserted String | Actual Length | `CHAR(10)` Physical Storage | Bytes Used (`CHAR(10)`) | `VARCHAR(10)` Physical Storage | Bytes Used (`VARCHAR(10)`) | Memory Saved by VARCHAR |
--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
--- | `''` (Empty) | 0 chars | `'          '` (10 spaces) | 11 Bytes (1 + 10) | `[0]` (header only) | 1 Byte | 10 Bytes |
--- | `'AB'` | 2 chars | `'AB        '` (2 chars + 8 spaces) | 11 Bytes | `[2] + 'AB'` | 3 Bytes (1 + 2) | 8 Bytes |
--- | `'Pune'` | 4 chars | `'Pune      '` (4 chars + 6 spaces) | 11 Bytes | `[4] + 'Pune'` | 5 Bytes (1 + 4) | 6 Bytes |
--- | `'India'` | 5 chars | `'India     '` (5 chars + 5 spaces) | 11 Bytes | `[5] + 'India'` | 6 Bytes (1 + 5) | 5 Bytes |
--- | `'0123456789'` | 10 chars | `'0123456789'` (no spaces) | 11 Bytes | `[10] + '0123456789'` | 11 Bytes (1 + 10) | 0 Bytes |
+-- (Inserted String → Actual Length | CHAR(10) Physical Storage | Bytes Used (CHAR(10)) | VARCHAR(10) Physical Storage | Bytes Used (VARCHAR(10)) | Memory Saved by VARCHAR)
+--
+-- * '' (Empty)
+--     - Actual Length                : 0 chars
+--     - CHAR(10) Physical Storage    : '          ' (10 spaces)
+--     - Bytes Used (CHAR(10))        : 11 Bytes (1 + 10)
+--     - VARCHAR(10) Physical Storage : [0] (header only)
+--     - Bytes Used (VARCHAR(10))     : 1 Byte
+--     - Memory Saved by VARCHAR      : 10 Bytes
+--
+-- * 'AB'
+--     - Actual Length                : 2 chars
+--     - CHAR(10) Physical Storage    : 'AB        ' (2 chars + 8 spaces)
+--     - Bytes Used (CHAR(10))        : 11 Bytes
+--     - VARCHAR(10) Physical Storage : [2] + 'AB'
+--     - Bytes Used (VARCHAR(10))     : 3 Bytes (1 + 2)
+--     - Memory Saved by VARCHAR      : 8 Bytes
+--
+-- * 'Pune'
+--     - Actual Length                : 4 chars
+--     - CHAR(10) Physical Storage    : 'Pune      ' (4 chars + 6 spaces)
+--     - Bytes Used (CHAR(10))        : 11 Bytes
+--     - VARCHAR(10) Physical Storage : [4] + 'Pune'
+--     - Bytes Used (VARCHAR(10))     : 5 Bytes (1 + 4)
+--     - Memory Saved by VARCHAR      : 6 Bytes
+--
+-- * 'India'
+--     - Actual Length                : 5 chars
+--     - CHAR(10) Physical Storage    : 'India     ' (5 chars + 5 spaces)
+--     - Bytes Used (CHAR(10))        : 11 Bytes
+--     - VARCHAR(10) Physical Storage : [5] + 'India'
+--     - Bytes Used (VARCHAR(10))     : 6 Bytes (1 + 5)
+--     - Memory Saved by VARCHAR      : 5 Bytes
+--
+-- * '0123456789'
+--     - Actual Length                : 10 chars
+--     - CHAR(10) Physical Storage    : '0123456789' (no spaces)
+--     - Bytes Used (CHAR(10))        : 11 Bytes
+--     - VARCHAR(10) Physical Storage : [10] + '0123456789'
+--     - Bytes Used (VARCHAR(10))     : 11 Bytes (1 + 10)
+--     - Memory Saved by VARCHAR      : 0 Bytes
+--
 
 -- ------------------------------------------------------------
 -- Visual Memory Layout Diagram
@@ -465,12 +554,24 @@ FROM storage_comparison;
 
 -- * MySQL uses `AUTO_INCREMENT`. PostgreSQL uses a sequence behind the scenes. There are two ways to write it:
 
--- | PostgreSQL | Size | Same as MySQL |
--- | :--- | :--- | :--- |
--- | `SMALLSERIAL` | 2 B | `SMALLINT AUTO_INCREMENT` |
--- | `SERIAL` | 4 B | `INT AUTO_INCREMENT` |
--- | `BIGSERIAL` | 8 B | `BIGINT AUTO_INCREMENT` |
--- | `INT GENERATED ALWAYS AS IDENTITY` | 4 B | `INT AUTO_INCREMENT` (SQL-standard, recommended in new code) |
+-- (PostgreSQL → Size | Same as MySQL)
+--
+-- * SMALLSERIAL
+--     - Size          : 2 B
+--     - Same as MySQL : SMALLINT AUTO_INCREMENT
+--
+-- * SERIAL
+--     - Size          : 4 B
+--     - Same as MySQL : INT AUTO_INCREMENT
+--
+-- * BIGSERIAL
+--     - Size          : 8 B
+--     - Same as MySQL : BIGINT AUTO_INCREMENT
+--
+-- * INT GENERATED ALWAYS AS IDENTITY
+--     - Size          : 4 B
+--     - Same as MySQL : INT AUTO_INCREMENT (SQL-standard, recommended in new code)
+--
 
 -- Old style (still very common)
 CREATE TABLE customers (
@@ -599,14 +700,38 @@ INSERT INTO customers (name) VALUES ('Rahul') RETURNING id;   -- RETURNING gives
 -- Comparison: `CHAR` vs. `VARCHAR` vs. `TEXT` (PostgreSQL)
 -- ------------------------------------------------------------
 
--- | Feature / Dimension | `CHAR(n)` | `VARCHAR(n)` | `TEXT` |
--- | :--- | :--- | :--- | :--- |
--- | String Length Type | Fixed-length | Variable, max `n` | Variable, no max |
--- | Storage | Padded with spaces to `n` | Actual length + header | Actual length + header |
--- | Performance | Slightly slowest | Same as TEXT | Fastest / simplest |
--- | Maximum | ~10 million chars | ~10 million chars (`n`) | 1 GB per value |
--- | Trailing Spaces | Ignored in comparisons | Kept as entered | Kept as entered |
--- | Use Cases | Rare (fixed codes) | When a max length rule is needed | Default choice for strings |
+-- (Feature / Dimension → CHAR(n) | VARCHAR(n) | TEXT)
+--
+-- * String Length Type
+--     - CHAR(n)    : Fixed-length
+--     - VARCHAR(n) : Variable, max n
+--     - TEXT       : Variable, no max
+--
+-- * Storage
+--     - CHAR(n)    : Padded with spaces to n
+--     - VARCHAR(n) : Actual length + header
+--     - TEXT       : Actual length + header
+--
+-- * Performance
+--     - CHAR(n)    : Slightly slowest
+--     - VARCHAR(n) : Same as TEXT
+--     - TEXT       : Fastest / simplest
+--
+-- * Maximum
+--     - CHAR(n)    : ~10 million chars
+--     - VARCHAR(n) : ~10 million chars (n)
+--     - TEXT       : 1 GB per value
+--
+-- * Trailing Spaces
+--     - CHAR(n)    : Ignored in comparisons
+--     - VARCHAR(n) : Kept as entered
+--     - TEXT       : Kept as entered
+--
+-- * Use Cases
+--     - CHAR(n)    : Rare (fixed codes)
+--     - VARCHAR(n) : When a max length rule is needed
+--     - TEXT       : Default choice for strings
+--
 
 -- ------------------------------------------------------------
 -- 3. `TEXT` (Long Text Strings)
@@ -704,15 +829,36 @@ SELECT name, hobbies[1] AS first_hobby FROM students;       -- arrays start at 1
 -- 9. Extra PostgreSQL-only Types (Not in MySQL)
 -- ------------------------------------------------------------
 
--- | Type | What it stores | Example |
--- | :--- | :--- | :--- |
--- | `UUID` | 128-bit unique id (16 bytes) | `gen_random_uuid()` → `'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11'` |
--- | `INTERVAL` | A length of time | `INTERVAL '2 days 3 hours'` |
--- | `INET` / `CIDR` | IP address / network | `'192.168.1.10'` |
--- | `MACADDR` | Network card address | `'08:00:2b:01:02:03'` |
--- | `JSONB` | Binary JSON document (see 6.8.8) | `'{"age": 25}'` |
--- | `TSVECTOR` | Full-text search document | `to_tsvector('english', 'SQL notes')` |
--- | Range types | A range of values | `INT4RANGE(1, 10)`, `DATERANGE('2026-01-01', '2026-12-31')` |
+-- (Type → What it stores | Example)
+--
+-- * UUID
+--     - What it stores : 128-bit unique id (16 bytes)
+--     - Example        : gen_random_uuid() → 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11'
+--
+-- * INTERVAL
+--     - What it stores : A length of time
+--     - Example        : INTERVAL '2 days 3 hours'
+--
+-- * INET / CIDR
+--     - What it stores : IP address / network
+--     - Example        : '192.168.1.10'
+--
+-- * MACADDR
+--     - What it stores : Network card address
+--     - Example        : '08:00:2b:01:02:03'
+--
+-- * JSONB
+--     - What it stores : Binary JSON document (see 6.8.8)
+--     - Example        : '{"age": 25}'
+--
+-- * TSVECTOR
+--     - What it stores : Full-text search document
+--     - Example        : to_tsvector('english', 'SQL notes')
+--
+-- * Range types
+--     - What it stores : A range of values
+--     - Example        : INT4RANGE(1, 10), DATERANGE('2026-01-01', '2026-12-31')
+--
 
 -- ---
 
@@ -866,15 +1012,36 @@ SELECT NOW() AT TIME ZONE 'America/New_York';     -- show current time in New Yo
 
 -- Q. What is the difference between TIMESTAMP and TIMESTAMPTZ in PostgreSQL? (Same question as "DATETIME vs TIMESTAMP" in MySQL.)
 
--- | Feature / Dimension | `TIMESTAMP` (without time zone) | `TIMESTAMPTZ` (with time zone) |
--- | :--- | :--- | :--- |
--- | 1. MySQL equivalent | `DATETIME` | `TIMESTAMP` |
--- | 2. Display Format | `2026-09-21 10:00:00` | `2026-09-21 10:00:00+05:30` |
--- | 3. Storage Size | 8 Bytes | 8 Bytes |
--- | 4. Supported Range | `4713 BC` to `294276 AD` | `4713 BC` to `294276 AD` (no 2038 limit) |
--- | 5. Time Zone Handling | No conversion; stores exactly what you insert. | Converted to UTC on insert, back to session time zone on read. |
--- | 6. Auto-Update Capability | `DEFAULT now()` on insert; no `ON UPDATE` (use a trigger). | Same: `DEFAULT now()`; update via trigger. |
--- | 7. Best Use Cases | Birthdays, historical dates, "local" appointment times. | `created_at`, `updated_at`, logs, audit trails, anything global. |
+-- (Feature / Dimension → TIMESTAMP (without time zone) | TIMESTAMPTZ (with time zone))
+--
+-- * 1. MySQL equivalent
+--     - TIMESTAMP (without time zone) : DATETIME
+--     - TIMESTAMPTZ (with time zone)  : TIMESTAMP
+--
+-- * 2. Display Format
+--     - TIMESTAMP (without time zone) : 2026-09-21 10:00:00
+--     - TIMESTAMPTZ (with time zone)  : 2026-09-21 10:00:00+05:30
+--
+-- * 3. Storage Size
+--     - TIMESTAMP (without time zone) : 8 Bytes
+--     - TIMESTAMPTZ (with time zone)  : 8 Bytes
+--
+-- * 4. Supported Range
+--     - TIMESTAMP (without time zone) : 4713 BC to 294276 AD
+--     - TIMESTAMPTZ (with time zone)  : 4713 BC to 294276 AD (no 2038 limit)
+--
+-- * 5. Time Zone Handling
+--     - TIMESTAMP (without time zone) : No conversion; stores exactly what you insert.
+--     - TIMESTAMPTZ (with time zone)  : Converted to UTC on insert, back to session time zone on read.
+--
+-- * 6. Auto-Update Capability
+--     - TIMESTAMP (without time zone) : DEFAULT now() on insert; no ON UPDATE (use a trigger).
+--     - TIMESTAMPTZ (with time zone)  : Same: DEFAULT now(); update via trigger.
+--
+-- * 7. Best Use Cases
+--     - TIMESTAMP (without time zone) : Birthdays, historical dates, "local" appointment times.
+--     - TIMESTAMPTZ (with time zone)  : created_at, updated_at, logs, audit trails, anything global.
+--
 
 -- ------------------------------------------------------------
 -- Point-Wise Detailed Breakdown:
@@ -980,10 +1147,20 @@ CREATE TABLE customer_profiles (
 
 --   * PostgreSQL has two JSON types:
 
--- | Type | How it is stored | Speed | Keeps key order / duplicate keys / spaces? | Can be indexed (GIN)? |
--- | :--- | :--- | :--- | :--- | :--- |
--- | `JSON` | As plain text, exactly as typed | Slower to query (parsed every time) | Yes | No |
--- | `JSONB` | Binary, already parsed | Faster to query | No (keys sorted, duplicates removed) | Yes |
+-- (Type → How it is stored | Speed | Keeps key order / duplicate keys / spaces? | Can be indexed (GIN)?)
+--
+-- * JSON
+--     - How it is stored                           : As plain text, exactly as typed
+--     - Speed                                      : Slower to query (parsed every time)
+--     - Keeps key order / duplicate keys / spaces? : Yes
+--     - Can be indexed (GIN)?                      : No
+--
+-- * JSONB
+--     - How it is stored                           : Binary, already parsed
+--     - Speed                                      : Faster to query
+--     - Keeps key order / duplicate keys / spaces? : No (keys sorted, duplicates removed)
+--     - Can be indexed (GIN)?                      : Yes
+--
 
 --   * Rule: Always use `JSONB` unless you must keep the exact original text. (MySQL `JSON` is also binary, so it is like PostgreSQL `JSONB`.)
 
@@ -993,24 +1170,75 @@ CREATE TABLE customer_profiles (
 
 --   * PostgreSQL uses operators with key names and array positions instead of MySQL's `'$.path'` strings.
 
--- | What you want | MySQL | PostgreSQL |
--- | :--- | :--- | :--- |
--- | Field `age` (as JSON) | `details->'$.age'` | `details->'age'` |
--- | Field `age` (as text) | `details->>'$.age'` | `details->>'age'` |
--- | Nested `address.city` (text) | `details->>'$.address.city'` | `details->'address'->>'city'` or `details#>>'{address,city}'` |
--- | First array element | `details->>'$.skills[0]'` | `details->'skills'->>0` (0-based) |
--- | SQL/JSON path (PG 12+) | — | `jsonb_path_query(details, '$.skills[0]')` (same `$` style as MySQL) |
+-- (What you want → MySQL | PostgreSQL)
+--
+-- * Field age (as JSON)
+--     - MySQL      : details->'$.age'
+--     - PostgreSQL : details->'age'
+--
+-- * Field age (as text)
+--     - MySQL      : details->>'$.age'
+--     - PostgreSQL : details->>'age'
+--
+-- * Nested address.city (text)
+--     - MySQL      : details->>'$.address.city'
+--     - PostgreSQL : details->'address'->>'city' or details#>>'{address,city}'
+--
+-- * First array element
+--     - MySQL      : details->>'$.skills[0]'
+--     - PostgreSQL : details->'skills'->>0 (0-based)
+--
+-- * SQL/JSON path (PG 12+)
+--     - MySQL      : —
+--     - PostgreSQL : jsonb_path_query(details, '.skills[0]') (same  style as MySQL)
+--
 
 -- * JSON Extraction Operators (`->` vs. `->>`):
 
--- | Operator | Extraction Syntax | Output Type | Description & Purpose | Example | Result |
--- | :--- | :--- | :--- | :--- | :--- | :--- |
--- | `->` | `column->'key'` | `jsonb` (JSON value) | Keeps the value as JSON. Use when you want to go deeper or keep JSON type. | `details->'email'` | `"alice@example.com"` |
--- | `->>` | `column->>'key'` | `text` | Gives plain text. Use in `WHERE`, display, joins. | `details->>'email'` | `alice@example.com` |
--- | `#>` | `column#>'{a,b}'` | `jsonb` | Nested path as JSON | `details#>'{address,city}'` | `"Pune"` |
--- | `#>>` | `column#>>'{a,b}'` | `text` | Nested path as text | `details#>>'{address,city}'` | `Pune` |
--- | `@>` | `column @> '{...}'` | `boolean` | Contains? (can use a GIN index) | `details @> '{"isAdmin": true}'` | `true` |
--- | `?` | `column ? 'key'` | `boolean` | Does the key exist? | `details ? 'phone'` | `true` / `false` |
+-- (Operator → Extraction Syntax | Output Type | Description & Purpose | Example | Result)
+--
+-- * ->
+--     - Extraction Syntax     : column->'key'
+--     - Output Type           : jsonb (JSON value)
+--     - Description & Purpose : Keeps the value as JSON. Use when you want to go deeper or keep JSON type.
+--     - Example               : details->'email'
+--     - Result                : "alice@example.com"
+--
+-- * ->>
+--     - Extraction Syntax     : column->>'key'
+--     - Output Type           : text
+--     - Description & Purpose : Gives plain text. Use in WHERE, display, joins.
+--     - Example               : details->>'email'
+--     - Result                : alice@example.com
+--
+-- * #>
+--     - Extraction Syntax     : column#>'{a,b}'
+--     - Output Type           : jsonb
+--     - Description & Purpose : Nested path as JSON
+--     - Example               : details#>'{address,city}'
+--     - Result                : "Pune"
+--
+-- * #>>
+--     - Extraction Syntax     : column#>>'{a,b}'
+--     - Output Type           : text
+--     - Description & Purpose : Nested path as text
+--     - Example               : details#>>'{address,city}'
+--     - Result                : Pune
+--
+-- * @>
+--     - Extraction Syntax     : column @> '{...}'
+--     - Output Type           : boolean
+--     - Description & Purpose : Contains? (can use a GIN index)
+--     - Example               : details @> '{"isAdmin": true}'
+--     - Result                : true
+--
+-- * ?
+--     - Extraction Syntax     : column ? 'key'
+--     - Output Type           : boolean
+--     - Description & Purpose : Does the key exist?
+--     - Example               : details ? 'phone'
+--     - Result                : true / false
+--
 
 -- > ⚠️ Note: `->>` always returns text. To compare numbers, cast: `(details->>'age')::INT > 25`.
 
@@ -1177,16 +1405,48 @@ CREATE EXTENSION IF NOT EXISTS postgis;   -- run once per database
 
 -- * The 8 OpenGIS Spatial Data Types (PostGIS):
 
--- | Data Type | Structural Category | Geometric Representation | Primary Real-World Use Case |
--- | :--- | :--- | :--- | :--- |
--- | `geometry` (any) | Generic Spatial | Any geometric shape (`POINT`, `LINESTRING`, `POLYGON`). | Flexible column capable of holding any spatial geometry per row. |
--- | `geometry(Point)` | Single Coordinate | Single 2D coordinate pair $(x, y)$ (longitude, latitude). | User coordinates, GPS device locations, store/branch coordinates. |
--- | `geometry(LineString)` | Connected Points | Series of connected coordinate points representing a line. | Roads, delivery routes, rivers, railway tracks, flight paths. |
--- | `geometry(Polygon)` | Closed Area | Closed boundary where the last coordinate connects to the first. | City limits, delivery coverage zones, lakes, property plots. |
--- | `geometry(MultiPoint)` | Multi-Geometry | Collection of multiple separate `POINT` objects. | Multiple branch locations of a company, multiple check-in points. |
--- | `geometry(MultiLineString)` | Multi-Geometry | Collection of multiple separate `LINESTRING` objects. | Road networks, subway transit systems, highway networks. |
--- | `geometry(MultiPolygon)` | Multi-Geometry | Collection of multiple separate `POLYGON` objects. | Country territories with islands, multi-district zones. |
--- | `geometry(GeometryCollection)` | Mixed Collection | Mixed geometry types (`POINT` + `LINE` + `POLYGON`). | Mixed complex geographic zones (e.g., city with points, routes, and parks). |
+-- (Data Type → Structural Category | Geometric Representation | Primary Real-World Use Case)
+--
+-- * geometry (any)
+--     - Structural Category         : Generic Spatial
+--     - Geometric Representation    : Any geometric shape (POINT, LINESTRING, POLYGON).
+--     - Primary Real-World Use Case : Flexible column capable of holding any spatial geometry per row.
+--
+-- * geometry(Point)
+--     - Structural Category         : Single Coordinate
+--     - Geometric Representation    : Single 2D coordinate pair (x, y) (longitude, latitude).
+--     - Primary Real-World Use Case : User coordinates, GPS device locations, store/branch coordinates.
+--
+-- * geometry(LineString)
+--     - Structural Category         : Connected Points
+--     - Geometric Representation    : Series of connected coordinate points representing a line.
+--     - Primary Real-World Use Case : Roads, delivery routes, rivers, railway tracks, flight paths.
+--
+-- * geometry(Polygon)
+--     - Structural Category         : Closed Area
+--     - Geometric Representation    : Closed boundary where the last coordinate connects to the first.
+--     - Primary Real-World Use Case : City limits, delivery coverage zones, lakes, property plots.
+--
+-- * geometry(MultiPoint)
+--     - Structural Category         : Multi-Geometry
+--     - Geometric Representation    : Collection of multiple separate POINT objects.
+--     - Primary Real-World Use Case : Multiple branch locations of a company, multiple check-in points.
+--
+-- * geometry(MultiLineString)
+--     - Structural Category         : Multi-Geometry
+--     - Geometric Representation    : Collection of multiple separate LINESTRING objects.
+--     - Primary Real-World Use Case : Road networks, subway transit systems, highway networks.
+--
+-- * geometry(MultiPolygon)
+--     - Structural Category         : Multi-Geometry
+--     - Geometric Representation    : Collection of multiple separate POLYGON objects.
+--     - Primary Real-World Use Case : Country territories with islands, multi-district zones.
+--
+-- * geometry(GeometryCollection)
+--     - Structural Category         : Mixed Collection
+--     - Geometric Representation    : Mixed geometry types (POINT + LINE + POLYGON).
+--     - Primary Real-World Use Case : Mixed complex geographic zones (e.g., city with points, routes, and parks).
+--
 
 -- * In-Depth Breakdown of Each Geometry Type with Code Examples:
 
@@ -1360,13 +1620,28 @@ VALUES ('City Example', ST_GeomFromText(
 
 --   * `GeometryCollection` = A container that holds multiple items together in one record (Points + Lines + Polygons combined).
 
--- | Feature / Aspect | `geometry` Type | `GeometryCollection` Type |
--- | :--- | :--- | :--- |
--- | Storage Capacity | Stores only one geometry object at a time per row. | Stores multiple geometry objects in a single record. |
--- | Object Variation | The type can vary across rows (Row 1 = Point, Row 2 = Polygon). | Can contain a mix of Points, Lines, and Polygons together. |
--- | Shape Complexity | Models simple shapes (individual point or single polygon). | Models complex compound shapes (entire city layout). |
--- | Use Case | When you want column flexibility without knowing the type ahead of time. | When multiple shapes make up one geographic thing. |
--- | WKT Syntax Example | `'POINT(77.59 12.97)'` or `'POLYGON((...))'` | `'GEOMETRYCOLLECTION(POINT(...), LINESTRING(...), POLYGON(...))'` |
+-- (Feature / Aspect → geometry Type | GeometryCollection Type)
+--
+-- * Storage Capacity
+--     - geometry Type           : Stores only one geometry object at a time per row.
+--     - GeometryCollection Type : Stores multiple geometry objects in a single record.
+--
+-- * Object Variation
+--     - geometry Type           : The type can vary across rows (Row 1 = Point, Row 2 = Polygon).
+--     - GeometryCollection Type : Can contain a mix of Points, Lines, and Polygons together.
+--
+-- * Shape Complexity
+--     - geometry Type           : Models simple shapes (individual point or single polygon).
+--     - GeometryCollection Type : Models complex compound shapes (entire city layout).
+--
+-- * Use Case
+--     - geometry Type           : When you want column flexibility without knowing the type ahead of time.
+--     - GeometryCollection Type : When multiple shapes make up one geographic thing.
+--
+-- * WKT Syntax Example
+--     - geometry Type           : 'POINT(77.59 12.97)' or 'POLYGON((...))'
+--     - GeometryCollection Type : 'GEOMETRYCOLLECTION(POINT(...), LINESTRING(...), POLYGON(...))'
+--
 
 -- * Code Demonstration: `geometry` vs `GeometryCollection`:
 
@@ -1484,45 +1759,152 @@ SELECT ST_Contains(polygon, point) AS contains FROM g;  -- true
 -- ------------------------------------------------------------
 -- 1. JSONB Path / Access Properties
 -- ------------------------------------------------------------
--- | Expression | Target Element | Description & Behavior | Example |
--- | :--- | :--- | :--- | :--- |
--- | `col` | Document Root | The entire JSON document. | `SELECT details FROM users;` |
--- | `col->'key'` | Direct Object Key | Value of `key` as JSON. | `details->'age'` |
--- | `col->>'key'` | Direct Object Key (text) | Value of `key` as text. | `details->>'age'` |
--- | `col#>>'{a,b}'` | Nested Property | Goes inside `a` to get `b`, as text. | `details#>>'{address,city}'` |
--- | `col->'arr'->>i` | Array Element | Element at 0-based index `i`. | `details->'skills'->>0` |
--- | `jsonb_array_elements(col->'arr')` | Array Wildcard | Returns all elements as rows. | `SELECT jsonb_array_elements(details->'skills') FROM users;` |
--- | `jsonb_each(col)` | Object Wildcard | Returns every key/value as rows. | `SELECT * FROM jsonb_each('{"a":1,"b":2}');` |
+-- (Expression → Target Element | Description & Behavior | Example)
+--
+-- * col
+--     - Target Element         : Document Root
+--     - Description & Behavior : The entire JSON document.
+--     - Example                : SELECT details FROM users;
+--
+-- * col->'key'
+--     - Target Element         : Direct Object Key
+--     - Description & Behavior : Value of key as JSON.
+--     - Example                : details->'age'
+--
+-- * col->>'key'
+--     - Target Element         : Direct Object Key (text)
+--     - Description & Behavior : Value of key as text.
+--     - Example                : details->>'age'
+--
+-- * col#>>'{a,b}'
+--     - Target Element         : Nested Property
+--     - Description & Behavior : Goes inside a to get b, as text.
+--     - Example                : details#>>'{address,city}'
+--
+-- * col->'arr'->>i
+--     - Target Element         : Array Element
+--     - Description & Behavior : Element at 0-based index i.
+--     - Example                : details->'skills'->>0
+--
+-- * jsonb_array_elements(col->'arr')
+--     - Target Element         : Array Wildcard
+--     - Description & Behavior : Returns all elements as rows.
+--     - Example                : SELECT jsonb_array_elements(details->'skills') FROM users;
+--
+-- * jsonb_each(col)
+--     - Target Element         : Object Wildcard
+--     - Description & Behavior : Returns every key/value as rows.
+--     - Example                : SELECT * FROM jsonb_each('{"a":1,"b":2}');
+--
 
 -- ------------------------------------------------------------
 -- 2. JSONB Operators Matrix
 -- ------------------------------------------------------------
--- | Operator | Name | Syntax | Return Format | Best Used For |
--- | :--- | :--- | :--- | :--- | :--- |
--- | `->` | Arrow | `col->'key'` | `jsonb` | Going deeper, keeping JSON type |
--- | `->>` | Text Arrow | `col->>'key'` | `text` | Display, `WHERE`, joins |
--- | `#>` / `#>>` | Path | `col#>'{a,b}'` | `jsonb` / `text` | Nested values |
--- | `@>` | Contains | `col @> '{"k":"v"}'` | `boolean` | Fast filters with GIN index |
--- | `?` | Key exists | `col ? 'key'` | `boolean` | Checking a key |
--- | `\|\|` | Concatenate | `col \|\| '{"k":1}'` | `jsonb` | Add / overwrite keys |
--- | `-` | Delete | `col - 'key'` | `jsonb` | Remove a key |
+-- (Operator → Name | Syntax | Return Format | Best Used For)
+--
+-- * ->
+--     - Name          : Arrow
+--     - Syntax        : col->'key'
+--     - Return Format : jsonb
+--     - Best Used For : Going deeper, keeping JSON type
+--
+-- * ->>
+--     - Name          : Text Arrow
+--     - Syntax        : col->>'key'
+--     - Return Format : text
+--     - Best Used For : Display, WHERE, joins
+--
+-- * #> / #>>
+--     - Name          : Path
+--     - Syntax        : col#>'{a,b}'
+--     - Return Format : jsonb / text
+--     - Best Used For : Nested values
+--
+-- * @>
+--     - Name          : Contains
+--     - Syntax        : col @> '{"k":"v"}'
+--     - Return Format : boolean
+--     - Best Used For : Fast filters with GIN index
+--
+-- * ?
+--     - Name          : Key exists
+--     - Syntax        : col ? 'key'
+--     - Return Format : boolean
+--     - Best Used For : Checking a key
+--
+-- * ||
+--     - Name          : Concatenate
+--     - Syntax        : col || '{"k":1}'
+--     - Return Format : jsonb
+--     - Best Used For : Add / overwrite keys
+--
+-- * -
+--     - Name          : Delete
+--     - Syntax        : col - 'key'
+--     - Return Format : jsonb
+--     - Best Used For : Remove a key
+--
 
 -- ------------------------------------------------------------
 -- 3. MySQL JSON Function → PostgreSQL JSONB Equivalent
 -- ------------------------------------------------------------
--- | MySQL Function | PostgreSQL Equivalent | Purpose | Practical SQL Example |
--- | :--- | :--- | :--- | :--- |
--- | `JSON_EXTRACT()` | `->`, `#>`, `jsonb_extract_path()` | Get a value | `details->'email'` |
--- | `JSON_SET()` | `jsonb_set()` | Update or add a key | `jsonb_set(details, '{active}', 'true')` |
--- | `JSON_INSERT()` | `jsonb_insert()` / `jsonb_set(..., create_missing)` | Add new value (arrays) | `jsonb_insert(details, '{skills,0}', '"Go"')` |
--- | `JSON_REPLACE()` | `jsonb_set(doc, path, val, false)` | Change only if key exists | `jsonb_set(details, '{age}', '31', false)` |
--- | `JSON_REMOVE()` | `-` / `#-` operator | Remove a key or element | `details #- '{skills,1}'` |
--- | `JSON_ARRAY()` | `jsonb_build_array()` | Create an array | `jsonb_build_array('Java', 'Python', 'SQL')` |
--- | `JSON_OBJECT()` | `jsonb_build_object()` | Create an object | `jsonb_build_object('city', 'Pune', 'zip', 411001)` |
--- | `JSON_CONTAINS()` | `@>` operator | Contains a value? | `details->'skills' @> '"SQL"'` |
--- | `JSON_SEARCH()` | `jsonb_path_query()` | Search with a JSON path | `jsonb_path_query(details, '$.skills[*] ? (@ == "Python")')` |
--- | `JSON_TYPE()` | `jsonb_typeof()` | Type name (`object`, `array`, `number`…) | `jsonb_typeof(details->'age')` |
--- | `JSON_VALID()` | `IS JSON` (PG 16+) / try a cast | Valid JSON text? | `'{"valid": true}' IS JSON` |
+-- (MySQL Function → PostgreSQL Equivalent | Purpose | Practical SQL Example)
+--
+-- * JSON_EXTRACT()
+--     - PostgreSQL Equivalent : ->, #>, jsonb_extract_path()
+--     - Purpose               : Get a value
+--     - Practical SQL Example : details->'email'
+--
+-- * JSON_SET()
+--     - PostgreSQL Equivalent : jsonb_set()
+--     - Purpose               : Update or add a key
+--     - Practical SQL Example : jsonb_set(details, '{active}', 'true')
+--
+-- * JSON_INSERT()
+--     - PostgreSQL Equivalent : jsonb_insert() / jsonb_set(..., create_missing)
+--     - Purpose               : Add new value (arrays)
+--     - Practical SQL Example : jsonb_insert(details, '{skills,0}', '"Go"')
+--
+-- * JSON_REPLACE()
+--     - PostgreSQL Equivalent : jsonb_set(doc, path, val, false)
+--     - Purpose               : Change only if key exists
+--     - Practical SQL Example : jsonb_set(details, '{age}', '31', false)
+--
+-- * JSON_REMOVE()
+--     - PostgreSQL Equivalent : - / #- operator
+--     - Purpose               : Remove a key or element
+--     - Practical SQL Example : details #- '{skills,1}'
+--
+-- * JSON_ARRAY()
+--     - PostgreSQL Equivalent : jsonb_build_array()
+--     - Purpose               : Create an array
+--     - Practical SQL Example : jsonb_build_array('Java', 'Python', 'SQL')
+--
+-- * JSON_OBJECT()
+--     - PostgreSQL Equivalent : jsonb_build_object()
+--     - Purpose               : Create an object
+--     - Practical SQL Example : jsonb_build_object('city', 'Pune', 'zip', 411001)
+--
+-- * JSON_CONTAINS()
+--     - PostgreSQL Equivalent : @> operator
+--     - Purpose               : Contains a value?
+--     - Practical SQL Example : details->'skills' @> '"SQL"'
+--
+-- * JSON_SEARCH()
+--     - PostgreSQL Equivalent : jsonb_path_query()
+--     - Purpose               : Search with a JSON path
+--     - Practical SQL Example : jsonb_path_query(details, '$.skills[*] ? (@ == "Python")')
+--
+-- * JSON_TYPE()
+--     - PostgreSQL Equivalent : jsonb_typeof()
+--     - Purpose               : Type name (object, array, number…)
+--     - Practical SQL Example : jsonb_typeof(details->'age')
+--
+-- * JSON_VALID()
+--     - PostgreSQL Equivalent : IS JSON (PG 16+) / try a cast
+--     - Purpose               : Valid JSON text?
+--     - Practical SQL Example : '{"valid": true}' IS JSON
+--
 
 -- ---
 
@@ -1533,33 +1915,128 @@ SELECT ST_Contains(polygon, point) AS contains FROM g;  -- true
 -- ------------------------------------------------------------
 -- 1. The 8 OpenGIS Spatial Data Types Matrix
 -- ------------------------------------------------------------
--- | Spatial Type | Structural Geometry | Dimension | Real-World Application | WKT Syntax Pattern |
--- | :--- | :--- | :--- | :--- | :--- |
--- | `POINT` | Single 2D coordinate $(x, y)$ | 0D (Point) | GPS user locations, pin drop, branch coordinates | `POINT(77.59 12.97)` |
--- | `LINESTRING` | Connected series of points | 1D (Length) | Roads, delivery routes, rivers, railways, flight corridors | `LINESTRING(x1 y1, x2 y2, ...)` |
--- | `POLYGON` | Closed area (first = last point) | 2D (Area) | Delivery geofencing zones, lakes, city boundaries, plots | `POLYGON((x1 y1, x2 y2, ..., x1 y1))` |
--- | `MULTIPOINT` | Multiple distinct points | 0D Set | Multiple store branches, delivery drop points | `MULTIPOINT((x1 y1), (x2 y2))` |
--- | `MULTILINESTRING` | Multiple distinct line paths | 1D Set | Highway networks, subway train lines, multi-segment routes | `MULTILINESTRING((...), (...))` |
--- | `MULTIPOLYGON` | Multiple closed polygon zones | 2D Set | Islands, multi-district sales territories | `MULTIPOLYGON(((...)), ((...)))` |
--- | `GEOMETRYCOLLECTION` | Mixed collection | Mixed | Complex city models (Points + Lines + Polygons combined) | `GEOMETRYCOLLECTION(POINT(...), ...)` |
--- | `geometry` | Any spatial column | Any | Column that can store any single geometric object per row | Holds any single geometry object |
+-- (Spatial Type → Structural Geometry | Dimension | Real-World Application | WKT Syntax Pattern)
+--
+-- * POINT
+--     - Structural Geometry    : Single 2D coordinate (x, y)
+--     - Dimension              : 0D (Point)
+--     - Real-World Application : GPS user locations, pin drop, branch coordinates
+--     - WKT Syntax Pattern     : POINT(77.59 12.97)
+--
+-- * LINESTRING
+--     - Structural Geometry    : Connected series of points
+--     - Dimension              : 1D (Length)
+--     - Real-World Application : Roads, delivery routes, rivers, railways, flight corridors
+--     - WKT Syntax Pattern     : LINESTRING(x1 y1, x2 y2, ...)
+--
+-- * POLYGON
+--     - Structural Geometry    : Closed area (first = last point)
+--     - Dimension              : 2D (Area)
+--     - Real-World Application : Delivery geofencing zones, lakes, city boundaries, plots
+--     - WKT Syntax Pattern     : POLYGON((x1 y1, x2 y2, ..., x1 y1))
+--
+-- * MULTIPOINT
+--     - Structural Geometry    : Multiple distinct points
+--     - Dimension              : 0D Set
+--     - Real-World Application : Multiple store branches, delivery drop points
+--     - WKT Syntax Pattern     : MULTIPOINT((x1 y1), (x2 y2))
+--
+-- * MULTILINESTRING
+--     - Structural Geometry    : Multiple distinct line paths
+--     - Dimension              : 1D Set
+--     - Real-World Application : Highway networks, subway train lines, multi-segment routes
+--     - WKT Syntax Pattern     : MULTILINESTRING((...), (...))
+--
+-- * MULTIPOLYGON
+--     - Structural Geometry    : Multiple closed polygon zones
+--     - Dimension              : 2D Set
+--     - Real-World Application : Islands, multi-district sales territories
+--     - WKT Syntax Pattern     : MULTIPOLYGON(((...)), ((...)))
+--
+-- * GEOMETRYCOLLECTION
+--     - Structural Geometry    : Mixed collection
+--     - Dimension              : Mixed
+--     - Real-World Application : Complex city models (Points + Lines + Polygons combined)
+--     - WKT Syntax Pattern     : GEOMETRYCOLLECTION(POINT(...), ...)
+--
+-- * geometry
+--     - Structural Geometry    : Any spatial column
+--     - Dimension              : Any
+--     - Real-World Application : Column that can store any single geometric object per row
+--     - WKT Syntax Pattern     : Holds any single geometry object
+--
 
 -- ------------------------------------------------------------
 -- 2. PostGIS Spatial Analysis Methods (`ST_` Functions)
 -- ------------------------------------------------------------
--- | Function Name | Input Signature | Output Type | Description & Analysis Role | Practical SQL Example |
--- | :--- | :--- | :--- | :--- | :--- |
--- | `ST_GeomFromText()` | `(wkt_string[, srid])` | geometry | Converts WKT text to geometry. | `ST_GeomFromText('POINT(72.87 19.07)', 4326)` |
--- | `ST_MakePoint()` | `(x, y)` | geometry | Builds a point from two numbers. | `ST_SetSRID(ST_MakePoint(72.87, 19.07), 4326)` |
--- | `ST_AsText()` | `(geom)` | text | Converts geometry back to readable text. | `SELECT ST_AsText(location) FROM user_location;` |
--- | `ST_Distance()` | `(geom1, geom2)` | double | Distance (degrees for geometry, meters for geography). | `ST_Distance(a::geography, b::geography)` |
--- | `ST_DWithin()` | `(geom1, geom2, dist)` | boolean | Within a distance? (uses the index — best for "nearby") | `ST_DWithin(a::geography, b::geography, 5000)` |
--- | `ST_Within()` | `(geom_a, geom_b)` | boolean | Is A completely inside B? | `ST_Within(user_point, zone_polygon)` |
--- | `ST_Contains()` | `(geom_a, geom_b)` | boolean | Does A completely contain B? | `ST_Contains(zone_polygon, user_point)` |
--- | `ST_Area()` | `(polygon)` | double | Area of a polygon. | `ST_Area(area::geography)` |
--- | `ST_Length()` | `(linestring)` | double | Length of a line. | `ST_Length(road_path::geography)` |
--- | `ST_Buffer()` | `(geom, distance)` | geometry | Zone of radius $d$ around a shape. | `ST_Buffer(store_point::geography, 5000)` |
--- | `ST_Intersects()` | `(geom1, geom2)` | boolean | Do they touch or overlap? | `ST_Intersects(route_line, flood_zone)` |
+-- (Function Name → Input Signature | Output Type | Description & Analysis Role | Practical SQL Example)
+--
+-- * ST_GeomFromText()
+--     - Input Signature             : (wkt_string[, srid])
+--     - Output Type                 : geometry
+--     - Description & Analysis Role : Converts WKT text to geometry.
+--     - Practical SQL Example       : ST_GeomFromText('POINT(72.87 19.07)', 4326)
+--
+-- * ST_MakePoint()
+--     - Input Signature             : (x, y)
+--     - Output Type                 : geometry
+--     - Description & Analysis Role : Builds a point from two numbers.
+--     - Practical SQL Example       : ST_SetSRID(ST_MakePoint(72.87, 19.07), 4326)
+--
+-- * ST_AsText()
+--     - Input Signature             : (geom)
+--     - Output Type                 : text
+--     - Description & Analysis Role : Converts geometry back to readable text.
+--     - Practical SQL Example       : SELECT ST_AsText(location) FROM user_location;
+--
+-- * ST_Distance()
+--     - Input Signature             : (geom1, geom2)
+--     - Output Type                 : double
+--     - Description & Analysis Role : Distance (degrees for geometry, meters for geography).
+--     - Practical SQL Example       : ST_Distance(a::geography, b::geography)
+--
+-- * ST_DWithin()
+--     - Input Signature             : (geom1, geom2, dist)
+--     - Output Type                 : boolean
+--     - Description & Analysis Role : Within a distance? (uses the index — best for "nearby")
+--     - Practical SQL Example       : ST_DWithin(a::geography, b::geography, 5000)
+--
+-- * ST_Within()
+--     - Input Signature             : (geom_a, geom_b)
+--     - Output Type                 : boolean
+--     - Description & Analysis Role : Is A completely inside B?
+--     - Practical SQL Example       : ST_Within(user_point, zone_polygon)
+--
+-- * ST_Contains()
+--     - Input Signature             : (geom_a, geom_b)
+--     - Output Type                 : boolean
+--     - Description & Analysis Role : Does A completely contain B?
+--     - Practical SQL Example       : ST_Contains(zone_polygon, user_point)
+--
+-- * ST_Area()
+--     - Input Signature             : (polygon)
+--     - Output Type                 : double
+--     - Description & Analysis Role : Area of a polygon.
+--     - Practical SQL Example       : ST_Area(area::geography)
+--
+-- * ST_Length()
+--     - Input Signature             : (linestring)
+--     - Output Type                 : double
+--     - Description & Analysis Role : Length of a line.
+--     - Practical SQL Example       : ST_Length(road_path::geography)
+--
+-- * ST_Buffer()
+--     - Input Signature             : (geom, distance)
+--     - Output Type                 : geometry
+--     - Description & Analysis Role : Zone of radius d around a shape.
+--     - Practical SQL Example       : ST_Buffer(store_point::geography, 5000)
+--
+-- * ST_Intersects()
+--     - Input Signature             : (geom1, geom2)
+--     - Output Type                 : boolean
+--     - Description & Analysis Role : Do they touch or overlap?
+--     - Practical SQL Example       : ST_Intersects(route_line, flood_zone)
+--
 
 -- ---
 
