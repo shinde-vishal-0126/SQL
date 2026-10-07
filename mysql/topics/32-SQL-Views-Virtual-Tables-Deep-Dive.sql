@@ -42,6 +42,11 @@ DROP VIEW v_customer_orders;
 
 -- * Diagram summary: Shows the flow of execution and the differences between Physical Tables and Views
 
+--   ┌ ASCII diagram
+--   │  [User] ─► SELECT * FROM view ─► [View = saved query] ─► [Physical Table] ─► data
+--   │                                    (stores no data)       (stores data on disk)
+--   └
+
 -- * Definition: A View is a database object that acts like a Virtual Table. It is based on the result set of an SQL query.
 
 -- * Types of Views:
@@ -97,15 +102,51 @@ DROP VIEW v_customer_orders;
 
 -- * Diagram summary: Shows data flowing from Source Systems to a Physical Data Warehouse, then abstracted into Virtual Data Marts for Reporting
 
+--   ┌ ASCII diagram
+--   │  [Source systems] ─► [Data Warehouse (physical)] ─► [View: Sales mart]   ─► Reports
+--   │                                                  ─► [View: Finance mart] ─► Reports
+--   │                                                     virtual data marts (no extra storage)
+--   └
+
 -- * Diagram summary: Shows one base table connected to multiple views, each translated for a specific region's users
+
+--   ┌ ASCII diagram
+--   │                  ┌─► v_customers_en (columns in English) ─► US users
+--   │  [Base table] ───┼─► v_customers_de (columns in German)  ─► German users
+--   │                  └─► v_customers_hi (columns in Hindi)   ─► Indian users
+--   └
 
 -- * Diagram summary: Shows how changing a physical table breaks queries, but a view absorbs the impact
 
+--   ┌ ASCII diagram
+--   │  Without view: Users ─► table (renamed!) ──✖ queries break
+--   │  With view   : Users ─► view ─► table (renamed) ✔ only the view is changed
+--   └
+
 -- * Diagram summary: Demonstrates how Manager, Data Analyst, and Student get different views with column/row level security
+
+--   ┌ ASCII diagram
+--   │                ┌─► Manager      : v_full      (all rows, all columns)
+--   │  [Employees] ──┼─► Data Analyst : v_no_salary (salary column hidden)
+--   │                └─► Student      : v_sales_dep (only Sales rows)
+--   └
 
 -- * Diagram summary: Shows how multiple complex tables are joined and abstracted into one simple view for the user
 
+--   ┌ ASCII diagram
+--   │  [orders] ┐
+--   │  [customers] ├─ JOINs ─► [v_order_details] ─► user writes: SELECT * FROM v_order_details
+--   │  [products] ┘
+--   └
+
 -- * Diagram summary: Shows 3 analysts writing redundant CTEs vs using a central View
+
+--   ┌ ASCII diagram
+--   │  Without view: Analyst1 ─ CTE(same logic)   Analyst2 ─ CTE(same logic)   Analyst3 ─ CTE(same logic)
+--   │  With view   : Analyst1 ┐
+--   │                Analyst2 ├─► [central View] (logic written once)
+--   │                Analyst3 ┘
+--   └
 
 -- 1. Central Query Logic (Reusability & Reducing Redundancy)
 
@@ -145,6 +186,14 @@ DROP VIEW v_customer_orders;
 
 -- * Diagram summary: Comparison chart showing Redundancy, Reusability, Persistence, and Maintenance differences
 
+--   ┌ ASCII diagram
+--   │                  CTE                     VIEW
+--   │  Redundancy    rewritten in each query   written once
+--   │  Reusability   only in one query         every query, every user
+--   │  Persistence   gone after the query      stored in the database
+--   │  Maintenance   change everywhere         change in one place
+--   └
+
 -- (Feature → View | CTE (Common Table Expression))
 --
 -- * Purpose
@@ -165,6 +214,12 @@ DROP VIEW v_customer_orders;
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Basic DDL syntax showing CREATE VIEW view-name AS query
+
+--   ┌ ASCII diagram
+--   │  CREATE VIEW view_name AS
+--   │  SELECT ...  FROM ...  WHERE ... ;
+--   │  └──────────── the saved query ────────────┘
+--   └
 
 -- * Create View:
 CREATE VIEW view_name AS
@@ -280,6 +335,12 @@ SELECT column1, column2 FROM table_name WHERE condition;
 
 -- * Diagram summary: Shows the DB Engine interacting with the Catalog (Disk) to fetch the View's query, and then executing it against the Physical Table
 
+--   ┌ ASCII diagram
+--   │  [User] ─ SELECT * FROM view ─► [DB Engine] ─①─► [Catalog: view's query]
+--   │                                      │
+--   │                                      └─②─► run it on [Physical Table] ─► result
+--   └
+
 -- Step-by-Step Execution Flow:
 
 -- 1. Creation: When a Data Engineer creates a view (`CREATE VIEW TOPN AS...`), the database engine does not store any actual data. It stores the metadata and the SQL statement inside the System Catalog (Disk).
@@ -299,6 +360,13 @@ SELECT column1, column2 FROM table_name WHERE condition;
 -- ------------------------------------------------------------
 
 -- * Diagram summary: A quick cheat-sheet summarizing that a View is a virtual table used to persist complex logic, better than CTEs for reusability, and outlining the 6 core use cases
+
+--   ┌ ASCII diagram
+--   │  VIEW = virtual table = saved query (no data stored)
+--   │  Better than CTE for reuse │ Better than a table for flexibility
+--   │  Use cases: 1 central logic  2 hide complexity  3 security
+--   │             4 flexibility    5 multi-language   6 virtual data marts
+--   └
 
 -- ---
 

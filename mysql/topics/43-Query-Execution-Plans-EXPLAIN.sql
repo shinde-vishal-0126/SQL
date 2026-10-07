@@ -59,6 +59,12 @@ EXPLAIN SELECT * FROM orders WHERE sales > 20;
 
 -- * Diagram summary: Compares Estimated vs Actual vs Live execution plans
 
+--   ┌ ASCII diagram
+--   │  Estimated plan : before running  (EXPLAIN)          → guesses rows
+--   │  Actual plan    : after running   (EXPLAIN ANALYZE)  → real rows + time
+--   │  Live plan      : while running   (progress view)    → current progress
+--   └
+
 -- 1. Estimated Execution Plan (What MySQL plans to do)
 
 -- * Definition: The optimizer’s prediction of how it plans to execute the query without actually running it.

@@ -50,6 +50,13 @@ DROP TABLE orders_by_year;
 
 -- * Diagram summary: A massive 100M+ row table causes full table scans to be extremely slow. Trying to fix it with a massive single index also fails because inserting, updating, and deleting rows in a huge index takes a long time
 
+--   ┌ ASCII diagram
+--   │  [ orders: 100,000,000 rows ]
+--   │    full scan  ─► very slow
+--   │    one giant index ─► slow INSERT/UPDATE, huge to maintain
+--   │    ✔ solution: split into partitions
+--   └
+
 -- * Scenario: Imagine a table with 100 million rows that grows every year (e.g., 2023, 2024, 2025). 
 
 --   * If you do a full table scan, it takes forever.
@@ -64,7 +71,20 @@ DROP TABLE orders_by_year;
 
 -- * Diagram summary: Each partition gets its own small index instead of one giant index for the whole table
 
+--   ┌ ASCII diagram
+--   │  orders ─┬─ p2023 [small index]
+--   │          ├─ p2024 [small index]
+--   │          └─ p2025 [small index]     instead of one giant index for all rows
+--   └
+
 -- * Diagram summary: The big table is split by year. A query for 2025 ONLY scans the 2025 partition
+
+--   ┌ ASCII diagram
+--   │  query: WHERE orderdate >= '2025-01-01'
+--   │  orders ─┬─ p2023  ✖ skipped
+--   │          ├─ p2024  ✖ skipped
+--   │          └─ p2025  ✔ scanned        (partition pruning)
+--   └
 
 -- * Targeted Scanning: We split the table by year. When you run `SELECT * FROM table WHERE year = 2025`, PostgreSQL will only scan the 2025 partition and completely ignore 2023 and 2024.
 
@@ -105,6 +125,12 @@ DROP TABLE orders_by_year;
 -- ------------------------------------------------------------
 
 -- * Diagram summary: LEFT partitioning includes the boundary in the left partition, while RIGHT includes it in the right partition
+
+--   ┌ ASCII diagram
+--   │  boundary value = 2025-01-01
+--   │  LEFT  range : (...  2025-01-01] | (2025-01-01 ...)   boundary goes to the LEFT partition
+--   │  RIGHT range : (...  2025-01-01) | [2025-01-01 ...)   boundary goes to the RIGHT partition
+--   └
 
 -- * When using `RANGE` partitioning, we define boundaries (e.g., the last day of the year). But where does the exact boundary value go?
 

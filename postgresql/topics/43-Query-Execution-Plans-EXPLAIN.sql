@@ -56,6 +56,12 @@ EXPLAIN SELECT * FROM orders WHERE sales > 20;
 
 -- * Diagram summary: Compares Estimated vs Actual vs Live execution plans
 
+--   ┌ ASCII diagram
+--   │  Estimated plan : before running  (EXPLAIN)          → guesses rows
+--   │  Actual plan    : after running   (EXPLAIN ANALYZE)  → real rows + time
+--   │  Live plan      : while running   (progress view)    → current progress
+--   └
+
 -- 1. Estimated Execution Plan (What PostgreSQL plans to do)
 
 -- * Definition: The planner's prediction of how it will execute the query, without running it.

@@ -32,6 +32,12 @@ EXPLAIN SELECT * FROM customers WHERE customerid = 3;     -- seek (primary key)
 
 -- * Diagram summary: Visual comparison of Full Table Scan vs Index Scan vs Index Seek
 
+--   ┌ ASCII diagram
+--   │  Full Table Scan : ▤▤▤▤▤▤▤▤▤▤  read EVERY row of the table
+--   │  Index Scan      : ▥▥▥▥▥▥▥▥▥▥  read the WHOLE index
+--   │  Index Seek      : ────►▥      jump straight to the matching entries   (fastest)
+--   └
+
 -- ------------------------------------------------------------
 -- 44.1 What is a Table Scan?
 -- ------------------------------------------------------------

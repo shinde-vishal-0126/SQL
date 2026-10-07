@@ -33,6 +33,12 @@ FROM orders o JOIN products p ON p.productid = o.productid;
 
 -- * Diagram summary: Shows Nested Loop Join, Hash Join, and Block Nested Loop Join concepts. PostgreSQL uses Nested Loop, Hash Join and Merge Join.
 
+--   ┌ ASCII diagram
+--   │  Nested Loop : for each row in A ─► look up matches in B (best with an index on B)
+--   │  Hash Join   : build hash table of small B ─► scan A and probe the hash
+--   │  Block NL    : read A in blocks ─► compare each block with B (fewer passes over B)
+--   └
+
 -- * Definition: A join algorithm is the method the SQL engine uses under the hood to combine rows from two (or more) tables. Even though you just write `JOIN`, the PostgreSQL planner must decide exactly how to perform that match — it estimates the cost of each algorithm and picks the cheapest. All three algorithms are available in PostgreSQL.
 
 -- ------------------------------------------------------------

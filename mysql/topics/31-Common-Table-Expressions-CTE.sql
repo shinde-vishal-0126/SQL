@@ -66,6 +66,12 @@ ORDER BY t.total_sales DESC;
 
 -- * Diagram summary: Compares Normal Query accessing DB vs CTE creating a virtual table first, then main query using it
 
+--   ┌ ASCII diagram
+--   │  Normal query:  [DB] ─────────────────────────► [Main Query] ► result
+--   │  CTE:           [DB] ─► [WITH cte AS (...)] ─► [Main Query uses cte] ► result
+--   │                           virtual table
+--   └
+
 -- * In a Normal Query: We have a database with multiple tables, and we write a simple query to retrieve data and get a result.
 
 -- * In a CTE: We have a query inside another query. The new inner query is named the "CTE Query", and the outer query is the "Main Query". Here is exactly what happens step-by-step:
@@ -92,13 +98,34 @@ ORDER BY t.total_sales DESC;
 
 -- * Diagram summary: Shows Subquery executing Bottom-Up with nesting, while CTE executes Top-Down for better readability
 
+--   ┌ ASCII diagram
+--   │  Subquery (read bottom-up)        CTE (read top-down)
+--   │  SELECT ...           ③           WITH a AS (...)   ①
+--   │   FROM (SELECT ...    ②                b AS (...)   ②
+--   │          FROM (...)   ①           SELECT ... FROM b ③
+--   └
+
 -- ------------------------------------------------------------
 -- Why use CTE instead of Subquery? (Benefits)
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Shows Subquery doing redundant JOINs vs CTE doing JOIN once and reusing it
 
+--   ┌ ASCII diagram
+--   │  Subquery way:  (JOIN A+B) used in place 1
+--   │                 (JOIN A+B) used in place 2   ← same JOIN written twice
+--   │  CTE way:       WITH ab AS (JOIN A+B)        ← written once
+--   │                 ... ab ... ab ...            ← reused
+--   └
+
 -- * Diagram summary: Shows how CTE gives Readability, Modularity, and Reusability
+
+--   ┌ ASCII diagram
+--   │               CTE
+--   │    ┌───────────┼────────────┐
+--   │  Readability  Modularity   Reusability
+--   │  named steps  small blocks  use the same CTE many times
+--   └
 
 -- * Readability: Subqueries get messy when nested deeply. CTEs break the query into smaller, logical steps (Top-to-Bottom flow).
 
@@ -118,6 +145,15 @@ ORDER BY t.total_sales DESC;
 
 -- * Diagram summary: Tree diagram showing Non-Recursive (Standalone, Nested) and Recursive CTEs
 
+--   ┌ ASCII diagram
+--   │                 CTE
+--   │         ┌────────┴────────┐
+--   │   Non-Recursive        Recursive
+--   │    ┌────┴────┐         (calls itself,
+--   │  Standalone  Nested      loops)
+--   │  (alone)   (uses another CTE)
+--   └
+
 -- ------------------------------------------------------------
 -- 1. Non-Recursive CTE
 -- ------------------------------------------------------------
@@ -130,7 +166,16 @@ ORDER BY t.total_sales DESC;
 
 -- * Diagram summary: Highlights CTE Definition vs CTE Usage
 
+--   ┌ ASCII diagram
+--   │  WITH sales_cte AS ( SELECT ... )     ◄── CTE Definition
+--   │  SELECT * FROM sales_cte;             ◄── CTE Usage
+--   └
+
 -- * Diagram summary: DB -> CTE Query -> Intermediate Result -> Main Query -> Final Result
+
+--   ┌ ASCII diagram
+--   │  [DB] ─► [CTE Query] ─► (Intermediate Result) ─► [Main Query] ─► [Final Result]
+--   └
 
 -- * Definition: A Standalone CTE is defined and used independently in the query. It runs independently as a self-contained unit and doesn't rely on any other CTE or query.
 
@@ -150,6 +195,12 @@ LEFT JOIN TOTAL_SALES cte ON cte.customerid = c.customerid;
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Showing WITH CTE1, CTE2 format
+
+--   ┌ ASCII diagram
+--   │  WITH cte1 AS ( ... ),
+--   │       cte2 AS ( ... )        ← one WITH, CTEs separated by commas
+--   │  SELECT ... FROM cte1 JOIN cte2 ...
+--   └
 
 -- * Definition: You can define multiple independent CTEs in a single query separated by commas.
 
@@ -179,7 +230,17 @@ LEFT JOIN LAST_ORDERS_DATE newcte ON newcte.customerid = c.customerid;
 
 -- * Diagram summary: CTE-Name2 selects from CTE-Name1
 
+--   ┌ ASCII diagram
+--   │  WITH cte1 AS ( SELECT ... FROM table ),
+--   │       cte2 AS ( SELECT ... FROM cte1 )    ← cte2 uses cte1
+--   │  SELECT * FROM cte2;
+--   └
+
 -- * Diagram summary: DB -> #1 CTE -> #2 CTE -> Main Query
+
+--   ┌ ASCII diagram
+--   │  [DB] ─► [#1 CTE] ─► [#2 CTE] ─► [Main Query] ─► result
+--   └
 
 -- * Definition: A Nested CTE is a CTE inside another CTE (or a query that depends on another query). 
 
@@ -220,7 +281,24 @@ LEFT JOIN RANK_PER_CUSTOMER r ON r.customerid = c.customerid;
 
 -- * Diagram summary: Detailed syntax showing Anchor Query, UNION ALL, Recursive Query, and Break Condition
 
+--   ┌ ASCII diagram
+--   │  WITH RECURSIVE cte AS (
+--   │      SELECT ...                     ← Anchor query (start, runs once)
+--   │      UNION ALL
+--   │      SELECT ... FROM cte            ← Recursive query (repeats)
+--   │      WHERE <break condition>        ← stops the loop
+--   │  )
+--   │  SELECT * FROM cte;
+--   └
+
 -- * Diagram summary: Anchor Query flowing directly into a looping Recursive Query block
+
+--   ┌ ASCII diagram
+--   │  [Anchor Query] ─► rows ─► [Recursive Query] ─┐
+--   │                               ▲               │ new rows?
+--   │                               └────── yes ────┘
+--   │                                      no ─► stop, return all rows
+--   └
 
 -- * Definition: A Recursive CTE is a query that repeatedly runs or loops over itself until a given condition is met.
 
@@ -243,6 +321,18 @@ LEFT JOIN RANK_PER_CUSTOMER r ON r.customerid = c.customerid;
 
 -- * Diagram summary: Flowchart showing the exact looping mechanism of creating numbers from 1 to 20
 
+--   ┌ ASCII diagram
+--   │  anchor: n = 1
+--   │     │
+--   │     ▼
+--   │  n < 20 ? ── yes ──► n = n + 1 ──┐
+--   │     │  ▲                         │
+--   │     │  └─────────────────────────┘
+--   │     no
+--   │     ▼
+--   │  result: 1, 2, 3, ... 20
+--   └
+
 WITH RECURSIVE SERIES AS (
     -- Anchor Query
     SELECT 1 AS MyNumber
@@ -260,6 +350,15 @@ SELECT * FROM SERIES;
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Flowchart matching the Employee-Manager table logic, generating a Top-Down Hierarchy tree: Frank -> Kevin -> Michael
+
+--   ┌ ASCII diagram
+--   │  level 1   Frank (no manager)          ← anchor
+--   │              │
+--   │  level 2   Kevin, Mary                 ← managerid = Frank
+--   │              │
+--   │  level 3   Michael (→Kevin), Carol (→Mary)
+--   │  stop: no more employees found
+--   └
 
 WITH RECURSIVE CTE_Emp_Hierarchy AS (
     -- 1. Anchor Query (Find Top-Level Managers / CEO)
@@ -332,6 +431,15 @@ SELECT * FROM CTE_Emp_Hierarchy;
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Complete summary of CTEs, including Advantages, Rules, and Flow diagrams for Standalone, Nested, and Recursive CTEs
+
+--   ┌ ASCII diagram
+--   │  CTE = named temporary result (WITH ... AS)
+--   │  Advantages: readable │ modular │ reusable in the same query
+--   │  Rules     : one WITH, commas between CTEs, no ORDER BY inside (normally)
+--   │  Flows     : Standalone  DB ─► CTE ─► Main
+--   │              Nested      DB ─► CTE1 ─► CTE2 ─► Main
+--   │              Recursive   Anchor ─► Recursive ↺ ─► Main
+--   └
 
 -- What is a CTE?
 

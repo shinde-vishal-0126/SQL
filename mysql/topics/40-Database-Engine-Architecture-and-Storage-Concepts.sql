@@ -57,6 +57,14 @@ WHERE table_schema = 'salesdb';
 
 -- * Diagram summary: Shows Client sending query to Server. Database Engine checks Cache first, then checks Disk [Temp, Catalog, User]
 
+--   ┌ ASCII diagram
+--   │  [Client] ─query─► [Server: DB Engine] ─①─► [Cache / memory]  hit? ─► answer
+--   │                                         └②─► [Disk]
+--   │                                               ├ Temp storage
+--   │                                               ├ Catalog (metadata)
+--   │                                               └ User data
+--   └
+
 -- * In a database, there are two main types of data storage:
 
 -- ------------------------------------------------------------
@@ -92,6 +100,12 @@ WHERE table_schema = 'salesdb';
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Shows the flow of a query: Client -> Engine -> Cache [MISS] -> Disk -> Return Result & Store in Cache
+
+--   ┌ ASCII diagram
+--   │  [Client] ─► [Engine] ─► [Cache] MISS ─► [Disk] ─► data
+--   │                             ▲                       │
+--   │                             └── store in cache ◄────┘ ─► result to Client
+--   └
 
 -- When a Data Engineer writes a query like `SELECT * FROM orders`:
 

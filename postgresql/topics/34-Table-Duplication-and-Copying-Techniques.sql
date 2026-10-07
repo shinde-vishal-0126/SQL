@@ -36,6 +36,11 @@ DROP TABLE products_blank;
 
 -- * Diagram summary: Compares CREATE TABLE AS vs CREATE TABLE LIKE
 
+--   ┌ ASCII diagram
+--   │  CREATE TABLE copy AS SELECT * FROM t   → columns + DATA      (no keys / indexes)
+--   │  CREATE TABLE copy LIKE t               → columns + indexes   (NO data)
+--   └
+
 -- ------------------------------------------------------------
 -- 34.1 Copying Table Data WITHOUT Constraints
 -- ------------------------------------------------------------

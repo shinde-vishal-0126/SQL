@@ -59,6 +59,11 @@ WHERE price > (SELECT AVG(price) FROM products);
 
 -- * Diagram summary: Shows the DB Tables sending data to the Inner SubQuery, which creates an intermediate result, which is then used by the Main Query to produce the Final Result
 
+--   ┌ ASCII diagram
+--   │  [DB Tables] ──► [Inner SubQuery] ──► (intermediate result) ──► [Main Query] ──► [Final Result]
+--   │                     runs first                                   uses it
+--   └
+
 -- * Subqueries act as an embedded query. SQL executes them in a specific order (usually from the innermost query to the outermost — sometimes described as "Right to Left"). (A correlated subquery is the exception: it runs once for each row of the outer query — see 28.3.)
 
 -- * Step-by-step Flow:
@@ -76,6 +81,16 @@ WHERE price > (SELECT AVG(price) FROM products);
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Shows Main Query, SubQuery, and Nested Subquery wrapped like Russian Dolls
+
+--   ┌ ASCII diagram
+--   │  ┌──────────── Main Query ────────────┐
+--   │  │  ┌──────── SubQuery ─────────┐      │
+--   │  │  │  ┌── Nested SubQuery ──┐  │      │
+--   │  │  │  │   runs 1st          │  │      │
+--   │  │  │  └─────────────────────┘  │ 2nd  │
+--   │  │  └───────────────────────────┘      │ 3rd
+--   │  └─────────────────────────────────────┘
+--   └
 
 -- * Use Cases:
 
@@ -137,6 +152,16 @@ WHERE dept_id = (SELECT id FROM departments WHERE dept_name = 'ClosedDept');
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Shows the classification by Result Types, Dependency, and Location
+
+--   ┌ ASCII diagram
+--   │                     Subqueries
+--   │       ┌─────────────────┼─────────────────┐
+--   │   By Result Type     By Dependency     By Location
+--   │   - Scalar (1 value) - Non-correlated  - SELECT
+--   │   - Row (1 row)      - Correlated      - FROM
+--   │   - Table (many)                       - JOIN
+--   │                                        - WHERE
+--   └
 
 -- Subqueries can be categorized in three different ways:
 

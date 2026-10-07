@@ -34,11 +34,29 @@ WHERE NOT EXISTS (SELECT 1 FROM orders o WHERE o.customerid = c.customerid);
 
 -- * Diagram summary: Notebook page summarizing Subquery use cases like filtering, JOIN preparation, EXISTS, and Correlated row-by-row comparisons
 
+--   ┌ ASCII diagram
+--   │  Subquery use cases
+--   │   1. Filtering        WHERE col > (SELECT AVG ...)
+--   │   2. JOIN preparation JOIN (SELECT ... GROUP BY) t ON ...
+--   │   3. EXISTS check     WHERE EXISTS (SELECT 1 ...)
+--   │   4. Correlated       compare each row with its own group
+--   └
+
 -- ------------------------------------------------------------
 -- 28.1 Subqueries by Location (Clauses)
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Tree diagram showing subqueries in SELECT, FROM, JOIN, and WHERE. WHERE is split into Comparison and Logical operators
+
+--   ┌ ASCII diagram
+--   │                  Subquery location
+--   │      ┌──────────┬────────┼────────┬─────────────┐
+--   │    SELECT      FROM     JOIN           WHERE
+--   │   (scalar)   (table)   (table)    ┌──────┴──────┐
+--   │                                Comparison     Logical
+--   │                                = > < IN ANY   EXISTS / NOT EXISTS
+--   │                                ALL
+--   └
 
 -- A subquery can be placed in different parts of a SQL statement. Depending on where it is placed, its behavior and rules change.
 
@@ -47,6 +65,13 @@ WHERE NOT EXISTS (SELECT 1 FROM orders o WHERE o.customerid = c.customerid);
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Shows Main Query wrapping a Subquery acting as a temporary table
+
+--   ┌ ASCII diagram
+--   │  SELECT ... FROM ( SELECT ... ) AS t
+--   │                  └─────┬──────┘
+--   │                 temporary table "t"
+--   │           Main Query reads t like a normal table
+--   └
 
 -- * How it works: A subquery in the `FROM` clause acts as a temporary table (also called a Derived Table) that the main query can `SELECT` from.
 
@@ -72,6 +97,14 @@ FROM (
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Shows Main Query with a Subquery inside the SELECT statement, requiring a scalar value
+
+--   ┌ ASCII diagram
+--   │  SELECT name, ( SELECT COUNT(*) ... ) AS total  FROM customers
+--   │               └──────── must return ONE value per row ───────┘
+--   │  row 1 → 3
+--   │  row 2 → 3
+--   │  row 3 → 1
+--   └
 
 -- * How it works: Used to aggregate or calculate a value side-by-side with the main query’s normal columns, allowing for direct comparison.
 
@@ -105,6 +138,11 @@ ON c.customerid = t.customerid;
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Compares '=' needing scalar subqueries vs 'IN' needing list/row subqueries
+
+--   ┌ ASCII diagram
+--   │   col =  (subquery)   → subquery must return 1 value     e.g. (20)
+--   │   col IN (subquery)   → subquery may return a list       e.g. (1, 2, 3)
+--   └
 -- This is the most common place for a subquery. It uses two groups of operators:
 
 -- ------------------------------------------------------------
@@ -112,6 +150,12 @@ ON c.customerid = t.customerid;
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Shows a scalar subquery used with a comparison operator
+
+--   ┌ ASCII diagram
+--   │  WHERE price  >  ( SELECT AVG(price) FROM products )
+--   │        10..30  >          20
+--   │  keeps → 25, 30
+--   └
 
 -- * Used to filter data by comparing a column to a Single Value.
 
@@ -127,9 +171,31 @@ WHERE price > (SELECT AVG(price) FROM products);
 
 -- * Diagram summary: Flowchart explaining the Yes/No logic of EXISTS
 
+--   ┌ ASCII diagram
+--   │  for each outer row
+--   │         │
+--   │    run subquery ──► any row found?
+--   │         │                │
+--   │        YES              NO
+--   │         │                │
+--   │    keep the row     skip the row
+--   └
+
 -- * Diagram summary: Shows correlated subquery using Table2 from the Main Query inside the Subquery
 
+--   ┌ ASCII diagram
+--   │  Main Query:  SELECT ... FROM table2 t2
+--   │                     WHERE x > ( SELECT ... FROM t1 WHERE t1.id = t2.id )
+--   │                                                         └──────┬─────┘
+--   │                                      uses the CURRENT row of the main query
+--   └
+
 -- * Diagram summary: Shows data flowing from Customers table subquery to intermediate array, and then to Main Query and Orders final result
+
+--   ┌ ASCII diagram
+--   │  [Customers] ─subquery─► (1, 2, 3, 4)  ─IN─► [Main Query on Orders] ─► final orders
+--   │                          intermediate list
+--   └
 
 -- * Used to filter data against a List of Values (Row or Table Subquery).
 
@@ -175,7 +241,21 @@ WHERE NOT EXISTS (
 
 -- * Diagram summary: Shows Correlated looping vs Non-Correlated linear execution
 
+--   ┌ ASCII diagram
+--   │  Non-correlated (runs ONCE)         Correlated (runs PER ROW)
+--   │  subquery ─► result ─► main query   row1 ─► subquery ─► keep?
+--   │                                     row2 ─► subquery ─► keep?
+--   │                                     row3 ─► subquery ─► keep?   (loop)
+--   └
+
 -- * Diagram summary: Shows Client sending query, Database Engine fetching Subquery from Disk, caching it, and returning the Final Result
+
+--   ┌ ASCII diagram
+--   │  [Client] ──query──► [DB Engine] ──read──► [Disk: tables]
+--   │                          │  subquery result kept in memory (cache)
+--   │                          ▼
+--   │                   main query uses it ──► [Final Result] ──► [Client]
+--   └
 
 -- ------------------------------------------------------------
 -- 1. Non-Correlated Subquery (Independent)

@@ -303,7 +303,21 @@ CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers ON Customers ❌ -- NOT ALLOWED 
 
 -- * Diagram summary: Shows Filtered Index syntax with WHERE condition and a flowchart on When To Use different indexes
 
+--   ┌ ASCII diagram
+--   │  CREATE INDEX idx ON orders (orderdate) WHERE orderstatus = 'Shipped';  ← filtered/partial
+--   │  When to use:
+--   │    Heap        → staging / bulk loads
+--   │    Clustered   → primary key, range queries
+--   │    Non-clust.  → frequent WHERE / JOIN columns
+--   │    Filtered    → queries on a small subset
+--   └
+
 -- * Diagram summary: Compares default index syntax which allows duplicates vs unique index syntax which enforces uniqueness
+
+--   ┌ ASCII diagram
+--   │  CREATE INDEX idx ON t (col);          → duplicates allowed
+--   │  CREATE UNIQUE INDEX idx ON t (col);   → duplicates rejected
+--   └
 
 -- * Definition: A Unique Index ensures that all values in a specific column are distinct (no duplicate values exist).
 
@@ -411,6 +425,15 @@ CREATE INDEX idx_logs_created_brin ON logs USING BRIN (created_at);
 -- ------------------------------------------------------------
 
 -- * Diagram summary: A visual summary of index types, showing when to use them and what their primary purpose is
+
+--   ┌ ASCII diagram
+--   │  Index type     When to use                       Purpose
+--   │  Clustered      primary key / range reads         rows stored in key order
+--   │  Non-clustered  frequent filters & joins          fast lookup → points to row
+--   │  Unique         values must not repeat            speed + uniqueness
+--   │  Composite      filter on several columns         leftmost columns first
+--   │  Filtered       small subset of rows              smaller, faster index
+--   └
 
 --   * Full-Text (GIN + tsvector) · Spatial (GiST/PostGIS).
 
@@ -541,6 +564,16 @@ SELECT relname, seq_scan, idx_scan FROM pg_stat_user_tables ORDER BY seq_scan DE
 -- ------------------------------------------------------------
 
 -- * Diagram summary: 4-step Indexing Strategy flowchart: 1. Initial Strategy (OLAP vs OLTP), 2. Usage Patterns Indexing, 3. Scenario-Based Indexing, 4. Monitoring & Maintenance
+
+--   ┌ ASCII diagram
+--   │  1. Initial strategy  ─► OLTP (few indexes) / OLAP (more indexes)
+--   │           ▼
+--   │  2. Usage patterns    ─► index columns used in WHERE / JOIN / ORDER BY
+--   │           ▼
+--   │  3. Scenario-based    ─► composite, covering, filtered indexes
+--   │           ▼
+--   │  4. Monitor & maintain─► drop unused, rebuild, update statistics
+--   └
 
 -- * Point-Wise Explanation:
 

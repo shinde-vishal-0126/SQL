@@ -35,6 +35,21 @@ SELECT * FROM salesdb.customers;
 
 -- * Diagram summary: Shows the top-down hierarchy: SQL Server -> Database -> Schema -> Table / View
 
+--   ┌ ASCII diagram
+--   │  [ SQL Server / DB Server ]
+--   │             │
+--   │    ┌────────┴────────┐
+--   │  [Database A]     [Database B]
+--   │       │
+--   │    ┌──┴──────────┐
+--   │  [Schema: sales] [Schema: hr]
+--   │       │
+--   │    ┌──┴─────┐
+--   │  [Table]  [View]
+--   │    │
+--   │  columns + rows
+--   └
+
 -- 1. SQL Server (DBMS): It allows us to store, manage, and provide access to databases for users or applications.
 
 -- 2. Database: Inside a SQL Server, there are multiple databases. A database is a collection of information stored in a structured way where all your data is kept and organized into different tables and objects. Each database is separated from the others and has its own data.
@@ -60,6 +75,16 @@ SELECT * FROM salesdb.customers;
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Shows the High to Low Abstraction levels involving Business Analysts, Power BI, App Developers, and DBAs
+
+--   ┌ ASCII diagram
+--   │  HIGH abstraction (sees only results)
+--   │    ▲  Business Analyst  → reports, dashboards
+--   │    │  Power BI / Tools  → views, ready tables
+--   │    │  App Developer     → tables, SQL queries
+--   │    │  DBA               → files, storage, indexes, users
+--   │    ▼
+--   │  LOW abstraction (sees physical details)
+--   └
 
 -- The architecture of a database is divided into three distinct levels:
 

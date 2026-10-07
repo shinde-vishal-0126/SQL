@@ -36,6 +36,16 @@ DROP TABLE usa_customers;
 
 -- * Diagram summary: Shows the connection between physical database files on disk and the logical grid of rows, columns, and cells
 
+--   ┌ ASCII diagram
+--   │  Disk: [data file ▤▤▤]  ──►  Logical table
+--   │                              ┌────┬──────┬───────┐
+--   │                              │ id │ name │ score │  ← columns
+--   │                              ├────┼──────┼───────┤
+--   │                              │ 1  │ Mary │ 750   │  ← row
+--   │                              └────┴──────┴───────┘
+--   │                                         └ cell
+--   └
+
 -- * Definition: A database table is a structured collection of data. It is similar to a simple grid or spreadsheet (like Excel).
 
 -- * Logical Structure:
@@ -64,7 +74,18 @@ DROP TABLE usa_customers;
 
 -- * Diagram summary: Shows the syntax differences between the two methods
 
+--   ┌ ASCII diagram
+--   │  Method 1 (CREATE + INSERT)          Method 2 (CTAS)
+--   │  CREATE TABLE t (cols...);           CREATE TABLE t AS
+--   │  INSERT INTO t SELECT ...;           SELECT ...;
+--   └
+
 -- * Diagram summary: Compares the 2-step CREATE/INSERT process vs the 1-step CTAS process
+
+--   ┌ ASCII diagram
+--   │  2 steps: [define structure] ─► [fill with INSERT ... SELECT]
+--   │  1 step : [CREATE TABLE ... AS SELECT] ─► structure + data together
+--   └
 -- There are two main ways to create and populate a permanent table in SQL.
 
 -- 1. The Classical Way: CREATE / INSERT (2 Steps)
@@ -97,6 +118,13 @@ SELECT * FROM source_table WHERE condition;
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Shows a 30-min complex query saved into a CTAS table, allowing multiple analysts to query it instantly
+
+--   ┌ ASCII diagram
+--   │  [complex query, 30 min] ─once─► [CTAS table]
+--   │                                     ├─► Analyst 1: SELECT ... (seconds)
+--   │                                     ├─► Analyst 2: SELECT ... (seconds)
+--   │                                     └─► Analyst 3: SELECT ... (seconds)
+--   └
 
 -- * The Problem with Views: If you put a very complex, heavy query (e.g., massive joins and aggregations) inside a View, the database has to execute that 30-minute query every time an analyst queries the view. This makes the system incredibly slow.
 
@@ -134,6 +162,11 @@ SELECT * FROM total_orders;
 
 -- * Diagram summary: Shows live orders changing, and a static CTAS snapshot being extracted for analysis
 
+--   ┌ ASCII diagram
+--   │  [orders (live, keeps changing)] ─CTAS at 10:00─► [orders_snapshot (frozen at 10:00)]
+--   │                                                     used for analysis / comparison
+--   └
+
 -- * The Problem: You have a data quality issue to investigate, but the live table is constantly receiving updates and new records. It is impossible to analyze a moving target.
 
 -- * The Solution: Use CTAS to create a fixed, persistent snapshot of the data at a specific moment in time. You can safely run your analysis on this static snapshot table without worrying about live updates messing up your debugging.
@@ -143,6 +176,11 @@ SELECT * FROM total_orders;
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Shows Source Systems feeding a Data Warehouse, and CTAS creating fast Physical Data Marts for Reporting
+
+--   ┌ ASCII diagram
+--   │  [Sources] ─► [Data Warehouse] ─CTAS─► [Sales mart (physical)]   ─► Reports
+--   │                                ─CTAS─► [Finance mart (physical)] ─► Reports
+--   └
 
 -- * Definition: A data mart is a subset of a data warehouse that focuses on a specific business area, department, or function (for example: sales, finance, marketing, or HR).
 
@@ -198,6 +236,12 @@ SELECT to_regclass('pg_temp.temp_users');   -- returns the name, or NULL if it d
 
 -- * Diagram summary: Shows the Database Engine linking a client session to temporary storage on disk
 
+--   ┌ ASCII diagram
+--   │  [Client session A] ─► [DB Engine] ─► [temp storage: #tmp of A]  (only A sees it)
+--   │  [Client session B] ─► [DB Engine] ─► [temp storage: #tmp of B]
+--   │  session ends ─► temp table dropped automatically
+--   └
+
 -- 1. Creation: When you execute `CREATE TEMP TABLE ... AS SELECT...`, the engine runs the query and gets the data from the source table.
 
 -- 2. Storage: The engine stores the metadata in the system catalog and stores the actual physical table inside the temporary storage (TEMP partition) on the Server's disk.
@@ -212,7 +256,21 @@ SELECT to_regclass('pg_temp.temp_users');   -- returns the name, or NULL if it d
 
 -- * Diagram summary: Summary sheet of Tables, separating Permanent and Temporary types, defining CTAS use cases, and highlighting the auto-cleanup advantage of temp tables
 
+--   ┌ ASCII diagram
+--   │                 Tables
+--   │         ┌─────────┴─────────┐
+--   │     Permanent            Temporary
+--   │   CREATE / CTAS          session only
+--   │   stays until DROP       auto-dropped at disconnect
+--   │   CTAS uses: snapshots, data marts, slow-query cache
+--   └
+
 -- * Diagram summary: Shows Extraction from a Source DB to an Intermediate Temp Table, Transformations like Filtering and Aggregation, Loading to a DWH, and automatic Dropping
+
+--   ┌ ASCII diagram
+--   │  [Source DB] ─Extract─► [Temp table] ─Transform (filter, aggregate)─► ─Load─► [DWH]
+--   │                               └─ dropped automatically at the end
+--   └
 
 -- * Why do we need temporary tables? In your source database, you have an `orders` table. Now you would like to load the table into your data warehouse. We have to do several transformations in order to prepare the data for analysis.
 
@@ -240,6 +298,12 @@ SELECT to_regclass('pg_temp.temp_users');   -- returns the name, or NULL if it d
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Comparison showing how a View fetches fresh data directly from the updated base table, whereas a CTAS returns old, snapshot data from the time it was physically created
+
+--   ┌ ASCII diagram
+--   │  base table updated at 11:00
+--   │  VIEW : SELECT ─► reads base table now  ─► NEW data (11:00)
+--   │  CTAS : SELECT ─► reads its own copy    ─► OLD data (from when it was created)
+--   └
 
 -- (Feature → Subquery | CTE | Temp Table | CTAS (Permanent) | View)
 --
@@ -295,6 +359,13 @@ SELECT to_regclass('pg_temp.temp_users');   -- returns the name, or NULL if it d
 -- ------------------------------------------------------------
 
 -- * Diagram summary: Visual flow showing how Tables, Views, Subqueries, CTEs, and CTAS connect from the Database Admin level to the Data Scientist's final query
+
+--   ┌ ASCII diagram
+--   │  DBA: [Tables] ─► [Views] ─► [CTAS tables]
+--   │                         ▼
+--   │  Analyst / Data Scientist query:
+--   │    WITH cte AS (...)  SELECT ... FROM view / table WHERE x IN (subquery)
+--   └
 
 -- The Complete Story (Only for overview):
 
