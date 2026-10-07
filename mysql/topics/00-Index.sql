@@ -1,0 +1,120 @@
+-- ======================================================================
+-- SQL & Database Master Notes
+-- ======================================================================
+
+-- ---
+
+-- ======================================================================
+-- 📑 Topic-wise files (open the file of the topic you are studying)
+-- ======================================================================
+--
+-- 00-Setup-Sample-Data.sql    →  🧪 Run first: creates salesdb + MyDatabase with sample data (used by Practice Examples)
+-- 00-Quick-Revision-Sheet.sql  →  ⚡ Quick Revision Sheet (read this before the interview)
+--
+-- ======================================================================
+-- 📘 Part 1: Database Fundamentals (Topics 1–8)
+-- ======================================================================
+
+-- ---
+--
+--   01-What-is-a-Database.sql  →  Topic 1: What is a Database?
+--   02-What-is-a-DBMS-Database-Management-System.sql  →  Topic 2: What is a DBMS (Database Management System)?
+--   03-What-is-SQL.sql  →  Topic 3: What is SQL?
+--   04-Main-2-Types-of-Databases-SQL-vs-NO-SQL.sql  →  Topic 4: Main 2 Types of Databases (SQL vs NO-SQL)
+--   05-Why-SQL.sql  →  Topic 5: Why SQL?
+--   06-Database-Structure-and-Hierarchy.sql  →  Topic 6: Database Structure & Hierarchy
+--   07-SQL-Server-Architecture-and-Database-Hierarchy.sql  →  Topic 7: SQL Server Architecture & Database Hierarchy
+--   08-SQL-vs-MySQL.sql  →  Topic 8: SQL vs MySQL
+--
+-- ======================================================================
+-- 📘 Part 2: SQL Commands, Keys & Transactions (DDL, DML, DQL, DCL, TCL) (Topics 9–19)
+-- ======================================================================
+
+-- ---
+--
+--   09-SQL-Commands-and-DDL-Data-Definition-Language-In-Depth.sql  →  Topic 9: SQL Commands & DDL (Data Definition Language) In-Depth
+--   10-Keys-and-Constraints-in-SQL.sql  →  Topic 10: Keys & Constraints in SQL
+--   11-DML-Data-Manipulation-Language-In-Depth.sql  →  Topic 11: DML (Data Manipulation Language) In-Depth
+--   12-DQL-Data-Query-Language-and-Data-Retrieval.sql  →  Topic 12: DQL (Data Query Language) & Data Retrieval
+--   13-DCL-Data-Control-Language-and-Security-Access-Control.sql  →  Topic 13: DCL (Data Control Language) & Security / Access Control
+--   14-SQL-Injection-and-Prepared-Statements-Database-Security.sql  →  Topic 14: SQL Injection & Prepared Statements (Database Security)
+--   15-TCL-Transaction-Control-Language-and-Transaction-Management.sql  →  Topic 15: TCL (Transaction Control Language) & Transaction Management
+--   16-ACID-Properties-and-Transaction-Isolation-Levels.sql  →  Topic 16: ACID Properties & Transaction Isolation Levels
+--   17-Transactions-in-SQL-Complete-Guide.sql  →  Topic 17: Transactions in SQL (Complete Guide)
+--   18-Deadlocks-in-SQL.sql  →  Topic 18: Deadlocks in SQL
+--   19-Locks-in-MySQL-InnoDB-Locking.sql  →  Topic 19: Locks in MySQL (InnoDB Locking)
+--
+-- ======================================================================
+-- 📘 Part 3: Querying & Combining Data (Clauses, Joins, SET Operators) (Topics 20–22)
+-- ======================================================================
+
+-- ---
+--
+--   20-Commands-to-Query-Data-DQL-In-Depth-Clauses-and-Filtering.sql  →  Topic 20: Commands to Query Data (DQL In-Depth, Clauses & Filtering)
+--   21-SQL-Joins-Combining-Data-from-Tables.sql  →  Topic 21: SQL Joins (Combining Data from Tables)
+--   22-SET-Operators-Combining-Rows.sql  →  Topic 22: SET Operators (Combining Rows)
+--
+-- ======================================================================
+-- 📘 Part 4: SQL Functions (String, Numeric, Date, NULL, CASE, Window) (Topics 23–26)
+-- ======================================================================
+
+-- ---
+--
+--   23-SQL-Built-in-Functions-String-and-Numeric.sql  →  Topic 23: SQL Built-in Functions (String & Numeric)
+--   24-Date-and-Time-Functions.sql  →  Topic 24: Date and Time Functions
+--   25-NULL-Functions-and-Conditional-Logic-CASE.sql  →  Topic 25: NULL Functions & Conditional Logic (CASE)
+--   26-Aggregate-and-Window-Functions-Analytics.sql  →  Topic 26: Aggregate & Window Functions (Analytics)
+--
+-- ======================================================================
+-- 📘 Part 5: Advanced Querying (Subqueries, CTEs, Views, Tables) (Topics 27–39)
+-- ======================================================================
+
+-- ---
+--
+--   27-Subqueries-Deep-Dive-Nested-Queries.sql  →  Topic 27: Subqueries Deep Dive (Nested Queries)
+--   28-Subqueries-Advanced-Clauses-Operators-and-Execution.sql  →  Topic 28: Subqueries Advanced (Clauses, Operators & Execution)
+--   29-Derived-Tables-in-SQL.sql  →  Topic 29: Derived Tables in SQL
+--   30-CTEs-Common-Table-Expressions-and-Recursive-CTEs.sql  →  Topic 30: CTEs (Common Table Expressions) & Recursive CTEs
+--   31-Common-Table-Expressions-CTE.sql  →  Topic 31: Common Table Expressions (CTE)
+--   32-SQL-Views-Virtual-Tables-Deep-Dive.sql  →  Topic 32: SQL Views (Virtual Tables) Deep Dive
+--   33-Tables-CTAS-and-Temporary-Tables-Deep-Dive.sql  →  Topic 33: Tables, CTAS & Temporary Tables Deep Dive
+--   34-Table-Duplication-and-Copying-Techniques.sql  →  Topic 34: Table Duplication & Copying Techniques
+--   35-Stored-Procedures-in-MySQL-Programmability.sql  →  Topic 35: Stored Procedures in MySQL (Programmability)
+--   36-Stored-Functions-User-Defined-Functions-in-MySQL.sql  →  Topic 36: Stored Functions (User-Defined Functions) in MySQL
+--   37-Triggers-in-MySQL.sql  →  Topic 37: Triggers in MySQL
+--   38-Events-in-MySQL-Scheduled-Jobs.sql  →  Topic 38: Events in MySQL (Scheduled Jobs)
+--   39-Cursors-in-MySQL.sql  →  Topic 39: Cursors in MySQL
+--
+-- ======================================================================
+-- 📘 Part 6: Performance, Indexing & Database Internals (Topics 40–48)
+-- ======================================================================
+
+-- ---
+--
+--   40-Database-Engine-Architecture-and-Storage-Concepts.sql  →  Topic 40: Database Engine Architecture & Storage Concepts
+--   41-Database-Optimization-and-Indexing-Analytics-and-Performance.sql  →  Topic 41: Database Optimization & Indexing (Analytics & Performance)
+--   42-Heap-vs-Clustered-Index-Internal-Storage.sql  →  Topic 42: Heap vs Clustered Index (Internal Storage)
+--   43-Query-Execution-Plans-EXPLAIN.sql  →  Topic 43: Query Execution Plans (EXPLAIN)
+--   44-Scans-and-Seeks-Data-Access-Methods.sql  →  Topic 44: Scans & Seeks (Data Access Methods)
+--   45-SQL-Join-Algorithms-How-Joins-Work-Internally.sql  →  Topic 45: SQL Join Algorithms (How Joins Work Internally)
+--   46-SQL-Table-Partitioning-Performance-Optimization.sql  →  Topic 46: SQL Table Partitioning (Performance Optimization)
+--   47-Query-Optimization-Tuning-Checklist-Interview-Favorite.sql  →  Topic 47: Query Optimization / Tuning Checklist (Interview Favorite)
+--   48-Query-Optimization-Techniques-in-SQL-Detailed-Guide.sql  →  Topic 48: Query Optimization Techniques in SQL (Detailed Guide)
+--
+-- ======================================================================
+-- 📘 Part 7: Database Design & Data Management (Topics 49–51)
+-- ======================================================================
+
+-- ---
+--
+--   49-Database-Normalization-1NF-to-BCNF.sql  →  Topic 49: Database Normalization (1NF to BCNF)
+--   50-Associations-Relationships-Between-Tables.sql  →  Topic 50: Associations (Relationships Between Tables)
+--   51-Database-Import-and-Export-CSV-SQL-Dumps.sql  →  Topic 51: Database Import & Export (CSV, SQL Dumps)
+--
+-- ======================================================================
+-- 📘 Part 8: Final Revision & Interview Preparation (Topics 52–53)
+-- ======================================================================
+
+-- ---
+--
+--   53-Interview-Q-and-A-Bank-Most-Asked-SQL-Questions.sql  →  Topic 53: Interview Q&A Bank (Most-Asked SQL Questions)

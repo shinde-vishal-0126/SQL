@@ -1,0 +1,98 @@
+import os
+
+svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="sk" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0e7ff"/>
+      <stop offset="100%" stop-color="#c7d2fe"/>
+    </linearGradient>
+    <linearGradient id="ck" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="pk" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fee2e2"/>
+      <stop offset="100%" stop-color="#fca5a5"/>
+    </linearGradient>
+    <linearGradient id="ak" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+    <linearGradient id="surk" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f3e8ff"/>
+      <stop offset="100%" stop-color="#e9d5ff"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="650" rx="15" fill="url(#bg)"/>
+  
+  <text x="500" y="45" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1e293b" text-anchor="middle">Hierarchy of Keys in SQL</text>
+  <text x="500" y="70" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">Understanding the relationship between different types of keys</text>
+
+  <!-- Connectors -->
+  <path d="M 500 170 L 500 220" stroke="#94a3b8" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  
+  <path d="M 500 290 L 300 350" stroke="#94a3b8" stroke-width="3" fill="none"/>
+  <path d="M 500 290 L 700 350" stroke="#94a3b8" stroke-width="3" fill="none"/>
+  
+  <path d="M 300 420 L 300 480" stroke="#94a3b8" stroke-width="3" fill="none"/>
+
+  <!-- Super Key -->
+  <g transform="translate(350, 100)">
+    <rect width="300" height="70" rx="10" fill="url(#sk)" filter="url(#shadow)" stroke="#818cf8" stroke-width="2"/>
+    <text x="150" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#3730a3" text-anchor="middle">SUPER KEY</text>
+    <text x="150" y="50" font-family="Arial, sans-serif" font-size="12" fill="#4338ca" text-anchor="middle">Any set that uniquely identifies a row</text>
+  </g>
+
+  <!-- Candidate Key -->
+  <g transform="translate(350, 220)">
+    <rect width="300" height="70" rx="10" fill="url(#ck)" filter="url(#shadow)" stroke="#4ade80" stroke-width="2"/>
+    <text x="150" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#166534" text-anchor="middle">CANDIDATE KEY</text>
+    <text x="150" y="50" font-family="Arial, sans-serif" font-size="12" fill="#15803d" text-anchor="middle">Minimal Super Key (No extra columns)</text>
+  </g>
+
+  <!-- Primary Key -->
+  <g transform="translate(150, 350)">
+    <rect width="300" height="70" rx="10" fill="url(#pk)" filter="url(#shadow)" stroke="#f87171" stroke-width="2"/>
+    <text x="150" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#991b1b" text-anchor="middle">PRIMARY KEY</text>
+    <text x="150" y="50" font-family="Arial, sans-serif" font-size="12" fill="#b91c1c" text-anchor="middle">Chosen Candidate Key to identify rows</text>
+  </g>
+
+  <!-- Alternate Key -->
+  <g transform="translate(550, 350)">
+    <rect width="300" height="70" rx="10" fill="url(#ak)" filter="url(#shadow)" stroke="#fbbf24" stroke-width="2"/>
+    <text x="150" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#92400e" text-anchor="middle">ALTERNATE KEY</text>
+    <text x="150" y="50" font-family="Arial, sans-serif" font-size="12" fill="#b45309" text-anchor="middle">Candidate Keys NOT chosen as Primary</text>
+  </g>
+
+  <!-- Composite Key -->
+  <g transform="translate(150, 480)">
+    <rect width="300" height="70" rx="10" fill="url(#pk)" filter="url(#shadow)" stroke="#f87171" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="150" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#991b1b" text-anchor="middle">COMPOSITE KEY</text>
+    <text x="150" y="50" font-family="Arial, sans-serif" font-size="12" fill="#b91c1c" text-anchor="middle">Primary Key made of multiple columns</text>
+  </g>
+
+  <!-- Surrogate Key -->
+  <g transform="translate(550, 480)">
+    <rect width="300" height="70" rx="10" fill="url(#surk)" filter="url(#shadow)" stroke="#c084fc" stroke-width="2"/>
+    <text x="150" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#581c87" text-anchor="middle">SURROGATE KEY</text>
+    <text x="150" y="50" font-family="Arial, sans-serif" font-size="12" fill="#6b21a8" text-anchor="middle">Artificial Key (e.g. AUTO_INCREMENT)</text>
+  </g>
+
+  <g transform="translate(100, 580)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="12" fill="#475569">
+      <tspan x="0" dy="1.2em">📌 Note 1: PRIMARY KEY is basically a UNIQUE constraint + NOT NULL constraint combined.</tspan>
+      <tspan x="0" dy="1.2em">📌 Note 2: FOREIGN KEY can reference a UNIQUE column in the parent table, not just the PRIMARY KEY.</tspan>
+    </text>
+  </g>
+</svg>"""
+
+with open('d:/IMP/SQL/images/keys_hierarchy.svg', 'w', encoding='utf-8') as f:
+    f.write(svg_content)
