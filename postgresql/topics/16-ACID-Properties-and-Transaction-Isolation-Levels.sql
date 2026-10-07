@@ -10,6 +10,18 @@
 
 -- * Real-life example: A bank transfer: money leaves one account AND reaches the other, or nothing happens; others never see half a transfer; once done, a power cut cannot undo it.
 
+-- * 🧩 Syntax:
+--     BEGIN TRANSACTION ISOLATION LEVEL
+--         READ COMMITTED | REPEATABLE READ | SERIALIZABLE;
+--     SET SESSION CHARACTERISTICS AS TRANSACTION ISOLATION LEVEL level;
+--     SHOW transaction_isolation;
+
+-- * Syntax explained (each part):
+--   - READ UNCOMMITTED → can see other sessions' unsaved changes (dirty reads)
+--   - READ COMMITTED → sees only saved data; a re-read can change
+--   - REPEATABLE READ → same rows give the same values for the whole transaction (MySQL default)
+--   - SERIALIZABLE → strictest; behaves as if transactions ran one after another
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 BEGIN;

@@ -10,6 +10,16 @@
 
 -- * Real-life example: The index at the back of a book: jump straight to page 214 instead of reading every page.
 
+-- * 🧩 Syntax:
+--     CREATE [UNIQUE] INDEX [CONCURRENTLY] index_name ON table_name [USING btree|hash|gin|brin] (col1 [, col2 ...]) [WHERE condition];
+--     SELECT * FROM pg_indexes WHERE tablename = 'table_name';
+--     DROP INDEX index_name;
+
+-- * Syntax explained (each part):
+--   - UNIQUE → index also blocks duplicate values
+--   - (col1, col2) → composite index: order matters (leftmost column first)
+--   - USING / WHERE (PostgreSQL) → index type / partial index on some rows only
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 EXPLAIN SELECT * FROM orders WHERE orderstatus = 'Shipped';

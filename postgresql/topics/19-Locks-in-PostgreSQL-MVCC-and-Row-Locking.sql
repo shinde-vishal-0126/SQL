@@ -10,6 +10,17 @@
 
 -- * Real-life example: Like a "Do not disturb" sign on a hotel room door.
 
+-- * 🧩 Syntax:
+--     SELECT ... FOR SHARE;                  -- shared (read) lock
+--     SELECT ... FOR UPDATE [NOWAIT | SKIP LOCKED];   -- exclusive (write) lock
+--     LOCK TABLE t IN ACCESS EXCLUSIVE MODE;          -- inside a transaction
+
+-- * Syntax explained (each part):
+--   - FOR SHARE → others can read but not change the rows
+--   - FOR UPDATE → only you can change the rows until COMMIT/ROLLBACK
+--   - NOWAIT → error immediately if locked
+--   - SKIP LOCKED → skip rows someone else has locked
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 BEGIN;

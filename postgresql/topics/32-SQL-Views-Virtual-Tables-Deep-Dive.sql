@@ -10,6 +10,20 @@
 
 -- * Real-life example: A window in a wall — you see the garden (real tables) through it, but the window holds no plants.
 
+-- * 🧩 Syntax:
+--     CREATE [OR REPLACE] VIEW view_name AS
+--     SELECT ...;
+--     SELECT * FROM view_name;
+--     CREATE MATERIALIZED VIEW mv_name AS SELECT ...;
+--     REFRESH MATERIALIZED VIEW mv_name;
+--     DROP VIEW [IF EXISTS] view_name;
+
+-- * Syntax explained (each part):
+--   - CREATE VIEW … AS SELECT → save a query under a name
+--   - OR REPLACE → overwrite an existing view
+--   - Use → query it exactly like a table
+--   - DROP VIEW → removes only the saved query, not the table data
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 CREATE VIEW v_customer_orders AS

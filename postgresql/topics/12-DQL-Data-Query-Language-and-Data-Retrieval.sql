@@ -10,6 +10,19 @@
 
 -- * Real-life example: Reading a book in the library — you look, but you do not write in it.
 
+-- * 🧩 Syntax:
+--     SELECT [DISTINCT] col1, col2 AS alias
+--     FROM table_name
+--     WHERE condition
+--     ORDER BY col [ASC|DESC]
+--     LIMIT n;
+
+-- * Syntax explained (each part):
+--   - DISTINCT → remove duplicate result rows
+--   - AS alias → rename a column in the output
+--   - ORDER BY … ASC/DESC → sort ascending (default) or descending
+--   - LIMIT n → return only the first n rows
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT firstname, score

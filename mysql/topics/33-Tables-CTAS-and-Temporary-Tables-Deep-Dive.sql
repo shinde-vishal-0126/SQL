@@ -10,6 +10,15 @@
 
 -- * Real-life example: CTAS = photocopying a report and keeping it in a file. Temporary table = notes on a whiteboard wiped at the end of the meeting.
 
+-- * 🧩 Syntax:
+--     CREATE TABLE new_table AS SELECT ... FROM ... WHERE ...;   -- CTAS
+--     CREATE TEMPORARY TABLE tmp_name AS SELECT ...;              -- session-only
+--     DROP TEMPORARY TABLE tmp_name;
+
+-- * Syntax explained (each part):
+--   - CREATE TABLE … AS SELECT → new real table filled with the query result (keys/indexes are not copied)
+--   - TEMPORARY → visible only in your session; dropped automatically on disconnect
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 CREATE TABLE usa_customers AS

@@ -15,6 +15,16 @@
 
 -- * Real-life example: Kitchen tools: a peeler or a knife changes the vegetable, but the vegetable in the fridge stays the same.
 
+-- * 🧩 Syntax:
+--     SELECT FUNCTION_NAME(argument [, argument ...]) AS alias FROM table;
+--     -- String : UPPER(s), LOWER(s), LENGTH(s), TRIM(s), CONCAT(a, b), REPLACE(s, from, to), SUBSTRING(s, start, len), LEFT(s, n)
+--     -- Numeric: ROUND(n, d), CEIL(n), FLOOR(n), ABS(n), MOD(a, b), POWER(a, b)
+
+-- * Syntax explained (each part):
+--   - FUNCTION_NAME → the ready-made function
+--   - argument → the input value or column
+--   - Result → a new value per row; the stored data is not changed
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 SELECT UPPER(product) AS product_upper,

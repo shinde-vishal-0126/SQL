@@ -10,6 +10,19 @@
 
 -- * Real-life example: An alarm clock that also does a task, like "every night at 12, back up the data".
 
+-- * 🧩 Syntax:
+--     SET GLOBAL event_scheduler = ON;
+--     CREATE EVENT event_name
+--     ON SCHEDULE {AT timestamp | EVERY n {MINUTE|HOUR|DAY} [STARTS ts] [ENDS ts]}
+--     DO sql_statement;
+--     ALTER EVENT event_name DISABLE;
+--     DROP EVENT [IF EXISTS] event_name;
+
+-- * Syntax explained (each part):
+--   - Schedule → AT = once at a time; EVERY = repeat (MySQL). Cron text "0 0 * * *" = every day at 00:00 (pg_cron)
+--   - DO / command → the SQL that runs automatically
+--   - DISABLE / unschedule → stop the job
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 CREATE TABLE status_snapshot (taken_at DATETIME, shipped INT);

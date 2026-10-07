@@ -10,6 +10,16 @@
 
 -- * Real-life example: Nested loop = for each guest, search the list; hash = sort guests into boxes by first letter first; merge = two alphabetically sorted lists walked side by side.
 
+-- * 🧩 Syntax:
+--     EXPLAIN SELECT ... FROM a JOIN b ON a.k = b.k;
+--     -- shows: Nested Loop / Hash Join / Merge Join
+--     SET enable_hashjoin = off;  SET enable_mergejoin = off;  -- testing only
+
+-- * Syntax explained (each part):
+--   - Nested Loop → for each outer row, look up inner rows (best with an index)
+--   - Hash Join → build a hash table of the smaller side, then probe it
+--   - Merge Join → both inputs sorted by the key, then merged
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 EXPLAIN

@@ -10,6 +10,17 @@
 
 -- * Real-life example: An alarm clock that also does a task, like "every night at 12, back up the data".
 
+-- * 🧩 Syntax:
+--     CREATE EXTENSION pg_cron;                      -- once, needs shared_preload_libraries
+--     SELECT cron.schedule('job_name', 'min hour day month weekday', $$sql_statement$$);
+--     SELECT * FROM cron.job;
+--     SELECT cron.unschedule('job_name');
+
+-- * Syntax explained (each part):
+--   - Schedule → AT = once at a time; EVERY = repeat (MySQL). Cron text "0 0 * * *" = every day at 00:00 (pg_cron)
+--   - DO / command → the SQL that runs automatically
+--   - DISABLE / unschedule → stop the job
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 -- With pg_cron installed:

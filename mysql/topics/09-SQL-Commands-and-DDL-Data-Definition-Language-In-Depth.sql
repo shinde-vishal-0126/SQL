@@ -15,6 +15,23 @@
 
 -- * Real-life example: DDL is the carpenter who builds, resizes or removes the cupboard; it does not decide what goes inside.
 
+-- * 🧩 Syntax:
+--     CREATE TABLE table_name (col DATA_TYPE [constraint], ...);
+--     ALTER TABLE table_name ADD COLUMN col DATA_TYPE;
+--     ALTER TABLE table_name MODIFY COLUMN col NEW_TYPE;
+--     ALTER TABLE table_name RENAME COLUMN old TO new;
+--     ALTER TABLE table_name DROP COLUMN col;
+--     RENAME TABLE old_name TO new_name;
+--     TRUNCATE TABLE table_name;
+--     DROP TABLE [IF EXISTS] table_name;
+
+-- * Syntax explained (each part):
+--   - CREATE → build a new object
+--   - ALTER → change an existing object (add / change / rename / drop a column)
+--   - TRUNCATE → remove all rows quickly, keep the structure
+--   - DROP → remove the object completely
+--   - [IF EXISTS] → optional: no error if the object is missing
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 CREATE TABLE suppliers (supplierid INT PRIMARY KEY, name VARCHAR(50));

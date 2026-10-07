@@ -10,6 +10,19 @@
 
 -- * Real-life example: Building → floor → room → shelf → box. Each box has a label saying what may go inside (only numbers, only dates…).
 
+-- * 🧩 Syntax:
+--     CREATE TABLE table_name (
+--       column_name DATA_TYPE [constraint],
+--       ...
+--     );
+--     -- see columns and data types:
+--     SELECT column_name, data_type FROM information_schema.columns WHERE table_name = 'table_name';
+
+-- * Syntax explained (each part):
+--   - column_name → name of the field
+--   - DATA_TYPE → kind of value: INT, DECIMAL(p,s), VARCHAR(n), DATE, TIMESTAMP, JSON …
+--   - [constraint] → optional rule: PRIMARY KEY, NOT NULL, UNIQUE, DEFAULT …
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT column_name, data_type

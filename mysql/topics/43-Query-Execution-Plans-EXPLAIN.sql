@@ -10,6 +10,17 @@
 
 -- * Real-life example: Google Maps showing the route before you drive.
 
+-- * 🧩 Syntax:
+--     EXPLAIN SELECT ...;
+--     EXPLAIN FORMAT=TREE | JSON SELECT ...;
+--     EXPLAIN ANALYZE SELECT ...;            -- actually runs the query
+
+-- * Syntax explained (each part):
+--   - EXPLAIN → shows the plan without running the query
+--   - ANALYZE → runs it and shows real time and row counts
+--   - FORMAT → output style: table / tree / JSON
+--   - Key fields → MySQL: type, key, rows, Extra. PostgreSQL: node type, cost, rows, actual time
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 EXPLAIN SELECT * FROM orders WHERE orderid = 5;

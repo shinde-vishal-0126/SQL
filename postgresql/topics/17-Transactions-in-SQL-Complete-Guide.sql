@@ -10,6 +10,18 @@
 
 -- * Real-life example: Placing an online order: create the order, reduce stock, take payment — all three or nothing.
 
+-- * 🧩 Syntax:
+--     BEGIN;
+--       INSERT ...;
+--       UPDATE ...;
+--       -- on error: ROLLBACK;
+--     COMMIT;
+
+-- * Syntax explained (each part):
+--   - One unit → every statement between START and COMMIT succeeds together or is undone together
+--   - COMMIT → end and save
+--   - ROLLBACK → end and undo
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 BEGIN;

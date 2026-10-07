@@ -10,6 +10,20 @@
 
 -- * Real-life example: Exporting your phone contacts to a file and importing them on a new phone.
 
+-- * 🧩 Syntax:
+--     COPY t TO 'path/file.csv' WITH (FORMAT csv, HEADER);       -- server side
+--     COPY t FROM 'path/file.csv' WITH (FORMAT csv, HEADER);
+--     \copy t TO 'file.csv' WITH (FORMAT csv, HEADER)               -- psql, client side
+--     -- terminal:
+--     pg_dump -U user -d db_name -f backup.sql
+--     psql -U user -d db_name -f backup.sql
+
+-- * Syntax explained (each part):
+--   - Export → table / query → file
+--   - Import → file → table
+--   - FIELDS / FORMAT csv → how values are separated
+--   - Dump → full backup as SQL statements; restore by running the file
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 -- Export from psql:

@@ -10,6 +10,17 @@
 
 -- * Real-life example: Checking each student against their own class average, not the school average.
 
+-- * 🧩 Syntax:
+--     WHERE col IN (subquery)
+--     WHERE col > ANY | ALL (subquery)
+--     WHERE [NOT] EXISTS (SELECT 1 FROM t2 WHERE t2.key = outer.key)   -- correlated
+
+-- * Syntax explained (each part):
+--   - IN → value is in the list returned
+--   - ANY / ALL → compare with at least one / every value
+--   - EXISTS → TRUE if the subquery returns at least one row
+--   - Correlated → inner query uses a column of the outer row, so it runs per row
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 SELECT c.firstname

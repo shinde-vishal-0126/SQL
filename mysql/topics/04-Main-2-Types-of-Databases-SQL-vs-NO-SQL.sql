@@ -10,6 +10,17 @@
 
 -- * Real-life example: SQL = an Excel sheet with fixed columns. NoSQL = a folder of free-form notes where each note can look different.
 
+-- * 🧩 Syntax:
+--     -- SQL (relational): fixed columns, linked by keys
+--     SELECT t1.col, t2.col
+--     FROM table1 t1 JOIN table2 t2 ON t1.key = t2.key;
+--     -- NoSQL-style document built in SQL:
+--     SELECT JSON_OBJECT('key1', col1, 'key2', col2) FROM table_name;
+
+-- * Syntax explained (each part):
+--   - JOIN … ON → links rows of two tables using a common key (relational way)
+--   - JSON_OBJECT / json_build_object → builds a key-value document (NoSQL way)
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 SELECT o.orderid, c.firstname, o.sales

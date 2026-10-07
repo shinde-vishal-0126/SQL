@@ -10,6 +10,17 @@
 
 -- * Real-life example: Writing intermediate totals on a whiteboard before the final answer.
 
+-- * 🧩 Syntax:
+--     WITH cte1 AS (SELECT ...),
+--          cte2 AS (SELECT ... FROM cte1)     -- a CTE can use the one before it
+--     SELECT ... FROM cte2 JOIN cte1 ON ...;
+
+-- * Syntax explained (each part):
+--   - Standalone CTE → does not depend on another CTE
+--   - Nested CTE → uses an earlier CTE
+--   - Comma → separates multiple CTEs; only one WITH
+--   - Scope → CTEs exist only for the one statement that follows
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 WITH customer_totals AS (

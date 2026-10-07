@@ -10,6 +10,18 @@
 
 -- * Real-life example: Keeping bills in separate folders per year instead of one huge folder.
 
+-- * 🧩 Syntax:
+--     CREATE TABLE t (cols ...) PARTITION BY RANGE (col);
+--     CREATE TABLE t_p1 PARTITION OF t FOR VALUES FROM (v1) TO (v2);
+--     -- also: PARTITION BY LIST (col) ... FOR VALUES IN (...)
+--     --       PARTITION BY HASH (col)  ... FOR VALUES WITH (MODULUS n, REMAINDER r)
+
+-- * Syntax explained (each part):
+--   - RANGE → rows go to a partition by value ranges (dates, numbers)
+--   - LIST → by a list of values (countries, statuses)
+--   - HASH → spread evenly by a hash
+--   - Partition pruning → WHERE on the partition key reads only the needed partitions
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 CREATE TABLE orders_by_year (orderid INT, orderdate DATE, sales INT) PARTITION BY RANGE (orderdate);

@@ -10,6 +10,22 @@
 
 -- * Real-life example: One mother – many children (1:N); students and courses (N:N, needs an enrolment list); an employee whose manager is also an employee (self).
 
+-- * 🧩 Syntax:
+--     -- 1:N  (one parent, many children)
+--     CREATE TABLE child (..., parent_id INT REFERENCES parent(id));
+--     -- 1:1  (UNIQUE foreign key)
+--     CREATE TABLE detail (..., main_id INT UNIQUE REFERENCES main(id));
+--     -- N:N  (bridge table)
+--     CREATE TABLE a_b (a_id INT REFERENCES a(id), b_id INT REFERENCES b(id), PRIMARY KEY (a_id, b_id));
+--     -- Self (row points to the same table)
+--     CREATE TABLE emp (id INT PRIMARY KEY, manager_id INT REFERENCES emp(id));
+
+-- * Syntax explained (each part):
+--   - Foreign key column → stored on the "many" side
+--   - UNIQUE FK → makes it one-to-one
+--   - Bridge table → two foreign keys = many-to-many
+--   - Self reference → hierarchy inside one table
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 SELECT e.firstname AS employee, m.firstname AS manager

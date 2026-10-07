@@ -10,6 +10,16 @@
 
 -- * Real-life example: The database is the library; the DBMS is the librarian who finds books, stops wrong entries and controls who may enter.
 
+-- * 🧩 Syntax:
+--     SELECT version();                                   -- which DBMS version
+--     SELECT datname FROM pg_database;                    -- databases the DBMS manages
+--     SELECT table_name FROM information_schema.tables
+--     WHERE table_schema = 'schema_name';                 -- tables in a schema
+
+-- * Syntax explained (each part):
+--   - VERSION() → function that returns the DBMS version
+--   - SHOW … / catalog query → asks the DBMS for its own metadata (data about data)
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT version();

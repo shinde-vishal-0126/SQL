@@ -10,6 +10,20 @@
 
 -- * Real-life example: Like a shopping cart: you add items (changes); Pay = COMMIT, Empty cart = ROLLBACK.
 
+-- * 🧩 Syntax:
+--     BEGIN;                      -- or START TRANSACTION
+--       ...statements...
+--     SAVEPOINT sp_name;
+--       ...statements...
+--     ROLLBACK TO SAVEPOINT sp_name;
+--     COMMIT;                     -- or ROLLBACK;
+
+-- * Syntax explained (each part):
+--   - START TRANSACTION / BEGIN → start a group of changes
+--   - COMMIT → save all changes permanently
+--   - ROLLBACK → cancel all changes since the start
+--   - SAVEPOINT / ROLLBACK TO → a checkpoint you can return to without cancelling everything
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 BEGIN;

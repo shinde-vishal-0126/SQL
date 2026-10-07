@@ -10,6 +10,19 @@
 
 -- * Real-life example: Exporting your phone contacts to a file and importing them on a new phone.
 
+-- * 🧩 Syntax:
+--     SELECT ... INTO OUTFILE 'path/file.csv' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+--     LOAD DATA INFILE 'path/file.csv' INTO TABLE t FIELDS TERMINATED BY ',' IGNORE 1 LINES;
+--     -- terminal:
+--     mysqldump -u user -p db_name > backup.sql
+--     mysql -u user -p db_name < backup.sql
+
+-- * Syntax explained (each part):
+--   - Export → table / query → file
+--   - Import → file → table
+--   - FIELDS / FORMAT csv → how values are separated
+--   - Dump → full backup as SQL statements; restore by running the file
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 -- Export (MySQL folder allowed by secure_file_priv):

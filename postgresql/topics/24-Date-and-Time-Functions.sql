@@ -10,6 +10,19 @@
 
 -- * Real-life example: Like a calendar app: "what month is it?", "how many days until delivery?".
 
+-- * 🧩 Syntax:
+--     EXTRACT(YEAR|MONTH|DAY FROM d)                   -- parts of a date
+--     d + INTERVAL 'n day'                             -- add time
+--     end_date - start_date                            -- days between (DATE - DATE)
+--     age(end, start)                                  -- difference as an interval
+--     TO_CHAR(d, 'YYYY-MM-DD')                         -- date → text
+--     now(), CURRENT_DATE                              -- current date/time
+
+-- * Syntax explained (each part):
+--   - Part functions → take out year / month / day
+--   - Add / difference → calculate new dates and gaps
+--   - Format → show a date as text in any pattern
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT orderid, orderdate, shipdate,

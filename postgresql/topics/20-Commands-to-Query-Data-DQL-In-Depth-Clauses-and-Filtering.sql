@@ -15,6 +15,23 @@
 
 -- * Real-life example: Like filters on a shopping site: category, price range, sort by price, show top 10.
 
+-- * 🧩 Syntax:
+--     SELECT [DISTINCT] columns
+--     FROM table
+--     [JOIN other ON condition]
+--     WHERE row_condition                -- =, <>, >, <, BETWEEN, IN, LIKE, IS NULL, AND, OR, NOT
+--     GROUP BY columns
+--     HAVING group_condition
+--     ORDER BY columns [ASC|DESC]
+--     LIMIT n [OFFSET m];
+--     -- Logical execution order: FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT
+
+-- * Syntax explained (each part):
+--   - WHERE → filters rows before grouping
+--   - GROUP BY → one result row per group
+--   - HAVING → filters groups after aggregation
+--   - ORDER BY / LIMIT … OFFSET → sort, then take n rows after skipping m
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT customerid, SUM(sales) AS total_sales

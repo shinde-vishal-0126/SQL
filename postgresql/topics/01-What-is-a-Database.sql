@@ -15,6 +15,16 @@
 
 -- * Real-life example: Like a well-arranged cupboard with labelled boxes, instead of papers thrown in a bag.
 
+-- * 🧩 Syntax:
+--     CREATE DATABASE database_name;
+--     -- connect to it (pgAdmin: open Query Tool on it / psql: \c database_name)
+--     SELECT column_list FROM table_name;
+
+-- * Syntax explained (each part):
+--   - CREATE DATABASE → makes a new empty database
+--   - USE / connect → chooses which database the next queries run in
+--   - SELECT … FROM → reads data from a table inside that database
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT * FROM customers;

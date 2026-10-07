@@ -10,6 +10,23 @@
 
 -- * Real-life example: A burglar alarm: nobody presses it; it rings by itself when the door opens.
 
+-- * 🧩 Syntax:
+--     DELIMITER //
+--     CREATE TRIGGER trigger_name
+--     {BEFORE | AFTER} {INSERT | UPDATE | DELETE} ON table_name
+--     FOR EACH ROW
+--     BEGIN
+--       -- use OLD.col (before change) and NEW.col (after change)
+--     END //
+--     DELIMITER ;
+--     DROP TRIGGER trigger_name;
+
+-- * Syntax explained (each part):
+--   - BEFORE / AFTER → run before the change (can modify NEW) or after it
+--   - INSERT / UPDATE / DELETE → which action fires the trigger
+--   - FOR EACH ROW → runs once per changed row
+--   - OLD / NEW → row values before / after the change
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 CREATE TABLE price_history (productid INT, old_price INT, new_price INT);

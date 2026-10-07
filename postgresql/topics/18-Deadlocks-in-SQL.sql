@@ -10,6 +10,16 @@
 
 -- * Real-life example: Two cars on a narrow bridge from opposite sides — neither can move until one reverses.
 
+-- * 🧩 Syntax:
+--     SELECT ... FROM t WHERE ... ORDER BY key FOR UPDATE;   -- lock rows in a fixed order
+--     SET deadlock_timeout = '1s';                            -- how long before deadlock check
+--     SET lock_timeout = '5s';                                -- stop waiting for a lock after this
+
+-- * Syntax explained (each part):
+--   - FOR UPDATE … ORDER BY → take locks in the same order everywhere to avoid deadlocks
+--   - Deadlock error → MySQL 1213 / PostgreSQL 40P01 — retry the transaction
+--   - lock wait timeout → give up waiting for a lock after N seconds
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 -- Tab A: BEGIN; UPDATE products SET price = price + 1 WHERE productid = 101;

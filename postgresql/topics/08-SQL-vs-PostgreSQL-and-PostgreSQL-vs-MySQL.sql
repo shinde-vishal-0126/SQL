@@ -10,6 +10,17 @@
 
 -- * Real-life example: English is the language; BBC and CNN are channels that speak English, each with its own style.
 
+-- * 🧩 Syntax:
+--     -- Standard SQL (works everywhere):
+--     SELECT col FROM t WHERE ... ORDER BY col;
+--     -- PostgreSQL extensions:
+--     SELECT a || b, COALESCE(x, 0) FROM "table" WHERE col ILIKE 'a%' LIMIT n;
+--     UPDATE t SET ... RETURNING *;
+
+-- * Syntax explained (each part):
+--   - Standard SQL → the common language every RDBMS understands
+--   - Extensions → product-specific syntax: MySQL backticks / IFNULL; PostgreSQL || / ILIKE / RETURNING / double quotes
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT firstname || ' ' || COALESCE(lastname, '') AS full_name

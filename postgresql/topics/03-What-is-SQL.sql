@@ -10,6 +10,17 @@
 
 -- * Real-life example: SQL is like the language you speak to the librarian: "Give me all books by this author".
 
+-- * 🧩 Syntax:
+--     SELECT column1, column2      -- what to show
+--     FROM table_name              -- where to read from
+--     WHERE condition;             -- which rows
+
+-- * Syntax explained (each part):
+--   - SELECT → keyword: read data; list the columns (or * for all)
+--   - FROM → the table to read
+--   - WHERE → optional filter; only rows where the condition is TRUE
+--   - ; (semicolon) → ends the statement
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT firstname, country

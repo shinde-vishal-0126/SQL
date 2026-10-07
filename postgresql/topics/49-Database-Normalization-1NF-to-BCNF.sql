@@ -15,6 +15,18 @@
 
 -- * Real-life example: Keeping a friend's phone number once in your contacts instead of writing it in every message.
 
+-- * 🧩 Syntax:
+--     -- Split repeated data into its own table and link it:
+--     CREATE TABLE parent (id INT PRIMARY KEY, name VARCHAR(50));
+--     CREATE TABLE child  (id INT PRIMARY KEY, parent_id INT,
+--                          FOREIGN KEY (parent_id) REFERENCES parent (id));
+
+-- * Syntax explained (each part):
+--   - 1NF → one value per cell, no repeating groups
+--   - 2NF → 1NF + every column depends on the whole primary key
+--   - 3NF → 2NF + no column depends on another non-key column
+--   - BCNF → every determinant is a candidate key
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT o.orderid, o.productid, p.product, p.category

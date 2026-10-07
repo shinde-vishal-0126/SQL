@@ -10,6 +10,18 @@
 
 -- * Real-life example: Taking the highway instead of small lanes — same destination, less time.
 
+-- * 🧩 Syntax:
+--     -- Sargable filter (index-friendly):
+--     WHERE col >= start_value AND col < end_value
+--     -- instead of:
+--     WHERE FUNCTION(col) = value
+--     EXPLAIN [ANALYZE] SELECT ...;     -- always check the plan
+
+-- * Syntax explained (each part):
+--   - Sargable → the column stays bare on one side so an index can be used
+--   - Function on column → hides the index and forces a scan
+--   - EXPLAIN → proves whether the change helped
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 -- Slow style: function on the column hides the index

@@ -10,6 +10,23 @@
 
 -- * Real-life example: A saved recipe: write it once, then just say "make recipe X for 4 people".
 
+-- * 🧩 Syntax:
+--     CREATE [OR REPLACE] PROCEDURE proc_name(p1 INT, INOUT p2 INT DEFAULT NULL)
+--     LANGUAGE plpgsql AS $$
+--     DECLARE v INT := 0;
+--     BEGIN
+--       -- SQL statements, IF / LOOP, RAISE NOTICE ...
+--     END $$;
+--     CALL proc_name(10);
+--     DROP PROCEDURE [IF EXISTS] proc_name(INT, INT);
+
+-- * Syntax explained (each part):
+--   - IN / OUT / INOUT → input value / value returned / both
+--   - DECLARE → local variable inside the procedure
+--   - BEGIN … END → the body with the SQL statements
+--   - DELIMITER // (MySQL) / $$ (PostgreSQL) → lets the body contain ; without ending the CREATE early
+--   - CALL → runs the procedure
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 CREATE OR REPLACE PROCEDURE count_orders(p_customerid INT)

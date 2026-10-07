@@ -10,6 +10,25 @@
 
 -- * Real-life example: Aggregate = the class average on one line. Window = each student's mark with the class average written next to it.
 
+-- * 🧩 Syntax:
+--     -- Aggregate:
+--     SELECT group_col, SUM(col), COUNT(*), AVG(col), MIN(col), MAX(col)
+--     FROM t GROUP BY group_col;
+--     -- Window:
+--     FUNCTION() OVER (
+--       [PARTITION BY col]          -- groups (rows are kept)
+--       [ORDER BY col]              -- order inside each group
+--       [ROWS BETWEEN start AND end]-- frame
+--     )
+--     -- FUNCTION: SUM, AVG, COUNT, ROW_NUMBER, RANK, DENSE_RANK, NTILE(n), LAG(col), LEAD(col), FIRST_VALUE(col)
+
+-- * Syntax explained (each part):
+--   - Aggregate + GROUP BY → many rows → one row per group
+--   - OVER (…) → makes it a window function: every row stays
+--   - PARTITION BY → restart the calculation for each group
+--   - ORDER BY inside OVER → order for running totals and ranking
+--   - ROWS BETWEEN → which neighbouring rows are included (frame)
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT orderid, customerid, sales,

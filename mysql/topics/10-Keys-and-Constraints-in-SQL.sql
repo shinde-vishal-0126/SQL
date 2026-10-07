@@ -10,6 +10,24 @@
 
 -- * Real-life example: Like rules at a bank: every account has a unique number, every transaction must point to a real account, and the balance cannot be negative.
 
+-- * 🧩 Syntax:
+--     CREATE TABLE child (
+--       id        INT PRIMARY KEY,                 -- unique + not null
+--       code      VARCHAR(20) NOT NULL UNIQUE,     -- required, no duplicates
+--       qty       INT CHECK (qty >= 0),            -- custom rule
+--       status    VARCHAR(10) DEFAULT 'new',       -- value when none is given
+--       parent_id INT,
+--       CONSTRAINT fk_name FOREIGN KEY (parent_id)
+--         REFERENCES parent (id) ON DELETE CASCADE -- link to another table
+--     );
+--     ALTER TABLE t ADD CONSTRAINT name UNIQUE (col);
+
+-- * Syntax explained (each part):
+--   - PRIMARY KEY → unique id of each row; never NULL; one per table
+--   - FOREIGN KEY … REFERENCES → value must exist in the parent table
+--   - ON DELETE CASCADE / SET NULL → what happens to child rows when the parent row is deleted
+--   - UNIQUE / NOT NULL / CHECK / DEFAULT → no duplicates / value required / custom condition / automatic value
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 INSERT INTO orders (orderid, productid, customerid) VALUES (1, 101, 1);    -- fails: PRIMARY KEY

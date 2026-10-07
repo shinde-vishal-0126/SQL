@@ -10,6 +10,21 @@
 
 -- * Real-life example: A calculator button you program yourself, e.g. "add GST".
 
+-- * 🧩 Syntax:
+--     CREATE [OR REPLACE] FUNCTION func_name(p1 INT, p2 VARCHAR)
+--     RETURNS return_type
+--     LANGUAGE sql | plpgsql
+--     IMMUTABLE AS $$
+--       SELECT expression;                -- (plpgsql: BEGIN RETURN ...; END)
+--     $$;
+--     SELECT func_name(col1, col2) FROM t;
+
+-- * Syntax explained (each part):
+--   - RETURNS → the data type of the single result
+--   - DETERMINISTIC / IMMUTABLE → same input always gives the same output
+--   - RETURN → sends the value back
+--   - Use → inside SELECT, WHERE … like a built-in function
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 CREATE OR REPLACE FUNCTION with_gst(p_price INT) RETURNS NUMERIC

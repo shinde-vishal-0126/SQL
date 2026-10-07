@@ -10,6 +10,18 @@
 
 -- * Real-life example: Like giving an office key card: one person may only enter the reading room, another may also enter the store room.
 
+-- * 🧩 Syntax:
+--     CREATE USER 'user'@'host' IDENTIFIED BY 'password';
+--     GRANT privilege_list ON database.table TO 'user'@'host';
+--     REVOKE privilege_list ON database.table FROM 'user'@'host';
+--     SHOW GRANTS FOR 'user'@'host';
+--     DROP USER 'user'@'host';
+
+-- * Syntax explained (each part):
+--   - privilege_list → SELECT, INSERT, UPDATE, DELETE, ALL PRIVILEGES … (UPDATE (col) = only one column)
+--   - ON … → where the right applies: database.* / schema / one table
+--   - TO / FROM → who gets the right / who loses it
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 CREATE USER 'viewer'@'localhost' IDENTIFIED BY 'View@123';

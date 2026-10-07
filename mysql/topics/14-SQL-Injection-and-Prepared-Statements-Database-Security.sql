@@ -10,6 +10,18 @@
 
 -- * Real-life example: Like a form where someone writes "and also give me the keys" in the name field, and the clerk obeys it — a prepared statement means the clerk only reads it as a name.
 
+-- * 🧩 Syntax:
+--     PREPARE stmt_name FROM 'SELECT ... WHERE col = ?';
+--     SET @var = value;
+--     EXECUTE stmt_name USING @var;
+--     DEALLOCATE PREPARE stmt_name;
+
+-- * Syntax explained (each part):
+--   - ? / $1 → placeholder: the value is sent separately, never mixed into the SQL text
+--   - PREPARE → database parses the query once
+--   - EXECUTE … USING → runs it with the given values
+--   - DEALLOCATE → frees the prepared statement
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 -- Unsafe: the input  ' OR '1'='1  turned the filter into "always true":

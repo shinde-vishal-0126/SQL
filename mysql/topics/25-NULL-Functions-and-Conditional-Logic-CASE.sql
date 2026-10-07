@@ -10,6 +10,21 @@
 
 -- * Real-life example: A blank field on a form — you decide what to show instead ("not given"), and CASE is like grading: above 80 = A, above 60 = B…
 
+-- * 🧩 Syntax:
+--     COALESCE(v1, v2, ...)        -- first non-NULL value
+--     IFNULL(v, replacement)       -- MySQL: NULL → replacement
+--     NULLIF(a, b)                 -- NULL when a = b
+--     col IS NULL / IS NOT NULL    -- test for NULL (never use = NULL)
+--     CASE WHEN condition1 THEN result1
+--          WHEN condition2 THEN result2
+--          ELSE default_result
+--     END
+
+-- * Syntax explained (each part):
+--   - COALESCE → replace NULL with a value
+--   - NULLIF → turn a value into NULL (e.g. avoid divide by 0)
+--   - CASE … WHEN … THEN … ELSE … END → if / else-if / else; the first TRUE condition wins
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 SELECT firstname,

@@ -10,6 +10,16 @@
 
 -- * Real-life example: Photocopying a form: a blank copy (structure only) or a filled copy (structure + data).
 
+-- * 🧩 Syntax:
+--     CREATE TABLE copy_name LIKE source;                 -- structure only (with indexes)
+--     INSERT INTO copy_name SELECT * FROM source;          -- then the data
+--     CREATE TABLE copy_name AS SELECT * FROM source;      -- structure + data (no keys)
+
+-- * Syntax explained (each part):
+--   - LIKE → copies the column definitions (and indexes)
+--   - AS SELECT → copies the data with basic column types
+--   - WHERE in the SELECT → copy only some rows
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 CREATE TABLE products_backup AS SELECT * FROM products;   -- structure + data

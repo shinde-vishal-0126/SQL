@@ -15,6 +15,17 @@
 
 -- * Real-life example: A warehouse: goods (rows) are packed in boxes (pages) on shelves (disk), and popular boxes are kept near the door (memory).
 
+-- * 🧩 Syntax:
+--     SHOW ENGINES;
+--     SELECT table_name, engine, data_length, index_length
+--     FROM information_schema.tables WHERE table_schema = 'db';
+--     CREATE TABLE t (...) ENGINE = InnoDB;
+
+-- * Syntax explained (each part):
+--   - Engine → the storage layer (MySQL: InnoDB; PostgreSQL: one built-in heap engine)
+--   - Page → fixed-size block on disk (InnoDB 16 KB / PostgreSQL 8 KB)
+--   - Buffer pool / shared_buffers → memory cache for pages
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 SELECT table_name, engine, table_rows, data_length

@@ -15,6 +15,21 @@
 
 -- * Real-life example: "Show me students who scored above the class average" — first find the average, then compare.
 
+-- * 🧩 Syntax:
+--     -- in WHERE (scalar / list):
+--     SELECT ... FROM t WHERE col > (SELECT AGG(col) FROM t2);
+--     SELECT ... FROM t WHERE col IN (SELECT col FROM t2);
+--     -- in FROM (derived table):
+--     SELECT ... FROM (SELECT ...) AS alias;
+--     -- in SELECT (one value per row):
+--     SELECT col, (SELECT ... ) AS alias FROM t;
+
+-- * Syntax explained (each part):
+--   - Inner query → runs first and returns a value, a list or a table
+--   - Outer query → uses that result
+--   - Scalar subquery → must return exactly one value
+--   - AS alias → required for a subquery in FROM
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT product, price

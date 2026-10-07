@@ -15,6 +15,16 @@
 
 -- * Real-life example: A warehouse: goods (rows) are packed in boxes (pages) on shelves (disk), and popular boxes are kept near the door (memory).
 
+-- * 🧩 Syntax:
+--     SHOW block_size;  SHOW shared_buffers;
+--     SELECT pg_size_pretty(pg_table_size('schema.table'));
+--     SELECT pg_relation_filepath('schema.table');
+
+-- * Syntax explained (each part):
+--   - Engine → the storage layer (MySQL: InnoDB; PostgreSQL: one built-in heap engine)
+--   - Page → fixed-size block on disk (InnoDB 16 KB / PostgreSQL 8 KB)
+--   - Buffer pool / shared_buffers → memory cache for pages
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT relname, n_live_tup, pg_size_pretty(pg_table_size(relid)) AS size

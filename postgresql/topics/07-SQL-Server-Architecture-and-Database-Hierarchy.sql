@@ -10,6 +10,15 @@
 
 -- * Real-life example: A shopping mall (server) has shops (databases), each shop has racks (tables), each rack has items (rows).
 
+-- * 🧩 Syntax:
+--     SELECT * FROM schema_name.table_name;
+--     SELECT * FROM information_schema.columns WHERE table_schema = 'schema_name';
+
+-- * Syntax explained (each part):
+--   - database.table (MySQL) → full name: in MySQL a database and a schema are the same thing
+--   - schema.table (PostgreSQL) → server → database → schema → table; one query runs inside one database
+--   - information_schema → built-in catalog that describes the hierarchy
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT datname FROM pg_database;

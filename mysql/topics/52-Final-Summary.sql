@@ -8,6 +8,17 @@
 
 -- * Real-life example: The last-page revision notes of a textbook.
 
+-- * 🧩 Syntax:
+--     DDL : CREATE / ALTER / DROP / TRUNCATE
+--     DML : INSERT / UPDATE / DELETE
+--     DQL : SELECT … FROM … WHERE … GROUP BY … HAVING … ORDER BY … LIMIT
+--     DCL : GRANT / REVOKE
+--     TCL : START TRANSACTION / COMMIT / ROLLBACK / SAVEPOINT
+
+-- * Syntax explained (each part):
+--   - Families → every SQL statement belongs to one of these five groups
+--   - DQL order → write it in this order; it runs FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 SELECT c.country, p.category, SUM(o.sales) AS total_sales

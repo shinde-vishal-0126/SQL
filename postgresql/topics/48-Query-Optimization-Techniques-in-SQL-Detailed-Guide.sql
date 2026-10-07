@@ -10,6 +10,18 @@
 
 -- * Real-life example: Packing only what you need for a trip instead of the whole house.
 
+-- * 🧩 Syntax:
+--     SELECT needed_columns ...                    -- not SELECT *
+--     WHERE EXISTS (SELECT 1 FROM ... WHERE ...)   -- instead of DISTINCT + JOIN
+--     ... ORDER BY key LIMIT n                     -- keyset: WHERE key > last_seen
+--     UNION ALL                                    -- instead of UNION when duplicates are OK
+
+-- * Syntax explained (each part):
+--   - Select only needed columns → less data to read and send
+--   - EXISTS → stops at the first match
+--   - Keyset pagination → WHERE key > last_value LIMIT n is faster than a big OFFSET
+--   - UNION ALL → skips the duplicate-removal step
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT p.product

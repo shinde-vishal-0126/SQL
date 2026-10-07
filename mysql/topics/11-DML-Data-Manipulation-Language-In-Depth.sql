@@ -10,6 +10,18 @@
 
 -- * Real-life example: If DDL builds the cupboard, DML puts things in, changes them and takes them out.
 
+-- * 🧩 Syntax:
+--     INSERT INTO table_name (col1, col2) VALUES (v1, v2), (v3, v4);
+--     INSERT INTO table_name (col1, col2) SELECT c1, c2 FROM other_table WHERE ...;
+--     UPDATE table_name SET col1 = value1, col2 = value2 WHERE condition;
+--     DELETE FROM table_name WHERE condition;
+
+-- * Syntax explained (each part):
+--   - INSERT INTO … VALUES → add new rows; column list and value list must match in order
+--   - INSERT … SELECT → add rows copied from a query
+--   - UPDATE … SET … WHERE → change rows; without WHERE every row changes
+--   - DELETE FROM … WHERE → remove rows; without WHERE every row is deleted
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 INSERT INTO customers (customerid, firstname, country, score) VALUES (6, 'Ravi', 'India', 600);

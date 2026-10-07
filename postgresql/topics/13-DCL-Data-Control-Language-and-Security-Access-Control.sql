@@ -10,6 +10,18 @@
 
 -- * Real-life example: Like giving an office key card: one person may only enter the reading room, another may also enter the store room.
 
+-- * 🧩 Syntax:
+--     CREATE ROLE user_name LOGIN PASSWORD 'password';
+--     GRANT privilege_list ON TABLE schema.table TO user_name;
+--     GRANT privilege_list ON ALL TABLES IN SCHEMA schema TO user_name;
+--     REVOKE privilege_list ON TABLE schema.table FROM user_name;
+--     DROP ROLE user_name;
+
+-- * Syntax explained (each part):
+--   - privilege_list → SELECT, INSERT, UPDATE, DELETE, ALL PRIVILEGES … (UPDATE (col) = only one column)
+--   - ON … → where the right applies: database.* / schema / one table
+--   - TO / FROM → who gets the right / who loses it
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 CREATE ROLE viewer LOGIN PASSWORD 'View@123';

@@ -10,6 +10,16 @@
 
 -- * Real-life example: Heap = clothes thrown in a pile. Clustered = clothes folded and arranged by size on the shelf.
 
+-- * 🧩 Syntax:
+--     -- Clustered index in InnoDB = the PRIMARY KEY:
+--     CREATE TABLE t (id INT PRIMARY KEY, ...);           -- rows stored in id order
+--     CREATE INDEX idx_name ON t (col);                    -- secondary (non-clustered) index
+
+-- * Syntax explained (each part):
+--   - Heap → rows stored without order
+--   - Clustered index → the table rows themselves sorted by the key
+--   - Secondary index → separate structure that points to the row
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 SHOW INDEX FROM orders;          -- PRIMARY = clustered index

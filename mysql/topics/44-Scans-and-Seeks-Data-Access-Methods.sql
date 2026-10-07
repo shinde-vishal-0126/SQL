@@ -10,6 +10,16 @@
 
 -- * Real-life example: Finding a name in a phone book: read every page (scan) or open at the right letter (seek).
 
+-- * 🧩 Syntax:
+--     EXPLAIN SELECT ...;
+--     -- type column, best → worst: const → eq_ref → ref → range → index → ALL
+
+-- * Syntax explained (each part):
+--   - const / eq_ref / ref → seek: jump to matching rows with an index
+--   - range → read a part of the index (BETWEEN, >, <)
+--   - index → scan the whole index
+--   - ALL / Seq Scan → read every row of the table
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 EXPLAIN SELECT * FROM customers WHERE country = 'USA';   -- scan (no index)

@@ -10,6 +10,21 @@
 
 -- * Real-life example: Practice papers before the exam.
 
+-- * 🧩 Syntax:
+--     -- Top-N per group:
+--     SELECT * FROM (
+--       SELECT ..., ROW_NUMBER() OVER (PARTITION BY grp ORDER BY val DESC) AS rn FROM t
+--     ) x WHERE rn <= N;
+--     -- Duplicates:
+--     SELECT key, COUNT(*) FROM t GROUP BY key HAVING COUNT(*) > 1;
+--     -- Nth highest:
+--     SELECT DISTINCT val FROM t ORDER BY val DESC LIMIT 1 OFFSET N-1;
+
+-- * Syntax explained (each part):
+--   - ROW_NUMBER / RANK / DENSE_RANK → numbering inside groups for top-N questions
+--   - GROUP BY … HAVING COUNT(*) > 1 → finds duplicates
+--   - LIMIT … OFFSET → skip N-1 rows to get the Nth value
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT firstname, department, salary

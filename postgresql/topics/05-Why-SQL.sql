@@ -10,6 +10,17 @@
 
 -- * Real-life example: Like English for travellers: learn it once and you can talk in most countries (MySQL, PostgreSQL, SQL Server, Oracle).
 
+-- * 🧩 Syntax:
+--     SELECT column, AGGREGATE(column)
+--     FROM table_name
+--     WHERE condition
+--     GROUP BY column;
+
+-- * Syntax explained (each part):
+--   - AGGREGATE() → COUNT, SUM, AVG, MIN, MAX — one value per group
+--   - GROUP BY → makes one group per distinct value
+--   - Why SQL → one short, standard statement answers a business question on any RDBMS
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT country, COUNT(*) AS total_customers

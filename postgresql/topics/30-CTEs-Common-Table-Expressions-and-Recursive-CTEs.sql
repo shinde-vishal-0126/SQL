@@ -10,6 +10,25 @@
 
 -- * Real-life example: Giving a name to a step in a recipe ("the sauce") and using it later; recursive = following a family tree generation by generation.
 
+-- * 🧩 Syntax:
+--     WITH cte_name [(col1, col2)] AS (
+--       SELECT ...
+--     )
+--     SELECT ... FROM cte_name;
+--     
+--     WITH RECURSIVE cte_name AS (
+--       SELECT ...                    -- anchor: starting rows
+--       UNION ALL
+--       SELECT ... FROM table JOIN cte_name ON ...   -- recursive part
+--     )
+--     SELECT * FROM cte_name;
+
+-- * Syntax explained (each part):
+--   - WITH → starts the CTE and gives it a name
+--   - Anchor member → first query, runs once
+--   - Recursive member → refers to the CTE itself, repeats until it returns no rows
+--   - UNION ALL → joins the anchor and recursive results
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 WITH RECURSIVE chain AS (

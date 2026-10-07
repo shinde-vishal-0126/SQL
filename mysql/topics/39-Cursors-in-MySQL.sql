@@ -10,6 +10,23 @@
 
 -- * Real-life example: Reading a list with your finger, line by line, instead of looking at the whole page at once.
 
+-- * 🧩 Syntax:
+--     DECLARE cur_name CURSOR FOR SELECT ...;
+--     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+--     OPEN cur_name;
+--     loop_name: LOOP
+--       FETCH cur_name INTO var1, var2;
+--       IF done THEN LEAVE loop_name; END IF;
+--       -- work with var1, var2
+--     END LOOP;
+--     CLOSE cur_name;
+
+-- * Syntax explained (each part):
+--   - DECLARE … CURSOR FOR → the query whose rows will be read
+--   - OPEN / CLOSE → start / finish reading
+--   - FETCH … INTO → read the next row into variables
+--   - NOT FOUND handler / EXIT WHEN NOT FOUND → stop when there are no more rows
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 DELIMITER //

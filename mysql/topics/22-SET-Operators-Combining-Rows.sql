@@ -10,6 +10,19 @@
 
 -- * Real-life example: Two guest lists for a party: merged list (UNION), people on both lists (INTERSECT), people only on the first list (EXCEPT).
 
+-- * 🧩 Syntax:
+--     SELECT col1, col2 FROM table1
+--     UNION | UNION ALL | INTERSECT | EXCEPT
+--     SELECT col1, col2 FROM table2
+--     [ORDER BY col1];
+
+-- * Syntax explained (each part):
+--   - UNION → all rows from both, duplicates removed
+--   - UNION ALL → all rows, duplicates kept (faster)
+--   - INTERSECT → only rows present in both
+--   - EXCEPT → rows in the first but not in the second
+--   - Rule → same number of columns, compatible types; ORDER BY only once at the end
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 SELECT firstname, lastname FROM customers

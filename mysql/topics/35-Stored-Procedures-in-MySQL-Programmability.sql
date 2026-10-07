@@ -10,6 +10,24 @@
 
 -- * Real-life example: A saved recipe: write it once, then just say "make recipe X for 4 people".
 
+-- * 🧩 Syntax:
+--     DELIMITER //
+--     CREATE PROCEDURE proc_name(IN p1 INT, OUT p2 INT, INOUT p3 INT)
+--     BEGIN
+--       DECLARE v INT DEFAULT 0;
+--       -- SQL statements, IF / LOOP ...
+--     END //
+--     DELIMITER ;
+--     CALL proc_name(10, @out, @inout);
+--     DROP PROCEDURE [IF EXISTS] proc_name;
+
+-- * Syntax explained (each part):
+--   - IN / OUT / INOUT → input value / value returned / both
+--   - DECLARE → local variable inside the procedure
+--   - BEGIN … END → the body with the SQL statements
+--   - DELIMITER // (MySQL) / $$ (PostgreSQL) → lets the body contain ; without ending the CREATE early
+--   - CALL → runs the procedure
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 DELIMITER //

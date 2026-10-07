@@ -10,6 +10,16 @@
 
 -- * Real-life example: English is the language; BBC and CNN are channels that speak English, each with its own style.
 
+-- * 🧩 Syntax:
+--     -- Standard SQL (works everywhere):
+--     SELECT col FROM t WHERE ... ORDER BY col;
+--     -- MySQL extensions:
+--     SELECT CONCAT(a, b), IFNULL(x, 0) FROM `table` LIMIT n;
+
+-- * Syntax explained (each part):
+--   - Standard SQL → the common language every RDBMS understands
+--   - Extensions → product-specific syntax: MySQL backticks / IFNULL; PostgreSQL || / ILIKE / RETURNING / double quotes
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 SELECT CONCAT(firstname, ' ', IFNULL(lastname, '')) AS full_name

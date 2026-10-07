@@ -10,6 +10,21 @@
 
 -- * Real-life example: Keeping bills in separate folders per year instead of one huge folder.
 
+-- * 🧩 Syntax:
+--     CREATE TABLE t (cols ...)
+--     PARTITION BY RANGE (expression) (
+--       PARTITION p1 VALUES LESS THAN (value1),
+--       PARTITION p2 VALUES LESS THAN (value2),
+--       PARTITION pmax VALUES LESS THAN MAXVALUE
+--     );
+--     -- also: PARTITION BY LIST (col) / HASH (col) PARTITIONS n
+
+-- * Syntax explained (each part):
+--   - RANGE → rows go to a partition by value ranges (dates, numbers)
+--   - LIST → by a list of values (countries, statuses)
+--   - HASH → spread evenly by a hash
+--   - Partition pruning → WHERE on the partition key reads only the needed partitions
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 CREATE TABLE orders_by_year (orderid INT, orderdate DATE, sales INT)

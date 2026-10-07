@@ -10,6 +10,16 @@
 
 -- * Real-life example: The index at the back of a book: jump straight to page 214 instead of reading every page.
 
+-- * 🧩 Syntax:
+--     CREATE [UNIQUE] INDEX index_name ON table_name (col1 [, col2 ...]);
+--     SHOW INDEX FROM table_name;
+--     DROP INDEX index_name ON table_name;
+
+-- * Syntax explained (each part):
+--   - UNIQUE → index also blocks duplicate values
+--   - (col1, col2) → composite index: order matters (leftmost column first)
+--   - USING / WHERE (PostgreSQL) → index type / partial index on some rows only
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 EXPLAIN SELECT * FROM orders WHERE orderstatus = 'Shipped';

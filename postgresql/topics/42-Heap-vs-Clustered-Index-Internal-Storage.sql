@@ -10,6 +10,17 @@
 
 -- * Real-life example: Heap = clothes thrown in a pile. Clustered = clothes folded and arranged by size on the shelf.
 
+-- * 🧩 Syntax:
+--     -- PostgreSQL tables are heaps; indexes are separate:
+--     CREATE TABLE t (id INT PRIMARY KEY, ...);
+--     CREATE INDEX idx_name ON t (col) INCLUDE (other_col); -- covering index
+--     CLUSTER t USING idx_name;                             -- one-time physical re-order
+
+-- * Syntax explained (each part):
+--   - Heap → rows stored without order
+--   - Clustered index → the table rows themselves sorted by the key
+--   - Secondary index → separate structure that points to the row
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 SET search_path TO sales;
 SELECT ctid, orderid FROM orders;   -- ctid = physical location (page, item) in the heap

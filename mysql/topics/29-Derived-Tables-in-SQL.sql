@@ -10,6 +10,19 @@
 
 -- * Real-life example: Making a rough summary on a scrap paper, then reading from that paper.
 
+-- * 🧩 Syntax:
+--     SELECT outer_columns
+--     FROM (
+--       SELECT ... FROM ... GROUP BY ...
+--     ) AS derived_name
+--     [JOIN other ON ...]
+--     WHERE ...;
+
+-- * Syntax explained (each part):
+--   - ( … ) → the inner query builds a temporary result
+--   - AS derived_name → the alias is mandatory
+--   - Scope → the derived table exists only during this one query
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 SELECT AVG(total_sales) AS avg_per_customer

@@ -10,6 +10,20 @@
 
 -- * Real-life example: Matching a class list with an exam result list by roll number.
 
+-- * 🧩 Syntax:
+--     SELECT a.col, b.col
+--     FROM table_a a
+--     [INNER | LEFT | RIGHT | CROSS] JOIN table_b b
+--       ON a.key = b.key;
+--     -- FULL JOIN in MySQL = LEFT JOIN UNION RIGHT JOIN
+
+-- * Syntax explained (each part):
+--   - INNER JOIN → only matching rows from both tables
+--   - LEFT JOIN → all rows of the left table + matches (NULL when no match)
+--   - RIGHT / FULL JOIN → all rows of the right table / of both tables
+--   - ON → the matching condition (usually key = key)
+--   - a, b → table aliases (short names)
+
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 SELECT c.firstname, o.orderid
