@@ -184,26 +184,43 @@ JOIN customers c ON c.customerid = o.customerid;
 -- ------------------------------------------------------------
 -- Simple Explanation of the Diagram:
 -- ------------------------------------------------------------
+/*
+  ASCII Diagram:
+            NO-SQL (non-relational)          |         SQL (relational)
+  +------------------+------------------+    |   +------------+   +------------+
+  | DOCUMENT         | GRAPH            |    |   | customers  |   | orders     |
+  | { "id": 1,       |   (A)---(B)      |    |   |------------|   |------------|
+  |   "name": "Ann", |    |  \  |       |    |   | id (PK)    |<--| cust_id(FK)|
+  |   "orders":[..]} |   (C)---(D)      |    |   | name       |   | amount     |
+  | MongoDB          | Neo4j            |    |   +------------+   +------------+
+  +------------------+------------------+    |   rows + columns, linked by keys
+  | COLUMN-BASED     | KEY-VALUE        |    |
+  | col1 | col2 |... | key  -> value    |    |   SQL Server, MySQL, PostgreSQL
+  | Cassandra,       | "u1" -> "Ann"    |    |
+  | Redshift         | Redis, DynamoDB  |    |
+  +------------------+------------------+    |
 
--- 1. Right Side (SQL - Relational):
 
---    * Stored in structured tables with rows and columns (analogous to spreadsheets).
+  1. Right Side (SQL - Relational):
 
---    * Tables maintain explicit relationships through primary and foreign keys.
+     * Stored in structured tables with rows and columns (analogous to spreadsheets).
 
---    * Examples: Microsoft SQL Server, MySQL, PostgreSQL.
+     * Tables maintain explicit relationships through primary and foreign keys.
 
--- 2. Left Side (NO-SQL Cloud):
+     * Examples: Microsoft SQL Server, MySQL, PostgreSQL.
 
---    * Combines four specialized non-relational storage models:
+  2. Left Side (NO-SQL Cloud):
 
---      * Document: Packages all related entity data inside a single JSON document (MongoDB).
+     * Combines four specialized non-relational storage models:
 
---      * Graph: Maps interconnected data points focusing on network relationships (Neo4j).
+       * Document: Packages all related entity data inside a single JSON document (MongoDB).
 
---      * Column-Based: Organizes storage by columns for rapid big data search queries (Cassandra, Redshift).
+       * Graph: Maps interconnected data points focusing on network relationships (Neo4j).
 
---      * Key-Value: Associative dictionary model indexing pairs (Redis, DynamoDB).
+       * Column-Based: Organizes storage by columns for rapid big data search queries (Cassandra, Redshift).
+
+       * Key-Value: Associative dictionary model indexing pairs (Redis, DynamoDB).
+*/
 
 -- ---
 

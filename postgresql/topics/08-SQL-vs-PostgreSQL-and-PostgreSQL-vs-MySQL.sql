@@ -103,12 +103,24 @@ FROM customers;
 -- ------------------------------------------------------------
 -- Simple Explanation of the Diagram:
 -- ------------------------------------------------------------
+/*
+  ASCII Diagram:
+  +-------------------------+                +--------------------------+
+  |   SQL  (the LANGUAGE)   |   sends SQL    |  PostgreSQL (the SOFTWARE)|
+  |-------------------------|  ----------->  |--------------------------|
+  |  SELECT  INSERT         |                |  parses & runs queries   |
+  |  UPDATE  DELETE         |  <-----------  |  stores data on disk     |
+  |  (declarative commands) |   result rows  |  caching, retrieval      |
+  +-------------------------+                +--------------------------+
+     RULE:  SQL = the language   |   PostgreSQL = engine that executes it
 
--- * Left Card (SQL): The declarative language used to communicate instructions (`SELECT`, `INSERT`, `UPDATE`, `DELETE`).
 
--- * Right Card (the diagram shows MySQL — read it as PostgreSQL): The database software engine that receives SQL instructions and performs disk storage, caching, and retrieval.
+  * Left Card (SQL): The declarative language used to communicate instructions (`SELECT`, `INSERT`, `UPDATE`, `DELETE`).
 
--- * Bottom Rule: SQL is the Language, while PostgreSQL is the Software Engine that executes that language!
+  * Right Card (the diagram shows MySQL — read it as PostgreSQL): The database software engine that receives SQL instructions and performs disk storage, caching, and retrieval.
+
+  * Bottom Rule: SQL is the Language, while PostgreSQL is the Software Engine that executes that language!
+*/
 
 -- ---
 

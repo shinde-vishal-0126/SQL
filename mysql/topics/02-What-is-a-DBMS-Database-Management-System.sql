@@ -189,26 +189,46 @@ INSERT INTO customers (customerid, firstname) VALUES (1, 'Copy');   -- fails
 -- ------------------------------------------------------------
 -- Simple Explanation of the Diagram:
 -- ------------------------------------------------------------
+/*
+  ASCII Diagram:
+  +--------------------------------------------------------------------+
+  |                     SERVER (host machine, 24/7)                    |
+  |                                                                    |
+  |   +------------------------- DBMS (manager) -------------------+   |
+  |   |  connections | permissions | run queries | read/write disk  |   |
+  |   |                                                            |   |
+  |   |        +------------------ DATABASE ------------------+    |   |
+  |   |        |  tables -> rows + columns -> relationships   |    |   |
+  |   |        +----------------------------------------------+    |   |
+  |   +------------------------------------------------------------+   |
+  +--------------------------------------------------------------------+
+            ^ SQL                    ^ SQL                   ^ SQL
+            |                        |                       |
+  +-------------------+   +-------------------+   +-------------------+
+  | Developers & DBAs |   | Applications </>  |   | Power BI / Dashb. |
+  +-------------------+   +-------------------+   +-------------------+
 
--- 1. The Server (Host Environment):
 
---    * The computer (physical or cloud) that runs the database 24/7.
+  1. The Server (Host Environment):
 
--- 2. The Database (Data Container):
+     * The computer (physical or cloud) that runs the database 24/7.
 
---    * The storage container containing tables, rows, columns, and relationships.
+  2. The Database (Data Container):
 
--- 3. The DBMS (The Manager):
+     * The storage container containing tables, rows, columns, and relationships.
 
---    * The software in the middle: it accepts connections, checks permissions, runs queries and reads/writes storage.
+  3. The DBMS (The Manager):
 
--- 4. Clients (Speaking via SQL):
+     * The software in the middle: it accepts connections, checks permissions, runs queries and reads/writes storage.
 
---    * Developers & DBAs: Running administrative queries and migrations.
+  4. Clients (Speaking via SQL):
 
---    * *Applications (App `</>`):* Web and mobile backend services processing user transactions.
+     * Developers & DBAs: Running administrative queries and migrations.
 
---    * Analytics Tools (Power BI / Dashboards): Running aggregate calculations for live executive reports.
+     * *Applications (App `</>`):* Web and mobile backend services processing user transactions.
+
+     * Analytics Tools (Power BI / Dashboards): Running aggregate calculations for live executive reports.
+*/
 
 -- ---
 

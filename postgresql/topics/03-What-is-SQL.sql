@@ -148,18 +148,37 @@ WHERE purchase_date >= CURRENT_DATE - INTERVAL '1 month';
 -- ------------------------------------------------------------
 -- Simple Explanation of the Diagram:
 -- ------------------------------------------------------------
+/*
+  ASCII Diagram:
+   HUMAN REQUEST                          SQL CAN DO
+  +--------------------------------+     +------------------------------+
+  | "Show me all customers who     |     |  * CRUD (insert/read/update/ |
+  |  bought items since last       |     |    delete)                   |
+  |  month!"                       |     |  * Analytics / reports       |
+  +--------------------------------+     |  * Permissions / security    |
+                 |  translate            |  * Indexing (speed)          |
+                 v                       |  * Backup / recovery         |
+  +--------------------------------+     |  * Real-time app support     |
+  | SELECT * FROM customers        |     +------------------------------+
+  | WHERE ...;                     |
+  +--------------------------------+
 
--- 1. Left Panel (Speaking in SQL):
+  DATABASE ----> SQL ----------> DBMS ---------> SERVER
+  (container)    (language)      (manager)       (host machine)
 
---    * A human-language request ("Show me all customers who bought items since last month!") translates into standard SQL (`SELECT * FROM customers WHERE ...`).
 
--- 2. Right Panel (Capabilities):
+  1. Left Panel (Speaking in SQL):
 
---    * Highlights the core functional roles of SQL: CRUD operations, Analytics, Permissions/Security, Indexing, Backup/Recovery, and Real-Time application support.
+     * A human-language request ("Show me all customers who bought items since last month!") translates into standard SQL (`SELECT * FROM customers WHERE ...`).
 
--- 3. Bottom Chain:
+  2. Right Panel (Capabilities):
 
---    * Summarizes the foundational ecosystem formula: Database (Container) $\rightarrow$ SQL (Language) $\rightarrow$ DBMS (Manager) $\rightarrow$ Server (Host Machine).
+     * Highlights the core functional roles of SQL: CRUD operations, Analytics, Permissions/Security, Indexing, Backup/Recovery, and Real-Time application support.
+
+  3. Bottom Chain:
+
+     * Summarizes the foundational ecosystem formula: Database (Container) $\rightarrow$ SQL (Language) $\rightarrow$ DBMS (Manager) $\rightarrow$ Server (Host Machine).
+*/
 
 -- ---
 

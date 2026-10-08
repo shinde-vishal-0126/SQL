@@ -107,22 +107,38 @@ SELECT * FROM customers;
 -- ------------------------------------------------------------
 -- Simple Explanation of the Diagram:
 -- ------------------------------------------------------------
+/*
+  ASCII Diagram:
+      WITHOUT A DATABASE                      WITH A DATABASE & SQL
+  +---------------------------+        +-------------------------------------+
+  |  notes.txt   sales.xlsx   |        |              DATABASE               |
+  |  orders.csv  bills.docx   |        |  +-----------+       +-----------+  |
+  |  (scattered, duplicated,  |        |  | customers |<----->|  orders   |  |
+  |   no links between them)  |        |  +-----------+  key  +-----------+  |
+  +---------------------------+        +-------------------------------------+
+               |                                  ^                |
+               v                                  | SQL query      | answer
+  "What is the total spending?"          SELECT SUM(sales)        v
+   -> open files one by one              FROM orders;          "30M"
+   -> slow, error-prone                                    (in milliseconds)
 
--- 1. Left Side (Without a Database):
 
---    * Data is scattered across uncoordinated files like `.txt`, spreadsheets (`.xlsx`), and manual notes.
+  1. Left Side (Without a Database):
 
---    * Asking a question like "What is the total spending?" requires manual, error-prone file searches across hundreds of documents.
+     * Data is scattered across uncoordinated files like `.txt`, spreadsheets (`.xlsx`), and manual notes.
 
--- 2. Right Side (With a Database & SQL):
+     * Asking a question like "What is the total spending?" requires manual, error-prone file searches across hundreds of documents.
 
---    * All data is kept together in one organized place — the database.
+  2. Right Side (With a Database & SQL):
 
---    * Data is structured into relational tables connected by keys.
+     * All data is kept together in one organized place — the database.
 
---    * Users ask questions using SQL (Structured Query Language).
+     * Data is structured into relational tables connected by keys.
 
---    * The database calculates the answer (e.g., "30M") in milliseconds.
+     * Users ask questions using SQL (Structured Query Language).
+
+     * The database calculates the answer (e.g., "30M") in milliseconds.
+*/
 
 -- ---
 

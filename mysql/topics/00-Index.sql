@@ -10,6 +10,7 @@
 --
 -- 00-Setup-Sample-Data.sql    →  🧪 Run first: creates salesdb + MyDatabase with sample data (used by Practice Examples)
 -- 00-Quick-Revision-Sheet.sql  →  ⚡ Quick Revision Sheet (read this before the interview)
+-- 00-CLI-Commands.sql          →  💻 CLI commands cheat sheet: mysql vs psql (connect, backup, users, ...)
 --
 -- ======================================================================
 -- 📘 Part 1: Database Fundamentals (Topics 1–8)

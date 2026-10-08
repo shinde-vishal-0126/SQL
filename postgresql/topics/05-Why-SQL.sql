@@ -169,16 +169,34 @@ DELETE FROM users WHERE age < 18;
 -- ------------------------------------------------------------
 -- Simple Explanation of the Diagram:
 -- ------------------------------------------------------------
+/*
+  ASCII Diagram:
+                         +----------------+
+          +--------------|   WHY SQL ?    |--------------+
+          |              +----------------+              |
+          v                      |                       v
+  +----------------+             v              +--------------------+
+  | Talk to Data   |     +----------------+     | Industry Standard  |
+  | SELECT, INSERT |     | High Demand    |     | Power BI, Tableau, |
+  | UPDATE, DELETE |     | devs, analysts,|     | Kafka, Spark,      |
+  +----------------+     | data engineers |     | cloud warehouses   |
+                         +----------------+     +--------------------+
+  +------------------------------------------------------------------+
+  | ENGINE GUARANTEES: integrity (constraints) | transactions        |
+  | (rollback) | role permissions | performance on millions of rows  |
+  +------------------------------------------------------------------+
 
--- * The "Why SQL?" Core: Branches out into three primary real-world drivers:
 
---   1. Talk to Data: Standardized commands (`SELECT`, `INSERT`, `UPDATE`, `DELETE`) addressing enterprise datasets.
+  * The "Why SQL?" Core: Branches out into three primary real-world drivers:
 
---   2. High Demand: Core skill set for developers, analysts, engineers, and data scientists.
+    1. Talk to Data: Standardized commands (`SELECT`, `INSERT`, `UPDATE`, `DELETE`) addressing enterprise datasets.
 
---   3. Industry Standard: Native execution across Power BI, Tableau, Kafka, Spark, and cloud data warehouses.
+    2. High Demand: Core skill set for developers, analysts, engineers, and data scientists.
 
--- * Engine Guarantees (Bottom Banner): Enforces data integrity through constraints, transactional reliability via rollback mechanisms, role permissions, and scalable performance over millions of records.
+    3. Industry Standard: Native execution across Power BI, Tableau, Kafka, Spark, and cloud data warehouses.
+
+  * Engine Guarantees (Bottom Banner): Enforces data integrity through constraints, transactional reliability via rollback mechanisms, role permissions, and scalable performance over millions of records.
+*/
 
 -- ---
 
