@@ -2,10 +2,6 @@
 -- Topic 5: Why SQL?
 -- ======================================================================
 
--- ------------------------------------------------------------
--- 📖 In Simple Words
--- ------------------------------------------------------------
-
 -- * Definition: We use SQL because it is a standard, simple, English-like language that works on almost every relational database and can answer business questions in one statement.
 
 -- * Real-life example: Like English for travellers: learn it once and you can talk in most countries (MySQL, PostgreSQL, SQL Server, Oracle).

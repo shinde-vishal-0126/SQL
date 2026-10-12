@@ -1,15 +1,9 @@
 -- ======================================================================
 -- Topic 6: Database Structure & Hierarchy
 -- ======================================================================
-
--- ------------------------------------------------------------
--- 📖 In Simple Words
--- ------------------------------------------------------------
-
--- * Definition: Database structure is the order in which data is organised: server → database → (schema) → table → columns and rows. Each column has a data type that says what kind of value it can hold.
-
+-- * Definition: Database structure is the order in which data is organised: server → database → (schema) → table → columns and rows.
+-- * Each column has a data type that says what kind of value it can hold.
 -- * Real-life example: Building → floor → room → shelf → box. Each box has a label saying what may go inside (only numbers, only dates…).
-
 -- * 🧩 Syntax:
 --     CREATE TABLE table_name (
 --       column_name DATA_TYPE [constraint],
@@ -24,23 +18,19 @@
 
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
+
 DESCRIBE products;
 
 -- * Example explained (step by step):
 --   1. This lists the columns of the products table and their data types.
 --   2. productid and price are INT (whole numbers); product and category are VARCHAR(50) (text up to 50 characters).
 --   3. The data type stops wrong data, e.g. text cannot go into price.
-
 -- ------------------------------------------------------------
 -- 6.1 The Relational Database Hierarchy
 -- ------------------------------------------------------------
-
 -- * Q. What is the Relational Database Hierarchy?
-
 --   * Definition: The database hierarchy is the set of levels in which data is organized: Server → Database → Schema → Table.
-
 --   * Relational databases organize data in 4 levels:
-
 -- ┌── (text — not SQL, shown for reference) ──
 -- │ [ Tier 1: SERVER ] ──► [ Tier 2: DATABASES ] ──► [ Tier 3: SCHEMAS ] ──► [ Tier 4: OBJECTS / TABLES ]
 -- └──
@@ -48,45 +38,30 @@ DESCRIBE products;
 -- ------------------------------------------------------------
 -- Point-Wise Breakdown of the Hierarchy:
 -- ------------------------------------------------------------
-
 -- 1. Level 1: Server (Host Machine Environment)
-
 --    * A computer (physical or cloud) that runs the database software.
-
 --    * Runs 24/7 and can host one or many databases.
-
 --    * Accepts connections, checks logins, runs queries and manages backups.
 
+
 -- 2. Level 2: Databases (Isolated Storage Containers)
-
 --    * Separate containers of data that live on the server.
-
 --    * A single server instance can host multiple independent databases (e.g., `Sales_DB`, `HR_DB`, `Inventory_DB`).
-
 --    * Each database holds the data of one application or department.
 
 -- 3. Level 3: Schemas (Logical Categories & Namespaces)
-
 --    * Logical folders inside a database that group related tables together.
-
 --    * They avoid name clashes and keep hundreds of tables organized (e.g., `orders.*`, `customers.*`).
 
+
 -- 4. Level 4: Database Objects (Functional Components)
-
 --    * A schema contains these database objects:
-
 --      * ⭐ Tables: The primary object; stores physical records in rows and columns.
-
 --      * 👁️ Views: Virtual tables compiled from saved `SELECT` queries.
-
 --      * ⚡ Indexes: Search structures (B-Trees) that make lookups fast.
-
 --      * 📜 Stored Procedures: Saved blocks of SQL code that you run by name.
-
 --      * 🔧 Functions: Reusable code that returns a value.
-
 --      * 🎯 Triggers: Code that runs automatically when a row is inserted, updated or deleted (`INSERT`, `UPDATE`, `DELETE`).
-
 --      * 🔢 Sequences: Number generators used for IDs (MySQL uses `AUTO_INCREMENT` instead).
 
 -- ---
@@ -96,17 +71,12 @@ DESCRIBE products;
 -- ------------------------------------------------------------
 
 -- * Q. What is a Database Server?
-
---   * Definition: A Database Server is the computer (physical machine or cloud VM) that runs the database software. It stores the data, runs queries and handles security.
-
+--   * Definition: A Database Server is the computer (physical machine or cloud VM) that runs the database software.
+--    * It stores the data, runs queries and handles security.
 --   * Core Functions:
-
 --     * Provides storage for one or more databases.
-
 --     * Accepts network connections from apps, developers and reporting tools.
-
 --     * Reads, optimizes and runs incoming queries.
-
 --     * Handles user logins, encryption, backups and crash recovery.
 
 -- ---
@@ -114,75 +84,58 @@ DESCRIBE products;
 -- ------------------------------------------------------------
 -- 6.3 The Container: Database
 -- ------------------------------------------------------------
-
 -- * Q. What is a Database container?
-
 --   * Definition: A database is a collection of related data, stored as a separate container inside the database server.
-
 --   * Core Functions:
-
 --     * Keeps business data in one secure, organized place that can be queried.
-
 --     * Keeps the data of different applications or departments separate from each other.
-
 --   * Real-World Examples:
-
 --     * `Employee Database` (personnel records, compensation, department assignments)
-
 --     * `Student Database` (enrollments, grades, academic transcripts)
-
 --     * `Hospital Database` (patient charts, clinician schedules, medical prescriptions)
 
--- ---
+
 
 -- ------------------------------------------------------------
 -- 6.4 The Logical Organizer: Schema
 -- ------------------------------------------------------------
-
 -- * Q. What is a Schema and why are schemas essential in enterprise databases?
+--   * Definition: A schema is a logical folder inside a database that groups tables and other objects. T
+--   * The word also means the structure (blueprint) of those objects.
 
---   * Definition: A schema is a logical folder inside a database that groups tables and other objects. The word also means the structure (blueprint) of those objects.
-
---   * Why do we need Schemas?
-
+-- * Q.  Why do we need Schemas?
 --     * Big systems have hundreds of tables. Keeping all of them in one flat list causes name clashes and is hard to manage.
-
 --     * Schemas split the tables into groups:
-
 --       * Cart, checkout, payment, and invoice tables $\rightarrow$ categorized under the orders schema.
-
 --       * Authentication, profiles, and billing addresses $\rightarrow$ categorized under the customers schema.
 
--- ---
 
 -- ------------------------------------------------------------
 -- 6.5 Types of Schemas (Logical vs. Physical)
 -- ------------------------------------------------------------
-
 -- Databases are designed in two complementary layers: Logical and Physical.
-
 -- (Dimension → Logical Schema | Physical Schema)
---
+
 -- * Definition
 --     - Logical Schema  : Design of the tables and how they are related.
 --     - Physical Schema : How the data is actually stored on disk (files, partitions, indexes).
---
+
 -- * Core Focus
 --     - Logical Schema  : What data is stored and how tables relate.
 --     - Physical Schema : How data is physically laid out, indexed, and partitioned on disk.
---
+
 -- * Key Question
 --     - Logical Schema  : "What data do we store and how is it connected?"
 --     - Physical Schema : "How and where is the data stored on disk?"
---
+
 -- * Components
 --     - Logical Schema  : Tables, column datatypes, relationships, constraints.
 --     - Physical Schema : Filepaths, tablespace files (.ibd), partitions, B-tree block sizes.
---
+
 -- * Primary Audience
 --     - Logical Schema  : Developers, Data Analysts, Data Modelers.
 --     - Physical Schema : Database Administrators (DBAs), Storage Engineers, DB Engines.
---
+
 -- * Visibility
 --     - Logical Schema  : Visible to developers and SQL queries.
 --     - Physical Schema : Hidden inside the storage engine.
@@ -191,29 +144,19 @@ DESCRIBE products;
 -- ------------------------------------------------------------
 -- 1. Logical Schema (The Conceptual Blueprint)
 -- ------------------------------------------------------------
-
 -- * Definition: The Logical Schema describes the tables, columns, relationships and rules — without caring how they are stored on disk.
-
 -- * Example: every row in `Orders` must point to an existing `Customer_ID` in `Customers`.
-
 -- ------------------------------------------------------------
 -- 2. Physical Schema (The Hardware Storage Blueprint)
 -- ------------------------------------------------------------
-
 -- * Definition: The Physical Schema describes how the data is actually stored — files, locations, partitions and indexes.
-
 -- * Example: keep old 2020 data on cheaper, slower disks and current 2026 data on fast NVMe SSDs.
-
--- ---
 
 -- ------------------------------------------------------------
 -- 6.6 The Core Object: Table, Columns, Rows & Cells
 -- ------------------------------------------------------------
-
 -- * Q. What is a Table and what constitutes its anatomy?
-
 --   * Definition: A Table stores data in rows (horizontal) and columns (vertical), like an Excel sheet.
-
 -- (Customer_ID → Customer_Name | City)
 --
 -- * 101
@@ -232,27 +175,20 @@ DESCRIBE products;
 -- ------------------------------------------------------------
 -- 1. Columns (Fields / Attributes)
 -- ------------------------------------------------------------
-
 -- * A column stores one property (attribute) for every row, e.g. `City`.
-
 -- * Each column is bound to a single, strict Data Type (`INT`, `VARCHAR`, `DATE`, `DECIMAL`).
-
 -- * Examples: `Customer_ID`, `Customer_Name`, `City`, `Age`.
 
 -- ------------------------------------------------------------
 -- 2. Rows (Records / Tuples)
 -- ------------------------------------------------------------
-
 -- * A row is one complete record, e.g. one customer.
-
 -- * Example: The row `[101 | Rahul | Pune]` is one complete customer.
 
 -- ------------------------------------------------------------
 -- 3. Cell (Single Value)
 -- ------------------------------------------------------------
-
 -- * The meeting point of one row and one column — a single value (e.g., `101` or `'Rahul'`).
-
 -- * Every cell must follow the column's data type and rules (constraints).
 
 -- ---
@@ -260,13 +196,9 @@ DESCRIBE products;
 -- ------------------------------------------------------------
 -- 6.7 The Fingerprint: Primary Key
 -- ------------------------------------------------------------
-
 -- * Q. What is a Primary Key and what are its 5 essential properties?
-
 --   * Definition: A Primary Key is a column (or a group of columns) that uniquely identifies every row in a table.
-
 --   * Like a fingerprint: no two rows can ever have the same Primary Key value.
-
 -- (Customer_ID (🔑 Primary Key) → Customer_Name | City)
 --
 -- * 101
@@ -279,15 +211,10 @@ DESCRIBE products;
 --
 
 -- * The 5 Core Properties of a Primary Key:
-
 --   1. Unique: Every row must hold a distinct, non-duplicate key value.
-
 --   2. Cannot be NULL: Primary keys can never contain empty or missing values.
-
 --   3. Only ONE per Table: Each table is restricted to exactly one primary key definition.
-
 --   4. Automatic Index: MySQL (InnoDB) automatically builds a clustered index on it, so lookups by key are very fast.
-
 --   5. Referential Anchor: Serves as the referenced parent key for Foreign Keys in child tables.
 
 -- ---
@@ -295,50 +222,32 @@ DESCRIBE products;
 -- ------------------------------------------------------------
 -- 6.8 MySQL Data Types In-Depth
 -- ------------------------------------------------------------
-
--- Definition: A data type tells what kind of value a column can store (number, text, date…), how much space it takes, and what operations can be done on it.
-
--- ---
-
--- ------------------------------------------------------------
+-- * Definition: A data type tells what kind of value a column can store (number, text, date…), how much space it takes, and what operations can be done on it.
+- ------------------------------------------------------------
 -- 6.8.1 Memory Classification: Fixed Data Types vs. Variable Data Types
 -- ------------------------------------------------------------
-
 -- Q. What are the two main types of data types based on memory allocation in MySQL?
-
 -- Based on how much space they use, data types are of 2 kinds:
-
 -- 1. Fixed Data Type (Fixed Storage Allocation):
-
 --    * Definition: Fixed data types always take the same amount of space, no matter how long the actual value is.
-
 --    * They are best used when the size of data is known, uniform, and consistent across all rows.
-
 --    * If an inserted value is shorter than the defined length, MySQL automatically pads it with spaces to fill the entire allocated slot (e.g., in `CHAR(n)`).
-
 --    * Key Examples: `CHAR(n)`, `INT`, `BIGINT`, `FLOAT`, `DOUBLE`, `DECIMAL`.
-
 --    * Performance Advantage: Slightly faster, because MySQL always knows the exact size — it doesn't need to read a length value first.
 
 -- 2. Variable Data Type (Dynamic Storage Allocation):
-
 --    * Definition: Variable data types take only as much space as the actual value, plus 1–2 extra bytes to store its length.
-
 --    * If a column allows up to 255 characters but only 5 characters are stored, it consumes only 5 bytes + 1 byte overhead.
-
 --    * Key Examples: `VARCHAR(n)`, `TEXT` (TINYTEXT, TEXT, MEDIUMTEXT, LONGTEXT), `BLOB`, `VARBINARY(n)`.
-
 --    * Space Advantage: Saves a lot of space when value lengths differ a lot from row to row.
 
 -- ------------------------------------------------------------
 -- Comparison: Fixed vs. Variable Data Types
 -- ------------------------------------------------------------
-
 -- (Feature / Dimension → Fixed Data Types (e.g., CHAR(10)) | Variable Data Types (e.g., VARCHAR(10)))
---
 -- * Storage Allocation
---     - Fixed Data Types (e.g., CHAR(10))       : Takes fixed, predetermined storage size in memory
---     - Variable Data Types (e.g., VARCHAR(10)) : Takes storage dynamically based on actual value length
+--     -  (e.g., CHAR(10))       : Takes fixed, predetermined storage size in memory
+--     -  Variable Data Types (e.g., VARCHAR(10)) : Takes storage dynamically based on actual value length
 --
 -- * Space Utilization
 --     - Fixed Data Types (e.g., CHAR(10))       : Can waste disk/RAM space if values are short (pads with spaces)
@@ -349,7 +258,7 @@ DESCRIBE products;
 --     - Variable Data Types (e.g., VARCHAR(10)) : Slightly slower (must read the length first)
 --
 -- * Space Overhead
---     - Fixed Data Types (e.g., CHAR(10))       : 0 overhead bytes (exact allocated size is reserved)
+--     - Fixed Data Types (e.g., CHAR(10))       : 0   exact allocated size is reserved)
 --     - Variable Data Types (e.g., VARCHAR(10)) : 1 byte (for L \le 255) or 2 bytes (for L > 255) length header
 --
 -- * Space Padding
@@ -368,9 +277,8 @@ DESCRIBE products;
 -- ------------------------------------------------------------
 -- Practical Example to Understand Memory Storage (CHAR(10) vs. VARCHAR(10))
 -- ------------------------------------------------------------
-
--- Suppose we create two columns: `code_fixed CHAR(10)` and `code_var VARCHAR(10)`, and store the same string values. Notice how MySQL stores them physically:
-
+-- Suppose we create two columns: `code_fixed CHAR(10)` and `code_var VARCHAR(10)`, and store the same string values.
+-- Notice how MySQL stores them physically:
 -- (Inserted String → Actual Length | CHAR(10) Physical Storage | Bytes Used (CHAR(10)) | VARCHAR(10) Physical Storage | Bytes Used (VARCHAR(10)) | Memory Saved by VARCHAR)
 --
 -- * '' (Empty)
@@ -417,17 +325,16 @@ DESCRIBE products;
 -- ------------------------------------------------------------
 -- Visual Memory Layout Diagram
 -- ------------------------------------------------------------
-
 -- ┌── (text — not SQL, shown for reference) ──
 -- │ Storing 'Pune' (4 characters) in a 10-character column:
--- │ 
+-- │
 -- │ CHAR(10) Memory Slot (Always 10 bytes):
 -- │ +---+---+---+---+---+---+---+---+---+---+
 -- │ | P | u | n | e |   |   |   |   |   |   |  -> Fixed 10 Bytes allocated
 -- │ +---+---+---+---+---+---+---+---+---+---+
 -- │                  ^^^^^^^^^^^^^^^^^^^^^^
 -- │                  (6 padded space bytes wasted)
--- │ 
+-- │
 -- │ VARCHAR(10) Memory Slot (Dynamic 4 + 1 = 5 bytes):
 -- │ +--------+---+---+---+---+
 -- │ | Length | P | u | n | e |  -> Only 5 Bytes total on disk
@@ -438,7 +345,6 @@ DESCRIBE products;
 -- ------------------------------------------------------------
 -- Hands-On SQL Demonstration: Fixed vs Variable Storage
 -- ------------------------------------------------------------
-
 -- 1. Create demonstration table
 CREATE TABLE storage_comparison (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -449,13 +355,13 @@ CREATE TABLE storage_comparison (
 
 -- 2. Insert sample rows with varying lengths
 INSERT INTO storage_comparison (description, country_iso_fixed, country_name_var)
-VALUES 
+VALUES
     ('Two characters', 'IN', 'IN'),
     ('Four characters', 'Pune', 'Pune'),
     ('Full ten characters', '0123456789', '0123456789');
 
 -- 3. Query actual character length vs storage consumption
-SELECT 
+SELECT
     description,
     country_iso_fixed,
     CHAR_LENGTH(country_iso_fixed) AS fixed_char_count,
@@ -470,69 +376,44 @@ FROM storage_comparison;
 -- > * Use **Fixed Data Types (`CHAR`)** when values are guaranteed to be the exact same length in every single row — e.g., ISO Country Codes (`'IN'`, `'US'`), SHA-256 Hashes (always 64 characters), UUIDs (36 characters), Currency codes (`'INR'`, `'USD'`), or MD5 checksums.
 -- > * Use **Variable Data Types (`VARCHAR`)** whenever data length varies — e.g., User names, email addresses, city names, URLs, and street addresses.
 
--- ---
-
 -- ------------------------------------------------------------
 -- 6.8.2 Numeric Data Types
 -- ------------------------------------------------------------
-
 -- Q. What are the primary Numeric Data Types in MySQL and their storage ranges?
-
 -- Numeric data types store numbers and are broadly divided into Integers (Whole Numbers) and Fractional / Decimal / Floating-Point Numbers.
-
 -- ------------------------------------------------------------
 -- 1. Integer Data Types (Whole Numbers)
 -- ------------------------------------------------------------
 -- Stores whole numbers (no decimals).
 
 -- * **`TINYINT`:**
-
 --   - Storage Size: 1 Byte (8 bits).
-
 --   - Signed Range: `-128` to `127`.
-
 --   - Unsigned Range: `0` to `255`.
-
 --   - Best for: Age, status codes, small quantities.
 
 -- * **`SMALLINT`:**
-
 --   - Storage Size: 2 Bytes (16 bits).
-
 --   - Signed Range: `-32,768` to `32,767`.
-
 --   - Unsigned Range: `0` to `65,535`.
-
 --   - Best for: Small inventory items, years.
 
 -- * **`MEDIUMINT`:**
-
 --   - Storage Size: 3 Bytes (24 bits).
-
 --   - Signed Range: `-8,388,608` to `8,388,607`.
-
 --   - Unsigned Range: `0` to `16,777,215`.
 
 -- * **`INT` / `INTEGER`:**
-
 --   - Storage Size: 4 Bytes (32 bits).
-
 --   - Stores whole numbers (no decimals).
-
 --   - Signed Range: `-2,147,483,648` to `2,147,483,647` (~2.14 Billion).
-
 --   - `UNSIGNED INT` Range: `0` to `4,294,967,295` (~4.29 Billion).
-
 --   - Best for: Standard table primary keys, employee IDs, customer numbers.
 
 -- * **`BIGINT`:**
-
 --   - Storage Size: 8 Bytes (64 bits).
-
 --   - Stores very large whole numbers.
-
 --   - Signed Range: `-9 quintillion` to `9 quintillion` (`-9,223,372,036,854,775,808` to `9,223,372,036,854,775,807`).
-
 --   - Best for: High-volume financial transactions, global e-commerce order tracking, social media view counts.
 
 -- ------------------------------------------------------------
@@ -540,7 +421,6 @@ FROM storage_comparison;
 -- ------------------------------------------------------------
 
 -- * Definition: DECIMAL stores exact numeric values (not approximate) with user-defined precision and scale.
-
 -- * Used for exact decimal values like prices and money.
 
 -- * Parameters:
@@ -550,13 +430,9 @@ FROM storage_comparison;
 --   - `s` = Scale: Number of digits after the decimal point. Maximum is 30 ($s \le p$).
 
 -- * Core Characteristics:
-
 --   - Stores exact numbers (not approximate).
-
 --   - Does not suffer from binary floating-point rounding inaccuracies.
-
 --   - Best for: Money, financial accounting, banking balances, product prices.
-
 --   - Example: `DECIMAL(10, 2)` stores numbers up to `99,999,999.99`.
 
 -- ------------------------------------------------------------
@@ -565,25 +441,17 @@ FROM storage_comparison;
 -- Stores approximate decimal numbers (floating-point representation).
 
 -- * **`FLOAT`:**
-
 --   - Storage Size: 4 Bytes.
-
 --   - Less precision (~7 decimal digits of precision).
-
 --   - Used for approximate decimal values.
 
 -- * **`DOUBLE`:**
-
 --   - Storage Size: 8 Bytes.
-
 --   - More precision (~15 decimal digits of precision).
-
 --   - Used for higher-accuracy scientific calculations.
 
 -- * Core Characteristics:
-
 --   - Store approximate decimal numbers (floating point).
-
 --   - Used in science, engineering and statistics where speed matters more than exact accuracy. ⚠️ Never use `FLOAT`/`DOUBLE` for money — use `DECIMAL`.
 
 -- ---
@@ -601,37 +469,25 @@ FROM storage_comparison;
 -- * Definition: CHAR(n) is a fixed-length string. It always uses space for n characters, even if the value is shorter.
 
 -- * Core Characteristics:
-
 --   - Fixed length string: Pre-allocates memory for the full defined length.
-
 --   - Storage: Always uses full defined length. If the data is shorter than $n$, MySQL automatically pads it with spaces on the right upon storage.
-
 --   - Performance: Slightly faster for fixed-length values.
-
 --   - Range: Supports up to 255 characters ($0 \le n \le 255$).
-
 --   - Wastes Space: Wastes disk and RAM space if the inserted data is shorter than the defined capacity.
-
 --   - Best Use Cases: Fixed-size data where length is identical across every row (e.g., Postal/ZIP codes, ISO Country codes `'IN'`, `'US'`, Currency codes `'USD'`, `'INR'`, MD5/SHA hashes, Phone extensions).
 
 -- ------------------------------------------------------------
 -- 2. `VARCHAR(n)` (Variable-Length String)
 -- ------------------------------------------------------------
-
--- * Definition: VARCHAR(n) is a variable-length string. It stores only the characters you insert, plus 1–2 bytes for the length.
+-- * Definition: VARCHAR(n) is a variable-length string.
+-- * It stores only the characters you insert, plus 1–2 bytes for the length.
 
 -- * Core Characteristics:
-
 --   - Variable length string: Uses space based on the actual string length.
-
 --   - Storage: Uses only the number of characters actually stored + 1 byte (for $L \le 255$) or 2 bytes (for $L > 255$) for the length prefix.
-
 --   - Performance: Slightly slower when an update changes the value's length (the row may need to move).
-
 --   - Range: Up to 65,535 in theory, but the whole row is limited to 65,535 bytes, so in practice it is less (e.g., about 16,383 characters with `utf8mb4`).
-
 --   - Space Efficient: Highly space-efficient; stores only the needed length without space padding.
-
 --   - Best Use Cases: Variable data where string length differs widely across rows (e.g., Customer names, email addresses, street addresses, descriptions, URLs).
 
 -- ------------------------------------------------------------
@@ -675,31 +531,22 @@ FROM storage_comparison;
 -- Stores long text. (Limits are in bytes — with multi-byte characters like Marathi or emoji, fewer characters fit.)
 
 -- * **`TINYTEXT`:** Stores up to 255 bytes.
-
 -- * **`TEXT`:** Stores up to 65,535 characters (~64 KB).
-
 -- * **`MEDIUMTEXT`:** Stores up to 16,777,215 characters (~16 MB).
-
 -- * **`LONGTEXT`:** Stores up to 4,294,967,295 characters (~4 GB).
-
 -- * Best for: Blog articles, product descriptions, customer feedback, HTML/XML content.
 
 -- ------------------------------------------------------------
 -- 4. `BLOB` (Binary Large Object)
 -- ------------------------------------------------------------
-
 -- * Definition: BLOB (Binary Large Object) stores raw binary data (files), not text.
-
 -- * Stores binary data (images, files, PDFs, audio clips, compiled code).
-
 -- * Variants: `TINYBLOB`, `BLOB`, `MEDIUMBLOB`, `LONGBLOB`.
-
 -- * Difference from TEXT: Unlike `TEXT`, it is intended for raw binary files and has no character set or collation.
 
 -- ------------------------------------------------------------
 -- 5. `BIT` & `BINARY(n)`
 -- ------------------------------------------------------------
-
 -- * **`BINARY(n)`:** Fixed-length binary string.
 
 -- * **`VARBINARY(n)`:** Variable-length binary string.
@@ -729,9 +576,7 @@ FROM storage_comparison;
 -- ------------------------------------------------------------
 
 -- * Definition: ENUM is a string data type that allows you to store ONE value from a predefined list of permitted values.
-
 -- * Useful when a column should accept only specific values (like gender, status, etc.) — kind of like a controlled vocabulary.
-
 -- * Useful for fixed categories.
 
 -- * Example: `status ENUM('active', 'inactive', 'pending')`. Rejects any value not in the list.
@@ -741,7 +586,6 @@ FROM storage_comparison;
 -- ------------------------------------------------------------
 
 -- * Definition: The SET data type is similar to ENUM, but instead of storing only one value, it can store MULTIPLE values (a combination) from a predefined list.
-
 -- * Stores multiple values from a predefined list.
 
 -- * Each row can contain any combination of permitted values separated by commas.
@@ -753,51 +597,34 @@ FROM storage_comparison;
 -- ------------------------------------------------------------
 -- 6.8.4 Date and Time (Temporal) Data Types
 -- ------------------------------------------------------------
-
 -- Q. What are the Temporal (Date and Time) Data Types in MySQL?
-
 -- It is also known as the temporal data type family.
-
 -- * Default Date Format: By default, MySQL stores date in **`YYYY-MM-DD`** format.
-
 -- * Memory Allocation: 3 bytes of memory allocated for a single date.
-
 -- * Supported Range for Date: `1000-01-01` to `9999-12-31`.
 
 -- ------------------------------------------------------------
 -- 1. `DATE`
 -- ------------------------------------------------------------
-
 -- * Stores date only (`YYYY-MM-DD`).
-
 -- * Storage: 3 Bytes.
-
 -- * Range: `1000-01-01` to `9999-12-31`.
-
 -- * Example: `'2026-09-21'`.
 
 -- ------------------------------------------------------------
 -- 2. `TIME`
 -- ------------------------------------------------------------
-
 -- * Stores time only (`HH:MM:SS`).
-
 -- * Storage: 3 Bytes of memory occupied by a single time value.
-
 -- * Covers 24 hours, 60 minutes, 60 seconds.
-
 -- * Range: `-838:59:59` to `838:59:59` (supports elapsed intervals over multiple days).
-
 -- * Example: `'15:45:30'`.
 
 -- ------------------------------------------------------------
 -- 3. `YEAR`
 -- ------------------------------------------------------------
-
 -- * Stores year in 4 digits (`YYYY`).
-
 -- * Storage: 1 Byte.
-
 -- * Range: `1901` to `2155`.
 
 -- ------------------------------------------------------------
@@ -805,55 +632,48 @@ FROM storage_comparison;
 -- ------------------------------------------------------------
 
 -- * Stores both date and time in format: **`YYYY-MM-DD HH:MM:SS`**.
-
 -- * Storage: Takes 5 to 8 bytes of memory to store date and time (8 bytes originally, 5 bytes in MySQL 5.6+).
-
 -- * Range: `1000-01-01 00:00:00` to `9999-12-31 23:59:59` (covers years 1000 to 9999).
-
 -- * Key Characteristics:
-
 --   - Not auto-set by default — but you can add `DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP` (supported since MySQL 5.6.5), just like `TIMESTAMP`.
-
 --   - No time zone conversion.
-
 --   - Useful when the value must look the same everywhere, whatever the time zone.
-
 --   - `DATETIME` doesn't change with the server time zone.
-
 --   - It stores the exact value as inserted.
-
 -- ------------------------------------------------------------
 -- 5. `TIMESTAMP`
 -- ------------------------------------------------------------
-
 -- * Stores both date and time in format: **`YYYY-MM-DD HH:MM:SS`**.
-
 -- * Storage: 4 Bytes (compact storage).
-
 -- * Range: `1970-01-01 00:00:01 UTC` to `2038-01-19 03:14:07 UTC` (based on 32-bit UNIX epoch time, i.e., 1970 to 2038).
 
 -- * Key Characteristics:
-
 --   - Auto-updates when row changes (if defined: `DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`).
-
 --   - Stores date and time, but it is timezone-sensitive.
-
 --   - MySQL automatically converts `TIMESTAMP` values from the current time zone to UTC for storage, and back to the session time zone when retrieved.
+-- * Q How exactly does it take that space?
+-- - DATE — 3 bytes = 24 bits to encode the date.
+-- - TIME — 3 bytes = 24 bits to encode the time.
+-- - YEAR — 1 byte = 8 bits.
+-- - DATETIME — 5 bytes = 40 bits to encode date and time together.
+-- - TIMESTAMP — 4 bytes = 32 bits to encode a timestamp value.
 
+
+-- Type	Example value	Storage
+-- DATE	2026-10-11	3 bytes
+-- TIME	15:45:30	3 bytes
+-- YEAR	2026	1 byte
+-- DATETIME	2026-10-11 15:45:30 -->	5 bytes
+-- TIMESTAMP	2026-10-11 15:45:30	--> 4 bytes
 -- ---
 
 -- ------------------------------------------------------------
 -- 6.8.5 What is UTC (Coordinated Universal Time) & Why Does It Matter?
 -- ------------------------------------------------------------
-
 -- Q. What is UTC?
-
 -- * Definition: UTC (Coordinated Universal Time) is the global time standard used to coordinate clocks around the world.
-
 -- * It is the base reference time zone — all other time zones are defined as offsets from UTC.
-
 -- * UTC = World's "neutral" time.
-
 -- * It does not change with location or daylight savings.
 
 -- * Every local time zone is expressed as:
@@ -861,21 +681,15 @@ FROM storage_comparison;
 --   (For example: IST = $\text{UTC} + 5:30$).
 
 -- * In MySQL (TIMESTAMP and UTC):
-
 --   - MySQL internally stores `TIMESTAMP` values in UTC, then:
-
 --     1. Converts to your session time zone when you read them.
-
 --     2. Converts back to UTC when you insert them.
 
--- Q. Why Does UTC Matter?
 
+-- *Q. Why Does UTC Matter?
 -- 1. Keeps timestamps consistent across servers: In multi-region deployments, servers across different continents all log events consistently.
-
 -- 2. Prevents confusion between time zones: Eliminates time-shifting bugs caused by regional Daylight Saving Time changes.
-
 -- 3. Useful for global applications, scheduling, and logging: Ensures events are sequentially ordered worldwide.
-
 -- 4. Clean display to end-users: You can always convert UTC $\rightarrow$ Local time when displaying records to users in their localized interface.
 
 -- ---
@@ -883,8 +697,27 @@ FROM storage_comparison;
 -- ------------------------------------------------------------
 -- 6.8.6 Differences Between DATETIME and TIMESTAMP
 -- ------------------------------------------------------------
-
 -- Q. What is the difference between DATETIME and TIMESTAMP?
++------------------------+-----------------------------+-----------------------------+
+-- | Feature                | DATETIME                    | TIMESTAMP                   |
+-- +------------------------+-----------------------------+-----------------------------+
+-- | Stores                 | Date + Time                 | Date + Time                 |
+-- | Storage                | 5 Bytes                     | 4 Bytes                     |
+-- | Time Zone Conversion   | No                          | Yes                         |
+-- | Stored Internally      | Date/Time Fields            | UTC-based Timestamp         |
+-- | Default Range          | 1000-01-01 to               | 1970-01-01 to               |
+-- |                        | 9999-12-31                  | 2038-01-19 (approx.)        |
+-- | Automatic Update       | Only when configured        | Only when configured        |
+-- | Best Use Case          | Appointments, Birthdays,    | Login Times, Audit Records, |
+-- |                        | Scheduled Events            | Event Creation Times        |
+-- | Example                | 2026-10-11 15:00:00         | 2026-10-11 15:00:00         |
+-- +------------------------+-----------------------------+-----------------------------+
+
+-- NOTE:
+-- - Storage sizes apply without fractional seconds.
+-- - DATETIME does not undergo automatic time zone conversion.
+-- - TIMESTAMP converts between UTC and the session time zone.
+
 
 -- (Feature / Dimension → DATETIME | TIMESTAMP)
 --
@@ -920,43 +753,25 @@ FROM storage_comparison;
 -- ------------------------------------------------------------
 -- Point-Wise Detailed Breakdown:
 -- ------------------------------------------------------------
-
 -- 1. **`DATETIME` Details:**
-
 --    - Stores both date and time in the format: `YYYY-MM-DD HH:MM:SS`.
-
 --    - Storage size: 5 bytes in modern MySQL (8 bytes in very old versions).
-
 --    - Range: `1000-01-01 00:00:00` $\rightarrow$ `9999-12-31 23:59:59` (i.e. 1000 $\rightarrow$ 9999).
-
 --    - Does not store time zone information. Stores exactly what you insert, no conversion.
-
 --    - Not auto-set by default. You can add `DEFAULT` / `ON UPDATE` with `CURRENT_TIMESTAMP` (MySQL 5.6.5+) if needed.
-
 --    - When you need to store a date & time exactly as given, independent of time zones.
-
 --    - Example: Birthdays, historical events, schedule times.
 
 -- 2. **`TIMESTAMP` Details:**
-
 --    - Stores both date and time in the same format: `YYYY-MM-DD HH:MM:SS`.
-
 --    - Storage size: 4 bytes (more compact).
-
 --    - Range: `1970-01-01 00:00:01 UTC` $\rightarrow$ `2038-01-19 03:14:07 UTC` (because it is based on UNIX epoch time, i.e., 1970 $\rightarrow$ 2038).
-
 --    - Stored in UTC internally, but converted to the current time zone when retrieved.
-
 --    - Useful for tracking system-wide events.
-
 --    - Can automatically:
-
 --      - Set current time on insert (`DEFAULT CURRENT_TIMESTAMP`)
-
 --      - Update to current time on update (`ON UPDATE CURRENT_TIMESTAMP`)
-
 --    - When you need to track events relative to the current time zone.
-
 --    - Example: Logging creation/update times, audit trails.
 
 -- ---
@@ -971,29 +786,29 @@ CREATE TABLE customer_profiles (
     customer_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     reward_points BIGINT DEFAULT 0,
     age TINYINT UNSIGNED,
-    
+
     -- Exact Numeric for Currency:
     account_balance DECIMAL(10, 2) DEFAULT 0.00,
-    
+
     -- Approximate Floating Point for Geolocation:
     latitude FLOAT(10, 6),
     longitude FLOAT(10, 6),
-    
+
     -- Fixed String vs Variable String:
     country_code CHAR(2) NOT NULL,            -- Always 2 characters (e.g. 'IN', 'US')
     full_name VARCHAR(100) NOT NULL,           -- Dynamic length
     email VARCHAR(150) UNIQUE NOT NULL,
-    
+
     -- Large Text:
     bio TEXT,
-    
+
     -- Boolean Flag (TINYINT(1)):
     is_verified BOOLEAN DEFAULT FALSE,
-    
+
     -- Category Types (ENUM & SET):
     gender ENUM('Male', 'Female', 'Other'),
     interests SET('Sports', 'Tech', 'Music', 'Travel', 'Art'),
-    
+
     -- Temporal Types (DATETIME vs TIMESTAMP):
     date_of_birth DATE NOT NULL,              -- Date only: YYYY-MM-DD
     login_time TIME,                          -- Time only: HH:MM:SS
@@ -1082,7 +897,7 @@ INSERT INTO users (name, details) VALUES
 ('Bob', '{"age": 30, "email": "bob@example.com", "skills": ["Java", "C++"], "isAdmin": true}');
 
 -- 3. Extract individual fields using JSON_EXTRACT():
-SELECT 
+SELECT
   NAME,
   JSON_EXTRACT(DETAILS, '$.FIRSTNAME') AS FirstName,
   JSON_EXTRACT(DETAILS, '$.AGE') AS Age,
@@ -1097,14 +912,14 @@ SELECT NAME, DETAILS ->> '$.AGE' AS USERAGE FROM USER;
 SELECT NAME, DETAILS -> '$.AGE' AS ISADMIN FROM USER;
 
 -- 6. Extract nested array values (0-indexed):
--- EXTRACT NESTED ARRAY VALUE 
+-- EXTRACT NESTED ARRAY VALUE
 SELECT DETAILS->>'$.skills[0]' AS FIRST FROM USER WHERE ID = 2;
 -- $ -> root, skills -> array name, [0] -> first element in the array
 
 -- 7. Filter rows based on JSON content in the WHERE clause:
-SELECT NAME, 
-       DETAILS  
-FROM USER 
+SELECT NAME,
+       DETAILS
+FROM USER
 WHERE JSON_EXTRACT(DETAILS, '$.isAdmin') = TRUE;
 
 -- 8. Update a JSON field (Modify existing key):
@@ -1125,7 +940,7 @@ WHERE ID = 1;
 SELECT * FROM USER;
 
 -- 11. Extract nested properties of an object:
--- GET NESTED PROPERTIES 
+-- GET NESTED PROPERTIES
 SELECT NAME, DETAILS, JSON_EXTRACT(DETAILS, '$.address.city') AS USERCITY FROM USER WHERE ID = 2;
 
 -- 12. Create a JSON Array on the fly:
@@ -1261,7 +1076,7 @@ WHERE name = 'Vishal';
 
 -- * Use Case: When a single column needs the flexibility to store varying geometry types across different records.
 
--- CREATE TABLE WITH GEOMETRY DATA TYPE 
+-- CREATE TABLE WITH GEOMETRY DATA TYPE
 CREATE TABLE GEO_OBJECTS(
   ID INT AUTO_INCREMENT PRIMARY KEY,
   NAME VARCHAR(50),
@@ -1290,7 +1105,7 @@ CREATE TABLE USER_LOCATION(
 );
 
 -- INSERT DATA INTO USER LOCATION TABLE USING POINT GEOMETRY TYPE
-INSERT INTO USER_LOCATION(NAME, LOCATION) 
+INSERT INTO USER_LOCATION(NAME, LOCATION)
 VALUES('VISHAL', ST_GeomFromText('POINT(72.8777 19.0760)'));
 
 -- Convert binary geometry to readable WKT text:
@@ -1311,8 +1126,8 @@ CREATE TABLE road(
   road_path LINESTRING
 );
 
--- INSERT LINESTRING DATA INTO THE TABLE 
-INSERT INTO road (road_name, road_path) 
+-- INSERT LINESTRING DATA INTO THE TABLE
+INSERT INTO road (road_name, road_path)
 VALUES ('pune_nashik_hiway', ST_GeomFromText('LINESTRING(77.59 12.97, 77.60 12.98, 77.62 12.99)'));
 
 SELECT road_name, ST_AsText(road_path) FROM road;
@@ -1325,14 +1140,14 @@ SELECT road_name, ST_AsText(road_path) FROM road;
 
 -- * Use Case: Define city municipal boundaries, restricted zones, delivery service radiuses, lakes, parks, and agricultural plots.
 
--- CREATE TABLE WITH POLYGON 
+-- CREATE TABLE WITH POLYGON
 CREATE TABLE REAGION(
   ID INT AUTO_INCREMENT PRIMARY KEY,
   REGION_NAME VARCHAR(50),
   REAGION POLYGON
 );
 
--- INSERT POLYGON DATA 
+-- INSERT POLYGON DATA
 INSERT INTO REAGION(REGION_NAME, REAGION)
 VALUES('KASARSAI_DAM', ST_GEOMFROMTEXT('POLYGON((77.58 12.97, 77.60 12.97, 77.60 12.99, 77.58 12.99, 77.58 12.97))'));
 
@@ -1346,15 +1161,15 @@ SELECT * FROM REAGION;
 
 -- * Use Case: Store all branches, stores, or user check-in points within a single corporate zone.
 
--- CREATE TABLE FOR MULTIPOINT 
+-- CREATE TABLE FOR MULTIPOINT
 CREATE TABLE MULTIPOINT(
   ID INT AUTO_INCREMENT PRIMARY KEY,
   NAME VARCHAR(50),
   LOCATION MULTIPOINT
 );
 
--- INSERT MULTIPOINT DATA 
-INSERT INTO MULTIPOINT (NAME, LOCATION) 
+-- INSERT MULTIPOINT DATA
+INSERT INTO MULTIPOINT (NAME, LOCATION)
 VALUES('PUNE-ZONE', ST_GEOMFROMTEXT('MULTIPOINT((77.59 12.97), (77.61 12.98), (77.63 12.99))'));
 
 SELECT * FROM MULTIPOINT;
@@ -1373,8 +1188,8 @@ CREATE TABLE MULTLILINESTRINGDATA(
   PATHS MULTILINESTRING
 );
 
--- INSERT MULTILINE DATA 
-INSERT INTO MULTLILINESTRINGDATA (NETWORK_NAME, PATHS) 
+-- INSERT MULTILINE DATA
+INSERT INTO MULTLILINESTRINGDATA (NETWORK_NAME, PATHS)
 VALUES ('D-MART', ST_GEOMFROMTEXT('MULTILINESTRING((77.58 12.97, 77.60 12.98), (77.61 12.99, 77.63 13.00))'));
 
 SELECT * FROM MULTLILINESTRINGDATA;
@@ -1387,9 +1202,9 @@ SELECT * FROM MULTLILINESTRINGDATA;
 
 -- * Use Case: Represent non-contiguous land territories, archipelagos/islands, multi-district sales zones.
 
--- CREATE TABLE MULTIPOLYGON 
+-- CREATE TABLE MULTIPOLYGON
 CREATE TABLE MULTIPOLYGONDATA(
-  ID INT AUTO_INCREMENT PRIMARY KEY, 
+  ID INT AUTO_INCREMENT PRIMARY KEY,
   NAME VARCHAR(50),
   AREAS MULTIPOLYGON
 );

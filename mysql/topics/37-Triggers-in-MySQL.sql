@@ -12,6 +12,8 @@
 
 -- * 🧩 Syntax:
 --     DELIMITER //
+-- DELIMITER  is a command that changes the statement delimiter from `;` to `//` (or any other string) so that MySQL does not stop at the first `;` inside the trigger body. After creating the trigger, we reset it back to `;`.
+-- in simple in hindi delimeter 
 --     CREATE TRIGGER trigger_name
 --     {BEFORE | AFTER} {INSERT | UPDATE | DELETE} ON table_name
 --     FOR EACH ROW
@@ -30,6 +32,8 @@
 -- * Example on salesdb (run 00-Setup-Sample-Data.sql first):
 USE salesdb;
 CREATE TABLE price_history (productid INT, old_price INT, new_price INT);
+
+
 CREATE TRIGGER trg_price AFTER UPDATE ON products
 FOR EACH ROW INSERT INTO price_history VALUES (OLD.productid, OLD.price, NEW.price);
 UPDATE products SET price = 12 WHERE productid = 101;
